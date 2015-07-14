@@ -1,0 +1,66 @@
+package leetcode;
+
+import java.util.Arrays;
+
+/**
+ * https://leetcode.com/problems/search-for-a-range/
+ */
+public class LC034SearchForARange {
+    private int bsInfimum(int[] nums, int target) {
+        int a = 0;
+        int z = nums.length - 1;
+        while (a < z) {
+            int m = (a + z) / 2;
+            if (nums[m] < target) {
+                a = m + 1;
+            }
+            if (nums[m] == target) {
+                z = m;
+            }
+            if (nums[m] > target) {
+                z = m - 1;
+            }
+        }
+        if (a == z && nums[a] == target) {
+            return a;
+        } else {
+            return -1;
+        }
+    }
+
+    private int bsSupremum(int[] nums, int target) {
+        int a = 0;
+        int z = nums.length - 1;
+        while (a < z) {
+            int m = (1 + a + z) / 2;
+            if (nums[m] < target) {
+                a = m + 1;
+            }
+            if (nums[m] == target) {
+                a = m;
+            }
+            if (nums[m] > target) {
+                z = m - 1;
+            }
+        }
+        if (a == z && nums[a] == target) {
+            return a;
+        } else {
+            return -1;
+        }
+    }
+
+
+    public int[] searchRange(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return new int[]{-1, -1};
+        }
+        return new int[]{bsInfimum(nums, target), bsSupremum(nums, target)};
+    }
+
+    public static void main(String[] arguments) {
+        LC034SearchForARange solution = new LC034SearchForARange();
+        int[] nums = {5, 7, 7, 8, 8, 10};
+        System.out.println(Arrays.toString(solution.searchRange(nums, 8)));
+    }
+}
