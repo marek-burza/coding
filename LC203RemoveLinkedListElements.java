@@ -1,5 +1,9 @@
 package leetcode;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * https://leetcode.com/problems/remove-linked-list-elements/
  */
@@ -13,11 +17,34 @@ public class LC203RemoveLinkedListElements {
         }
     }
 
+    public class Solution {
+        public ListNode removeElements(ListNode head, int val) {
+            if (head == null) {
+                return (null);
+            }
+            ListNode previous = null;
+            ListNode node = head;
+            while (node != null) {
+                if (node.val == val) {
+                    if (previous == null) {
+                        head = node.next;
+                    } else {
+                        previous.next = node.next;
+                    }
+                } else {
+                    previous = node;
+                }
+                node = node.next;
+            }
+            return (head);
+        }
+    }
+
     public ListNode convert(int[] array) {
         ListNode list = null;
         ListNode last = null;
-        for (int i = 0; i < array.length; i++) {
-            ListNode node = new ListNode(array[i]);
+        for (int value : array) {
+            ListNode node = new ListNode(value);
             node.next = null;
             if (list == null) {
                 list = node;
@@ -29,40 +56,15 @@ public class LC203RemoveLinkedListElements {
         return list;
     }
 
-    public void print(ListNode list) {
-        while (list != null) {
-            System.out.print(list.val + " ");
+    @Test
+    public void test_6_1_2_3_4_5_6_7_6__6() throws Exception {
+        int[] array = {6, 1, 2, 3, 4, 5, 6, 7, 6};
+        ListNode list = convert(array);
+        list = new Solution().removeElements(list, 6);
+        int[] expected = {1, 2, 3, 4, 5, 7};
+        for (int value : expected) {
+            assertEquals(value, list.val);
             list = list.next;
         }
-        System.out.println();
-    }
-
-    public ListNode removeElements(ListNode head, int val) {
-        if (head == null) {
-            return (null);
-        }
-        ListNode previous = null;
-        ListNode node = head;
-        while (node != null) {
-            if (node.val == val) {
-                if (previous == null) {
-                    head = node.next;
-                } else {
-                    previous.next = node.next;
-                }
-            } else {
-                previous = node;
-            }
-            node = node.next;
-        }
-        return (head);
-    }
-
-    public static void main(String[] arguments) {
-        LC203RemoveLinkedListElements eraser = new LC203RemoveLinkedListElements();
-        int[] array = {6, 1, 2, 3, 4, 5, 6, 7, 6};
-        ListNode list = eraser.convert(array);
-        eraser.print(list);
-        eraser.print(eraser.removeElements(list, 6));
     }
 }

@@ -2,6 +2,10 @@ package leetcode;
 
 import java.util.Random;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * https://leetcode.com/problems/reverse-linked-list/
  */
@@ -12,6 +16,22 @@ public class LC206ReverseLinkedList {
 
         public ListNode(int x) {
             val = x;
+        }
+    }
+
+    public class Solution {
+        public ListNode reverseList(ListNode head) {
+            if (head == null) {
+                return (null);
+            }
+            ListNode ante = null;
+            while (head != null) {
+                ListNode post = head.next;
+                head.next = ante;
+                ante = head;
+                head = post;
+            }
+            return (ante);
         }
     }
 
@@ -32,32 +52,29 @@ public class LC206ReverseLinkedList {
         return list;
     }
 
-    public void print(ListNode list) {
-        while (list != null) {
-            System.out.print(list.val + " ");
+    public int[] freeze(ListNode list) {
+        int count = 0;
+        ListNode copy = list;
+        while (copy != null) {
+            count++;
+            copy = copy.next;
+        }
+        int[] frozen = new int[count];
+        for (int i = 0; i < count; i++) {
+            frozen[i] = list.val;
             list = list.next;
         }
-        System.out.println();
+        return frozen;
     }
 
-    public ListNode reverseList(ListNode head) {
-        if (head == null) {
-            return (null);
+    @Test
+    public void test_random() throws Exception {
+        ListNode list = random();
+        int[] original = freeze(list);
+        int[] result = freeze(new Solution().reverseList(list));
+        assertEquals(original.length, result.length);
+        for (int i = 0; i < original.length; i++) {
+            assertEquals(original[original.length - 1 - i], result[i]);
         }
-        ListNode ante = null;
-        while (head != null) {
-            ListNode post = head.next;
-            head.next = ante;
-            ante = head;
-            head = post;
-        }
-        return (ante);
-    }
-
-    public static void main(String[] arguments) {
-        LC206ReverseLinkedList mirror = new LC206ReverseLinkedList();
-        ListNode list = mirror.random();
-        mirror.print(list);
-        mirror.print(mirror.reverseList(list));
     }
 }
