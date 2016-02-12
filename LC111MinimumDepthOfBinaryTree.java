@@ -3,11 +3,15 @@ package leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * https://leetcode.com/problems/minimum-depth-of-binary-tree/
  */
 public class LC111MinimumDepthOfBinaryTree {
-    public static class TreeNode {
+    public class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -17,40 +21,42 @@ public class LC111MinimumDepthOfBinaryTree {
         }
     }
 
-    private class AnnotatedNode {
-        public TreeNode node;
-        public int depth;
+    public class Solution {
+        private class AnnotatedNode {
+            public TreeNode node;
+            public int depth;
 
-        public AnnotatedNode(TreeNode node, int depth) {
-            this.node = node;
-            this.depth = depth;
-        }
-    }
-
-    public int minDepth(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        List<AnnotatedNode> queue = new ArrayList<>();
-        queue.add(new AnnotatedNode(root, 1));
-        while (queue.size() > 0) {
-            AnnotatedNode annotated = queue.remove(0);
-            if (annotated.node.left == null && annotated.node.right == null) {
-                return annotated.depth;
-            } else {
-                if (annotated.node.left != null) {
-                    queue.add(new AnnotatedNode(annotated.node.left, annotated.depth + 1));
-                }
-                if (annotated.node.right != null) {
-                    queue.add(new AnnotatedNode(annotated.node.right, annotated.depth + 1));
-                }
+            public AnnotatedNode(TreeNode node, int depth) {
+                this.node = node;
+                this.depth = depth;
             }
         }
-        return -1;
+
+        public int minDepth(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            List<AnnotatedNode> queue = new ArrayList<>();
+            queue.add(new AnnotatedNode(root, 1));
+            while (queue.size() > 0) {
+                AnnotatedNode annotated = queue.remove(0);
+                if (annotated.node.left == null && annotated.node.right == null) {
+                    return annotated.depth;
+                } else {
+                    if (annotated.node.left != null) {
+                        queue.add(new AnnotatedNode(annotated.node.left, annotated.depth + 1));
+                    }
+                    if (annotated.node.right != null) {
+                        queue.add(new AnnotatedNode(annotated.node.right, annotated.depth + 1));
+                    }
+                }
+            }
+            return -1;
+        }
     }
 
-    public static void main(String[] arguments) {
-        LC111MinimumDepthOfBinaryTree solution = new LC111MinimumDepthOfBinaryTree();
+    @Test
+    public void test_example() throws Exception {
         TreeNode n3 = new TreeNode(3);
         TreeNode n7 = new TreeNode(7);
         TreeNode n9 = new TreeNode(9);
@@ -61,6 +67,6 @@ public class LC111MinimumDepthOfBinaryTree {
         n20.left = n15;
         n20.right = n7;
         n7.left = n7.right = n9.left = n9.right = n15.left = n15.right = null;
-        System.out.println(solution.minDepth(n3));
+        assertEquals(2, new Solution().minDepth(n3));
     }
 }

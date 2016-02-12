@@ -1,5 +1,9 @@
 package leetcode;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * https://leetcode.com/problems/partition-list/
  */
@@ -10,6 +14,32 @@ public class LC086PartitionList {
 
         ListNode(int x) {
             val = x;
+        }
+    }
+
+    public class Solution {
+        public ListNode partition(ListNode head, int x) {
+            if (head == null) {
+                return null;
+            }
+            ListNode less = new ListNode(0);
+            ListNode more = new ListNode(0);
+            ListNode before = less;
+            ListNode after = more;
+            while (head != null) {
+                if (head.val < x) {
+                    less.next = head;
+                    less = head;
+                }
+                if (head.val >= x) {
+                    more.next = head;
+                    more = head;
+                }
+                head = head.next;
+            }
+            less.next = after.next;
+            more.next = null;
+            return before.next;
         }
     }
 
@@ -24,45 +54,20 @@ public class LC086PartitionList {
                 tail = tail.next;
             }
         }
-        tail.next = null;
+        if (tail != null) {
+            tail.next = null;
+        }
         return head;
     }
 
-    private void print(ListNode head) {
-        while (head != null) {
-            System.out.print("" + head.val + " ");
-            head = head.next;
+    @Test
+    public void test_1_4_3_2_5_2__3() throws Exception {
+        ListNode list = build(new int[]{1, 4, 3, 2, 5, 2});
+        int[] expected = {1, 2, 2, 4, 3, 5};
+        ListNode result = new Solution().partition(list, 3);
+        for (int value : expected) {
+            assertEquals(value, result.val);
+            result = result.next;
         }
-        System.out.println();
-    }
-
-    public ListNode partition(ListNode head, int x) {
-        if (head == null) {
-            return null;
-        }
-        ListNode less = new ListNode(0);
-        ListNode more = new ListNode(0);
-        ListNode before = less;
-        ListNode after = more;
-        while (head != null) {
-            if (head.val < x) {
-                less.next = head;
-                less = head;
-            }
-            if (head.val >= x) {
-                more.next = head;
-                more = head;
-            }
-            head = head.next;
-        }
-        less.next = after.next;
-        more.next = null;
-        return before.next;
-    }
-
-    public static void main(String[] arguments) {
-        LC086PartitionList splitter = new LC086PartitionList();
-        ListNode list = splitter.build(new int[]{1, 4, 3, 2, 5, 2});
-        splitter.print(splitter.partition(list, 3));
     }
 }

@@ -1,10 +1,14 @@
 package leetcode;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * https://leetcode.com/problems/intersection-of-two-linked-lists/
  */
 public class LC160IntersectionOfTwoLinkedLists {
-    public static class ListNode {
+    public class ListNode {
         int val;
         ListNode next;
 
@@ -14,46 +18,49 @@ public class LC160IntersectionOfTwoLinkedLists {
         }
     }
 
-    public ListNode detectCycle(ListNode head) {
-        ListNode p1 = head;
-        ListNode p2 = head;
-        while (p2 != null && p2.next != null) {
-            p1 = p1.next;
-            p2 = p2.next.next;
-            if (p1 == p2) break;
+    public class Solution {
+        public ListNode detectCycle(ListNode head) {
+            ListNode p1 = head;
+            ListNode p2 = head;
+            while (p2 != null && p2.next != null) {
+                p1 = p1.next;
+                p2 = p2.next.next;
+                if (p1 == p2) break;
+            }
+            if (p2 == null || p2.next == null) {
+                return null;
+            }
+            p1 = head;
+            while (p1 != p2) {
+                p1 = p1.next;
+                p2 = p2.next;
+            }
+            return p2;
         }
-        if (p2 == null || p2.next == null) {
-            return null;
-        }
-        p1 = head;
-        while (p1 != p2) {
-            p1 = p1.next;
-            p2 = p2.next;
-        }
-        return p2;
-    }
 
-    private ListNode last(ListNode list) {
-        while (list.next != null) {
-            list = list.next;
+        private ListNode last(ListNode list) {
+            while (list.next != null) {
+                list = list.next;
+            }
+            return list;
         }
-        return list;
-    }
 
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        if (headA == null || headB == null) {
-            return null;
+        public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+            if (headA == null || headB == null) {
+                return null;
+            }
+            ListNode last = last(headA);
+            last.next = headB;
+            ListNode node = detectCycle(headA);
+            last.next = null;
+            return node;
         }
-        ListNode last = last(headA);
-        last.next = headB;
-        ListNode node = detectCycle(headA);
-        last.next = null;
-        return node;
     }
 
     // One can also measure the length of lists, skip their delta, iterate in parallel until common node found
 
-    public static void main(String[] arguments) {
+    @Test
+    public void test_example() throws Exception {
         ListNode a1 = new ListNode(0xA1);
         ListNode a2 = new ListNode(0xA2);
         ListNode b1 = new ListNode(0xB1);
@@ -70,7 +77,6 @@ public class LC160IntersectionOfTwoLinkedLists {
         c1.next = c2;
         c2.next = c3;
         c3.next = null;
-        LC160IntersectionOfTwoLinkedLists solution = new LC160IntersectionOfTwoLinkedLists();
-        System.out.println(c1 == solution.getIntersectionNode(a1, b1));
+        assertEquals(c1, new Solution().getIntersectionNode(a1, b1));
     }
 }

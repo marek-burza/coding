@@ -1,5 +1,9 @@
 package leetcode;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 /**
  * https://leetcode.com/problems/merge-two-sorted-lists/
  */
@@ -13,31 +17,33 @@ public class LC021MergeTwoSortedLists {
         }
     }
 
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode handle = new ListNode(0);
-        handle.next = null;
-        ListNode current = handle;
-        while (l1 != null && l2 != null) {
-            if (l1.val < l2.val) {
-                current.next = l1;
-                l1 = l1.next;
-            } else {
-                current.next = l2;
-                l2 = l2.next;
+    public class Solution {
+        public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+            ListNode handle = new ListNode(0);
+            ListNode current = handle;
+            current.next = null;
+            while (l1 != null && l2 != null) {
+                if (l1.val < l2.val) {
+                    current.next = l1;
+                    l1 = l1.next;
+                } else {
+                    current.next = l2;
+                    l2 = l2.next;
+                }
+                current = current.next;
             }
-            current = current.next;
+            if (l1 != null) {
+                current.next = l1;
+            }
+            if (l2 != null) {
+                current.next = l2;
+            }
+            return handle.next;
         }
-        if (l1 != null) {
-            current.next = l1;
-        }
-        if (l2 != null) {
-            current.next = l2;
-        }
-        return handle.next;
     }
 
-    public static void main(String[] arguments) {
-        LC021MergeTwoSortedLists solution = new LC021MergeTwoSortedLists();
+    @Test
+    public void test_1_3_5_7_9__2_4_6() throws Exception {
         ListNode n9 = new ListNode(9);
         n9.next = null;
         ListNode n7 = new ListNode(7);
@@ -54,10 +60,14 @@ public class LC021MergeTwoSortedLists {
         n4.next = n6;
         ListNode n2 = new ListNode(2);
         n2.next = n4;
-        ListNode n0 = solution.mergeTwoLists(n1, n2);
-        while (n0 != null) {
-            System.out.println(n0.val);
-            n0 = n0.next;
-        }
+        ListNode n0 = new Solution().mergeTwoLists(n1, n2);
+        assertEquals(1, n0.val);
+        assertEquals(2, n0.next.val);
+        assertEquals(3, n0.next.next.val);
+        assertEquals(4, n0.next.next.next.val);
+        assertEquals(5, n0.next.next.next.next.val);
+        assertEquals(6, n0.next.next.next.next.next.val);
+        assertEquals(7, n0.next.next.next.next.next.next.val);
+        assertEquals(9, n0.next.next.next.next.next.next.next.val);
     }
 }
