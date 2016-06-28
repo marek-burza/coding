@@ -1,5 +1,6 @@
 package leetcode;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -89,6 +90,8 @@ public class LC187RepeatedDNASequences {
     @Test
     public void test_AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT() throws Exception {
         String[] expected = {"AAAAACCCCC", "CCCCCAAAAA"};
-        assertArrayEquals(expected, new Solution().findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT").toArray());
+        Object[] result = new Solution().findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT").toArray();
+        Arrays.sort(result);
+        assertArrayEquals(expected, result);
     }
 }
