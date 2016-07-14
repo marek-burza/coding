@@ -21,6 +21,7 @@ public class LC096UniqueBinarySearchTrees {
         }
     }
 
+    @Test
     public void test_2() throws Exception {
         assertEquals(2, new Solution().numTrees(2));
     }
