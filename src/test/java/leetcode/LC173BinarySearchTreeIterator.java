@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.Stack;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * https://leetcode.com/problems/binary-search-tree-iterator/
  */
@@ -74,8 +76,10 @@ public class LC173BinarySearchTreeIterator {
         n9.left = n8;
         n8.left = n7;
         BSTIterator iterator = new BSTIterator(n6);
+        int i = 1;
         while(iterator.hasNext()) {
-            System.out.println(iterator.next());
+            assertEquals(i, iterator.next());
+            i++;
         }
     }
 }
