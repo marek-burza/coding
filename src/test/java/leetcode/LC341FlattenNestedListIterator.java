@@ -121,9 +121,9 @@ public class LC341FlattenNestedListIterator {
         list.add(new NestedInteger(list_1_1_b));
         int[] expected = {1, 1, 2, 1, 1};
         NestedIterator nested = new NestedIterator(list);
-        for (int i = 0; i < expected.length; i++) {
+        for (int value : expected) {
             assertEquals(true, nested.hasNext());
-            assertEquals(expected[i], nested.next().intValue());
+            assertEquals(value, nested.next().intValue());
         }
         assertEquals(false, nested.hasNext());
         assertEquals(null, nested.next());
