@@ -10,7 +10,6 @@ import static org.junit.Assert.assertEquals;
 public class LC240SearchA2DMatrixII {
     public class Solution {
         public boolean searchMatrix(int[][] matrix, int target, int rowA, int rowZ, int colA, int colZ) {
-            System.out.printf("row %d-%d col %d-%d\n", rowA, rowZ, colA, colZ);
             if (rowA == rowZ && colA == colZ) return matrix[rowZ][colZ] == target;
             if (target < matrix[rowA][colA] || matrix[rowZ][colZ] < target) return false;
             int rowM = (rowA + rowZ) / 2;
