@@ -34,7 +34,7 @@ public class LC049GroupAnagrams {
         }
     }
 
-    private class OrderlyComparater implements Comparator<List<String>> {
+    private class OrderlyComparator implements Comparator<List<String>> {
         @Override
         public int compare(List<String> l1, List<String> l2) {
             int difference = l1.size() - l2.size();
@@ -53,7 +53,7 @@ public class LC049GroupAnagrams {
     }
 
     public void test(String[][] expected, List<List<String>> result) throws Exception {
-        Collections.sort(result, new OrderlyComparater());
+        Collections.sort(result, new OrderlyComparator());
         assertEquals(expected.length, result.size());
         for (int i = 0; i < expected.length; i++) {
             assertEquals(expected[i].length, result.get(i).size());
