@@ -1,6 +1,6 @@
-# Training with LeetCode OJ [![Build Status][travis-img]][travis-url]
+# Training Coding with Online Judge sites [![Build Status][travis-img]][travis-url]
 
-[travis-url]: https://travis-ci.org/altermarkive/Training-LeetCode-OJ
-[travis-img]: https://travis-ci.org/altermarkive/Training-LeetCode-OJ.svg?branch=master
+[travis-url]: https://travis-ci.org/altermarkive/Training-Coding
+[travis-img]: https://travis-ci.org/altermarkive/Training-Coding.svg?branch=master
 
-I'm putting here the code I write when training with the materials listed on [LeetCode OJ](https://leetcode.com/).
+I'm putting here the code I write when training with the materials listed on online judge sites.
