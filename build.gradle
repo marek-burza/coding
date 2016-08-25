@@ -11,4 +11,5 @@ dependencies {
 tasks.withType(Test) {
     scanForTestClasses = false
     exclude '**/*\$*.class'
+    exclude '**/Solution.class'
 }

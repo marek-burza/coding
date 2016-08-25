@@ -7,7 +7,7 @@ import java.util.Scanner;
  * https://www.hackerrank.com/challenges/bigger-is-greater
  */
 public class Solution {
-    public static String advance(String s) {
+    static String advance(String s) {
         char[] array = s.toCharArray();
         for (int i = array.length - 1; 0 < i; i--) {
             if (array[i - 1] < array[i]) {
