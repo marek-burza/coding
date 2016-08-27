@@ -12,10 +12,37 @@ import static org.junit.Assert.assertEquals;
 /**
  * http://qa.geeksforgeeks.org/6310
  */
-public class GFG6310FindTheNearestLockerInTheCity { // x y in result were flipped
+public class GFG6310FindTheNearestLockerInTheCity {
+    static int[][] getLockerDistanceGridBruteForce(int cityLength, int cityWidth, int[] lockerXCoordinates, int[] lockerYCoordinates) {
+        int n = Math.min(lockerXCoordinates.length, lockerYCoordinates.length);
+        int[][] result = new int[cityLength][cityWidth];
+        for (int x = 0; x < cityLength; x++) {
+            for (int y = 0; y < cityWidth; y++) {
+                result[x][y] = Integer.MAX_VALUE;
+                for (int i = 0; i < n; i++) {
+                    int d = Math.abs(x - lockerXCoordinates[i] + 1) + Math.abs(y - lockerYCoordinates[i] + 1);
+                    result[x][y] = Math.min(result[x][y], d);
+                }
+            }
+        }
+        return result;
+    }
+
+    private static class Spot {
+        public final int x;
+        public final int y;
+        public final int distance;
+
+        public Spot(int x, int y, int distance) {
+            this.x = x;
+            this.y = y;
+            this.distance = distance;
+        }
+    }
+
     static int[][] getLockerDistanceGrid(int cityLength, int cityWidth, int[] lockerXCoordinates, int[] lockerYCoordinates) {
         // Fill all cells with max value distance
-        int[][] result = new int[cityWidth][cityLength];
+        int[][] result = new int[cityLength][cityWidth];
         for (int[] row : result) {
             Arrays.fill(row, Integer.MAX_VALUE);
         }
@@ -24,41 +51,36 @@ public class GFG6310FindTheNearestLockerInTheCity { // x y in result were flippe
         for (int i = 0; i < n; i++) {
             int x = lockerXCoordinates[i] - 1;
             int y = lockerYCoordinates[i] - 1;
-            result[y][x] = 0;
+            result[x][y] = 0;
         }
         // BFS queue
-        Queue<Integer> ds = new LinkedList<>();
-        Queue<Integer> xs = new LinkedList<>();
-        Queue<Integer> ys = new LinkedList<>();
+        Queue<Spot> queue = new LinkedList<>();
         // Go down, up, right, left
         int[][] delta = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         for (int i = 0; i < n; i++) {
             // Add locker location to queue
             int x = lockerXCoordinates[i] - 1;
             int y = lockerYCoordinates[i] - 1;
-            ds.add(0);
-            xs.add(x);
-            ys.add(y);
+            queue.add(new Spot(x, y, 0));
             // While we have unvisited cells
-            while (ds.size() != 0) {
-                int d = ds.poll();
-                x = xs.poll();
-                y = ys.poll();
+            while (queue.size() != 0) {
+                Spot spot = queue.poll();
+                int d = spot.distance;
+                x = spot.x;
+                y = spot.y;
                 // For each direction from here
                 for (int j = 0; j < delta.length; j++) {
                     // Calc new position and check if in the city
                     int dx = x + delta[j][0];
-                    if (dx < 0 || result[0].length <= dx) continue;
+                    if (dx < 0 || result.length <= dx) continue;
                     int dy = y + delta[j][1];
-                    if (dy < 0 || result.length <= dy) continue;
+                    if (dy < 0 || result[0].length <= dy) continue;
                     // Calculate new distance and check if less than current shortest one
                     int dd = d + 1;
-                    if (result[dy][dx] <= dd) continue;
+                    if (result[dx][dy] <= dd) continue;
                     // Valid so update shortest distance and traverse there
-                    result[dy][dx] = dd;
-                    ds.add(dd);
-                    xs.add(dx);
-                    ys.add(dy);
+                    result[dx][dy] = dd;
+                    queue.add(new Spot(dx, dy, dd));
                 }
             }
         }
@@ -69,11 +91,9 @@ public class GFG6310FindTheNearestLockerInTheCity { // x y in result were flippe
     public void test_example_1() throws Exception {
         int[][] result = GFG6310FindTheNearestLockerInTheCity.getLockerDistanceGrid(3, 5, new int[]{1}, new int[]{1});
         int[][] expected = {
-                {0, 1, 2},
-                {1, 2, 3},
-                {2, 3, 4},
-                {3, 4, 5},
-                {4, 5, 6}
+                {0, 1, 2, 3, 4},
+                {1, 2, 3, 4, 5},
+                {2, 3, 4, 5, 6}
         };
         assertEquals(expected.length, result.length);
         for (int row = 0; row < expected.length; row++) {
@@ -85,13 +105,11 @@ public class GFG6310FindTheNearestLockerInTheCity { // x y in result were flippe
     public void test_example_2() throws Exception {
         int[][] result = GFG6310FindTheNearestLockerInTheCity.getLockerDistanceGrid(5, 7, new int[]{2, 4}, new int[]{3, 7});
         int[][] expected = {
-                {3, 2, 3, 4, 5},
-                {2, 1, 2, 3, 4},
-                {1, 0, 1, 2, 3},
-                {2, 1, 2, 3, 4},
-                {3, 2, 3, 2, 3},
-                {4, 3, 2, 1, 2},
-                {3, 2, 1, 0, 1}
+                {3, 2, 1, 2, 3, 4, 3},
+                {2, 1, 0, 1, 2, 3, 2},
+                {3, 2, 1, 2, 3, 2, 1},
+                {4, 3, 2, 3, 2, 1, 0},
+                {5, 4, 3, 4, 3, 2, 1}
         };
         assertEquals(expected.length, result.length);
         for (int row = 0; row < expected.length; row++) {
