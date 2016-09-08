@@ -1,10 +1,10 @@
-package hackerrank.sherlockandarray;
+package hackerrank.divisiblesumpairs;
 
 import hackerrank.SolutionTester;
 import org.junit.Test;
 
 /**
- * https://www.hackerrank.com/challenges/sherlock-and-array
+ * https://www.hackerrank.com/challenges/divisible-sum-pairs
  */
 public class TestSolution {
     @Test
@@ -13,7 +13,7 @@ public class TestSolution {
     }
 
     @Test
-    public void test_00() throws Exception {
-        SolutionTester.test(Solution.class, "input00.txt", "output00.txt");
+    public void test_02() throws Exception {
+        SolutionTester.test(Solution.class, "input02.txt", "output02.txt");
     }
 }
