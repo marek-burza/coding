@@ -21,7 +21,6 @@ public class Solution {
         Scanner in = new Scanner(inOverride);
         int n = in.nextInt();
         int m = in.nextInt();
-        int[] almost = new int[n];
         List<Pair<Integer, Integer>> land = new LinkedList<>();
         for (int row = 0; row < n; row++) {
             for (int col = 0; col < m; col++) {
@@ -52,9 +51,7 @@ public class Solution {
         private final HashMap<Long, Swath> mapping = new HashMap<>();
 
         public IslandHunter(List<Pair<Integer, Integer>> land) {
-            for (Pair<Integer, Integer> location : land) {
-                markAsLand(location);
-            }
+            land.forEach(this::markAsLand);
         }
 
         private long key(int x, int y) {
