@@ -49,8 +49,7 @@
   - Agree on **scope** / **use cases**
     (First a minimum viable product then explore other functions: API vs UI? Customizable? Monetization? Analytics? Scale / numbers?)
 2. Design - break down the system into parts
-  - Start with basic, **abstract** design (e.g. key-value store, web server)
-  - Prioritize
+  - Start with basic, **abstract** design (e.g. key-value store, web server); Prioritize
 3. Scale-up / distribute
   - **Say what can fail / overflow**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
   - Say how to distribute and how to fix whats broken by distributing
