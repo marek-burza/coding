@@ -1,19 +1,19 @@
 # General Remarks
 
-* Be fast (but relaxed & creative)
 * Talk through your thinking process, flag uncertainty
-* Be positive, humble and express explicitly (to prevent hidden assumptions and getting stuck)
+* Be: fast, positive, transparent, fact-based, methodical, and express explicitly (to prevent hidden assumptions and getting stuck)
+* If stuck: **remain calm**, check asumptions, **try more examples**, **ask**, avoid silence or filling it
 
 ----------
 
 # Algorithm Design
 
-1. Identify class of problem / Disambiguate / List constraints / Clarify by example (✔ ✘)
+1. Disambiguate / **Clarify by example** (✔ ✘)
   - Missing details? Special cases & their indication / handling?
   - Restrictions? Guarantees?
   - Types? Ranges? Sizes? Cardinality? How often? Unique / repetitions / empty / partially ordered?
   - Function signature & spec?
-  - Beware of assumptions!
+  - Beware of: assumptions, **"familiar" exercises**, **early optimization**
 2. Talk through the design process / List ideas
   - List alternatives telling their pros and cons (e.g. time/space complexity)
   - Algorithm design tactics
@@ -29,13 +29,11 @@
   - Test input (as a remark)
   - Beware of < vs <=, +1 vs +0, overflows
   - Code must compile - obey syntax, but okay to ask if don't remember name or behavior
-4. Test - say how would you test, dry-run a simple one
+4. Test - describe how would you test, run through a simple case
   - Normal case
   - Non-trivial, all execution paths
   - Edge cases, no solution
-  - (Invalid input)
-  - (Randomized tests)
-  - (Load testing)
+  - (Other: invalid input, randomized tests, load testing)
 5. Keep improving - can we do better?
 
 * Review topics from the flashcards - [TeX](Flashcards.tex), [PDF](Flashcards.pdf)
@@ -50,11 +48,13 @@
   - **Disambiguate**, gather requirements - ask clarifying questions (missing details or restrictions) - beware of assumptions!
   - Agree on **scope** / **use cases**
     (First a minimum viable product then explore other functions: API vs UI? Customizable? Monetization? Analytics? Scale / numbers?)
-2. Break down the system into parts
-  - Start with basic, abstract design
+2. Design - break down the system into parts
+  - Start with basic, **abstract** design (e.g. key-value store, web server)
   - Prioritize
 3. Scale-up / distribute
-  - Identify **bottlenecks**, **trade-offs** (CAP theorem - consistency, availability, partitioning), what can fail
+  - **Say what can fail / overflow**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
+  - Say how to distribute and how to fix whats broken by distributing
+  - Show specific alternatives / solution space
   - **Ballpark estimates** (order of magnitude, as of 2015) - might be a part of point 1
     - Branch mispredict 5ns
     - L1 hit ~5 cycles (0.5ns)
@@ -72,10 +72,18 @@
     - 700M total Twitter users
     - 40k/s Google searches
     - 10T Google indexed pages
-  - Show specific alternatives / solution space
 
 * Review System Design Process on Hired in tech [bit.ly/1B6HOEc](http://www.hiredintech.com/system-design/the-system-design-process/) and [bit.ly/1Dgisc0](http://www.hiredintech.com/system-design/final-thoughts/)
 * Watch the lecture on Scalability Harvard Web Development [youtu.be/-W9F__D3oY4](https://www.youtube.com/watch?v=-W9F__D3oY4)
+
+----------
+
+# Object Oriented Design
+
+1. What do we want to do (with the objects)?
+2. What are the core objects (we operate on)?
+3. Anything missing (look closer at details/aspects)?
+4. Go deeper - how will the methods work?
 
 ----------
 
