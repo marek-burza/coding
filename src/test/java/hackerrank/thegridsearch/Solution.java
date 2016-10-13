@@ -44,19 +44,25 @@ public class Solution {
         int at = -1;
         do {
             at = all.indexOf(small[0], at + 1);
-            if ((at % big[0].length()) + small[0].length() <= big[0].length()) {
-                break;
+            if ((at % big[0].length()) + small[0].length() > big[0].length()) {
+                continue;
             }
-        } while (at != -1);
-        if (-1 == at) {
-            return false;
-        }
-        for (String chunk : small) {
-            if (!all.substring(at, at + chunk.length()).equals(chunk)) {
+            if (-1 == at) {
                 return false;
             }
-            at += big[0].length();
-        }
-        return true;
+            int offset = at;
+            boolean ok = true;
+            for (String chunk : small) {
+                if (!all.substring(offset, offset + chunk.length()).equals(chunk)) {
+                    ok = false;
+                    break;
+                }
+                offset += big[0].length();
+            }
+            if (ok) {
+                return true;
+            }
+        } while (at != -1);
+        return false;
     }
 }
