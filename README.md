@@ -59,3 +59,25 @@ Good luck!
   Thus, it is assumed here that the function is for internal use only.
 * Next to the up/down directions (+/-) the state of the lift can also be idle
   (0).
+
+# Improving the scheduling
+
+Given that lifts have usually capacity bigger than 1 passenger first improvement
+would be to allow the lift to opportunistically pick up "hitchhikers" along
+the way in its direction (up to the capacity of the lift).
+
+Once there are no more requests in need of serving in the direction the lift
+is heading and it has no more passengers it will enter idle state. This
+makes sure that the expectation of the passengers w.r.t. the direction is met.
+
+The lifts will pick a direction only when they are in idle state
+and the direction will be based on the position of the lift and the perceived
+need for a pickup in that direction (to maximize the number passengers served).
+
+# Assumptions
+
+It will be assumed here that the passengers will only get on the lift only
+if it goes in the direction of their intended floor.
+
+It is also assumed that stops (contrary to a physical lift system) take no time
+and the passengers enter and leave the lift momentarily.
