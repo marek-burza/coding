@@ -10,12 +10,14 @@ You can use the language of your choice to implement an elevator control system.
 * time-stepping the simulation.
 * For example, we could imagine in Scala an interface like this:
 
+```
     trait ElevatorControlSystem {
       def status(): Seq[(Int, Int, Int)]
       def update(Int, Int, Int)
       def pickup(Int, Int)
       def step()
     }
+```
 
 Here we have chosen to represent elevator state as 3 integers:
 
@@ -43,3 +45,17 @@ your solution (and providing build instructions). The accompanying documentation
 is an important part of your submission. It counts to show your work.
 
 Good luck!
+
+# Missing information
+
+* There is no mention of lift capacity so this needs to be added.
+* There seems to be way of expressing the intention of the goal floor
+  on behalf of a passenger (to be taken into account by the system once
+  the passenger is picked up) - this needs to be added, for simplicity
+  it will be added as a parameter of the pickup function.
+* The purpose exposing the the update function is not explained enough
+  but it is assumed here that the user of the inteface is not expected
+  to be able to change the position and the direction of the lift arbitrarily.
+  Thus, it is assumed here that the function is for internal use only.
+* Next to the up/down directions (+/-) the state of the lift can also be idle
+  (0).
