@@ -49,7 +49,7 @@ Good luck!
 # Missing information
 
 * There is no mention of lift capacity so this needs to be added.
-* There seems to be way of expressing the intention of the goal floor
+* There seems to be no way of expressing the intention of the goal floor
   on behalf of a passenger (to be taken into account by the system once
   the passenger is picked up) - this needs to be added, for simplicity
   it will be added as a parameter of the pickup function.
@@ -81,3 +81,28 @@ if it goes in the direction of their intended floor.
 
 It is also assumed that stops (contrary to a physical lift system) take no time
 and the passengers enter and leave the lift momentarily.
+
+# Usage
+
+The script assumes Python 3. Simply run the script without any parameters.
+The script uses example values for lift count, lift capacity and floor counts
+and simulates randomly appearing requests. Step through the simulation
+by pressing (or holding) ENTER. With every step the script will display position
+of the lifts, number of passengers (and below their origin and goal floor)
+as well as the queue for each lift.
+
+# Issues
+
+If there are no lifts heading in the direction of the pickup floor and towards
+the goal floor then the algorithm picks the closest lift to queue
+the request to. However, it does not take into account the direction the lift
+is heading to which might add unnecessary waiting time for that request.
+
+The available capacity of the lifts is not taken into account when selecting
+the lift to queue to request to. As a consequence the request might be requeued
+to another lift when the lift arrives and there is no space available (through
+that still matches real life situation).
+
+Unfortunately, there are no automated tests - neither checking if the corner
+cases are handled correctly during runtime nor checking the statistics
+(fairness, lengths of waiting, durations of the rides, etc.).
