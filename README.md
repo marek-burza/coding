@@ -53,8 +53,8 @@ Good luck!
   on behalf of a passenger (to be taken into account by the system once
   the passenger is picked up) - this needs to be added, for simplicity
   it will be added as a parameter of the pickup function.
-* The purpose exposing the the update function is not explained enough
-  but it is assumed here that the user of the inteface is not expected
+* The purpose exposing the update function is not explained enough
+  but it is assumed here that the user of the interface is not expected
   to be able to change the position and the direction of the lift arbitrarily.
   Thus, it is assumed here that the function is for internal use only.
 * Next to the up/down directions (+/-) the state of the lift can also be idle
@@ -70,7 +70,7 @@ Once there are no more requests in need of serving in the direction the lift
 is heading and it has no more passengers it will enter idle state. This
 makes sure that the expectation of the passengers w.r.t. the direction is met.
 
-The lifts will pick a direction only when they are in idle state
+The lifts will pick (change) a direction only when they are in idle state (to improve fairness)
 and the direction will be based on the position of the lift and the perceived
 need for a pickup in that direction (to maximize the number passengers served).
 
