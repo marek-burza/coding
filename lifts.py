@@ -5,8 +5,13 @@ import math
 import random
 
 def direction(origin, goal):
-    delta = goal - origin
-    return 0 if 0 == delta else delta / abs(delta)
+    if goal == origin:
+        return 0
+    elif goal < origin:
+        return -1
+    elif goal > origin:
+        return 1
+    return None
 
 def towards(lift, floor):
     if lift.floor == floor:
@@ -164,40 +169,34 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
         self.queues = [[] for i in range(lift_cnt)]
 
     def pickup(self, request):
-        pickup_floor = request.origin
-        goal_floor = request.goal
+        origin = request.origin
+        goal = request.goal
         available = []
         # Sort by distance the lifts which are approaching and head in the same direction
         for i, lift in enumerate(self.lifts):
-            if lift.direction == 0:
+            idle = lift.direction == 0
+            along = direction(origin, goal) == lift.direction
+            approaching = towards(lift, origin)
+            if idle or (along and towards):
                 available.append(i)
-            else:
-                direction = goal_floor - pickup_floor
-                direction = int(direction / abs(direction))
-                if direction == lift.direction:
-                    if (direction == 1 and lift.floor <= pickup_floor) or (direction == -1 and lift.floor >= pickup_floor):
-                        available.append(i)
-        available = sorted(available, key=lambda i: abs(self.lifts[i].floor - pickup_floor))
+        available = sorted(available, key=lambda i: abs(self.lifts[i].floor - origin))
         # Otherwise sort all lifts by distance
         if len(available) == 0:
-            available = sorted(range(self.lift_cnt), key=lambda i: max_distance(self.lifts[i], pickup_floor, self.floor_cnt))
+            available = sorted(range(self.lift_cnt), key=lambda i: max_distance(self.lifts[i], origin, self.floor_cnt))
         # Pick closest lift
         self.queues[available[0]].append(request)
 
     def step_lift(self, i, lift, left):
         # Let passengers in
         for request in self.queues[i][:]:
-            direction = request.goal - request.origin
-            direction = int(direction / abs(direction))
+            heading_direction = direction(request.origin, request.goal)
             if len(lift.passengers) == 0:
-                direction = request.origin - lift.floor
-                if direction == 0:
-                    direction = request.goal - request.origin
-                direction = int(direction / abs(direction))
-                lift.direction = direction
+                if request.origin != lift.floor:
+                    heading_direction = direction(lift.floor, request.origin)
+                lift.direction = heading_direction
             if request.origin == lift.floor:
                 self.queues[i].remove(request)
-                if direction == lift.direction and self.capacity - len(lift.passengers) > 0:
+                if heading_direction == lift.direction and self.capacity - len(lift.passengers) > 0:
                     lift.passengers.append(request)
                 else:
                     self.pickup(request)
