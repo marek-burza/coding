@@ -74,6 +74,11 @@ The lifts will pick a direction only when they are in idle state
 and the direction will be based on the position of the lift and the perceived
 need for a pickup in that direction (to maximize the number passengers served).
 
+If there are no lifts heading in the direction of the pickup floor and towards
+the goal floor then the algorithm picks the closest lift to queue
+the request to. The distance is calculated also by taking into account
+if the lift is heading towards the pickup floor or away.
+
 # Assumptions
 
 It is assumed here that the passengers will only get on the lift only
@@ -94,11 +99,6 @@ of the lifts, number of passengers (and below their origin and goal floor)
 as well as the queue for each lift.
 
 # Issues
-
-If there are no lifts heading in the direction of the pickup floor and towards
-the goal floor then the algorithm picks the closest lift to queue
-the request to. However, it does not take into account the direction the lift
-is heading to which might add unnecessary waiting time for that request.
 
 The available capacity of the lifts is not taken into account when selecting
 the lift to queue to request to. As a consequence the request might be requeued
