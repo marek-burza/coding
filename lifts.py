@@ -2,7 +2,7 @@
 
 import random
 
-class Passenger:
+class Request:
     def __init__(self, from_f, to_f):
         self.from_f = from_f
         self.to_f = to_f
@@ -21,7 +21,9 @@ class ElevatorControlSystem:
         self.capacity = capacity
         self.lifts = [Lift() for i in range(lift_cnt)]
 
-    def pickup(self, pickup_floor, goal_floor):
+    def pickup(self, request):
+        pickup_floor = request.from_f
+        goal_floor = request.to_f
         available = []
         # Sort by distance the lifts which are approaching and head in the same direction
         for lift in self.lifts:
@@ -38,7 +40,7 @@ class ElevatorControlSystem:
         if len(available) == 0:
             available = sorted(self.lifts, key=lambda lift: abs(lift.position - pickup_floor))
         # Pick closest lift
-        available[0].queue.append(Passenger(pickup_floor, goal_floor))
+        available[0].queue.append(request)
 
     def step(self):
         for lift in self.lifts:
@@ -59,7 +61,7 @@ class ElevatorControlSystem:
                     if direction == lift.direction and self.capacity - len(lift.passengers) > 0:
                         lift.passengers.append(request)
                     else:
-                        self.pickup(request.from_f, request.to_f)
+                        self.pickup(request)
             # If empty then set idle
             if len(lift.passengers) == 0 and len(lift.queue) == 0:
                 lift.direction = 0
@@ -108,7 +110,7 @@ def simulation(lift_cnt, floor_cnt, capacity, request_probability):
             pickup_floor = random.randint(0, floor_cnt - 1)
             goal_floor = random.randint(0, floor_cnt - 1)
             if pickup_floor != goal_floor:
-                system.pickup(pickup_floor, goal_floor)
+                system.pickup(Request(pickup_floor, goal_floor))
         system.step()
         input()
 
