@@ -23,6 +23,17 @@ class Request:
     def __init__(self, from_f, to_f):
         self.from_f = from_f
         self.to_f = to_f
+        self.waited = 0
+        self.ridden = 0
+
+    def waiting(self):
+        self.waited += 1
+
+    def riding(self):
+        self.ridden += 1
+
+    def goal(self):
+        return self.to_f
 
     def show(self):
         if None == self:
@@ -48,20 +59,42 @@ class Lift:
             self.passengers = staying
         return leaving
 
+    def step(self):
+        if self.direction != 0:
+            for passenger in self.passengers:
+                passenger.riding()
+
 class ElevatorControlSystemBase:
     def __init__(self, lift_cnt, floor_cnt, capacity):
         self.lift_cnt = lift_cnt
         self.floor_cnt = floor_cnt
         self.capacity = capacity
         self.lifts = [Lift() for i in range(lift_cnt)]
+        self.through = []
+        self.cycles = 0
+
+    def dropoff(self, request):
+        self.through.append(request)
 
     def step(self):
         for i, lift in enumerate(self.lifts):
             # Let passengers out
             left = lift.leave(True)
+            # Update statistics for each leaving passenger
+            for each in left:
+                self.dropoff(each)
+            # Run the logic
             self.step_lift(i, lift, left)
             # Update position
             lift.position += lift.direction
+            # Update statistics for the riding passengers
+            lift.step()
+        # Update statistics for the waiting passengers
+        for queue in self.queues:
+            for request in queue:
+                request.waiting()
+        # Update number of cycles
+        self.cycles += 1
 
     def show(self):
         for i in range(self.floor_cnt - 1, -1, -1):
@@ -77,6 +110,11 @@ class ElevatorControlSystemBase:
         print('')
         for i, lift in enumerate(self.lifts):
             print('L%d %s' % (i, ' '.join([request.show() for request in lift.passengers])))
+
+    def stats(self):
+        print('Throughput: %f' % (len(self.through) / self.cycles))
+        print('Average wait time: %f' % (sum([request.waited for request in self.through]) / self.cycles))
+        print('Average ride time: %f' % (sum([request.ridden for request in self.through]) / self.cycles))
 
 class ElevatorControlSystem(ElevatorControlSystemBase):
     def __init__(self, lift_cnt, floor_cnt, capacity):
@@ -150,18 +188,33 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
             q = ','.join(['(%d,%d)' % (request.from_f, request.to_f) for request in self.queues[i]])
             print('Q%d %s' % (i, q))
 
-def simulation(lift_cnt, floor_cnt, capacity, request_probability):
-    system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
-    while True:
-        system.show()
+def simulation(system, floor_cnt, request_probability, cycles=None):
+    interactive = None == cycles
+    while interactive or cycles > 0:
+        if not interactive and cycles > 0:
+            cycles -= 1
+        if interactive:
+            system.show()
         if random.random() < request_probability:
             pickup_floor = random.randint(0, floor_cnt - 1)
             goal_floor = random.randint(0, floor_cnt - 1)
             if pickup_floor != goal_floor:
                 system.pickup(Request(pickup_floor, goal_floor))
         system.step()
-        input()
+        if interactive:
+            input()
+    system.stats()
 
 if __name__ == "__main__":
-    # Example
-    simulation(4, 7, 4, 0.75)
+    # Run unattended test to gather statistics
+    lift_cnt = 4
+    floor_cnt = 14
+    capacity = 1
+    request_probability = 1
+    system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
+    simulation(system, floor_cnt, request_probability, 5000)
+    # Run interactive test
+    capacity = 4
+    request_probability = 0.75
+    system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
+    simulation(system, floor_cnt, request_probability, None)
