@@ -91,12 +91,15 @@ It is assumed that the passengers obey their order of getting on.
 
 # Usage
 
-The script assumes Python 3. Simply run the script without any parameters.
-The script uses example values for lift count, lift capacity and floor counts
-and simulates randomly appearing requests. Step through the simulation
-by pressing (or holding) ENTER. With every step the script will display position
-of the lifts, number of passengers (and below their origin and goal floor)
-as well as the queue for each lift.
+The script assumes Python 3.
+* To run an interactive mode imply run the script without any parameter.
+  The script uses example values for lift count, lift capacity and floor counts
+  and simulates randomly appearing requests. Step through the simulation
+  by pressing (or holding) ENTER. With every step the script will display
+  position of the lifts, number of passengers (and below their origin and goal
+  floor) as well as the queue for each lift.
+* To compare statistic on automated randomized tests run the script with
+  any parameter.
 
 # Issues
 
