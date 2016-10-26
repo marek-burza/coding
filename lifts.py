@@ -48,7 +48,8 @@ class Request:
         return '(%d->%d)' % (self.origin, self.goal)
 
 class Lift:
-    def __init__(self):
+    def __init__(self, capacity):
+        self.capacity = capacity
         self.floor = 0
         self.passengers = []
         self.direction = 0
@@ -66,6 +67,12 @@ class Lift:
             self.passengers = staying
         return leaving
 
+    def empty(self):
+        return not self.passengers
+
+    def full(self):
+        return len(self.passengers) >= self.capacity
+
     def step(self):
         if self.direction != 0:
             for passenger in self.passengers:
@@ -76,7 +83,7 @@ class ElevatorControlSystemBase:
         self.lift_cnt = lift_cnt
         self.floor_cnt = floor_cnt
         self.capacity = capacity
-        self.lifts = [Lift() for i in range(lift_cnt)]
+        self.lifts = [Lift(capacity) for i in range(lift_cnt)]
         self.through = []
         self.cycles = 0
 
@@ -140,9 +147,9 @@ class FCFS(ElevatorControlSystemBase):
 
     def step_lift(self, i, lift, left):
             assignment = self.assignments[i]
-            if 0 == len(lift.passengers):
+            if lift.empty():
                 if None == assignment:
-                    if len(self.queue) > 0:
+                    if self.queue:
                         assignment = self.queue.popleft()
                         self.assignments[i] = assignment
                         lift.direction = direction(lift.floor, assignment.origin)
@@ -190,18 +197,18 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
         # Let passengers in
         for request in self.queues[i][:]:
             heading_direction = direction(request.origin, request.goal)
-            if len(lift.passengers) == 0:
+            if lift.empty():
                 if request.origin != lift.floor:
                     heading_direction = direction(lift.floor, request.origin)
                 lift.direction = heading_direction
             if request.origin == lift.floor:
                 self.queues[i].remove(request)
-                if heading_direction == lift.direction and self.capacity - len(lift.passengers) > 0:
+                if heading_direction == lift.direction and not lift.full():
                     lift.passengers.append(request)
                 else:
                     self.pickup(request)
         # If empty then set idle
-        if len(lift.passengers) == 0 and len(self.queues[i]) == 0:
+        if lift.empty() and len(self.queues[i]) == 0:
             lift.direction = 0
 
     def step_waiting(self):
