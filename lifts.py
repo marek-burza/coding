@@ -24,18 +24,42 @@ class Request:
         self.from_f = from_f
         self.to_f = to_f
 
+    def show(self):
+        if None == self:
+            return '()'
+        return '(%d->%d)' % (self.from_f, self.to_f)
+
 class Lift:
     def __init__(self):
         self.position = 0
         self.passengers = []
         self.direction = 0
 
-class ElevatorControlSystem:
+class ElevatorControlSystemBase:
     def __init__(self, lift_cnt, floor_cnt, capacity):
         self.lift_cnt = lift_cnt
         self.floor_cnt = floor_cnt
         self.capacity = capacity
         self.lifts = [Lift() for i in range(lift_cnt)]
+
+    def show(self):
+        for i in range(self.floor_cnt - 1, -1, -1):
+            line = ''
+            for lift in self.lifts:
+                if lift.position == i:
+                    line += str(len(lift.passengers))
+                else:
+                    line += '.'
+            print(line)
+        lut = {-1: 'v', 0: '-', 1: '^'}
+        print(''.join([lut[lift.direction] for lift in self.lifts]))
+        print('')
+        for i, lift in enumerate(self.lifts):
+            print('L%d %s' % (i, ' '.join([request.show() for request in lift.passengers])))
+
+class ElevatorControlSystem(ElevatorControlSystemBase):
+    def __init__(self, lift_cnt, floor_cnt, capacity):
+        ElevatorControlSystemBase.__init__(self, lift_cnt, floor_cnt, capacity)
         self.queues = [[] for i in range(lift_cnt)]
 
     def pickup(self, request):
@@ -105,19 +129,10 @@ class ElevatorControlSystem:
         lift.direction = direction
 
     def show(self):
-        for i in range(self.floor_cnt - 1, -1, -1):
-            line = ''
-            for lift in self.lifts:
-                if lift.position == i:
-                    line += str(len(lift.passengers))
-                else:
-                    line += '.'
-            print(line)
-        print('')
+        ElevatorControlSystemBase.show(self)
         for i, lift in enumerate(self.lifts):
             q = ','.join(['(%d,%d)' % (request.from_f, request.to_f) for request in self.queues[i]])
-            l = ','.join(['(%d,%d)' % (request.from_f, request.to_f) for request in lift.passengers])
-            print('L %s Q %s' % (l, q))
+            print('Q%d %s' % (i, q))
 
 def simulation(lift_cnt, floor_cnt, capacity, request_probability):
     system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
