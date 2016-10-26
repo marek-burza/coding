@@ -35,12 +35,33 @@ class Lift:
         self.passengers = []
         self.direction = 0
 
+    def enter(self, request):
+        self.passengers.append(request)
+
+    def leave(self, really=False):
+        leaving = []
+        staying = []
+        for passenger in self.passengers:
+            which = leaving if passenger.to_f == self.position else staying
+            which.append(passenger)
+        if really:
+            self.passengers = staying
+        return leaving
+
 class ElevatorControlSystemBase:
     def __init__(self, lift_cnt, floor_cnt, capacity):
         self.lift_cnt = lift_cnt
         self.floor_cnt = floor_cnt
         self.capacity = capacity
         self.lifts = [Lift() for i in range(lift_cnt)]
+
+    def step(self):
+        for i, lift in enumerate(self.lifts):
+            # Let passengers out
+            left = lift.leave(True)
+            self.step_lift(i, lift, left)
+            # Update position
+            lift.position += lift.direction
 
     def show(self):
         for i in range(self.floor_cnt - 1, -1, -1):
@@ -83,31 +104,26 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
         # Pick closest lift
         self.queues[available[0]].append(request)
 
-    def step(self):
-        for i, lift in enumerate(self.lifts):
-            # Let passengers out
-            lift.passengers = [passenger for passenger in lift.passengers if passenger.to_f != lift.position]
-            # Let passengers in
-            for request in self.queues[i][:]:
-                direction = request.to_f - request.from_f
+    def step_lift(self, i, lift, left):
+        # Let passengers in
+        for request in self.queues[i][:]:
+            direction = request.to_f - request.from_f
+            direction = int(direction / abs(direction))
+            if len(lift.passengers) == 0:
+                direction = request.from_f - lift.position
+                if direction == 0:
+                    direction = request.to_f - request.from_f
                 direction = int(direction / abs(direction))
-                if len(lift.passengers) == 0:
-                    direction = request.from_f - lift.position
-                    if direction == 0:
-                        direction = request.to_f - request.from_f
-                    direction = int(direction / abs(direction))
-                    lift.direction = direction
-                if request.from_f == lift.position:
-                    self.queues[i].remove(request)
-                    if direction == lift.direction and self.capacity - len(lift.passengers) > 0:
-                        lift.passengers.append(request)
-                    else:
-                        self.pickup(request)
-            # If empty then set idle
-            if len(lift.passengers) == 0 and len(self.queues[i]) == 0:
-                lift.direction = 0
-            # Update position
-            lift.position += lift.direction
+                lift.direction = direction
+            if request.from_f == lift.position:
+                self.queues[i].remove(request)
+                if direction == lift.direction and self.capacity - len(lift.passengers) > 0:
+                    lift.passengers.append(request)
+                else:
+                    self.pickup(request)
+        # If empty then set idle
+        if len(lift.passengers) == 0 and len(self.queues[i]) == 0:
+            lift.direction = 0
 
     def status(self):
         result = []
