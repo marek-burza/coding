@@ -266,4 +266,4 @@ if __name__ == "__main__":
     capacity = 4
     request_probability = 0.75
     system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
-    simulation(system, floor_cnt, request_probability, None)
+    simulation(system, 'Interactive', floor_cnt, request_probability, None)
