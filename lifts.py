@@ -4,6 +4,7 @@ import collections
 import math
 import random
 import sys
+import unittest
 
 def direction(origin, goal):
     if goal == origin:
@@ -259,19 +260,26 @@ def simulation(system, title, floor_cnt, request_probability, cycles=None):
             input()
     system.stats(title)
 
-if __name__ == "__main__":
-    lift_cnt = 4
-    floor_cnt = 14
-    if len(sys.argv) > 1:
-        # Run unattended test to gather statistics
+class Tests(unittest.TestCase):
+    def test_randomized(self):
+        lift_cnt = 4
+        floor_cnt = 14
         capacity = 1
         request_probability = 1
         system = FCFS(lift_cnt, floor_cnt, capacity)
         simulation(system, 'FCFS', floor_cnt, request_probability, 5000)
         system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
         simulation(system, 'Improved', floor_cnt, request_probability, 5000)
+        self.assertTrue(True)
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        # Run unattended test to gather statistics
+        unittest.main()
     else:
         # Run interactive test
+        lift_cnt = 4
+        floor_cnt = 14
         capacity = 4
         request_probability = 0.75
         system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
