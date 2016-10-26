@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import collections
+import math
 import random
 
 def direction(origin, goal):
@@ -110,10 +111,18 @@ class ElevatorControlSystemBase:
         for i, lift in enumerate(self.lifts):
             print('L%d %s' % (i, ' '.join([request.show() for request in lift.passengers])))
 
-    def stats(self):
+    def stats(self, title):
+        print('--------')
+        print(title)
         print('Throughput: %f' % (len(self.through) / self.cycles))
-        print('Average wait time: %f' % (sum([request.waited for request in self.through]) / self.cycles))
-        print('Average ride time: %f' % (sum([request.ridden for request in self.through]) / self.cycles))
+        avg_wait = sum([request.waited for request in self.through]) / self.cycles
+        std_wait = math.sqrt(sum([math.pow(request.waited - avg_wait, 2) for request in self.through]) / self.cycles)
+        print('Average wait time: %f' % avg_wait)
+        print('Std. dev. wait time: %f' % std_wait)
+        avg_ride = sum([request.ridden for request in self.through]) / self.cycles
+        std_ride = math.sqrt(sum([math.pow(request.ridden - avg_wait, 2) for request in self.through]) / self.cycles)
+        print('Average ride time: %f' % avg_ride)
+        print('Std. dev. ride time: %f' % std_ride)
 
 class FCFS(ElevatorControlSystemBase):
     def __init__(self, lift_cnt, floor_cnt, capacity):
@@ -226,7 +235,7 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
             q = ','.join(['(%d,%d)' % (request.from_f, request.to_f) for request in self.queues[i]])
             print('Q%d %s' % (i, q))
 
-def simulation(system, floor_cnt, request_probability, cycles=None):
+def simulation(system, title, floor_cnt, request_probability, cycles=None):
     interactive = None == cycles
     while interactive or cycles > 0:
         if not interactive and cycles > 0:
@@ -241,7 +250,7 @@ def simulation(system, floor_cnt, request_probability, cycles=None):
         system.step()
         if interactive:
             input()
-    system.stats()
+    system.stats(title)
 
 if __name__ == "__main__":
     # Run unattended test to gather statistics
@@ -250,9 +259,9 @@ if __name__ == "__main__":
     capacity = 1
     request_probability = 1
     system = FCFS(lift_cnt, floor_cnt, capacity)
-    simulation(system, floor_cnt, request_probability, 5000)
+    simulation(system, 'FCFS', floor_cnt, request_probability, 5000)
     system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
-    simulation(system, floor_cnt, request_probability, 5000)
+    simulation(system, 'Improved', floor_cnt, request_probability, 5000)
     # Run interactive test
     capacity = 4
     request_probability = 0.75
