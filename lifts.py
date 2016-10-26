@@ -29,7 +29,6 @@ class Lift:
         self.position = 0
         self.passengers = []
         self.direction = 0
-        self.queue = []
 
 class ElevatorControlSystem:
     def __init__(self, lift_cnt, floor_cnt, capacity):
@@ -37,34 +36,35 @@ class ElevatorControlSystem:
         self.floor_cnt = floor_cnt
         self.capacity = capacity
         self.lifts = [Lift() for i in range(lift_cnt)]
+        self.queues = [[] for i in range(lift_cnt)]
 
     def pickup(self, request):
         pickup_floor = request.from_f
         goal_floor = request.to_f
         available = []
         # Sort by distance the lifts which are approaching and head in the same direction
-        for lift in self.lifts:
+        for i, lift in enumerate(self.lifts):
             if lift.direction == 0:
-                available.append(lift)
+                available.append(i)
             else:
                 direction = goal_floor - pickup_floor
                 direction = int(direction / abs(direction))
                 if direction == lift.direction:
                     if (direction == 1 and lift.position <= pickup_floor) or (direction == -1 and lift.position >= pickup_floor):
-                        available.append(lift)
-        available = sorted(available, key=lambda lift: abs(lift.position - pickup_floor))
+                        available.append(i)
+        available = sorted(available, key=lambda i: abs(self.lifts[i].position - pickup_floor))
         # Otherwise sort all lifts by distance
         if len(available) == 0:
-            available = sorted(self.lifts, key=lambda lift: max_distance(lift, pickup_floor, self.floor_cnt))
+            available = sorted(range(self.lift_cnt), key=lambda i: max_distance(self.lifts[i], pickup_floor, self.floor_cnt))
         # Pick closest lift
-        available[0].queue.append(request)
+        self.queues[available[0]].append(request)
 
     def step(self):
-        for lift in self.lifts:
+        for i, lift in enumerate(self.lifts):
             # Let passengers out
             lift.passengers = [passenger for passenger in lift.passengers if passenger.to_f != lift.position]
             # Let passengers in
-            for request in lift.queue[:]:
+            for request in self.queues[i][:]:
                 direction = request.to_f - request.from_f
                 direction = int(direction / abs(direction))
                 if len(lift.passengers) == 0:
@@ -74,13 +74,13 @@ class ElevatorControlSystem:
                     direction = int(direction / abs(direction))
                     lift.direction = direction
                 if request.from_f == lift.position:
-                    lift.queue.remove(request)
+                    self.queues[i].remove(request)
                     if direction == lift.direction and self.capacity - len(lift.passengers) > 0:
                         lift.passengers.append(request)
                     else:
                         self.pickup(request)
             # If empty then set idle
-            if len(lift.passengers) == 0 and len(lift.queue) == 0:
+            if len(lift.passengers) == 0 and len(self.queues[i]) == 0:
                 lift.direction = 0
             # Update position
             lift.position += lift.direction
@@ -114,8 +114,8 @@ class ElevatorControlSystem:
                     line += '.'
             print(line)
         print('')
-        for lift in self.lifts:
-            q = ','.join(['(%d,%d)' % (request.from_f, request.to_f) for request in lift.queue])
+        for i, lift in enumerate(self.lifts):
+            q = ','.join(['(%d,%d)' % (request.from_f, request.to_f) for request in self.queues[i]])
             l = ','.join(['(%d,%d)' % (request.from_f, request.to_f) for request in lift.passengers])
             print('L %s Q %s' % (l, q))
 
