@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import collections
 import random
 
 def direction(origin, goal):
@@ -90,9 +91,7 @@ class ElevatorControlSystemBase:
             # Update statistics for the riding passengers
             lift.step()
         # Update statistics for the waiting passengers
-        for queue in self.queues:
-            for request in queue:
-                request.waiting()
+        self.step_waiting()
         # Update number of cycles
         self.cycles += 1
 
@@ -115,6 +114,40 @@ class ElevatorControlSystemBase:
         print('Throughput: %f' % (len(self.through) / self.cycles))
         print('Average wait time: %f' % (sum([request.waited for request in self.through]) / self.cycles))
         print('Average ride time: %f' % (sum([request.ridden for request in self.through]) / self.cycles))
+
+class FCFS(ElevatorControlSystemBase):
+    def __init__(self, lift_cnt, floor_cnt, capacity):
+        ElevatorControlSystemBase.__init__(self, lift_cnt, floor_cnt, capacity)
+        self.queue = collections.deque()
+        self.assignments = [None for i in range(self.lift_cnt)]
+
+    def pickup(self, request):
+        self.queue.append(request)
+
+    def step_lift(self, i, lift, left):
+            assignment = self.assignments[i]
+            if 0 == len(lift.passengers):
+                if None == assignment:
+                    if len(self.queue) > 0:
+                        assignment = self.queue.popleft()
+                        self.assignments[i] = assignment
+                        lift.direction = direction(lift.position, assignment.from_f)
+                    else:
+                        lift.direction = 0
+                else:
+                    if lift.position == assignment.from_f:
+                        lift.enter(assignment)
+                        self.assignments[i] = None
+                        lift.direction = direction(lift.position, assignment.to_f)
+
+    def step_waiting(self):
+        for request in self.queue:
+            request.waiting()
+
+    def show(self):
+        ElevatorControlSystemBase.show(self)
+        print('A %s' % ' '.join([Request.show(assignment) for assignment in self.assignments]))
+        print('Q %s' % ' '.join([request.show() for request in self.queue]))
 
 class ElevatorControlSystem(ElevatorControlSystemBase):
     def __init__(self, lift_cnt, floor_cnt, capacity):
@@ -162,6 +195,11 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
         # If empty then set idle
         if len(lift.passengers) == 0 and len(self.queues[i]) == 0:
             lift.direction = 0
+
+    def step_waiting(self):
+        for queue in self.queues:
+            for request in queue:
+                request.waiting()
 
     def status(self):
         result = []
@@ -211,6 +249,8 @@ if __name__ == "__main__":
     floor_cnt = 14
     capacity = 1
     request_probability = 1
+    system = FCFS(lift_cnt, floor_cnt, capacity)
+    simulation(system, floor_cnt, request_probability, 5000)
     system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
     simulation(system, floor_cnt, request_probability, 5000)
     # Run interactive test
