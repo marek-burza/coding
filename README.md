@@ -76,11 +76,13 @@ need for a pickup in that direction (to maximize the number passengers served).
 
 # Assumptions
 
-It will be assumed here that the passengers will only get on the lift only
+It is assumed here that the passengers will only get on the lift only
 if it goes in the direction of their intended floor.
 
 It is also assumed that stops (contrary to a physical lift system) take no time
 and the passengers enter and leave the lift momentarily.
+
+It is assumed that the passengers obey their order of getting on.
 
 # Usage
 
