@@ -2,6 +2,23 @@
 
 import random
 
+def direction(origin, goal):
+    delta = goal - origin
+    return 0 if 0 == delta else delta / abs(delta)
+
+def towards(lift, floor):
+    if lift.position == floor:
+        return True
+    orientation = direction(lift.position, floor)
+    return orientation == lift.direction
+
+def max_distance(lift, floor, floor_cnt):
+    apart = abs(lift.position - floor)
+    if towards(lift, floor):
+        return apart
+    else:
+        return 2 * (floor_cnt - 1) - apart
+
 class Request:
     def __init__(self, from_f, to_f):
         self.from_f = from_f
@@ -38,7 +55,7 @@ class ElevatorControlSystem:
         available = sorted(available, key=lambda lift: abs(lift.position - pickup_floor))
         # Otherwise sort all lifts by distance
         if len(available) == 0:
-            available = sorted(self.lifts, key=lambda lift: abs(lift.position - pickup_floor))
+            available = sorted(self.lifts, key=lambda lift: max_distance(lift, pickup_floor, self.floor_cnt))
         # Pick closest lift
         available[0].queue.append(request)
 
