@@ -1,4 +1,7 @@
-# [Mesosphere Challenge](https://mesosphere.com/jobs/challenges/distributed-applications)
+# [Mesosphere Challenge](https://mesosphere.com/jobs/challenges/distributed-applications) [![Build Status][travis-img]][travis-url]
+
+[travis-url]: https://travis-ci.org/altermarkive/Mesosphere-Challenge
+[travis-img]: https://travis-ci.org/altermarkive/Mesosphere-Challenge.svg?branch=master
 
 Design and implement an elevator control system. What data structures, interfaces and algorithms will you need? Your elevator control system should be able to handle a few elevators — up to 16.
 
