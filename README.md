@@ -111,6 +111,6 @@ the lift to queue to request to. As a consequence the request might be requeued
 to another lift when the lift arrives and there is no space available (through
 that still matches real life situation).
 
-Unfortunately, there are no automated tests - neither checking if the corner
+Unfortunately, there are no unit tests - neither checking if the corner
 cases are handled correctly during runtime nor checking the statistics
 (fairness, lengths of waiting, durations of the rides, etc.).
