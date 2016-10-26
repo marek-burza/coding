@@ -9,22 +9,22 @@ def direction(origin, goal):
     return 0 if 0 == delta else delta / abs(delta)
 
 def towards(lift, floor):
-    if lift.position == floor:
+    if lift.floor == floor:
         return True
-    orientation = direction(lift.position, floor)
+    orientation = direction(lift.floor, floor)
     return orientation == lift.direction
 
 def max_distance(lift, floor, floor_cnt):
-    apart = abs(lift.position - floor)
+    apart = abs(lift.floor - floor)
     if towards(lift, floor):
         return apart
     else:
         return 2 * (floor_cnt - 1) - apart
 
 class Request:
-    def __init__(self, from_f, to_f):
-        self.from_f = from_f
-        self.to_f = to_f
+    def __init__(self, origin, goal):
+        self.origin = origin
+        self.goal = goal
         self.waited = 0
         self.ridden = 0
 
@@ -35,16 +35,16 @@ class Request:
         self.ridden += 1
 
     def goal(self):
-        return self.to_f
+        return self.goal
 
     def show(self):
         if None == self:
             return '()'
-        return '(%d->%d)' % (self.from_f, self.to_f)
+        return '(%d->%d)' % (self.origin, self.goal)
 
 class Lift:
     def __init__(self):
-        self.position = 0
+        self.floor = 0
         self.passengers = []
         self.direction = 0
 
@@ -55,7 +55,7 @@ class Lift:
         leaving = []
         staying = []
         for passenger in self.passengers:
-            which = leaving if passenger.to_f == self.position else staying
+            which = leaving if passenger.goal == self.floor else staying
             which.append(passenger)
         if really:
             self.passengers = staying
@@ -87,8 +87,8 @@ class ElevatorControlSystemBase:
                 self.dropoff(each)
             # Run the logic
             self.step_lift(i, lift, left)
-            # Update position
-            lift.position += lift.direction
+            # Update
+            lift.floor += lift.direction
             # Update statistics for the riding passengers
             lift.step()
         # Update statistics for the waiting passengers
@@ -100,7 +100,7 @@ class ElevatorControlSystemBase:
         for i in range(self.floor_cnt - 1, -1, -1):
             line = ''
             for lift in self.lifts:
-                if lift.position == i:
+                if lift.floor == i:
                     line += str(len(lift.passengers))
                 else:
                     line += '.'
@@ -140,14 +140,14 @@ class FCFS(ElevatorControlSystemBase):
                     if len(self.queue) > 0:
                         assignment = self.queue.popleft()
                         self.assignments[i] = assignment
-                        lift.direction = direction(lift.position, assignment.from_f)
+                        lift.direction = direction(lift.floor, assignment.origin)
                     else:
                         lift.direction = 0
                 else:
-                    if lift.position == assignment.from_f:
+                    if lift.floor == assignment.origin:
                         lift.enter(assignment)
                         self.assignments[i] = None
-                        lift.direction = direction(lift.position, assignment.to_f)
+                        lift.direction = direction(lift.floor, assignment.goal)
 
     def step_waiting(self):
         for request in self.queue:
@@ -164,8 +164,8 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
         self.queues = [[] for i in range(lift_cnt)]
 
     def pickup(self, request):
-        pickup_floor = request.from_f
-        goal_floor = request.to_f
+        pickup_floor = request.origin
+        goal_floor = request.goal
         available = []
         # Sort by distance the lifts which are approaching and head in the same direction
         for i, lift in enumerate(self.lifts):
@@ -175,9 +175,9 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
                 direction = goal_floor - pickup_floor
                 direction = int(direction / abs(direction))
                 if direction == lift.direction:
-                    if (direction == 1 and lift.position <= pickup_floor) or (direction == -1 and lift.position >= pickup_floor):
+                    if (direction == 1 and lift.floor <= pickup_floor) or (direction == -1 and lift.floor >= pickup_floor):
                         available.append(i)
-        available = sorted(available, key=lambda i: abs(self.lifts[i].position - pickup_floor))
+        available = sorted(available, key=lambda i: abs(self.lifts[i].floor - pickup_floor))
         # Otherwise sort all lifts by distance
         if len(available) == 0:
             available = sorted(range(self.lift_cnt), key=lambda i: max_distance(self.lifts[i], pickup_floor, self.floor_cnt))
@@ -187,15 +187,15 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
     def step_lift(self, i, lift, left):
         # Let passengers in
         for request in self.queues[i][:]:
-            direction = request.to_f - request.from_f
+            direction = request.goal - request.origin
             direction = int(direction / abs(direction))
             if len(lift.passengers) == 0:
-                direction = request.from_f - lift.position
+                direction = request.origin - lift.floor
                 if direction == 0:
-                    direction = request.to_f - request.from_f
+                    direction = request.goal - request.origin
                 direction = int(direction / abs(direction))
                 lift.direction = direction
-            if request.from_f == lift.position:
+            if request.origin == lift.floor:
                 self.queues[i].remove(request)
                 if direction == lift.direction and self.capacity - len(lift.passengers) > 0:
                     lift.passengers.append(request)
@@ -214,17 +214,17 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
         result = []
         for i, lift in enumerate(self.lifts):
             if lift.direction == 0:
-                result.append((i, lift.position, lift.position))
+                result.append((i, lift.floor, lift.floor))
             elif lift.direction == 1:
-                goal = sorted(lift.passengers, key=lambda passenger: passenger.to_f, reverse=True)[0].to_f
+                goal = sorted(lift.passengers, key=lambda passenger: passenger.goal, reverse=True)[0].goal
             elif lift.direction == -1:
-                goal = sorted(lift.passengers, key=lambda passenger: passenger.to_f)[0].to_f
+                goal = sorted(lift.passengers, key=lambda passenger: passenger.goal)[0].goal
         return result
 
-    def update(self, id, position, goal):
+    def update(self, id, floor, goal):
         lift = self.lifts[id]
-        lift.position = position
-        direction = goal - position
+        lift.floor = floor
+        direction = goal - floor
         if direction != 0:
             direction = int(direction / abs(direction))
         lift.direction = direction
@@ -232,7 +232,7 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
     def show(self):
         ElevatorControlSystemBase.show(self)
         for i, lift in enumerate(self.lifts):
-            q = ','.join(['(%d,%d)' % (request.from_f, request.to_f) for request in self.queues[i]])
+            q = ' '.join([request.show() for request in self.queues[i]])
             print('Q%d %s' % (i, q))
 
 def simulation(system, title, floor_cnt, request_probability, cycles=None):
