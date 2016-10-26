@@ -1,4 +1,10 @@
 language: python
 python:
   - "3.5"
-script: python3 -m unittest lifts.py test
+install:
+  - pip install coverage
+  - pip install coveralls
+script:
+  coverage run -m unittest lifts.py test
+after_success:
+  coveralls
