@@ -338,7 +338,7 @@ DINING PHILOSOPHERS
 </td><td align="left">
 <ul>
 <li>SEMAPHORES / MUTEXES (GRAB FIRST THEN SECOND; RISK: CAN STARVE)</li>
-<li>CENTRAL MONITOR/WAITER/CONDUCTOR (CAN EAT IF NEITHER NEIGHBOR EATS; RISK: REDUCED PARALLELISM)</li>
+<li>CENTRAL MONITOR / WAITER / CONDUCTOR (CAN EAT IF NEITHER NEIGHBOR EATS; RISK: REDUCED PARALLELISM)</li>
 <li>RESOURCE HIERARCHY (NUMBER FORKS; PICK AND PUT DOWN IN ORDER; RISK: LOW EFFICIENCY)</li>
 </ul>
 </td></tr>
@@ -348,7 +348,7 @@ LOCK (JAVA, PYTHON), CONCURRENCY
 </td><td align="left">
 threading.Lock.acquire([blocking])<br/>
 threading.Lock.release([blocking])<br/>
-synchronized
+synchronized<br/>
 <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html">java.util.concurrent</a>
 </td></tr>
 
