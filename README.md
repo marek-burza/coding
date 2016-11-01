@@ -36,7 +36,7 @@
   - (Other: invalid input, randomized tests, load testing)
 5. Keep improving - can we do better?
 
-* Practice easy and medium problems on LeetCode ([leetcode.com](https://leetcode.com/)) - I solved these so far [bit.ly/1OYxxXy](https://github.com/altermarkive/Training-LeetCode-OJ)
+* Practice easy and medium problems on LeetCode ([leetcode.com](https://leetcode.com/)) - I solved these so far: [bit.ly/2fdFbxh](https://github.com/altermarkive/Training-Coding-Java), [bit.ly/2f9DNgC](https://github.com/altermarkive/Training-Coding-Python)
 
 ----------
 
@@ -148,7 +148,7 @@ HEAPS<br/>
 </td></tr>
 
 <tr><td align="center">
-GRAPH REPRESENTATION
+GRAPHS
 </td><td align="left">
 <b>ADJACENCY MATRIX</b><br/>
 PRO: LOOKUP TIME (MANY CONNECTIONS)<br/>
@@ -346,8 +346,8 @@ DINING PHILOSOPHERS
 <tr><td align="center">
 LOCK (JAVA, PYTHON), CONCURRENCY
 </td><td align="left">
-threading.Lock.acquire([blocking])<br/>
-threading.Lock.release([blocking])<br/>
+threading.Lock.acquire( [blocking] )<br/>
+threading.Lock.release( [blocking] )<br/>
 synchronized<br/>
 <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html">java.util.concurrent</a>
 </td></tr>
