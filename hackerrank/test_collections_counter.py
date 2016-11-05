@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/collections-counter
 
-from .helper import io_checker
-
 import collections
-import unittest
 
 
 def accountant(sizes, requests):
@@ -30,8 +27,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-class TestCode(unittest.TestCase):
-    def test_0(self):
-        io_checker(self, __file__, '0', main)

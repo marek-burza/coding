@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/python-raw-input
 
-from .helper import io_checker
-
 import unittest
 
 
@@ -24,9 +22,6 @@ if __name__ == "__main__":
 
 
 class TestCode(unittest.TestCase):
-    def test_0(self):
-        io_checker(self, __file__, '0', main)
-
     def test_1_to_24(self):
         expected = [
             None, True, False, True, False, True, True, True, True, True,

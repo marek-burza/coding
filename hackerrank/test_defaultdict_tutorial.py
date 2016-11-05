@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/defaultdict-tutorial
 
-from .helper import io_checker
-
 import collections
-import unittest
 
 
 def list_repetitions(words_a, words_b):
@@ -32,11 +29,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-class TestCode(unittest.TestCase):
-    def test_0(self):
-        io_checker(self, __file__, '0', main)
-
-    def test_01(self):
-        io_checker(self, __file__, '01', main)

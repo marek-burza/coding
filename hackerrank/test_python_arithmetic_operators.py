@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/python-arithmetic-operators
 
-from .helper import io_checker
-
 import random
 import unittest
 
@@ -27,9 +25,6 @@ if __name__ == '__main__':
 
 
 class TestCode(unittest.TestCase):
-    def test_0(self):
-        io_checker(self, __file__, '0', main)
-
     def test_random(self):
         first = random.randint(1, 10000000000)
         second = random.randint(1, 10000000000)
