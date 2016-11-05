@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/write-a-function
 
-from .helper import io_checker
-
 import unittest
 
 
@@ -19,9 +17,6 @@ if __name__ == "__main__":
 
 
 class TestCode(unittest.TestCase):
-    def test_0(self):
-        io_checker(self, __file__, '0', main)
-
     def test_several(self):
         lut = {1800: False, 1900: False, 2000: True, 2100: False, 2200: False, 2300: False, 2400: True, 2500: False}
         for year in lut:
