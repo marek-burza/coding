@@ -274,6 +274,7 @@ class Tests(unittest.TestCase):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
+        sys.argv = [sys.argv[0]]
         # Run unattended test to gather statistics
         unittest.main()
     else:
