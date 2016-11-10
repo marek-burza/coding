@@ -13,7 +13,7 @@ def calculate_happiness(array, a_in, b_in):
 
 
 def main():
-    input() #n_in, m_in = list(map(int, input().strip().split(' ')))
+    input()  # n_in, m_in = list(map(int, input().strip().split(' ')))
     array = input().strip().split(' ')
     a_in = set(input().strip().split(' '))
     b_in = set(input().strip().split(' '))

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/python-tuples
 
+
 def convert(integers):
     return hash(tuple(integers))
 
