@@ -90,7 +90,7 @@
 <table>
 
 <tr><td align="center">
-DYNAMIC PROGRAMMING
+DYNAMIC PROG.
 </td><td align="left">
 TOP-DOWN: MEMOIZATION<br/>
 <br/>
@@ -110,7 +110,7 @@ POST-ORDER: VISIT CHILDREN
 </td></tr>
 
 <tr><td align="center">
-HASHTABLES
+HASH TABLES
 </td><td align="left">
 <ul>
 <li><b>FLOAT:</b> M * (KEY - MIN) / (MAX - MIN)</li>
@@ -169,7 +169,7 @@ EXAMPLE: For autocomplete as you build the trie add a flag to each node, indicat
 </td></tr>
 
 <tr><td align="center">
-SELF-BALANCING BST
+SELF BALANCING BST
 </td><td align="left">
 Java - red-black tree: TreeMap<br/>
 Other algorithm: AVL tree (uses rotation)
@@ -261,7 +261,7 @@ P ⊂ NP ∧ NP-COMPLETE ≡ NP ∩ NP-HARD<br/>
 </td></tr>
 
 <tr><td align="center">
-NP-COMPLETE PROBLEMS
+NP COMPLETE PROBLEMS
 </td><td align="left">
 GRAPH COLORING<br/>
 TRAVELING SALESMAN<br/>
@@ -290,7 +290,7 @@ GREEDY (CHOOSE ONE COVERING MOST)
 </td></tr>
 
 <tr><td align="center">
-TRAVELING SALESMAN PROBLEM
+TSP
 </td><td align="left">
 <b>EXACT ALGORITHM</b> HELD-KARP O(N<sup>2</sup>2<sup>N</sup>)<br/>
 <b>APPROXIMATE ALGORITHM</b>
@@ -334,7 +334,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP<br/>
 </td></tr>
 
 <tr><td align="center">
-DINING PHILOSOPHERS
+DINING PHILOS.
 </td><td align="left">
 <ul>
 <li>SEMAPHORES / MUTEXES (GRAB FIRST THEN SECOND; RISK: CAN STARVE)</li>
@@ -344,7 +344,7 @@ DINING PHILOSOPHERS
 </td></tr>
 
 <tr><td align="center">
-LOCK (JAVA, PYTHON), CONCURRENCY
+LOCK (JAVA, PYTHON), CONCURRENT
 </td><td align="left">
 threading.Lock.acquire( [blocking] )<br/>
 threading.Lock.release( [blocking] )<br/>
@@ -400,12 +400,6 @@ sorted([...], key=lambda item: item[1], reverse=True)
 </td></tr>
 
 <tr><td align="center">
-LIST COMPREHENSION (PYTHON)
-</td><td align="left">
-[x + 1 for x in X if x &gt; 0]
-</td></tr>
-
-<tr><td align="center">
 TCP HANDSHAKE
 </td><td align="left">
 OPEN
@@ -424,7 +418,7 @@ CLOSE
 </td></tr>
 
 <tr><td align="center">
-COMBINATORIAL
+MATH
 </td><td align="left">
 <b>PERMUTATION</b><br/>
 N! (factorial)<br/>
