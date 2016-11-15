@@ -276,7 +276,7 @@ KNAPSACK PROBLEM
 </td><td align="left">
 NUMBER OF EACH SO WEIGHT &lt;= W &amp; VALUE MAX<br/>
 BOTTOM-UP DYN. PROG:<br/>
-W - INTEGERS: UNBOUNDED (SAME ITEM &gt; ONCE): max<sub>wi&lt;=w</sub>(m[w-1],max(vi,m[w-wi])<br/>
+W - INTEGERS: UNBOUNDED (SAME ITEM &gt; ONCE): max<sub>wi&lt;=w</sub>(m[w-1], max(vi,m[w-wi])<br/>
 <br/>
 PSEUDO POLYNOMIAL TIME (LIKE TESTING IF N IS PRIME): - EXP. IN LENGTH (NUMBER OF DIGITS) OF INPUT; POLY - IN NUMERIC VALUE OF INPUT
 </td></tr>
@@ -373,7 +373,7 @@ compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, ma
 SORT &amp; BINARY SEARCH (JAVA)
 </td><td align="left">
 Arrays<br/>
-Collections.sort(List[, Comparator])<br/>
+Collections .sort(List[, Comparator])<br/>
 int compare(T, T)<br/>
 binarySearch(T[] array, T key)
 </td></tr>
@@ -382,7 +382,7 @@ binarySearch(T[] array, T key)
 LISTS (JAVA)
 </td><td align="left">
 Vector<br/>
-Collections.synchronizedList(List)<br/>
+Collections .synchronizedList(List)<br/>
 Where List: ArrayList or LinkedList
 </td></tr>
 
