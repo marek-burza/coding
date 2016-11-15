@@ -54,17 +54,17 @@
   - Say how to distribute and how to fix whats broken by distributing
   - Show specific alternatives / solution space
   - **Ballpark estimates** (order of magnitude, as of 2015) - might be a part of point 1
-    - Branch mispredict 5ns
-    - L1 hit ~5 cycles (0.5ns)
-    - L2 hit ~10 cycles (7ns)
-    - L3 hit ~50 cycles (depends if same core)
-    - SRAM 10ns
-    - DRAM/MUTEX 100ns
-    - System call (overhead) 400ns
-    - Process context switch 3ms
-    - DISK SEEK 5-10ms (!)
+    - L1 hit: 0.5ns
+    - L2 hit: 7ns
+    - Branch mispredict: 5ns
+    - SRAM: 10ns
+    - DRAM/MUTEX: 100ns
+    - System call (overhead): 400ns
+    - Roundtrip in datacenter: 0.5ms
+    - Process context switch: 3ms
+    - Disk seek: 5-10ms (!)
     - Fork: 70ms (statically linked), 160ms (dynamically)
-    - HD TRANSFER RATE 1Gbit/s
+    - HD transfer rate 1Gbit/s
     - 500M tweets per day
     - 300M monthly active Twitter users
     - 700M total Twitter users
