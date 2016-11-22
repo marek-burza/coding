@@ -126,7 +126,7 @@ RESOLUTION:<br/>
 
 <tr><td align="center">
 HEAPS<br/>
-(Java: PriorityQueue)
+(Java: PriorityQueue<sup><a href="https://github.com/altermarkive/Training-Coding-Java/blob/master/src/test/java/leetcode/LC155MinStack.java">1</a>, <a href="https://github.com/altermarkive/Training-Coding-Java/blob/master/src/test/java/leetcode/LC215KthLargestElementInAnArray.java">2</a></sup>)
 </td><td align="left">
 CHILD = INDEX' * 2<br/>
 PARENT = INDEX' / 2<br/>
@@ -179,7 +179,7 @@ Other algorithm: AVL tree (uses rotation)
 QUICK SORT
 </td><td align="left">
 <ul>
-<li>(<b>shuffle</b> first or sample for pivot)</li>
+<li>(<b><a href="https://github.com/altermarkive/Training-Coding-Java/blob/master/src/test/java/leetcode/LC384ShuffleAnArray.java">shuffle</a></b> first or sample for pivot)</li>
 <li>PICK PIVOT</li>
 <li>REORDER W.R.T. PIVOT</li>
 <li>APPLY TO ARRAYS SEPARATED BY PIVOT</li>
@@ -346,8 +346,8 @@ DINING PHILOS.
 <tr><td align="center">
 LOCK (JAVA, PYTHON), CONCURRENT
 </td><td align="left">
-threading.Lock.acquire( [blocking] )<br/>
-threading.Lock.release( [blocking] )<br/>
+threading .Lock.acquire( [blocking] )<br/>
+threading .Lock.release( [blocking] )<br/>
 synchronized<br/>
 <a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html">java.util.concurrent</a>
 </td></tr>
@@ -389,7 +389,7 @@ Where List: ArrayList or LinkedList
 <tr><td align="center">
 -∞ (JAVA, PYTHON)
 </td><td align="left">
-Double.NEGATIVE_INFINITY<br/>
+Double .NEGATIVE_INFINITY<br/>
 float('-inf')
 </td></tr>
 
