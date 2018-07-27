@@ -2,7 +2,7 @@
 
 * Talk through your thinking process, flag uncertainty
 * Be: fast, positive, transparent, fact-based, methodical, and express explicitly (to prevent hidden assumptions and getting stuck)
-* If stuck: **remain calm**, check asumptions, **try more examples**, **ask**, avoid silence or filling it
+* If stuck: **remain calm**, check asumptions, **try more examples**, **simplify**, **ask**, avoid silence or filling it
 
 ----------
 
@@ -13,7 +13,7 @@
   - Restrictions? Guarantees?
   - Types? Ranges? Sizes? Cardinality? How often? Unique / repetitions / empty / partially ordered?
   - Function signature & spec?
-  - Beware of: assumptions, **"familiar" exercises**, **early optimization**
+  - Beware of: assumptions, **"familiar" exercises**, **early optimization**; Start simple
 2. Talk through the design process / List ideas
   - List alternatives telling their pros and cons (e.g. time/space complexity)
   - Algorithm design tactics
@@ -22,10 +22,10 @@
     - Base case & build up (induction, scale), dyn. prog.
     - Match to other similar problem / data struct. (for example: **heap**, **graph**, stack, etc.)
     - (Consider greedy alg., backtracking, iterating the smaller param.)
-  - Pick one achievable in an interview (solution likely to be simple enough)
+  - Pick one achievable in an interview (**solution likely to be simple enough**)
 3. Code
   - Pick a data structure
-  - Decompose if necessary (for clarity)
+  - Modularize (for clarity)
   - Test input (as a remark)
   - Beware of < vs <=, +1 vs +0, overflows
   - Code must compile - obey syntax, but okay to ask if don't remember name or behavior
