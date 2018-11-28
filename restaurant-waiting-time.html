@@ -18,6 +18,9 @@ hr {
   margin: 1em 0;
   padding: 0;
 }
+pre {
+  font-family: Menlo,monospace;
+}
 .reveal section img { background:none; border:none; box-shadow:none; }
 </style>
 </head>
@@ -47,7 +50,7 @@ hr {
 <p><b>INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE</b></p>
 </span>
 <span class="fragment fade-in">
-<pre style="font-size:14pt;">
+<b><pre style="font-size:14pt;">
 
   +--------+       .   +-----+    +------------------------+
   | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
@@ -61,7 +64,7 @@ hr {
                    .
                    .
 
-</pre>
+</pre></b>
 </span>
 <span class="fragment fade-in">
 <p>But this leaves some questions to be answered...</p>
@@ -96,7 +99,7 @@ hr {
 <section>
 <span class="fragment fade-in">
 <p><b>INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE</b></p>
-<pre style="font-size:14pt;">
+<b><pre style="font-size:14pt;">
 
   +--------+       .   +-----+    +------------------------+
   | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
@@ -110,14 +113,14 @@ hr {
                    .
                    .
 
-</pre>
+</pre></b>
 <p>&nbsp;<br/>&nbsp;</p>
 </span>
 </section>
 
 <section>
 <p><b>INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE</b></p>
-<pre style="font-size:14pt;">
+<b><pre style="font-size:14pt;">
 
   +--------+       .   +-----+    +------------------------+
   | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
@@ -131,7 +134,7 @@ hr {
   | RESTAURANT |---.
   +------------+   .
 
-</pre>
+</pre></b>
 <p>It would be extended<br/>with an interface towards the restaurants...</p>
 </section>
 
@@ -196,7 +199,7 @@ hr {
 <section>
 <span class="fragment fade-in">
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -225,7 +228,7 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>&nbsp;</p>
 </span>
 </section>
@@ -243,7 +246,7 @@ hr {
 <section>
 <span class="fragment fade-in">
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -272,14 +275,14 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>&nbsp;<br/>&nbsp;</p>
 </span>
 </section>
 
 <section>
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -308,13 +311,13 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>Enqueue requests for estimating capacity for<br/>newly added restaurants (and process them offline)</p>
 </section>
 
 <section>
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -343,13 +346,13 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>Persistently cache the static results of 3rd party APIs,<br/>store the calculated estimates</p>
 </section>
 
 <section>
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -378,7 +381,7 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>Use a highly scalable,<br/> sharded NoSQL database</p>
 </section>
 
@@ -395,7 +398,7 @@ hr {
 <section>
 <span class="fragment fade-in">
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -424,14 +427,14 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>&nbsp;<br/>&nbsp;</p>
 </span>
 </section>
 
 <section>
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -460,7 +463,7 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>Concatenated latitude and longitude as key,<br/>cryptographically hashed to prevent lopsided shards</p>
 </section>
 
@@ -477,7 +480,7 @@ hr {
 <section>
 <span class="fragment fade-in">
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -506,14 +509,14 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>&nbsp;<br/>&nbsp;</p>
 </span>
 </section>
 
 <section>
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -542,7 +545,7 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>Adjacent to the database,<br/>there would be a quadtree-based index</p>
 </section>
 
@@ -617,7 +620,7 @@ hr {
 <section>
 <span class="fragment fade-in">
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -646,14 +649,14 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-</pre>
+</pre></b>
 <p>&nbsp;<br/>&nbsp;</p>
 </span>
 </section>
 
 <section>
 <p><b>REVISED ARCHITECTURE</b></p>
-<pre style="font-size:10pt;">
+<b><pre style="font-size:10pt;">
 
                   .   +-----+    +------------------------+                                      +---+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |                                      | V |
@@ -682,7 +685,7 @@ hr {
                   .            .   | APP LOCATION TRACKING, ETC. |            | REPLICATION |
                   .            .   +-----------------------------+            +-------------+
 
-</pre>
+</pre></b>
 <p>&nbsp;<br/>&nbsp;</p>
 </section>
 
