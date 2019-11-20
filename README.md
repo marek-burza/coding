@@ -71,8 +71,14 @@
     - 40k/s Google searches
     - 10T Google indexed pages
 
-* Review System Design Process on Hired in tech [bit.ly/1B6HOEc](http://www.hiredintech.com/system-design/the-system-design-process/) and [bit.ly/1Dgisc0](http://www.hiredintech.com/system-design/final-thoughts/)
-* Watch the lecture on Scalability Harvard Web Development [youtu.be/-W9F__D3oY4](https://www.youtube.com/watch?v=-W9F__D3oY4)
+* Review System Design Process on Hired in tech
+  [https://www.hiredintech.com/system-design/the-system-design-process/](https://www.hiredintech.com/system-design/the-system-design-process/)
+  [https://www.hiredintech.com/system-design/final-thoughts/](https://www.hiredintech.com/system-design/final-thoughts/)
+  [https://www.hiredintech.com/system-design/](https://www.hiredintech.com/system-design/)
+* Watch the lecture on Scalability Harvard Web Development
+  [https://youtu.be/-W9F__D3oY4](https://youtu.be/-W9F__D3oY4)
+* Review an example - Restaurant Waiting Time:
+  [http://altermarkive.github.io/interview-training/system-design/restaurant-waiting-time.html](http://altermarkive.github.io/interview-training/system-design/restaurant-waiting-time.html)
 
 ----------
 
@@ -437,17 +443,29 @@ N over K (binomial coefficient)
 # Extra materials
 
 * Algorithm Design:
-  - Review the Algorithm Design Process at Hired in Tech [bit.ly/1RjEEtY](http://www.hiredintech.com/algorithm-design/the-algorithm-design-canvas/)
-  - Actual interview questions on CareerCup [bit.ly/1KaJceA](http://www.careercup.com/user?id=5095734581919744)
-  - Cracking the Coding Interview [bit.ly/1K8vnNL](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
-  - Programming Interviews Exposed [bit.ly/1RwnGJp](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
+  - Review the Algorithm Design Process at Hired in Tech
+    [https://www.hiredintech.com/algorithm-design/the-algorithm-design-canvas/](https://www.hiredintech.com/algorithm-design/the-algorithm-design-canvas/)
+  - Actual interview questions on CareerCup
+    [https://www.careercup.com/user?id=5095734581919744](https://www.careercup.com/user?id=5095734581919744)
+  - Cracking the Coding Interview
+    [https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
+  - Programming Interviews Exposed
+    [https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
 * System Design:
   - Five Considerations For Large Scale Systems
   [bit.ly/1RhITWY](https://sites.google.com/site/craigandera/craigs-stuff/scalability-considerations/five-considerations-for-large-scale-systems?tmpl=%2Fsystem%2Fapp%2Ftemplates%2Fprint%2F)
   - Slide 2 from Scalability, Availability & Stability Patterns [bit.ly/1PngBUR](http://www.slideshare.net/jboner/scalability-availability-stability-patterns) (PDF - [bit.ly/1RhIrrN](http://www.mif.vu.lt/~donatas/Vadovavimas/Temos/Reactive%20systems/Scalability/2010%20Scalability%20patterns(slides).pdf))
-  - Software Engineering Advice from Building Large-Scale Distributed Systems - Jeff Dean [bit.ly/1mPGLcu](http://research.google.com/people/jeff/stanford-295-talk.pdf)
-  - High Scalability ([highscalability.com](http://highscalability.com/)):
-  Facebook [bit.ly/1RFwWc4](https://www.usenix.org/conference/nsdi13/technical-sessions/presentation/nishtala),
-  Twitter [bit.ly/1LceVw5](http://www.infoq.com/presentations/Twitter-Timeline-Scalability)
-  and YouTube [youtu.be/w5WVu624fY8](http://www.youtube.com/watch?v=w5WVu624fY8)
-  - Distributed Algorithms in NoSQL Databases [bit.ly/1PnixwL](https://highlyscalable.wordpress.com/2012/09/18/distributed-algorithms-in-nosql-databases/)
+  - Software Engineering Advice from Building Large-Scale Distributed Systems - Jeff Dean
+    [https://research.google.com/people/jeff/stanford-295-talk.pdf](https://research.google.com/people/jeff/stanford-295-talk.pdf)
+  - High Scalability Blog
+    [https://highscalability.com/](https://highscalability.com/)
+  - Facebook Scaling Memcache
+    [https://www.usenix.org/conference/nsdi13/technical-sessions/presentation/nishtala](https://www.usenix.org/conference/nsdi13/technical-sessions/presentation/nishtala)
+  - Twitter Timeline Scalability
+    [http://www.infoq.com/presentations/Twitter-Timeline-Scalability](http://www.infoq.com/presentations/Twitter-Timeline-Scalability)
+  - YouTube Scalability
+    [https://youtu.be/w5WVu624fY8](https://youtu.be/w5WVu624fY8)
+  - Distributed Algorithms in NoSQL Databases
+    [https://highlyscalable.wordpress.com/2012/09/18/distributed-algorithms-in-nosql-databases/](https://highlyscalable.wordpress.com/2012/09/18/distributed-algorithms-in-nosql-databases/)
+  - Jackson Gabbard - Intro to Architecture and Systems Design - Interviews
+    [https://youtu.be/ZgdS0EUmn70](https://youtu.be/ZgdS0EUmn70)
