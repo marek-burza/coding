@@ -8,7 +8,7 @@
 
 # Algorithm Design
 
-1. Disambiguate / **Clarify by example** (✔ ✘)
+1. Disambiguate / **Clarify by example** (✅ ❎)
   - Missing details? Special cases & their indication / handling?
   - Restrictions? Guarantees?
   - Types? Ranges? Sizes? Cardinality? How often? Unique / repetitions / empty / partially ordered?
