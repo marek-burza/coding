@@ -1,4 +1,4 @@
-name: Automation Script
+name: Automation Script for Java
 
 on: [push]
 
