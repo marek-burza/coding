@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Initiating
         uses: actions/checkout@v1
+      - name: Preparing
         uses: actions/setup-java@v1
         with:
           java-version: 8
