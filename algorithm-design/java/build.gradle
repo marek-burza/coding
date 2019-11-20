@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+  testCompile 'junit:junit:4.11'
+}
+
+tasks.withType(Test) {
+    scanForTestClasses = false
+    exclude '**/*\$*.class'
+    exclude '**/Solution*.class'
+}

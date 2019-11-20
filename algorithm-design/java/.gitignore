@@ -1,0 +1,6 @@
+.idea/*
+build/*
+.gradle/*
+gradle*
+Training-Coding.iml
+test.iml
