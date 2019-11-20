@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/theme/white.min.css">
+<style>
+body {
+  background-image: url('https://altermarkive.github.io/miscellaneous-icons/altermarkive.svg');
+  background-size: 7%;
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+}
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #000000;
+  margin: 1em 0;
+  padding: 0;
+}
+pre {
+  font-family: Menlo,monospace;
+}
+.reveal section img { background:none; border:none; box-shadow:none; }
+</style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section data-markdown>
+## SYSTEM DESIGN INTERVIEW
+---
+### Waiting Time in Neighboring Restaurants
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>GOAL</b><br/>Design a service which for a user at a physical location will suggest N nearest restaurants, each listed with a waiting time</p>
+<br/>
+</span>
+<span class="fragment fade-in">
+<p><b>NOTE</b><br/>I encountered a variation of this system design assignment during on-site interviews at Amazon and Facebook</p>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE</b></p>
+</span>
+<span class="fragment fade-in">
+<b><pre style="font-size:14pt;">
+
+  +--------+       .   +-----+    +------------------------+
+  | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
+  |  APP   |-------.   +-----+    +------------------------+
+  +--------+       .
+                   .   +-----------+ API   +----------+
+                   .   |   LOAD    |   /  +----------+| \    +----------+
+                   .---|           |--+  +----------+|+  +---| DATABASE |
+                   .   | BALANCING |   \ | μSERVICE |+  /    +----------+
+                   .   +-----------+     +----------+
+                   .
+                   .
+
+</pre></b>
+</span>
+<span class="fragment fade-in">
+<p>But this leaves some questions to be answered...</p>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>QUESTION 1</b><br/>How do we obtain waiting times?</p>
+<br/>
+</span>
+<span class="fragment fade-in">
+<p><b>ANSWER 1A</b><br/>We provide an API for the restaurants and enrolled restaurants will provide the information</p>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>RESTAURANT INFORMATION</b></p>
+</span>
+<ul>
+<span class="fragment fade-in">
+<li>Restaurant location, opening times & capacity</li>
+<li>Current number of guests</li>
+<li>Current number of waiting guests</li>
+<li>This allows to calculate: average eating time</li>
+<li>And it allows to: estimate waiting time</li>
+</ul>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE</b></p>
+<b><pre style="font-size:14pt;">
+
+  +--------+       .   +-----+    +------------------------+
+  | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
+  |  APP   |-------.   +-----+    +------------------------+
+  +--------+       .
+                   .   +-----------+ API   +----------+
+                   .   |   LOAD    |   /  +----------+| \    +----------+
+                   .---|           |--+  +----------+|+  <-->| DATABASE |
+                   .   | BALANCING |   \ | μSERVICE |+  /    +----------+
+                   .   +-----------+     +----------+
+                   .
+                   .
+
+</pre></b>
+<p>&nbsp;<br/>&nbsp;</p>
+</span>
+</section>
+
+<section>
+<p><b>INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE</b></p>
+<b><pre style="font-size:14pt;">
+
+  +--------+       .   +-----+    +------------------------+
+  | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
+  |  APP   |-------.   +-----+    +------------------------+
+  +--------+       .
+                   .   +-----------+ API   +----------+
+                   .   |   LOAD    |   /  +----------+| \    +----------+
+                   .---|           |--+  +----------+|+  <-->| DATABASE |
+                   .   | BALANCING |   \ | μSERVICE |+  /    +----------+
+  +------------+   .   +-----------+     +----------+
+  | RESTAURANT |---.
+  +------------+   .
+
+</pre></b>
+<p>It would be extended<br/>with an interface towards the restaurants...</p>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>BUT WE CAN DO BETTER</b></p>
+</span>
+<span class="fragment fade-in">
+<p><b>ANSWER 1B</b><br/>Automate data collection and prepopulate database with estimates</p>
+</span>
+</section>
+
+
+<section>
+<span class="fragment fade-in">
+<p><b>QUERY FOR STATIC RESTAURANT INFO</b></p>
+</span>
+<ul>
+<span class="fragment fade-in">
+<li>Restaurant location and opening times can be queried from APIs of Google / Yelp / Foursquare / Facebook or scraped from the internet (last resort)</li>
+</span>
+<span class="fragment fade-in">
+<li>Capacity of a restaurant can be inferred by tracking number of auto check-ins on Facebook API and correlating with the moment when there are no more tables available on OpenTable API</li>
+</span>
+<span class="fragment fade-in">
+<li>Our app should allow users to submit corrections of that location information and capacity estimates</li>
+</span>
+</ul>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>ESTIMATING APPROXIMATE WAITING TIME</b></p>
+</span>
+<ul>
+<span class="fragment fade-in">
+<li>The average time of stay can be pulled from statistical records (ranked by restaurant types)</li>
+</span>
+<span class="fragment fade-in">
+<li>Capacity, average time of stay, check-ins would then allow to estimate the waiting time</li>
+</span>
+<span class="fragment fade-in">
+<li>Since the margin of error would be high the approximate waiting time would be presented in tiered ranges: couple of/10-20/20-40/40-60 minutes
+</span>
+</ul>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>IMPROVING ACCURACY OF WAITING TIME</b></p>
+</span>
+<ul>
+<span class="fragment fade-in">
+<li>Anonymized tracking of the time on restaurant premises by the app would further contribute to improving the accuracy over time</li>
+</span>
+<span class="fragment fade-in">
+<li>As the app gains in popularity the app tracking would dominate as a data source</li>
+</span>
+</ul>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                                        .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+                   .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |-------------------.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+                   .  +------------+
+                  .   |    |   .            |                              .
+                  .   +----+   .            |                              .
+                  .            .   +-------------------+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE           |                   .  +-----------+
+                  .            .   +-------------------+
+                  .            .            |
+                  .            .   +-----------------+                     .  +----------+
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |
+                  .            .   +-----------------+                     .  +----------+
+                  .            .            |
+                  .            .   +-----------------------+                  +-------------+
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  DATABASE   |
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
+                  .            .---| MANUAL CORRECTIONS,         |-------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>&nbsp;</p>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>QUESTION 2</b><br/>How will we ensure scalability?</p>
+<br/>
+</span>
+<span class="fragment fade-in">
+<p><b>ANSWER 2</b><br/>Throttle most frequent 3rd party API requests, cache replies, shard database</p>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                                        .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+                   .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |-------------------.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+                   .  +------------+
+                  .   |    |   .            |                              .
+                  .   +----+   .            |                              .
+                  .            .   +-------------------+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE           |                   .  +-----------+
+                  .            .   +-------------------+
+                  .            .            |
+                  .            .   +-----------------+                     .  +----------+
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |
+                  .            .   +-----------------+                     .  +----------+
+                  .            .            |
+                  .            .   +-----------------------+                  +-------------+
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  DATABASE   |
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
+                  .            .---| MANUAL CORRECTIONS,         |-------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>&nbsp;<br/>&nbsp;</p>
+</span>
+</section>
+
+<section>
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                                        .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+                   .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |-------------------.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+                   .  +------------+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE (OFFLINE) |                   .  +-----------+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+
+                  .            .            |
+                  .            .   +-----------------+                     .  +----------+
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |
+                  .            .   +-----------------+                     .  +----------+
+                  .            .            |
+                  .            .   +-----------------------+                  +-------------+
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  DATABASE   |
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
+                  .            .---| MANUAL CORRECTIONS,         |-------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>Enqueue requests for estimating capacity for<br/>newly added restaurants (and process them offline)</p>
+</section>
+
+<section>
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                        +------------+  .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
+                  .            .            |                     +---------------------------+
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .            |                                                 |
+                  .            .   +-----------------------+                  +-------------+ |
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  DATABASE   |-+
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
+                  .            .---| MANUAL CORRECTIONS,         |-------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>Persistently cache the static results of 3rd party APIs,<br/>store the calculated estimates</p>
+</section>
+
+<section>
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                        +------------+  .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
+                  .            .            |                     +---------------------------+
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .            |                                                 |
+                  .            .   +-----------------------+                  +-------------+ |
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
+                  .            .---| MANUAL CORRECTIONS,         |-------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>Use a highly scalable,<br/> sharded NoSQL database</p>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>QUESTION 3</b><br/>What would be the key?</p>
+<br/>
+</span>
+<span class="fragment fade-in">
+<p><b>ANSWER 3</b><br/>The key would be based on geographical location,<br/>cryptographically hashed to spread the load</p>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                        +------------+  .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
+                  .            .            |                     +---------------------------+
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .            |                                                 |
+                  .            .   +-----------------------+                  +-------------+ |
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
+                  .            .---| MANUAL CORRECTIONS,         |-------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>&nbsp;<br/>&nbsp;</p>
+</span>
+</section>
+
+<section>
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                        +------------+  .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
+                  .            .            |                     +---------------------------+
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .            |              key = crypto_hash(concat(lat,lon)) |
+                  .            .   +-----------------------+                  +-------------+ |
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
+                  .            .---| MANUAL CORRECTIONS,         |-------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>Concatenated latitude and longitude as key,<br/>cryptographically hashed to prevent lopsided shards</p>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>QUESTION 4</b><br/>What about the organization of the storage to look-up nearest restaurants?</p>
+<br/>
+</span>
+<span class="fragment fade-in">
+<p><b>ANSWER 4</b><br/>Use a quadtree (superimposed over a world map) as an index to facilitate searching for the nearest restaurants.</p>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                        +------------+  .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
+                  .            .            |                     +---------------------------+
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .            |              key = crypto_hash(concat(lat,lon)) |
+                  .            .   +-----------------------+                  +-------------+ |
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
+                  .            .---| MANUAL CORRECTIONS,         |-------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>&nbsp;<br/>&nbsp;</p>
+</span>
+</section>
+
+<section>
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                        +------------+  .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
+                  .            .            |                     +---------------------------+
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .            |              key = crypto_hash(concat(lat,lon)) |
+                  .            .   +-----------------------+                  +-------------+ |
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |    |  QUADTREE   |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |    |   INDEX     |
+                  .            .---| MANUAL CORRECTIONS,         |-------+    +-------------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>Adjacent to the database,<br/>there would be a quadtree-based index</p>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>IN-DEPTH INFO ABOUT QUADTREES</b></p>
+<ul>
+<li>Point quadtrees are, in a way, a generalization of binary search to 2D</li>
+<li><a href="https://en.wikipedia.org/wiki/Quadtree">https://en.wikipedia.org/wiki/Quadtree</a></li>
+<li><a href="https://ericandrewlewis.github.io/how-a-quadtree-works/">https://ericandrewlewis.github.io/how-a-quadtree-works/</a></li>
+</ul>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>QUADTREE SCALABILITY</b></p>
+</span>
+<ul>
+<span class="fragment fade-in">
+<li>Look-up of nearest restaurants is the most frequent operation in the system</li>
+</span>
+<span class="fragment fade-in">
+<li>Let us assume that there is 1 restaurant for every 1000 people (probably an overestimation)</li>
+</span>
+<span class="fragment fade-in">
+<li>Then, with 8 billion people there are 8 million restaurants</li>
+</span>
+<span class="fragment fade-in">
+<li>Also assuming 1 kiB data per restaurant (an overestimate for data structure overhead and hash key identifying a restaurant)</li>
+</span>
+<span class="fragment fade-in">
+<li>We arrive at ~8 GiB index size which easily fits in RAM and thus enables low latency serving</li>
+</span>
+</ul>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>QUESTION 5</b><br/>What can fail? How to handle failures?</p>
+<br/>
+</span>
+<span class="fragment fade-in">
+<p><b>ANSWER 5</b>
+<ul>
+<li>Static data storage failures: Cold-storage backup for the static content and persistant cache</li>
+<li>Dynamic data storage failures: Read-optimized shard replication</li>
+<li>Computing instance failures: Multiple instances of microservices (behind the load balancer)</li>
+</ul>
+</p>
+</span>
+</section>
+
+
+<section>
+<span class="fragment fade-in">
+<p><b>QUESTION 6</b><br/>What about the security?</p>
+<br/>
+</span>
+<span class="fragment fade-in">
+<p><b>ANSWER 6</b>
+<ul>
+<li>HTTPS, user authentication</li>
+<li>DDoS defence, application firewall</li>
+<li>Service access credential vault, minimal access roles</li>
+<li>Restaurant API/interface to prevent spoofing competition</li>
+</ul>
+</p>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
+        | APP |---.   +-----+    +------------------------+                .  +------------+
+        +-----+   .                                        +------------+  .  |   GOOGLE   |
+                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
+                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
+                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
+                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
+                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
+                  .            .            |                     +---------------------------+
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
+                  .            .   +-----------------+                     .  +----------+    |
+                  .            .            |              key = crypto_hash(concat(lat,lon)) |
+                  .            .   +-----------------------+                  +-------------+ |
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |    |  QUADTREE   |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |    |   INDEX     |
+                  .            .---| MANUAL CORRECTIONS,         |-------+    +-------------+
+                  .            .   | APP LOCATION TRACKING, ETC. |
+                  .            .   +-----------------------------+
+
+</pre></b>
+<p>&nbsp;<br/>&nbsp;</p>
+</span>
+</section>
+
+<section>
+<p><b>REVISED ARCHITECTURE</b></p>
+<b><pre style="font-size:10pt;">
+
+                  .   +-----+    +------------------------+                                      +---+
+        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |                                      | V |
+        | APP |---.   +-----+    +------------------------+                .  +------------+     | A |
+        +-----+   .                                        +------------+  .  |   GOOGLE   |     | U |
+                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |     | L |
+                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |     | T |
+                  .---| LB |---.   +-------------------+   +------------+  .  +------------+     +---+
+                  .   |    |   .            || Queued triggers             .
+                  .   +----+   .            \/ (if new restaurant queried) .                     +---+
+                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+      | B |
+          * HTTPS . * ANTI     .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |      | A |
+          * AUTH  .   DDOS     .   | & STORE (OFFLINE) |----------+        .  +-----------+      | C |
+                  . * FIREWALL .   +~~~~~~~~~~~~~~~~~~~+          |                              | K |
+                  .            .            |                     +---------------------------+  | U |
+                  .            .   +-----------------+                     .  +----------+    |  | P |
+                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |  | S |
+                  .            .   +-----------------+                     .  +----------+    |  +---+
+                  .            .            |              key = crypto_hash(concat(lat,lon)) |
+                  .            .   +-----------------------+                  +-------------+ |
+                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
+                  .            .   +-----------------------+             |    +-------------+
+                  .            .   +-----------------------------+       |    |  QUADTREE   |
+                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |    |   INDEX     |
+                  .            .---| MANUAL CORRECTIONS,         |-------+    +-------------+
+                  .            .   | APP LOCATION TRACKING, ETC. |            | REPLICATION |
+                  .            .   +-----------------------------+            +-------------+
+
+</pre></b>
+<p>&nbsp;<br/>&nbsp;</p>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>RELATED MATERIALS</b></p>
+<ul>
+<li>Jackson Gabbard - Intro to Architecture and Systems Design - Interviews<br/>
+<a href="https://youtu.be/ZgdS0EUmn70">https://youtu.be/ZgdS0EUmn70</a></li>
+<li>Hired in Tech<br/>
+<a href="https://www.hiredintech.com/system-design">https://www.hiredintech.com/system-design</a></li>
+<li>Facebook Blog - Under the Hood: Building the Location API<br/>
+<a href="https://code.fb.com/core-data/under-the-hood-building-the-location-api/">https://code.fb.com/core-data/under-the-hood-building-the-location-api/</a></li>
+</ul>
+</span>
+</section>
+
+<section>
+<span class="fragment fade-in">
+<p><b>THANK YOU</b></p>
+</span>
+<span class="fragment fade-in">
+<ul>
+<li>See the most up-to-date version of these notes at:<br/>
+<a href="https://altermarkive.github.io/system-design-interviews/restaurant-waiting-time.html">https://altermarkive.github.io/system-design-interviews/restaurant-waiting-time.html</a></li>
+<li>If you have an idea on how to improve this design you are welcome to issue a pull request to:<br/>
+<a href="https://github.com/altermarkive/system-design-interviews">https://github.com/altermarkive/system-design-interviews</a></li>
+</ul>
+</span>
+</section>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/marked.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/plugin/markdown/markdown.min.js"></script>
+<script>
+Reveal.initialize({
+  controls: false,
+  transition: "none",
+  progress: false
+});
+</script>
+</body>
+</html>
