@@ -57,7 +57,7 @@ Good luck!
   on behalf of a passenger (to be taken into account by the system once
   the passenger is picked up) - this needs to be added, for simplicity
   it will be added as a parameter of the pickup function.
-* The purpose exposing the update function is not explained enough
+* The purpose for exposing the update function is not explained enough
   but it is assumed here that the user of the interface is not expected
   to be able to change the position and the direction of the lift arbitrarily.
   Thus, it is assumed here that the function is for internal use only.
