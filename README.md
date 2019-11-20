@@ -36,7 +36,11 @@
   - (Other: invalid input, randomized tests, load testing)
 5. Keep improving - can we do better?
 
-* Practice easy and medium problems on LeetCode ([leetcode.com](https://leetcode.com/)) - I solved these so far: [bit.ly/2fdFbxh](https://github.com/altermarkive/Training-Coding-Java), [bit.ly/2f9DNgC](https://github.com/altermarkive/Training-Coding-Python)
+* [Practice algorithm design challenges](algorithm-design):
+  - [LeetCode](https://leetcode.com/)
+  - [Codility](https://codility.com/)
+  - [Geeks for Geeks](https://www.geeksforgeeks.org/)
+  - [HackerRank](https://www.hackerrank.com/)
 
 ----------
 
@@ -130,7 +134,7 @@ RESOLUTION:<br/>
 
 <tr><td align="center">
 HEAPS<br/>
-(Java: PriorityQueue<sup><a href="https://github.com/altermarkive/Training-Coding-Java/blob/master/src/test/java/leetcode/LC155MinStack.java">1</a>, <a href="https://github.com/altermarkive/Training-Coding-Java/blob/master/src/test/java/leetcode/LC215KthLargestElementInAnArray.java">2</a></sup>)
+(Java: PriorityQueue<sup><a href="https://github.com/altermarkive/interview-training/blob/master/algorithm-design/java/src/test/java/leetcode/LC155MinStack.java">1</a>, <a href="ttps://github.com/altermarkive/interview-training/blob/master/algorithm-design/java/src/test/java/leetcode/LC215KthLargestElementInAnArray.java">2</a></sup>)
 </td><td align="left">
 CHILD = INDEX' * 2<br/>
 PARENT = INDEX' / 2<br/>
@@ -183,7 +187,7 @@ Other algorithm: AVL tree (uses rotation)
 QUICK SORT
 </td><td align="left">
 <ul>
-<li>(<b><a href="https://github.com/altermarkive/Training-Coding-Java/blob/master/src/test/java/leetcode/LC384ShuffleAnArray.java">shuffle</a></b> first or sample for pivot)</li>
+<li>(<b><a href="ttps://github.com/altermarkive/interview-training/blob/master/algorithm-design/java/src/test/java/leetcode/LC384ShuffleAnArray.java">shuffle</a></b> first or sample for pivot)</li>
 <li>PICK PIVOT</li>
 <li>REORDER W.R.T. PIVOT</li>
 <li>APPLY TO ARRAYS SEPARATED BY PIVOT</li>
