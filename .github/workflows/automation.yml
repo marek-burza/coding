@@ -1,0 +1,25 @@
+name: Automation Script
+
+on: [push]
+
+jobs:
+  pipeline:
+    name: Pipeline
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Initiating
+        uses: actions/checkout@v1
+      - name: Preparing
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.5'
+          architecture: 'x64'
+      - name: Testing
+        run: |
+          pip3 install coverage
+          pip3 install coveralls
+          coverage run -m unittest lifts.py test
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
