@@ -1,0 +1,18 @@
+name: Automation Script
+
+on: [push]
+
+jobs:
+  pipeline:
+    name: Pipeline
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Initiating
+        uses: actions/checkout@v1
+      - name: Building
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+        run: |
+          cd algorithm-design/java
+          gradle build
