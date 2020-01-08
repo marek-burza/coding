@@ -75,10 +75,7 @@
     - 40k/s Google searches
     - 10T Google indexed pages
 
-* Review System Design Process on Hired in Tech:
-  - [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/)
-  - [Final Thoughts](https://www.hiredintech.com/system-design/final-thoughts/)
-  - [System Design](https://www.hiredintech.com/system-design/)
+* Review [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
 * [Watch the lecture on Scalability Harvard Web Development](https://youtu.be/-W9F__D3oY4)
 * [Review an example - Restaurant Waiting Time](http://altermarkive.github.io/interview-training/system-design/restaurant-waiting-time.html)
 
