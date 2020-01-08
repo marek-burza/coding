@@ -78,6 +78,7 @@
 * Review [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
 * [Watch the lecture on Scalability Harvard Web Development](https://youtu.be/-W9F__D3oY4)
 * [Review an example - Restaurant Waiting Time](http://altermarkive.github.io/interview-training/system-design/restaurant-waiting-time.html)
+* [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
 
 ----------
 
@@ -448,5 +449,3 @@ N over K (binomial coefficient)
   - [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
 * System Design:
   - [High Scalability Blog](https://highscalability.com/)
-  - [Distributed Algorithms in NoSQL Databases](https://highlyscalable.wordpress.com/2012/09/18/distributed-algorithms-in-nosql-databases/)
-  - [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
