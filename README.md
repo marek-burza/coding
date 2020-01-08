@@ -448,7 +448,6 @@ N over K (binomial coefficient)
   - [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
 * System Design:
   - [Slide 2 from Scalability, Availability & Stability Patterns](https://www.mif.vu.lt/~donatas/Vadovavimas/Temos/Reactive%20systems/Scalability/2010%20Scalability%20patterns(slides).pdf)
-  - [Software Engineering Advice from Building Large-Scale Distributed Systems - Jeff Dean](https://research.google.com/people/jeff/stanford-295-talk.pdf)
   - [High Scalability Blog](https://highscalability.com/)
   - [Distributed Algorithms in NoSQL Databases](https://highlyscalable.wordpress.com/2012/09/18/distributed-algorithms-in-nosql-databases/)
   - [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
