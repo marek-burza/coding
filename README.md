@@ -447,7 +447,6 @@ N over K (binomial coefficient)
   - [Cracking the Coding Interview](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
   - [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
 * System Design:
-  - [Five Considerations For Large Scale Systems](https://sites.google.com/site/craigandera/craigs-stuff/scalability-considerations/five-considerations-for-large-scale-systems?tmpl=%2Fsystem%2Fapp%2Ftemplates%2Fprint%2F)
   - [Slide 2 from Scalability, Availability & Stability Patterns](https://www.mif.vu.lt/~donatas/Vadovavimas/Temos/Reactive%20systems/Scalability/2010%20Scalability%20patterns(slides).pdf)
   - [Software Engineering Advice from Building Large-Scale Distributed Systems - Jeff Dean](https://research.google.com/people/jeff/stanford-295-talk.pdf)
   - [High Scalability Blog](https://highscalability.com/)
