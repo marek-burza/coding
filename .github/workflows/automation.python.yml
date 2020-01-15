@@ -12,9 +12,9 @@ jobs:
       - name: Preparing
         uses: actions/setup-python@v1
         with:
-          python-version: '3.5'
+          python-version: '3.7'
           architecture: 'x64'
+      - name: Linting
+        run: .github/workflows/python.linter.sh
       - name: Testing
-        run: |
-          cd algorithm-design/python
-          python3 hackerrank/suite.py
+        run: .github/workflows/python.tester.sh
