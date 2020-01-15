@@ -20,7 +20,7 @@ def main():
     sizes_in = list(map(int, input().strip().split(' ')))
     requests_in = []
     n = int(input().strip())
-    for i in range(n):
+    for _ in range(n):
         request_in = list(map(int, input().strip().split(' ')))
         requests_in.append(request_in)
     print(accountant(sizes_in, requests_in))

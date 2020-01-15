@@ -8,7 +8,7 @@ def check(email):
     items = email.split('@')
     if len(items) != 2:
         return False
-    if not re.match('[\w-]+$', items[0]):
+    if not re.match(r'[\w-]+$', items[0]):
         return False
     items = items[1].split('.')
     if len(items) != 2:
@@ -18,7 +18,7 @@ def check(email):
     return 0 < len(items[1]) <= 3
 
 def process(emails):
-    emails = list(filter(lambda email: check(email), emails))
+    emails = list(filter(check, emails))
     emails.sort()
     return emails
 
@@ -26,7 +26,7 @@ def process(emails):
 def main():
     n = int(input().strip())
     emails = []
-    for i in range(n):
+    for _ in range(n):
         emails.append(input().strip())
     print(process(emails))
 

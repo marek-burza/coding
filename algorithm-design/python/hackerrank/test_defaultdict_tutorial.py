@@ -16,9 +16,9 @@ def main():
     n_in, m_in = list(map(int, input().strip().split(' ')))
     words_a_in = []
     words_b_in = []
-    for j in range(n_in):
+    for _ in range(n_in):
         words_a_in.append(input().strip())
-    for j in range(m_in):
+    for _ in range(m_in):
         words_b_in.append(input().strip())
     result_out = list_repetitions(words_a_in, words_b_in)
     for each in words_b_in:

@@ -22,7 +22,7 @@ def check(cubes):
 
 def main():
     t = int(input().strip())
-    for i in range(t):
+    for _ in range(t):
         n = int(input().strip())
         cubes = list(map(int, input().strip().split()))[:n]
         print('Yes' if check(cubes) else 'No')

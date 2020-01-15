@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/python-arithmetic-operators
 
-import random
+import os
+import struct
 import unittest
 
 
@@ -26,9 +27,9 @@ if __name__ == '__main__':
 
 class TestCode(unittest.TestCase):
     def test_random(self):
-        first = random.randint(1, 10000000000)
-        second = random.randint(1, 10000000000)
-        for i in range(100):
+        first = struct.unpack('<L', os.urandom(4))[0]
+        second = struct.unpack('<L', os.urandom(4))[0]
+        for _ in range(100):
             added, subtracted, multiplied = mix(first, second)
             self.assertEqual(added, first + second)
             self.assertEqual(subtracted, first - second)

@@ -18,7 +18,7 @@ def standardize(numbers):
 def main():
     n = int(input().strip())
     numbers = []
-    for i in range(n):
+    for _ in range(n):
         numbers.append(input().strip())
     for number in standardize(numbers):
         print(number)

@@ -7,9 +7,9 @@ import unittest
 def is_weird(value):
     if (value % 2) == 1:
         return True
-    elif 2 <= value <= 5:
+    if 2 <= value <= 5:
         return False
-    elif 6 <= value <= 20:
+    if 6 <= value <= 20:
         return True
     return False
 

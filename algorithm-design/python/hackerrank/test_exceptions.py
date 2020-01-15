@@ -5,13 +5,15 @@
 def exempt(a, b):
     try:
         return int(a) // int(b)
-    except Exception as exception:
+    except ValueError as exception:
+        return 'Error Code: %s' % str(exception)
+    except ZeroDivisionError as exception:
         return 'Error Code: %s' % str(exception)
 
 
 def main():
     n = int(input().strip())
-    for i in range(n):
+    for _ in range(n):
         a, b = input().strip().split()
         print(exempt(a, b))
 

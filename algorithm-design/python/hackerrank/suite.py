@@ -34,9 +34,9 @@ class TestSingle(unittest.TestCase):
             expected = list(map(lambda line: line.strip(), expected.split('\n')))
             result = list(map(lambda line: line.strip(), sys.stdout.getvalue().split('\n')))
             self.assertEqual(len(result), len(expected))
-            for index in range(len(expected)):
+            for index, item in enumerate(expected):
                 at = index
-                self.assertEqual(result[index], expected[index])
+                self.assertEqual(result[index], item)
         except:
             sys.stdin.close()
             sys.stdin = undo_in
@@ -47,13 +47,21 @@ class TestSingle(unittest.TestCase):
         sys.stdin = undo_in
         sys.stdout = undo_out
 
+
+def is_python_file(directory, name):
+    return os.path.isfile(os.path.join(directory, name)) and name.endswith('.py')
+
+
+def join_without_extension(directory, name):
+    return os.path.join(directory, name.replace('.py', ''))
+
 if __name__ == '__main__':
     path = os.path.dirname(__file__)
     loader = unittest.TestLoader()
     suite = loader.discover(path)
     content = os.listdir(path)
-    scripts = [item for item in content if os.path.isfile(os.path.join(path, item)) and item.endswith('.py')]
-    prefixes = [os.path.join(path, item.replace('.py', '')) for item in scripts if item.find('test_') != -1]
+    scripts = [item for item in content if is_python_file(path, item)]
+    prefixes = [join_without_extension(path, item) for item in scripts if item.find('test_') != -1]
     for prefix in prefixes:
         script = '%s.py' % prefix
         tests = []
