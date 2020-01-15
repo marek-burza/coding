@@ -15,6 +15,6 @@ jobs:
           python-version: '3.7'
           architecture: 'x64'
       - name: Linting
-        run: .github/workflows/python.linter.sh
+        run: /bin/sh .github/workflows/python.linter.sh
       - name: Testing
-        run: .github/workflows/python.tester.sh
+        run: /bin/sh .github/workflows/python.tester.sh
