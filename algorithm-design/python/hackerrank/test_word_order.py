@@ -17,7 +17,7 @@ def orderly(words):
 def main():
     n = int(input().strip())
     words = []
-    for i in range(n):
+    for _ in range(n):
         words.append(input().strip())
     unique, counted = orderly(words)
     print(len(unique))

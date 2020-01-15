@@ -4,9 +4,12 @@
 import operator
 
 
+def title(gender):
+    return 'Mr.' if gender == 'M' else 'Ms.'
+
 def decorate_gender(entries):
     def applier():
-        return ['%s %s %s' % ('Mr.' if entry[3] == 'M' else 'Ms.', entry[0], entry[1]) for entry in entries]
+        return ['%s %s %s' % (title(entry[3]), entry[0], entry[1]) for entry in entries]
     return applier
 
 
@@ -19,7 +22,7 @@ def standardize(entries):
 def main():
     n = int(input().strip())
     entries = []
-    for i in range(n):
+    for _ in range(n):
         entries.append(input().strip().split())
     for entry in standardize(entries):
         print(entry)

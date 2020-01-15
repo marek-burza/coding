@@ -18,6 +18,14 @@ if __name__ == "__main__":
 
 class TestCode(unittest.TestCase):
     def test_several(self):
-        lut = {1800: False, 1900: False, 2000: True, 2100: False, 2200: False, 2300: False, 2400: True, 2500: False}
+        lut = {
+            1800: False,
+            1900: False,
+            2000: True,
+            2100: False,
+            2200: False,
+            2300: False,
+            2400: True,
+            2500: False}
         for year in lut:
             self.assertEqual(is_leap(year), lut[year])

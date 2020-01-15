@@ -8,7 +8,10 @@ def mangle(s):
     counted = collections.Counter()
     for entry in s:
         counted[entry] += 1
-    ordered = sorted(counted.keys(), key=lambda key: (counted[key] << 8) | (256 - ord(key)), reverse=True)
+    ordered = sorted(
+        counted.keys(),
+        key=lambda key: (counted[key] << 8) | (256 - ord(key)),
+        reverse=True)
     return ordered, counted
 
 

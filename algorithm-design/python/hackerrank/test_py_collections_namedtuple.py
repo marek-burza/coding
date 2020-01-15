@@ -19,7 +19,7 @@ def main():
     n = int(input().strip())
     order = input().strip().split()
     table = []
-    for i in range(n):
+    for _ in range(n):
         table.append(input().strip().split())
     print('%.2f' % average(order, table))
 

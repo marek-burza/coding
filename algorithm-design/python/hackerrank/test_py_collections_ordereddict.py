@@ -17,7 +17,7 @@ def aggregate(purchases):
 def main():
     n = int(input().strip())
     purchases = []
-    for i in range(n):
+    for _ in range(n):
         items = input().strip().split()
         product = ' '.join(items[:-1])
         payment = int(items[-1])

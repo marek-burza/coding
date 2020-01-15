@@ -21,7 +21,7 @@ def operate(operations):
 def main():
     n = int(input().strip())
     operations = []
-    for i in range(n):
+    for _ in range(n):
         operation = input().strip().split()
         operations.append(operation)
     print(' '.join(operate(operations)))

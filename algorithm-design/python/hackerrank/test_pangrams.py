@@ -4,7 +4,7 @@
 
 def pangram(text):
     text = text.lower()
-    remaining = set([chr(i) for i in range(ord('a'), ord('z') + 1)])
+    remaining = {chr(i) for i in range(ord('a'), ord('z') + 1)}
     for key in text:
         if key in remaining:
             remaining.remove(key)

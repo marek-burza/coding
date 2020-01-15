@@ -9,13 +9,13 @@ def check(pattern):
     try:
         re.compile(pattern)
         return True
-    except sre_constants.error as exception:
+    except sre_constants.error:
         return False
 
 
 def main():
     n = int(input().strip())
-    for i in range(n):
+    for _ in range(n):
         print(check(input().strip()))
 
 if __name__ == '__main__':

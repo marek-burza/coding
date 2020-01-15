@@ -27,7 +27,7 @@ def find_largest_possible_clique(n, m):
 
 def main():
     t = int(input().strip())
-    for i in range(t):
+    for _ in range(t):
         n, m = list(map(int, input().strip().split()))
         print(find_largest_possible_clique(n, m))
 

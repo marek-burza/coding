@@ -24,7 +24,7 @@ def process(operations):
 def main():
     n = int(input().strip())
     operations = []
-    for i in range(n):
+    for _ in range(n):
         operation = input().strip().split(' ')
         if operation[0] in ['insert', 'remove', 'append']:
             operation[1] = int(operation[1])
