@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/standardize-mobile-number-using-decorators
 
+import io
+import sys
+import unittest
+
 
 def decorate_numbers(numbers):
     def applier():
-        return ['+91 %s %s' % (number[-10:-5], number[-5:]) for number in numbers]
+        return [f'+91 {number[-10:-5]} {number[-5:]}' for number in numbers]
     return applier
 
 
@@ -23,5 +27,20 @@ def main():
     for number in standardize(numbers):
         print(number)
 
+
 if __name__ == '__main__':
     main()
+
+
+class TestCode(unittest.TestCase):
+    def generalized_test(self, which):
+        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
+        sys.stdout = io.StringIO()
+        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
+        main()
+        self.assertEqual(sys.stdout.getvalue(), expected.read())
+        for handle in [sys.stdin, sys.stdout, expected]:
+            handle.close()
+
+    def test_0(self):
+        self.generalized_test('0')

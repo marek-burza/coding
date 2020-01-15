@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/no-idea
 
+import io
+import sys
+import unittest
+
 
 def calculate_happiness(array, a_in, b_in):
     happiness = 0
@@ -19,5 +23,23 @@ def main():
     b_in = set(input().strip().split(' '))
     print(calculate_happiness(array, a_in, b_in))
 
+
 if __name__ == '__main__':
     main()
+
+
+class TestCode(unittest.TestCase):
+    def generalized_test(self, which):
+        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
+        sys.stdout = io.StringIO()
+        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
+        main()
+        self.assertEqual(sys.stdout.getvalue(), expected.read())
+        for handle in [sys.stdin, sys.stdout, expected]:
+            handle.close()
+
+    def test_0(self):
+        self.generalized_test('0')
+
+    def test_01(self):
+        self.generalized_test('01')

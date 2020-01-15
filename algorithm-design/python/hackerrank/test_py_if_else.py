@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-# https://www.hackerrank.com/challenges/python-raw-input
+# https://www.hackerrank.com/challenges/py-if-else
 
+import io
+import sys
 import unittest
 
 
@@ -17,11 +19,24 @@ def is_weird(value):
 def main():
     print('Weird' if is_weird(int(input().strip())) else 'Not Weird')
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     main()
 
 
 class TestCode(unittest.TestCase):
+    def generalized_test(self, which):
+        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
+        sys.stdout = io.StringIO()
+        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
+        main()
+        self.assertEqual(sys.stdout.getvalue(), expected.read())
+        for handle in [sys.stdin, sys.stdout, expected]:
+            handle.close()
+
+    def test_0(self):
+        self.generalized_test('0')
+
     def test_1_to_24(self):
         expected = [
             None, True, False, True, False, True, True, True, True, True,

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/class-2-find-the-torsional-angle
 
+import io
 import math
+import sys
+import unittest
 
 
 class Vector:
@@ -27,7 +30,10 @@ class Vector:
         return zero.subtract(Vector(x, y, z))
 
     def value(self):
-        return math.sqrt(math.pow(self.x, 2) + math.pow(self.y, 2) + math.pow(self.z, 2))
+        xx = math.pow(self.x, 2)
+        yy = math.pow(self.y, 2)
+        zz = math.pow(self.z, 2)
+        return math.sqrt(xx + yy + zz)
 
 
 def torsional_angle(a, b, c, d):
@@ -47,5 +53,20 @@ def main():
     d = Vector(*tuple(map(float, input().strip().split())))
     print('%.2f' % torsional_angle(a, b, c, d))
 
+
 if __name__ == '__main__':
     main()
+
+
+class TestCode(unittest.TestCase):
+    def generalized_test(self, which):
+        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
+        sys.stdout = io.StringIO()
+        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
+        main()
+        self.assertEqual(sys.stdout.getvalue(), expected.read())
+        for handle in [sys.stdin, sys.stdout, expected]:
+            handle.close()
+
+    def test_0(self):
+        self.generalized_test('0')
