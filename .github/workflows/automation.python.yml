@@ -17,4 +17,6 @@ jobs:
       - name: Linting
         run: /bin/sh .github/workflows/python.linter.sh
       - name: Testing
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: /bin/sh .github/workflows/python.tester.sh

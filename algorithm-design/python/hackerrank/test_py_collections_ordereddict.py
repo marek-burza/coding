@@ -30,7 +30,7 @@ def main():
         print('%s %d' % (product, aggregated[product]))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 

@@ -24,7 +24,7 @@ def main():
     print(calculate_happiness(array, a_in, b_in))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 

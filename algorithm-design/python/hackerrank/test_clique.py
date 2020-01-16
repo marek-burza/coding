@@ -36,7 +36,7 @@ def main():
         print(find_largest_possible_clique(n, m))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 

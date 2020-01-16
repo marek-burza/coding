@@ -31,7 +31,7 @@ def main():
             print(' '.join(list(map(str, result_out[each]))))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 
