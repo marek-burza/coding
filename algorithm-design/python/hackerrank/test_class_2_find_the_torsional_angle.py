@@ -54,7 +54,7 @@ def main():
     print('%.2f' % torsional_angle(a, b, c, d))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 

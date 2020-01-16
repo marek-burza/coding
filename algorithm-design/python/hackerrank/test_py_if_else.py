@@ -20,7 +20,7 @@ def main():
     print('Weird' if is_weird(int(input().strip())) else 'Not Weird')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 

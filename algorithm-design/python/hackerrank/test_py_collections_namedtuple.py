@@ -27,7 +27,7 @@ def main():
     print('%.2f' % average(order, table))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 

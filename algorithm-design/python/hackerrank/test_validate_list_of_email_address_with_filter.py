@@ -35,7 +35,7 @@ def main():
     print(process(emails))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 
@@ -51,3 +51,15 @@ class TestCode(unittest.TestCase):
 
     def test_0(self):
         self.generalized_test('0')
+
+    def test_double_at(self):
+        self.assertEqual(process(['somebody@somewhere@else.com']), [])
+
+    def test_double_dot(self):
+        self.assertEqual(process(['somebody@somewhere.else.com']), [])
+
+    def test_garbage(self):
+        self.assertEqual(process(['somebody@some+where.com']), [])
+
+    def test_white_space(self):
+        self.assertEqual(process(['somebody\t@somewhere.com']), [])

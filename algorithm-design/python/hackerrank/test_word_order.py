@@ -27,7 +27,7 @@ def main():
     print(' '.join([str(counted[word]) for word in unique]))
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 

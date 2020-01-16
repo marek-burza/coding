@@ -31,7 +31,7 @@ def main():
         print('Yes' if check(cubes) else 'No')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 

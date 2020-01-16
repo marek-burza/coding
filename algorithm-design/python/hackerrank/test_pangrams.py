@@ -21,7 +21,7 @@ def main():
     print('pangram' if pangram(input().strip()) else 'not pangram')
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # pragma: no cover
     main()
 
 
