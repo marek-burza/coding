@@ -5,6 +5,13 @@ import (
 	"testing"
 )
 
+func TestBadSize(t *testing.T) {
+	result := LockerDistances(-1, -1, nil)
+	if result != nil {
+		t.Errorf("LockerDistances returns nil!")
+	}
+}
+
 func TestResultPresent(t *testing.T) {
 	result := LockerDistances(1, 1, nil)
 	if result == nil {
