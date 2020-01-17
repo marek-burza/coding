@@ -15,10 +15,7 @@ jobs:
           go-version: '1.13.6'
       - name: Linting
         run: |
-          go get -v -u golang.org/x/lint/golint
-          echo $GOPATH
-          find /home/runner/go
-          golint ./...
+          /bin/sh .github/workflows/golang.linter.sh
       - name: Testing
         run: |
           /bin/sh .github/workflows/golang.tester.sh

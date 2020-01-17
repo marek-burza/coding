@@ -2,5 +2,5 @@
 
 set -e
 
-bash -c "go get -u golang.org/x/lint/golint"
-bash -c "golint ./..."
+go get -u golang.org/x/lint/golint
+$(which golint 2> /dev/null | echo /home/runner/go/bin/golint) ./...
