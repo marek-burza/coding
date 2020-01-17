@@ -16,9 +16,12 @@ jobs:
           architecture: 'x64'
       - name: Linting
         run: |
-          .github/workflows/python.linter.sh
+          /bin/sh .github/workflows/python.linter.sh
       - name: Testing
-        env:
-          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         run: |
-          .github/workflows/python.tester.sh
+          /bin/sh .github/workflows/python.tester.sh
+      - name: Reporting
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flag: python
