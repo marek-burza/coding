@@ -1,0 +1,26 @@
+name: Automation Script for Go
+
+on: [push]
+
+jobs:
+  pipeline:
+    name: Pipeline
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Initiating
+        uses: actions/checkout@v1
+      - name: Preparing
+        uses: actions/setup-go@v1
+        with:
+          go-version: '1.13.6'
+      - name: Linting
+        run: |
+          /bin/sh .github/workflows/golang.linter.sh
+      - name: Testing
+        run: |
+          /bin/sh .github/workflows/golang.tester.sh
+      - name: Reporting
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flag: python
