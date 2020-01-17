@@ -16,6 +16,8 @@ jobs:
       - name: Linting
         run: |
           go get -v -u golang.org/x/lint/golint
+          echo $GOPATH
+          find /home/runner/go
           golint ./...
       - name: Testing
         run: |
