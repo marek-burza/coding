@@ -2,5 +2,5 @@
 
 set -e
 
-go get -u golang.org/x/lint/golint
-$GOPATH/bin/golint ./...
+bash -c "go get -u golang.org/x/lint/golint"
+bash -c "golint ./..."
