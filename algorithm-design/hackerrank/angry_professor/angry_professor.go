@@ -2,7 +2,7 @@ package angryprofessor
 
 // https://www.hackerrank.com/challenges/angry-professor
 
-// AngryProfessor - looks for highest topic coverage and its incidence
+// AngryProfessor - implements the solution to the problem
 func AngryProfessor(k int, a []int) string {
 	absent := 0
 	n := len(a)
