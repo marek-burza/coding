@@ -11,6 +11,6 @@ func TestExample(t *testing.T) {
 		{10, 8, -12},
 	}
 	if 15 != DiagonalDifference(arr) {
-		t.Errorf("Staircase failed with example!")
+		t.Errorf("DiagonalDifference failed with example!")
 	}
 }
