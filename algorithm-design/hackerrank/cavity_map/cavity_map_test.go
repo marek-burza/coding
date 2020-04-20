@@ -31,6 +31,9 @@ func Runner(t *testing.T, name string) {
 	for outScanner.Scan() {
 		outLines = append(outLines, outScanner.Text())
 	}
+	if len(result) != len(outLines) {
+		t.Errorf("CavityMap failed by returning wrong number of results - %d instead of %d!", len(result), len(outLines))
+	}
 	for i := 0; i < len(outLines); i++ {
 		if result[i] != outLines[i] {
 			t.Errorf("CavityMap failed in line %d of test %s!", i, name)
