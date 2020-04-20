@@ -81,4 +81,5 @@ class TestCode(unittest.TestCase):
         self.assertEqual('half past three', time_in_words(3, 30))
 
     def test_03_20(self):
-        self.assertEqual('twenty minutes past three', time_in_words(3, 20))
+        self.assertEqual(
+            'twenty minutes past three', time_in_words(3, 20))
