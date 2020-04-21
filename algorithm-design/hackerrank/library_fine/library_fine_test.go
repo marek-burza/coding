@@ -1,4 +1,4 @@
-package cavitymap
+package libraryfine
 
 import (
 	"bufio"
