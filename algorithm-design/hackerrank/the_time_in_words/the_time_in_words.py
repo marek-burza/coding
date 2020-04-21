@@ -67,7 +67,7 @@ class TestCode(unittest.TestCase):
 
     def test_example_2(self):
         self.runner('_example_2')
-    
+
     def test_03_59(self):
         self.assertEqual('one minute to four', time_in_words(3, 59))
 
