@@ -1,4 +1,4 @@
-package cavitymap
+package libraryfine
 
 // https://www.hackerrank.com/challenges/library-fine
 
