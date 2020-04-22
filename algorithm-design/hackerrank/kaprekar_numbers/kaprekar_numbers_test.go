@@ -42,8 +42,6 @@ func Runner(t *testing.T, name string) {
 	}
 	if !reflect.DeepEqual(result, expected) {
 		t.Errorf("Failed by returning wrong value - %v instead of %v!", result, expected)
-		fmt.Printf("%v\n", []rune(expected[0]))
-		fmt.Printf("%v\n", []rune(result[0]))
 	}
 }
 
