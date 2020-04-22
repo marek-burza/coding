@@ -2,13 +2,8 @@ package cavitymap
 
 // https://www.hackerrank.com/challenges/cavity-map
 
-import (
-	"fmt"
-)
-
 // CavityMap - implements the solution to the problem
 func CavityMap(grid []string) []string {
-	fmt.Printf("%v\n", grid)
 	deltas := [][]int{{-1, 0}, {0, -1}, {1, 0}, {0, 1}}
 	n := len(grid)
 	cells := make([][]rune, n)
