@@ -66,10 +66,3 @@ class TestCode(unittest.TestCase):
 
     def test_15(self):
         self.runner('15')
-
-TestCode().test_example()
-TestCode().test_05()
-TestCode().test_07()
-TestCode().test_08()
-TestCode().test_09()
-TestCode().test_15()
