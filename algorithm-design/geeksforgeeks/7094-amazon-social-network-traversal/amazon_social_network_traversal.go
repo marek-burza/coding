@@ -3,7 +3,6 @@ package gfg7094
 // https://web.archive.org/web/20180317031648/http://qa.geeksforgeeks.org/7094/amazon-social-network-traversal
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -82,7 +81,6 @@ func orderCoursesByCount(countedCourses map[string]int) []string {
 
 // GetRankedCourses recommends courses attended by 2nd level network sorted by popularity
 func (network *Network) GetRankedCourses(user string) []string {
-	fmt.Printf("<>\n")
 	circle := (*network).getFriendsOfFriends(user)
 	own := sliceToSet((*network).getAttendedCoursesForUser(user))
 	countedCourses := (*network).countCircleCoursesWithoutOwn(circle, own)
