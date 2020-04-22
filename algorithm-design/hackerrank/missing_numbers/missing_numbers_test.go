@@ -45,7 +45,6 @@ func Runner(t *testing.T, name string) {
 		converted, _ := strconv.ParseInt(textual, 10, 32)
 		arr = append(arr, int32(converted))
 	}
-	fmt.Println(arr)
 	brr := make([]int32, 0)
 	for _, textual := range strings.Split(inLines[3], " ") {
 		converted, _ := strconv.ParseInt(textual, 10, 32)
