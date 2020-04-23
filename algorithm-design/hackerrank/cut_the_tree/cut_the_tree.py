@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/cut-the-tree
 
-import collections
 import os
 import unittest
 
@@ -24,7 +23,8 @@ def build_graph(data: List[int], edges: List[List[int]]) -> Dict[int, tuple]:
     return mapped
 
 
-def maximum_edge(graph: Dict[int, tuple], v: int, total: int, minimum: List[int], seen: Set[int]) -> int:
+# pylint: disable=C0301
+def maximum_edge(graph: Dict[int, tuple], v: int, total: int, minimum: List[int], seen: Set[int]) -> int:  # noqa
     if v in seen:
         return 0
     summed = graph[v][INDEX_VALUE]
