@@ -14,6 +14,7 @@ def n_choose_k(N: int, K: int) -> int:
     return result
 
 
+# pylint: disable=W0613
 def divisible_sum_pairs(n: int, k: int, arr: List[int]) -> int:
     counted = {}
     for value in arr:
@@ -25,7 +26,7 @@ def divisible_sum_pairs(n: int, k: int, arr: List[int]) -> int:
             counted[rest] = count + 1
     total = 0
     covered = set()
-    for a in counted.keys():
+    for a in counted:
         if a in covered:
             continue
         if a == 0:
@@ -46,7 +47,7 @@ def divisible_sum_pairs(n: int, k: int, arr: List[int]) -> int:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        io_lines = [None] * 2
+        io_lines = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = template % name
             path = os.path.join(os.path.split(__file__)[0], path)
