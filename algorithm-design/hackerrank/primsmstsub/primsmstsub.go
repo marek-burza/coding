@@ -116,16 +116,8 @@ func compareEdges(thisRaw interface{}, otherRaw interface{}) int {
 
 // Prims - implements the solution to the problem
 func Prims(n int32, edges [][]int32, start int32) int32 {
-	adjacency := make(map[int32][]*Edge)
+	adjacency := make([][]*Edge, n+1)
 	for _, edge := range edges {
-		_, edge0InAdjacency := adjacency[edge[0]]
-		if !edge0InAdjacency {
-			adjacency[edge[0]] = make([]*Edge, 0)
-		}
-		_, edge1InAdjacency := adjacency[edge[1]]
-		if !edge1InAdjacency {
-			adjacency[edge[1]] = make([]*Edge, 0)
-		}
 		edge01 := &Edge{edge[0], edge[1], edge[2]}
 		adjacency[edge[0]] = append(adjacency[edge[0]], edge01)
 		edge10 := &Edge{edge[1], edge[0], edge[2]}
@@ -151,8 +143,7 @@ func Prims(n int32, edges [][]int32, start int32) int32 {
 		// 	break
 		// }
 		connected[vertex] = exists
-		adjacentToVertex, _ := adjacency[vertex]
-		for _, edge := range adjacentToVertex {
+		for _, edge := range adjacency[vertex] {
 			queue.heapInsert(edge)
 		}
 	}

@@ -94,11 +94,11 @@ def compare_edges(this, other):
 
 
 def prims(n: int, edges: List[List[int]], start: int) -> int:
-    adjacency = {}
+    adjacency = [None] * (n + 1)
     for edge in edges:
-        if edge[0] not in adjacency:
+        if adjacency[edge[0]] is None:
             adjacency[edge[0]] = []
-        if edge[1] not in adjacency:
+        if adjacency[edge[1]] is None:
             adjacency[edge[1]] = []
         adjacency[edge[0]].append(Edge(edge[0], edge[1], edge[2]))
         adjacency[edge[1]].append(Edge(edge[1], edge[0], edge[2]))
