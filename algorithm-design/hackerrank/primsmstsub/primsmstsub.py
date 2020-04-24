@@ -161,5 +161,3 @@ class TestCode(unittest.TestCase):
 
     def test_06(self):
         self.runner('06')
-
-TestCode().test_uncovered()
