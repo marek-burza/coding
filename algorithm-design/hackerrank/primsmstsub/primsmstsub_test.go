@@ -82,25 +82,3 @@ func compareInt(thisRaw interface{}, otherRaw interface{}) int {
 	other := otherRaw.(*int)
 	return *this - *other
 }
-
-func TestUncovered(t *testing.T) {
-	heapLevel(0)
-	heap := heapInit(compareInt)
-	array := []int{41, 98, 52, 8, 9, 3, 62, 96, 77, 23}
-	for i := range array {
-		heap.heapInsert(&array[i])
-	}
-	value98 := 98
-	heap.heapDelete(heap.heapSearch(&value98))
-	a := 0
-	b := 1
-	c := 2
-	simple := heapInit(compareInt)
-	simple.heapInsert(&a)
-	simple.heapInsert(&b)
-	simple.heapInsert(&c)
-	simple.heapDelete(simple.heapSearch(&a))
-	if simple.heapSearch(&a) != -1 {
-		t.Errorf("Failed testing heap!")
-	}
-}

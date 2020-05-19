@@ -1,104 +1,61 @@
 package primsmstsub
 
-import "math"
+import "container/heap"
 
 // https://www.hackerrank.com/challenges/primsmstsub
 
-// Heap - Generic heap implementation
-type Heap struct {
-	size    int
-	heap    []interface{}
+// GenericHeap - Generic heap implementation
+type GenericHeap struct {
+	items   []interface{}
 	compare func(interface{}, interface{}) int
 }
 
-func heapChild(index int) int {
-	return (index << 1) + 1
+// Len - Size of the generic heap
+func (gh GenericHeap) Len() int {
+	return len(gh.items)
 }
 
-func heapParent(index int) int {
-	return (index - 1) >> 1
+// Less - Implements the generic heap comparator
+func (gh GenericHeap) Less(i, j int) bool {
+	return gh.compare(gh.items[i], gh.items[j]) < 0
 }
 
-func heapInit(comparator func(interface{}, interface{}) int) *Heap {
-	return &Heap{0, make([]interface{}, 0), comparator}
+// Swap - Implements the generic heap swap
+func (gh GenericHeap) Swap(i, j int) {
+	gh.items[i], gh.items[j] = gh.items[j], gh.items[i]
 }
 
-func (heap *Heap) heapDownwards(index int) { // heapify down, percolate down
-	swap := heap.heap[index]
-	for heapChild(index) < heap.size {
-		child := heapChild(index)
-		if child+1 < heap.size {
-			if heap.compare(heap.heap[child], heap.heap[child+1]) > 0 {
-				child++
-			}
-		}
-		if heap.compare(swap, heap.heap[child]) > 0 {
-			heap.heap[index] = heap.heap[child]
-		} else {
-			break
-		}
-		index = child
-	}
-	heap.heap[index] = swap
+// Push - Implements the generic heap push operation
+func (gh *GenericHeap) Push(item interface{}) {
+	(*gh).items = append((*gh).items, item)
 }
 
-func (heap *Heap) heapUpwards(index int) { // heapify up, percolate up
-	for index > 0 && 0 > heap.compare(heap.heap[index], heap.heap[heapParent(index)]) {
-		parent := heapParent(index)
-		swap := heap.heap[parent]
-		heap.heap[parent] = heap.heap[index]
-		heap.heap[index] = swap
-		index = parent
-	}
+// Pop - Implements the generic heap pop operation
+func (gh *GenericHeap) Pop() interface{} {
+	old := (*gh).items
+	n := len(old)
+	item := old[n-1]
+	old[n-1] = nil // avoid memory leak
+	(*gh).items = old[0 : n-1]
+	return item
 }
 
-func (heap *Heap) heapInsert(value interface{}) {
-	heap.heapProtect()
-	index := heap.size
-	heap.heap[index] = value
-	heap.size++
-	heap.heapUpwards(index)
+func heapInit(comparator func(interface{}, interface{}) int) *GenericHeap {
+	genericHeap := &GenericHeap{make([]interface{}, 0), comparator}
+	heap.Init(genericHeap)
+	return genericHeap
 }
 
-func (heap *Heap) heapSearch(value interface{}) int {
-	for index := 0; index < heap.size; index++ {
-		if heap.compare(heap.heap[index], value) == 0 {
-			return index
-		}
-	}
-	return -1
+func (gh *GenericHeap) heapInsert(value interface{}) {
+	heap.Push(gh, value)
 }
 
-func (heap *Heap) heapPop() interface{} {
-	result := heap.heap[0]
-	heap.heapDelete(0)
-	return result
+func (gh *GenericHeap) heapPop() interface{} {
+	return heap.Pop(gh)
 }
 
-func (heap *Heap) heapDelete(index int) {
-	heap.size--
-	heap.heap[index] = heap.heap[heap.size]
-	parent := heapParent(index)
-	if index == 0 || heap.compare(heap.heap[parent], heap.heap[index]) < 0 {
-		heap.heapDownwards(index)
-	} else {
-		heap.heapUpwards(index)
-	}
-}
-
-func (heap *Heap) heapProtect() {
-	capacity := len(heap.heap)
-	if capacity == heap.size {
-		heap.heap = append(heap.heap, nil)
-	}
-}
-
-func (heap *Heap) heapEmpty() bool {
-	return heap.size == 0
-}
-
-func heapLevel(index int) int {
-	return int(math.Floor(math.Log2(float64(index + 1))))
+func (gh *GenericHeap) heapEmpty() bool {
+	return (*gh).Len() == 0
 }
 
 // Edge - Weighted graph edge
