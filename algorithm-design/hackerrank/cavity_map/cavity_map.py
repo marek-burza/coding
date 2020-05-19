@@ -26,15 +26,14 @@ class TestCode(unittest.TestCase):
     def runner(self, name):
         io_lines = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
-            path = template % name
-            path = os.path.join(os.path.split(__file__)[0], path)
+            path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r') as handle:
                 lines = handle.readlines()
-            lines = [line.strip() for line in lines]
-            io_lines[index] = lines
-        grid = io_lines[0][1:]
-        grid = cavity_map(grid)
-        self.assertEqual(io_lines[1], grid)
+            io_lines[index] = [line.strip().split(' ') for line in lines]
+        grid = [item[0] for item in io_lines[0][1:]]
+        result = cavity_map(grid)
+        expected = [item[0] for item in io_lines[1]]
+        self.assertEqual(expected, result)
 
     def test_example(self):
         self.runner('_example')
