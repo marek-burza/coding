@@ -16,17 +16,19 @@ def maximizing_xor(l: int, r: int) -> int:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        var_l = int(lines[0])
-        var_r = int(lines[1])
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        var_l = int(io_lines[0][0][0])
+        var_r = int(io_lines[0][1][0])
         result = maximizing_xor(var_l, var_r)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-        expected = int(lines[0])
+        expected = int(io_lines[1][0][0])
         self.assertEqual(expected, result)
 
     def test_00(self):

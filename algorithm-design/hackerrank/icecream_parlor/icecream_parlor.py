@@ -25,21 +25,22 @@ def icecream_parlor(m: int, arr: List[int]) -> List[int]:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        count = int(lines[0])
-        results = [None] * count
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        count = int(io_lines[0][0][0])
         for i in range(count):
-            m = int(lines[1 + i * 3])
-            arr = [int(item) for item in lines[3 + i * 3].split(' ')]
-            results[i] = icecream_parlor(m, arr)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-        expected = [[int(item) for item in line.split(' ')] for line in lines]
-        self.assertEqual(expected, results)
+            m = int(io_lines[0][1 + i * 3][0])
+            arr = [int(item) for item in io_lines[0][3 + i * 3]]
+            result = icecream_parlor(m, arr)
+            expected = [int(item) for item in io_lines[1][i]]
+            self.assertEqual(expected, result)
 
     def test_example(self):
         self.runner('_example')

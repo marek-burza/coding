@@ -24,18 +24,17 @@ def cavity_map(grid: List[str]) -> List[str]:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input_{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-            grid = lines[1:]
+            io_lines[index] = lines
+        grid = io_lines[0][1:]
         grid = cavity_map(grid)
-        path = os.path.join(os.path.split(__file__)[0], f'output_{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-            self.assertEqual(len(lines), len(grid))
-            for index, line in enumerate(lines):
-                self.assertEqual(line.strip(), grid[index])
+        self.assertEqual(io_lines[1], grid)
 
     def test_example(self):
-        self.runner('example')
+        self.runner('_example')

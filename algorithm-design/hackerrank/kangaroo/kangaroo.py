@@ -15,16 +15,18 @@ def kangaroo(x1: int, v1: int, x2: int, v2: int) -> str:
 # pylint: disable=R0904
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        x1, v1, x2, v2 = [int(item) for item in lines[0].split(' ')]
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        x1, v1, x2, v2 = [int(item) for item in io_lines[0][0]]
         result = kangaroo(x1, v1, x2, v2)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-        expected = lines[0].strip()
+        expected = io_lines[1][0][0]
         self.assertEqual(expected, result)
 
     def test_example_0(self):

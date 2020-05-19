@@ -22,16 +22,18 @@ def jumping_on_clouds(c: List[int]) -> int:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        c = [int(item) for item in lines[1].split(' ')]
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        c = [int(item) for item in io_lines[0][1]]
         result = jumping_on_clouds(c)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-        self.assertEqual(int(lines[0]), result)
+        self.assertEqual(int(io_lines[1][0][0]), result)
 
     def test_example_0(self):
         self.runner('_example_0')

@@ -2,45 +2,55 @@ package cavitymap
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
+	"io"
 	"os"
+	"reflect"
+	"strconv"
+	"strings"
 	"testing"
 )
 
 func Runner(t *testing.T, name string) {
-	inPath := fmt.Sprintf("input_%s.txt", name)
-	input, fail := os.Open(inPath)
-	if fail != nil {
-		t.Fatalf("Failed opening input file: %s", fail)
-	}
-	inScanner := bufio.NewScanner(input)
-	inScanner.Split(bufio.ScanLines)
-	var inLines []string
-	for inScanner.Scan() {
-		inLines = append(inLines, inScanner.Text())
-	}
-	result := CavityMap(inLines[1:])
-	outPath := fmt.Sprintf("output_%s.txt", name)
-	output, fail := os.Open(outPath)
-	if fail != nil {
-		t.Fatalf("Failed opening output file: %s", fail)
-	}
-	outScanner := bufio.NewScanner(output)
-	outScanner.Split(bufio.ScanLines)
-	var outLines []string
-	for outScanner.Scan() {
-		outLines = append(outLines, outScanner.Text())
-	}
-	if len(result) != len(outLines) {
-		t.Errorf("CavityMap failed by returning wrong number of results - %d instead of %d!", len(result), len(outLines))
-	}
-	for i := 0; i < len(outLines); i++ {
-		if result[i] != outLines[i] {
-			t.Errorf("CavityMap failed in line %d of test %s!", i, name)
+	ioLines := make([][]string, 2)
+	for index, template := range []string{"input%s.txt", "output%s.txt"} {
+		path := fmt.Sprintf(template, name)
+		file, fail := os.Open(path)
+		if fail != nil {
+			t.Fatalf("Failed opening file %s: %s", path, fail)
 		}
+		defer file.Close()
+		lines := make([]string, 0)
+		ioLines[index] = lines
+		reader := bufio.NewReader(file)
+		for {
+			var buffer bytes.Buffer
+			var raw []byte
+			var prefix bool
+			for {
+				raw, prefix, fail = reader.ReadLine()
+				buffer.Write(raw)
+				if !prefix || fail != nil {
+					break
+				}
+			}
+			ioLines[index] = append(ioLines[index], strings.TrimSpace(buffer.String()))
+			if fail == io.EOF {
+				break
+			} else if fail != nil {
+				t.Fatalf("Failed reading file %s: %s", path, fail)
+			}
+		}
+	}
+	convertedN, _ := strconv.ParseInt(ioLines[0][0], 10, 32)
+	n := int(convertedN)
+	result := CavityMap(ioLines[0][1 : 1+n])
+	if reflect.DeepEqual(result, ioLines[1]) {
+		t.Errorf("CavityMap failed by returning wrong results - %v instead of %v!", result, ioLines[1])
 	}
 }
 
 func TestExample(t *testing.T) {
-	Runner(t, "example")
+	Runner(t, "_example")
 }

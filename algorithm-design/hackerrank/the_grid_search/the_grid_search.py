@@ -28,26 +28,30 @@ def grid_search(G: List[str], P: List[str]) -> str:
 
 
 class TestCode(unittest.TestCase):
+    # pylint: disable=R0914
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        tests = int(lines[0])
-        results = [None] * tests
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        tests = int(io_lines[0][0][0])
         offset = 1
         for test in range(tests):
-            r_g = int(lines[offset].split(' ')[0])
-            g = lines[offset + 1:offset + 1 + r_g]
-            r_p = int(lines[offset + 1 + r_g].split(' ')[0])
-            p = lines[offset + 1 + r_g + 1:offset + 1 + r_g + 1 + r_p]
+            r_g = int(io_lines[0][offset][0])
+            g = io_lines[0][offset + 1:offset + 1 + r_g]
+            g = [row[0] for row in g]
+            r_p = int(io_lines[0][offset + 1 + r_g][0])
+            p = io_lines[0][offset + 1 + r_g + 1:offset + 1 + r_g + 1 + r_p]
+            p = [row[0] for row in p]
             offset += r_g + r_p + 2
-            results[test] = grid_search(g, p)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-            expected = [line.strip() for line in lines]
-        self.assertEqual(expected, results)
+            result = grid_search(g, p)
+            expected = io_lines[1][test][0]
+            self.assertEqual(expected, result)
 
     def test_example(self):
         self.runner('_example')
