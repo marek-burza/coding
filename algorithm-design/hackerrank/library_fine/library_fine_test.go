@@ -2,7 +2,9 @@ package libraryfine
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
+	"io"
 	"os"
 	"strconv"
 	"strings"
@@ -10,38 +12,44 @@ import (
 )
 
 func Runner(t *testing.T, name string) {
-	inPath := fmt.Sprintf("input%s.txt", name)
-	input, fail := os.Open(inPath)
-	if fail != nil {
-		t.Fatalf("Failed opening input file: %s", fail)
+	ioLines := make([][][]string, 2)
+	for index, template := range []string{"input%s.txt", "output%s.txt"} {
+		path := fmt.Sprintf(template, name)
+		file, fail := os.Open(path)
+		if fail != nil {
+			t.Fatalf("Failed opening file %s: %s", path, fail)
+		}
+		defer file.Close()
+		lines := make([][]string, 0)
+		ioLines[index] = lines
+		reader := bufio.NewReader(file)
+		for {
+			var buffer bytes.Buffer
+			var raw []byte
+			var prefix bool
+			for {
+				raw, prefix, fail = reader.ReadLine()
+				buffer.Write(raw)
+				if !prefix || fail != nil {
+					break
+				}
+			}
+			ioLines[index] = append(ioLines[index], strings.Split(strings.TrimSpace(buffer.String()), " "))
+			if fail == io.EOF {
+				break
+			} else if fail != nil {
+				t.Fatalf("Failed reading file %s: %s", path, fail)
+			}
+		}
 	}
-	inScanner := bufio.NewScanner(input)
-	inScanner.Split(bufio.ScanLines)
-	var inLines []string
-	for inScanner.Scan() {
-		inLines = append(inLines, inScanner.Text())
-	}
-	line1 := strings.Split(inLines[0], " ")
-	line2 := strings.Split(inLines[1], " ")
-	d1, _ := strconv.ParseInt(line1[0], 10, 32)
-	m1, _ := strconv.ParseInt(line1[1], 10, 32)
-	y1, _ := strconv.ParseInt(line1[2], 10, 32)
-	d2, _ := strconv.ParseInt(line2[0], 10, 32)
-	m2, _ := strconv.ParseInt(line2[1], 10, 32)
-	y2, _ := strconv.ParseInt(line2[2], 10, 32)
+	d1, _ := strconv.ParseInt(ioLines[0][0][0], 10, 32)
+	m1, _ := strconv.ParseInt(ioLines[0][0][1], 10, 32)
+	y1, _ := strconv.ParseInt(ioLines[0][0][2], 10, 32)
+	d2, _ := strconv.ParseInt(ioLines[0][1][0], 10, 32)
+	m2, _ := strconv.ParseInt(ioLines[0][1][1], 10, 32)
+	y2, _ := strconv.ParseInt(ioLines[0][1][2], 10, 32)
 	result := LibraryFine(int32(d1), int32(m1), int32(y1), int32(d2), int32(m2), int32(y2))
-	outPath := fmt.Sprintf("output%s.txt", name)
-	output, fail := os.Open(outPath)
-	if fail != nil {
-		t.Fatalf("Failed opening output file: %s", fail)
-	}
-	outScanner := bufio.NewScanner(output)
-	outScanner.Split(bufio.ScanLines)
-	var outLines []string
-	for outScanner.Scan() {
-		outLines = append(outLines, outScanner.Text())
-	}
-	expected, _ := strconv.ParseInt(outLines[0], 10, 32)
+	expected, _ := strconv.ParseInt(ioLines[1][0][0], 10, 32)
 	if result != int32(expected) {
 		t.Errorf("Failed by returning wrong value - %d instead of %d!", result, expected)
 	}

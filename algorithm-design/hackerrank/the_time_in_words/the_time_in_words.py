@@ -47,17 +47,19 @@ def time_in_words(h: int, m: int) -> str:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        arguments = lines[1].split(' ')
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        arguments = io_lines[0][1]
         arguments = [int(item) for item in arguments]
-        result = time_in_words(int(lines[0]), int(lines[1]))
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-        self.assertEqual(lines[0], result)
+        result = time_in_words(int(io_lines[0][0][0]), int(io_lines[0][1][0]))
+        self.assertEqual(' '.join(io_lines[1][0]), result)
 
     def test_example_0(self):
         self.runner('_example_0')

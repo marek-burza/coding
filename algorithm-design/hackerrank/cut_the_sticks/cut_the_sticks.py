@@ -22,19 +22,19 @@ def cut_the_sticks(arr: List[int]) -> List[int]:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        arguments = lines[1].split(' ')
-        arguments = [int(item) for item in arguments]
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        arguments = [int(item) for item in io_lines[0][1]]
         result = cut_the_sticks(arguments)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-            self.assertEqual(len(lines), len(result))
-            for index, line in enumerate(lines):
-                self.assertEqual(int(line), result[index])
+        expected = [int(line[0]) for line in io_lines[1]]
+        self.assertEqual(expected, result)
 
     def test_example_0(self):
         self.runner('_example_0')

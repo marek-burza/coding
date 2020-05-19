@@ -21,22 +21,21 @@ def balanced_sums(arr: List[int]) -> str:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        count = int(lines[0])
-        results = [0] * count
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        count = int(io_lines[0][0][0])
         for i in range(count):
-            arguments = lines[2 + i * 2].split(' ')
+            arguments = io_lines[0][2 + i * 2]
             arguments = [int(item) for item in arguments]
-            results[i] = balanced_sums(arguments)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-            self.assertEqual(len(lines), len(results))
-        for index, line in enumerate(lines):
-            self.assertEqual(line.strip(), results[index])
+            result = balanced_sums(arguments)
+            self.assertEqual(io_lines[1][i][0], result)
 
     def test_example(self):
         self.runner('_example')

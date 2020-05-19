@@ -49,25 +49,28 @@ def count_luck(matrix: List[str], k: int) -> str:
 
 
 class TestCode(unittest.TestCase):
+    # pylint: disable=R0914
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        tests = int(lines[0])
-        results = [None] * tests
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        tests = int(io_lines[0][0][0])
         offset = 1
-        for test in range(tests):
-            n = int(lines[offset].split(' ')[0])
-            matrix = lines[offset + 1:offset + n + 1]
-            k = int(lines[offset + 1 + n].split(' ')[0])
-            offset += n+2
-            results[test] = count_luck(matrix, k)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-            expected = [line.strip() for line in lines]
-        self.assertEqual(expected, results)
+        for t in range(tests):
+            n = int(io_lines[0][offset][0])
+            matrix = io_lines[0][offset + 1:offset + n + 1]
+            matrix = [line[0] for line in matrix]
+            k = int(io_lines[0][offset + 1 + n][0])
+            offset += n + 2
+            result = count_luck(matrix, k)
+            expected = io_lines[1][t][0]
+            self.assertEqual(expected, result)
 
     def test_example(self):
         self.runner('_example')

@@ -25,18 +25,19 @@ def kaprekar_numbers(p: int, q: int) -> List[str]:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        var_p = int(lines[0])
-        var_q = int(lines[1])
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        var_p = int(io_lines[0][0][0])
+        var_q = int(io_lines[0][1][0])
         result = kaprekar_numbers(var_p, var_q)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-        expected = lines[0]
-        result = ' '.join(result)
+        expected = io_lines[1][0]
         self.assertEqual(expected, result)
 
     def test_example(self):

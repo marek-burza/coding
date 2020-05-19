@@ -23,25 +23,23 @@ def stones(n: int, a: int, b: int) -> List[int]:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        count = int(lines[0])
-        results = [None] * count
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        count = int(io_lines[0][0][0])
         for i in range(count):
-            n = int(lines[1 + i * 3])
-            a = int(lines[2 + i * 3])
-            b = int(lines[3 + i * 3])
-            results[i] = stones(n, a, b)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-        self.assertEqual(len(lines), len(results))
-        lines = [line.strip() for line in lines]
-        expected = [[int(item) for item in line.split(' ')] for line in lines]
-        for index, array in enumerate(expected):
-            self.assertEqual(array, results[index])
+            n = int(io_lines[0][1 + i * 3][0])
+            a = int(io_lines[0][2 + i * 3][0])
+            b = int(io_lines[0][3 + i * 3][0])
+            result = stones(n, a, b)
+            expected = [int(item) for item in io_lines[1][i]]
+            self.assertEqual(expected, result)
 
     def test_example(self):
         self.runner('_example')

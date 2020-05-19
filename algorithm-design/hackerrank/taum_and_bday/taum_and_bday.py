@@ -13,24 +13,23 @@ def taum_bday(b: int, w: int, bc: int, wc: int, z: int) -> int:
 
 class TestCode(unittest.TestCase):
     def runner(self, name):
-        path = os.path.join(os.path.split(__file__)[0], f'input{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
+        io_lines = [[[]]] * 2
+        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+            path = template % name
+            path = os.path.join(os.path.split(__file__)[0], path)
+            with open(path, 'r') as handle:
+                lines = handle.readlines()
             lines = [line.strip() for line in lines]
-        t = int(lines[0])
-        results = [0] * t
+            lines = [line.split(' ') for line in lines]
+            io_lines[index] = lines
+        t = int(io_lines[0][0][0])
         for index in range(t):
-            b_w = lines[1 + index * 2].split(' ')
-            bc_wc_z = lines[2 + index * 2].split(' ')
+            b_w = io_lines[0][1 + index * 2]
+            bc_wc_z = io_lines[0][2 + index * 2]
             arguments = [*b_w, *bc_wc_z]
             arguments = [int(item) for item in arguments]
-            results[index] = taum_bday(*arguments)
-        path = os.path.join(os.path.split(__file__)[0], f'output{name}.txt')
-        with open(path, 'r') as handle:
-            lines = handle.readlines()
-            self.assertEqual(len(lines), len(results))
-            for index, line in enumerate(lines):
-                self.assertEqual(int(line), results[index])
+            result = taum_bday(*arguments)
+            self.assertEqual(int(io_lines[1][index][0]), result)
 
     def test_example(self):
         self.runner('_example')
