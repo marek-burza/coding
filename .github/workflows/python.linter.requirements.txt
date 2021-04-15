@@ -1,4 +1,4 @@
-bandit==1.6.2
-flake8==3.7.9
-pycodestyle==2.5.0
-pylint==2.4.4
+bandit==1.7.0
+flake8==3.9.0
+pycodestyle==2.7.0
+pylint==2.7.4
