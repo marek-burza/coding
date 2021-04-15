@@ -5,8 +5,8 @@ import os
 import unittest
 
 
-def maximizing_xor(l: int, r: int) -> int:
-    maxed = l ^ r
+def maximizing_xor(var_l: int, var_r: int) -> int:
+    maxed = var_l ^ var_r
     maxed |= maxed >> 1
     maxed |= maxed >> 2
     maxed |= maxed >> 4
