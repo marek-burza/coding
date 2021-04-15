@@ -4,14 +4,14 @@ namespace AlgorithmDesign
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
         }
 
         [Fact]
         public void TestEmptyMainEntryPoint()
         {
-            Program.Main(new string[] { });
+            Program.Main();
         }
     }
 }
