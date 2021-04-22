@@ -22,6 +22,5 @@ namespace AlgorithmDesign.leetcode.lc012_integer_to_roman
             }
             return roman.ToString();
         }
-
     }
 }
