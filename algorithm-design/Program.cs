@@ -8,5 +8,11 @@ namespace AlgorithmDesign
         public static void Main()
         {
         }
+
+        [Fact]
+        public void TestEmptyMainEntryPoint()
+        {
+            Program.Main();
+        }
     }
 }
