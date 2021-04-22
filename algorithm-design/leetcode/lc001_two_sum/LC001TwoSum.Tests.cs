@@ -7,13 +7,13 @@ namespace AlgorithmDesign.leetcode.lc001_two_sum
         [Fact]
         public void Test0()
         {
-            Assert.Equal(null, new Solution().TwoSum(null, 0));
+            Assert.Null(new Solution().TwoSum(null, 0));
         }
 
         [Fact]
         public void Test00()
         {
-            Assert.Equal(null, new Solution().TwoSum(new int[] { }, 0));
+            Assert.Null(new Solution().TwoSum(new int[] { }, 0));
         }
 
         [Fact]
