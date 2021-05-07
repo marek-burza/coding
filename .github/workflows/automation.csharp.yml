@@ -17,10 +17,12 @@ jobs:
           dotnet-version: '5.0.x'
       - name: Linting
         run: |
-          /bin/sh .github/workflows/csharp.linter.sh
+          /bin/sh .github/workflows/csharp.linter.get.sh
+          /bin/sh .github/workflows/csharp.linter.run.sh
       - name: Testing
         run: |
-          /bin/sh .github/workflows/csharp.tester.sh
+          /bin/sh .github/workflows/csharp.tester.get.sh
+          /bin/sh .github/workflows/csharp.tester.run.sh
       - name: Reporting
         uses: codecov/codecov-action@v1
         with:
