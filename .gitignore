@@ -1,0 +1,7 @@
+.coverage
+algorithm-design/bin
+algorithm-design/coverage.opencover.xml
+algorithm-design/obj
+algorithm-design/report.txt
+coverage.txt
+coverage.xml
