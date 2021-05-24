@@ -43,13 +43,13 @@ namespace AlgorithmDesign.leetcode.lc009_palindrome_number
         [Fact]
         public void TestMinus1()
         {
-            Assert.Equal(false, new Solution().IsPalindrome(-1));
+            Assert.False(new Solution().IsPalindrome(-1));
         }
 
         [Fact]
         public void Test0()
         {
-            Assert.Equal(true, new Solution().IsPalindrome(0));
+            Assert.True(new Solution().IsPalindrome(0));
         }
     }
 
