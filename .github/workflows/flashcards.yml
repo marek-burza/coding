@@ -1,0 +1,24 @@
+name: Automation Flashcards
+
+on: [push]
+
+jobs:
+  pipeline:
+    name: Pipeline
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Initiating
+        uses: actions/checkout@v2.3.4
+      - name: Preparing
+        run: |
+          sudo apt-get install texlive-full
+      - name: Building
+        run: |
+          cd algorithm-design
+          pdflatex -halt-on-error -interaction=nonstopmode algorithm-design.tex
+          cd -
+      - name: Releasing
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --hostname github.com --with-token
+          gh release create ${GITHUB_SHA} --notes "Release for ${GITHUB_SHA}"
+          gh release upload ${GITHUB_SHA} algorithm-design/algorithm-design.pdf
