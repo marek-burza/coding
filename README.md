@@ -81,6 +81,10 @@
 * [Watch the lecture on Scalability Harvard Web Development](https://youtu.be/-W9F__D3oY4)
 * [Review an example - Restaurant Waiting Time](http://altermarkive.github.io/interview-training/system-design/restaurant-waiting-time.html)
 * [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
+* Design Principles - [SOLID](https://en.wikipedia.org/wiki/SOLID), Low Coupling & High Cohesion, [Heroku's 12 Factors](https://12factor.net/), [Richardson Maturity Model](https://en.wikipedia.org/wiki/Richardson_Maturity_Model), [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), Semantic Versioning (and locking versions), Immutable Object/Server/etc., Idempotent Operations, Minimal Privileges & Isolation, Encryption in Transit & at Rest
+* Architectural Safety Measures: [Circuit-breakers](https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern), [Correlation IDs](https://dzone.com/articles/correlation-id-for-logging-in-microservices), Timeouts, System Bulkheads
+* Embracing System Failure: [OWASP Top Ten](https://owasp.org/www-project-top-ten/), [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering) & [Antifragile Engineering](https://en.wikipedia.org/wiki/Antifragile)
+* [Microservices](https://www.google.com/search?q=awesome+microservices)
 
 ----------
 
