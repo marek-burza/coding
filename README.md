@@ -36,7 +36,7 @@
   - (Other: invalid input, randomized tests, load testing)
 5. Keep improving - can we do better?
 
-* [Practice algorithm design challenges](algorithm-design) [![codecov](https://codecov.io/gh/altermarkive/interview-training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/interview-training)
+* [Practice algorithm design challenges](algorithm-design) [![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
   - [LeetCode](https://leetcode.com/) [solutions](algorithm-design/leetcode)
   - [Codility](https://codility.com/) [solutions](algorithm-design/codility)
   - [Geeks for Geeks](https://www.geeksforgeeks.org/) [solutions](algorithm-design/geeksforgeeks)
