@@ -24,6 +24,7 @@ jobs:
           /bin/sh .github/workflows/csharp.tester.get.sh
           /bin/sh .github/workflows/csharp.tester.run.sh
       - name: Reporting
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           flags: csharp
