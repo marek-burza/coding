@@ -21,10 +21,9 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         if n == 0:
             return []
-        found = set()
+        found = []
         self.generate('(', 1, n - 1, found)
-        result = list(found)
-        return result
+        return found
 
 
 class TestCode(unittest.TestCase):
