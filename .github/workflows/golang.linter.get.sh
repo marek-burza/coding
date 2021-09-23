@@ -2,4 +2,4 @@
 
 set -e
 
-go get -u golang.org/x/lint/golint
+go install golang.org/x/lint/golint@v0.0.0-20210508222113-6edffad5e616
