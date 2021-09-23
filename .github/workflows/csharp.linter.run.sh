@@ -2,11 +2,11 @@
 
 set -e
 
-cd algorithm-design
+cd algorithms
 dotnet restore
 PATH=$PATH:/root/.dotnet/tools
-jb inspectcode -o=./report.txt -f=Text algorithm-design.csproj | grep -v ^Analyzing
+jb inspectcode -o=./report.txt -f=Text algorithms.csproj | grep -v ^Analyzing
 cd -
-cat algorithm-design/report.txt
-[ -z $(cat algorithm-design/report.txt | sed 1d | tr -d "[:space:]") ]
+cat algorithms/report.txt
+[ -z $(cat algorithms/report.txt | sed 1d | tr -d "[:space:]") ]
 
