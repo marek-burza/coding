@@ -1,4 +1,4 @@
-name: Automation Python
+name: Automation Java
 
 on: [push]
 
