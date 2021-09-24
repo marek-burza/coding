@@ -6,3 +6,7 @@ algorithms/obj
 algorithms/report.txt
 coverage.txt
 coverage.xml
+algorithms/.classpath
+algorithms/.project
+algorithms/.settings
+algorithms/target
