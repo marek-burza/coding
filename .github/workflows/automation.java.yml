@@ -1,0 +1,29 @@
+name: Automation Python
+
+on: [push]
+
+jobs:
+  pipeline:
+    name: Pipeline
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Initiating
+        uses: actions/checkout@v1
+      - name: Preparing
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: 11
+      - name: Linting
+        run: |
+          /bin/sh .github/workflows/java.linter.get.sh
+          /bin/sh .github/workflows/java.linter.run.sh
+      - name: Testing
+        run: |
+          /bin/sh .github/workflows/java.tester.get.sh
+          /bin/sh .github/workflows/java.tester.run.sh
+      - name: Reporting
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: java
