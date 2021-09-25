@@ -37,10 +37,10 @@
 5. Keep improving - can we do better?
 
 * [Practice algorithm design challenges](algorithms) [![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
-  - [LeetCode](https://leetcode.com/) [solutions](algorithms/leetcode)
-  - [Codility](https://codility.com/) [solutions](algorithms/codility)
-  - [Geeks for Geeks](https://www.geeksforgeeks.org/) [solutions](algorithms/geeksforgeeks)
-  - [HackerRank](https://www.hackerrank.com/) [solutions](algorithms/hackerrank)
+  - [LeetCode](https://leetcode.com/) [solutions](algorithms/code/leetcode)
+  - [Codility](https://codility.com/) [solutions](algorithms/code/codility)
+  - [Geeks for Geeks](https://www.geeksforgeeks.org/) [solutions](algorithms/code/geeksforgeeks)
+  - [HackerRank](https://www.hackerrank.com/) [solutions](algorithms/code/hackerrank)
 
 * [Flashcards](https://github.com/altermarkive/training/releases)
 
