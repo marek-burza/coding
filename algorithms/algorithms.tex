@@ -397,21 +397,25 @@ TCP HANDSHAKE
 \end{itemize}
 }
 
-\flashcard{60}{center}{
+\flashcard{56}{center}{
 COMBINATORIAL
 }
 \flashcard{36}{flushleft}{
 \textbf{PERMUTATION}\linebreak
 \( N! \) \( \leftarrow \) factorial\linebreak
+itertools.permutations(iterable, None)\linebreak
 \ \\
 \textbf{VARIATION WITHOUT REP.}\linebreak
 \( \frac{N!}{(N-K)!} \)\linebreak
+itertools.chain.from_iterable(map(lambda c: itertools.permutations(c), itertools.combinations(iterable, k)))\linebreak
 \ \\
 \textbf{VARIATION WITH REP. (EQUIVALENT GROUPS REPEAT)}\linebreak
 \( N^{K} \)\linebreak
+itertools.product(iterable, repeat=k)\linebreak
 \ \\
 \textbf{COMBINATION}\linebreak
-\( \binom{N}{K} \)
+\( \binom{N}{K} \)\linebreak
+itertools.combinations(iterable, k)
 }
 
 \end{document}
