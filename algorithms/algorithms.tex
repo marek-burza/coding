@@ -56,13 +56,13 @@ POST-ORDER: VISIT CHILDREN
 \flashcard{60}{center}{
 HASH TABLES
 }
-\flashcard{34}{flushleft}{
+\flashcard{32}{flushleft}{
 \begin{description}
-\item[FLOAT:] \( \frac{KEY - MIN}{MAX - MIN}M \)\linebreak
+\item[FLOAT:] \( \frac{KEY - MIN}{MAX - MIN}\mod{M} \)\linebreak
 \item[INT:] \( KEY\mod{M} \) where \( \left\{M: \text{MERSENNE PRIME}\right\} \) \linebreak\% IMPL. CAN BE FAST\linebreak
-\item[STRING:] \( \sum{128^{i}str[i]}\mod{M} \) \linebreak 128 - DROP NONCODING BITS\linebreak
+\item[STRING:] \( (\sum{str[i] << b})\mod{M} \) \linebreak b - NUMBER OF CHARACTER CODING BITS\linebreak
 \end{description}
-RESOLUTION:
+RESOLUTION (constant if enough buckets, linear within a bucket):
 \begin{itemize}
 \item SEPARATE CHAINING (LISTS)\linebreak(A.K.A. OPEN HASHING, CLOSED ADDRESSING)
 \item LINEAR PROBING (ARRAY)\linebreak(A.K.A. CLOSED HASHING, OPEN ADDRESSING)
@@ -97,14 +97,14 @@ HEAPS\linebreak
 \flashcard{60}{center}{
 GRAPHS
 }
-\flashcard{42}{flushleft}{
+\flashcard{40}{flushleft}{
 \textbf{ADJACENCY MATRIX}\linebreak
 PRO: LOOKUP TIME (MANY CONNECTIONS)\linebreak
 CON: SIZE (ALL POSSIBLE CONNECTIONS)\linebreak
 \textbf{ADJACENCY LIST}\linebreak
 PRO: SIZE, SPEED (FEW CONNECTIONS), SPARSE\linebreak
 \textbf{SPACE TRADEOFF} \( X \times E > \frac{N^2}{8} \)\linebreak
-(X depends on pointer size; matrix is packed)\linebreak
+(X - pointer size in bytes; matrix is packed - 8 booleans per byte)\linebreak
 \textbf{OBJECTS \& POINTERS}
 }
 
@@ -131,7 +131,7 @@ QUICK SORT
 }
 \flashcard{44}{flushleft}{
 \begin{itemize}
-\item (\href{https://github.com/altermarkive/training/blob/master/algorithm-design/leetcode/lc384_shuffle_an_array/LC384ShuffleAnArray.cs}{\textbf{shuffle}} first or sample for pivot)
+\item (\href{https://github.com/altermarkive/training/blob/master/algorithm-design/leetcode/lc384_shuffle_an_array/LC384ShuffleAnArray.cs}{\textbf{shuffle}} first or sample for pivot - median as pivot helps)
 \item PICK PIVOT
 \item REORDER W.R.T. PIVOT
 \item APPLY TO ARRAYS SEPARATED BY PIVOT
@@ -217,8 +217,7 @@ COMPLETE
 \textbf{HARD}: IF PROBLEM ALLOWS QUICKLY SOLVE ANY PROBLEM IN THE CLASS\linebreak
 \ \\
 \(P \neq NP\):\linebreak
-\(P \subset NP \land NP-COMPLETE \equiv NP \cap NP-HARD\)\linebreak
-((P) NP ( NP-COMPLETE ) NP-HARD)
+\(P \subset NP \), \(NP-COMPLETE \equiv NP \cap NP-HARD\)
 }
 
 \flashcard{60}{center}{
