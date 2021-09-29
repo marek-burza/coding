@@ -83,6 +83,7 @@
         <configuration>
           <excludes>
             <exclude>**/*Tests.class</exclude>
+            <exclude>**/*$*.class</exclude>
           </excludes>
         </configuration>
         <executions>
