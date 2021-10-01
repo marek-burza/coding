@@ -11,26 +11,22 @@ def title(gender):
     return 'Mr.' if gender == 'M' else 'Ms.'
 
 
-def decorate_gender(entries):
-    def applier():
-        items = [[title(entry[3]), entry[0], entry[1]] for entry in entries]
-        return [' '.join(item) for item in items]
-    return applier
+def person_lister(f):
+    def inner(people):
+        people.sort(key=operator.itemgetter(2))
+        return [f(person) for person in people]
+    return inner
 
 
-def standardize(entries):
-    entries.sort(key=operator.itemgetter(2))
-    decorated = decorate_gender(entries)
-    return decorated()
+@person_lister
+def name_format(person):
+    return ' '.join([title(person[3]), person[0], person[1]])
 
 
 def main():
     n = int(input().strip())
-    entries = []
-    for _ in range(n):
-        entries.append(input().strip().split())
-    for entry in standardize(entries):
-        print(entry)
+    people = [input().strip().split() for _ in range(n)]
+    print(*name_format(people), sep='\n')
 
 
 if __name__ == '__main__':  # pragma: no cover
