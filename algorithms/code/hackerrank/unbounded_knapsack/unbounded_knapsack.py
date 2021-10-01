@@ -41,7 +41,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 class TestCode(unittest.TestCase):
     def generalized_test(self, which):
-        resources = os.path.join(os.path.dirname(__file__), 'resources')
+        resources = os.path.dirname(__file__)
         sys.stdin = open(os.path.join(resources, f'input{which}.txt'), 'r')
         sys.stdout = io.StringIO()
         expected = open(os.path.join(resources, f'output{which}.txt'), 'r')
