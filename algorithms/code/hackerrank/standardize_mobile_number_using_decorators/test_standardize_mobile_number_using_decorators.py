@@ -6,26 +6,22 @@ import sys
 import unittest
 
 
-def decorate_numbers(numbers):
-    def applier():
-        return [f'+91 {number[-10:-5]} {number[-5:]}' for number in numbers]
-    return applier
+def wrapper(f):
+    def fun(numbers):
+        numbers = [f'+91 {number[-10:-5]} {number[-5:]}' for number in numbers]
+        f(numbers)
+    return fun
 
 
-def standardize(numbers):
-    numbers = [number[-10:] for number in numbers]
-    numbers = sorted(numbers)
-    decorated = decorate_numbers(numbers)
-    return decorated()
+@wrapper
+def sort_phone(numbers):
+    print(*sorted(numbers), sep='\n')
 
 
 def main():
     n = int(input().strip())
-    numbers = []
-    for _ in range(n):
-        numbers.append(input().strip())
-    for number in standardize(numbers):
-        print(number)
+    numbers = [input() for _ in range(n)]
+    sort_phone(numbers)
 
 
 if __name__ == '__main__':  # pragma: no cover
