@@ -16,6 +16,14 @@
   <build>
     <sourceDirectory>./code</sourceDirectory>
     <testSourceDirectory>./code</testSourceDirectory>
+    <resources>
+      <resource>
+        <directory>./code</directory>
+        <includes>
+          <include>**/*.txt</include>
+        </includes>
+      </resource>
+    </resources>
 
     <plugins>
       <plugin>
@@ -84,6 +92,8 @@
           <excludes>
             <exclude>**/*Tests.class</exclude>
             <exclude>**/*$*.class</exclude>
+            <exclude>**/Solution.class</exclude>
+            <exclude>**/SolutionTester.class</exclude>
           </excludes>
         </configuration>
         <executions>
