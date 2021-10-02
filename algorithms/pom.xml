@@ -92,8 +92,8 @@
           <excludes>
             <exclude>**/*Tests.class</exclude>
             <exclude>**/*$*.class</exclude>
-            <exclude>**/Solution.class</exclude>
             <exclude>**/SolutionTester.class</exclude>
+            <exclude>**/Solution.class</exclude>
           </excludes>
         </configuration>
         <executions>
