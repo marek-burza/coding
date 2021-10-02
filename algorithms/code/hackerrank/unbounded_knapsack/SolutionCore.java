@@ -1,10 +1,9 @@
-// https://www.hackerrank.com/challenges/unbounded-knapsack
 package hackerrank.unbounded_knapsack;
 
 import java.util.List;
 
-public final class Result {
-    private Result() {
+public final class SolutionCore {
+    private SolutionCore() {
     }
 
     public static int unboundedKnapsack(final int w, final List<Integer> values) {
