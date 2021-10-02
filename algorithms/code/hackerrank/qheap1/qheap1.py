@@ -3,6 +3,7 @@
 
 import heapq
 import io
+import os
 import sys
 import unittest
 
@@ -138,9 +139,10 @@ if __name__ == '__main__':  # pragma: no cover
 
 class TestCode(unittest.TestCase):
     def generalized_test(self, which, quick=True):
-        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
+        resources = os.path.dirname(__file__)
+        sys.stdin = open(os.path.join(resources, f'input{which}.txt'), 'r')
         sys.stdout = io.StringIO()
-        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
+        expected = open(os.path.join(resources, f'output{which}.txt'), 'r')
         main(quick)
         self.assertEqual(sys.stdout.getvalue(), expected.read())
         for handle in [sys.stdin, sys.stdout, expected]:
