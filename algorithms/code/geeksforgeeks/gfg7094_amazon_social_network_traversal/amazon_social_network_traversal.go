@@ -14,10 +14,12 @@ type Network struct {
 	attendances map[string][]string
 }
 
+// GetDirectFriendsForUser lists friends for the given user
 func (network *Network) GetDirectFriendsForUser(user string) []string {
 	return (*network).friendships[user]
 }
 
+// GetAttendedCoursesForUser lists attended courses for the given user
 func (network *Network) GetAttendedCoursesForUser(user string) []string {
 	return (*network).attendances[user]
 }
