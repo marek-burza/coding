@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-public class LC002AddTwoNumbersTests {
+public final class LC002AddTwoNumbersTests {
     private ListNode thaw(final int[] array) {
         ListNode handle = new ListNode(0);
         handle.next = null;

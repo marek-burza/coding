@@ -41,6 +41,8 @@ namespace AlgorithmDesign.code.leetcode.lc020_valid_parentheses
                         }
                         stack.Pop();
                         break;
+                    default:
+                        return false;
                 }
             }
             return stack.Count == 0;

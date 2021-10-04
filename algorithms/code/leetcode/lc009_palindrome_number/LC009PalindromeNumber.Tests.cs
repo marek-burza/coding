@@ -52,5 +52,4 @@ namespace AlgorithmDesign.code.leetcode.lc009_palindrome_number
             Assert.True(new Solution().IsPalindrome(0));
         }
     }
-
 }

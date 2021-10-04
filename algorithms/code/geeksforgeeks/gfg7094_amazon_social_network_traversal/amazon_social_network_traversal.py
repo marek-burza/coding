@@ -13,10 +13,10 @@ class GFG7094AmazonSocialNetworkTraversal:
         self.attendances = attendances
 
     def get_direct_friends_for_user(self, user):
-        return self.friendships[user]
+        return self.friendships[user] if user in self.friendships else set()
 
     def get_attended_courses_for_user(self, user):
-        return self.attendances[user]
+        return self.attendances[user] if user in self.attendances else set()
 
     def get_ranked_courses(self, user):
         own_friends = self.get_direct_friends_for_user(user)
@@ -71,3 +71,24 @@ class TestCode(unittest.TestCase):
             TestCode.EXAMPLE_FRIENDSHIPS, TestCode.EXAMPLE_ATTENDANCES)
         result = network.get_ranked_courses('Jane')
         self.assertEqual(result, [])
+
+    def test_leftovers(self):
+        network = GFG7094AmazonSocialNetworkTraversal(
+            TestCode.EXAMPLE_FRIENDSHIPS, TestCode.EXAMPLE_ATTENDANCES)
+        result = network.get_attended_courses_for_user('')
+        self.assertEqual(len(result), 0)
+        result = network.get_direct_friends_for_user('')
+        self.assertEqual(len(result), 0)
+        friendships = {
+            'Student1': {'Student2', 'Student3'},
+            'Student2': {'Student1', 'Student3'},
+            'Student3': {'Student1', 'Student2'}
+        }
+        attendances = {
+            'Student1': {'Course1'},
+            'Student2': {'Course2'},
+            'Student3': {'Course3'}
+        }
+        network = network = GFG7094AmazonSocialNetworkTraversal(
+            friendships, attendances)
+        self.assertEqual(2, len(network.get_ranked_courses('Student1')))

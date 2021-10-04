@@ -5,11 +5,17 @@ import unittest
 
 
 class Solution:
-    def isValid(self, s: str) -> bool:
+    def check(self, s):
         if s is None:
             return False
         if len(s) == 0:
             return True
+        return None
+
+    def isValid(self, s: str) -> bool:
+        result = self.check(s)
+        if result is not None:
+            return result
         stack = []
         for character in s:
             if character in ['(', '{', '[']:
@@ -26,10 +32,18 @@ class Solution:
                 if len(stack) == 0 or stack[-1] != '[':
                     return False
                 stack.pop()
+            else:
+                return False
         return len(stack) == 0
 
 
 class TestCode(unittest.TestCase):
+    def test_garbage(self):
+        self.assertEqual(Solution().isValid('*'), False)
+
+    def test_RB(self):
+        self.assertEqual(Solution().isValid('('), False)
+
     def test_RE(self):
         self.assertEqual(Solution().isValid(')'), False)
 
@@ -47,6 +61,9 @@ class TestCode(unittest.TestCase):
 
     def test_SB_RB_SE_RE(self):
         self.assertEqual(Solution().isValid('[(])'), False)
+
+    def test_CB_RB_CE_RE(self):
+        self.assertEqual(Solution().isValid('{(})'), False)
 
     def test_RE__SE__CE(self):
         self.assertEqual(Solution().isValid(')'), False)

@@ -91,7 +91,7 @@
         <configuration>
           <excludes>
             <exclude>**/*Tests.class</exclude>
-            <exclude>**/*$*.class</exclude>
+            <exclude>**/*$ListNode.class</exclude>
             <exclude>**/SolutionTester.class</exclude>
             <exclude>**/Solution.class</exclude>
           </excludes>

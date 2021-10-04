@@ -5,19 +5,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class LC001TwoSumTests {
+public final class LC001TwoSumTests {
     @Test
-    public void test0() {
+    public void test0() throws Exception {
         assertNull(new LC001TwoSum().twoSum(null, 0));
     }
 
     @Test
-    public void test00() {
+    public void test00() throws Exception {
         assertNull(new LC001TwoSum().twoSum(new int[] {}, 0));
     }
 
     @Test
-    public void test1() {
+    public void test1() throws Exception {
         int[] expected = new int[] { 0, 1 };
         int[] result = new LC001TwoSum().twoSum(new int[] { 2, 7, 11, 15 }, 9);
         assertArrayEquals(expected, result);

@@ -23,6 +23,19 @@ var network = Network{
 	},
 }
 
+var other = Network{
+	map[string][]string{
+		"Student1": []string{"Student2", "Student3"},
+		"Student2": []string{"Student1", "Student3"},
+		"Student3": []string{"Student1", "Student2"},
+	},
+	map[string][]string{
+		"Student1": []string{"Course1"},
+		"Student2": []string{"Course2"},
+		"Student3": []string{"Course3"},
+	},
+}
+
 func TestLoner(t *testing.T) {
 	expected := []string{}
 	result := (&network).GetRankedCourses("Loner")
@@ -74,5 +87,23 @@ func TestJane(t *testing.T) {
 		if expected[i] != result[i] {
 			t.Errorf("GetRankedCourses returns wrong values in slice!")
 		}
+	}
+}
+
+func TestLeftovers(t *testing.T) {
+	result1 := (&network).GetAttendedCoursesForUser("")
+	if 0 != len(result1) {
+		t.Errorf("GetAttendedCoursesForUser returns incorrect value for unknown student!")
+		return
+	}
+	result2 := (&network).GetDirectFriendsForUser("")
+	if 0 != len(result2) {
+		t.Errorf("GetDirectFriendsForUser returns incorrect value for unknown student!")
+		return
+	}
+	result3 := (&other).GetRankedCourses("Student1")
+	if 2 != len(result3) {
+		t.Errorf("GetRankedCourses returns incorrect result for an even network!")
+		return
 	}
 }

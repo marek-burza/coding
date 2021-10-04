@@ -17,6 +17,12 @@ namespace AlgorithmDesign.code.leetcode.lc014_longest_common_prefix
         }
 
         [Fact]
+        public void TestAbAaCoverage()
+        {
+            Assert.Equal("a", new Solution().LongestCommonPrefix(new[] { "ab", "aa" }));
+        }
+
+        [Fact]
         public void TestNone()
         {
             Assert.Equal("", new Solution().LongestCommonPrefix(new string[] { }));
