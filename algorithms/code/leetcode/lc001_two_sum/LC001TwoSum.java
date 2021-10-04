@@ -1,10 +1,11 @@
-// https://leetcode.com/problems/two-sum/
-
 package leetcode.lc001_two_sum;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * https://leetcode.com/problems/two-sum/
+ */
 public final class LC001TwoSum {
     public int[] twoSum(final int[] nums, final int target) {
         if (nums == null) {

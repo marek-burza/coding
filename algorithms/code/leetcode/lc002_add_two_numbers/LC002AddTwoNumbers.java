@@ -1,7 +1,8 @@
-// https://leetcode.com/problems/add-two-numbers/
-
 package leetcode.lc002_add_two_numbers;
 
+/**
+ * https://leetcode.com/problems/add-two-numbers/
+ */
 public final class LC002AddTwoNumbers {
     public static class ListNode {
         int val;

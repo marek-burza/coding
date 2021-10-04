@@ -5,6 +5,18 @@ namespace AlgorithmDesign.code.leetcode.lc020_valid_parentheses
     public class SolutionTests
     {
         [Fact]
+        public void test_garbage()
+        {
+            Assert.False(new Solution().IsValid("*"));
+        }
+
+        [Fact]
+        public void test_RB()
+        {
+            Assert.False(new Solution().IsValid("("));
+        }
+
+        [Fact]
         public void test_RE()
         {
             Assert.False(new Solution().IsValid(")"));
@@ -38,6 +50,12 @@ namespace AlgorithmDesign.code.leetcode.lc020_valid_parentheses
         public void test_SB_RB_SE_RE()
         {
             Assert.False(new Solution().IsValid("[(])"));
+        }
+
+        [Fact]
+        public void test_CB_RB_CE_RE()
+        {
+            Assert.False(new Solution().IsValid("{(})"));
         }
 
         [Fact]

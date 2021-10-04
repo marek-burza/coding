@@ -44,3 +44,16 @@ class TestCode(unittest.TestCase):
             self.assertNotEqual(None, result)
             self.assertEqual(result.val, value)
             result = result.next
+
+    def test_example_impaired(self):
+        n1 = ListNode(1)
+        n2 = ListNode(2)
+        n3 = ListNode(3)
+        n1.next = n2
+        n2.next = n3
+        expected = [2, 1, 3]
+        result = Solution().swapPairs(n1)
+        for value in expected:
+            self.assertNotEqual(None, result)
+            self.assertEqual(result.val, value)
+            result = result.next

@@ -31,6 +31,9 @@ class TestCode(unittest.TestCase):
     def test_aa_a(self):
         self.assertEqual(Solution().longestCommonPrefix(['aa', 'a']), 'a')
 
+    def test_ab_aa_coverage(self):
+        self.assertEqual(Solution().longestCommonPrefix(['ab', 'aa']), 'a')
+
     def test_none(self):
         self.assertEqual(Solution().longestCommonPrefix([]), '')
 

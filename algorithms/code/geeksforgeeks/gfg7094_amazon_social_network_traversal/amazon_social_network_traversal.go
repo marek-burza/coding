@@ -14,11 +14,11 @@ type Network struct {
 	attendances map[string][]string
 }
 
-func (network *Network) getDirectFriendsForUser(user string) []string {
+func (network *Network) GetDirectFriendsForUser(user string) []string {
 	return (*network).friendships[user]
 }
 
-func (network *Network) getAttendedCoursesForUser(user string) []string {
+func (network *Network) GetAttendedCoursesForUser(user string) []string {
 	return (*network).attendances[user]
 }
 
@@ -39,11 +39,11 @@ func setToSlice(set map[string]struct{}) []string {
 }
 
 func (network *Network) getFriendsOfFriends(user string) []string {
-	friends := (*network).getDirectFriendsForUser(user)
+	friends := (*network).GetDirectFriendsForUser(user)
 	circleSet := make(map[string]struct{})
 	for _, friend := range friends {
 		circleSet[friend] = exists
-		for _, second := range (*network).getDirectFriendsForUser(friend) {
+		for _, second := range (*network).GetDirectFriendsForUser(friend) {
 			circleSet[second] = exists
 		}
 	}
@@ -55,7 +55,7 @@ func (network *Network) getFriendsOfFriends(user string) []string {
 func (network *Network) countCircleCoursesWithoutOwn(circle []string, own map[string]struct{}) map[string]int {
 	countedCourses := make(map[string]int)
 	for _, user := range circle {
-		for _, course := range (*network).getAttendedCoursesForUser(user) {
+		for _, course := range (*network).GetAttendedCoursesForUser(user) {
 			_, attended := own[course]
 			if attended {
 				continue
@@ -82,7 +82,7 @@ func orderCoursesByCount(countedCourses map[string]int) []string {
 // GetRankedCourses recommends courses attended by 2nd level network sorted by popularity
 func (network *Network) GetRankedCourses(user string) []string {
 	circle := (*network).getFriendsOfFriends(user)
-	own := sliceToSet((*network).getAttendedCoursesForUser(user))
+	own := sliceToSet((*network).GetAttendedCoursesForUser(user))
 	countedCourses := (*network).countCircleCoursesWithoutOwn(circle, own)
 	orderedCourses := orderCoursesByCount(countedCourses)
 	return orderedCourses
