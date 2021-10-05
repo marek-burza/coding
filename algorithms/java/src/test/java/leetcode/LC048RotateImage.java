@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/rotate-image/
+ * #medium
  */
 public class LC048RotateImage {
     public class Solution {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/power-of-three/
+ * #easy
  * <p/>
  * To do it without a loop resort to logarithms (but beware of accuracy)
  */

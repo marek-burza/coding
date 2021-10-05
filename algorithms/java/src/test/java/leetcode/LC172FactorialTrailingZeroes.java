@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/factorial-trailing-zeroes/
+ * #medium
  */
 public class LC172FactorialTrailingZeroes {
     public class Solution {

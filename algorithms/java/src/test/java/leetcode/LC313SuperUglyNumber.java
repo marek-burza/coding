@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/super-ugly-number/
+ * #medium
  */
 public class LC313SuperUglyNumber {
     public class Solution {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/counting-bits/
+ * #easy
  */
 public class LC338CountingBits {
     public class Solution {

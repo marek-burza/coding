@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/min-stack/
+ * #easy
  */
 public class LC155MinStack {
     public class MinStack {

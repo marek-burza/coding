@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/contains-duplicate/
+ * #easy
  */
 public class LC217ContainsDuplicate {
     public class Solution {

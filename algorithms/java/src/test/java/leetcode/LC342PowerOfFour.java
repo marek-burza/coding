@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/power-of-four/
+ * #easy
  */
 public class LC342PowerOfFour {
     public class Solution {

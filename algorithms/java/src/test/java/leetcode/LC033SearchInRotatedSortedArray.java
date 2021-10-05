@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/search-in-rotated-sorted-array/
+ * #medium
  */
 public class LC033SearchInRotatedSortedArray {
     public class Solution {

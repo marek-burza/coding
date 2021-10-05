@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
+ * #hard
  */
 public class LC154FindMinimumInRotatedSortedArrayII {
     public class Solution {

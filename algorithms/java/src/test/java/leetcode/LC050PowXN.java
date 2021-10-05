@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/powx-n/
+ * #medium
  */
 public class LC050PowXN {
     public class Solution {

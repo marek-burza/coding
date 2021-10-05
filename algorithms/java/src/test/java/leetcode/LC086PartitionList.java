@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/partition-list/
+ * #medium
  */
 public class LC086PartitionList {
     public class ListNode {

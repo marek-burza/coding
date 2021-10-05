@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/reverse-linked-list/
+ * #easy
  */
 public class LC206ReverseLinkedList {
     public class ListNode {

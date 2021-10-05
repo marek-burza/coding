@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/binary-tree-preorder-traversal/
+ * #easy
  */
 public class LC144BinaryTreePreorderTraversal {
     public class TreeNode {

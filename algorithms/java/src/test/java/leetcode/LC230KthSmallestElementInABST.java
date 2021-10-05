@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+ * #medium
  */
 public class LC230KthSmallestElementInABST {
     public class TreeNode {

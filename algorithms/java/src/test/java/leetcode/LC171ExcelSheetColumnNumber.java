@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/excel-sheet-column-number/
+ * #easy
  */
 public class LC171ExcelSheetColumnNumber {
     public class Solution {

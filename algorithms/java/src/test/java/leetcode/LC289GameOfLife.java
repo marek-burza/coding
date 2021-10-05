@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/game-of-life/
+ * #medium
  */
 public class LC289GameOfLife {
     public class Solution {

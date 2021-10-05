@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/nim-game/
+ * #easy
  */
 public class LC292NimGame {
     public class Solution {

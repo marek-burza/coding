@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/
+ * #medium
  */
 public class LC378KthSmallestElementInASortedMatrix {
     public class Solution {

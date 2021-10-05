@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
+ * #medium
  */
 public class LC080RemoveDuplicatesFromSortedArrayII {
     public class Solution {

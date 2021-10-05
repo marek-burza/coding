@@ -2,6 +2,7 @@ package leetcode.lc027_remove_element;
 
 /**
  * https://leetcode.com/problems/remove-element/
+ * #easy
  */
 public final class LC027RemoveElement {
     public int removeElement(final int[] nums, final int val) {

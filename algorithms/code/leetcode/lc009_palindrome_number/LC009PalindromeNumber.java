@@ -2,6 +2,7 @@ package leetcode.lc009_palindrome_number;
 
 /**
  * https://leetcode.com/problems/palindrome-number/
+ * #easy
  */
 public final class LC009PalindromeNumber {
     public boolean isPalindrome(final int x) {

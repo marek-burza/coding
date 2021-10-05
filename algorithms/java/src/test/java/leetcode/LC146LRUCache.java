@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/lru-cache/
+ * #medium
  */
 public class LC146LRUCache {
     public class LRUCache {

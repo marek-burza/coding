@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/single-number-ii/
+ * #medium
  */
 public class LC137SingleNumberII {
     public class Solution {

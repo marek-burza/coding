@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/sort-colors/
+ * #medium
  */
 public class LC075SortColors {
     public class Solution {

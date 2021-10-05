@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/house-robber-iii/
+ * #medium
  */
 public class LC337HouseRobberIII {
     public class TreeNode {

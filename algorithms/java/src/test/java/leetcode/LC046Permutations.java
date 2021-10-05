@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/permutations/
+ * #medium
  */
 public class LC046Permutations {
     public class Solution {

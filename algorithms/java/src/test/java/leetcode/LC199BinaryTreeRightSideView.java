@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/binary-tree-right-side-view/
+ * #medium
  */
 public class LC199BinaryTreeRightSideView {
     public class TreeNode {

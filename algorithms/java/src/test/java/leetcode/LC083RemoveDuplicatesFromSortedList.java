@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+ * #easy
  */
 public class LC083RemoveDuplicatesFromSortedList {
     public static class ListNode {

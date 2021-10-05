@@ -8,6 +8,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/move-zeroes/
+ * #easy
  */
 public class LC283MoveZeroes {
     public class Solution {

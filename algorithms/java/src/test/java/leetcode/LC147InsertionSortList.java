@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/insertion-sort-list/
+ * #medium
  */
 public class LC147InsertionSortList {
     public class ListNode {

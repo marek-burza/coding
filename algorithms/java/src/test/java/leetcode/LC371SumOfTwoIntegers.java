@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/sum-of-two-integers/
+ * #medium
  */
 public class LC371SumOfTwoIntegers {
     public class Solution {

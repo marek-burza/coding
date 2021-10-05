@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/gas-station/
+ * #medium
  */
 public class LC134GasStation {
     public class Solution {

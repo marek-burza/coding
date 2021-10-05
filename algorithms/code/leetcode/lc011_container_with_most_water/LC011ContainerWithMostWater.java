@@ -2,6 +2,7 @@ package leetcode.lc011_container_with_most_water;
 
 /**
  * https://leetcode.com/problems/container-with-most-water/
+ * #medium
  */
 public final class LC011ContainerWithMostWater {
     public int maxArea(final int[] height) {

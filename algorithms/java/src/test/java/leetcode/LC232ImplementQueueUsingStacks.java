@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/implement-queue-using-stacks/
+ * #easy
  */
 public class LC232ImplementQueueUsingStacks {
     class MyQueue {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+ * #easy
  */
 public class LC167TwoSumIIInputArrayIsSorted {
     public class Solution {

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+ * #medium
  */
 public class LC081SearchInRotatedSortedArrayII {
     public class Solution {

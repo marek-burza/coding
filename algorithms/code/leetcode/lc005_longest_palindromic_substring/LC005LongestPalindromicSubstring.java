@@ -5,6 +5,7 @@ package leetcode.lc005_longest_palindromic_substring;
 
 /**
  * https://leetcode.com/problems/longest-palindromic-substring/
+ * #medium
  */
 public final class LC005LongestPalindromicSubstring {
     public String longestPalindrome(final String s) {

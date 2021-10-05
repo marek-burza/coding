@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/maximum-gap/
+ * #hard
  */
 public class LC164MaximumGap {
     public class Solution {

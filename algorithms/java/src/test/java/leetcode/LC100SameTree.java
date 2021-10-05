@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/same-tree/
+ * #easy
  */
 public class LC100SameTree {
     public static class TreeNode {

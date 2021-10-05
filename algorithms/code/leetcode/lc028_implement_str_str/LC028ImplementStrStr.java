@@ -2,6 +2,7 @@ package leetcode.lc028_implement_str_str;
 
 /**
  * https://leetcode.com/problems/implement-strstr/
+ * #easy
  */
 public final class LC028ImplementStrStr {
     public int strStr(final String haystack, final String needle) {

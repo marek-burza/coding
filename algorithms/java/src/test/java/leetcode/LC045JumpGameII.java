@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/jump-game-ii/
+ * #medium
  */
 public class LC045JumpGameII {
     public class Solution {

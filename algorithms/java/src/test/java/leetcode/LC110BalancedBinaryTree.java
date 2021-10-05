@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/balanced-binary-tree/
+ * #easy
  */
 public class LC110BalancedBinaryTree {
     public class TreeNode {

@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/triangle/
+ * #medium
  */
 public class LC120Triangle {
     public class Solution {

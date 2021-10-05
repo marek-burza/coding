@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/maximum-depth-of-binary-tree/
+ * #easy
  */
 public class LC104MaximumDepthOfBinaryTree {
     public class TreeNode {

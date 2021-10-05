@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/count-numbers-with-unique-digits/
+ * #medium
  */
 public class LC357CountNumbersWithUniqueDigits {
     public class Solution {

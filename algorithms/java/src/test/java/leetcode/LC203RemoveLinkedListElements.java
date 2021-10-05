@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/remove-linked-list-elements/
+ * #easy
  */
 public class LC203RemoveLinkedListElements {
     public class ListNode {

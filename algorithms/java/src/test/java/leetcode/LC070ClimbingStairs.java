@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/climbing-stairs/
+ * #easy
  */
 public class LC070ClimbingStairs {
     public class Solution {

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/perfect-squares/
+ * #medium
  */
 public class LC279PerfectSquares {
     public class Solution {

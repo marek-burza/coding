@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/binary-tree-inorder-traversal/
+ * #easy
  */
 public class LC094BinaryTreeInorderTraversal {
     public class TreeNode {

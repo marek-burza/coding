@@ -2,6 +2,7 @@ package leetcode.lc006_zigzag_conversion;
 
 /**
  * https://leetcode.com/problems/zigzag-conversion/
+ * #medium
  */
 public final class LC006ZigZagConversion {
     public String convert(final String s, final int numRows) {

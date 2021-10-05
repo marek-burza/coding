@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * https://leetcode.com/problems/reverse-integer/
+ * #easy
  */
 public final class LC007ReverseInteger {
     public int reverse(final int originalX) {

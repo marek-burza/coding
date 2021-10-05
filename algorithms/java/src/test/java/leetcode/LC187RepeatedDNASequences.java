@@ -12,6 +12,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/repeated-dna-sequences/
+ * #medium
  */
 public class LC187RepeatedDNASequences {
     public class Solution {

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/longest-increasing-subsequence/
+ * #medium
  */
 public class LC300LongestIncreasingSubsequence {
     public class Solution {

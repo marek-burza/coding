@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/reverse-bits/
+ * #easy
  */
 public class LC190ReverseBits {
     public class Solution {

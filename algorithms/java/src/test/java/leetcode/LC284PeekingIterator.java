@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/peeking-iterator/
+ * #medium
  */
 public class LC284PeekingIterator {
     class PeekingIterator implements Iterator<Integer> {

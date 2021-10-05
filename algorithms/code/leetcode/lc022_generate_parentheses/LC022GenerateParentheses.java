@@ -7,6 +7,7 @@ import java.util.TreeSet;
 
 /**
  * https://leetcode.com/problems/generate-parentheses/
+ * #medium
  */
 public final class LC022GenerateParentheses {
     public void generateParenthesis(final String prefix, final int standing, final int n, final Set<String> found) {

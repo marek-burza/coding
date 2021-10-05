@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
+ * #medium
  */
 public class LC309BestTimeToBuyAndSellStockWithCooldown {
     public class Solution {

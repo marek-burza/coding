@@ -2,6 +2,7 @@ package leetcode.lc029_divide_two_integers;
 
 /**
  * https://leetcode.com/problems/divide-two-integers/
+ * #medium
  */
 public final class LC029DivideTwoIntegers {
     public int divide(final int shortDividend, final int shortDivisor) {

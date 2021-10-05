@@ -2,6 +2,7 @@ package leetcode.lc021_merge_two_sorted_lists;
 
 /**
  * https://leetcode.com/problems/merge-two-sorted-lists/
+ * #easy
  */
 public final class LC021MergeTwoSortedLists {
     public static class ListNode {

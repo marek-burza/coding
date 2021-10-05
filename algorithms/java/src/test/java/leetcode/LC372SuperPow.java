@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/super-pow/
+ * #medium
  */
 public class LC372SuperPow {
     public class Solution {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/invert-binary-tree/
+ * #easy
  */
 public class LC226InvertBinaryTree {
     public class TreeNode {

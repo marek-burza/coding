@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotEquals;
 
 /**
  * https://leetcode.com/problems/delete-node-in-a-linked-list/
+ * #easy
  */
 public class LC237DeleteNodeInALinkedList {
     public class ListNode {

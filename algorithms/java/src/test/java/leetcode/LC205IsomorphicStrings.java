@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/isomorphic-strings/
+ * #easy
  */
 public class LC205IsomorphicStrings {
     public class Solution {

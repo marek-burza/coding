@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/reverse-string/
+ * #easy
  */
 public class LC344ReverseString {
     public class Solution {

@@ -4,6 +4,7 @@ import java.util.Stack;
 
 /**
  * https://leetcode.com/problems/valid-parentheses/
+ * #easy
  */
 public final class LC020ValidParentheses {
     public boolean isValid(final String s) {

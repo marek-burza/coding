@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/search-insert-position/
+ * #easy
  */
 public class LC035SearchInsertPosition {
     public class Solution {

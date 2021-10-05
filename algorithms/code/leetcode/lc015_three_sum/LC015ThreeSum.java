@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * https://leetcode.com/problems/3sum/
+ * #medium
  */
 public final class LC015ThreeSum {
     public List<List<Integer>> threeSum(final int[] nums) {

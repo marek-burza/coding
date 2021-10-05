@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/add-digits/
+ * #easy
  */
 public class LC258AddDigits {
     public class Solution {

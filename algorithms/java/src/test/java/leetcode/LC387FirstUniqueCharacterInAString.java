@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/first-unique-character-in-a-string/
+ * #easy
  */
 public class LC387FirstUniqueCharacterInAString {
     public class Solution {

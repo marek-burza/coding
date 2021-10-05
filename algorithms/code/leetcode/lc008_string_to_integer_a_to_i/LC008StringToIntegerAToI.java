@@ -2,6 +2,7 @@ package leetcode.lc008_string_to_integer_a_to_i;
 
 /**
  * https://leetcode.com/problems/string-to-integer-atoi/
+ * #medium
  */
 public final class LC008StringToIntegerAToI {
     public int myAtoi(final String str) {

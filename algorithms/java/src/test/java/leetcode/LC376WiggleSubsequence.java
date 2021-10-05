@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/wiggle-subsequence/
+ * #medium
  */
 public class LC376WiggleSubsequence {
     public class Solution {

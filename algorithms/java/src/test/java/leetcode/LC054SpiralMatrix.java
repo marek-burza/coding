@@ -8,7 +8,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertArrayEquals;
 
 /**
- * https://leetcode.com/problemset/algorithms/
+ * https://leetcode.com/problems/spiral-matrix/
+ * #medium
  */
 public class LC054SpiralMatrix {
     public class Solution {

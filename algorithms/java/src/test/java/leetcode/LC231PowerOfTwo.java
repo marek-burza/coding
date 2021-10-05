@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/power-of-two/
+ * #easy
  */
 public class LC231PowerOfTwo {
     public class Solution {

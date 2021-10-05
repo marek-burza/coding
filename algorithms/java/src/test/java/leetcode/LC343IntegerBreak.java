@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/integer-break/
+ * #medium
  */
 public class LC343IntegerBreak {
     public class Solution {

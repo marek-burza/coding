@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/valid-anagram/
+ * #easy
  */
 public class LC242ValidAnagram {
     public class Solution {

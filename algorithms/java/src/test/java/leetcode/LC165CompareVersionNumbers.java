@@ -5,7 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * https://leetcode.com/problemset/algorithms/
+ * https://leetcode.com/problems/compare-version-numbers/
+ * #medium
  */
 public class LC165CompareVersionNumbers {
     public class Solution {

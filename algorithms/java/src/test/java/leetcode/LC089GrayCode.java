@@ -9,6 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/gray-code/
+ * #medium
  */
 public class LC089GrayCode {
     public class Solution {

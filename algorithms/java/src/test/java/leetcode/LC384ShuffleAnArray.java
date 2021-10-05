@@ -9,6 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/shuffle-an-array/
+ * #medium
  */
 public class LC384ShuffleAnArray {
     public class Solution {

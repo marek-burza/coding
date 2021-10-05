@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/word-pattern/
+ * #easy
  */
 public class LC290WordPattern {
     public class Solution {

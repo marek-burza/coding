@@ -2,6 +2,7 @@ package leetcode.lc012_integer_to_roman;
 
 /**
  * https://leetcode.com/problems/integer-to-roman/
+ * #medium
  */
 public final class LC012IntegerToRoman {
     private String[] digits = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };

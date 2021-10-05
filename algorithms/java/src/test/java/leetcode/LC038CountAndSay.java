@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/count-and-say/
+ * #medium
  */
 public class LC038CountAndSay {
     public class Solution {

@@ -7,7 +7,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * https://leetcode.com/problems/anagrams/
+ * https://leetcode.com/problems/group-anagrams/
+ * #medium
  */
 public class LC049GroupAnagrams {
     public class Solution {

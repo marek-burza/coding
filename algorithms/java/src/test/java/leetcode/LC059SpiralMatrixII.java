@@ -8,6 +8,7 @@ import static org.junit.Assert.assertNotEquals;
 
 /**
  * https://leetcode.com/problems/spiral-matrix-ii/
+ * #medium
  */
 public class LC059SpiralMatrixII {
     public class Solution {

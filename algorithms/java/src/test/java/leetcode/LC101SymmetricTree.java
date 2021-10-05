@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/symmetric-tree/
+ * #easy
  */
 public class LC101SymmetricTree {
     public static class TreeNode {
