@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/first-bad-version/
+ * #easy
  */
 public class LC278FirstBadVersion {
     public class VersionControl {

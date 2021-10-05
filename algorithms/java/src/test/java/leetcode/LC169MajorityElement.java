@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/majority-element/
+ * #easy
  */
 public class LC169MajorityElement {
     public class Solution {

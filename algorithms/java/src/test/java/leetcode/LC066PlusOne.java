@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/plus-one/
+ * #easy
  */
 public class LC066PlusOne {
     public class Solution {

@@ -5,7 +5,8 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
- * https://leetcode.com/submissions/detail/27668007/
+ * https://leetcode.com/problems/excel-sheet-column-title/
+ * #easy
  */
 public class LC168ExcelSheetColumnTitle {
     public class Solution {

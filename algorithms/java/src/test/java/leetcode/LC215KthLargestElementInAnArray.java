@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/kth-largest-element-in-an-array/
+ * #medium
  */
 public class LC215KthLargestElementInAnArray {
     public class Solution {

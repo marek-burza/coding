@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+ * #easy
  */
 public class LC235LowestCommonAncestorOfABinarySearchTree {
     public class TreeNode {

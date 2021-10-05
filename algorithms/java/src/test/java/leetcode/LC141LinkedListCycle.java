@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/linked-list-cycle/
+ * #easy
  */
 public class LC141LinkedListCycle {
     class ListNode {

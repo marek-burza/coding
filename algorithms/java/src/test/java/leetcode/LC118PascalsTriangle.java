@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/pascals-triangle/
+ * #easy
  */
 public class LC118PascalsTriangle {
     public class Solution {

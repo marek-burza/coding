@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/subsets/
+ * #medium
  */
 public class LC078Subsets {
     public class Solution {

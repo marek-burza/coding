@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/sqrtx/
+ * #easy
  */
 public class LC069SqrtX {
     public class Solution {

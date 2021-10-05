@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/unique-paths/
+ * #medium
  */
 public class LC062UniquePaths {
     public class Solution {

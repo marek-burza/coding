@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/linked-list-random-node/
+ * #medium
  */
 public class LC382LinkedListRandomNode {
     public class ListNode {

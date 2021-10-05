@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/the-skyline-problem/
+ * #hard
  */
 public class LC218TheSkylineProblem {
     public class Solution {

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/number-of-islands/
+ * #medium
  */
 public class LC200NumberOfIslands {
     public class Solution {

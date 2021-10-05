@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/combinations/
+ * #medium
  */
 public class LC077Combinations {
     public class Solution {

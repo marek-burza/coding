@@ -10,6 +10,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/intersection-of-two-arrays-ii/
+ * #easy
  */
 public class LC350IntersectionOfTwoArraysII {
     public class Solution {

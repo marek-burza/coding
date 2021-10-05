@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/minimum-depth-of-binary-tree/
+ * #easy
  */
 public class LC111MinimumDepthOfBinaryTree {
     public class TreeNode {

@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
+ * #medium
  */
 public class LC109ConvertSortedListToBinarySearchTree {
     public class ListNode {

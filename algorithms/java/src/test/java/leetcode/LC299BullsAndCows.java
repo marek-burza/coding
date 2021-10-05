@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/bulls-and-cows/
+ * #medium
  */
 public class LC299BullsAndCows {
     public class Solution {

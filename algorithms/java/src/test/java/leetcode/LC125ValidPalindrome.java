@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/valid-palindrome/
+ * #easy
  */
 public class LC125ValidPalindrome {
     public class Solution {

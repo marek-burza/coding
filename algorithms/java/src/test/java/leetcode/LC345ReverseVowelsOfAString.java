@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/reverse-vowels-of-a-string/
+ * #easy
  */
 public class LC345ReverseVowelsOfAString {
     public class Solution {

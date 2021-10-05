@@ -8,6 +8,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/single-number-iii/
+ * #medium
  */
 public class LC260SingleNumberIII {
     public class Solution {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/valid-sudoku/
+ * #medium
  */
 public class LC036ValidSudoku {
     public class Solution {

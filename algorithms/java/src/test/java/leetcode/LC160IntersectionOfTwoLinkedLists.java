@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/intersection-of-two-linked-lists/
+ * #easy
  */
 public class LC160IntersectionOfTwoLinkedLists {
     public class ListNode {

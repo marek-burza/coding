@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+ * #medium
  */
 public class LC122BestTimeToBuyAndSellStockII {
     public class Solution {

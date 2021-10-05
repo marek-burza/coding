@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * https://leetcode.com/problems/two-sum/
+ * #easy
  */
 public final class LC001TwoSum {
     public int[] twoSum(final int[] nums, final int target) {

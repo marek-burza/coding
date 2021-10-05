@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/trapping-rain-water/
+ * #hard
  */
 public class LC042TrappingRainWater {
     public class Solution {

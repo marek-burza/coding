@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/flatten-nested-list-iterator/
+ * #medium
  */
 public class LC341FlattenNestedListIterator {
     public class NestedInteger {

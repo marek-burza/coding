@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/search-a-2d-matrix/
+ * #medium
  */
 public class LC074SearchA2DMatrix {
     public class Solution {

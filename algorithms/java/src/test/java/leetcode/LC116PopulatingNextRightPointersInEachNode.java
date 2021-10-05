@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
+ * #medium
  */
 public class LC116PopulatingNextRightPointersInEachNode {
     public class TreeLinkNode {

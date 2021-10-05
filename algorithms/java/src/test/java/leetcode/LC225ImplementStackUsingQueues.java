@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/implement-stack-using-queues/
+ * #easy
  */
 public class LC225ImplementStackUsingQueues {
     public class Solution {

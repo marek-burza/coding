@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/increasing-triplet-subsequence/
+ * #medium
  */
 public class LC334IncreasingTripletSubsequence {
     public class Solution {

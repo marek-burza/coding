@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/valid-perfect-square/
+ * #easy
  */
 public class LC367ValidPerfectSquare {
     public class Solution {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/word-search/
+ * #medium
  */
 public class LC079WordSearch {
     public class Solution {

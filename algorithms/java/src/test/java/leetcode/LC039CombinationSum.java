@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/combination-sum/
+ * #medium
  */
 public class LC039CombinationSum {
     public class Solution {

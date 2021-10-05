@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/sum-root-to-leaf-numbers/
+ * #medium
  */
 public class LC129SumRootToLeafNumbers {
     public class TreeNode {

@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/different-ways-to-add-parentheses/
+ * #medium
  */
 public class LC241DifferentWaysToAddParentheses {
     public class Solution {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/number-of-1-bits/
+ * #easy
  */
 public class LC191NumberOf1Bits {
     public class Solution {

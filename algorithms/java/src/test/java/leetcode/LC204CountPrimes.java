@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/count-primes/
+ * #medium
  */
 public class LC204CountPrimes {
     public class Solution {

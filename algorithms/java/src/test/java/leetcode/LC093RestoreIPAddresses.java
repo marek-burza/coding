@@ -10,6 +10,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/restore-ip-addresses/
+ * #medium
  */
 public class LC093RestoreIPAddresses {
     public class Solution {

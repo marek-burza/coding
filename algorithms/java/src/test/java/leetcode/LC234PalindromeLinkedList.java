@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/palindrome-linked-list/
+ * #easy
  */
 public class LC234PalindromeLinkedList {
     public class ListNode {

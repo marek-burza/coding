@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/bulb-switcher/
+ * #medium
  */
 public class LC319BulbSwitcher {
     public class Solution {

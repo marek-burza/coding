@@ -2,6 +2,7 @@ package leetcode.lc002_add_two_numbers;
 
 /**
  * https://leetcode.com/problems/add-two-numbers/
+ * #medium
  */
 public final class LC002AddTwoNumbers {
     public static class ListNode {

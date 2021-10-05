@@ -8,6 +8,7 @@ import static junit.framework.TestCase.assertEquals;
 
 /**
  * https://leetcode.com/problems/permutations-ii/
+ * #medium
  */
 public class LC047PermutationsII {
     public class Solution {

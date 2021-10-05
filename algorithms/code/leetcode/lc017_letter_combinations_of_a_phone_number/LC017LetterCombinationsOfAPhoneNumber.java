@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+ * #medium
  */
 public final class LC017LetterCombinationsOfAPhoneNumber {
     public List<String> letterCombinations(final String digits) {

@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/longest-consecutive-sequence/
+ * #medium
  */
 public class LC128LongestConsecutiveSequence {
     public class Solution {

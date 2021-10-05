@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/house-robber/
+ * #medium
  */
 public class LC198HouseRobber {
     public class Solution {

@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+ * #easy
  */
 public class LC108ConvertSortedArrayToBinarySearchTree {
     public class TreeNode {

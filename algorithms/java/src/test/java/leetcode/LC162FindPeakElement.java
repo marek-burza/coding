@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/find-peak-element/
+ * #medium
  */
 public class LC162FindPeakElement {
     public class Solution {

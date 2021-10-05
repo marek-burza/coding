@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/path-sum/
+ * #easy
  */
 public class LC112PathSum {
     private class TreeNode {

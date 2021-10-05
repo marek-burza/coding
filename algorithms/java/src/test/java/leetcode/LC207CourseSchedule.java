@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/course-schedule/
+ * #medium
  */
 public class LC207CourseSchedule {
     public class Solution {

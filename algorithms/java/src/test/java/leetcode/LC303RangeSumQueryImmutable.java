@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/range-sum-query-immutable/
+ * #easy
  */
 public class LC303RangeSumQueryImmutable {
     public class NumArray {

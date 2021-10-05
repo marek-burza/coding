@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/search-for-a-range/
+ * #medium
  */
 public class LC034SearchForARange {
     public class Solution {

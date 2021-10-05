@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/merge-sorted-array/
+ * #easy
  */
 public class LC088MergeSortedArray {
     public class Solution {

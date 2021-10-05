@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotEquals;
 
 /**
  * https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+ * #medium
  */
 public class LC114FlattenBinaryTreeToLinkedList {
     public class TreeNode {

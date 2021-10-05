@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/binary-search-tree-iterator/
+ * #medium
  */
 public class LC173BinarySearchTreeIterator {
     public class TreeNode {

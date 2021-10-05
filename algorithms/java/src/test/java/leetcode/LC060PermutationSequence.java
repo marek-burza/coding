@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/permutation-sequence/
+ * #hard
  */
 public class LC060PermutationSequence {
     public class Solution {

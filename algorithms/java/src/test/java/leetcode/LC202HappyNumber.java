@@ -9,6 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/happy-number/
+ * #easy
  */
 public class LC202HappyNumber {
     public class Solution {

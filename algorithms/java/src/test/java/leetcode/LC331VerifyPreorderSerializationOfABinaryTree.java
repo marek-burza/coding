@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
+ * #medium
  */
 public class LC331VerifyPreorderSerializationOfABinaryTree {
     public class Solution {

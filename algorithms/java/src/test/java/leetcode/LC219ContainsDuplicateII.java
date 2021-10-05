@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/contains-duplicate-ii/
+ * #easy
  */
 public class LC219ContainsDuplicateII {
     public class Solution {

@@ -2,6 +2,7 @@ package leetcode.lc024_swap_nodes_in_pairs;
 
 /**
  * https://leetcode.com/problems/swap-nodes-in-pairs/
+ * #medium
  */
 public final class LC024SwapNodesInPairs {
     public static class ListNode {

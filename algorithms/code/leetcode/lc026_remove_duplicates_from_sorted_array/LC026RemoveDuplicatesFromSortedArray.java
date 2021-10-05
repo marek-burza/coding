@@ -2,6 +2,7 @@ package leetcode.lc026_remove_duplicates_from_sorted_array;
 
 /**
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+ * #easy
  */
 public final class LC026RemoveDuplicatesFromSortedArray {
     public int removeDuplicates(final int[] nums) {

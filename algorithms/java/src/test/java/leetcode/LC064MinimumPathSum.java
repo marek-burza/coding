@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/minimum-path-sum/
+ * #medium
  */
 public class LC064MinimumPathSum {
     public class Solution {

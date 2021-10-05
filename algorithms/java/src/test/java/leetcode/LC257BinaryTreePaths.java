@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/binary-tree-paths/
+ * #easy
  */
 public class LC257BinaryTreePaths {
     public class TreeNode {

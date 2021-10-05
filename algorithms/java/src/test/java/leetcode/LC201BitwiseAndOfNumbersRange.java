@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/bitwise-and-of-numbers-range/
+ * #medium
  */
 public class LC201BitwiseAndOfNumbersRange {
     public class Solution {

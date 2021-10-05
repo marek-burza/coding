@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/missing-number/
+ * #easy
  */
 public class LC268MissingNumber {
     public class Solution {

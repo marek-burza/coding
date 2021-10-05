@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/h-index/
+ * #medium
  */
 public class LC274HIndex {
     public class Solution {

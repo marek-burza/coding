@@ -8,6 +8,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/top-k-frequent-elements/
+ * #medium
  */
 public class LC347TopKFrequentElements {
     public class Solution {

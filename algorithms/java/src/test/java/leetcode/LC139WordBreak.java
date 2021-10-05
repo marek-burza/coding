@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/word-break/
+ * #medium
  */
 public class LC139WordBreak {
     public class Solution {

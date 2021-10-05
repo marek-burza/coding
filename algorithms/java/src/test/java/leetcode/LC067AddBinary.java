@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/add-binary/
+ * #easy
  */
 public class LC067AddBinary {
     public class Solution {

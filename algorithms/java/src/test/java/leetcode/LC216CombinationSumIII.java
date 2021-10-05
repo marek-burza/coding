@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/combination-sum-iii/
+ * #medium
  */
 public class LC216CombinationSumIII {
     public class Solution {

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/rotate-array/
+ * #medium
  */
 public class LC189RotateArray {
     public class Solution {

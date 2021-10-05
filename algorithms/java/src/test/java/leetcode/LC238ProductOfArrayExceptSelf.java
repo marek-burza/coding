@@ -6,6 +6,7 @@ import static org.junit.Assert.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/product-of-array-except-self/
+ * #medium
  */
 public class LC238ProductOfArrayExceptSelf {
     public class Solution {

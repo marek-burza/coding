@@ -8,6 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * https://leetcode.com/problems/guess-number-higher-or-lower/
+ * #easy
  */
 public class LC374GuessNumberHigherOrLower {
     public class GuessGame {
