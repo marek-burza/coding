@@ -91,9 +91,10 @@
         <configuration>
           <excludes>
             <exclude>**/*Tests.class</exclude>
+            <exclude>**/*Tests$*.class</exclude>
             <exclude>**/*$ListNode.class</exclude>
             <exclude>**/SolutionTester.class</exclude>
-            <exclude>**/Solution.class</exclude>
+            <exclude>**/hackerrank/**/Solution.class</exclude>
           </excludes>
         </configuration>
         <executions>
