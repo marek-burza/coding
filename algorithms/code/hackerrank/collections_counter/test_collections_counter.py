@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/collections-counter
+# #python
 
 import collections
 import io

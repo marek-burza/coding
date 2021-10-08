@@ -66,3 +66,7 @@ func TestExample(t *testing.T) {
 func Test02(t *testing.T) {
 	Runner(t, "02")
 }
+
+func Test06(t *testing.T) {
+	Runner(t, "06")
+}

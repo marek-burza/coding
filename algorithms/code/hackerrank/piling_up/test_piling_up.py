@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/piling-up
+# #python
 
 import collections
 import io

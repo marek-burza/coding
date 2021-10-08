@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/map-and-lambda-expression
+# #python
 
 import io
 import sys

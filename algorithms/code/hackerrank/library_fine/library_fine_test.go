@@ -75,6 +75,14 @@ func Test03(t *testing.T) {
 	Runner(t, "03")
 }
 
+func Test07(t *testing.T) {
+	Runner(t, "07")
+}
+
+func Test09(t *testing.T) {
+	Runner(t, "09")
+}
+
 func Test14(t *testing.T) {
 	Runner(t, "14")
 }

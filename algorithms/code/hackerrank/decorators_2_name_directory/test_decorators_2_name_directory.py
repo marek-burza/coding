@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/decorators-2-name-directory
+# #python
 
 import io
 import operator

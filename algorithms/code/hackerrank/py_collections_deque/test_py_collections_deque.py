@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/py-collections-deque
+# #python
 
 import collections
 import io
