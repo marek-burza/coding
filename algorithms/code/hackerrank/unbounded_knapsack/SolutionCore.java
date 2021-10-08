@@ -6,7 +6,7 @@ public final class SolutionCore {
     private SolutionCore() {
     }
 
-    public static int unboundedKnapsack(final int w, final List<Integer> values) {
+    protected static int unboundedKnapsack(final int w, final List<Integer> values) {
         List<Integer> weights = values; // Special case
         int n = values.size();
         int[] m = new int[w + 1];

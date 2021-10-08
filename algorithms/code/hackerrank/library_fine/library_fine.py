@@ -47,6 +47,12 @@ class TestCode(unittest.TestCase):
     def test_03(self):
         self.runner('03')
 
+    def test_07(self):
+        self.runner('07')
+
+    def test_09(self):
+        self.runner('09')
+
     def test_14(self):
         self.runner('14')
 

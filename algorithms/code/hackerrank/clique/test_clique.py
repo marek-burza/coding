@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/clique
 # See also: https://en.wikipedia.org/wiki/Tur%C3%A1n_graph
+# #python
 
 import io
 import sys
