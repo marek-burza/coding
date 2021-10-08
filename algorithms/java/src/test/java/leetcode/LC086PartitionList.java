@@ -18,7 +18,7 @@ public class LC086PartitionList {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         public ListNode partition(ListNode head, int x) {
             if (head == null) {
                 return null;

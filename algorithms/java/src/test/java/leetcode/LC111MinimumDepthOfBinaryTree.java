@@ -22,7 +22,7 @@ public class LC111MinimumDepthOfBinaryTree {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         private class AnnotatedNode {
             public TreeNode node;
             public int depth;

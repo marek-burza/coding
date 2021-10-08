@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC045JumpGameII {
-    public class Solution {
+    public final class Solution {
         public int jump(int[] nums) {
             if (nums.length == 1) return 0;
             int horizon = nums[0];

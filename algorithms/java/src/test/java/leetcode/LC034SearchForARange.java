@@ -9,7 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
  * #medium
  */
 public class LC034SearchForARange {
-    public class Solution {
+    public final class Solution {
         private int bsInfimum(int[] nums, int target) {
             int a = 0;
             int z = nums.length - 1;

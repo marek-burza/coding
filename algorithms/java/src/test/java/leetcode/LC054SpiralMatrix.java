@@ -12,7 +12,7 @@ import static org.junit.Assert.assertArrayEquals;
  * #medium
  */
 public class LC054SpiralMatrix {
-    public class Solution {
+    public final class Solution {
         private int[][] deltas = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
         public List<Integer> spiralOrder(int[][] matrix) {

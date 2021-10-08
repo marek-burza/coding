@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC073SetMatrixZeroes {
-    public class Solution {
+    public final class Solution {
         public void setZeroes(int[][] matrix) {
             boolean row0 = false;
             for (int row = 0; row < matrix.length; row++) {

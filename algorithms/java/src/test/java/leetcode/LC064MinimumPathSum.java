@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC064MinimumPathSum {
-    public class Solution {
+    public final class Solution {
         public int minPathSum(int[][] grid) {
             boolean[][] visited = new boolean[grid.length][grid[0].length];
             int[][] sums = new int[grid.length][grid[0].length];

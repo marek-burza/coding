@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC050PowXN {
-    public class Solution {
+    public final class Solution {
         public double myPow(double x, int n) {
             if (n == 0) return 1.0;
             long count = n < 0 ? - (long) n: (long) n;

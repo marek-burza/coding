@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * #hard
  */
 public class LC060PermutationSequence {
-    public class Solution {
+    public final class Solution {
         public String getPermutation(int n, int k) {
             if (n < 0 || k < 0) {
                 return null;

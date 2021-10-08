@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC048RotateImage {
-    public class Solution {
+    public final class Solution {
         public void rotate(int[][] matrix) {
             for (int row = 0; row < (matrix.length / 2) + (matrix.length & 1); row++) {
                 for (int column = row; column < matrix.length - 1 - row; column++) {

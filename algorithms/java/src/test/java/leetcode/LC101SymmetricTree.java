@@ -21,7 +21,7 @@ public class LC101SymmetricTree {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         public boolean isSymmetric(TreeNode root) {
             if (root == null) {
                 return true;

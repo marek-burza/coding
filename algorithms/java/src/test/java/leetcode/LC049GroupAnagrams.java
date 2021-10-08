@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC049GroupAnagrams {
-    public class Solution {
+    public final class Solution {
         public List<List<String>> groupAnagrams(String[] strs) {
             Map<String, List<String>> seen = new HashMap<>();
             for (String str : strs) {

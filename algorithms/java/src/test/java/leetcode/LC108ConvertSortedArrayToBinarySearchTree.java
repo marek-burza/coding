@@ -24,7 +24,7 @@ public class LC108ConvertSortedArrayToBinarySearchTree {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         public TreeNode sortedArrayToBST(int[] nums, int from, int to) {
             if (from > to) return null;
             int at = (from + to) / 2;

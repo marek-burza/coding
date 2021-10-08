@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC055JumpGame {
-    public class Solution {
+    public final class Solution {
         public boolean canJump(int[] nums) {
             if (nums == null || nums.length == 0) {
                 return false;

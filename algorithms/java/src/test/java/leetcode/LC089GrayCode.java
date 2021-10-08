@@ -12,7 +12,7 @@ import static org.junit.Assert.assertArrayEquals;
  * #medium
  */
 public class LC089GrayCode {
-    public class Solution {
+    public final class Solution {
         public List<Integer> grayCode(int bits) {
             if (bits == 0) {
                 ArrayList<Integer> list = new ArrayList<>();

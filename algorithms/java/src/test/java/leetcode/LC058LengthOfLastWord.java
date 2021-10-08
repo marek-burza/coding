@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #easy
  */
 public class LC058LengthOfLastWord {
-    public class Solution {
+    public final class Solution {
         public int lengthOfLastWord(String s) {
             if (s == null || s.length() == 0) return 0;
             int n = s.length();

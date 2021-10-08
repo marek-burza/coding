@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #easy
  */
 public class LC053MaximumSubarray {
-    public class Solution {
+    public final class Solution {
         public int maxSubArray(int[] nums) {
             int sum = 0;
             int min = 0;

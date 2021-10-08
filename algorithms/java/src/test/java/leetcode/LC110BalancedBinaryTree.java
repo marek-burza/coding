@@ -25,7 +25,7 @@ public class LC110BalancedBinaryTree {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         private int balancedHeight(TreeNode root) {
             if (root == null) {
                 return 0;

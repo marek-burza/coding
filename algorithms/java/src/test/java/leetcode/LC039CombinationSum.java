@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC039CombinationSum {
-    public class Solution {
+    public final class Solution {
         public void combinationSum(int[] candidates, int target, List<Integer> path, int sum, int index, List<List<Integer>> combos) {
             if (sum == target) {
                 combos.add(new ArrayList(path));

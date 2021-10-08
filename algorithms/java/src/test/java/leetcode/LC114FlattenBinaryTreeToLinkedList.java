@@ -32,7 +32,7 @@ public class LC114FlattenBinaryTreeToLinkedList {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         public void flatten(TreeNode root) {
             while (root != null) {
                 if (root.left != null) {
