@@ -11,7 +11,7 @@ import static org.junit.Assert.assertNotEquals;
  * #medium
  */
 public class LC059SpiralMatrixII {
-    public class Solution {
+    public final class Solution {
         public int[][] generateMatrix(int n) {
             int[] limits = {n - 1, n - 1, 0, 0};
             int[] restrict = {1, -1, -1, 1};

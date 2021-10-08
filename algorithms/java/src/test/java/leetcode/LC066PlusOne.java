@@ -9,7 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
  * #easy
  */
 public class LC066PlusOne {
-    public class Solution {
+    public final class Solution {
         public int[] plusOne(int[] digits) {
             int carry = 1;
             for (int i = digits.length - 1; i >= 0; i--) {

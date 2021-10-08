@@ -21,7 +21,7 @@ public class LC100SameTree {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         public boolean isSameTree(TreeNode tree1, TreeNode tree2) {
             if (tree1 == null && tree2 == null) return true;
             if (tree1 == null || tree2 == null) return false;

@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC046Permutations {
-    public class Solution {
+    public final class Solution {
         public void permute(List<Integer> prefix, Set<Integer> remaining, List<List<Integer>> permutations) {
             if (remaining.size() == 0) {
                 permutations.add(new ArrayList(prefix));

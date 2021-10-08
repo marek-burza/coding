@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC036ValidSudoku {
-    public class Solution {
+    public final class Solution {
         public boolean validate(char[][] board, int[][] indices, int dx, int dy) {
             int check = 0;
             for (int i = 0; i < indices.length; i++) {

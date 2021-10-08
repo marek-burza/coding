@@ -30,7 +30,7 @@ public class LC109ConvertSortedListToBinarySearchTree {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         private int length(ListNode head) {
             int count = 0;
             while (head != null) {

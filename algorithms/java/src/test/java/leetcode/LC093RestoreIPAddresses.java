@@ -13,7 +13,7 @@ import static org.junit.Assert.assertArrayEquals;
  * #medium
  */
 public class LC093RestoreIPAddresses {
-    public class Solution {
+    public final class Solution {
         private void partial(String s, int count, List<String> ip, List<String> list) {
             if (s.length() < count || (s.charAt(0) == '0' && count > 1)) {
                 return;

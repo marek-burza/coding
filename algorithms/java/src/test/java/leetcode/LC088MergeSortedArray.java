@@ -9,7 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
  * #easy
  */
 public class LC088MergeSortedArray {
-    public class Solution {
+    public final class Solution {
         public void merge(int[] nums1, int m, int[] nums2, int n) {
             int i = m + n - 1;
             m--;

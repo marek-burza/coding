@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC074SearchA2DMatrix {
-    public class Solution {
+    public final class Solution {
         public boolean searchMatrix(int[][] matrix, int target) {
             int ra = 0, rz = matrix.length - 1;
             while (ra < rz) {

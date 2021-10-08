@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #easy
  */
 public class LC069SqrtX {
-    public class Solution {
+    public final class Solution {
         public int mySqrt(int x) {
             long a = 0;
             long z = x;

@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC033SearchInRotatedSortedArray {
-    public class Solution {
+    public final class Solution {
         public int search(int[] nums, int target) {
             int a = 0;
             int z = nums.length - 1;

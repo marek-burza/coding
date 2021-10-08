@@ -9,7 +9,7 @@ import static org.junit.Assert.assertArrayEquals;
  * #medium
  */
 public class LC075SortColors {
-    public class Solution {
+    public final class Solution {
         public void sortColors(int[] nums) {
             int[] counters = {0, 0, 0};
             for (int value : nums) {

@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC081SearchInRotatedSortedArrayII {
-    public class Solution {
+    public final class Solution {
         public boolean search(int[] nums, int target) {
             for (int i = 1; i < nums.length; i++) {
                 if (nums[i - 1] > nums[i]) {

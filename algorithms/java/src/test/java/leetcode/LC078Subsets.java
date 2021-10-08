@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC078Subsets {
-    public class Solution {
+    public final class Solution {
         public void subsets(int[] nums, int offset, List<Integer> current, List<List<Integer>> list) {
             list.add(new ArrayList<>(current));
             for (int i = offset; i < nums.length; i++) {

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC077Combinations {
-    public class Solution {
+    public final class Solution {
         public void combine(int m, int n, int k, List<Integer> prefix, List<List<Integer>> found) {
             for (int i = m; i <= n - (k - 1) + prefix.size(); i++) {
                 prefix.add(i);

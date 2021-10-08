@@ -18,7 +18,7 @@ public class LC083RemoveDuplicatesFromSortedList {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         public ListNode deleteDuplicates(ListNode head) {
             ListNode anchor = head;
             while (head != null) {

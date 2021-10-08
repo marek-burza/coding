@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC080RemoveDuplicatesFromSortedArrayII {
-    public class Solution {
+    public final class Solution {
         public int removeDuplicates(int[] nums) {
             int i = 0;
             for (int n : nums)

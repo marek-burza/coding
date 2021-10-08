@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
  * #hard
  */
 public class LC042TrappingRainWater {
-    public class Solution {
+    public final class Solution {
         private class MappingComparator implements Comparator<Integer> {
             private int[] other;
 

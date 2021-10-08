@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC062UniquePaths {
-    public class Solution {
+    public final class Solution {
         private long nck(long n, long k) {
             if (k > n) return 0;
             if (k * 2 > n) k = n - k;

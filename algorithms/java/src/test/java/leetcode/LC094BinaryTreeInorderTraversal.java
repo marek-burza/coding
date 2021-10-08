@@ -22,7 +22,7 @@ public class LC094BinaryTreeInorderTraversal {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         private void preorderTraversal(TreeNode root, List<Integer> result) {
             if (root == null) return;
             preorderTraversal(root.left, result);

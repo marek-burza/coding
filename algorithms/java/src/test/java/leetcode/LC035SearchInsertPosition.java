@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #easy
  */
 public class LC035SearchInsertPosition {
-    public class Solution {
+    public final class Solution {
         public int searchInsert(int[] nums, int target) {
             int a = 0, z = nums.length;
             while (a != z) {

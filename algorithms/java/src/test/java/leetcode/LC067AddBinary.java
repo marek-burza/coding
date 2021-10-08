@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #easy
  */
 public class LC067AddBinary {
-    public class Solution {
+    public final class Solution {
         public String addBinary(String a, String b) {
             char[] ar = new StringBuilder(a).reverse().toString().toCharArray();
             char[] br = new StringBuilder(b).reverse().toString().toCharArray();

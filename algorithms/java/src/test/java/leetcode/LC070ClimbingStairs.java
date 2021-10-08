@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
  * #easy
  */
 public class LC070ClimbingStairs {
-    public class Solution {
+    public final class Solution {
         public int climbStairs(int n, int at, int[] lut) {
             if (at + 2 == n) {
                 return 2;

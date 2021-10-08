@@ -22,7 +22,7 @@ public class LC107BinaryTreeLevelOrderTraversalII {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         public List<List<Integer>> levelOrderBottom(TreeNode root) {
             List<List<Integer>> result = new ArrayList<>();
             List<TreeNode> current = new ArrayList<>();

@@ -19,7 +19,7 @@ public class LC104MaximumDepthOfBinaryTree {
         }
     }
 
-    public class Solution {
+    public final class Solution {
         public int maxDepth(TreeNode root) {
             if (root == null) {
                 return 0;

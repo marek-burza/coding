@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
  * #medium
  */
 public class LC079WordSearch {
-    public class Solution {
+    public final class Solution {
         public boolean exist(char[][] board, String word, boolean[][] visited, int index, int i, int j) {
             if (index >= word.length() || visited[i][j]) {
                 return false;
