@@ -1,12 +1,13 @@
 package leetcode;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 /**
  * https://leetcode.com/problems/intersection-of-two-arrays/

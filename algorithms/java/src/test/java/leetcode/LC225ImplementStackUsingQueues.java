@@ -3,9 +3,10 @@ package leetcode;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * https://leetcode.com/problems/implement-stack-using-queues/
