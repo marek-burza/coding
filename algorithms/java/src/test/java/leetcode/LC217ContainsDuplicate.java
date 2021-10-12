@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/contains-duplicate/
  * #easy
  */
-public class LC217ContainsDuplicate {
-    public class Solution {
-        public boolean containsDuplicate(int[] nums) {
+public final class LC217ContainsDuplicate {
+    public final class Solution {
+        public boolean containsDuplicate(final int[] nums) {
             Set<Integer> seen = new HashSet<>();
             for (int num : nums) {
                 if (seen.contains(num)) {

@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/flatten-nested-list-iterator/
  * #medium
  */
-public class LC341FlattenNestedListIterator {
-    public class NestedInteger {
+public final class LC341FlattenNestedListIterator {
+    public final class NestedInteger {
         private Object object;
 
-        public NestedInteger(Object object) {
+        public NestedInteger(final Object object) {
             this.object = object;
         }
 
@@ -50,12 +50,12 @@ public class LC341FlattenNestedListIterator {
         }
     }
 
-    public class NestedIterator implements Iterator<Integer> {
+    public final class NestedIterator implements Iterator<Integer> {
         private class Item {
             public Object item;
             public int skip;
 
-            public Item(Object item, int skip) {
+            public Item(final Object item, final int skip) {
                 this.item = item;
                 this.skip = skip;
             }
@@ -67,11 +67,11 @@ public class LC341FlattenNestedListIterator {
 
         private Stack<Item> stack = new Stack<>();
 
-        public NestedIterator(List<NestedInteger> nestedList) {
+        public NestedIterator(final List<NestedInteger> nestedList) {
             stack.push(new Item(nestedList, 0));
         }
 
-        private Object objectify(NestedInteger nested) {
+        private Object objectify(final NestedInteger nested) {
             if (nested.isInteger()) {
                 return nested.getInteger();
             } else {

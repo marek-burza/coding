@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/implement-stack-using-queues/
  * #easy
  */
-public class LC225ImplementStackUsingQueues {
-    public class Solution {
+public final class LC225ImplementStackUsingQueues {
+    public final class Solution {
         private Queue<Integer> active = new LinkedList<>();
         private Queue<Integer> other = new LinkedList<>();
 
@@ -24,7 +24,7 @@ public class LC225ImplementStackUsingQueues {
         }
 
         // Push element x onto stack.
-        public void push(int x) {
+        public void push(final int x) {
             // 1 - active
             other.add(x);
             while (active.size() > 0) { // ! empty

@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/contains-duplicate-iii/
  * #medium
  */
-public class LC220ContainsDuplicateIII {
-    public class Solution {
-        public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+public final class LC220ContainsDuplicateIII {
+    public final class Solution {
+        public boolean containsNearbyAlmostDuplicate(final int[] nums, final int k, final int t) {
             NavigableSet<Long> sorted = new TreeSet<>();
             Queue<Long> ordered = new LinkedList<>();
             for (int num : nums) {

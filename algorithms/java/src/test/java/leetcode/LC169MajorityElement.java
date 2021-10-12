@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/majority-element/
  * #easy
  */
-public class LC169MajorityElement {
-    public class Solution {
-        public int majorityElement(int[] nums) {
+public final class LC169MajorityElement {
+    public final class Solution {
+        public int majorityElement(final int[] nums) {
             HashMap<Integer, Integer> frequencies = new HashMap<>();
             for (int value : nums) {
                 Integer count = frequencies.get(value);

@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/insertion-sort-list/
  * #medium
  */
-public class LC147InsertionSortList {
-    public class ListNode {
+public final class LC147InsertionSortList {
+    public final class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
         }
 
@@ -24,8 +24,8 @@ public class LC147InsertionSortList {
         }
     }
 
-    public class Solution {
-        public ListNode insertionSortList(ListNode head) {
+    public final class Solution {
+        public ListNode insertionSortList(final ListNode head) {
             ListNode handle = new ListNode(0);
             handle.next = head;
             ListNode tail = handle;

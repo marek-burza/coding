@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/maximum-product-subarray/
  * #medium
  */
-public class LC152MaximumProductSubarray {
-    public class Solution {
-        public int maxProduct(int[] nums) {
+public final class LC152MaximumProductSubarray {
+    public final class Solution {
+        public int maxProduct(final int[] nums) {
             int max = Integer.MIN_VALUE;
             int cmin = 0, cmax = 0;
             for (int num : nums) {

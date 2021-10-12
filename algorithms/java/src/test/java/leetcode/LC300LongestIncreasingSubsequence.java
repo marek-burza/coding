@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/longest-increasing-subsequence/
  * #medium
  */
-public class LC300LongestIncreasingSubsequence {
-    public class Solution {
-        public int lengthOfLIS(int[] nums) {
+public final class LC300LongestIncreasingSubsequence {
+    public final class Solution {
+        public int lengthOfLIS(final int[] nums) {
             if (nums == null || nums.length == 0) return 0;
             int[] lis = new int[nums.length];
             Arrays.fill(lis, 1);

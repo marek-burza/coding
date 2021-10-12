@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/count-and-say/
  * #medium
  */
-public class LC038CountAndSay {
+public final class LC038CountAndSay {
     public final class Solution {
-        public String countAndSay(int n) {
+        public String countAndSay(final int n) {
             if (n < 1) return null;
             String result = "1";
             while (n > 1) {

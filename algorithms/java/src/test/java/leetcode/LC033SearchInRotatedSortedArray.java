@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/search-in-rotated-sorted-array/
  * #medium
  */
-public class LC033SearchInRotatedSortedArray {
+public final class LC033SearchInRotatedSortedArray {
     public final class Solution {
-        public int search(int[] nums, int target) {
+        public int search(final int[] nums, final int target) {
             int a = 0;
             int z = nums.length - 1;
             while (a <= z) {

@@ -9,18 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/remove-duplicates-from-sorted-list/
  * #easy
  */
-public class LC083RemoveDuplicatesFromSortedList {
+public final class LC083RemoveDuplicatesFromSortedList {
     public static class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
         }
     }
 
     public final class Solution {
-        public ListNode deleteDuplicates(ListNode head) {
+        public ListNode deleteDuplicates(final ListNode head) {
             ListNode anchor = head;
             while (head != null) {
                 while (head.next != null && head.val == head.next.val) {

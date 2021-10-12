@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/word-break/
  * #medium
  */
-public class LC139WordBreak {
-    public class Solution {
-        public boolean wordBreak(String s, Set<String> wordDict, int at, int length, boolean[] checked) {
+public final class LC139WordBreak {
+    public final class Solution {
+        public boolean wordBreak(final String s, final Set<String> wordDict, final int at, final int length, final boolean[] checked) {
             if (checked[at]) return false;
             int limit = Math.min(s.length(), at + length);
             for (int i = at + 1; i <= limit; i++) {
@@ -32,7 +32,7 @@ public class LC139WordBreak {
             return false;
         }
 
-        public boolean wordBreak(String s, Set<String> wordDict) {
+        public boolean wordBreak(final String s, final Set<String> wordDict) {
             int length = 0;
             for (String word : wordDict) {
                 length = Math.max(word.length(), length);
@@ -43,7 +43,7 @@ public class LC139WordBreak {
         }
     }
 
-    public Set<String> prepare(String[] words) {
+    public Set<String> prepare(final String[] words) {
         Set<String> set = new HashSet<>();
         Collections.addAll(set, words);
         return set;

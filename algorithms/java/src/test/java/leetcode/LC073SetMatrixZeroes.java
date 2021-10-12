@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/set-matrix-zeroes/
  * #medium
  */
-public class LC073SetMatrixZeroes {
+public final class LC073SetMatrixZeroes {
     public final class Solution {
-        public void setZeroes(int[][] matrix) {
+        public void setZeroes(final int[][] matrix) {
             boolean row0 = false;
             for (int row = 0; row < matrix.length; row++) {
                 if (matrix[row][0] == 0) {
@@ -48,7 +48,7 @@ public class LC073SetMatrixZeroes {
         }
     }
 
-    public void test(int[][] expected, int[][] matrix) throws Exception {
+    public void test(final int[][] expected, final int[][] matrix) throws Exception {
         assertEquals(expected.length, matrix.length);
         for (int row = 0; row < expected.length; row++) {
             assertArrayEquals(expected[row], matrix[row]);

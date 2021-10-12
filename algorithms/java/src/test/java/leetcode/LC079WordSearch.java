@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/word-search/
  * #medium
  */
-public class LC079WordSearch {
+public final class LC079WordSearch {
     public final class Solution {
-        public boolean exist(char[][] board, String word, boolean[][] visited, int index, int i, int j) {
+        public boolean exist(final char[][] board, final String word, final boolean[][] visited, final int index, final int i, final int j) {
             if (index >= word.length() || visited[i][j]) {
                 return false;
             }
@@ -40,7 +40,7 @@ public class LC079WordSearch {
             }
         }
 
-        public boolean exist(char[][] board, String word) {
+        public boolean exist(final char[][] board, final String word) {
             if (board == null || word == null || word.length() == 0) {
                 return false;
             }

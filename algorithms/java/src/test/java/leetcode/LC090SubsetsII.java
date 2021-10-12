@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/subsets-ii/
  * #medium
  */
-public class LC090SubsetsII {
+public final class LC090SubsetsII {
     public final class Solution {
-        public void subsets(int[] nums, int offset, List<Integer> current, List<List<Integer>> list) {
+        public void subsets(final int[] nums, final int offset, final List<Integer> current, final List<List<Integer>> list) {
             list.add(new ArrayList<>(current));
             int i = offset;
             while (i < nums.length) {
@@ -32,7 +32,7 @@ public class LC090SubsetsII {
             }
         }
 
-        public List<List<Integer>> subsetsWithDup(int[] nums) {
+        public List<List<Integer>> subsetsWithDup(final int[] nums) {
             Arrays.sort(nums);
             List<List<Integer>> list = new ArrayList<>();
             subsets(nums, 0, new ArrayList<Integer>(), list);
@@ -40,9 +40,9 @@ public class LC090SubsetsII {
         }
     }
 
-    private class OrderlyComparator implements Comparator<List<Integer>> {
+    private class OrderlyComparator implements Comparator<List<Integer>>, Serializable {
         @Override
-        public int compare(List<Integer> l1, List<Integer> l2) {
+        public int compare(final List<Integer> l1, final List<Integer> l2) {
             int difference = l1.size() - l2.size();
             if (0 != difference) {
                 return difference;
@@ -58,7 +58,7 @@ public class LC090SubsetsII {
         }
     }
 
-    public void test(int[][] expected, List<List<Integer>> result) throws Exception {
+    public void test(final int[][] expected, final List<List<Integer>> result) throws Exception {
         Collections.sort(result, new OrderlyComparator());
         assertEquals(expected.length, result.size());
         for (int i = 0; i < expected.length; i++) {

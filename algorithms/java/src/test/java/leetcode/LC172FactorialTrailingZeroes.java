@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/factorial-trailing-zeroes/
  * #medium
  */
-public class LC172FactorialTrailingZeroes {
-    public class Solution {
-        public int trailingZeroes(int n) {
+public final class LC172FactorialTrailingZeroes {
+    public final class Solution {
+        public int trailingZeroes(final int n) {
             long step = 5;
             long count = 0;
             while (step <= n) {

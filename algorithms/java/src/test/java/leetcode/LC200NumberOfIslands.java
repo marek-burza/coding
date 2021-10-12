@@ -11,15 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/number-of-islands/
  * #medium
  */
-public class LC200NumberOfIslands {
-    public class Solution {
+public final class LC200NumberOfIslands {
+    public final class Solution {
         private int[][] deltas = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
-        private boolean land(char[][] grid, int x, int y) {
+        private boolean land(final char[][] grid, final int x, final int y) {
             return 0 <= x && x < grid.length && 0 <= y && y < grid[x].length && grid[x][y] == '1';
         }
 
-        private boolean traverse(char[][] grid, int x, int y) {
+        private boolean traverse(final char[][] grid, final int x, final int y) {
             ArrayList<Integer> xs = new ArrayList<>();
             ArrayList<Integer> ys = new ArrayList<>();
             xs.add(x);
@@ -43,7 +43,7 @@ public class LC200NumberOfIslands {
             return land;
         }
 
-        public int numIslands(char[][] grid) {
+        public int numIslands(final char[][] grid) {
             if (grid == null || grid.length == 0) {
                 return 0;
             }

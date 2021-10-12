@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/combinations/
  * #medium
  */
-public class LC077Combinations {
+public final class LC077Combinations {
     public final class Solution {
-        public void combine(int m, int n, int k, List<Integer> prefix, List<List<Integer>> found) {
+        public void combine(final int m, final int n, final int k, final List<Integer> prefix, final List<List<Integer>> found) {
             for (int i = m; i <= n - (k - 1) + prefix.size(); i++) {
                 prefix.add(i);
                 if (prefix.size() == k) {
@@ -28,16 +28,16 @@ public class LC077Combinations {
             }
         }
 
-        public List<List<Integer>> combine(int n, int k) {
+        public List<List<Integer>> combine(final int n, final int k) {
             List<List<Integer>> found = new ArrayList();
             combine(1, n, k, new ArrayList(), found);
             return found;
         }
     }
 
-    private class IntegerListComparator implements Comparator<List<Integer>> {
+    private class IntegerListComparator implements Comparator<List<Integer>>, Serializable {
         @Override
-        public int compare(List<Integer> l1, List<Integer> l2) {
+        public int compare(final List<Integer> l1, final List<Integer> l2) {
             if (l1.size() < l2.size()) return -1;
             if (l1.size() > l2.size()) return 1;
             for (int i = 0; i < l1.size(); i++) {

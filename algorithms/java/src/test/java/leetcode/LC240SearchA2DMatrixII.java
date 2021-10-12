@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/search-a-2d-matrix-ii/
  * #medium
  */
-public class LC240SearchA2DMatrixII {
-    public class Solution {
-        public boolean searchMatrix(int[][] matrix, int target, int rowA, int rowZ, int colA, int colZ) {
+public final class LC240SearchA2DMatrixII {
+    public final class Solution {
+        public boolean searchMatrix(final int[][] matrix, final int target, final int rowA, final int rowZ, final int colA, final int colZ) {
             if (rowA == rowZ && colA == colZ) return matrix[rowZ][colZ] == target;
             if (target < matrix[rowA][colA] || matrix[rowZ][colZ] < target) return false;
             int rowM = (rowA + rowZ) / 2;
@@ -30,7 +30,7 @@ public class LC240SearchA2DMatrixII {
             return !(rows & cols) ? false : searchMatrix(matrix, target, rowM + 1, rowZ, colM + 1, colZ);
         }
 
-        public boolean searchMatrix(int[][] matrix, int target) {
+        public boolean searchMatrix(final int[][] matrix, final int target) {
             return searchMatrix(matrix, target, 0, matrix.length - 1, 0, matrix[0].length - 1);
         }
     }

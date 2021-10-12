@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/spiral-matrix/
  * #medium
  */
-public class LC054SpiralMatrix {
+public final class LC054SpiralMatrix {
     public final class Solution {
         private int[][] deltas = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
-        public List<Integer> spiralOrder(int[][] matrix) {
+        public List<Integer> spiralOrder(final int[][] matrix) {
             List<Integer> list = new ArrayList<>();
             if (matrix == null || matrix.length == 0) {
                 return list;
@@ -65,7 +65,7 @@ public class LC054SpiralMatrix {
         }
     }
 
-    private void test(int[] expected, int[][] matrix) throws Exception {
+    private void test(final int[] expected, final int[][] matrix) throws Exception {
         List<Integer> result = new Solution().spiralOrder(matrix);
         int[] array = new int[result.size()];
         for (int i = 0; i < array.length; i++) {

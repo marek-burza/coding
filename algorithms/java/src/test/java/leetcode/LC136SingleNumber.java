@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/single-number/
  * #easy
  */
-public class LC136SingleNumber {
-    public class Solution {
-        public int singleNumber(int[] nums) {
+public final class LC136SingleNumber {
+    public final class Solution {
+        public int singleNumber(final int[] nums) {
             int result = 0;
             for (int value : nums) {
                 result ^= value;

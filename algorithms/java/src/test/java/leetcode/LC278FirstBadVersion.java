@@ -9,17 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/first-bad-version/
  * #easy
  */
-public class LC278FirstBadVersion {
-    public class VersionControl {
+public final class LC278FirstBadVersion {
+    public final class VersionControl {
         public int badVersion = 0;
 
-        public boolean isBadVersion(int version) {
+        public boolean isBadVersion(final int version) {
             return badVersion <= version;
         }
     }
 
-    public class Solution extends VersionControl {
-        public int firstBadVersion(int n) {
+    public final class Solution extends VersionControl {
+        public int firstBadVersion(final int n) {
             long a = 1, z = n;
             while (a != z) {
                 int i = (int) ((a + z) / 2);

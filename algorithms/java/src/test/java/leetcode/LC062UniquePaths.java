@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/unique-paths/
  * #medium
  */
-public class LC062UniquePaths {
+public final class LC062UniquePaths {
     public final class Solution {
-        private long nck(long n, long k) {
+        private long nck(final long n, final long k) {
             if (k > n) return 0;
             if (k * 2 > n) k = n - k;
             if (k == 0) return 1;
@@ -23,7 +23,7 @@ public class LC062UniquePaths {
             return r;
         }
 
-        public int uniquePaths(int m, int n) {
+        public int uniquePaths(final int m, final int n) {
             m--;
             return (int) nck(m + n - 1, m);
         }

@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/bitwise-and-of-numbers-range/
  * #medium
  */
-public class LC201BitwiseAndOfNumbersRange {
-    public class Solution {
-        public int rangeBitwiseAnd(int m, int n) {
+public final class LC201BitwiseAndOfNumbersRange {
+    public final class Solution {
+        public int rangeBitwiseAnd(final int m, final int n) {
             int result = 0;
             int power = 1;
             int mask = 0;

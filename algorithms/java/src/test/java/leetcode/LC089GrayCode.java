@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/gray-code/
  * #medium
  */
-public class LC089GrayCode {
+public final class LC089GrayCode {
     public final class Solution {
-        public List<Integer> grayCode(int bits) {
+        public List<Integer> grayCode(final int bits) {
             if (bits == 0) {
                 ArrayList<Integer> list = new ArrayList<>();
                 list.add(0);
@@ -37,7 +37,7 @@ public class LC089GrayCode {
         }
     }
 
-    private int[] freeze(List<Integer> list) {
+    private int[] freeze(final List<Integer> list) {
         int[] result = new int[list.size()];
         for (int i = 0; i < result.length; i++) {
             result[i] = list.get(i);

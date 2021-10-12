@@ -9,18 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/remove-linked-list-elements/
  * #easy
  */
-public class LC203RemoveLinkedListElements {
-    public class ListNode {
+public final class LC203RemoveLinkedListElements {
+    public final class ListNode {
         public int val;
         public ListNode next;
 
-        public ListNode(int x) {
+        public ListNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public ListNode removeElements(ListNode head, int val) {
+    public final class Solution {
+        public ListNode removeElements(final ListNode head, final int val) {
             if (head == null) {
                 return (null);
             }
@@ -42,7 +42,7 @@ public class LC203RemoveLinkedListElements {
         }
     }
 
-    public ListNode convert(int[] array) {
+    public ListNode convert(final int[] array) {
         ListNode list = null;
         ListNode last = null;
         for (int value : array) {

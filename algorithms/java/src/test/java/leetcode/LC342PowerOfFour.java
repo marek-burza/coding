@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/power-of-four/
  * #easy
  */
-public class LC342PowerOfFour {
-    public class Solution {
-        public boolean isPowerOfFour(int num) {
+public final class LC342PowerOfFour {
+    public final class Solution {
+        public boolean isPowerOfFour(final int num) {
             if (num <= 0) return false;
             double value = Math.log(num) / Math.log(4);
             return value == Math.floor(value);

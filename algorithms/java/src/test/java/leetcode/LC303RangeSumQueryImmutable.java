@@ -9,11 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/range-sum-query-immutable/
  * #easy
  */
-public class LC303RangeSumQueryImmutable {
-    public class NumArray {
+public final class LC303RangeSumQueryImmutable {
+    public final class NumArray {
         private int[] sums;
 
-        public NumArray(int[] nums) {
+        public NumArray(final int[] nums) {
             sums = new int[nums.length];
             int sum = 0;
             for (int i = 0; i < nums.length; i++) {
@@ -21,7 +21,7 @@ public class LC303RangeSumQueryImmutable {
             }
         }
 
-        public int sumRange(int i, int j) {
+        public int sumRange(final int i, final int j) {
             int sum = 0;
             if (0 < i) {
                 sum = -sums[i - 1];

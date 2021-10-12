@@ -9,17 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/balanced-binary-tree/
  * #easy
  */
-public class LC110BalancedBinaryTree {
-    public class TreeNode {
+public final class LC110BalancedBinaryTree {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        public TreeNode(int x) {
+        public TreeNode(final int x) {
             val = x;
         }
 
-        public TreeNode(TreeNode left, int x, TreeNode right) {
+        public TreeNode(final TreeNode left, final int x, final TreeNode right) {
             this(x);
             this.left = left;
             this.right = right;
@@ -27,7 +27,7 @@ public class LC110BalancedBinaryTree {
     }
 
     public final class Solution {
-        private int balancedHeight(TreeNode root) {
+        private int balancedHeight(final TreeNode root) {
             if (root == null) {
                 return 0;
             }

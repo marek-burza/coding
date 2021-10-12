@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/wiggle-subsequence/
  * #medium
  */
-public class LC376WiggleSubsequence {
-    public class Solution {
-        public int wiggleMaxLength(int[] nums) {
+public final class LC376WiggleSubsequence {
+    public final class Solution {
+        public int wiggleMaxLength(final int[] nums) {
             if (nums.length < 2) return nums.length;
             double then = Math.signum(nums[1] - nums[0]);
             int count = then != 0 ? 2 : 1;

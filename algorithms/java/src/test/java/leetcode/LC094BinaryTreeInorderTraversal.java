@@ -12,26 +12,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/binary-tree-inorder-traversal/
  * #easy
  */
-public class LC094BinaryTreeInorderTraversal {
-    public class TreeNode {
+public final class LC094BinaryTreeInorderTraversal {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
     public final class Solution {
-        private void preorderTraversal(TreeNode root, List<Integer> result) {
+        private void preorderTraversal(final TreeNode root, final List<Integer> result) {
             if (root == null) return;
             preorderTraversal(root.left, result);
             result.add(root.val);
             preorderTraversal(root.right, result);
         }
 
-        public List<Integer> inorderTraversal(TreeNode root) {
+        public List<Integer> inorderTraversal(final TreeNode root) {
             List<Integer> result = new ArrayList<>();
             preorderTraversal(root, result);
             return result;

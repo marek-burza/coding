@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/isomorphic-strings/
  * #easy
  */
-public class LC205IsomorphicStrings {
-    public class Solution {
-        public boolean isIsomorphic(String s, String t) {
+public final class LC205IsomorphicStrings {
+    public final class Solution {
+        public boolean isIsomorphic(final String s, final String t) {
             HashMap<Character, Character> map = new HashMap<>();
             for (int i = 0; i < s.length(); i++) {
                 Character source = s.charAt(i);

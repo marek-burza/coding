@@ -14,19 +14,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/longest-consecutive-sequence/
  * #medium
  */
-public class LC128LongestConsecutiveSequence {
-    public class Solution {
+public final class LC128LongestConsecutiveSequence {
+    public final class Solution {
         private class Range {
             private int a;
             private int z;
 
-            public Range(int a, int z) {
+            Range(final int a, final int z) {
                 this.a = a;
                 this.z = z;
             }
         }
 
-        public int longestConsecutive(int[] nums) {
+        public int longestConsecutive(final int[] nums) {
             Set<Integer> seen = new HashSet<>();
             Map<Integer, Range> map = new HashMap<>();
             int length = 0;

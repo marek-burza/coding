@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/reverse-vowels-of-a-string/
  * #easy
  */
-public class LC345ReverseVowelsOfAString {
-    public class Solution {
-        private boolean isVowel(char letter) {
+public final class LC345ReverseVowelsOfAString {
+    public final class Solution {
+        private boolean isVowel(final char letter) {
             char[] vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'};
             for (char vowel : vowels) {
                 if (vowel == letter) {
@@ -21,7 +21,7 @@ public class LC345ReverseVowelsOfAString {
             return false;
         }
 
-        public String reverseVowels(String s) {
+        public String reverseVowels(final String s) {
             char[] text = s.toCharArray();
             for (int a = 0, z = text.length - 1; a < z; ) {
                 while (a < text.length && !isVowel(text[a])) {

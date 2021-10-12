@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/gas-station/
  * #medium
  */
-public class LC134GasStation {
-    public class Solution {
-        public int canCompleteCircuit(int[] gas, int[] cost) {
+public final class LC134GasStation {
+    public final class Solution {
+        public int canCompleteCircuit(final int[] gas, final int[] cost) {
             int minimum = Integer.MAX_VALUE;
             int gauge = 0, i, index = -1;
             for (i = 0; i <= gas.length; i++) {

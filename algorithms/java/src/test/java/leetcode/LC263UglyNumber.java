@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/ugly-number/
  * #easy
  */
-public class LC263UglyNumber {
-    public class Solution {
-        public boolean isUgly(int num) {
+public final class LC263UglyNumber {
+    public final class Solution {
+        public boolean isUgly(final int num) {
             if (num <= 0) return false;
             if (num == 1) return true;
             int original = num;

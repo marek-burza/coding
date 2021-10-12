@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
  * https://leetcode.com/problems/delete-node-in-a-linked-list/
  * #easy
  */
-public class LC237DeleteNodeInALinkedList {
-    public class ListNode {
+public final class LC237DeleteNodeInALinkedList {
+    public final class ListNode {
         int val;
         ListNode next;
 
@@ -20,8 +20,8 @@ public class LC237DeleteNodeInALinkedList {
         }
     }
 
-    public class Solution {
-        public void deleteNode(ListNode node) {
+    public final class Solution {
+        public void deleteNode(final ListNode node) {
             while (node != null) {
                 if (node.next != null) {
                     node.val = node.next.val;

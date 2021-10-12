@@ -12,19 +12,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
  * #medium
  */
-public class LC107BinaryTreeLevelOrderTraversalII {
-    public class TreeNode {
+public final class LC107BinaryTreeLevelOrderTraversalII {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
     public final class Solution {
-        public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        public List<List<Integer>> levelOrderBottom(final TreeNode root) {
             List<List<Integer>> result = new ArrayList<>();
             List<TreeNode> current = new ArrayList<>();
             if (root != null) {

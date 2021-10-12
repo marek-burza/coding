@@ -11,21 +11,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/surrounded-regions/
  * #medium
  */
-public class LC130SurroundedRegions {
-    public class Solution {
-        private long key(int i, int j) {
+public final class LC130SurroundedRegions {
+    public final class Solution {
+        private long key(final int i, final int j) {
             return ((long) i << 32) | j;
         }
 
-        private int i(long key) {
+        private int i(final long key) {
             return (int) (key >> 32);
         }
 
-        private int j(long key) {
+        private int j(final long key) {
             return (int) key;
         }
 
-        private void enqueue(int i, int j, List<Long> check, Set<Long> visited) {
+        private void enqueue(final int i, final int j, final List<Long> check, final Set<Long> visited) {
             long key = key(i, j);
             if (!visited.contains(key)) {
                 check.add(key);
@@ -33,7 +33,7 @@ public class LC130SurroundedRegions {
             }
         }
 
-        public void solve(char[][] board) {
+        public void solve(final char[][] board) {
             if (board == null || board.length == 0) {
                 return;
             }
@@ -85,7 +85,7 @@ public class LC130SurroundedRegions {
         }
     }
 
-    public char[][] construct(String[] compact) {
+    public char[][] construct(final String[] compact) {
         char[][] board = new char[compact.length][];
         for (int i = 0; i < compact.length; i++) {
             board[i] = compact[i].toCharArray();

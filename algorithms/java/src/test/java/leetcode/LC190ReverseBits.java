@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/reverse-bits/
  * #easy
  */
-public class LC190ReverseBits {
-    public class Solution {
-        public int reverseBits(int n) {
+public final class LC190ReverseBits {
+    public final class Solution {
+        public int reverseBits(final int n) {
             int r = 0;
             for (int i = 0; i < 32; i++) {
                 r <<= 1;

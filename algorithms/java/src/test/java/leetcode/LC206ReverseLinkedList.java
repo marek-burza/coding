@@ -11,18 +11,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/reverse-linked-list/
  * #easy
  */
-public class LC206ReverseLinkedList {
-    public class ListNode {
+public final class LC206ReverseLinkedList {
+    public final class ListNode {
         public int val;
         public ListNode next;
 
-        public ListNode(int x) {
+        public ListNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public ListNode reverseList(ListNode head) {
+    public final class Solution {
+        public ListNode reverseList(final ListNode head) {
             if (head == null) {
                 return (null);
             }
@@ -54,7 +54,7 @@ public class LC206ReverseLinkedList {
         return list;
     }
 
-    public int[] freeze(ListNode list) {
+    public int[] freeze(final ListNode list) {
         int count = 0;
         ListNode copy = list;
         while (copy != null) {

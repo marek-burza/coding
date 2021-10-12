@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
  * #medium
  */
-public class LC153FindMinimumInRotatedSortedArray {
-    public class Solution {
-        public int findMin(int[] nums) {
+public final class LC153FindMinimumInRotatedSortedArray {
+    public final class Solution {
+        public int findMin(final int[] nums) {
             int a = 0, z = nums.length - 1;
             while (a != z) {
                 // For sorted array return the smallest

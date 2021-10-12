@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/minimum-depth-of-binary-tree/
  * #easy
  */
-public class LC111MinimumDepthOfBinaryTree {
-    public class TreeNode {
+public final class LC111MinimumDepthOfBinaryTree {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
@@ -28,13 +28,13 @@ public class LC111MinimumDepthOfBinaryTree {
             public TreeNode node;
             public int depth;
 
-            public AnnotatedNode(TreeNode node, int depth) {
+            public AnnotatedNode(final TreeNode node, final int depth) {
                 this.node = node;
                 this.depth = depth;
             }
         }
 
-        public int minDepth(TreeNode root) {
+        public int minDepth(final TreeNode root) {
             if (root == null) {
                 return 0;
             }

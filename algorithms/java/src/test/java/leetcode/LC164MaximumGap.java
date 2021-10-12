@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/maximum-gap/
  * #hard
  */
-public class LC164MaximumGap {
-    public class Solution {
-        private int min(int[] nums) {
+public final class LC164MaximumGap {
+    public final class Solution {
+        private int min(final int[] nums) {
             int min = nums[0];
             for (int i = 1; i < nums.length; i++) {
                 if (nums[i] < min) {
@@ -23,7 +23,7 @@ public class LC164MaximumGap {
             return min;
         }
 
-        private int max(int[] nums) {
+        private int max(final int[] nums) {
             int max = nums[0];
             for (int i = 1; i < nums.length; i++) {
                 if (nums[i] > max) {
@@ -33,7 +33,7 @@ public class LC164MaximumGap {
             return max;
         }
 
-        public int maximumGap(int[] nums) {
+        public int maximumGap(final int[] nums) {
             if (nums == null || nums.length == 0) {
                 return 0;
             }

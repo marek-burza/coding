@@ -13,19 +13,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/binary-tree-paths/
  * #easy
  */
-public class LC257BinaryTreePaths {
-    public class TreeNode {
+public final class LC257BinaryTreePaths {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public void binaryTreePaths(TreeNode root, String prefix, List<String> result) {
+    public final class Solution {
+        public void binaryTreePaths(final TreeNode root, final String prefix, final List<String> result) {
             prefix += ((prefix.length() == 0) ? "" : "->") + root.val;
             if (root.left == null && root.right == null) {
                 result.add(prefix);
@@ -39,7 +39,7 @@ public class LC257BinaryTreePaths {
             }
         }
 
-        public List<String> binaryTreePaths(TreeNode root) {
+        public List<String> binaryTreePaths(final TreeNode root) {
             List<String> result = new ArrayList<>();
             if (root != null) {
                 binaryTreePaths(root, "", result);

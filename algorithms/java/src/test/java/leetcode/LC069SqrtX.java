@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/sqrtx/
  * #easy
  */
-public class LC069SqrtX {
+public final class LC069SqrtX {
     public final class Solution {
-        public int mySqrt(int x) {
+        public int mySqrt(final int x) {
             long a = 0;
             long z = x;
             while (a + 1 < z) {

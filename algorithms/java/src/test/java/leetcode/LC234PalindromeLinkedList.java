@@ -9,18 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/palindrome-linked-list/
  * #easy
  */
-public class LC234PalindromeLinkedList {
-    public class ListNode {
+public final class LC234PalindromeLinkedList {
+    public final class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public boolean isPalindrome(ListNode head) {
+    public final class Solution {
+        public boolean isPalindrome(final ListNode head) {
             int count = 0;
             ListNode node = head;
             while (node != null) {

@@ -11,19 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/symmetric-tree/
  * #easy
  */
-public class LC101SymmetricTree {
+public final class LC101SymmetricTree {
     public static class TreeNode {
         public int val;
         public TreeNode left;
         public TreeNode right;
 
-        public TreeNode(int x) {
+        public TreeNode(final int x) {
             val = x;
         }
     }
 
     public final class Solution {
-        public boolean isSymmetric(TreeNode root) {
+        public boolean isSymmetric(final TreeNode root) {
             if (root == null) {
                 return true;
             }

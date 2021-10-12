@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/nim-game/
  * #easy
  */
-public class LC292NimGame {
-    public class Solution {
-        public boolean canWinNim(int n) {
+public final class LC292NimGame {
+    public final class Solution {
+        public boolean canWinNim(final int n) {
             return n % 4 != 0;
         }
     }

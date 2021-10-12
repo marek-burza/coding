@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/rotate-image/
  * #medium
  */
-public class LC048RotateImage {
+public final class LC048RotateImage {
     public final class Solution {
-        public void rotate(int[][] matrix) {
+        public void rotate(final int[][] matrix) {
             for (int row = 0; row < (matrix.length / 2) + (matrix.length & 1); row++) {
                 for (int column = row; column < matrix.length - 1 - row; column++) {
                     int exchange = matrix[row][column];
@@ -24,7 +24,7 @@ public class LC048RotateImage {
         }
     }
 
-    private void test_matrices(int[][] expected, int[][] result) {
+    private void test_matrices(final int[][] expected, final int[][] result) {
         assertEquals(expected.length, result.length);
         for (int row = 0; row < expected.length; row++) {
             assertEquals(expected[row].length, result[row].length);

@@ -11,28 +11,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
  * #medium
  */
-public class LC109ConvertSortedListToBinarySearchTree {
-    public class ListNode {
+public final class LC109ConvertSortedListToBinarySearchTree {
+    public final class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
         }
     }
 
-    public class TreeNode {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
     public final class Solution {
-        private int length(ListNode head) {
+        private int length(final ListNode head) {
             int count = 0;
             while (head != null) {
                 count++;
@@ -41,7 +41,7 @@ public class LC109ConvertSortedListToBinarySearchTree {
             return count;
         }
 
-        private TreeNode generate(ListNode head, int length) {
+        private TreeNode generate(final ListNode head, final int length) {
             if (head == null || length <= 0) return null;
             int half = length >> 1;
             ListNode middle = head;
@@ -54,7 +54,7 @@ public class LC109ConvertSortedListToBinarySearchTree {
             return root;
         }
 
-        public TreeNode sortedListToBST(ListNode head) {
+        public TreeNode sortedListToBST(final ListNode head) {
             return generate(head, length(head));
         }
     }
@@ -64,7 +64,7 @@ public class LC109ConvertSortedListToBinarySearchTree {
         public int max = Integer.MIN_VALUE;
     }
 
-    private void depth(TreeNode root, int level, MinMax depths) {
+    private void depth(final TreeNode root, final int level, final MinMax depths) {
         if (root == null) {
             depths.max = depths.max < level ? level : depths.max;
             depths.min = depths.min > level ? level : depths.min;
@@ -74,7 +74,7 @@ public class LC109ConvertSortedListToBinarySearchTree {
         }
     }
 
-    private ListNode example(int limit) {
+    private ListNode example(final int limit) {
         Random random = new Random();
         int length = random.nextInt(limit - 1) + 1;
         ListNode list = new ListNode(0);
@@ -86,7 +86,7 @@ public class LC109ConvertSortedListToBinarySearchTree {
         return list.next;
     }
 
-    private ListNode iterated(int min, int max) {
+    private ListNode iterated(final int min, final int max) {
         int[] array = new int[max - min + 1];
         for (int i = 0; i < array.length; i++) {
             array[i] = min + i;
@@ -102,7 +102,7 @@ public class LC109ConvertSortedListToBinarySearchTree {
     }
 
 
-    public ListNode test(TreeNode root, ListNode list) {
+    public ListNode test(final TreeNode root, final ListNode list) {
         if (root == null) return list;
         list = test(root.left, list);
         assertEquals(list.val, root.val);

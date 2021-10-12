@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/valid-perfect-square/
  * #easy
  */
-public class LC367ValidPerfectSquare {
-    public class Solution {
-        public boolean isPerfectSquare(int num) {
+public final class LC367ValidPerfectSquare {
+    public final class Solution {
+        public boolean isPerfectSquare(final int num) {
             long a = 0, z = 1 + num / 2;
             while (a <= z) {
                 long m = (a + z) / 2;

@@ -12,19 +12,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/binary-tree-right-side-view/
  * #medium
  */
-public class LC199BinaryTreeRightSideView {
-    public class TreeNode {
+public final class LC199BinaryTreeRightSideView {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public void rightSideView(TreeNode root, int level, List<Integer> list) {
+    public final class Solution {
+        public void rightSideView(final TreeNode root, final int level, final List<Integer> list) {
             if (root != null) {
                 level++;
                 if (level > list.size()) {
@@ -35,7 +35,7 @@ public class LC199BinaryTreeRightSideView {
             }
         }
 
-        public List<Integer> rightSideView(TreeNode root) {
+        public List<Integer> rightSideView(final TreeNode root) {
             List<Integer> list = new ArrayList<>();
             rightSideView(root, 0, list);
             return list;

@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/sort-colors/
  * #medium
  */
-public class LC075SortColors {
+public final class LC075SortColors {
     public final class Solution {
-        public void sortColors(int[] nums) {
+        public void sortColors(final int[] nums) {
             int[] counters = {0, 0, 0};
             for (int value : nums) {
                 counters[value]++;

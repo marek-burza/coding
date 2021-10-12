@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/combination-sum-iii/
  * #medium
  */
-public class LC216CombinationSumIII {
-    public class Solution {
-        private void traverse(int contains, int sum, int left, int n, List<Integer> found, int start) {
+public final class LC216CombinationSumIII {
+    public final class Solution {
+        private void traverse(final int contains, final int sum, final int left, final int n, final List<Integer> found, final int start) {
             if (left == 0 && sum == n) {
                 found.add(contains);
             } else {
@@ -26,7 +26,7 @@ public class LC216CombinationSumIII {
             }
         }
 
-        public List<List<Integer>> combinationSum3(int k, int n) {
+        public List<List<Integer>> combinationSum3(final int k, final int n) {
             List<Integer> found = new ArrayList<>();
             traverse(0, 0, k, n, found, 1);
             List<List<Integer>> all = new ArrayList<>();
@@ -44,7 +44,7 @@ public class LC216CombinationSumIII {
         }
     }
 
-    private void test(int[][] expected, List<List<Integer>> result) {
+    private void test(final int[][] expected, final List<List<Integer>> result) {
         for (List<Integer> entry : result) {
             Collections.sort(entry);
         }

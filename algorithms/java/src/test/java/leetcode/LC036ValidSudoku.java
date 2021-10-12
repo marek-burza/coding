@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/valid-sudoku/
  * #medium
  */
-public class LC036ValidSudoku {
+public final class LC036ValidSudoku {
     public final class Solution {
-        public boolean validate(char[][] board, int[][] indices, int dx, int dy) {
+        public boolean validate(final char[][] board, final int[][] indices, final int dx, final int dy) {
             int check = 0;
             for (int i = 0; i < indices.length; i++) {
                 int[] at = indices[i];
@@ -27,7 +27,7 @@ public class LC036ValidSudoku {
             return true;
         }
 
-        public boolean isValidSudoku(char[][] board) {
+        public boolean isValidSudoku(final char[][] board) {
             int[][] row = {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}, {6, 0}, {7, 0}, {8, 0}};
             int[][] column = {{0, 0}, {0, 1}, {0, 2}, {0, 3}, {0, 4}, {0, 5}, {0, 6}, {0, 7}, {0, 8}};
             int[][] block = {{0, 0}, {0, 1}, {0, 2}, {1, 0}, {1, 1}, {1, 2}, {2, 0}, {2, 1}, {2, 2}};

@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/group-anagrams/
  * #medium
  */
-public class LC049GroupAnagrams {
+public final class LC049GroupAnagrams {
     public final class Solution {
-        public List<List<String>> groupAnagrams(String[] strs) {
+        public List<List<String>> groupAnagrams(final String[] strs) {
             Map<String, List<String>> seen = new HashMap<>();
             for (String str : strs) {
                 char[] array = str.toCharArray();
@@ -36,9 +36,9 @@ public class LC049GroupAnagrams {
         }
     }
 
-    private class OrderlyComparator implements Comparator<List<String>> {
+    private final class OrderlyComparator implements Comparator<List<String>>, Serializable {
         @Override
-        public int compare(List<String> l1, List<String> l2) {
+        public int compare(final List<String> l1, final List<String> l2) {
             int difference = l1.size() - l2.size();
             if (0 != difference) {
                 return difference;
@@ -54,7 +54,7 @@ public class LC049GroupAnagrams {
         }
     }
 
-    public void test(String[][] expected, List<List<String>> result) throws Exception {
+    public void test(final String[][] expected, final List<List<String>> result) throws Exception {
         Collections.sort(result, new OrderlyComparator());
         assertEquals(expected.length, result.size());
         for (int i = 0; i < expected.length; i++) {

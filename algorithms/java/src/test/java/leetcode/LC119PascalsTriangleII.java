@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/pascals-triangle-ii/
  * #easy
  */
-public class LC119PascalsTriangleII {
-    public class Solution {
-        public List<Integer> getRow(int rowIndex) {
+public final class LC119PascalsTriangleII {
+    public final class Solution {
+        public List<Integer> getRow(final int rowIndex) {
             rowIndex++;
             if (rowIndex < 0) {
                 return null;

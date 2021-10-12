@@ -14,19 +14,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
  * #easy
  */
-public class LC108ConvertSortedArrayToBinarySearchTree {
-    public class TreeNode {
+public final class LC108ConvertSortedArrayToBinarySearchTree {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
     public final class Solution {
-        public TreeNode sortedArrayToBST(int[] nums, int from, int to) {
+        public TreeNode sortedArrayToBST(final int[] nums, final int from, final int to) {
             if (from > to) return null;
             int at = (from + to) / 2;
             TreeNode node = new TreeNode(nums[at]);
@@ -40,7 +40,7 @@ public class LC108ConvertSortedArrayToBinarySearchTree {
         }
     }
 
-    private int minHeight(TreeNode root) {
+    private int minHeight(final TreeNode root) {
         if (root == null) return 0;
         Queue<TreeNode> nodes = new LinkedList<>();
         nodes.add(root);
@@ -68,7 +68,7 @@ public class LC108ConvertSortedArrayToBinarySearchTree {
         return minimum;
     }
 
-    private int maxHeight(TreeNode root) {
+    private int maxHeight(final TreeNode root) {
         if (root == null) return 0;
         Queue<TreeNode> nodes = new LinkedList<>();
         nodes.add(root);
@@ -96,7 +96,7 @@ public class LC108ConvertSortedArrayToBinarySearchTree {
         return maximum;
     }
 
-    private void reconstruct(TreeNode root, List<Integer> list) {
+    private void reconstruct(final TreeNode root, final List<Integer> list) {
         if (root == null) return;
         if (root.left != null) {
             reconstruct(root.left, list);
@@ -107,7 +107,7 @@ public class LC108ConvertSortedArrayToBinarySearchTree {
         }
     }
 
-    private boolean isBST(TreeNode root) {
+    private boolean isBST(final TreeNode root) {
         List<Integer> list = new ArrayList<>();
         reconstruct(root, list);
         int previous = Integer.MIN_VALUE;

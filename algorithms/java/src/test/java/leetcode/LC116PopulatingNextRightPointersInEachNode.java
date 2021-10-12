@@ -12,18 +12,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
  * #medium
  */
-public class LC116PopulatingNextRightPointersInEachNode {
-    public class TreeLinkNode {
+public final class LC116PopulatingNextRightPointersInEachNode {
+    public final class TreeLinkNode {
         int val;
         TreeLinkNode left, right, next;
 
-        TreeLinkNode(int x) {
+        TreeLinkNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public void connect(TreeLinkNode root) {
+    public final class Solution {
+        public void connect(final TreeLinkNode root) {
             List<TreeLinkNode> current = new ArrayList();
             if (root != null) {
                 current.add(root);

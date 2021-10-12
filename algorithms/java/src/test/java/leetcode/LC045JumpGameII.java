@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/jump-game-ii/
  * #medium
  */
-public class LC045JumpGameII {
+public final class LC045JumpGameII {
     public final class Solution {
-        public int jump(int[] nums) {
+        public int jump(final int[] nums) {
             if (nums.length == 1) return 0;
             int horizon = nums[0];
             int i = 0;

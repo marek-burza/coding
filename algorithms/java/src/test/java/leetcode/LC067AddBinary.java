@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/add-binary/
  * #easy
  */
-public class LC067AddBinary {
+public final class LC067AddBinary {
     public final class Solution {
-        public String addBinary(String a, String b) {
+        public String addBinary(final String a, final String b) {
             char[] ar = new StringBuilder(a).reverse().toString().toCharArray();
             char[] br = new StringBuilder(b).reverse().toString().toCharArray();
             StringBuilder result = new StringBuilder();

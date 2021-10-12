@@ -9,18 +9,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/partition-list/
  * #medium
  */
-public class LC086PartitionList {
-    public class ListNode {
+public final class LC086PartitionList {
+    public final class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
         }
     }
 
     public final class Solution {
-        public ListNode partition(ListNode head, int x) {
+        public ListNode partition(final ListNode head, final int x) {
             if (head == null) {
                 return null;
             }
@@ -45,7 +45,7 @@ public class LC086PartitionList {
         }
     }
 
-    private ListNode build(int[] array) {
+    private ListNode build(final int[] array) {
         ListNode head = null;
         ListNode tail = null;
         for (int value : array) {

@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/rectangle-area/
  * #medium
  */
-public class LC223RectangleArea {
-    public class Solution {
-        private int area(int left, int bottom, int right, int top) {
+public final class LC223RectangleArea {
+    public final class Solution {
+        private int area(final int left, final int bottom, final int right, final int top) {
             return (right - left) * (top - bottom);
         }
 
-        public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        public int computeArea(final int A, final int B, final int C, final int D, final int E, final int F, final int G, final int H) {
             int total = area(A, B, C, D) + area(E, F, G, H);
             int top = Math.min(D, H);
             int bottom = Math.max(B, F);

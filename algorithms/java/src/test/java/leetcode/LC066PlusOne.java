@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/plus-one/
  * #easy
  */
-public class LC066PlusOne {
+public final class LC066PlusOne {
     public final class Solution {
-        public int[] plusOne(int[] digits) {
+        public int[] plusOne(final int[] digits) {
             int carry = 1;
             for (int i = digits.length - 1; i >= 0; i--) {
                 digits[i] += carry;

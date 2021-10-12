@@ -15,9 +15,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/repeated-dna-sequences/
  * #medium
  */
-public class LC187RepeatedDNASequences {
-    public class Solution {
-        public int compress(char nucleotide) {
+public final class LC187RepeatedDNASequences {
+    public final class Solution {
+        public int compress(final char nucleotide) {
             switch (nucleotide) {
                 case 'A':
                     return 0;
@@ -31,11 +31,11 @@ public class LC187RepeatedDNASequences {
             return -1;
         }
 
-        public int encode(int sequence, int compressed) {
+        public int encode(final int sequence, final int compressed) {
             return (compressed << 18) | (sequence >> 2);
         }
 
-        public String decode(int sequence) {
+        public String decode(final int sequence) {
             StringBuilder decoded = new StringBuilder();
             for (int i = 0; i < 10; i++) {
                 int nucleotide = sequence & 0x3;
@@ -58,7 +58,7 @@ public class LC187RepeatedDNASequences {
             return decoded.toString();
         }
 
-        public List<String> findRepeatedDnaSequences(String s) {
+        public List<String> findRepeatedDnaSequences(final String s) {
             List<String> list = new ArrayList<>();
             if (s == null || s.length() < 10) {
                 return list;

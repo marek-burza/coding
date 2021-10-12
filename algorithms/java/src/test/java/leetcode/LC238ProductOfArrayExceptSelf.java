@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/product-of-array-except-self/
  * #medium
  */
-public class LC238ProductOfArrayExceptSelf {
-    public class Solution {
-        public int[] productExceptSelf(int[] nums) {
+public final class LC238ProductOfArrayExceptSelf {
+    public final class Solution {
+        public int[] productExceptSelf(final int[] nums) {
             int[] result = new int[nums.length];
             result[0] = 1;
             for (int i = 1; i < nums.length; i++) {

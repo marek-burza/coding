@@ -12,12 +12,12 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/shuffle-an-array/
  * #medium
  */
-public class LC384ShuffleAnArray {
-    public class Solution {
+public final class LC384ShuffleAnArray {
+    public final class Solution {
         private final Random random;
         private final int[] nums;
 
-        public Solution(int[] nums) {
+        public Solution(final int[] nums) {
             this.nums = nums;
             random = new Random();
         }
@@ -39,7 +39,7 @@ public class LC384ShuffleAnArray {
         }
     }
 
-    private void test(int[] nums) {
+    private void test(final int[] nums) {
         Solution solution = new Solution(nums.clone());
         int[] result = solution.shuffle();
         int[] reset = solution.reset();

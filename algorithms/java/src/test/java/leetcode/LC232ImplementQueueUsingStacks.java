@@ -11,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/implement-queue-using-stacks/
  * #easy
  */
-public class LC232ImplementQueueUsingStacks {
+public final class LC232ImplementQueueUsingStacks {
     class MyQueue {
         private Stack<Integer> stack = new Stack();
         private Stack<Integer> buffer = new Stack();
 
         // Push element x to the back of queue.
-        public void push(int x) {
+        public void push(final int x) {
             while (stack.size() != 0) {
                 buffer.push(stack.pop());
             }

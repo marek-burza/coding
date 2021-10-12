@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/reverse-string/
  * #easy
  */
-public class LC344ReverseString {
-    public class Solution {
-        public String reverseString(String s) {
+public final class LC344ReverseString {
+    public final class Solution {
+        public String reverseString(final String s) {
             char[] reversed = s.toCharArray();
             for (int i = 0; i < Math.round(reversed.length / 2.0); i++) {
                 char exchange = reversed[i];

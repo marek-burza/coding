@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/valid-palindrome/
  * #easy
  */
-public class LC125ValidPalindrome {
-    public class Solution {
-        public boolean isPalindrome(String s) {
+public final class LC125ValidPalindrome {
+    public final class Solution {
+        public boolean isPalindrome(final String s) {
             if (s == null || s.length() == 0) {
                 return true;
             }

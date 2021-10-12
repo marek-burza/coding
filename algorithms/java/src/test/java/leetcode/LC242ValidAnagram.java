@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/valid-anagram/
  * #easy
  */
-public class LC242ValidAnagram {
-    public class Solution {
-        public boolean isAnagram(String s, String t) {
+public final class LC242ValidAnagram {
+    public final class Solution {
+        public boolean isAnagram(final String s, final String t) {
             char[] sChars = s.toCharArray();
             char[] tChars = t.toCharArray();
             if (sChars.length != tChars.length) {

@@ -12,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/peeking-iterator/
  * #medium
  */
-public class LC284PeekingIterator {
-    class PeekingIterator implements Iterator<Integer> {
+public final class LC284PeekingIterator {
+    final class PeekingIterator implements Iterator<Integer> {
         private final Iterator<Integer> iterator;
         private boolean got;
         private int value;
 
-        public PeekingIterator(Iterator<Integer> iterator) {
+        PeekingIterator(final Iterator<Integer> iterator) {
             this.iterator = iterator;
             got = false;
         }

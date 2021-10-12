@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/restore-ip-addresses/
  * #medium
  */
-public class LC093RestoreIPAddresses {
+public final class LC093RestoreIPAddresses {
     public final class Solution {
-        private void partial(String s, int count, List<String> ip, List<String> list) {
+        private void partial(final String s, final int count, final List<String> ip, final List<String> list) {
             if (s.length() < count || (s.charAt(0) == '0' && count > 1)) {
                 return;
             }
@@ -30,7 +30,7 @@ public class LC093RestoreIPAddresses {
             }
         }
 
-        public void restore(String s, List<String> ip, List<String> list) {
+        public void restore(final String s, final List<String> ip, final List<String> list) {
             if (ip.size() >= 4) {
                 if (s.length() == 0) {
                     StringBuilder string = new StringBuilder();
@@ -49,7 +49,7 @@ public class LC093RestoreIPAddresses {
             }
         }
 
-        public List<String> restoreIpAddresses(String s) {
+        public List<String> restoreIpAddresses(final String s) {
             List<String> ip = new ArrayList<>();
             List<String> list = new ArrayList<>();
             restore(s, ip, list);
@@ -57,7 +57,7 @@ public class LC093RestoreIPAddresses {
         }
     }
 
-    private String[] freeze(List<String> list) {
+    private String[] freeze(final List<String> list) {
         String[] result = new String[list.size()];
         for (int i = 0; i < result.length; i++) {
             result[i] = list.get(i);

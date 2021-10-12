@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/merge-sorted-array/
  * #easy
  */
-public class LC088MergeSortedArray {
+public final class LC088MergeSortedArray {
     public final class Solution {
-        public void merge(int[] nums1, int m, int[] nums2, int n) {
+        public void merge(final int[] nums1, final int m, final int[] nums2, final int n) {
             int i = m + n - 1;
             m--;
             n--;

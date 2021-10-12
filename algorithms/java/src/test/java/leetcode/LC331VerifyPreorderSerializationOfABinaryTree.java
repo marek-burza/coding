@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
  * #medium
  */
-public class LC331VerifyPreorderSerializationOfABinaryTree {
-    public class Solution {
-        public boolean isValidSerialization(String preorder) {
+public final class LC331VerifyPreorderSerializationOfABinaryTree {
+    public final class Solution {
+        public boolean isValidSerialization(final String preorder) {
             if (null == preorder || preorder.length() == 0) return false;
             String[] items = preorder.split(",");
             Stack<Integer> kids = new Stack<>();

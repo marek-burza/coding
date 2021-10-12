@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/add-digits/
  * #easy
  */
-public class LC258AddDigits {
-    public class Solution {
-        public int addDigits(int num) {
+public final class LC258AddDigits {
+    public final class Solution {
+        public int addDigits(final int num) {
             while (num >= 10) {
                 int sum = 0;
                 while (num > 0) {

@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/h-index-ii/
  * #medium
  */
-public class LC275HIndexII {
-    public class Solution {
-        public int hIndex(int[] citations) {
+public final class LC275HIndexII {
+    public final class Solution {
+        public int hIndex(final int[] citations) {
             int n = citations.length;
             int a = 0;
             int z = n;

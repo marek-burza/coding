@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
  * https://leetcode.com/problems/spiral-matrix-ii/
  * #medium
  */
-public class LC059SpiralMatrixII {
+public final class LC059SpiralMatrixII {
     public final class Solution {
-        public int[][] generateMatrix(int n) {
+        public int[][] generateMatrix(final int n) {
             int[] limits = {n - 1, n - 1, 0, 0};
             int[] restrict = {1, -1, -1, 1};
             int[][] delta = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};

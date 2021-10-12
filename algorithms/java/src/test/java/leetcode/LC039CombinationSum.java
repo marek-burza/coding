@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/combination-sum/
  * #medium
  */
-public class LC039CombinationSum {
+public final class LC039CombinationSum {
     public final class Solution {
-        public void combinationSum(int[] candidates, int target, List<Integer> path, int sum, int index, List<List<Integer>> combos) {
+        public void combinationSum(final int[] candidates, final int target, final List<Integer> path, final int sum, final int index, final List<List<Integer>> combos) {
             if (sum == target) {
                 combos.add(new ArrayList(path));
                 return;
@@ -28,16 +28,16 @@ public class LC039CombinationSum {
             }
         }
 
-        public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        public List<List<Integer>> combinationSum(final int[] candidates, final int target) {
             List<List<Integer>> combos = new ArrayList();
             combinationSum(candidates, target, new ArrayList(), 0, 0, combos);
             return combos;
         }
     }
 
-    private class DeepComparator implements Comparator<List<Integer>> {
+    private final class DeepComparator implements Comparator<List<Integer>>, Serializable {
         @Override
-        public int compare(List<Integer> list1, List<Integer> list2) {
+        public int compare(final List<Integer> list1, final List<Integer> list2) {
             if (list1.size() < list2.size()) return -1;
             if (list1.size() > list2.size()) return 1;
             for (int i = 0, length = list1.size(); i < length; i++) {

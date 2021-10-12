@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/perfect-squares/
  * #medium
  */
-public class LC279PerfectSquares {
-    public class Solution {
-        public int numSquares(int n) {
+public final class LC279PerfectSquares {
+    public final class Solution {
+        public int numSquares(final int n) {
             int[] lut = new int[n + 1];
             Arrays.fill(lut, 1, n + 1, Integer.MAX_VALUE);
             for (int i = 1, ii = 1; ii <= n; ii = ++i * i) {

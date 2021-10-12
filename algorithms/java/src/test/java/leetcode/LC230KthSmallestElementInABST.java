@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/kth-smallest-element-in-a-bst/
  * #medium
  */
-public class LC230KthSmallestElementInABST {
-    public class TreeNode {
+public final class LC230KthSmallestElementInABST {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public int kthSmallest(TreeNode root, int k, TreeNode counter) {
+    public final class Solution {
+        public int kthSmallest(final TreeNode root, final int k, final TreeNode counter) {
             if (root.left != null) {
                 int result = kthSmallest(root.left, k, counter);
                 if (counter.val == k) {

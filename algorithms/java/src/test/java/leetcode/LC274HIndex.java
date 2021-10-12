@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/h-index/
  * #medium
  */
-public class LC274HIndex {
-    public class Solution {
-        public int hIndexSlower(int[] citations) {
+public final class LC274HIndex {
+    public final class Solution {
+        public int hIndexSlower(final int[] citations) {
             Arrays.sort(citations);
             int n = citations.length;
             int a = 0;
@@ -31,7 +31,7 @@ public class LC274HIndex {
             return n - a;
         }
 
-        public int hIndex(int[] citations) {
+        public int hIndex(final int[] citations) {
             int n = citations.length;
             int[] counts = new int[n + 1];
             for (int citation : citations) {

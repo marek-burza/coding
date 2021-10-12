@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
  * #medium
  */
-public class LC309BestTimeToBuyAndSellStockWithCooldown {
-    public class Solution {
-        public int maxProfit(int[] prices) {
+public final class LC309BestTimeToBuyAndSellStockWithCooldown {
+    public final class Solution {
+        public int maxProfit(final int[] prices) {
             int sell = 0, previous_sell = 0, buy = Integer.MIN_VALUE, previous_buy;
             for (int price : prices) {
                 previous_buy = buy;

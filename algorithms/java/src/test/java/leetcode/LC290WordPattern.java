@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/word-pattern/
  * #easy
  */
-public class LC290WordPattern {
-    public class Solution {
-        public boolean check(String first, String second, HashMap<String, String> mapping) {
+public final class LC290WordPattern {
+    public final class Solution {
+        public boolean check(final String first, final String second, final HashMap<String, String> mapping) {
             if (mapping.containsKey(first)) {
                 if (!mapping.get(first).equals(second)) {
                     return false;
@@ -24,7 +24,7 @@ public class LC290WordPattern {
             return true;
         }
 
-        public boolean wordPattern(String pattern, String str) {
+        public boolean wordPattern(final String pattern, final String str) {
             String[] words = str.split(" ");
             if (pattern.length() != words.length) {
                 return false;
