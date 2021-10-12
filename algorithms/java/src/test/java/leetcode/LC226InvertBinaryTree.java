@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/invert-binary-tree/
  * #easy
  */
-public class LC226InvertBinaryTree {
-    public class TreeNode {
+public final class LC226InvertBinaryTree {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public TreeNode invertTree(TreeNode root) {
+    public final class Solution {
+        public TreeNode invertTree(final TreeNode root) {
             if (root != null) {
                 TreeNode node = root.left;
                 root.left = root.right;

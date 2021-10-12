@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/house-robber/
  * #medium
  */
-public class LC198HouseRobber {
-    public class Solution {
-        public int rob(int[] nums, int offset, HashMap<Integer, Integer> maxed) {
+public final class LC198HouseRobber {
+    public final class Solution {
+        public int rob(final int[] nums, final int offset, final HashMap<Integer, Integer> maxed) {
             if (nums.length <= offset) {
                 return 0;
             }
@@ -30,7 +30,7 @@ public class LC198HouseRobber {
             }
         }
 
-        public int rob(int[] nums) {
+        public int rob(final int[] nums) {
             return rob(nums, 0, new HashMap<Integer, Integer>());
         }
     }

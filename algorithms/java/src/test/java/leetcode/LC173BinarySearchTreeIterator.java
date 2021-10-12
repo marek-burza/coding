@@ -11,21 +11,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/binary-search-tree-iterator/
  * #medium
  */
-public class LC173BinarySearchTreeIterator {
-    public class TreeNode {
+public final class LC173BinarySearchTreeIterator {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
-    public class BSTIterator {
+    public final class BSTIterator {
         private Stack<TreeNode> stack = new Stack();
 
-        public BSTIterator(TreeNode root) {
+        public BSTIterator(final TreeNode root) {
             while (root != null) {
                 stack.push(root);
                 root = root.left;

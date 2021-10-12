@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/intersection-of-two-linked-lists/
  * #easy
  */
-public class LC160IntersectionOfTwoLinkedLists {
-    public class ListNode {
+public final class LC160IntersectionOfTwoLinkedLists {
+    public final class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
             next = null;
         }
     }
 
-    public class Solution {
-        public ListNode detectCycle(ListNode head) {
+    public final class Solution {
+        public ListNode detectCycle(final ListNode head) {
             ListNode p1 = head;
             ListNode p2 = head;
             while (p2 != null && p2.next != null) {
@@ -40,14 +40,14 @@ public class LC160IntersectionOfTwoLinkedLists {
             return p2;
         }
 
-        private ListNode last(ListNode list) {
+        private ListNode last(final ListNode list) {
             while (list.next != null) {
                 list = list.next;
             }
             return list;
         }
 
-        public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        public ListNode getIntersectionNode(final ListNode headA, final ListNode headB) {
             if (headA == null || headB == null) {
                 return null;
             }

@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/happy-number/
  * #easy
  */
-public class LC202HappyNumber {
-    public class Solution {
-        private int re(int n) {
+public final class LC202HappyNumber {
+    public final class Solution {
+        private int re(final int n) {
             int result = 0;
             while (n != 0) {
                 int digit = n % 10;
@@ -24,7 +24,7 @@ public class LC202HappyNumber {
             return result;
         }
 
-        public boolean isHappy(int n) {
+        public boolean isHappy(final int n) {
             Set<Integer> seen = new HashSet<>();
             seen.add(n);
             while (n != 1) {

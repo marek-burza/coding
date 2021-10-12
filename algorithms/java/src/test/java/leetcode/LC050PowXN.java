@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/powx-n/
  * #medium
  */
-public class LC050PowXN {
+public final class LC050PowXN {
     public final class Solution {
-        public double myPow(double x, int n) {
+        public double myPow(final double x, final int n) {
             if (n == 0) return 1.0;
             long count = n < 0 ? - (long) n: (long) n;
             double result = x;

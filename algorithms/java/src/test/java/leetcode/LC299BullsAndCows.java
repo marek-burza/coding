@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/bulls-and-cows/
  * #medium
  */
-public class LC299BullsAndCows {
-    public class Solution {
-        public String getHint(String secret, String guess) {
+public final class LC299BullsAndCows {
+    public final class Solution {
+        public String getHint(final String secret, final String guess) {
             HashMap<Character, Integer> countKnown = new HashMap<>();
             HashMap<Character, Integer> countAsked = new HashMap<>();
             int bulls = 0, cows = 0, count;

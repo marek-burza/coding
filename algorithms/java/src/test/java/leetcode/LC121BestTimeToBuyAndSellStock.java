@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
  * #easy
  */
-public class LC121BestTimeToBuyAndSellStock {
-    public class Solution {
-        public int maxProfit(int[] prices) {
+public final class LC121BestTimeToBuyAndSellStock {
+    public final class Solution {
+        public int maxProfit(final int[] prices) {
             if (prices == null || prices.length <= 1) return 0;
             int[] mins = new int[prices.length];
             mins[0] = prices[0];

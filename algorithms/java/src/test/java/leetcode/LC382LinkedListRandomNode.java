@@ -11,21 +11,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/linked-list-random-node/
  * #medium
  */
-public class LC382LinkedListRandomNode {
-    public class ListNode {
+public final class LC382LinkedListRandomNode {
+    public final class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
+    public final class Solution {
         private final ListNode head;
         private final Random random;
 
-        public Solution(ListNode head) {
+        public Solution(final ListNode head) {
             this.head = head;
             random = new Random();
         }

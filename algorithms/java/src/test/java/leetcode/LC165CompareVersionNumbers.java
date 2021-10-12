@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/compare-version-numbers/
  * #medium
  */
-public class LC165CompareVersionNumbers {
-    public class Solution {
-        public int compareVersion(String version1, String version2) {
+public final class LC165CompareVersionNumbers {
+    public final class Solution {
+        public int compareVersion(final String version1, final String version2) {
             String[] parts1 = version1.split("\\.");
             String[] parts2 = version2.split("\\.");
             for (int i = 0; i < Math.max(parts1.length, parts2.length); i++) {

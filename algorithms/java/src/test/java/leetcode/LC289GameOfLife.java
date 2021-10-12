@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/game-of-life/
  * #medium
  */
-public class LC289GameOfLife {
-    public class Solution {
-        private int countAlive(int[][] board, int row, int col) {
+public final class LC289GameOfLife {
+    public final class Solution {
+        private int countAlive(final int[][] board, final int row, final int col) {
             int count = 0;
             count += (row > 0 && col > 0) ? board[row - 1][col - 1] & 1 : 0;
             count += (row > 0) ? board[row - 1][col] & 1 : 0;
@@ -24,7 +24,7 @@ public class LC289GameOfLife {
             return count;
         }
 
-        public void gameOfLife(int[][] board) {
+        public void gameOfLife(final int[][] board) {
             for (int row = 0; row < board.length; row++) {
                 for (int col = 0; col < board[row].length; col++) {
                     int count = countAlive(board, row, col);
@@ -45,7 +45,7 @@ public class LC289GameOfLife {
         }
     }
 
-    private void test(int[][] expected, int[][] board) throws Exception {
+    private void test(final int[][] expected, final int[][] board) throws Exception {
         assertEquals(expected.length, board.length);
         for (int row = 0; row < board.length; row++) {
             assertEquals(expected[row].length, board[row].length);

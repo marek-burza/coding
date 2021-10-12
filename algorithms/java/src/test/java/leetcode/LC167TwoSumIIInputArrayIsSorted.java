@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
  * #easy
  */
-public class LC167TwoSumIIInputArrayIsSorted {
-    public class Solution {
-        public int[] twoSum(int[] numbers, int target) {
+public final class LC167TwoSumIIInputArrayIsSorted {
+    public final class Solution {
+        public int[] twoSum(final int[] numbers, final int target) {
             int[] indices = new int[2];
             if (numbers == null || numbers.length < 2) return indices;
             int a = 0;

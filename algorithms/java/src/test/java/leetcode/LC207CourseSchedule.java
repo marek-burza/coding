@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/course-schedule/
  * #medium
  */
-public class LC207CourseSchedule {
-    public class Solution {
-        private boolean dfs(HashMap<Integer, Set<Integer>> graph, int node, Stack<Integer> ancestors, HashSet<Integer> visited) {
+public final class LC207CourseSchedule {
+    public final class Solution {
+        private boolean dfs(final HashMap<Integer, Set<Integer>> graph, final int node, final Stack<Integer> ancestors, final HashSet<Integer> visited) {
             if (ancestors.contains(node)) {
                 return false;
             }
@@ -36,7 +36,7 @@ public class LC207CourseSchedule {
             return true;
         }
 
-        public boolean canFinish(int numCourses, int[][] prerequisites) {
+        public boolean canFinish(final int numCourses, final int[][] prerequisites) {
             HashMap<Integer, Set<Integer>> graph = new HashMap<>();
             for (int[] prerequisite : prerequisites) {
                 Set<Integer> set;

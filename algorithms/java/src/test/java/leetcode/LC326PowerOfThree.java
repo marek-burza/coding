@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * <p/>
  * To do it without a loop resort to logarithms (but beware of accuracy)
  */
-public class LC326PowerOfThree {
-    public class Solution {
-        public boolean isPowerOfThree(int n) {
+public final class LC326PowerOfThree {
+    public final class Solution {
+        public boolean isPowerOfThree(final int n) {
             if (n < 1) return false;
             while (1 < n) {
                 if (n % 3 != 0) {

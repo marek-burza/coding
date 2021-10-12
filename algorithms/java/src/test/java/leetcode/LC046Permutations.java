@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/permutations/
  * #medium
  */
-public class LC046Permutations {
+public final class LC046Permutations {
     public final class Solution {
-        public void permute(List<Integer> prefix, Set<Integer> remaining, List<List<Integer>> permutations) {
+        public void permute(final List<Integer> prefix, final Set<Integer> remaining, final List<List<Integer>> permutations) {
             if (remaining.size() == 0) {
                 permutations.add(new ArrayList(prefix));
             } else {
@@ -28,7 +28,7 @@ public class LC046Permutations {
             }
         }
 
-        public List<List<Integer>> permute(int[] nums) {
+        public List<List<Integer>> permute(final int[] nums) {
             List<List<Integer>> permutations = new LinkedList<>();
             Set<Integer> remaining = new HashSet();
             for (int value : nums) {
@@ -39,9 +39,9 @@ public class LC046Permutations {
         }
     }
 
-    private class IntegerListComparator implements Comparator<List<Integer>> {
+    private class IntegerListComparator implements Comparator<List<Integer>>, Serializable {
         @Override
-        public int compare(List<Integer> l1, List<Integer> l2) {
+        public int compare(final List<Integer> l1, final List<Integer> l2) {
             if (l1.size() < l2.size()) return -1;
             if (l1.size() > l2.size()) return 1;
             for (int i = 0; i < l1.size(); i++) {

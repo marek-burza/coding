@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
  * #medium
  */
-public class LC080RemoveDuplicatesFromSortedArrayII {
+public final class LC080RemoveDuplicatesFromSortedArrayII {
     public final class Solution {
-        public int removeDuplicates(int[] nums) {
+        public int removeDuplicates(final int[] nums) {
             int i = 0;
             for (int n : nums)
                 if (i < 2 || n > nums[i - 2])

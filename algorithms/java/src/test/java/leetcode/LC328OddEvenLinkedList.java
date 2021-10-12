@@ -11,18 +11,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/odd-even-linked-list/
  * #medium
  */
-public class LC328OddEvenLinkedList {
-    public class ListNode {
+public final class LC328OddEvenLinkedList {
+    public final class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public ListNode oddEvenList(ListNode head) {
+    public final class Solution {
+        public ListNode oddEvenList(final ListNode head) {
             ListNode evenHead = new ListNode(0);
             ListNode oddHead = new ListNode(0);
             ListNode evenTail = evenHead;

@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/counting-bits/
  * #easy
  */
-public class LC338CountingBits {
-    public class Solution {
-        public int[] countBits(int num) {
+public final class LC338CountingBits {
+    public final class Solution {
+        public int[] countBits(final int num) {
             int[] result = new int[num + 1];
             int threshold = 1;
             for (int i = 0; i < result.length; i++) {

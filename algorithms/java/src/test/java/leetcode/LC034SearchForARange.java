@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/search-for-a-range/
  * #medium
  */
-public class LC034SearchForARange {
+public final class LC034SearchForARange {
     public final class Solution {
-        private int bsInfimum(int[] nums, int target) {
+        private int bsInfimum(final int[] nums, final int target) {
             int a = 0;
             int z = nums.length - 1;
             while (a < z) {
@@ -33,7 +33,7 @@ public class LC034SearchForARange {
             }
         }
 
-        private int bsSupremum(int[] nums, int target) {
+        private int bsSupremum(final int[] nums, final int target) {
             int a = 0;
             int z = nums.length - 1;
             while (a < z) {
@@ -56,7 +56,7 @@ public class LC034SearchForARange {
         }
 
 
-        public int[] searchRange(int[] nums, int target) {
+        public int[] searchRange(final int[] nums, final int target) {
             if (nums == null || nums.length == 0) {
                 return new int[]{-1, -1};
             }

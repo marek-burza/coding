@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/rotate-array/
  * #medium
  */
-public class LC189RotateArray {
-    public class Solution {
-        private void reverse(int[] nums, int a, int b) {
+public final class LC189RotateArray {
+    public final class Solution {
+        private void reverse(final int[] nums, final int a, final int b) {
             while (a < b) {
                 int swap = nums[a];
                 nums[a] = nums[b];
@@ -21,7 +21,7 @@ public class LC189RotateArray {
             }
         }
 
-        public void rotate(int[] nums, int k) {
+        public void rotate(final int[] nums, final int k) {
             reverse(nums, 0, nums.length - 1);
             reverse(nums, 0, k - 1);
             reverse(nums, k, nums.length - 1);

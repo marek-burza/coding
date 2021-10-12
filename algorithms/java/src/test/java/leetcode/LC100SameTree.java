@@ -11,19 +11,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/same-tree/
  * #easy
  */
-public class LC100SameTree {
+public final class LC100SameTree {
     public static class TreeNode {
         public int val;
         public TreeNode left;
         public TreeNode right;
 
-        public TreeNode(int x) {
+        public TreeNode(final int x) {
             val = x;
         }
     }
 
     public final class Solution {
-        public boolean isSameTree(TreeNode tree1, TreeNode tree2) {
+        public boolean isSameTree(final TreeNode tree1, final TreeNode tree2) {
             if (tree1 == null && tree2 == null) return true;
             if (tree1 == null || tree2 == null) return false;
             ArrayList<TreeNode> queue1 = new ArrayList<>();

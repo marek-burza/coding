@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/excel-sheet-column-number/
  * #easy
  */
-public class LC171ExcelSheetColumnNumber {
-    public class Solution {
-        public int titleToNumber(String s) {
+public final class LC171ExcelSheetColumnNumber {
+    public final class Solution {
+        public int titleToNumber(final String s) {
             if (s == null) {
                 return -1;
             }

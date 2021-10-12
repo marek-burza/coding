@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/minimum-path-sum/
  * #medium
  */
-public class LC064MinimumPathSum {
+public final class LC064MinimumPathSum {
     public final class Solution {
-        public int minPathSum(int[][] grid) {
+        public int minPathSum(final int[][] grid) {
             boolean[][] visited = new boolean[grid.length][grid[0].length];
             int[][] sums = new int[grid.length][grid[0].length];
             for (int[] row : sums) Arrays.fill(row, Integer.MAX_VALUE);

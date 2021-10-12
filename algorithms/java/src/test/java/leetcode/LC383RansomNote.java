@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/ransom-note/
  * #easy
  */
-public class LC383RansomNote {
-    public class Solution {
-        public boolean canConstruct(String ransomNote, String magazine) {
+public final class LC383RansomNote {
+    public final class Solution {
+        public boolean canConstruct(final String ransomNote, final String magazine) {
             int[] counts = new int[256];
             for (char letter : magazine.toCharArray()) {
                 counts[letter]++;

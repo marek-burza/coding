@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/bulb-switcher/
  * #medium
  */
-public class LC319BulbSwitcher {
-    public class Solution {
-        public int bulbSwitch(int n) {
+public final class LC319BulbSwitcher {
+    public final class Solution {
+        public int bulbSwitch(final int n) {
             return (int) Math.sqrt(n);
         }
     }

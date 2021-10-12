@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/intersection-of-two-arrays/
  * #easy
  */
-public class LC349IntersectionOfTwoArrays {
-    public class Solution {
-        public int[] intersection(int[] nums1, int[] nums2) {
+public final class LC349IntersectionOfTwoArrays {
+    public final class Solution {
+        public int[] intersection(final int[] nums1, final int[] nums2) {
             Arrays.sort(nums1);
             Arrays.sort(nums2);
             Set<Integer> found = new HashSet<>();

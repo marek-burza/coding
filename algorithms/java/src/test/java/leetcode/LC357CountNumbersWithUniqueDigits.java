@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/count-numbers-with-unique-digits/
  * #medium
  */
-public class LC357CountNumbersWithUniqueDigits {
-    public class Solution {
-        private int count(String prefix, int n) {
+public final class LC357CountNumbersWithUniqueDigits {
+    public final class Solution {
+        private int count(final String prefix, final int n) {
             if (prefix.length() == n) {
                 return 1;
             }
@@ -26,7 +26,7 @@ public class LC357CountNumbersWithUniqueDigits {
             return sum;
         }
 
-        public int countNumbersWithUniqueDigits(int n) {
+        public int countNumbersWithUniqueDigits(final int n) {
             return count("", n);
         }
     }

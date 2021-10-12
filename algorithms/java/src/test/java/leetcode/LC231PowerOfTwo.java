@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/power-of-two/
  * #easy
  */
-public class LC231PowerOfTwo {
-    public class Solution {
-        public boolean isPowerOfTwo(int n) {
+public final class LC231PowerOfTwo {
+    public final class Solution {
+        public boolean isPowerOfTwo(final int n) {
             if (n <= 0) return false;
             int count = 0;
             for (int mask = 1; mask != 0; mask <<= 1) {

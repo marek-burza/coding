@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/super-pow/
  * #medium
  */
-public class LC372SuperPow {
-    public class Solution {
+public final class LC372SuperPow {
+    public final class Solution {
         private static final int MODULO_1337 = 1337;
 
-        private List<Integer> findPowerLoop(int value) {
+        private List<Integer> findPowerLoop(final int value) {
             List<Integer> modulos = new LinkedList<>();
             boolean[] lut = new boolean[MODULO_1337];
             int modulo = value;
@@ -28,7 +28,7 @@ public class LC372SuperPow {
             return modulos;
         }
 
-        private int modulo(int[] dividend, int divisor) {
+        private int modulo(final int[] dividend, final int divisor) {
             int length = dividend.length;
             int modulo = 0;
             for (int i = 0; i < length; i++) {
@@ -37,7 +37,7 @@ public class LC372SuperPow {
             return modulo;
         }
 
-        public int superPow(int a, int[] b) {
+        public int superPow(final int a, final int[] b) {
             // Assume: a = (1337 * n + m) where 0 <= m < 1337
             // Then: a^b mod 1337 = (1337 * n + m)^n mod 1337 == m^b mod 1337
             // This multiplication will cycle through certain "digits" of base 1337

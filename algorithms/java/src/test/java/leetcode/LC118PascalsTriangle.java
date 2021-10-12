@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/pascals-triangle/
  * #easy
  */
-public class LC118PascalsTriangle {
-    public class Solution {
-        public List<List<Integer>> generate(int numRows) {
+public final class LC118PascalsTriangle {
+    public final class Solution {
+        public List<List<Integer>> generate(final int numRows) {
             if (numRows < 0) {
                 return null;
             }

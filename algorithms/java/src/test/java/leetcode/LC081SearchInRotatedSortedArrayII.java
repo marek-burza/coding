@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
  * #medium
  */
-public class LC081SearchInRotatedSortedArrayII {
+public final class LC081SearchInRotatedSortedArrayII {
     public final class Solution {
-        public boolean search(int[] nums, int target) {
+        public boolean search(final int[] nums, final int target) {
             for (int i = 1; i < nums.length; i++) {
                 if (nums[i - 1] > nums[i]) {
                     boolean ante = Arrays.binarySearch(nums, 0, i, target) >= 0;

@@ -9,17 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/path-sum/
  * #easy
  */
-public class LC112PathSum {
+public final class LC112PathSum {
     private class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        public TreeNode(int x) {
+        public TreeNode(final int x) {
             val = x;
         }
 
-        public TreeNode(TreeNode left, int x, TreeNode right) {
+        public TreeNode(final TreeNode left, final int x, final TreeNode right) {
             this(x);
             this.left = left;
             this.right = right;
@@ -27,7 +27,7 @@ public class LC112PathSum {
     }
 
     public final class Solution {
-        public boolean hasPathSum(TreeNode root, int sum) {
+        public boolean hasPathSum(final TreeNode root, final int sum) {
             if (root == null) {
                 return false;
             }

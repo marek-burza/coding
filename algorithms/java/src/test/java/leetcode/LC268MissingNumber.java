@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/missing-number/
  * #easy
  */
-public class LC268MissingNumber {
-    public class Solution {
-        public int missingNumber(int[] nums) {
+public final class LC268MissingNumber {
+    public final class Solution {
+        public int missingNumber(final int[] nums) {
             long expected = nums.length * (nums.length + 1) / 2;
             long sum = 0;
             for (int value : nums) {

@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/excel-sheet-column-title/
  * #easy
  */
-public class LC168ExcelSheetColumnTitle {
-    public class Solution {
-        public String convertToTitle(int n) {
+public final class LC168ExcelSheetColumnTitle {
+    public final class Solution {
+        public String convertToTitle(final int n) {
             StringBuilder buffer = new StringBuilder();
             do {
                 n--;

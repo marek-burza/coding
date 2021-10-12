@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/move-zeroes/
  * #easy
  */
-public class LC283MoveZeroes {
-    public class Solution {
-        public void moveZeroes(int[] nums) {
+public final class LC283MoveZeroes {
+    public final class Solution {
+        public void moveZeroes(final int[] nums) {
             int target = 0;
             for (int index = 0; index < nums.length; index++) {
                 nums[target] = nums[index];

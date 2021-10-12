@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/increasing-triplet-subsequence/
  * #medium
  */
-public class LC334IncreasingTripletSubsequence {
-    public class Solution {
-        public boolean increasingTriplet(int[] nums) {
+public final class LC334IncreasingTripletSubsequence {
+    public final class Solution {
+        public boolean increasingTriplet(final int[] nums) {
             if (nums == null || nums.length < 3) return false;
             int[] minBefore = new int[nums.length];
             int[] maxAfter = new int[nums.length];

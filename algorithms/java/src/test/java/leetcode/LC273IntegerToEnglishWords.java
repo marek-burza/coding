@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/integer-to-english-words/
  * #hard
  */
-public class LC273IntegerToEnglishWords {
-    public class Solution {
+public final class LC273IntegerToEnglishWords {
+    public final class Solution {
         private final String[] MAGNITUDE = {
                 "", " Thousand", " Million", " Billion", " Trillion", " Quadrillion", " Quintillion", " Sextillion",
                 " Septillion", " Octillion", " Nonillion"
@@ -25,7 +25,7 @@ public class LC273IntegerToEnglishWords {
                 "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
         };
 
-        private String tripleToWords(int i) {
+        private String tripleToWords(final int i) {
             StringBuilder result = new StringBuilder();
             if (i >= 100) {
                 result.append(DIGITS[i / 100]);
@@ -48,7 +48,7 @@ public class LC273IntegerToEnglishWords {
             return result.toString();
         }
 
-        public String numberToWords(int i) {
+        public String numberToWords(final int i) {
             if (i == 0) return "Zero";
             StringBuilder result = new StringBuilder();
             int position = 0;

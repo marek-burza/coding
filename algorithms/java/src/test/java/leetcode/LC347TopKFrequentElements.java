@@ -11,16 +11,16 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/top-k-frequent-elements/
  * #medium
  */
-public class LC347TopKFrequentElements {
-    public class Solution {
-        private class FrequencyComparator implements Comparator<Integer> {
+public final class LC347TopKFrequentElements {
+    public final class Solution {
+        private class FrequencyComparator implements Comparator<Integer>, Serializable {
             private final HashMap<Integer, Integer> frequencies;
 
-            public FrequencyComparator(HashMap<Integer, Integer> frequencies) {
+            public FrequencyComparator(final HashMap<Integer, Integer> frequencies) {
                 this.frequencies = frequencies;
             }
 
-            public int compare(Integer k1, Integer k2) {
+            public int compare(final Integer k1, final Integer k2) {
                 Integer v1 = frequencies.get(k1);
                 Integer v2 = frequencies.get(k2);
                 if (v1 < v2) {
@@ -35,12 +35,12 @@ public class LC347TopKFrequentElements {
                 return 0;
             }
 
-            public boolean equals(Object object) {
+            public boolean equals(final Object object) {
                 return false;
             }
         }
 
-        public List<Integer> topKFrequent(int[] nums, int k) {
+        public List<Integer> topKFrequent(final int[] nums, final int k) {
             HashMap<Integer, Integer> frequencies = new HashMap<>();
             for (int value : nums) {
                 if (frequencies.containsKey(value)) {

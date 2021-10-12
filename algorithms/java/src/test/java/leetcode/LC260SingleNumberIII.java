@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * https://leetcode.com/problems/single-number-iii/
  * #medium
  */
-public class LC260SingleNumberIII {
-    public class Solution {
-        public int[] singleNumber(int[] nums) {
+public final class LC260SingleNumberIII {
+    public final class Solution {
+        public int[] singleNumber(final int[] nums) {
             int xor = 0;
             for (int value : nums) {
                 xor ^= value;

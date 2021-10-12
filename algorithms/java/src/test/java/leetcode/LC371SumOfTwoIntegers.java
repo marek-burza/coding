@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/sum-of-two-integers/
  * #medium
  */
-public class LC371SumOfTwoIntegers {
-    public class Solution {
-        public int getSum(int a, int b) {
+public final class LC371SumOfTwoIntegers {
+    public final class Solution {
+        public int getSum(final int a, final int b) {
             int result = 0, carry = 0;
             for (int mask = 1; mask != 0; mask <<= 1) {
                 int am = a & mask;

@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/count-primes/
  * #medium
  */
-public class LC204CountPrimes {
-    public class Solution {
-        public int countPrimes(int n) {
+public final class LC204CountPrimes {
+    public final class Solution {
+        public int countPrimes(final int n) {
             if (n < 2) {
                 return 0;
             }

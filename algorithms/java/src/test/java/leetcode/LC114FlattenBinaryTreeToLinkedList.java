@@ -10,13 +10,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
  * https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
  * #medium
  */
-public class LC114FlattenBinaryTreeToLinkedList {
-    public class TreeNode {
+public final class LC114FlattenBinaryTreeToLinkedList {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
 
@@ -34,7 +34,7 @@ public class LC114FlattenBinaryTreeToLinkedList {
     }
 
     public final class Solution {
-        public void flatten(TreeNode root) {
+        public void flatten(final TreeNode root) {
             while (root != null) {
                 if (root.left != null) {
                     TreeNode node = root.left;
@@ -50,7 +50,7 @@ public class LC114FlattenBinaryTreeToLinkedList {
         }
     }
 
-    private void test(TreeNode expected, TreeNode root) {
+    private void test(final TreeNode expected, final TreeNode root) {
         if (null == expected) {
             assertEquals(null, root);
         } else {

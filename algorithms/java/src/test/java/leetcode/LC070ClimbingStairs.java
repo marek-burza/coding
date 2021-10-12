@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/climbing-stairs/
  * #easy
  */
-public class LC070ClimbingStairs {
+public final class LC070ClimbingStairs {
     public final class Solution {
-        public int climbStairs(int n, int at, int[] lut) {
+        public int climbStairs(final int n, final int at, final int[] lut) {
             if (at + 2 == n) {
                 return 2;
             }
@@ -26,7 +26,7 @@ public class LC070ClimbingStairs {
             return lut[at];
         }
 
-        public int climbStairs(int n) {
+        public int climbStairs(final int n) {
             int[] lut = new int[n];
             Arrays.fill(lut, 0);
             return climbStairs(n, 0, lut);

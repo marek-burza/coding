@@ -9,20 +9,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
  * #easy
  */
-public class LC235LowestCommonAncestorOfABinarySearchTree {
-    public class TreeNode {
+public final class LC235LowestCommonAncestorOfABinarySearchTree {
+    public final class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
 
 
-        TreeNode(int x) {
+        TreeNode(final int x) {
             val = x;
         }
     }
 
-    public class Solution {
-        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public final class Solution {
+        public TreeNode lowestCommonAncestor(final TreeNode root, final TreeNode p, final TreeNode q) {
             TreeNode left = null, right = null;
             if (root.left != null) {
                 left = lowestCommonAncestor(root.left, p, q);

@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/shortest-palindrome/
  * #hard
  */
-public class LC214ShortestPalindrome {
-    public class Solution {
-        public String shortestPalindrome(String s) {
+public final class LC214ShortestPalindrome {
+    public final class Solution {
+        public String shortestPalindrome(final String s) {
             if (s == null || s.length() == 0) {
                 return s;
             }

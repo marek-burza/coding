@@ -9,19 +9,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/linked-list-cycle/
  * #easy
  */
-public class LC141LinkedListCycle {
+public final class LC141LinkedListCycle {
     class ListNode {
         int val;
         ListNode next;
 
-        ListNode(int x) {
+        ListNode(final int x) {
             val = x;
             next = null;
         }
     }
 
-    public class Solution {
-        public boolean hasCycle(ListNode head) {
+    public final class Solution {
+        public boolean hasCycle(final ListNode head) {
             if (head == null) return false;
             if (head.next == head) return true;
             ListNode previous = null, current = head;

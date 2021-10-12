@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/permutation-sequence/
  * #hard
  */
-public class LC060PermutationSequence {
+public final class LC060PermutationSequence {
     public final class Solution {
-        public String getPermutation(int n, int k) {
+        public String getPermutation(final int n, final int k) {
             if (n < 0 || k < 0) {
                 return null;
             }

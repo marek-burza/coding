@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/guess-number-higher-or-lower/
  * #easy
  */
-public class LC374GuessNumberHigherOrLower {
-    public class GuessGame {
+public final class LC374GuessNumberHigherOrLower {
+    public final class GuessGame {
         public int x;
 
-        protected int guess(int n) {
+        protected int guess(final int n) {
             if (x < n) return -1;
             if (x == n) return 0;
             if (x > n) return 1;
@@ -23,8 +23,8 @@ public class LC374GuessNumberHigherOrLower {
         }
     }
 
-    public class Solution extends GuessGame {
-        public int guessNumber(int n) {
+    public final class Solution extends GuessGame {
+        public int guessNumber(final int n) {
             int a = 1, z = n;
             while (a != z) {
                 int checking = (int) (((long) a + (long) z) / 2);

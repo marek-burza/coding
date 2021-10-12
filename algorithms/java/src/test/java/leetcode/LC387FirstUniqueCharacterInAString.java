@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/first-unique-character-in-a-string/
  * #easy
  */
-public class LC387FirstUniqueCharacterInAString {
-    public class Solution {
-        public int firstUniqChar(String s) {
+public final class LC387FirstUniqueCharacterInAString {
+    public final class Solution {
+        public int firstUniqChar(final String s) {
             int size = 'z' - 'a' + 1;
             int[] count = new int[size];
             int[] index = new int[size];

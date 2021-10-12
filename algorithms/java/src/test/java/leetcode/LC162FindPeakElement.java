@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/find-peak-element/
  * #medium
  */
-public class LC162FindPeakElement {
-    public class Solution {
-        public int findPeakElement(int[] nums) {
+public final class LC162FindPeakElement {
+    public final class Solution {
+        public int findPeakElement(final int[] nums) {
             for (int i = 1; i <= nums.length; i++) {
                 boolean postFalling;
                 postFalling = i == nums.length || nums[i - 1] > nums[i];

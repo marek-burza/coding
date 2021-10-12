@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/triangle/
  * #medium
  */
-public class LC120Triangle {
-    public class Solution {
-        public int minimumTotal(List<List<Integer>> triangle) {
+public final class LC120Triangle {
+    public final class Solution {
+        public int minimumTotal(final List<List<Integer>> triangle) {
             if (triangle == null || triangle.size() == 0 || triangle.get(0).size() == 0) {
                 return 0;
             }
@@ -40,7 +40,7 @@ public class LC120Triangle {
         }
     }
 
-    private List<List<Integer>> construct(int[][] compact) {
+    private List<List<Integer>> construct(final int[][] compact) {
         List<List<Integer>> triangle = new ArrayList<>();
         for (int[] array : compact) {
             List<Integer> line = new ArrayList<>();

@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/integer-break/
  * #medium
  */
-public class LC343IntegerBreak {
-    public class Solution {
-        public int integerBreak(int n) {
+public final class LC343IntegerBreak {
+    public final class Solution {
+        public int integerBreak(final int n) {
             if (n == 2) return 1;
             if (n == 3) return 2;
             if (n == 5) return 6;

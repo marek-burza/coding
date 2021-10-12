@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/contains-duplicate-ii/
  * #easy
  */
-public class LC219ContainsDuplicateII {
-    public class Solution {
-        public boolean containsNearbyDuplicate(int[] nums, int k) {
+public final class LC219ContainsDuplicateII {
+    public final class Solution {
+        public boolean containsNearbyDuplicate(final int[] nums, final int k) {
             Set<Integer> set = new HashSet<>();
             Queue<Integer> ordered = new LinkedList<>();
             for (int num : nums) {

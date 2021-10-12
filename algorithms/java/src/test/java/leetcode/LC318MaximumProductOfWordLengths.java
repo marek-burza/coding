@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * https://leetcode.com/problems/maximum-product-of-word-lengths/
  * #medium
  */
-public class LC318MaximumProductOfWordLengths {
-    public class Solution {
-        public int maxProduct(String[] words) {
+public final class LC318MaximumProductOfWordLengths {
+    public final class Solution {
+        public int maxProduct(final String[] words) {
             int[] signature = new int[words.length];
             for (int i = 0; i < words.length; i++) {
                 for (char character : words[i].toCharArray()) {
