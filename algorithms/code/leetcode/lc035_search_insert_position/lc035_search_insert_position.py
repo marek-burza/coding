@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/search-insert-position/
 
-import unittest
 import math
+import unittest
 
 
 class Solution:
