@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc238_product_of_array_except_self;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc387_first_unique_character_in_a_string;
 
 import org.junit.jupiter.api.Test;
 

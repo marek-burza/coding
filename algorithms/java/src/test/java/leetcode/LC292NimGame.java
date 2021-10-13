@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc292_nim_game;
 
 import org.junit.jupiter.api.Test;
 

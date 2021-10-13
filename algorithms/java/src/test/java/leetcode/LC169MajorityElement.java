@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc169_majority_element;
 
 import java.util.HashMap;
 

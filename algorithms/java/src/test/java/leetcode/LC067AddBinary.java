@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc067_add_binary;
 
 import org.junit.jupiter.api.Test;
 

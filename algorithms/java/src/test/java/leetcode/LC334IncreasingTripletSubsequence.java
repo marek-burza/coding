@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc334_increasing_triplet_subsequence;
 
 import org.junit.jupiter.api.Test;
 

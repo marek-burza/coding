@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc284_peeking_iterator;
 
 import org.junit.jupiter.api.Test;
 

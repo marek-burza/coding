@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc206_reverse_linked_list;
 
 import java.util.Random;
 

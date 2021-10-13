@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc190_reverse_bits;
 
 import org.junit.jupiter.api.Test;
 

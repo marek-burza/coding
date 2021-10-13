@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc079_word_search;
 
 import org.junit.jupiter.api.Test;
 

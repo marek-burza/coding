@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc382_linked_list_random_node;
 
 import org.junit.jupiter.api.Test;
 

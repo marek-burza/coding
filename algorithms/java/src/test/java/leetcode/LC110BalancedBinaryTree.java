@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc110_balanced_binary_tree;
 
 import org.junit.jupiter.api.Test;
 

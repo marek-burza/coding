@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc319_bulb_switcher;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc070_climbing_stairs;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc300_longest_increasing_subsequence;
 
 import org.junit.jupiter.api.Test;
 

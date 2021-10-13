@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc318_maximum_product_of_word_lengths;
 
 import org.junit.jupiter.api.Test;
 

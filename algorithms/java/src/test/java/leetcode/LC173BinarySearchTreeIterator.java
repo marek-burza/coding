@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc173_binary_search_tree_iterator;
 
 import org.junit.jupiter.api.Test;
 

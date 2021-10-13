@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc383_ransom_note;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc203_remove_linked_list_elements;
 
 import org.junit.jupiter.api.Test;
 

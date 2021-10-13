@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc230_kth_smallest_element_in_a_b_s_t;
 
 import org.junit.jupiter.api.Test;
 

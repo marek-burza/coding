@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc279_perfect_squares;
 
 import org.junit.jupiter.api.Test;
 

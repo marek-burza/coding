@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc050_pow_x_n;
 
 import org.junit.jupiter.api.Test;
 

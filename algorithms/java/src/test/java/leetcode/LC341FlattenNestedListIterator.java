@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc341_flatten_nested_list_iterator;
 
 import org.junit.jupiter.api.Test;
 

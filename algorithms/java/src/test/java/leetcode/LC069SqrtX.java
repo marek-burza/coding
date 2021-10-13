@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc069_sqrt_x;
 
 import org.junit.jupiter.api.Test;
 

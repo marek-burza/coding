@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc083_remove_duplicates_from_sorted_list;
 
 import org.junit.jupiter.api.Test;
 

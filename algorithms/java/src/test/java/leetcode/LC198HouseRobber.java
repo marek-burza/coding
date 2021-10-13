@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc198_house_robber;
 
 import java.util.HashMap;
 

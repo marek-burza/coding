@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc290_word_pattern;
 
 import org.junit.jupiter.api.Test;
 

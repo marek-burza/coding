@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc034_search_for_a_range;
 
 import org.junit.jupiter.api.Test;
 

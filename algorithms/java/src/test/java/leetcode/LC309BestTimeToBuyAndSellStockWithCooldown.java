@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc309_best_time_to_buy_and_sell_stock_with_cooldown;
 
 import org.junit.jupiter.api.Test;
 

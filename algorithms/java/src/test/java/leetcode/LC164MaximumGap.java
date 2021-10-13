@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc164_maximum_gap;
 
 import java.util.Arrays;
 

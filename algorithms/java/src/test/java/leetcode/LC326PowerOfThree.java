@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc326_power_of_three;
 
 import org.junit.jupiter.api.Test;
 

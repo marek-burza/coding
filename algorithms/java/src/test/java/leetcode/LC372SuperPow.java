@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc372_super_pow;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc139_word_break;
 
 import java.util.Arrays;
 import java.util.Collections;

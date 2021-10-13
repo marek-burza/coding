@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc231_power_of_two;
 
 import org.junit.jupiter.api.Test;
 

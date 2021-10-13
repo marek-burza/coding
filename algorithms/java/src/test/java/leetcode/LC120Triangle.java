@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc120_triangle;
 
 import java.util.ArrayList;
 import java.util.List;

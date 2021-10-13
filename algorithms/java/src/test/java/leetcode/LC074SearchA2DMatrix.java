@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc074_search_a2_d_matrix;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc168_excel_sheet_column_title;
 
 import org.junit.jupiter.api.Test;
 

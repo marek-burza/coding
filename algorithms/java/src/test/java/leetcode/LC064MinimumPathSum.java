@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc064_minimum_path_sum;
 
 import org.junit.jupiter.api.Test;
 

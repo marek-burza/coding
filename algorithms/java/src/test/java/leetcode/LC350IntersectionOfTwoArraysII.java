@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc350_intersection_of_two_arrays_i_i;
 
 import org.junit.jupiter.api.Test;
 

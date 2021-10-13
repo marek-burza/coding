@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc049_group_anagrams;
 
 import java.util.*;
 

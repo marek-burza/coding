@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc344_reverse_string;
 
 import org.junit.jupiter.api.Test;
 

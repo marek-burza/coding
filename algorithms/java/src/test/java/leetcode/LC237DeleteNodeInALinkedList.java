@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc237_delete_node_in_a_linked_list;
 
 import org.junit.jupiter.api.Test;
 

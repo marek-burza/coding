@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc257_binary_tree_paths;
 
 import org.junit.jupiter.api.Test;
 

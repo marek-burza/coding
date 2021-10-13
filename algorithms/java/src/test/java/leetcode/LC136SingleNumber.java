@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc136_single_number;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc088_merge_sorted_array;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc101_symmetric_tree;
 
 import java.util.ArrayList;
 

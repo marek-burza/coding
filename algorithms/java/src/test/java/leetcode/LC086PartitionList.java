@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc086_partition_list;
 
 import org.junit.jupiter.api.Test;
 

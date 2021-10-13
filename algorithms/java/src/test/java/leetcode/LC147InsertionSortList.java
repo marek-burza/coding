@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc147_insertion_sort_list;
 
 import org.junit.jupiter.api.Test;
 

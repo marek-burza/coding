@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc204_count_primes;
 
 import java.util.Arrays;
 

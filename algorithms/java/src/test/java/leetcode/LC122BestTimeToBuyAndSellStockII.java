@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc122_best_time_to_buy_and_sell_stock_i_i;
 
 import org.junit.jupiter.api.Test;
 

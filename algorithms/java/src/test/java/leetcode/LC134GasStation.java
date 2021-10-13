@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc134_gas_station;
 
 import org.junit.jupiter.api.Test;
 

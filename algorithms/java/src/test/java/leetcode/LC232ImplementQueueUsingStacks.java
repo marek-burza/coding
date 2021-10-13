@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc232_implement_queue_using_stacks;
 
 import org.junit.jupiter.api.Test;
 

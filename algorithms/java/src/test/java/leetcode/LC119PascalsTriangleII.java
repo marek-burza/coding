@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc119_pascals_triangle_i_i;
 
 import java.util.ArrayList;
 import java.util.List;

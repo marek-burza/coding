@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc205_isomorphic_strings;
 
 import java.util.HashMap;
 

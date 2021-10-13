@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc258_add_digits;
 
 import org.junit.jupiter.api.Test;
 

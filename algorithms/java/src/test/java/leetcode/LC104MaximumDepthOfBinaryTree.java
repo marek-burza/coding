@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc104_maximum_depth_of_binary_tree;
 
 import org.junit.jupiter.api.Test;
 

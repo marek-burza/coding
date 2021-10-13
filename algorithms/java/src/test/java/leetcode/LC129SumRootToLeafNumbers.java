@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc129_sum_root_to_leaf_numbers;
 
 import org.junit.jupiter.api.Test;
 

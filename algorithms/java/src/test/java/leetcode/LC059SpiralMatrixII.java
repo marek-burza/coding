@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc059_spiral_matrix_i_i;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc109_convert_sorted_list_to_binary_search_tree;
 
 import org.junit.jupiter.api.Test;
 

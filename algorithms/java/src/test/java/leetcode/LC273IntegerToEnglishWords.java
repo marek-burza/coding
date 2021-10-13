@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc273_integer_to_english_words;
 
 import org.junit.jupiter.api.Test;
 
