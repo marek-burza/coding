@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc165_compare_version_numbers;
 
 import org.junit.jupiter.api.Test;
 

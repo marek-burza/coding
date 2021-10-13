@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc077_combinations;
 
 import org.junit.jupiter.api.Test;
 

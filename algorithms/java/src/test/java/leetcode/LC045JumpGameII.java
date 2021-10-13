@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc045_jump_game_i_i;
 
 import org.junit.jupiter.api.Test;
 

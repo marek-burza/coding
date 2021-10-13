@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc038_count_and_say;
 
 import org.junit.jupiter.api.Test;
 

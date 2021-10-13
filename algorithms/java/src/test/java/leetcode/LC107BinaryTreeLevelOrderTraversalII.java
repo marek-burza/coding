@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc107_binary_tree_level_order_traversal_i_i;
 
 import org.junit.jupiter.api.Test;
 

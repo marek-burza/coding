@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc060_permutation_sequence;
 
 import java.util.ArrayList;
 import java.util.List;

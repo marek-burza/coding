@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc207_course_schedule;
 
 import java.util.HashMap;
 import java.util.HashSet;

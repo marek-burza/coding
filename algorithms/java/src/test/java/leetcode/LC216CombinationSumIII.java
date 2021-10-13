@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc216_combination_sum_i_i_i;
 
 import org.junit.jupiter.api.Test;
 

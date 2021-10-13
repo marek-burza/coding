@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc376_wiggle_subsequence;
 
 import org.junit.jupiter.api.Test;
 

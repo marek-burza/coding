@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc374_guess_number_higher_or_lower;
 
 import org.junit.jupiter.api.Test;
 

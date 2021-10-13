@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc263_ugly_number;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc219_contains_duplicate_i_i;
 
 import java.util.HashSet;
 import java.util.LinkedList;

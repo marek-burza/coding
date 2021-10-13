@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc160_intersection_of_two_linked_lists;
 
 import org.junit.jupiter.api.Test;
 

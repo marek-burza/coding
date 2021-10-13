@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc054_spiral_matrix;
 
 import java.util.ArrayList;
 import java.util.List;

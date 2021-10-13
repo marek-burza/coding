@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc220_contains_duplicate_i_i_i;
 
 import java.util.LinkedList;
 import java.util.NavigableSet;

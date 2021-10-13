@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc153_find_minimum_in_rotated_sorted_array;
 
 import org.junit.jupiter.api.Test;
 

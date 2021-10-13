@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc235_lowest_common_ancestor_of_a_binary_search_tree;
 
 import org.junit.jupiter.api.Test;
 

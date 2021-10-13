@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc102_binary_tree_level_order_traversal;
 
 import java.util.ArrayList;
 import java.util.List;

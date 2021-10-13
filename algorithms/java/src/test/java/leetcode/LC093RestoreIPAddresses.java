@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc093_restore_i_p_addresses;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc275_h_index_i_i;
 
 import org.junit.jupiter.api.Test;
 

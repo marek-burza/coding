@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc075_sort_colors;
 
 import org.junit.jupiter.api.Test;
 

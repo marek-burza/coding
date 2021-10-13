@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc303_range_sum_query_immutable;
 
 import org.junit.jupiter.api.Test;
 

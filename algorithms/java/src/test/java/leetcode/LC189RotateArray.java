@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc189_rotate_array;
 
 import org.junit.jupiter.api.Test;
 

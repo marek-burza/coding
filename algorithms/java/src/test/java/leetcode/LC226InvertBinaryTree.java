@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc226_invert_binary_tree;
 
 import org.junit.jupiter.api.Test;
 

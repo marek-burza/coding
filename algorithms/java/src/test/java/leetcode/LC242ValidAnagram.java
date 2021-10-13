@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc242_valid_anagram;
 
 import org.junit.jupiter.api.Test;
 

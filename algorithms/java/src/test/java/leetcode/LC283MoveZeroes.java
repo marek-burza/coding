@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc283_move_zeroes;
 
 import org.junit.jupiter.api.Test;
 

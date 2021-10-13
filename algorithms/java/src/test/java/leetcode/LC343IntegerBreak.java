@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc343_integer_break;
 
 import org.junit.jupiter.api.Test;
 

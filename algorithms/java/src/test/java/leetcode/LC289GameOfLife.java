@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc289_game_of_life;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc278_first_bad_version;
 
 import org.junit.jupiter.api.Test;
 

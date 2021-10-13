@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc214_shortest_palindrome;
 
 import org.junit.jupiter.api.Test;
 

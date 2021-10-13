@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc062_unique_paths;
 
 import org.junit.jupiter.api.Test;
 

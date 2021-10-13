@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc114_flatten_binary_tree_to_linked_list;
 
 import org.junit.jupiter.api.Test;
 

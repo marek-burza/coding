@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc125_valid_palindrome;
 
 import org.junit.jupiter.api.Test;
 

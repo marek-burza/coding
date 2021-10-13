@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc201_bitwise_and_of_numbers_range;
 
 import org.junit.jupiter.api.Test;
 

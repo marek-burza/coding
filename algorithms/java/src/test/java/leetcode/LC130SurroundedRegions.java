@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc130_surrounded_regions;
 
 import java.util.*;
 

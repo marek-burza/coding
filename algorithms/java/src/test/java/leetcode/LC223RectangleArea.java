@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc223_rectangle_area;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc100_same_tree;
 
 import java.util.ArrayList;
 

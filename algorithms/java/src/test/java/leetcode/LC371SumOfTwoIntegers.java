@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc371_sum_of_two_integers;
 
 import org.junit.jupiter.api.Test;
 

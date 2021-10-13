@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc141_linked_list_cycle;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc338_counting_bits;
 
 import org.junit.jupiter.api.Test;
 

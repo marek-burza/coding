@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc345_reverse_vowels_of_a_string;
 
 import org.junit.jupiter.api.Test;
 

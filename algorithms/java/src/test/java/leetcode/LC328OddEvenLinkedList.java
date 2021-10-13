@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc328_odd_even_linked_list;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc036_valid_sudoku;
 
 import org.junit.jupiter.api.Test;
 

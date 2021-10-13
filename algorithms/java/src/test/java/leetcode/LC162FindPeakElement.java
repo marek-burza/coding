@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc162_find_peak_element;
 
 import org.junit.jupiter.api.Test;
 

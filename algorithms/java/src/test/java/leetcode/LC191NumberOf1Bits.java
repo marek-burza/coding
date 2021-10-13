@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc191_number_of1_bits;
 
 import org.junit.jupiter.api.Test;
 

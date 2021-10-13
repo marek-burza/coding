@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc234_palindrome_linked_list;
 
 import org.junit.jupiter.api.Test;
 

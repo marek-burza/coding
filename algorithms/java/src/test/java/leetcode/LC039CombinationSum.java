@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc039_combination_sum;
 
 import org.junit.jupiter.api.Test;
 

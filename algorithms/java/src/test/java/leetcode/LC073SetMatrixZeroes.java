@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc073_set_matrix_zeroes;
 
 import org.junit.jupiter.api.Test;
 

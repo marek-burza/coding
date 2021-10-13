@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc152_maximum_product_subarray;
 
 import org.junit.jupiter.api.Test;
 

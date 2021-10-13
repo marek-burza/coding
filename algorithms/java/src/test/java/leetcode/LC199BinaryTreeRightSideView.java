@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc199_binary_tree_right_side_view;
 
 import java.util.ArrayList;
 import java.util.List;

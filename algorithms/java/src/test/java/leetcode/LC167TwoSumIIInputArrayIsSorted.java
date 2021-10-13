@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc167_two_sum_i_i_input_array_is_sorted;
 
 import org.junit.jupiter.api.Test;
 

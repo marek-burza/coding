@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc111_minimum_depth_of_binary_tree;
 
 import java.util.ArrayList;
 import java.util.List;

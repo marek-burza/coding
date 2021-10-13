@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc171_excel_sheet_column_number;
 
 import org.junit.jupiter.api.Test;
 

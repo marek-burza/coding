@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc033_search_in_rotated_sorted_array;
 
 import org.junit.jupiter.api.Test;
 

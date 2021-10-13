@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc299_bulls_and_cows;
 
 import org.junit.jupiter.api.Test;
 

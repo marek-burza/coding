@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc090_subsets_i_i;
 
 import org.junit.jupiter.api.Test;
 

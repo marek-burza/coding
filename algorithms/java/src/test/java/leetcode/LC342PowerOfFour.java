@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc342_power_of_four;
 
 import org.junit.jupiter.api.Test;
 

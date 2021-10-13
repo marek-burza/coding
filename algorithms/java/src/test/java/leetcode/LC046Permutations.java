@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc046_permutations;
 
 import org.junit.jupiter.api.Test;
 

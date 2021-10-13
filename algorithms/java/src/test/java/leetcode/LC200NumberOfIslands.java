@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc200_number_of_islands;
 
 import java.util.ArrayList;
 

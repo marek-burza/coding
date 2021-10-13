@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc347_top_k_frequent_elements;
 
 import org.junit.jupiter.api.Test;
 

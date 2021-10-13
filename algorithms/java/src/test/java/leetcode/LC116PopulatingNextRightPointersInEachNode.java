@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc116_populating_next_right_pointers_in_each_node;
 
 import org.junit.jupiter.api.Test;
 

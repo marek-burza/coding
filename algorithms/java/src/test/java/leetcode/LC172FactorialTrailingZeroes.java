@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc172_factorial_trailing_zeroes;
 
 import org.junit.jupiter.api.Test;
 

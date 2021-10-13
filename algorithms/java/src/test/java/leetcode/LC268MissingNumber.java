@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc268_missing_number;
 
 import org.junit.jupiter.api.Test;
 

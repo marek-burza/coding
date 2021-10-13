@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc048_rotate_image;
 
 import org.junit.jupiter.api.Test;
 

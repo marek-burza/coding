@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc187_repeated_d_n_a_sequences;
 
 import java.util.Arrays;
 import java.util.ArrayList;

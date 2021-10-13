@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc384_shuffle_an_array;
 
 import org.junit.jupiter.api.Test;
 

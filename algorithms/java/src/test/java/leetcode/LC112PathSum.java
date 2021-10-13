@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc112_path_sum;
 
 import org.junit.jupiter.api.Test;
 

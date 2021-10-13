@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.lc357_count_numbers_with_unique_digits;
 
 import org.junit.jupiter.api.Test;
 
