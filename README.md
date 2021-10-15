@@ -1,7 +1,7 @@
 # General Remarks
 
 * Talk through your thinking process, flag uncertainty
-* Be: fast, positive, transparent, fact-based, methodical, and express explicitly (to prevent hidden assumptions and getting stuck)
+* Be: fast, positive/enthusiastic/passionate, transparent, fact-based, methodical, and express explicitly (to prevent hidden assumptions and getting stuck)
 * If stuck: **remain calm**, check asumptions, **try more examples**, **simplify**, **ask**, avoid silence or filling it
 
 ----------
@@ -13,6 +13,7 @@
   - Restrictions? Guarantees?
   - Types? Ranges? Sizes? Cardinality? How often? Unique / repetitions / empty / partially ordered?
   - Function signature & spec?
+  - Accounted for entirety of interviewer's description?
   - Beware of: assumptions, **"familiar" exercises**, **early optimization**; Start simple
 2. Talk through the design process / List ideas
   - List alternatives telling their pros and cons (e.g. time/space complexity)
@@ -25,22 +26,27 @@
   - Pick one achievable in an interview (**solution likely to be simple enough**)
 3. Code
   - Pick a data structure
-  - Modularize (for clarity)
+  - Modularize (break-up code into distinct parts for clarity)
   - Test input (as a remark)
-  - Beware of < vs <=, +1 vs +0, overflows
+  - Beware of < vs <=, +1 vs +0, null checks, overflows
   - Code must compile - obey syntax, but okay to ask if don't remember name or behavior
 4. Test - describe how would you test, run through a simple case
   - Normal case
-  - Non-trivial, all execution paths
-  - Edge cases, no solution
+  - Non-trivial, corner cases
+  - Full coverage time permitting
   - (Other: invalid input, randomized tests, load testing)
 5. Keep improving - can we do better?
 
 * [Practice algorithm design challenges](algorithms) [![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
-  - [LeetCode](https://leetcode.com/) [solutions](algorithms/code/leetcode)
-  - [Codility](https://codility.com/) [solutions](algorithms/code/codility)
-  - [Geeks for Geeks](https://www.geeksforgeeks.org/) [solutions](algorithms/code/geeksforgeeks)
-  - [HackerRank](https://www.hackerrank.com/) [solutions](algorithms/code/hackerrank)
+  - [HackerRank](https://www.hackerrank.com/) - [my solutions](algorithms/code/hackerrank)
+  - [LeetCode](https://leetcode.com/) - [my solutions](algorithms/code/leetcode)
+  - [Codility](https://codility.com/) - [my solutions](algorithms/code/codility)
+  - [Geeks for Geeks](https://www.geeksforgeeks.org/) - [my solutions](algorithms/code/geeksforgeeks)
+  - [Codeforces](https://codeforces.com/)
+  - [InterviewBit](https://www.interviewbit.com/) (consider their mock interviews)
+  - [Kattis](https://open.kattis.com/)
+  - [ACM-ICPC questions](https://icpc.baylor.edu/worldfinals/problems)
+  - [Codejam questions](https://code.google.com/codejam/past-contests)
 
 * [Flashcards](https://github.com/altermarkive/training/releases)
 
@@ -59,24 +65,9 @@
   - **Say what can fail / overflow**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
   - Say how to distribute and how to fix whats broken by distributing
   - Show specific alternatives / solution space
-  - **Ballpark estimates** (order of magnitude, as of 2015) - might be a part of point 1
-    - L1 hit: 0.5ns
-    - L2 hit: 7ns
-    - Branch mispredict: 5ns
-    - SRAM: 10ns
-    - DRAM/MUTEX: 100ns
-    - System call (overhead): 400ns
-    - Roundtrip in datacenter: 0.5ms
-    - Process context switch: 3ms
-    - Disk seek: 5-10ms (!)
-    - Fork: 70ms (statically linked), 160ms (dynamically)
-    - HD transfer rate 1Gbit/s
-    - 500M tweets per day
-    - 300M monthly active Twitter users
-    - 700M total Twitter users
-    - 40k/s Google searches
-    - 10T Google indexed pages
+  - **Ballpark estimates**
 
+* [Alex Yu - System Design Interview](https://www.amazon.com/dp/B08B3FWYBX/ref=cm_sw_em_r_mt_dp_X3C1WZV5Q0VX0Q0HX7CX)
 * Review [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
 * [Watch the lecture on Scalability Harvard Web Development](https://youtu.be/-W9F__D3oY4)
 * [Review an example - Restaurant Waiting Time](http://altermarkive.github.io/training/system-design/restaurant-waiting-time.html)
@@ -104,5 +95,12 @@
   - [Actual interview questions on CareerCup](https://www.careercup.com/user?id=5095734581919744)
   - [Cracking the Coding Interview](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
   - [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
+  - [Google: Prepare for an Engineering Interview](https://youtu.be/ko-KkSmp-Lk)
+  - [Google: Example Coding/Engineering Interview](https://youtu.be/XKu_SEDAykw)
+  - [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
+  - [Google: How We Hire](https://careers.google.com/how-we-hire/interview)
+  - Coursera Princeton University Algorithms - [Part 1](https://www.coursera.org/learn/algorithms-part1) & [Part 2](https://www.coursera.org/learn/algorithms-part2)
 * System Design:
   - [High Scalability Blog](https://highscalability.com/)
+* Other:
+  - Google Code Style Guides: [Java](https://google.github.io/styleguide/javaguide.html), [Python](https://google.github.io/styleguide/pyguide.html)
