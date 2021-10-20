@@ -100,7 +100,11 @@
   - [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
   - [Google: How We Hire](https://careers.google.com/how-we-hire/interview)
   - Coursera Princeton University Algorithms - [Part 1](https://www.coursera.org/learn/algorithms-part1) & [Part 2](https://www.coursera.org/learn/algorithms-part2)
+  - [Coding Interview University](https://github.com/jwasham/coding-interview-university)
+  - [Tech Interview Handbook](https://github.com/yangshun/tech-interview-handbook)
 * System Design:
   - [High Scalability Blog](https://highscalability.com/)
+  - [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
+  - [System Design Primer](https://github.com/donnemartin/system-design-primer)
 * Other:
   - Google Code Style Guides: [Java](https://google.github.io/styleguide/javaguide.html), [Python](https://google.github.io/styleguide/pyguide.html)
