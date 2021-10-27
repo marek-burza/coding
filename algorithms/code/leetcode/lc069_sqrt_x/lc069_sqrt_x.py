@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/sqrtx/
 
-import math
 import unittest
 
 
@@ -10,7 +9,7 @@ class Solution:
         a = 0
         z = x
         while a + 1 < z:
-            m = math.trunc((a + z) / float(2))
+            m = (a + z) >> 1
             mm = m * m
             if mm == x:
                 return int(m)

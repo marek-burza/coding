@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/plus-one/
 
-import math
 import unittest
 
 
@@ -10,7 +9,7 @@ class Solution:
         carry = 1
         for i in range(len(digits) - 1, -1, -1):
             digits[i] += carry
-            carry = math.trunc(digits[i] / float(10))
+            carry = digits[i] // 10
             digits[i] = digits[i] % 10
         if carry > 0:
             bigger = digits.copy()
