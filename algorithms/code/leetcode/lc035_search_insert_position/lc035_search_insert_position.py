@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/search-insert-position/
 
-import math
 import unittest
 
 
@@ -10,7 +9,7 @@ class Solution:
         a = 0
         z = len(nums)
         while a != z:
-            m = math.trunc((a + z) / float(2))
+            m = (a + z) >> 1
             if nums[m] < target:
                 a = m + 1
             else:
