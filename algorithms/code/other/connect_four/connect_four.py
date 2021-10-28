@@ -33,6 +33,8 @@ class BoardState:
     def drop(self, player: Player, c: int) -> bool:
         if not self.check_drop(c):
             return False
+        if self.check_winning() != Winner.UNDECIDED:
+            return False
         self.__board[c].append(player)
         return True
 
@@ -203,6 +205,22 @@ class TestCode(unittest.TestCase):
         outcomes = [True] * len(moves)
         winners = [Winner.UNDECIDED] * (len(moves) - 1)
         winners.append(Player.TWO)
+        board = [
+            '.......',
+            '.......',
+            '..X....',
+            '..OXO..',
+            '..XXXO.',
+            '..OOOX.']
+        self.generic(Player.ONE, moves, outcomes, winners, board)
+
+    def test_one_more_move(self):
+        moves = [4, 5, 5, 4, 3, 3, 4, 3, 2, 2, 2, 2, 0]
+        outcomes = [True] * len(moves)
+        outcomes[-1] = False
+        winners = [Winner.UNDECIDED] * len(moves)
+        winners[-2] = Player.TWO
+        winners[-1] = Player.TWO
         board = [
             '.......',
             '.......',
