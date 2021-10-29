@@ -32,21 +32,21 @@ public final class LC334IncreasingTripletSubsequence {
 
     @Test
     public void test_empty() throws Exception {
-        assertEquals(false, new Solution().increasingTriplet(new int[]{}));
+        assertFalse(new Solution().increasingTriplet(new int[]{}));
     }
 
     @Test
     public void test_example_1() throws Exception {
-        assertEquals(true, new Solution().increasingTriplet(new int[]{1, 2, 3, 4, 5}));
+        assertTrue(new Solution().increasingTriplet(new int[]{1, 2, 3, 4, 5}));
     }
 
     @Test
     public void test_example_2() throws Exception {
-        assertEquals(false, new Solution().increasingTriplet(new int[]{5, 4, 3, 2, 1}));
+        assertFalse(new Solution().increasingTriplet(new int[]{5, 4, 3, 2, 1}));
     }
 
     @Test
     public void test_other() throws Exception {
-        assertEquals(true, new Solution().increasingTriplet(new int[]{1, 2, 3, 1, 2, 1}));
+        assertTrue(new Solution().increasingTriplet(new int[]{1, 2, 3, 1, 2, 1}));
     }
 }

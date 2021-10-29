@@ -50,7 +50,7 @@ public final class LC382LinkedListRandomNode {
         Solution solution = new Solution(head);
         for (int i = 0; i < 10000; i++) {
             int value = solution.getRandom();
-            assertEquals(true, 1 <= value && value <= 3);
+            assertTrue(1 <= value && value <= 3);
             counts[value - 1]++;
         }
         assertEquals(3, counts[0] / 1000);

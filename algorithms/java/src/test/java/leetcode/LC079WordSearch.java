@@ -58,16 +58,16 @@ public final class LC079WordSearch {
 
     @Test
     public void test_a__ab() throws Exception {
-        assertEquals(false, new Solution().exist(new char[][]{{'a'}}, "ab"));
+        assertFalse(new Solution().exist(new char[][]{{'a'}}, "ab"));
     }
 
     @Test
     public void test_a__a() throws Exception {
-        assertEquals(true, new Solution().exist(new char[][]{{'a'}}, "a"));
+        assertTrue(new Solution().exist(new char[][]{{'a'}}, "a"));
     }
 
     @Test
     public void test_a_a__aaa() throws Exception {
-        assertEquals(false, new Solution().exist(new char[][]{{'a', 'a'}}, "aaa"));
+        assertFalse(new Solution().exist(new char[][]{{'a', 'a'}}, "aaa"));
     }
 }

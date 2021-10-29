@@ -53,7 +53,7 @@ public final class LC036ValidSudoku {
                 {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
                 {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
         };
-        assertEquals(true, new Solution().isValidSudoku(board));
+        assertTrue(new Solution().isValidSudoku(board));
     }
 
     @Test
@@ -69,7 +69,7 @@ public final class LC036ValidSudoku {
                 {'8', '.', '.', '.', '.', '.', '.', '.', '.'},
                 {'9', '.', '.', '.', '.', '.', '.', '.', '.'}
         };
-        assertEquals(true, new Solution().isValidSudoku(board));
+        assertTrue(new Solution().isValidSudoku(board));
     }
     //[".87654321","2........","3........","4........","5........","6........","7........","8........","9........"]
 }

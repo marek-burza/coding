@@ -27,17 +27,17 @@ public final class LC326PowerOfThree {
 
     @Test
     public void test_27() throws Exception {
-        assertEquals(true, new Solution().isPowerOfThree(27));
+        assertTrue(new Solution().isPowerOfThree(27));
     }
 
     @Test
     public void test_11() throws Exception {
-        assertEquals(false, new Solution().isPowerOfThree(11));
+        assertFalse(new Solution().isPowerOfThree(11));
     }
 
     @Test
     public void test_1() throws Exception {
-        assertEquals(true, new Solution().isPowerOfThree(1));
+        assertTrue(new Solution().isPowerOfThree(1));
     }
 
     @Test

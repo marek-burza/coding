@@ -31,21 +31,21 @@ public final class LC367ValidPerfectSquare {
 
     @Test
     public void test_1() throws Exception {
-        assertEquals(true, new Solution().isPerfectSquare(1));
+        assertTrue(new Solution().isPerfectSquare(1));
     }
 
     @Test
     public void test_14() throws Exception {
-        assertEquals(false, new Solution().isPerfectSquare(14));
+        assertFalse(new Solution().isPerfectSquare(14));
     }
 
     @Test
     public void test_16() throws Exception {
-        assertEquals(true, new Solution().isPerfectSquare(16));
+        assertTrue(new Solution().isPerfectSquare(16));
     }
 
     @Test
     public void test_maximum() throws Exception {
-        assertEquals(false, new Solution().isPerfectSquare(Integer.MAX_VALUE));
+        assertFalse(new Solution().isPerfectSquare(Integer.MAX_VALUE));
     }
 }

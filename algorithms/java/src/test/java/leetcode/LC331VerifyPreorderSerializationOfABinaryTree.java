@@ -35,26 +35,26 @@ public final class LC331VerifyPreorderSerializationOfABinaryTree {
 
     @Test
     public void test_empty() throws Exception {
-        assertEquals(true, new Solution().isValidSerialization("#"));
+        assertTrue(new Solution().isValidSerialization("#"));
     }
 
     @Test
     public void test_empty_but_not_really() throws Exception {
-        assertEquals(false, new Solution().isValidSerialization("#1"));
+        assertFalse(new Solution().isValidSerialization("#1"));
     }
 
     @Test
     public void test_example_1() throws Exception {
-        assertEquals(true, new Solution().isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
+        assertTrue(new Solution().isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"));
     }
 
     @Test
     public void test_example_2() throws Exception {
-        assertEquals(false, new Solution().isValidSerialization("1,#"));
+        assertFalse(new Solution().isValidSerialization("1,#"));
     }
 
     @Test
     public void test_example_3() throws Exception {
-        assertEquals(false, new Solution().isValidSerialization("9,#,#,1"));
+        assertFalse(new Solution().isValidSerialization("9,#,#,1"));
     }
 }

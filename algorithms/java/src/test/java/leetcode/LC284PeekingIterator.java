@@ -55,6 +55,6 @@ public final class LC284PeekingIterator {
         assertEquals(2, peeking.peek().intValue());
         assertEquals(2, peeking.next().intValue());
         assertEquals(3, peeking.next().intValue());
-        assertEquals(false, peeking.hasNext());
+        assertFalse(peeking.hasNext());
     }
 }

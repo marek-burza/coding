@@ -43,7 +43,7 @@ public final class LC074SearchA2DMatrix {
                 {10, 11, 16, 20},
                 {23, 30, 34, 50}
         };
-        assertEquals(true, new Solution().searchMatrix(matrix, 3));
+        assertTrue(new Solution().searchMatrix(matrix, 3));
     }
 
     @Test
@@ -51,7 +51,7 @@ public final class LC074SearchA2DMatrix {
         int[][] matrix = {
                 {1}
         };
-        assertEquals(true, new Solution().searchMatrix(matrix, 1));
+        assertTrue(new Solution().searchMatrix(matrix, 1));
     }
 
     @Test
@@ -59,7 +59,7 @@ public final class LC074SearchA2DMatrix {
         int[][] matrix = {
                 {1}
         };
-        assertEquals(false, new Solution().searchMatrix(matrix, 0));
+        assertFalse(new Solution().searchMatrix(matrix, 0));
     }
 
     @Test
@@ -67,7 +67,7 @@ public final class LC074SearchA2DMatrix {
         int[][] matrix = {
                 {1, 1}
         };
-        assertEquals(false, new Solution().searchMatrix(matrix, 0));
+        assertFalse(new Solution().searchMatrix(matrix, 0));
     }
 
     @Test
@@ -75,7 +75,7 @@ public final class LC074SearchA2DMatrix {
         int[][] matrix = {
                 {1, 1}
         };
-        assertEquals(false, new Solution().searchMatrix(matrix, 2));
+        assertFalse(new Solution().searchMatrix(matrix, 2));
     }
 
     @Test
@@ -84,6 +84,6 @@ public final class LC074SearchA2DMatrix {
                 {1},
                 {3}
         };
-        assertEquals(true, new Solution().searchMatrix(matrix, 1));
+        assertTrue(new Solution().searchMatrix(matrix, 1));
     }
 }

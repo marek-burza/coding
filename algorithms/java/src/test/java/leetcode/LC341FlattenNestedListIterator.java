@@ -124,10 +124,10 @@ public final class LC341FlattenNestedListIterator {
         int[] expected = {1, 1, 2, 1, 1};
         NestedIterator nested = new NestedIterator(list);
         for (int value : expected) {
-            assertEquals(true, nested.hasNext());
+            assertTrue(nested.hasNext());
             assertEquals(value, nested.next().intValue());
         }
-        assertEquals(false, nested.hasNext());
+        assertFalse(nested.hasNext());
         assertEquals(null, nested.next());
     }
 
@@ -144,10 +144,10 @@ public final class LC341FlattenNestedListIterator {
         int[] expected = {1, 4, 6};
         NestedIterator nested = new NestedIterator(list);
         for (int value : expected) {
-            assertEquals(true, nested.hasNext());
+            assertTrue(nested.hasNext());
             assertEquals(value, nested.next().intValue());
         }
-        assertEquals(false, nested.hasNext());
+        assertFalse(nested.hasNext());
         assertEquals(null, nested.next());
     }
 }

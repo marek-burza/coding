@@ -38,18 +38,18 @@ public final class LC220ContainsDuplicateIII {
     @Test
     public void test_1_10_20_2() throws Exception {
         int[] nums = {1, 10, 20, 2};
-        assertEquals(true, new Solution().containsNearbyAlmostDuplicate(nums, 3, 2));
+        assertTrue(new Solution().containsNearbyAlmostDuplicate(nums, 3, 2));
     }
 
     @Test
     public void test_1_10_20_4() throws Exception {
         int[] nums = {1, 10, 20, 4};
-        assertEquals(false, new Solution().containsNearbyAlmostDuplicate(nums, 3, 2));
+        assertFalse(new Solution().containsNearbyAlmostDuplicate(nums, 3, 2));
     }
 
     @Test
     public void test_1_10_20_30_2() throws Exception {
         int[] nums = {1, 10, 20, 30, 2};
-        assertEquals(false, new Solution().containsNearbyAlmostDuplicate(nums, 3, 2));
+        assertFalse(new Solution().containsNearbyAlmostDuplicate(nums, 3, 2));
     }
 }
