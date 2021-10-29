@@ -37,12 +37,12 @@ public final class LC055JumpGame {
         nums1[25000] = 1;
         nums1[25001] = 0;
         nums1[25002] = 0;
-        assertEquals(false, new Solution().canJump(nums1));
+        assertFalse(new Solution().canJump(nums1));
     }
 
     @Test
     public void test_1_2_3() throws Exception {
         int[] nums2 = {1, 2, 3};
-        assertEquals(true, new Solution().canJump(nums2));
+        assertTrue(new Solution().canJump(nums2));
     }
 }

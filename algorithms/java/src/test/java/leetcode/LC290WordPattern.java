@@ -43,26 +43,26 @@ public final class LC290WordPattern {
 
     @Test
     public void test_abba__dog_cat_cat_dog() throws Exception {
-        assertEquals(true, new Solution().wordPattern("abba", "dog cat cat dog"));
+        assertTrue(new Solution().wordPattern("abba", "dog cat cat dog"));
     }
 
     @Test
     public void test_abba__dog_cat_cat_fish() throws Exception {
-        assertEquals(false, new Solution().wordPattern("abba", "dog cat cat fish"));
+        assertFalse(new Solution().wordPattern("abba", "dog cat cat fish"));
     }
 
     @Test
     public void test_aaaa__dog_cat_cat_dog() throws Exception {
-        assertEquals(false, new Solution().wordPattern("aaaa", "dog cat cat dog"));
+        assertFalse(new Solution().wordPattern("aaaa", "dog cat cat dog"));
     }
 
     @Test
     public void test_abba__dog_dog_dog_dog() throws Exception {
-        assertEquals(false, new Solution().wordPattern("abba", "dog dog dog dog"));
+        assertFalse(new Solution().wordPattern("abba", "dog dog dog dog"));
     }
 
     @Test
     public void test_ab_b_c() throws Exception {
-        assertEquals(true, new Solution().wordPattern("ab", "b c"));
+        assertTrue(new Solution().wordPattern("ab", "b c"));
     }
 }

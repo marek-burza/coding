@@ -51,6 +51,6 @@ public final class LC139WordBreak {
 
     @Test
     public void test_a__a() throws Exception {
-        assertEquals(true, new Solution().wordBreak("a", prepare(new String[]{"a"})));
+        assertTrue(new Solution().wordBreak("a", prepare(new String[]{"a"})));
     }
 }

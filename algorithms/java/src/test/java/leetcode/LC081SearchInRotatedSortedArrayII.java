@@ -28,12 +28,12 @@ public final class LC081SearchInRotatedSortedArrayII {
     @Test
     public void test_simple_example() {
         int[] nums = {4, 5, 6, 6, 7, 0, 1, 2};
-        assertEquals(true, new Solution().search(nums, 1));
+        assertTrue(new Solution().search(nums, 1));
     }
 
     @Test
     public void test_tricky_example() {
         int[] nums = {1, 1, 3, 1, 1, 1, 1, 1};
-        assertEquals(false, new Solution().search(nums, 2));
+        assertFalse(new Solution().search(nums, 2));
     }
 }

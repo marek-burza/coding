@@ -117,7 +117,7 @@ public final class LC109ConvertSortedListToBinarySearchTree {
         TreeNode root = new Solution().sortedListToBST(list);
         MinMax depths = new MinMax();
         depth(root, 0, depths);
-        assertEquals(true, depths.max - depths.min < 2);
+        assertTrue(depths.max - depths.min < 2);
         assertEquals(null, test(root, list));
     }
 
@@ -127,7 +127,7 @@ public final class LC109ConvertSortedListToBinarySearchTree {
         TreeNode root = new Solution().sortedListToBST(list);
         MinMax depths = new MinMax();
         depth(root, 0, depths);
-        assertEquals(true, depths.max - depths.min < 2);
+        assertTrue(depths.max - depths.min < 2);
         assertEquals(null, test(root, list));
     }
 }

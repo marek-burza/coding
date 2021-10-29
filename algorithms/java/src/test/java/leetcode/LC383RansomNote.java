@@ -27,16 +27,16 @@ public final class LC383RansomNote {
 
     @Test
     public void test_example_a_b() throws Exception {
-        assertEquals(false, new Solution().canConstruct("a", "b"));
+        assertFalse(new Solution().canConstruct("a", "b"));
     }
 
     @Test
     public void test_example_aa_ab() throws Exception {
-        assertEquals(false, new Solution().canConstruct("aa", "ab"));
+        assertFalse(new Solution().canConstruct("aa", "ab"));
     }
 
     @Test
     public void test_example_aa_aab() throws Exception {
-        assertEquals(true, new Solution().canConstruct("aa", "aab"));
+        assertTrue(new Solution().canConstruct("aa", "aab"));
     }
 }

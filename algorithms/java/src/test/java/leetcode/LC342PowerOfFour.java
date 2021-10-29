@@ -20,11 +20,11 @@ public final class LC342PowerOfFour {
 
     @Test
     public void test_16() throws Exception {
-        assertEquals(true, new Solution().isPowerOfFour(16));
+        assertTrue(new Solution().isPowerOfFour(16));
     }
 
     @Test
     public void test_5() throws Exception {
-        assertEquals(false, new Solution().isPowerOfFour(5));
+        assertFalse(new Solution().isPowerOfFour(5));
     }
 }
