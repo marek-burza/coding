@@ -72,10 +72,11 @@
 * [Watch the lecture on Scalability Harvard Web Development](https://youtu.be/-W9F__D3oY4)
 * [Review an example - Restaurant Waiting Time](http://altermarkive.github.io/training/system-design/restaurant-waiting-time.html)
 * [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
-* Design Principles - [SOLID](https://en.wikipedia.org/wiki/SOLID), Low Coupling & High Cohesion, [Heroku's 12 Factors](https://12factor.net/), [Richardson Maturity Model](https://en.wikipedia.org/wiki/Richardson_Maturity_Model), [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), Semantic Versioning (and locking versions), Immutable Object/Server/etc., Idempotent Operations, Minimal Privileges & Isolation, Encryption in Transit & at Rest
-* Architectural Safety Measures: [Circuit-breakers](https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern), [Correlation IDs](https://dzone.com/articles/correlation-id-for-logging-in-microservices), Timeouts, System Bulkheads
+* Design principles, patterns, best practices - [SOLID](https://en.wikipedia.org/wiki/SOLID), Low Coupling & High Cohesion, [Heroku's 12 Factors](https://12factor.net/), [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design), REST & [Richardson Maturity Model](https://en.wikipedia.org/wiki/Richardson_Maturity_Model) & [CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation#Command_query_responsibility_segregation), [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) too much, Semantic Versioning (and locking versions), Immutable Object/Server/etc., [Idempotent Operations](https://microservices.io/patterns/communication-style/idempotent-consumer.html), [event sourcing](https://microservices.io/patterns/data/event-sourcing.html), Minimal Privileges & Isolation, Encryption in Transit & at Rest, Service discovery and Service Registry (Zookeeper, etcd, Consul), ACID (atomicity, consistency, isolation, durability)
+* Architectural Safety Measures: [Circuit-breakers](https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern) & back-off timeouts, [Correlation IDs](https://dzone.com/articles/correlation-id-for-logging-in-microservices) & healthchecks & monitoring & logging & alerts, System Bulkheads
 * Embracing System Failure: [OWASP Top Ten](https://owasp.org/www-project-top-ten/), [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering) & [Antifragile Engineering](https://en.wikipedia.org/wiki/Antifragile)
-* [Microservices](https://www.google.com/search?q=awesome+microservices)
+* [Microservices](https://www.google.com/search?q=awesome+microservices): [best practices](https://microservices.io/) & [antipatterns / pitfalls](https://www.oreilly.com/content/microservices-antipatterns-and-pitfalls/)
+* [Gergely Orosz - Preparing for the Systems Design and Coding Interview](https://blog.pragmaticengineer.com/preparing-for-the-systems-design-and-coding-interviews/)
 
 ----------
 
