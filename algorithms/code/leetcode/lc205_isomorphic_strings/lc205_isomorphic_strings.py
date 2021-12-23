@@ -10,7 +10,7 @@ class Solution:
         for i, _ in enumerate(s):
             source = s[i]
             target = t[i]
-            if source in mapped.keys():
+            if source in mapped:
                 if target != mapped[source]:
                     return False
             else:
