@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # https://leetcode.com/problems/binary-tree-preorder-traversal/
 
 import unittest
@@ -37,7 +36,5 @@ class TestCode(unittest.TestCase):
         node2.left = node3
         result = Solution().preorderTraversal(node1)
         expected = [1, 2, 3]
-        i = 0
-        while i < len(expected):
-            self.assertEqual(expected[i], int(result[i]))
-            i += 1
+        for i, _ in enumerate(expected):
+            self.assertEqual(expected[i], result[i])

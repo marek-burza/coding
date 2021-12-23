@@ -6,7 +6,7 @@ import unittest
 
 class Solution:
     def check(self, first, second, mapping):
-        if first in mapping.keys():
+        if first in mapping:
             if mapping[first] != second:
                 return False
         else:

@@ -6,4 +6,5 @@
     <suppress checks="MagicNumber" files="." />
     <suppress checks="NoWhitespaceAfter" files="." />
     <suppress checks="VisibilityModifier" files="." />
+    <suppress checks="ParameterNumber" files="." />
 </suppressions>
