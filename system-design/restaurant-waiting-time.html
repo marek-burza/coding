@@ -3,6 +3,7 @@
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/reveal.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.1.0/theme/white.min.css" />
+<title>SYSTEM DESIGN INTERVIEW - Waiting Time in Neighboring Restaurants</title>
 </head>
 
 <body>
@@ -65,9 +66,9 @@
 <span class="fragment fade-in">
 <p><b>RESTAURANT INFORMATION</b></p>
 </span>
-<ul>
 <span class="fragment fade-in">
-<li>Restaurant location, opening times & capacity</li>
+<ul>
+<li>Restaurant location, opening times &amp; capacity</li>
 <li>Current number of guests</li>
 <li>Current number of waiting guests</li>
 <li>This allows to calculate: average eating time</li>
@@ -87,7 +88,7 @@
   +--------+       .
                    .   +-----------+ API   +----------+
                    .   |   LOAD    |   /  +----------+| \    +----------+
-                   .---|           |--+  +----------+|+  <-->| DATABASE |
+                   .---|           |--+  +----------+|+  &lt;--&gt;| DATABASE |
                    .   | BALANCING |   \ | μSERVICE |+  /    +----------+
                    .   +-----------+     +----------+
                    .
@@ -108,7 +109,7 @@
   +--------+       .
                    .   +-----------+ API   +----------+
                    .   |   LOAD    |   /  +----------+| \    +----------+
-                   .---|           |--+  +----------+|+  <-->| DATABASE |
+                   .---|           |--+  +----------+|+  &lt;--&gt;| DATABASE |
                    .   | BALANCING |   \ | μSERVICE |+  /    +----------+
   +------------+   .   +-----------+     +----------+
   | RESTAURANT |---.
@@ -157,7 +158,7 @@
 <li>Capacity, average time of stay, check-ins would then allow to estimate the waiting time</li>
 </span>
 <span class="fragment fade-in">
-<li>Since the margin of error would be high the approximate waiting time would be presented in tiered ranges: couple of/10-20/20-40/40-60 minutes
+<li>Since the margin of error would be high the approximate waiting time would be presented in tiered ranges: couple of/10-20/20-40/40-60 minutes</li>
 </span>
 </ul>
 </section>
@@ -192,7 +193,7 @@
                   .   +----+   .            |                              .
                   .            .   +-------------------+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE           |                   .  +-----------+
+                  .            .   | &amp; STORE           |                   .  +-----------+
                   .            .   +-------------------+
                   .            .            |
                   .            .   +-----------------+                     .  +----------+
@@ -239,7 +240,7 @@
                   .   +----+   .            |                              .
                   .            .   +-------------------+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE           |                   .  +-----------+
+                  .            .   | &amp; STORE           |                   .  +-----------+
                   .            .   +-------------------+
                   .            .            |
                   .            .   +-----------------+                     .  +----------+
@@ -275,7 +276,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |                   .  +-----------+
+                  .            .   | &amp; STORE (OFFLINE) |                   .  +-----------+
                   .            .   +~~~~~~~~~~~~~~~~~~~+
                   .            .            |
                   .            .   +-----------------+                     .  +----------+
@@ -310,7 +311,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   | &amp; STORE (OFFLINE) |----------+        .  +-----------+
                   .            .   +~~~~~~~~~~~~~~~~~~~+          |
                   .            .            |                     +---------------------------+
                   .            .   +-----------------+                     .  +----------+    |
@@ -345,7 +346,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   | &amp; STORE (OFFLINE) |----------+        .  +-----------+
                   .            .   +~~~~~~~~~~~~~~~~~~~+          |
                   .            .            |                     +---------------------------+
                   .            .   +-----------------+                     .  +----------+    |
@@ -391,7 +392,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   | &amp; STORE (OFFLINE) |----------+        .  +-----------+
                   .            .   +~~~~~~~~~~~~~~~~~~~+          |
                   .            .            |                     +---------------------------+
                   .            .   +-----------------+                     .  +----------+    |
@@ -427,7 +428,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   | &amp; STORE (OFFLINE) |----------+        .  +-----------+
                   .            .   +~~~~~~~~~~~~~~~~~~~+          |
                   .            .            |                     +---------------------------+
                   .            .   +-----------------+                     .  +----------+    |
@@ -473,7 +474,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   | &amp; STORE (OFFLINE) |----------+        .  +-----------+
                   .            .   +~~~~~~~~~~~~~~~~~~~+          |
                   .            .            |                     +---------------------------+
                   .            .   +-----------------+                     .  +----------+    |
@@ -509,7 +510,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   | &amp; STORE (OFFLINE) |----------+        .  +-----------+
                   .            .   +~~~~~~~~~~~~~~~~~~~+          |
                   .            .            |                     +---------------------------+
                   .            .   +-----------------+                     .  +----------+    |
@@ -613,7 +614,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
                   .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
+                  .            .   | &amp; STORE (OFFLINE) |----------+        .  +-----------+
                   .            .   +~~~~~~~~~~~~~~~~~~~+          |
                   .            .            |                     +---------------------------+
                   .            .   +-----------------+                     .  +----------+    |
@@ -649,7 +650,7 @@
                   .   +----+   .            \/ (if new restaurant queried) .                     +---+
                   .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+      | B |
           * HTTPS . * ANTI     .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |      | A |
-          * AUTH  .   DDOS     .   | & STORE (OFFLINE) |----------+        .  +-----------+      | C |
+          * AUTH  .   DDOS     .   | &amp; STORE (OFFLINE) |----------+        .  +-----------+      | C |
                   . * FIREWALL .   +~~~~~~~~~~~~~~~~~~~+          |                              | K |
                   .            .            |                     +---------------------------+  | U |
                   .            .   +-----------------+                     .  +----------+    |  | P |
