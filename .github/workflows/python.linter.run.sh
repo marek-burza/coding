@@ -4,6 +4,6 @@ set -e
 
 pycodestyle .
 flake8
-pylint --disable=C0103,C0111,R0801,R0201,R0903 $(find . -name "*.py")
+find . -name '*.py' | xargs pylint --disable=C0103,C0111,R0801,R0201,R0903
 bandit -r .
 mypy algorithms || true

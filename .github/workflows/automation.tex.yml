@@ -20,5 +20,5 @@ jobs:
       - name: Releasing
         run: |
           echo ${{ secrets.GITHUB_TOKEN }} | gh auth login --hostname github.com --with-token
-          gh release create ${GITHUB_SHA:0:7} --notes "Release for ${GITHUB_SHA:0:7}"
-          gh release upload ${GITHUB_SHA:0:7} algorithms/algorithms.pdf
+          gh release create "${GITHUB_SHA:0:7}" --notes "Release for ${GITHUB_SHA:0:7}"
+          gh release upload "${GITHUB_SHA:0:7}" algorithms/algorithms.pdf

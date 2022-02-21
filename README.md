@@ -1,4 +1,6 @@
-# General Remarks
+# Training
+
+## General Remarks
 
 * Talk through your thinking process, flag uncertainty
 * Be: fast, positive/enthusiastic/passionate, transparent, fact-based, methodical, and express explicitly (to prevent hidden assumptions and getting stuck)
@@ -6,73 +8,97 @@
 
 ----------
 
-# Algorithm Design
+## Algorithm Design
 
-1. Disambiguate / **Clarify by example** (✅ ❎)
-  - Missing details? Special cases & their indication / handling?
-  - Restrictions? Guarantees?
-  - Types? Ranges? Sizes? Cardinality? How often? Unique / repetitions / empty / partially ordered?
-  - Function signature & spec?
-  - Accounted for entirety of interviewer's description?
-  - Beware of: assumptions, **"familiar" exercises**, **early optimization**; Start simple
-2. Talk through the design process / List ideas
-  - List alternatives telling their pros and cons (e.g. time/space complexity)
-  - Algorithm design tactics
-    - Write (or draw) examples to identify a pattern
-    - Simplify (relax constraints) then generalize
-    - Base case & build up (induction, scale), dyn. prog.
-    - Match to other similar problem / data struct. (for example: **heap**, **graph**, stack, etc.)
-    - (Consider greedy alg., backtracking, iterating the smaller param.)
-  - Pick one achievable in an interview (**solution likely to be simple enough**)
-3. Code
-  - Pick a data structure
-  - Modularize (break-up code into distinct parts for clarity)
-  - Test input (as a remark)
-  - Beware of < vs <=, +1 vs +0, null checks, overflows
-  - Code must compile - obey syntax, but okay to ask if don't remember name or behavior
-4. Test - describe how would you test, run through a simple case
-  - Normal case
-  - Non-trivial, corner cases
-  - Full coverage time permitting
-  - (Other: invalid input, randomized tests, load testing)
-5. Keep improving - can we do better?
+### 1. Disambiguate / **Clarify by example** (✅ ❎)
 
-* [Practice algorithm design challenges](algorithms) [![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
-  - [HackerRank](https://www.hackerrank.com/) - [my solutions](algorithms/code/hackerrank)
-  - [LeetCode](https://leetcode.com/) - [my solutions](algorithms/code/leetcode)
-  - [Codility](https://codility.com/) - [my solutions](algorithms/code/codility)
-  - [Geeks for Geeks](https://www.geeksforgeeks.org/) - [my solutions](algorithms/code/geeksforgeeks)
-  - [Codeforces](https://codeforces.com/)
-  - [InterviewBit](https://www.interviewbit.com/) (consider their mock interviews)
-  - [Kattis](https://open.kattis.com/)
-  - [ACM-ICPC questions](https://icpc.baylor.edu/worldfinals/problems)
-  - [Codejam questions](https://code.google.com/codejam/past-contests)
+* Missing details? Special cases & their indication / handling?
+* Restrictions? Guarantees?
+* Types? Ranges? Sizes? Cardinality? How often? Unique / repetitions / empty / partially ordered?
+* Function signature & spec?
+* Accounted for entirety of interviewer's description?
+* Beware of: assumptions, **"familiar" exercises**, **early optimization**; Start simple
 
-* [Flashcards](https://github.com/altermarkive/training/releases)
+### 2. Talk through the design process / List ideas
+* List alternatives telling their pros and cons (e.g. time/space complexity)
+* Tactic: Write (or draw) examples to identify a pattern
+* Tactic: Simplify (relax constraints) then generalize
+* Tactic: Base case & build up (induction, scale), dyn. prog.
+* Tactic: Match to other similar problem / data struct. (for example: **heap**, **graph**, stack, etc.)
+* Tactic: (Consider greedy alg., backtracking, iterating the smaller param.)
+* Pick one achievable in an interview (**solution likely to be simple enough**)
+
+### 3. Code
+
+* Pick a data structure
+* Modularize (break-up code into distinct parts for clarity)
+* Test input (as a remark)
+* Beware of < vs <=, +1 vs +0, null checks, overflows
+* Code must compile - obey syntax, but okay to ask if don't remember name or behavior
+
+### 4. Test - describe how would you test, run through a simple case
+
+* Normal case
+* Non-trivial, corner cases
+* Full coverage time permitting
+* (Other: invalid input, randomized tests, load testing)
+
+### 5. Keep improving - can we do better?
+
+### [Practice algorithm design challenges](algorithms) [![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
+
+* [HackerRank](https://www.hackerrank.com/) - [my solutions](algorithms/code/hackerrank)
+* [LeetCode](https://leetcode.com/) - [my solutions](algorithms/code/leetcode)
+* [Codility](https://codility.com/) - [my solutions](algorithms/code/codility)
+* [Geeks for Geeks](https://www.geeksforgeeks.org/) - [my solutions](algorithms/code/geeksforgeeks)
+* [Codeforces](https://codeforces.com/)
+* [InterviewBit](https://www.interviewbit.com/) (consider their mock interviews)
+* [Kattis](https://open.kattis.com/)
+* [ACM-ICPC questions](https://icpc.baylor.edu/worldfinals/problems)
+* [Codejam questions](https://code.google.com/codejam/past-contests)
+
+### [Flashcards](https://github.com/altermarkive/training/releases)
 
 ----------
 
-# System Design:
+## System Design
 
-0. Communicate, steer (be the tech lead), get feedback!
-1. Explore and understand
-  - **Disambiguate**, gather requirements - ask clarifying questions (missing details or restrictions) - beware of assumptions!
-  - Agree on **scope** / **use cases**
-    (First a minimum viable product then explore other functions: API vs UI? Customizable? Monetization? Analytics? Scale / numbers?)
-2. Design - break down the system into parts
-  - Start with basic, **abstract** design (e.g. key-value store, web server); Prioritize
-3. Scale-up / distribute
-  - **Say what can fail / overflow**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
-  - Say how to distribute and how to fix whats broken by distributing
-  - Show specific alternatives / solution space
-  - **Ballpark estimates**
+### 0. Communicate, steer (be the tech lead), get feedback
+
+### 1. Explore and understand
+
+* **Disambiguate**, gather requirements - ask clarifying questions (missing details or restrictions) - beware of assumptions!
+* Agree on **scope** / **use cases**
+  (First a minimum viable product then explore other functions: API vs UI? Customizable? Monetization? Analytics? Scale / numbers?)
+
+### 2. Design - break down the system into parts
+
+* Start with basic, **abstract** design (e.g. key-value store, web server); Prioritize
+
+### 3. Scale-up / distribute
+
+* **Say what can fail / overflow**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
+* Say how to distribute and how to fix whats broken by distributing
+* Show specific alternatives / solution space
+* **Ballpark estimates**
+
+### Additional materials
 
 * [Alex Yu - System Design Interview](https://www.amazon.com/dp/B08B3FWYBX/ref=cm_sw_em_r_mt_dp_X3C1WZV5Q0VX0Q0HX7CX)
 * Review [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
 * [Watch the lecture on Scalability Harvard Web Development](https://youtu.be/-W9F__D3oY4)
 * [Review an example - Restaurant Waiting Time](http://altermarkive.github.io/training/system-design/restaurant-waiting-time.html)
 * [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
-* Design principles, patterns, best practices - [SOLID](https://en.wikipedia.org/wiki/SOLID), Low Coupling & High Cohesion, [Heroku's 12 Factors](https://12factor.net/), [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design), REST & [Richardson Maturity Model](https://en.wikipedia.org/wiki/Richardson_Maturity_Model) & [CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation#Command_query_responsibility_segregation), [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) too much, Semantic Versioning (and locking versions), Immutable Object/Server/etc., [Idempotent Operations](https://microservices.io/patterns/communication-style/idempotent-consumer.html), [event sourcing](https://microservices.io/patterns/data/event-sourcing.html), Minimal Privileges & Isolation, Encryption in Transit & at Rest, Service discovery and Service Registry (Zookeeper, etcd, Consul), ACID (atomicity, consistency, isolation, durability)
+* Design principles, patterns, best practices - [SOLID](https://en.wikipedia.org/wiki/SOLID),
+  Low Coupling & High Cohesion, [Heroku's 12 Factors](https://12factor.net/),
+  [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design),
+  REST & [Richardson Maturity Model](https://en.wikipedia.org/wiki/Richardson_Maturity_Model) & [CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation#Command_query_responsibility_segregation),
+  [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) too much,
+  Semantic Versioning (and locking versions), Immutable Object/Server/etc.,
+  [Idempotent Operations](https://microservices.io/patterns/communication-style/idempotent-consumer.html),
+  [event sourcing](https://microservices.io/patterns/data/event-sourcing.html), Minimal Privileges & Isolation,
+  Encryption in Transit & at Rest, Service discovery and Service Registry (Zookeeper, etcd, Consul),
+  ACID (atomicity, consistency, isolation, durability)
 * Architectural Safety Measures: [Circuit-breakers](https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern) & back-off timeouts, [Correlation IDs](https://dzone.com/articles/correlation-id-for-logging-in-microservices) & healthchecks & monitoring & logging & alerts, System Bulkheads
 * Embracing System Failure: [OWASP Top Ten](https://owasp.org/www-project-top-ten/), [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering) & [Antifragile Engineering](https://en.wikipedia.org/wiki/Antifragile)
 * [Microservices](https://www.google.com/search?q=awesome+microservices): [best practices](https://microservices.io/) & [antipatterns / pitfalls](https://www.oreilly.com/content/microservices-antipatterns-and-pitfalls/)
@@ -80,7 +106,7 @@
 
 ----------
 
-# Object Oriented Design
+## Object Oriented Design
 
 1. What do we want to do (with the objects)?
 2. What are the core objects (we operate on)?
@@ -89,25 +115,30 @@
 
 ----------
 
-# Extra materials
+## Extra materials
 
-* Algorithm Design:
-  - [Review the Algorithm Design Process at Hired in Tech](https://www.hiredintech.com/algorithm-design/the-algorithm-design-canvas/)
-  - [Actual interview questions on CareerCup](https://www.careercup.com/user?id=5095734581919744)
-  - [Cracking the Coding Interview](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
-  - [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
-  - [Google: Prepare for an Engineering Interview](https://youtu.be/ko-KkSmp-Lk)
-  - [Google: Example Coding/Engineering Interview](https://youtu.be/XKu_SEDAykw)
-  - [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
-  - [Google: How We Hire](https://careers.google.com/how-we-hire/interview)
-  - Coursera Princeton University Algorithms - [Part 1](https://www.coursera.org/learn/algorithms-part1) & [Part 2](https://www.coursera.org/learn/algorithms-part2)
-  - [Coding Interview University](https://github.com/jwasham/coding-interview-university)
-  - [Tech Interview Handbook](https://github.com/yangshun/tech-interview-handbook)
-  - [LeetCode - Top Interview Questions](https://leetcode.com/explore/featured/card/top-interview-questions-easy/)
-* System Design:
-  - [High Scalability Blog](https://highscalability.com/)
-  - [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
-  - [System Design Primer](https://github.com/donnemartin/system-design-primer)
-* Other:
-  - Google Code Style Guides: [Java](https://google.github.io/styleguide/javaguide.html), [Python](https://google.github.io/styleguide/pyguide.html)
-  - [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/)
+Algorithm Design:
+
+* [Review the Algorithm Design Process at Hired in Tech](https://www.hiredintech.com/algorithm-design/the-algorithm-design-canvas/)
+* [Actual interview questions on CareerCup](https://www.careercup.com/user?id=5095734581919744)
+* [Cracking the Coding Interview](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
+* [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
+* [Google: Prepare for an Engineering Interview](https://youtu.be/ko-KkSmp-Lk)
+* [Google: Example Coding/Engineering Interview](https://youtu.be/XKu_SEDAykw)
+* [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
+* [Google: How We Hire](https://careers.google.com/how-we-hire/interview)
+* Coursera Princeton University Algorithms - [Part 1](https://www.coursera.org/learn/algorithms-part1) & [Part 2](https://www.coursera.org/learn/algorithms-part2)
+* [Coding Interview University](https://github.com/jwasham/coding-interview-university)
+* [Tech Interview Handbook](https://github.com/yangshun/tech-interview-handbook)
+* [LeetCode - Top Interview Questions](https://leetcode.com/explore/featured/card/top-interview-questions-easy/)
+
+System Design:
+
+* [High Scalability Blog](https://highscalability.com/)
+* [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
+* [System Design Primer](https://github.com/donnemartin/system-design-primer)
+
+Other:
+
+* Google Code Style Guides: [Java](https://google.github.io/styleguide/javaguide.html), [Python](https://google.github.io/styleguide/pyguide.html)
+* [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/)
