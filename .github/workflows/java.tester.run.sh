@@ -5,4 +5,4 @@ set -e
 cd algorithms
 mvn verify
 
-cat target/site/jacoco/jacoco.csv | column -t -s,
+column -t -s, target/site/jacoco/jacoco.csv

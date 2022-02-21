@@ -21,7 +21,7 @@ We ask you complete this exercise so you have an opportunity to build a service 
 ## Suggestions
 
 * Your code will be read by humans, so organize it sensibly.
-* Use this repository to store your work. Committing just the final solution is *ok* but we'd love to see your incremental progress. We suggest taking a look at [GitHub flow](https://guides.github.com/introduction/flow/) to structure your commits.
+* Use this repository to store your work. Committing just the final solution is *OK* but we'd love to see your incremental progress. We suggest taking a look at [GitHub flow](https://guides.github.com/introduction/flow/) to structure your commits.
 * [Submit a pull request](https://help.github.com/articles/creating-a-pull-request/) once you are happy with your work.
 * Treat this pull request as if you’re at work submitting it to your colleagues, or to an open source project. The body of the pull request can be used to describe your reasoning and any assumptions, limitations or tradeoffs in your implementation, or anything you're really proud of in your submission 😄.
 * Remember that this is a web application and concurrent requests could come in. If you have time, this is a good problem to address.
@@ -30,13 +30,13 @@ We ask you complete this exercise so you have an opportunity to build a service 
 
 ### Upload an Object
 
-```
+```default
 PUT /data/{repository}
 ```
 
-#### Response
+#### Response (Upload an Object)
 
-```
+```default
 Status: 201 Created
 {
   "oid": "1845f5a412dbdfacf95193f296dd0f5b2a16920da5a7ffa4c5832f223b03de97",
@@ -46,13 +46,13 @@ Status: 201 Created
 
 ### Download an Object
 
-```
+```default
 GET /data/{repository}/{objectID}
 ```
 
-#### Response
+#### Response (Download an Object)
 
-```
+```default
 Status: 200 OK
 {object data}
 ```
@@ -61,13 +61,13 @@ Objects that are not on the server will return a `404 Not Found`.
 
 ### Delete an Object
 
-```
+```default
 DELETE /data/{repository}/{objectID}
 ```
 
 #### Response
 
-```
+```default
 Status: 200 OK
 ```
 
@@ -75,21 +75,21 @@ Status: 200 OK
 
 In `testapp.go` you'll find a naive first draft of the answer to the exercise written for you. Please improve this draft so that it passes the test written in `coding_test.go`. You can test this by running:
 
-```
+```default
 go build -o testapp
 go test -count=1
 ```
 
 Or simply:
 
-```
+```default
 make
 ```
 
 Once you have a good version of `testapp.go` please submit that file in a pull request.
 Behind the scenes we add the following GitHub Actions file to your code:
 
-```
+```default
 name: Go
 on: [push]
 jobs:
