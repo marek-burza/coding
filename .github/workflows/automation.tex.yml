@@ -1,3 +1,4 @@
+---
 name: Automation TeX Flashcards
 
 on: [push]
