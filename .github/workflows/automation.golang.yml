@@ -1,3 +1,4 @@
+---
 name: Automation Go
 
 on: [push]

@@ -1,3 +1,4 @@
+---
 name: Automation Python
 
 on: [push]
