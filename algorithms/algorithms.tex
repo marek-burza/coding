@@ -35,10 +35,10 @@
 DYNAMIC PROGRAMMING
 }
 \flashcard{46}{center}{
-TOP-DOWN: MEMOIZATION\linebreak
+TOP-DOWN\@: MEMOIZATION\linebreak
 \linebreak
 \linebreak
-BOTTOM-UP: TABULATION (SUBPROBLEMS)
+BOTTOM-UP\@: TABULATION (SUBPROBLEMS)
 }
 
 \flashcard{60}{center}{
@@ -46,11 +46,11 @@ DFS vs. BFS
 }
 \flashcard{40}{center}{
 WORST CASE \( O(B^D) \)\linebreak
-DFS: RECURSIVE vs. BFS: FIFO\linebreak
+DFS\@: RECURSIVE versus BFS\@: FIFO\linebreak
 (DFS MAY OVERFLOW THE STACK)\linebreak
-PRE-ORDER: VISIT ROOT\linebreak
-IN-ORDER: LEFT, ROOT, RIGHT\linebreak
-POST-ORDER: VISIT CHILDREN
+PRE-ORDER\@: VISIT ROOT\linebreak
+IN-ORDER\@: LEFT, ROOT, RIGHT\linebreak
+POST-ORDER\@: VISIT CHILDREN
 }
 
 \flashcard{60}{center}{
@@ -58,35 +58,34 @@ HASH TABLES
 }
 \flashcard{32}{flushleft}{
 \begin{description}
-\item[FLOAT:] \( \frac{KEY - MIN}{MAX - MIN}\mod{M} \)\linebreak
-\item[INT:] \( KEY\mod{M} \) where \( \left\{M: \text{MERSENNE PRIME}\right\} \) \linebreak\% IMPL. CAN BE FAST\linebreak
-\item[STRING:] \( (\sum{str[i] << b})\mod{M} \) \linebreak b - NUMBER OF CHARACTER CODING BITS\linebreak
+\item[FLOAT\@:] \( \frac{KEY - MIN}{MAX - MIN}\mod{M} \)\linebreak
+\item[INT\@:] \( KEY\mod{M} \) where \( \left\{M: \text{MERSENNE PRIME}\right\} \) \linebreak\% IMPLEMENTATION CAN BE FAST\linebreak
+\item[STRING\@:] \( (\sum{str[i] << b})\mod{M} \) \linebreak b \textendash{} NUMBER OF CHARACTER CODING BITS\linebreak
 \end{description}
-RESOLUTION (constant if enough buckets, linear within a bucket):
+RESOLUTION (constant if enough buckets, linear within a bucket)\@:
 \begin{itemize}
-\item SEPARATE CHAINING (LISTS)\linebreak(A.K.A. OPEN HASHING, CLOSED ADDRESSING)
-\item LINEAR PROBING (ARRAY)\linebreak(A.K.A. CLOSED HASHING, OPEN ADDRESSING)
+\item SEPARATE CHAINING (LISTS)\linebreak(OPEN HASHING, CLOSED ADDRESSING)
+\item LINEAR PROBING (ARRAY)\linebreak(CLOSED HASHING, OPEN ADDRESSING)
 \end{itemize}
 }
 
 \flashcard{52}{center}{
 HEAPS\linebreak
-(Java: PriorityQueue)\linebreak
+(Java\@: PriorityQueue)\linebreak
 \href{https://www.hackerrank.com/challenges/qheap1}{hackerrank.com/challenges/qheap1}\linebreak
 \href{https://leetcode.com/problems/min-stack/}{leetcode.com/problems/min-stack/}\linebreak
 \href{https://leetcode.com/problems/kth-largest-element-in-an-array/}{leetcode.com/problems/kth-largest-element-in-an-array/}\linebreak
 }
 \flashcard{32}{flushleft}{
-\( \mbox{CHILD} = \mbox{INDEX}^{'} \times 2 \) \linebreak
-\( \mbox{PARENT} = \mbox{INDEX}^{'} / 2 \) \linebreak
+\( \mbox{CHILD} = \mbox{INDEX} \times 2 \) \linebreak
+\( \mbox{PARENT} = \mbox{INDEX} / 2 \) \linebreak
+(correct index by 1 for 0-based array)\linebreak
 \linebreak
-BUILD: for each index from last parent to 0 (the root) traverse down picking the biggest/smallest child and correcting parent-child order\linebreak
-INSERT: append to the end of the array and traverse up correcting parent-child order \( O(\log{n})^{"} \) \linebreak
-DELETE: overwrite the node with the last and depending on comparing with its parent either traverse up or down \( O(\log{n})^{"} \) \linebreak
-SEARCH: linear scan through the array \( O(n)^{"} \) \linebreak
-\linebreak
-') correct index by 1 for 0-based array \linebreak
-") WORST/AVG
+BUILD\@: for each index from last parent to 0 (the root) traverse down picking the biggest/smallest child and correcting parent-child order\linebreak
+INSERT\@: append to the end of the array and traverse up correcting parent-child order \( O(\log{n}) \) \linebreak
+DELETE\@: overwrite the node with the last and depending on comparing with its parent either traverse up or down \( O(\log{n}) \) \linebreak
+SEARCH\@: linear scan through the array \( O(n) \) \linebreak
+(O \textendash{} WORST/AVG)
 }
 
 \flashcard{60}{center}{
@@ -94,7 +93,7 @@ HEAPS\linebreak
 (USAGE)
 }
 \flashcard{42}{center}{
-\textbf{RUNNING MEDIAN} - GREATER (SMALLER) HALF OF THE NUMBERS IN MIN (MAX) HEAP; INSERT INCOMING INTO HEAP DEPENDING ON COMPARISON WITH CURRENT MEDIAN; REBALANCE IF NECESSARY; MEDIAN IS ONE OF ROOTS OR THEIR AVERAGE; REMOVE OUTGOING SIMILAR
+\textbf{RUNNING MEDIAN} \textendash{} GREATER (SMALLER) HALF OF THE NUMBERS IN MIN (MAX) HEAP\@; INSERT INCOMING INTO HEAP DEPENDING ON COMPARISON WITH CURRENT MEDIAN\@; REBALANCE IF NECESSARY\@; MEDIAN IS ONE OF ROOTS OR THEIR AVERAGE\@; REMOVE OUTGOING SIMILAR
 }
 
 \flashcard{60}{center}{
@@ -102,12 +101,12 @@ GRAPHS
 }
 \flashcard{40}{flushleft}{
 \textbf{ADJACENCY MATRIX}\linebreak
-PRO: LOOKUP TIME (MANY CONNECTIONS)\linebreak
-CON: SIZE (ALL POSSIBLE CONNECTIONS)\linebreak
+PRO\@: LOOKUP TIME (MANY CONNECTIONS)\linebreak
+CON\@: SIZE (ALL POSSIBLE CONNECTIONS)\linebreak
 \textbf{ADJACENCY LIST}\linebreak
-PRO: SIZE, SPEED (FEW CONNECTIONS), SPARSE\linebreak
+PRO\@: SIZE, SPEED (FEW CONNECTIONS), SPARSE\linebreak
 \textbf{SPACE TRADEOFF} \( X \times E > \frac{N^2}{8} \)\linebreak
-(X - pointer size in bytes; matrix is packed - 8 booleans per byte)\linebreak
+(X \textendash{} pointer size in bytes\@; matrix is packed \textendash{} 8 booleans per byte)\linebreak
 \textbf{OBJECTS \& POINTERS}
 }
 
@@ -117,7 +116,7 @@ TRIE TREE
 \flashcard{44}{center}{
 reTRIEval, PREFIX TREE\linebreak
 (MARKOV CHAIN TXT GEN, AUTOCOMPLETE)\linebreak
-EXAMPLE: For autocomplete as you build the trie add a flag to each node, indicating if this character is a terminating one.
+EXAMPLE\@: For autocomplete as you build the trie add a flag to each node, indicating if this character is a terminating one.
 }
 
 \flashcard{60}{center}{
@@ -125,8 +124,8 @@ SELF-BALANCING BST
 }
 
 \flashcard{36}{center}{
-Java - red-black tree: TreeMap\linebreak
-Other algorithm: AVL tree (uses rotation)
+Java \textendash{} red-black tree\@: TreeMap\linebreak
+Other algorithm\@: AVL tree (uses rotation)
 }
 
 \flashcard{60}{center}{
@@ -134,9 +133,9 @@ QUICK SORT
 }
 \flashcard{38}{flushleft}{
 \begin{itemize}
-\item (\textbf{shuffle} first or sample for pivot - median as pivot helps; \href{https://leetcode.com/problems/shuffle-an-array/}{leetcode.com/problems/shuffle-an-array/})
+\item (\textbf{shuffle} first or sample for pivot \textendash{} median as pivot helps\@; \href{https://leetcode.com/problems/shuffle-an-array/}{leetcode.com/problems/shuffle-an-array/})
 \item PICK PIVOT
-\item REORDER W.R.T. PIVOT
+\item REORDER WITH RESPECT TO PIVOT
 \item APPLY TO ARRAYS SEPARATED BY PIVOT
 \end{itemize}
 \ \\
@@ -184,11 +183,11 @@ DIJKSTRA'S ALGORITHM\linebreak
 (BUT FLOYD ON NEGATIVE)
 }
 \flashcard{38}{flushleft}{
-SHORTEST PATH \( O(|V|^2) \):
+SHORTEST PATH \( O(|V|^2) \)\@:
 \begin{enumerate}
 \item FOREACH 0 IF INITIAL, \(\infty\) OTHERWISE (DISTANCE)
-\item MARK ALL UNVISITED; INITIAL AS CURRENT
-\item BREADTH FIRST; FOR EACH CHILD ITS DISTANCE AND OVERWRITE IF LESS
+\item MARK ALL UNVISITED\@; INITIAL AS CURRENT
+\item BREADTH FIRST\@; FOR EACH CHILD ITS DISTANCE AND OVERWRITE IF LESS
 \item LOWEST DISTANCE UNVISITED NODE AS CURRENT
 \item END WHEN ALL VISITED
 \end{enumerate}
@@ -203,23 +202,23 @@ LEADER ELECTION
 \textbf{LELANN-CHANG-ROBERTS}\linebreak
 ONLY FORWARD LARGER ID IF HAVE NOT SENT OWN\linebreak
 TIME \( O(N) \)\linebreak
-AVG. MESSAGE \( O(N\log{N}) \)\linebreak
+AVERAGE MESSAGE \( O(N\log{N}) \)\linebreak
 WORST MESSAGE \(O(N^2) \)\linebreak
 \textbf{HIRSCHBERG-SINCLAIR} ELECTION IN NEIGHBORHOOD\linebreak
 WORST MESSAGE \( O(N\log{N}) \)
 }
 
 \flashcard{60}{center}{
-P VS. NP\linebreak
+P VERSUS NP\linebreak
 COMPLETE
 }
 \flashcard{34}{flushleft}{
-\textbf{P}: SOLUTION FOUND IN POLYNOMIAL TIME\linebreak
-\textbf{NP}: SOLUTION VERIFIABLE IN POLYNOMIAL TIME\linebreak
-\textbf{COMPLETE}: IF ANY PROBLEM IN THAT CLASS CAN BE REDUCED TO IT\linebreak
-\textbf{HARD}: IF PROBLEM ALLOWS QUICKLY SOLVE ANY PROBLEM IN THE CLASS\linebreak
+\textbf{P}\@: SOLUTION FOUND IN POLYNOMIAL TIME\linebreak
+\textbf{NP}\@: SOLUTION VERIFIABLE IN POLYNOMIAL TIME\linebreak
+\textbf{COMPLETE}\@: IF ANY PROBLEM IN THAT CLASS CAN BE REDUCED TO IT\linebreak
+\textbf{HARD}\@: IF PROBLEM ALLOWS QUICKLY SOLVE ANY PROBLEM IN THE CLASS\linebreak
 \ \\
-\(P \neq NP\): \(P \subset NP \), \(NP-COMPLETE \equiv NP \cap NP-HARD\)
+\(P \neq NP\)\@: \(P \subset NP \), \(NP-COMPLETE \equiv NP \cap NP-HARD\)
 }
 
 \flashcard{60}{center}{
@@ -240,11 +239,11 @@ UNBOUNDED KNAPSACK PROBLEM\linebreak
 }
 \flashcard{38}{center}{
 USE ANY ITEM FROM SET\linebreak
-UNBOUNDED - SAME ITEM CAN BE USED \(>\) ONCE\linebreak
+UNBOUNDED \textendash{} SAME ITEM CAN BE USED \(>\) ONCE\linebreak
 MAXIMIZE THE VALUE SUM BUT KEEP WEIGHT UP TO A LIMIT\linebreak
-SOLUTION: BOTTOM-UP DYN. PROG\linebreak
+SOLUTION\@: BOTTOM-UP DYNAMIC PROGRAMMING\linebreak
 \ \\
-PSEUDO POLYNOMIAL TIME (LIKE TESTING IF N IS PRIME) - EXP. IN LENGTH (NUMBER OF DIGITS) OF INPUT; POLY. IN NUMERIC VALUE OF INPUT
+PSEUDO POLYNOMIAL TIME (LIKE TESTING IF N IS PRIME) \textendash{} EXPONENTIAL IN LENGTH (NUMBER OF DIGITS) OF INPUT\@; POLYNOMIAL IN NUMERIC VALUE OF INPUT
 }
 
 \flashcard{60}{center}{
@@ -260,31 +259,31 @@ GREEDY (CHOOSE ONE COVERING MOST)
 TRAVELING SALESMAN PROBLEM
 }
 \flashcard{40}{flushleft}{
-\textbf{EXACT ALGORITHM} HELD-KARP \( O(N^22^N) \)\linebreak
+\textbf{EXACT ALGORITHM} HELD-KARP \( O(N^{2}2^{N}) \)\linebreak
 \textbf{APPROXIMATE ALGORITHM}
 \begin{itemize}
-\item \textbf{CONSTRUCTIVE HEURISTICS} GREEDY (NN - 25\% of optimal), MINIMUM SPANNING TREE BASED ALGORITHMS (CHRISTOFIDES ALG.)
+\item \textbf{CONSTRUCTIVE HEURISTICS} GREEDY (NN \textendash{} 25\% of optimal), MINIMUM SPANNING TREE BASED ALGORITHMS (CHRISTOFIDES ALGORITHM)
 \item \textbf{ITERATIVE IMPROVEMENT}
 \item \textbf{RANDOM IMPROVEMENT} ANT COLONY OPTIMIZATION
 \end{itemize}
 }
 
 \flashcard{60}{center}{
-PROCESS VS. THREAD\linebreak
+PROCESS VERSUS THREAD\linebreak
 CONTEXT SWITCH
 }
 \flashcard{38}{flushleft}{
-\textbf{THREAD}: \underline{PART OF PROCESS}, \underline{SHARED MEMORY}, \underline{ONLY STACK \& REGISTERS SAVED}, CTX SWITCH - SMALLER CACHE IMPACT
-\textbf{PROCESS}: \underline{INDEPENDENT}, \underline{SEPARATE MEMORY (MAP)}, STATE / IPC (FILE HANDLES, DEVICE HANDLES, SOCKETS), CTX SWITCH - MEMORY MAP SWITCH, BIGGER CACHE IMPACT (SOME ARCH. MUST FLUSH), POSSIBLY STATE SWITCH, PAGING\linebreak
+\textbf{THREAD}\@: \underline{PART OF PROCESS}, \underline{SHARED MEMORY}, \underline{ONLY STACK \& REGISTERS SAVED}, CTX SWITCH \textendash{} SMALLER CACHE IMPACT
+\textbf{PROCESS}\@: \underline{INDEPENDENT}, \underline{SEPARATE MEMORY (MAP)}, STATE / IPC (FILE HANDLES, DEVICE HANDLES, SOCKETS), CTX SWITCH \textendash{} MEMORY MAP SWITCH, BIGGER CACHE IMPACT (SOME ARCHITECTURES MUST FLUSH), POSSIBLY STATE SWITCH, PAGING\linebreak
 }
 
 \flashcard{60}{center}{
 DEADLOCK\linebreak
-VS.\linebreak
+VERSUS\linebreak
 LIVELOCK
 }
 \flashcard{44}{center}{
-TWO OR MORE PROCESSES WAIT FOR THE OTHER(S) TO RELEASE THE RESOURCE\linebreak
+TWO OR MORE PROCESSES WAIT FOR THE OTHERS TO RELEASE THE RESOURCE\linebreak
 \ \linebreak
 THE STATE DOES CHANGE BUT STILL NO PROGRESS\linebreak
 (COURTESY RELEASE)\linebreak
@@ -295,13 +294,13 @@ AVOIDANCE BY RANDOMIZATION
 LOCKS
 }
 \flashcard{44}{flushleft}{
-SLEEPLOCK - SPINLOCK\linebreak
+SLEEPLOCK \textendash{} SPINLOCK\linebreak
 \linebreak
-TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP\linebreak
+TEST-AND-SET \textendash{} FETCH-AND-ADD \textendash{} CMP-AND-SWAP\linebreak
 \linebreak
-\textbf{MUTEX}: 2 STATE\linebreak
-\textbf{SEMAPHORE}: COUNTS NO OF UNITS OF RESOURCE AVAILABLE\linebreak
-\textbf{MONITOR}: OBJ. WHERE METHODS ARE MUTUALLY EXCLUSIVE
+\textbf{MUTEX}\@: 2 STATE\linebreak
+\textbf{SEMAPHORE}\@: COUNTS NO OF UNITS OF RESOURCE AVAILABLE\linebreak
+\textbf{MONITOR}\@: OBJECTS WHERE METHODS ARE MUTUALLY EXCLUSIVE
 }
 
 \flashcard{60}{center}{
@@ -309,9 +308,9 @@ DINING PHILOSOPHERS
 }
 \flashcard{44}{flushleft}{
 \begin{itemize}
-\item SEMAPHORES / MUTEXES (GRAB FIRST THEN SECOND; RISK: CAN STARVE)
-\item CENTRAL MONITOR/WAITER/CONDUCTOR (CAN EAT IF NEITHER NEIGHBOR EATS; RISK: REDUCED PARALLELISM)
-\item RESOURCE HIERARCHY (NUMBER FORKS; PICK AND PUT DOWN IN ORDER; RISK: LOW EFFICIENCY)
+\item SEMAPHORES / MUTEXES (GRAB FIRST THEN SECOND\@; RISK\@: CAN STARVE)
+\item CENTRAL MONITOR/WAITER/CONDUCTOR (CAN EAT IF NEITHER NEIGHBOR EATS\@; RISK\@: REDUCED PARALLELISM)
+\item RESOURCE HIERARCHY (NUMBER FORKS\@; PICK AND PUT DOWN IN ORDER\@; RISK\@: LOW EFFICIENCY)
 \end{itemize}
 }
 
@@ -333,7 +332,7 @@ SCHEDULING
 \item FIFO
 \item FIXED PRIORITY PREEMPTIVE (NOT COOPERATIVE)
 \item ROUND ROBIN (NO INTERRUPTS)
-\item MULTILEVEL FEEDBACK QUEUE: 1. PREFERENCE TO SHORT OR I/O, 2. MULTIPLE FIFO, 3. STARTS AT END OF TOP FIFO, 4. (NORMALLY) TO THE END OF QUEUE (VOLUNTARY), 5. USES UP QUANTUM - PREEMPT AND LOWER QUEUE
+\item MULTILEVEL FEEDBACK QUEUE\@: 1 \textendash{} PREFERENCE TO SHORT OR I/O, 2 \textendash{} MULTIPLE FIFO, 3 \textendash{} STARTS AT END OF TOP FIFO, 4 \textendash{} (NORMALLY) TO THE END OF QUEUE (VOLUNTARY), 5 \textendash{} USES UP QUANTUM \textendash{} PREEMPT AND LOWER QUEUE
 \end{itemize}
 }
 
@@ -341,7 +340,7 @@ SCHEDULING
 STRING (JAVA)
 }
 \flashcard{44}{center}{
-compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, matches - regex, replaceAll - regex, replaceFirst - regex, split, substring, toUpperCase, trim
+compareTo \textendash{} lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, matches \textendash{} regex, replaceAll \textendash{} regex, replaceFirst \textendash{} regex, split, substring, toUpperCase, trim
 }
 
 \flashcard{60}{center}{
@@ -360,7 +359,7 @@ LISTS (JAVA)
 \flashcard{44}{center}{
 Vector\linebreak
 Collections.synchronizedList(List)\linebreak
-Where List: ArrayList or LinkedList
+Where List\@: ArrayList or LinkedList
 }
 
 \flashcard{60}{center}{
@@ -375,7 +374,7 @@ float('-inf')
 SORT (PYTHON)
 }
 \flashcard{44}{center}{
-sorted([...], key=lambda item: item[1], reverse=True)
+sorted([\ldots], key=lambda item: item[1], reverse=True)
 }
 
 \flashcard{60}{center}{
@@ -407,11 +406,11 @@ COMBINATORIAL
 \( N! \) \( \leftarrow \) factorial\linebreak
 itertools.permutations(iterable, None)\linebreak
 \ \\
-\textbf{VARIATION WITHOUT REP.}\linebreak
+\textbf{VARIATION WITHOUT REPETITIONS}\linebreak
 \( \frac{N!}{(N-K)!} \)\linebreak
 itertools.chain.from\_iterable(map(lambda c: itertools.permutations(c), itertools.combinations(iterable, k)))\linebreak
 \ \\
-\textbf{VARIATION WITH REP. (EQUIVALENT GROUPS REPEAT)}\linebreak
+\textbf{VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT)}\linebreak
 \( N^{K} \)\linebreak
 itertools.product(iterable, repeat=k)\linebreak
 \ \\
