@@ -34,6 +34,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
+    def __generic(self, n0):
+        self.assertEqual(n0.val, 1)
+        self.assertEqual(n0.next.val, 2)
+        self.assertEqual(n0.next.next.val, 3)
+        self.assertEqual(n0.next.next.next.val, 4)
+        self.assertEqual(n0.next.next.next.next.val, 5)
+        self.assertEqual(n0.next.next.next.next.next.val, 6)
+
     def test_1_3_5_7_9__2_4_6(self):
         n9 = ListNode(9)
         n9.next = None
@@ -52,12 +60,7 @@ class TestCode(unittest.TestCase):
         n2 = ListNode(2)
         n2.next = n4
         n0 = Solution().mergeTwoLists(n1, n2)
-        self.assertEqual(n0.val, 1)
-        self.assertEqual(n0.next.val, 2)
-        self.assertEqual(n0.next.next.val, 3)
-        self.assertEqual(n0.next.next.next.val, 4)
-        self.assertEqual(n0.next.next.next.next.val, 5)
-        self.assertEqual(n0.next.next.next.next.next.val, 6)
+        self.__generic(n0)
         self.assertEqual(n0.next.next.next.next.next.next.val, 7)
         self.assertEqual(n0.next.next.next.next.next.next.next.val, 9)
 
@@ -69,10 +72,5 @@ class TestCode(unittest.TestCase):
         n5 = ListNode(5, n6)
         n4 = ListNode(4, n5)
         n0 = Solution().mergeTwoLists(n1, n4)
-        self.assertEqual(n0.val, 1)
-        self.assertEqual(n0.next.val, 2)
-        self.assertEqual(n0.next.next.val, 3)
-        self.assertEqual(n0.next.next.next.val, 4)
-        self.assertEqual(n0.next.next.next.next.val, 5)
-        self.assertEqual(n0.next.next.next.next.next.val, 6)
+        self.__generic(n0)
         self.assertEqual(n0.next.next.next.next.next.next, None)

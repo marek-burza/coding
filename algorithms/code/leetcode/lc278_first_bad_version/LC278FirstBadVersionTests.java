@@ -5,24 +5,24 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class LC278FirstBadVersionTests {
+    private void generic(final int version, final int badVersion) {
+        LC278FirstBadVersion solution = new LC278FirstBadVersion();
+        solution.badVersion = badVersion;
+        assertEquals(badVersion, solution.firstBadVersion(version));
+    }
+
     @Test
     public void testExample() {
-        LC278FirstBadVersion solution = new LC278FirstBadVersion();
-        solution.badVersion = 456;
-        assertEquals(456, solution.firstBadVersion(8000));
+        generic(8000, 456);
     }
 
     @Test
     public void testBigExample() {
-        LC278FirstBadVersion solution = new LC278FirstBadVersion();
-        solution.badVersion = 1702766719;
-        assertEquals(1702766719, solution.firstBadVersion(2126753390));
+        generic(2126753390, 1702766719);
     }
 
     @Test
     public void testSmallExample() {
-        LC278FirstBadVersion solution = new LC278FirstBadVersion();
-        solution.badVersion = 1;
-        assertEquals(1, solution.firstBadVersion(1));
+        generic(1, 1);
     }
 }

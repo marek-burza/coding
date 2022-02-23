@@ -8,6 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public final class LC021MergeTwoSortedListsTests {
+    private void generic(final ListNode n0) throws Exception {
+        assertEquals(1, n0.val);
+        assertEquals(2, n0.next.val);
+        assertEquals(3, n0.next.next.val);
+        assertEquals(4, n0.next.next.next.val);
+        assertEquals(5, n0.next.next.next.next.val);
+        assertEquals(6, n0.next.next.next.next.next.val);
+    }
+
     @Test
     public void test13579And246() throws Exception {
         LC021MergeTwoSortedLists solution;
@@ -29,12 +38,7 @@ public final class LC021MergeTwoSortedListsTests {
         ListNode n2 = new ListNode(2);
         n2.next = n4;
         ListNode n0 = solution.mergeTwoLists(n1, n2);
-        assertEquals(1, n0.val);
-        assertEquals(2, n0.next.val);
-        assertEquals(3, n0.next.next.val);
-        assertEquals(4, n0.next.next.next.val);
-        assertEquals(5, n0.next.next.next.next.val);
-        assertEquals(6, n0.next.next.next.next.next.val);
+        generic(n0);
         assertEquals(7, n0.next.next.next.next.next.next.val);
         assertEquals(9, n0.next.next.next.next.next.next.next.val);
     }
@@ -56,12 +60,7 @@ public final class LC021MergeTwoSortedListsTests {
         ListNode n4 = new ListNode(4);
         n4.next = n5;
         ListNode n0 = solution.mergeTwoLists(n1, n4);
-        assertEquals(1, n0.val);
-        assertEquals(2, n0.next.val);
-        assertEquals(3, n0.next.next.val);
-        assertEquals(4, n0.next.next.next.val);
-        assertEquals(5, n0.next.next.next.next.val);
-        assertEquals(6, n0.next.next.next.next.next.val);
+        generic(n0);
         assertNull(n0.next.next.next.next.next.next);
     }
 }

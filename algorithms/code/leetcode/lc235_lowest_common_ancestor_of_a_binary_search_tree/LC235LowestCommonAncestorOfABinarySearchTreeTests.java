@@ -7,13 +7,18 @@ import leetcode.lc235_lowest_common_ancestor_of_a_binary_search_tree.LC235Lowest
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class LC235LowestCommonAncestorOfABinarySearchTreeTests {
-    @Test
-    public void testExample() throws Exception {
+    private TreeNode genericExample() {
         TreeNode tree = new TreeNode(6);
         tree.left = new TreeNode(2);
         tree.right = new TreeNode(8);
         tree.left.left = new TreeNode(0);
         tree.left.right = new TreeNode(4);
+        return tree;
+    }
+
+    @Test
+    public void testExample() throws Exception {
+        TreeNode tree = genericExample();
         tree.left.right.left = new TreeNode(3);
         tree.left.right.right = new TreeNode(5);
         tree.right.left = new TreeNode(7);
@@ -38,11 +43,7 @@ public final class LC235LowestCommonAncestorOfABinarySearchTreeTests {
 
     @Test
     public void testExample2() throws Exception {
-        TreeNode tree = new TreeNode(6);
-        tree.left = new TreeNode(2);
-        tree.right = new TreeNode(8);
-        tree.left.left = new TreeNode(0);
-        tree.left.right = new TreeNode(4);
+        TreeNode tree = genericExample();
         tree.left.left = new TreeNode(7);
         tree.right.right = new TreeNode(9);
         tree.left.right.left = new TreeNode(3);

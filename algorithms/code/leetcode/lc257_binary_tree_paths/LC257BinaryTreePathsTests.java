@@ -10,6 +10,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class LC257BinaryTreePathsTests {
+    private void generic(final TreeNode tree, final String[] expected) throws Exception {
+        List<String> result = new LC257BinaryTreePaths().binaryTreePaths(tree);
+        Collections.sort(result);
+        assertEquals(expected.length, result.size());
+        for (int i = 0; i < expected.length; i++) {
+            assertEquals(expected[i], result.get(i));
+        }
+    }
+
     @Test
     public void testExample() throws Exception {
         TreeNode n1 = new TreeNode(1);
@@ -20,12 +29,7 @@ public final class LC257BinaryTreePathsTests {
         n1.right = n3;
         n2.right = n5;
         String[] expected = { "1->2->5", "1->3" };
-        List<String> result = new LC257BinaryTreePaths().binaryTreePaths(n1);
-        Collections.sort(result);
-        assertEquals(expected.length, result.size());
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result.get(i));
-        }
+        generic(n1, expected);
     }
 
     @Test
@@ -38,12 +42,7 @@ public final class LC257BinaryTreePathsTests {
         n1.left = n3;
         n2.left = n5;
         String[] expected = { "1->2->5", "1->3" };
-        List<String> result = new LC257BinaryTreePaths().binaryTreePaths(n1);
-        Collections.sort(result);
-        assertEquals(expected.length, result.size());
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result.get(i));
-        }
+        generic(n1, expected);
     }
 
     @Test

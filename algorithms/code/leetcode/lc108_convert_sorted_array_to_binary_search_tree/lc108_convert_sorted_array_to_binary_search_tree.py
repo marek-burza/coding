@@ -31,20 +31,20 @@ class Solution:
 
 class TestCode(unittest.TestCase):  # pragma: no cover
     @staticmethod
-    def __min_height(root):
+    def __find_extreme(root, init, relation):
         if root is None:
             return 0
         nodes = collections.deque()
         nodes.append(root)
         levels = collections.deque()
         levels.append(1)
-        minimum = float('inf')
+        extremum = init
         while nodes:
             node = nodes.popleft()
             level = levels.popleft()
             if node.left is None and node.right is None:
-                if level < minimum:
-                    minimum = level
+                if relation(level, extremum):
+                    extremum = level
             else:
                 if node.left is not None:
                     nodes.append(node.left)
@@ -52,31 +52,17 @@ class TestCode(unittest.TestCase):  # pragma: no cover
                 if node.right is not None:
                     nodes.append(node.right)
                     levels.append(level + 1)
-        return minimum
+        return extremum
+
+    @staticmethod
+    def __min_height(root):
+        return TestCode.__find_extreme(
+            root, float('inf'), lambda level, extremum: level < extremum)
 
     @staticmethod
     def __max_height(root):
-        if root is None:
-            return 0
-        nodes = collections.deque()
-        nodes.append(root)
-        levels = collections.deque()
-        levels.append(1)
-        maximum = float('-inf')
-        while nodes:
-            node = nodes.popleft()
-            level = levels.popleft()
-            if node.left is None and node.right is None:
-                if level > maximum:
-                    maximum = level
-            else:
-                if node.left is not None:
-                    nodes.append(node.left)
-                    levels.append(level + 1)
-                if node.right is not None:
-                    nodes.append(node.right)
-                    levels.append(level + 1)
-        return maximum
+        return TestCode.__find_extreme(
+            root, float('-inf'), lambda level, extremum: level > extremum)
 
     @staticmethod
     def __reconstruct(root, listed):

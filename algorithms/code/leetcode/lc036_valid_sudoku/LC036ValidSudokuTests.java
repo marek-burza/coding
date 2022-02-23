@@ -1,25 +1,27 @@
 package leetcode.lc036_valid_sudoku;
 
+import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class LC036ValidSudokuTests {
+    private static final char[][] EXAMPLE_BOARD = {
+            { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
+            { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
+            { '9', '8', '.', '.', '.', '.', '.', '6', '.' },
+            { '8', '.', '.', '.', '6', '.', '.', '.', '3' },
+            { '4', '.', '.', '8', '.', '3', '.', '.', '1' },
+            { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
+            { '.', '6', '.', '.', '.', '.', '2', '8', '.' },
+            { '.', '.', '.', '4', '1', '9', '.', '.', '5' },
+            { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
+    };
+
     @Test
     public void testExample() throws Exception {
-        char[][] board = {
-                { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
-                { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
-                { '9', '8', '.', '.', '.', '.', '.', '6', '.' },
-                { '8', '.', '.', '.', '6', '.', '.', '.', '3' },
-                { '4', '.', '.', '8', '.', '3', '.', '.', '1' },
-                { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
-                { '.', '6', '.', '.', '.', '.', '2', '8', '.' },
-                { '.', '.', '.', '4', '1', '9', '.', '.', '5' },
-                { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
-        };
-        assertTrue(new LC036ValidSudoku().isValidSudoku(board));
+        assertTrue(new LC036ValidSudoku().isValidSudoku(EXAMPLE_BOARD));
     }
 
     @Test
@@ -40,17 +42,10 @@ public final class LC036ValidSudokuTests {
 
     @Test
     public void testAnother1() throws Exception {
-        char[][] board = {
-                { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
-                { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
-                { '.', '9', '8', '.', '.', '.', '.', '6', '.' },
-                { '8', '.', '.', '.', '6', '.', '.', '.', '3' },
-                { '4', '.', '.', '8', '.', '3', '.', '.', '1' },
-                { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
-                { '.', '6', '.', '.', '.', '.', '2', '8', '.' },
-                { '.', '.', '.', '4', '1', '9', '.', '.', '5' },
-                { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
-        };
+        char[][] board = Arrays.stream(EXAMPLE_BOARD).map(char[]::clone).toArray(char[][]::new);
+        board[2][0] = '.';
+        board[2][1] = '9';
+        board[2][2] = '8';
         assertTrue(new LC036ValidSudoku().isValidSudoku(board));
     }
 
@@ -86,6 +81,10 @@ public final class LC036ValidSudokuTests {
         assertFalse(new LC036ValidSudoku().isValidSudoku(board));
     }
 
+    private static final char[] BLANK = {
+            '.', '.', '.', '.', '.', '.', '.', '.', '.'
+    };
+
     @Test
     public void testAnother4() throws Exception {
         char[][] board = {
@@ -96,8 +95,8 @@ public final class LC036ValidSudokuTests {
                 { '.', '.', '.', '.', '5', '.', '5', '.', '.' },
                 { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
                 { '.', '.', '.', '.', '.', '.', '2', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' },
-                { '.', '.', '.', '.', '.', '.', '.', '.', '.' }
+                BLANK,
+                BLANK
         };
         assertFalse(new LC036ValidSudoku().isValidSudoku(board));
     }

@@ -27,23 +27,17 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def generic(self, n, expected):
         # pylint: disable=W0603
         global lc278_first_bad_version
-        solution = Solution()
-        lc278_first_bad_version = 456
-        self.assertEqual(456, solution.firstBadVersion(8000))
+        lc278_first_bad_version = expected
+        self.assertEqual(expected, Solution().firstBadVersion(n))
+
+    def test_example(self):
+        self.generic(8000, 456)
 
     def test_big_example(self):
-        # pylint: disable=W0603
-        global lc278_first_bad_version
-        solution = Solution()
-        lc278_first_bad_version = 1702766719
-        self.assertEqual(1702766719, solution.firstBadVersion(2126753390))
+        self.generic(2126753390, 1702766719)
 
     def test_small_example(self):
-        # pylint: disable=W0603
-        global lc278_first_bad_version
-        solution = Solution()
-        lc278_first_bad_version = 1
-        self.assertEqual(1, solution.firstBadVersion(1))
+        self.generic(1, 1)

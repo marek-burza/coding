@@ -51,21 +51,20 @@ class TestCode(unittest.TestCase):
             listed = listed.next
         return frozen
 
-    def test_15(self):
-        listed = self.generate(15)
+    def generic(self, listed):
         original = self.freeze(listed)
         result = self.freeze(Solution().reverseList(listed))
         self.assertEqual(len(original), len(result))
         for i, _ in enumerate(original):
             self.assertEqual(original[len(original) - 1 - i], result[i])
 
+    def test_15(self):
+        listed = self.generate(15)
+        self.generic(listed)
+
     def test_1(self):
         listed = self.generate(1)
-        original = self.freeze(listed)
-        result = self.freeze(Solution().reverseList(listed))
-        self.assertEqual(len(original), len(result))
-        for i, _ in enumerate(original):
-            self.assertEqual(original[len(original) - 1 - i], result[i])
+        self.generic(listed)
 
     def test_nothing(self):
         self.assertIsNone(Solution().reverseList(None))

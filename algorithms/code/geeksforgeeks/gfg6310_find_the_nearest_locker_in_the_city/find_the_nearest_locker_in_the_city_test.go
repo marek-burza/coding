@@ -37,16 +37,7 @@ func TestResultJustLocker(t *testing.T) {
 	}
 }
 
-func TestExample1(t *testing.T) {
-	var lockers = []Coordinates{
-		Coordinates{x: 0, y: 0},
-	}
-	result := LockerDistances(3, 5, lockers)
-	expected := [][]uint64{
-		{0, 1, 2, 3, 4},
-		{1, 2, 3, 4, 5},
-		{2, 3, 4, 5, 6},
-	}
+func generic(t *testing.T, result [][]uint64, expected [][]uint64) {
 	if result == nil {
 		t.Errorf("LockerDistances returns nil!")
 		return
@@ -67,6 +58,19 @@ func TestExample1(t *testing.T) {
 	}
 }
 
+func TestExample1(t *testing.T) {
+	var lockers = []Coordinates{
+		Coordinates{x: 0, y: 0},
+	}
+	result := LockerDistances(3, 5, lockers)
+	expected := [][]uint64{
+		{0, 1, 2, 3, 4},
+		{1, 2, 3, 4, 5},
+		{2, 3, 4, 5, 6},
+	}
+	generic(t, result, expected);
+}
+
 func TestExample2(t *testing.T) {
 	var lockers = []Coordinates{
 		Coordinates{x: 1, y: 2},
@@ -80,22 +84,5 @@ func TestExample2(t *testing.T) {
 		{4, 3, 2, 3, 2, 1, 0},
 		{5, 4, 3, 4, 3, 2, 1},
 	}
-	if result == nil {
-		t.Errorf("LockerDistances returns nil!")
-		return
-	}
-	if len(expected) != len(result) {
-		t.Errorf("LockerDistances returns grid with incorrect numer of rows!")
-		return
-	}
-	for row := 0; row < len(expected); row++ {
-		if len(expected[row]) != len(result[row]) {
-			t.Errorf("LockerDistances returns grid with incorrect numer of columns!")
-		}
-		for column := 0; column < len(expected[row]); column++ {
-			if expected[row][column] != result[row][column] {
-				t.Errorf("LockerDistances returns incorrect value!")
-			}
-		}
-	}
+	generic(t, result, expected);
 }

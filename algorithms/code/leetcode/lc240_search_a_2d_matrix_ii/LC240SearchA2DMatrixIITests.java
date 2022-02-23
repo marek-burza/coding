@@ -6,28 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class LC240SearchA2DMatrixIITests {
+    private static final int[][] EXAMPLE_MATRIX = {
+            { 1, 4, 7, 11, 15 },
+            { 2, 5, 8, 12, 19 },
+            { 3, 6, 9, 16, 22 },
+            { 10, 13, 14, 17, 24 },
+            { 18, 21, 23, 26, 30 }
+    };
+
     @Test
     public void testExample1() throws Exception {
-        int[][] matrix = {
-                { 1, 4, 7, 11, 15 },
-                { 2, 5, 8, 12, 19 },
-                { 3, 6, 9, 16, 22 },
-                { 10, 13, 14, 17, 24 },
-                { 18, 21, 23, 26, 30 }
-        };
-        assertTrue(new LC240SearchA2DMatrixII().searchMatrix(matrix, 5));
+        assertTrue(new LC240SearchA2DMatrixII().searchMatrix(EXAMPLE_MATRIX, 5));
     }
 
     @Test
     public void testExample2() throws Exception {
-        int[][] matrix = {
-                { 1, 4, 7, 11, 15 },
-                { 2, 5, 8, 12, 19 },
-                { 3, 6, 9, 16, 22 },
-                { 10, 13, 14, 17, 24 },
-                { 18, 21, 23, 26, 30 }
-        };
-        assertFalse(new LC240SearchA2DMatrixII().searchMatrix(matrix, 20));
+        assertFalse(new LC240SearchA2DMatrixII().searchMatrix(EXAMPLE_MATRIX, 20));
     }
 
     @Test

@@ -29,31 +29,30 @@ public final class LC160IntersectionOfTwoLinkedListsTests {
         assertEquals(c1, new LC160IntersectionOfTwoLinkedLists().getIntersectionNode(a1, b1));
     }
 
-    @Test
-    public void testNonIntersecting() throws Exception {
+    private ListNode genericExample(final ListNode l2) {
         ListNode l4 = new ListNode(4);
         ListNode l6 = new ListNode(6);
-        ListNode l2 = new ListNode(2);
         l2.next = l6;
         l6.next = l4;
         ListNode l1 = new ListNode(1);
         ListNode l5 = new ListNode(5);
         l5.next = l1;
+        return l5;
+    }
+
+    @Test
+    public void testNonIntersecting() throws Exception {
+        ListNode l2 = new ListNode(2);
+        ListNode l5 = genericExample(l2);
         assertNull(new LC160IntersectionOfTwoLinkedLists().getIntersectionNode(l2, l5));
     }
 
     @Test
     public void testOtherNonIntersecting() throws Exception {
-        ListNode l4 = new ListNode(4);
-        ListNode l6 = new ListNode(6);
         ListNode l2 = new ListNode(2);
-        l2.next = l6;
-        l6.next = l4;
-        ListNode l1 = new ListNode(1);
-        ListNode l5 = new ListNode(5);
         ListNode l0 = new ListNode(0);
+        ListNode l5 = genericExample(l2);
         l0.next = l5;
-        l5.next = l1;
         assertNull(new LC160IntersectionOfTwoLinkedLists().getIntersectionNode(l2, l0));
     }
 

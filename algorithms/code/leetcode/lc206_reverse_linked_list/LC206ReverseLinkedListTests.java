@@ -40,9 +40,7 @@ public final class LC206ReverseLinkedListTests {
         return frozen;
     }
 
-    @Test
-    public void test15() throws Exception {
-        ListNode list = generate(15);
+    private void generic(final ListNode list) throws Exception {
         int[] original = freeze(list);
         int[] result = freeze(new LC206ReverseLinkedList().reverseList(list));
         assertEquals(original.length, result.length);
@@ -52,14 +50,15 @@ public final class LC206ReverseLinkedListTests {
     }
 
     @Test
+    public void test15() throws Exception {
+        ListNode list = generate(15);
+        generic(list);
+    }
+
+    @Test
     public void test1() throws Exception {
         ListNode list = generate(1);
-        int[] original = freeze(list);
-        int[] result = freeze(new LC206ReverseLinkedList().reverseList(list));
-        assertEquals(original.length, result.length);
-        for (int i = 0; i < original.length; i++) {
-            assertEquals(original[original.length - 1 - i], result[i]);
-        }
+        generic(list);
     }
 
     @Test
