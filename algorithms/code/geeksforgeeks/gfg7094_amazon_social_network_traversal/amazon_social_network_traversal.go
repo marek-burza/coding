@@ -16,12 +16,12 @@ type Network struct {
 
 // GetDirectFriendsForUser lists friends for the given user
 func (network *Network) GetDirectFriendsForUser(user string) []string {
-	return (*network).friendships[user]
+	return network.friendships[user]
 }
 
 // GetAttendedCoursesForUser lists attended courses for the given user
 func (network *Network) GetAttendedCoursesForUser(user string) []string {
-	return (*network).attendances[user]
+	return network.attendances[user]
 }
 
 func sliceToSet(slice []string) map[string]struct{} {

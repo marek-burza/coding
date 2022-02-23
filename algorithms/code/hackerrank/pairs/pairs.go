@@ -7,11 +7,12 @@ import "sort"
 func binarySearch(array []int32, fromIndex int, toIndex int, key int32) int {
 	for fromIndex <= toIndex {
 		middle := (fromIndex + toIndex) / 2
-		if array[middle] < key {
+		switch {
+		case array[middle] < key:
 			fromIndex = middle + 1
-		} else if array[middle] > key {
+		case array[middle] > key:
 			toIndex = middle - 1
-		} else {
+		default:
 			return middle
 		}
 	}
