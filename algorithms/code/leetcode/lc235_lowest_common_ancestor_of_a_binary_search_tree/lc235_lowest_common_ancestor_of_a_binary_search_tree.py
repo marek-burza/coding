@@ -35,12 +35,16 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def generic_example(self):
         tree = TreeNode(6)
         tree.left = TreeNode(2)
         tree.right = TreeNode(8)
         tree.left.left = TreeNode(0)
         tree.left.right = TreeNode(4)
+        return tree
+
+    def test_example(self):
+        tree = self.generic_example()
         tree.left.right.left = TreeNode(3)
         tree.left.right.right = TreeNode(5)
         tree.right.left = TreeNode(7)
@@ -61,11 +65,7 @@ class TestCode(unittest.TestCase):
             tree, tree.left.left.left, tree.left.right).val)
 
     def test_example_2(self):
-        tree = TreeNode(6)
-        tree.left = TreeNode(2)
-        tree.right = TreeNode(8)
-        tree.left.left = TreeNode(0)
-        tree.left.right = TreeNode(4)
+        tree = self.generic_example()
         tree.left.left = TreeNode(7)
         tree.right.right = TreeNode(9)
         tree.left.right.left = TreeNode(3)

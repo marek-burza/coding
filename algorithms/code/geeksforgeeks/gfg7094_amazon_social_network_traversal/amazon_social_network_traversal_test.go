@@ -36,9 +36,7 @@ var other = Network{
 	},
 }
 
-func TestLoner(t *testing.T) {
-	expected := []string{}
-	result := (&network).GetRankedCourses("Loner")
+func generic(t *testing.T, result []string, expected []string) {
 	if result == nil {
 		t.Errorf("GetRankedCourses returns nil slice!")
 		return
@@ -52,42 +50,24 @@ func TestLoner(t *testing.T) {
 			t.Errorf("GetRankedCourses returns wrong values in slice!")
 		}
 	}
+}
+
+func TestLoner(t *testing.T) {
+	expected := []string{}
+	result := (&network).GetRankedCourses("Loner")
+	generic(t, result, expected)
 }
 
 func TestJack(t *testing.T) {
 	expected := []string{"Arts", "Science 2", "Sports"}
 	result := (&network).GetRankedCourses("Jack")
-	if result == nil {
-		t.Errorf("GetRankedCourses returns nil slice!")
-		return
-	}
-	if len(expected) != len(result) {
-		t.Errorf("GetRankedCourses returns slice with incorrect length!")
-		return
-	}
-	for i := 0; i < len(expected); i++ {
-		if expected[i] != result[i] {
-			t.Errorf("GetRankedCourses returns wrong values in slice!")
-		}
-	}
+	generic(t, result, expected)
 }
 
 func TestJane(t *testing.T) {
 	expected := []string{}
 	result := (&network).GetRankedCourses("Jane")
-	if result == nil {
-		t.Errorf("GetRankedCourses returns nil slice!")
-		return
-	}
-	if len(expected) != len(result) {
-		t.Errorf("GetRankedCourses returns slice with incorrect length!")
-		return
-	}
-	for i := 0; i < len(expected); i++ {
-		if expected[i] != result[i] {
-			t.Errorf("GetRankedCourses returns wrong values in slice!")
-		}
-	}
+	generic(t, result, expected)
 }
 
 func TestLeftovers(t *testing.T) {

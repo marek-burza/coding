@@ -4,6 +4,17 @@ namespace AlgorithmDesign.code.leetcode.lc024_swap_nodes_in_pairs
 {
     public class SolutionTests
     {
+        private void generic(ListNode head, int[] expected)
+        {
+            ListNode result = new Solution().SwapPairs(head);
+            foreach (int value in expected)
+            {
+                Assert.NotNull(result);
+                Assert.Equal(value, result.val);
+                result = result.next;
+            }
+        }
+
         [Fact]
         public void test_example()
         {
@@ -15,13 +26,7 @@ namespace AlgorithmDesign.code.leetcode.lc024_swap_nodes_in_pairs
             n2.next = n3;
             n3.next = n4;
             int[] expected = { 2, 1, 4, 3 };
-            ListNode result = new Solution().SwapPairs(n1);
-            foreach (int value in expected)
-            {
-                Assert.NotNull(result);
-                Assert.Equal(value, result.val);
-                result = result.next;
-            }
+            generic(n1);
         }
 
         [Fact]
@@ -33,13 +38,7 @@ namespace AlgorithmDesign.code.leetcode.lc024_swap_nodes_in_pairs
             n1.next = n2;
             n2.next = n3;
             int[] expected = { 2, 1, 3 };
-            ListNode result = new Solution().SwapPairs(n1);
-            foreach (int value in expected)
-            {
-                Assert.NotNull(result);
-                Assert.Equal(value, result.val);
-                result = result.next;
-            }
+            generic(n1);
         }
     }
 }

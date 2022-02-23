@@ -58,6 +58,14 @@ class NestedIterator:
 
 
 class TestCode(unittest.TestCase):
+    def generic(self, used, expected):
+        nested = NestedIterator(used)
+        for value in expected:
+            self.assertTrue(nested.hasNext())
+            self.assertEqual(value, nested.next())
+        self.assertFalse(nested.hasNext())
+        self.assertEqual(None, nested.next())
+
     def test_example_1(self):
         list_1_1_a = []
         list_1_1_a.append(NestedInteger(1))
@@ -70,12 +78,7 @@ class TestCode(unittest.TestCase):
         list_top.append(NestedInteger(2))
         list_top.append(NestedInteger(list_1_1_b))
         expected = [1, 1, 2, 1, 1]
-        nested = NestedIterator(list_top)
-        for value in expected:
-            self.assertTrue(nested.hasNext())
-            self.assertEqual(value, nested.next())
-        self.assertFalse(nested.hasNext())
-        self.assertEqual(None, nested.next())
+        self.generic(list_top, expected)
 
     def test_example_2(self):
         list_top = []
@@ -87,9 +90,4 @@ class TestCode(unittest.TestCase):
         list_4.append(NestedInteger(list_6))
         list_top.append(NestedInteger(list_4))
         expected = [1, 4, 6]
-        nested = NestedIterator(list_top)
-        for value in expected:
-            self.assertTrue(nested.hasNext())
-            self.assertEqual(value, nested.next())
-        self.assertFalse(nested.hasNext())
-        self.assertEqual(None, nested.next())
+        self.generic(list_top, expected)

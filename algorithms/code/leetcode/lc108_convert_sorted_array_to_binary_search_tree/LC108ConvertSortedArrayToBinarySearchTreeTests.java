@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import leetcode.lc108_convert_sorted_array_to_binary_search_tree.LC108ConvertSortedArrayToBinarySearchTree.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class LC108ConvertSortedArrayToBinarySearchTreeTests {
-    private int minHeight(final TreeNode root) {
+    private int findExtreme(final TreeNode root, final int init, final Comparator<Integer> relation) {
         if (root == null) {
             return 0;
         }
@@ -21,13 +22,13 @@ public final class LC108ConvertSortedArrayToBinarySearchTreeTests {
         nodes.add(root);
         Queue<Integer> levels = new LinkedList<>();
         levels.add(1);
-        int minimum = Integer.MAX_VALUE;
+        int extremum = init;
         while (nodes.size() > 0) {
             TreeNode node = nodes.poll();
             int level = levels.poll();
             if (node.left == null && node.right == null) {
-                if (level < minimum) {
-                    minimum = level;
+                if (relation.compare(level, extremum) > 0) {
+                    extremum = level;
                 }
             } else {
                 if (node.left != null) {
@@ -40,37 +41,18 @@ public final class LC108ConvertSortedArrayToBinarySearchTreeTests {
                 }
             }
         }
-        return minimum;
+        return extremum;
+    }
+
+    private static final Comparator<Integer> LESS = Comparator.<Integer>naturalOrder();
+    private static final Comparator<Integer> MORE = Comparator.<Integer>naturalOrder().reversed();
+
+    private int minHeight(final TreeNode root) {
+        return findExtreme(root, Integer.MAX_VALUE, LESS);
     }
 
     private int maxHeight(final TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        Queue<TreeNode> nodes = new LinkedList<>();
-        nodes.add(root);
-        Queue<Integer> levels = new LinkedList<>();
-        levels.add(1);
-        int maximum = Integer.MIN_VALUE;
-        while (nodes.size() > 0) {
-            TreeNode node = nodes.poll();
-            int level = levels.poll();
-            if (node.left == null && node.right == null) {
-                if (level > maximum) {
-                    maximum = level;
-                }
-            } else {
-                if (node.left != null) {
-                    nodes.add(node.left);
-                    levels.add(level + 1);
-                }
-                if (node.right != null) {
-                    nodes.add(node.right);
-                    levels.add(level + 1);
-                }
-            }
-        }
-        return maximum;
+        return findExtreme(root, Integer.MIN_VALUE, MORE);
     }
 
     private void reconstruct(final TreeNode root, final List<Integer> list) {

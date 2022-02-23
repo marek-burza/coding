@@ -14,6 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public final class LC341FlattenNestedListIteratorTests {
+    private void generic(final List<NestedInteger> list, final int[] expected) throws Exception {
+        NestedIterator nested = new NestedIterator(list);
+        for (int value : expected) {
+            assertTrue(nested.hasNext());
+            assertEquals(value, nested.next().intValue());
+        }
+        assertFalse(nested.hasNext());
+        assertEquals(null, nested.next());
+    }
+
     @Test
     public void testExample1() throws Exception {
         List<NestedInteger> list11a = new ArrayList<>();
@@ -27,13 +37,7 @@ public final class LC341FlattenNestedListIteratorTests {
         list.add(new NestedInteger(2));
         list.add(new NestedInteger(list11b));
         int[] expected = { 1, 1, 2, 1, 1 };
-        NestedIterator nested = new NestedIterator(list);
-        for (int value : expected) {
-            assertTrue(nested.hasNext());
-            assertEquals(value, nested.next().intValue());
-        }
-        assertFalse(nested.hasNext());
-        assertEquals(null, nested.next());
+        generic(list, expected);
     }
 
     @Test
@@ -47,13 +51,7 @@ public final class LC341FlattenNestedListIteratorTests {
         list4.add(new NestedInteger(list6));
         list.add(new NestedInteger(list4));
         int[] expected = { 1, 4, 6 };
-        NestedIterator nested = new NestedIterator(list);
-        for (int value : expected) {
-            assertTrue(nested.hasNext());
-            assertEquals(value, nested.next().intValue());
-        }
-        assertFalse(nested.hasNext());
-        assertEquals(null, nested.next());
+        generic(list, expected);
     }
 
     @Test

@@ -37,23 +37,19 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
+    EXAMPLE_MATRIX = [
+        [1, 4, 7, 11, 15],
+        [2, 5, 8, 12, 19],
+        [3, 6, 9, 16, 22],
+        [10, 13, 14, 17, 24],
+        [18, 21, 23, 26, 30]
+    ]
+
     def test_example_1(self):
-        matrix = [
-            [1, 4, 7, 11, 15],
-            [2, 5, 8, 12, 19],
-            [3, 6, 9, 16, 22],
-            [10, 13, 14, 17, 24],
-            [18, 21, 23, 26, 30]]
-        self.assertTrue(Solution().searchMatrix(matrix, 5))
+        self.assertTrue(Solution().searchMatrix(TestCode.EXAMPLE_MATRIX, 5))
 
     def test_example_2(self):
-        matrix = [
-            [1, 4, 7, 11, 15],
-            [2, 5, 8, 12, 19],
-            [3, 6, 9, 16, 22],
-            [10, 13, 14, 17, 24],
-            [18, 21, 23, 26, 30]]
-        self.assertFalse(Solution().searchMatrix(matrix, 20))
+        self.assertFalse(Solution().searchMatrix(TestCode.EXAMPLE_MATRIX, 20))
 
     def test_other_1(self):
         matrix = [[1, 4], [2, 5]]
