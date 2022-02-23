@@ -2,10 +2,10 @@ package divisiblesumpairs
 
 // https://www.hackerrank.com/challenges/divisible-sum-pairs
 
-func nChooseK(N, K uint32) uint64 {
+func nChooseK(n, k uint32) uint64 {
 	result := uint64(1)
-	for k := uint64(0); k < uint64(K); k++ {
-		result = result * (uint64(N) - k) / (k + 1)
+	for ki := uint64(0); ki < uint64(k); ki++ {
+		result = result * (uint64(n) - ki) / (ki + 1)
 	}
 	return result
 }
@@ -26,7 +26,7 @@ func DivisibleSumPairs(n int32, k int32, ar []int32) int32 {
 	covered := make(map[uint32]struct{})
 	exists := struct{}{}
 	for a := range counted {
-		countedA, _ := counted[a]
+		countedA := counted[a]
 		_, coveredContainsA := covered[a]
 		if coveredContainsA {
 			continue

@@ -6,9 +6,7 @@ package cavitymap
 func Stones(n int32, a int32, b int32) []int32 {
 	result := make([]int32, 0)
 	if a > b {
-		exchange := a
-		a = b
-		b = exchange
+		a, b = b, a
 	}
 	current := a * (n - 1)
 	delta := b - a

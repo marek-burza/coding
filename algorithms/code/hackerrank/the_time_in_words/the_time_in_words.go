@@ -2,7 +2,7 @@ package cavitymap
 
 // https://www.hackerrank.com/challenges/the-time-in-words
 
-var lut []string = []string{
+var lut = []string{
 	"zero", "one", "two", "three", "four", "five",
 	"six", "seven", "eight", "nine", "ten",
 	"eleven", "twelve", "thirteen", "fourteen", "fifteen",
@@ -15,21 +15,22 @@ var lut []string = []string{
 func TimeInWords(h, m int32) string {
 	result := ""
 	if m != 0 {
-		if m == 30 {
+		switch {
+		case m == 30:
 			result += "half past "
-		} else if m == 15 {
+		case m == 15:
 			result += "quarter past "
-		} else if m == 45 {
+		case m == 45:
 			result += "quarter to "
 			h = (h + 1) % 12
-		} else if m < 30 {
+		case m < 30:
 			result += lut[m]
 			if m == 1 {
 				result += " minute past "
 			} else {
 				result += " minutes past "
 			}
-		} else if m > 30 {
+		case m > 30:
 			m = 60 - m
 			result += lut[m]
 			if m == 1 {

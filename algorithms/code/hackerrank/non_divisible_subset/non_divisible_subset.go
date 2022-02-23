@@ -25,7 +25,7 @@ func NonDivisibleSubset(k int32, s []int32) int32 {
 		if !countedContainsB {
 			ok[a] = exists
 		} else {
-			countA, _ := counted[a]
+			countA := counted[a]
 			if countA > countB {
 				ok[a] = exists
 			} else {
@@ -35,7 +35,7 @@ func NonDivisibleSubset(k int32, s []int32) int32 {
 	}
 	total := int32(0)
 	for a := range ok {
-		countA, _ := counted[a]
+		countA := counted[a]
 		total += countA
 	}
 	_, countedContains0 := counted[0]

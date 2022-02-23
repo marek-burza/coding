@@ -19,6 +19,7 @@ func ToMilitary(s string) string {
 	if afternoon {
 		shift = 12
 	}
+	// nolint:errcheck
 	before, _ := strconv.Atoi(hour)
 	after := fmt.Sprintf("%02d", (before+shift)%24)
 	return after + s[2:8]

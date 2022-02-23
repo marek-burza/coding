@@ -27,16 +27,16 @@ func (gh GenericHeap) Swap(i, j int) {
 
 // Push - Implements the generic heap push operation
 func (gh *GenericHeap) Push(item interface{}) {
-	(*gh).items = append((*gh).items, item)
+	gh.items = append(gh.items, item)
 }
 
 // Pop - Implements the generic heap pop operation
 func (gh *GenericHeap) Pop() interface{} {
-	old := (*gh).items
+	old := gh.items
 	n := len(old)
 	item := old[n-1]
 	old[n-1] = nil // avoid memory leak
-	(*gh).items = old[0 : n-1]
+	gh.items = old[0 : n-1]
 	return item
 }
 
@@ -55,7 +55,7 @@ func (gh *GenericHeap) heapPop() interface{} {
 }
 
 func (gh *GenericHeap) heapEmpty() bool {
-	return (*gh).Len() == 0
+	return gh.Len() == 0
 }
 
 // Edge - Weighted graph edge
@@ -68,7 +68,7 @@ type Edge struct {
 func compareEdges(thisRaw interface{}, otherRaw interface{}) int {
 	this := thisRaw.(*Edge)
 	other := otherRaw.(*Edge)
-	return int((*this).weight - (*other).weight)
+	return int(this.weight - other.weight)
 }
 
 // Prims - implements the solution to the problem
