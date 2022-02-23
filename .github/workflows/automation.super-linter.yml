@@ -11,7 +11,9 @@ jobs:
       - name: Initiating
         uses: actions/checkout@v1
       - name: Preventing a false alarm
-        run: rm algorithms/code/leetcode/lc278_first_bad_version/lc278_first_bad_version.py
+        run: |
+          cd algorithms/code/leetcode/lc278_first_bad_version
+          rm lc278_first_bad_version.py
       - name: GitHub Super-Linter
         uses: github/super-linter@v4
         env:
