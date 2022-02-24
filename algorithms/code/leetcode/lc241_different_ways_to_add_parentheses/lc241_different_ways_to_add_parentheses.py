@@ -13,7 +13,7 @@ class Solution:
         items = re.findall(r'[+\-*]|\d+', expression)
 
         @cache
-        def traverse(a: int, z: int) -> int:
+        def traverse(a: int, z: int) -> List[int]:
             result = []
             if a == z:
                 result.append(int(items[a]))

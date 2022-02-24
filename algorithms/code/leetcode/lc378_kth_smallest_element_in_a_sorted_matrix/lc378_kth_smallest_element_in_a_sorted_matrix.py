@@ -16,7 +16,7 @@ class Solution:
             return other.value < self.value
 
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
-        heap = []
+        heap: List[Solution.Item] = []
         for row in matrix:
             for cell in row:
                 heapq.heappush(heap, Solution.Item(cell))

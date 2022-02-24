@@ -31,28 +31,23 @@ def replace(value, from_value, to_value):
     return to_value if value == from_value else value
 
 
-def shortest_reach(n: int, edges: List[List[int]], s: int) -> int:
+def shortest_reach(n: int, edges: List[List[int]], s: int) -> List[int]:
     maximum = float('inf')
-    adjacency = [None] * (n + 1)
+    adjacency: List[List[Edge]] = [[] for _ in range(n + 1)]
     for edge in edges:
-        if adjacency[edge[0]] is None:
-            adjacency[edge[0]] = []
-        if adjacency[edge[1]] is None:
-            adjacency[edge[1]] = []
         adjacency[edge[0]].append(Edge(edge[0], edge[1], edge[2]))
         adjacency[edge[1]].append(Edge(edge[1], edge[0], edge[2]))
-    vertices = [None] * (n + 1)
-    for i, adjacent in enumerate(adjacency):
-        adjacent = [] if adjacent is None else adjacent
-        vertices[i] = Vertex(maximum, adjacent)
-    unvisited = []
+    vertices: List[Vertex] = []
+    for adjacent in adjacency:
+        vertices.append(Vertex(maximum, adjacent))
+    unvisited: List[Vertex] = []
     heapq.heappush(unvisited, vertices[s])
     vertices[s].assign_distance(0)
     while unvisited:
         vertex = heapq.heappop(unvisited)
-        for edge in vertex.edges:
-            other = vertices[edge.vertex]
-            candidate = vertex.distance + edge.weight
+        for edge_obj in vertex.edges:
+            other = vertices[edge_obj.vertex]
+            candidate = vertex.distance + edge_obj.weight
             if candidate < other.distance:
                 other.assign_distance(candidate)
                 heapq.heappush(unvisited, other)

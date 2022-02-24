@@ -17,8 +17,8 @@ class Solution:
 
     # pylint: disable=C0301
     def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:  # noqa
-        sorted_set = []
-        ordered = []
+        sorted_set: List[int] = []
+        ordered: List[int] = []
         for num in nums:
             ceiling = bisect.bisect_left(sorted_set, num)
             floor = bisect.bisect_right(sorted_set, num)

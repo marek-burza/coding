@@ -9,7 +9,7 @@ from typing import List
 
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        heap = []
+        heap: List[int] = []
         for num in nums:
             if len(heap) < k or num > heap[0]:
                 heapq.heappush(heap, num)

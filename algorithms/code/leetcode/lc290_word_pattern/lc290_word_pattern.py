@@ -3,6 +3,8 @@
 
 import unittest
 
+from typing import Dict
+
 
 class Solution:
     def check(self, first, second, mapping):
@@ -17,8 +19,8 @@ class Solution:
         words = s.split(' ')
         if len(pattern) != len(words):
             return False
-        mapping_ps = {}
-        mapping_sp = {}
+        mapping_ps: Dict[str, str] = {}
+        mapping_sp: Dict[str, str] = {}
         i = 0
         while i < len(words):
             key = pattern[i:i + 1]

@@ -4,11 +4,11 @@
 import os
 import unittest
 
-from typing import List
+from typing import List, Dict
 
 
 def non_divisible_subset(k: int, s: List[int]) -> int:
-    counted = {}
+    counted: Dict[int, int] = {}
     for value in s:
         rest = value % k
         count = counted.get(rest)

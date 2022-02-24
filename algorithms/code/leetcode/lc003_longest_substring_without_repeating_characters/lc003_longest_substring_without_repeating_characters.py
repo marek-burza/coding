@@ -3,10 +3,12 @@
 
 import unittest
 
+from typing import Set
+
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        seen = set()
+        seen: Set[str] = set()
         longest = count = 0
         for i, found in enumerate(s):
             while count > 0 and found in seen:

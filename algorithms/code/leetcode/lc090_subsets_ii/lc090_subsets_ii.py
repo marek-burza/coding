@@ -25,7 +25,7 @@ class Solution:
 
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
-        listed = []
+        listed: List[List[int]] = []
         self.__subsets(nums, 0, [], listed)
         return listed
 

@@ -19,11 +19,11 @@ class Solution:
                     contains | mask, summed + i, left - 1, n, found, i + 1)
 
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-        found = []
+        found: List[int] = []
         self.__traverse(0, 0, k, n, found, 1)
         each = []
         for contains in found:
-            entry = []
+            entry: List[int] = []
             each.append(entry)
             for i in range(1, 10):
                 mask = 1 << i

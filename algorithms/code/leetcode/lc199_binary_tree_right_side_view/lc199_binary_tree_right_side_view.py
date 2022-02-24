@@ -23,7 +23,7 @@ class Solution:
             self.__rightSideView(root.left, level, listed)
 
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        listed = []
+        listed: List[int] = []
         self.__rightSideView(root, 0, listed)
         return listed
 

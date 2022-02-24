@@ -4,13 +4,13 @@
 import collections
 import unittest
 
-from typing import List
+from typing import List, Set
 
 
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        collected = set()
-        ordered = collections.deque()
+        collected: Set[int] = set()
+        ordered: collections.deque = collections.deque()
         for num in nums:
             if num in collected:
                 return True

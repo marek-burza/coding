@@ -11,7 +11,7 @@ class Solution:
         rowIndex += 1
         if rowIndex < 0:
             return None
-        previous = []
+        previous: List[int] = []
         current = None
         for i in range(rowIndex):
             current = []

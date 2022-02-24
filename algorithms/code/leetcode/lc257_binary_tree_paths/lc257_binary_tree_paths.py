@@ -25,7 +25,7 @@ class Solution:
                 self.__binaryTreePaths(root.right, prefix, result)
 
     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-        result = []
+        result: List[str] = []
         if root is not None:
             self.__binaryTreePaths(root, '', result)
         return result

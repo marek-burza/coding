@@ -3,6 +3,8 @@
 
 import unittest
 
+from typing import Dict
+
 
 class Node:
     def __init__(self, key, value):
@@ -15,7 +17,7 @@ class Node:
 class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.lut = {}
+        self.lut: Dict[int, Node] = {}
         self.head = Node(0, 0)
         self.tail = Node(0, 0)
         self.head.following = self.tail

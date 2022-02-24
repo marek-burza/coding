@@ -4,13 +4,13 @@
 
 import unittest
 
-from typing import List
+from typing import List, Dict
 
 
 class Solution:
     # pylint: disable=C0301
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:  # noqa
-        prereq = {course: [] for course in range(numCourses)}
+        prereq: Dict[int, List[int]] = {course: [] for course in range(numCourses)}
         for course, prerequisite in prerequisites:
             prereq[course].append(prerequisite)
         result = []

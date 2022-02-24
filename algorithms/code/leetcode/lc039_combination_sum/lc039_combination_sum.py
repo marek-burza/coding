@@ -22,7 +22,7 @@ class Solution:
 
     # pylint: disable=C0301
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:  # noqa
-        combos = []
+        combos: List[List[int]] = []
         self.__combinationSum(candidates, target, [], 0, 0, combos)
         return combos
 

@@ -12,7 +12,7 @@ class Solution:
         # Count each number
         counted = Counter(nums)
         # Generate the permutations
-        permutations = []
+        permutations: List[List[int]] = []
         self.generate([], len(nums), counted, permutations)
         return permutations
 

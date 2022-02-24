@@ -20,12 +20,12 @@ class Solution:
             self.depth = depth
 
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        result = []
+        result: List[List[int]] = []
         queue = []
         if root is not None:
             queue.append(self.AnnotatedNode(root, 1))
         depth = 0
-        line = None
+        line: List[int] = None
         while queue:
             annotated = queue.pop(0)
             if depth != annotated.depth:

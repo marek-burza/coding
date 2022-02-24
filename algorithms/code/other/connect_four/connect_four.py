@@ -4,15 +4,15 @@
 import enum
 import unittest
 
-from typing import Optional
+from typing import Optional, List
 
 
-class Player(enum.Enum):
+class Player(enum.IntEnum):
     ONE = 1
     TWO = 2
 
 
-class Winner(enum.Enum):
+class Winner(enum.IntEnum):
     ONE = 1
     TWO = 2
     UNDECIDED = 0
@@ -25,7 +25,7 @@ class BoardState:
     MAX_STEPS = 4
 
     def __init__(self) -> None:
-        self.__board = [[] for _ in range(BoardState.MAX_COLUMNS)]
+        self.__board: List[List[Player]] = [[] for _ in range(BoardState.MAX_COLUMNS)]
 
     def check_drop(self, c: int) -> bool:
         return len(self.__board[c]) < BoardState.MAX_COLUMNS - 1
@@ -61,7 +61,7 @@ class BoardState:
                     break
                 player = self.check_winning_at(r, c)
                 if player is not None:
-                    return player
+                    return Winner(int(player))
         sizes = [len(self.__board[c]) for c in columns]
         if all(size == BoardState.MAX_ROWS for size in sizes):
             return Winner.DRAW

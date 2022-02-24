@@ -19,7 +19,7 @@ class Solution:
             prefix.pop()
 
     def combine(self, n: int, k: int) -> List[List[int]]:
-        found = []
+        found: List[List[int]] = []
         self.__combine(1, n, k, [], found)
         return found
 

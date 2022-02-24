@@ -6,7 +6,7 @@ import heapq
 import os
 import unittest
 
-from typing import List
+from typing import List, Set
 
 
 # pylint: disable=R0903
@@ -30,22 +30,22 @@ def prims(n: int, edges: List[List[int]], start: int) -> int:
             adjacency[edge[1]] = []
         adjacency[edge[0]].append(Edge(edge[0], edge[1], edge[2]))
         adjacency[edge[1]].append(Edge(edge[1], edge[0], edge[2]))
-    connected = set()
-    queue = []
+    connected: Set[int] = set()
+    queue: List[Edge] = []
     total = 0
     while len(connected) < n:
         vertex = start
         while queue:
-            edge = heapq.heappop(queue)
-            if edge.vertex not in connected:
-                vertex = edge.vertex
-                total += edge.weight
+            edge_obj = heapq.heappop(queue)
+            if edge_obj.vertex not in connected:
+                vertex = edge_obj.vertex
+                total += edge_obj.weight
                 break
         # if vertex == start and start in connected:
         #     break
         connected.add(vertex)
-        for edge in adjacency[vertex]:
-            heapq.heappush(queue, edge)
+        for edge_obj in adjacency[vertex]:
+            heapq.heappush(queue, edge_obj)
     return total
 
 

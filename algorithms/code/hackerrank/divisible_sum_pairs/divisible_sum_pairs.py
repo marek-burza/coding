@@ -4,7 +4,7 @@
 import os
 import unittest
 
-from typing import List
+from typing import List, Dict
 
 
 def n_choose_k(N: int, K: int) -> int:
@@ -16,7 +16,7 @@ def n_choose_k(N: int, K: int) -> int:
 
 # pylint: disable=W0613
 def divisible_sum_pairs(n: int, k: int, arr: List[int]) -> int:
-    counted = {}
+    counted: Dict[int, int] = {}
     for value in arr:
         rest = value % k
         count = counted.get(rest)

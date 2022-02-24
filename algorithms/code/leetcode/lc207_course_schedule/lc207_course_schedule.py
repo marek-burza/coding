@@ -3,7 +3,7 @@
 
 import unittest
 
-from typing import List
+from typing import List, Dict, Set
 
 
 class Solution:
@@ -21,7 +21,7 @@ class Solution:
 
     # pylint: disable=C0301
     def canFinish(self, _: int, prerequisites: List[List[int]]) -> bool:  # noqa
-        graph = {}
+        graph: Dict[int, Set[int]] = {}
         for prerequisite in prerequisites:
             a_set = None
             if prerequisite[1] in graph:
@@ -30,7 +30,7 @@ class Solution:
                 a_set = set()
                 graph[prerequisite[1]] = a_set
             a_set.add(prerequisite[0])
-        visited = set()
+        visited: Set[int] = set()
         for start in graph:
             if not self.__dfs(graph, start, visited):
                 return False

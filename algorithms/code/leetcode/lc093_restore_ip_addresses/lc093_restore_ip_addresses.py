@@ -34,8 +34,8 @@ class Solution:
             self.__partial(s, 3, ip, listed)
 
     def restoreIpAddresses(self, s: str) -> List[str]:
-        ip = []
-        listed = []
+        ip: List[str] = []
+        listed: List[str] = []
         self.__restore(s, ip, listed)
         return listed
 
