@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/generate-parentheses/
 
 import unittest
-
 from typing import List
 
 

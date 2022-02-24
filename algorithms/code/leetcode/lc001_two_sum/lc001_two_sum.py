@@ -2,8 +2,7 @@
 # https://leetcode.com/problems/two-sum/
 
 import unittest
-
-from typing import List, Dict
+from typing import Dict, List
 
 
 class Solution:

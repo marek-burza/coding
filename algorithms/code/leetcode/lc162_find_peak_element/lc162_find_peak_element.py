@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/find-peak-element/
 
 import unittest
-
 from typing import List
 
 

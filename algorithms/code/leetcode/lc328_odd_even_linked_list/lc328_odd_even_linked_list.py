@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/odd-even-linked-list/
 
 import unittest
-
 from typing import Optional
 
 

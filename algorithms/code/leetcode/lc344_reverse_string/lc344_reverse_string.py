@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/reverse-string/
 
 import unittest
-
 from typing import List
 
 

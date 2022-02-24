@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/rotate-image/
 
 import unittest
-
 from typing import List
 
 

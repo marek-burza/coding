@@ -4,7 +4,6 @@
 import os
 import unittest
 
-
 LUT = [
     'zero', 'one', 'two', 'three', 'four', 'five',
     'six', 'seven', 'eight', 'nine', 'ten',

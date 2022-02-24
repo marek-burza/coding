@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/permutations/
 
 import unittest
-
 from typing import List
 
 

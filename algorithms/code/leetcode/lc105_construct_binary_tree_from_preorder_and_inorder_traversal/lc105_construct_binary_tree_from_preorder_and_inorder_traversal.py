@@ -4,7 +4,6 @@
 # (works for both ordered & unordered trees)
 
 import unittest
-
 from typing import List, Optional
 
 

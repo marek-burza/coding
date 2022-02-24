@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/path-sum/
 
 import unittest
-
 from typing import Optional
 
 

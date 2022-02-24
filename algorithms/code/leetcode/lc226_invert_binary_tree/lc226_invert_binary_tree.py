@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/invert-binary-tree/
 
 import unittest
-
 from typing import Optional
 
 

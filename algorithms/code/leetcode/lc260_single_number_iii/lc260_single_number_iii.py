@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/single-number-iii/
 
 import unittest
-
 from typing import List
 
 

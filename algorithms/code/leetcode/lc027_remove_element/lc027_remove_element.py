@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/remove-element/
 
 import unittest
-
 from typing import List
 
 

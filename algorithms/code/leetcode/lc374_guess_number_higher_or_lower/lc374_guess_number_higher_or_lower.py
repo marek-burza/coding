@@ -3,7 +3,6 @@
 
 import unittest
 
-
 lc374_number_higher_or_lower = 0
 
 

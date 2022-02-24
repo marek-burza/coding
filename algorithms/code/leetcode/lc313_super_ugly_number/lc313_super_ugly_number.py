@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/super-ugly-number/
 
 import unittest
-
 from typing import List
 
 

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/balanced-binary-tree/
 
 import unittest
-
 from typing import Optional
 
 

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/word-pattern/
 
 import unittest
-
 from typing import Dict
 
 

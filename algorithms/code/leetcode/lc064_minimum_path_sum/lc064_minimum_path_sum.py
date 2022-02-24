@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/minimum-path-sum/
 
 import unittest
-
 from typing import List
 
 

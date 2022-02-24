@@ -2,10 +2,8 @@
 # https://leetcode.com/problems/house-robber-iii/
 
 import unittest
-
-from typing import Optional
-# from typing import List
 from functools import cache
+from typing import Optional
 
 
 class TreeNode:

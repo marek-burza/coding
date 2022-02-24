@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/isomorphic-strings/
 
 import unittest
-
 from typing import Dict
 
 

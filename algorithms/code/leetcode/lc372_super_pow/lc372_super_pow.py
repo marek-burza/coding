@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/super-pow/
 
 import unittest
-
 from typing import List
 
 

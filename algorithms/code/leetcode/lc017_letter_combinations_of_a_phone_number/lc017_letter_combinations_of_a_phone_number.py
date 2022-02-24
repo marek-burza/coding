@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
 import unittest
-
 from typing import List
 
 

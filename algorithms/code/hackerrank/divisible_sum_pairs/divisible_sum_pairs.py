@@ -3,8 +3,7 @@
 
 import os
 import unittest
-
-from typing import List, Dict
+from typing import Dict, List
 
 
 def n_choose_k(N: int, K: int) -> int:

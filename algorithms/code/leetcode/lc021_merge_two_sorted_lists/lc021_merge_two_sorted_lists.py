@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/merge-two-sorted-lists/
 
 import unittest
-
 from typing import Optional
 
 

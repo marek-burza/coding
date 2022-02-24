@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/insertion-sort-list/
 
 import unittest
-
 from typing import Optional
 
 

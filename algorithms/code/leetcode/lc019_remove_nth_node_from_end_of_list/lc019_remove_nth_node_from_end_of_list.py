@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
 import unittest
-
 from typing import Optional
 
 

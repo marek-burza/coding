@@ -2,8 +2,7 @@
 # https://leetcode.com/problems/group-anagrams/
 
 import unittest
-
-from typing import List, Dict
+from typing import Dict, List
 
 
 class Solution:

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/maximum-gap/
 
 import unittest
-
 from typing import List
 
 

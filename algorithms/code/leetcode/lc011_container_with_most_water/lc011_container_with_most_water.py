@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/container-with-most-water/
 
 import unittest
-
 from typing import List
 
 

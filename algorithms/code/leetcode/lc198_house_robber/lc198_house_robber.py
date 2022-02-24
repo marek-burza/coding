@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/house-robber/
 
 import unittest
-
 from typing import List
 
 

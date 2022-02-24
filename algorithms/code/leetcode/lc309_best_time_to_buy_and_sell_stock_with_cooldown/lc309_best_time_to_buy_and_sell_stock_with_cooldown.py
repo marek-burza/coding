@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 
 import unittest
-
 from typing import List
 
 

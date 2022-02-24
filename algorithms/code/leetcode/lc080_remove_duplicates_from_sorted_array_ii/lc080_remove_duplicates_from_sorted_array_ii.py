@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
 
 import unittest
-
 from typing import List
 
 

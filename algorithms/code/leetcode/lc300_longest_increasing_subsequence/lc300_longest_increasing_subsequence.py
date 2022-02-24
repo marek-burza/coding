@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/longest-increasing-subsequence/
 
 import unittest
-
 from typing import List
 
 

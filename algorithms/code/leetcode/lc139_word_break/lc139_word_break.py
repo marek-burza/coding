@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/word-break/
 
 import unittest
-
 from typing import List
 
 

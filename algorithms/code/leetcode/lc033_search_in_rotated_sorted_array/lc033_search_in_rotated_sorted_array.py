@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/search-in-rotated-sorted-array/
 
 import unittest
-
 from typing import List
 
 

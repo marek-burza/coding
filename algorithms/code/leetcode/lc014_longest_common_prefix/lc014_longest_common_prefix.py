@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/longest-common-prefix/
 
 import unittest
-
 from typing import List
 
 

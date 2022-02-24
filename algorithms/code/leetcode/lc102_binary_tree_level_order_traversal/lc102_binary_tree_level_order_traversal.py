@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/binary-tree-level-order-traversal/
 
 import unittest
-
 from typing import List, Optional
 
 
