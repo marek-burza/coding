@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/linked-list-cycle-ii/
 
 import unittest
-
 from typing import Optional
 
 

@@ -3,8 +3,7 @@
 
 import heapq
 import unittest
-
-from typing import List, Dict
+from typing import Dict, List
 
 
 class Solution:
@@ -17,6 +16,7 @@ class Solution:
         def __lt__(self, other):
             return self.height > other.height
 
+    # pylint: disable=R0914
     def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
         skyline: List[List[int]] = []
         if not buildings:

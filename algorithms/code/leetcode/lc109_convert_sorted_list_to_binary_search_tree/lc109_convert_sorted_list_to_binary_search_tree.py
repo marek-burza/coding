@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
 
 import unittest
-
 from typing import Optional
 
 

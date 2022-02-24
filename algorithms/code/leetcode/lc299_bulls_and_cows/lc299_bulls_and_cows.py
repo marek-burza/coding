@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/bulls-and-cows/
 
 import unittest
-
 from typing import Dict
 
 

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/intersection-of-two-arrays-ii/
 
 import unittest
-
 from typing import List
 
 

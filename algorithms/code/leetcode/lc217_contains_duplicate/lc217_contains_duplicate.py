@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/contains-duplicate/
 
 import unittest
-
 from typing import List
 
 

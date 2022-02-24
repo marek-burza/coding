@@ -3,7 +3,6 @@
 
 import collections
 import unittest
-
 from typing import List, Set
 
 

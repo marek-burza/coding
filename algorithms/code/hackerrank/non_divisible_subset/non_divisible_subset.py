@@ -3,8 +3,7 @@
 
 import os
 import unittest
-
-from typing import List, Dict
+from typing import Dict, List
 
 
 def non_divisible_subset(k: int, s: List[int]) -> int:

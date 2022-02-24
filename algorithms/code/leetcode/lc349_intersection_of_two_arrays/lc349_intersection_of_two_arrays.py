@@ -3,7 +3,6 @@
 # https://leetcode.com/problems/intersection-of-two-arrays/
 
 import unittest
-
 from typing import List
 
 

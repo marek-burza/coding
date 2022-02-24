@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 
 import unittest
-
 from typing import Optional
 
 

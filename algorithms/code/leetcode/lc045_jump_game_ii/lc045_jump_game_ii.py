@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/jump-game-ii/
 
 import unittest
-
 from typing import List
 
 

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/h-index/
 
 import unittest
-
 from typing import List
 
 

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/range-sum-query-immutable/
 
 import unittest
-
 from typing import List
 
 

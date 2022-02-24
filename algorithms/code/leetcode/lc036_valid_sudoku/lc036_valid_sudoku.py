@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/valid-sudoku/
 
 import unittest
-
 from typing import List
 
 

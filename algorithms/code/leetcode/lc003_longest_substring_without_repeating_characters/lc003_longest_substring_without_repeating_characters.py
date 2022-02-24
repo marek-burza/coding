@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
 import unittest
-
 from typing import Set
 
 

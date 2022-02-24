@@ -3,7 +3,6 @@
 
 import enum
 import unittest
-
 from typing import Optional
 
 

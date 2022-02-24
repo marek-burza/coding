@@ -2,8 +2,7 @@
 # https://leetcode.com/problems/binary-tree-paths/
 
 import unittest
-
-from typing import Optional, List
+from typing import List, Optional
 
 
 class TreeNode:

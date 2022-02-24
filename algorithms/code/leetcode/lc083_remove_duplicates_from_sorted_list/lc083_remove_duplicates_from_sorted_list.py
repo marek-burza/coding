@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/remove-duplicates-from-sorted-list/
 
 import unittest
-
 from typing import Optional
 
 

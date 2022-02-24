@@ -3,9 +3,7 @@
 
 import os
 import unittest
-
-from typing import List, Dict, Set
-
+from typing import Dict, List, Set
 
 INDEX_INDEX = 0
 INDEX_VALUE = 1

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/remove-linked-list-elements/
 
 import unittest
-
 from typing import Optional
 
 

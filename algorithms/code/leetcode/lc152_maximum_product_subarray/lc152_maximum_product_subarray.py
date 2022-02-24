@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/maximum-product-subarray/
 
 import unittest
-
 from typing import List
 
 

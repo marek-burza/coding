@@ -3,7 +3,6 @@
 
 import unittest
 
-
 lc278_first_bad_version = 0
 
 

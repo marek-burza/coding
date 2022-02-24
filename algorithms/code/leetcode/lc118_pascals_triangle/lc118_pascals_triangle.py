@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/pascals-triangle/
 
 import unittest
-
 from typing import List
 
 

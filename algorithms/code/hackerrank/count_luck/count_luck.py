@@ -4,9 +4,7 @@
 import collections
 import os
 import unittest
-
 from typing import List
-
 
 DELTAS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 

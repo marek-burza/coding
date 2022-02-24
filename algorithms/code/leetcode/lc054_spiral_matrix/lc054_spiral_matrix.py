@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/spiral-matrix/
 
 import unittest
-
 from typing import List
 
 

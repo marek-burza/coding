@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/counting-bits/
 
 import unittest
-
 from typing import List
 
 

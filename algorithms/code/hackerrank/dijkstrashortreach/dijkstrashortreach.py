@@ -6,9 +6,7 @@ import functools
 import heapq
 import os
 import unittest
-
 from typing import List
-
 
 Edge = collections.namedtuple('Edge', ['origin', 'vertex', 'weight'])
 

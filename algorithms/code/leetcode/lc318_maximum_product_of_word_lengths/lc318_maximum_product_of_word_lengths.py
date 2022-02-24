@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/maximum-product-of-word-lengths/
 
 import unittest
-
 from typing import List
 
 

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/gray-code/
 
 import unittest
-
 from typing import List
 
 

@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/flatten-nested-list-iterator/
 
 import unittest
-
 from typing import List
 
 

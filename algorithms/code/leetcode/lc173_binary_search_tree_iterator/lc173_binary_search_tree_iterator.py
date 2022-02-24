@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/binary-search-tree-iterator/
 
 import unittest
-
 from typing import Optional
 
 

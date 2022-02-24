@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/swap-nodes-in-pairs/
 
 import unittest
-
 from typing import Optional
 
 

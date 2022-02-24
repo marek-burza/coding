@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 
 import unittest
-
 from typing import List
 
 

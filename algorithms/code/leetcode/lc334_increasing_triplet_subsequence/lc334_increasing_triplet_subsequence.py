@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/increasing-triplet-subsequence/
 
 import unittest
-
 from typing import List
 
 

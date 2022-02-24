@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/reverse-linked-list/
 
 import unittest
-
 from typing import Optional
 
 

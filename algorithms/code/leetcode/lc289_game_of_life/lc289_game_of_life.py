@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/game-of-life/
 
 import unittest
-
 from typing import List
 
 
