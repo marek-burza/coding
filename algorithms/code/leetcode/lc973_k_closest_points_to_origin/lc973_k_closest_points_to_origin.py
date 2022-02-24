@@ -19,7 +19,7 @@ class Solution:
             return other_distance > self_distance
 
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        heap = []
+        heap: List[Solution.Item] = []
         for point in points:
             heapq.heappush(heap, Solution.Item(point))
         result = []

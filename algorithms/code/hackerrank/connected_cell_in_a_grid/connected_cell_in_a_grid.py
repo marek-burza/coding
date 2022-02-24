@@ -19,7 +19,7 @@ def check(matrix: List[List[int]], r: int, c: int) -> bool:
 
 def traverse(matrix: List[List[int]], r: int, c: int) -> int:
     size = 0
-    queue = collections.deque()
+    queue: collections.deque = collections.deque()
     queue.append((r, c))
     while queue:
         r, c = queue.pop()

@@ -22,7 +22,7 @@ class Solution:
         self.__preorderTraversal(root.right, result)
 
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
+        result: List[int] = []
         self.__preorderTraversal(root, result)
         return result
 

@@ -19,7 +19,7 @@ class Solution:
                 prefix.pop()
 
     def permute(self, nums: List[int]) -> List[List[int]]:
-        permutations = []
+        permutations: List[List[int]] = []
         remaining = set(nums)
         self.__permute([], remaining, permutations)
         return permutations

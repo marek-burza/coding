@@ -9,7 +9,7 @@ from typing import List
 
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        frequencies = collections.Counter()
+        frequencies: collections.Counter = collections.Counter()
         for value in nums:
             frequencies[value] += 1
         result = float('-inf')

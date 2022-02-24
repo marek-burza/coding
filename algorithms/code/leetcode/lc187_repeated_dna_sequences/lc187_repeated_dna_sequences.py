@@ -3,7 +3,7 @@
 
 import unittest
 
-from typing import List
+from typing import List, Set
 
 
 class Solution:
@@ -22,10 +22,10 @@ class Solution:
         return decoded
 
     def findRepeatedDnaSequences(self, s: str) -> List[str]:
-        listed = []
+        listed: List[str] = []
         if s is None or len(s) < 10:
             return listed
-        seen = set()
+        seen: Set[int] = set()
         now = 0
         for i in range(0, 9):
             now = self.__encode(now, self.__compress(s[i]))

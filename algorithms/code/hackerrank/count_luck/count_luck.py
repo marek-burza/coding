@@ -12,7 +12,7 @@ DELTAS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
 
 def look_around(forest: List[List[str]], at: tuple) -> List[tuple]:
-    ways = []
+    ways: List[tuple] = []
     for delta in DELTAS:
         dr = at[0] + delta[0]
         dc = at[1] + delta[1]
@@ -27,8 +27,8 @@ def look_around(forest: List[List[str]], at: tuple) -> List[tuple]:
 
 
 def count_luck(matrix: List[str], k: int) -> str:
-    queue = collections.deque()
-    counts = collections.deque()
+    queue: collections.deque = collections.deque()
+    counts: collections.deque = collections.deque()
     counts.append(0)
     forest = [list(row) for row in matrix]
     for r, _ in enumerate(forest):

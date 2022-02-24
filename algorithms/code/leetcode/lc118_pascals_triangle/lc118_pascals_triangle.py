@@ -12,7 +12,7 @@ class Solution:
             return None
         triangle = []
         for i in range(numRows):
-            row = []
+            row: List[int] = []
             triangle.append(row)
             row.append(1)
             if i > 0:

@@ -3,12 +3,12 @@
 
 import unittest
 
-from typing import List
+from typing import List, Dict
 
 
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        seen = {}
+        seen: Dict[str, List[str]] = {}
         for string in strs:
             array = list(string)
             array.sort()

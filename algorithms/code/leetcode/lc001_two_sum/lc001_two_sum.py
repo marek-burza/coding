@@ -3,14 +3,14 @@
 
 import unittest
 
-from typing import List
+from typing import List, Dict
 
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         if nums is None:
             return None
-        mapped = {}
+        mapped: Dict[int, int] = {}
         for i, num in enumerate(nums):
             expected = target - num
             if expected in mapped:

@@ -3,10 +3,12 @@
 
 import unittest
 
+from typing import Dict
+
 
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        mapped = {}
+        mapped: Dict[str, str] = {}
         for i, _ in enumerate(s):
             source = s[i]
             target = t[i]

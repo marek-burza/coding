@@ -10,7 +10,7 @@ class Solution:
     __DELTAS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
 
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        listed = []
+        listed: List[int] = []
         if matrix is None or len(matrix) == 0:
             return listed
         index = 0

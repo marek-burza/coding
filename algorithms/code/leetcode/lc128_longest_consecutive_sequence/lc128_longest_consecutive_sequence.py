@@ -3,7 +3,7 @@
 
 import unittest
 
-from typing import List
+from typing import List, Dict
 
 
 class Solution:
@@ -14,7 +14,7 @@ class Solution:
 
     def longestConsecutive(self, nums: List[int]) -> int:
         seen = set()
-        mapped = {}
+        mapped: Dict[int, Solution.Range] = {}
         length = 0
         for num in nums:
             if num in seen:

@@ -13,7 +13,7 @@ INDEX_ADJACENT = 2
 
 
 def build_graph(data: List[int], edges: List[List[int]]) -> Dict[int, tuple]:
-    mapped = {}
+    mapped: Dict[int, tuple] = {}
     for i, _ in enumerate(data):
         index = i + 1
         mapped[index] = (index, data[i], [])
@@ -42,7 +42,7 @@ def cut_the_tree(data: List[int], edges: List[List[int]]) -> int:
     graph = build_graph(data, edges)
     total = sum(data)
     minimum = [float('inf')]
-    seen = set()
+    seen: Set[int] = set()
     maximum_edge(graph, 1, total, minimum, seen)
     return minimum[0]
 

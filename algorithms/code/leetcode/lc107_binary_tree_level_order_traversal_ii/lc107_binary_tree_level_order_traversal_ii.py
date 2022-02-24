@@ -21,7 +21,7 @@ class Solution:
         if root is not None:
             current.append(root)
         while current:
-            level = []
+            level: List[int] = []
             result.append(level)
             future = []
             for node in current:

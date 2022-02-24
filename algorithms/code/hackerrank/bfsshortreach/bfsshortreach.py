@@ -14,7 +14,7 @@ def bfs(n: int, m: int, edges: List[List[int]], s: int) -> List[int]:
     for edge in edges:
         adjacency[edge[0] - 1][edge[1] - 1] = True
         adjacency[edge[1] - 1][edge[0] - 1] = True
-    queue = collections.deque()
+    queue: collections.deque = collections.deque()
     queue.append((s - 1, 0))
     distances = [-1] * n
     while queue:

@@ -4,7 +4,7 @@
 import heapq
 import unittest
 
-from typing import List
+from typing import List, Dict
 
 
 class Solution:
@@ -18,11 +18,11 @@ class Solution:
             return self.height > other.height
 
     def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
-        skyline = []
+        skyline: List[List[int]] = []
         if not buildings:
             return skyline
         # Build list of spots
-        spots = {}
+        spots: Dict[int, List[Solution.Building]] = {}
         for building in buildings:
             if building[0] == building[1]:
                 continue
@@ -34,18 +34,18 @@ class Solution:
         sorted_spots = sorted(spots.keys())
         # Prepare view
         ground = Solution.Building(0, sorted_spots[-1], 0)
-        view = []
+        view: List[Solution.Building] = []
         view.append(ground)
         # Check all spots and build skyline
         current = 0
         for at in sorted_spots:
-            for building in spots[at]:
-                if at == building.left:
+            for building_obj in spots[at]:
+                if at == building_obj.left:
                     # Building entering the view
-                    heapq.heappush(view, building)
+                    heapq.heappush(view, building_obj)
                 else:
                     # Building leaving the view
-                    index = view.index(building)
+                    index = view.index(building_obj)
                     view[index] = view[-1]
                     view.pop()
                     heapq.heapify(view)

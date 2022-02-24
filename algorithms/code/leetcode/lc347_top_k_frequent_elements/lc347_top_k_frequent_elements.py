@@ -3,12 +3,12 @@
 
 import unittest
 
-from typing import List
+from typing import List, Dict
 
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        frequencies = {}
+        frequencies: Dict[int, int] = {}
         for value in nums:
             if value in frequencies:
                 frequencies[value] = frequencies[value] + 1
@@ -16,7 +16,7 @@ class Solution:
                 frequencies[value] = 1
         keys = list(frequencies.keys())
         keys.sort(key=lambda item: frequencies[item], reverse=True)
-        selected = []
+        selected: List[int] = []
         for value in keys:
             if len(selected) >= k:
                 break

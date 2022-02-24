@@ -26,14 +26,14 @@ class Solution:
         left_preorder = preorder[1:len(left_inorder)+1]
         right_preorder = preorder[len(left_inorder)+1:]
 
-        node = TreeNode(node)
+        node_obj = TreeNode(node)
 
         if len(left_preorder) > 0:
-            node.left = self.buildTree(left_preorder, left_inorder)
+            node_obj.left = self.buildTree(left_preorder, left_inorder)
         if len(right_preorder) > 0:
-            node.right = self.buildTree(right_preorder, right_inorder)
+            node_obj.right = self.buildTree(right_preorder, right_inorder)
 
-        return node
+        return node_obj
 
 
 class TestCode(unittest.TestCase):

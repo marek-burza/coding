@@ -21,7 +21,7 @@ class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         if n == 0:
             return []
-        found = []
+        found: List[str] = []
         self.generate('(', 1, n - 1, found)
         return found
 

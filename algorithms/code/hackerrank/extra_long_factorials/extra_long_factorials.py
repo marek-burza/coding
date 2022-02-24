@@ -10,7 +10,7 @@ def extra_long_factorials(n: int) -> str:
     result = 1
     for i in range(2, n + 1):
         result *= i
-    return result
+    return str(result)
 
 
 class TestCode(unittest.TestCase):
@@ -22,7 +22,7 @@ class TestCode(unittest.TestCase):
                 lines = handle.readlines()
             io_lines[index] = [line.strip().split(' ') for line in lines]
         n = int(io_lines[0][0][0])
-        result = extra_long_factorials(n)
+        result = int(extra_long_factorials(n))
         expected = int(io_lines[1][0][0])
         self.assertEqual(expected, result)
 

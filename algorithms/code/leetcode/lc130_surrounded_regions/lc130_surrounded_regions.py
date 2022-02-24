@@ -3,7 +3,7 @@
 
 import unittest
 
-from typing import List
+from typing import List, Set
 
 
 class Solution:
@@ -29,8 +29,8 @@ class Solution:
         for row in board:
             if row is None or len(row) == 0:
                 return
-        check = []
-        visited = set()
+        check: List[int] = []
+        visited: Set[int] = set()
         for i, _ in enumerate(board):
             self.__enqueue(i, 0, check, visited)
             self.__enqueue(i, len(board[i]) - 1, check, visited)
