@@ -22,9 +22,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example_1(self):
         self.assertEqual(
-            6,
-            Solution().maxSubArray(
-                [-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+            6, Solution().maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])
+        )
 
     def test_example_2(self):
         self.assertEqual(1, Solution().maxSubArray([1]))

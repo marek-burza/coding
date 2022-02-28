@@ -7,8 +7,9 @@ import unittest
 
 class Solution:
     def __amount(self, height, from_keyword_conflict, to):
-        amount = min(height[from_keyword_conflict],
-                     height[to]) * (to - from_keyword_conflict - 1)
+        amount = min(height[from_keyword_conflict], height[to]) * (
+            to - from_keyword_conflict - 1
+        )
         i = from_keyword_conflict + 1
         while i < to:
             amount -= height[i]

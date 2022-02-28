@@ -21,12 +21,11 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example_1(self):
         self.assertListEqual(
-            [2, 3], Solution().findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]))
+            [2, 3], Solution().findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])
+        )
 
     def test_example_2(self):
-        self.assertListEqual(
-            [1], Solution().findDuplicates([1, 1, 2]))
+        self.assertListEqual([1], Solution().findDuplicates([1, 1, 2]))
 
     def test_example_3(self):
-        self.assertListEqual(
-            [], Solution().findDuplicates([1]))
+        self.assertListEqual([], Solution().findDuplicates([1]))

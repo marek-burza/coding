@@ -34,11 +34,17 @@ class Solution:
             # if line is not None:
             line.append(annotated.node.val)
             if annotated.node.left is not None:
-                queue.append(self.AnnotatedNode(
-                    annotated.node.left, annotated.depth + 1))
+                queue.append(
+                    self.AnnotatedNode(
+                        annotated.node.left, annotated.depth + 1
+                    )
+                )
             if annotated.node.right is not None:
-                queue.append(self.AnnotatedNode(
-                    annotated.node.right, annotated.depth + 1))
+                queue.append(
+                    self.AnnotatedNode(
+                        annotated.node.right, annotated.depth + 1
+                    )
+                )
         return result
 
 

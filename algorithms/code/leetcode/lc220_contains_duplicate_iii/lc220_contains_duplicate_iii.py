@@ -15,7 +15,9 @@ class Solution:
         return -1
 
     # pylint: disable=C0301
-    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:  # noqa
+    def containsNearbyAlmostDuplicate(
+        self, nums: List[int], k: int, t: int
+    ) -> bool:  # noqa
         sorted_set: List[int] = []
         ordered: List[int] = []
         for num in nums:

@@ -53,6 +53,7 @@ class TestCode(unittest.TestCase):
 
             def __ne__(self, other):
                 return mycmp(self.obj, other.obj) != 0
+
         return K
 
     @staticmethod
@@ -69,7 +70,8 @@ class TestCode(unittest.TestCase):
 
     def __test(self, expected, result):
         result = sorted(
-            result, key=TestCode.cmp_to_key(TestCode.orderly_comparator))
+            result, key=TestCode.cmp_to_key(TestCode.orderly_comparator)
+        )
         self.assertEqual(len(expected), len(result))
         for i, _ in enumerate(expected):
             self.assertEqual(len(expected[i]), len(result[i]))

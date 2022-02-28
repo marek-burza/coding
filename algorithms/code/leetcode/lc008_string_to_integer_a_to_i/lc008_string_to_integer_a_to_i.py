@@ -20,11 +20,11 @@ class Solution:
         while index < len(s) and s[index].isdigit():
             result *= 10
             result += ord(s[index]) - ord('0')
-            if result > 2**31-1:
+            if result > 2**31 - 1:
                 break
             index += 1
         result *= sign
-        return max(-2**31, min(2**31-1, result))
+        return max(-(2**31), min(2**31 - 1, result))
 
 
 class TestCode(unittest.TestCase):
@@ -44,10 +44,10 @@ class TestCode(unittest.TestCase):
         self.assertEqual(Solution().myAtoi(' -3241a'), -3241)
 
     def test_9223372036854775809(self):
-        self.assertEqual(Solution().myAtoi('9223372036854775809'), 2**31-1)
+        self.assertEqual(Solution().myAtoi('9223372036854775809'), 2**31 - 1)
 
     def test_Minus9223372036854775809(self):
-        self.assertEqual(Solution().myAtoi('-9223372036854775809'), -2**31)
+        self.assertEqual(Solution().myAtoi('-9223372036854775809'), -(2**31))
 
     def test_Nothing(self):
         self.assertEqual(Solution().myAtoi('nothing'), 0)

@@ -29,4 +29,5 @@ class TestCode(unittest.TestCase):
 
     def test_0_5_7_10_5__2(self):
         self.assertFalse(
-            Solution().containsNearbyDuplicate([0, 5, 7, 10, 5], 2))
+            Solution().containsNearbyDuplicate([0, 5, 7, 10, 5], 2)
+        )

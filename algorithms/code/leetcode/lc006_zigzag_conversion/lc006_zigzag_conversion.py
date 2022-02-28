@@ -26,11 +26,15 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_1(self):
         # pylint: disable=C0301
-        self.assertEqual(Solution().convert('PAYPALISHIRING', 3), 'PAHNAPLSIIGYIR')  # noqa
+        self.assertEqual(
+            Solution().convert('PAYPALISHIRING', 3), 'PAHNAPLSIIGYIR'
+        )  # noqa
 
     def test_2(self):
         # pylint: disable=C0301
-        self.assertEqual(Solution().convert('PAYPALISHIRING', 4), 'PINALSIGYAHRPI')  # noqa
+        self.assertEqual(
+            Solution().convert('PAYPALISHIRING', 4), 'PINALSIGYAHRPI'
+        )  # noqa
 
     def test_3(self):
         self.assertEqual(Solution().convert('A', 1), 'A')

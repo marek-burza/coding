@@ -6,16 +6,52 @@ import unittest
 
 class Solution:
     __MAGNITUDE = [
-        '', ' Thousand', ' Million', ' Billion', ' Trillion', ' Quadrillion',
-        ' Quintillion', ' Sextillion', ' Septillion', ' Octillion',
-        ' Nonillion']
+        '',
+        ' Thousand',
+        ' Million',
+        ' Billion',
+        ' Trillion',
+        ' Quadrillion',
+        ' Quintillion',
+        ' Sextillion',
+        ' Septillion',
+        ' Octillion',
+        ' Nonillion',
+    ]
     __TENS = [
-        '', 'Ten', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy',
-        'Eighty', 'Ninety']
+        '',
+        'Ten',
+        'Twenty',
+        'Thirty',
+        'Forty',
+        'Fifty',
+        'Sixty',
+        'Seventy',
+        'Eighty',
+        'Ninety',
+    ]
     __DIGITS = [
-        '', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
-        'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen',
-        'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen']
+        '',
+        'One',
+        'Two',
+        'Three',
+        'Four',
+        'Five',
+        'Six',
+        'Seven',
+        'Eight',
+        'Nine',
+        'Ten',
+        'Eleven',
+        'Twelve',
+        'Thirteen',
+        'Fourteen',
+        'Fifteen',
+        'Sixteen',
+        'Seventeen',
+        'Eighteen',
+        'Nineteen',
+    ]
 
     def __tripleToWords(self, i):
         result = ''
@@ -55,18 +91,20 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_123(self):
         self.assertEqual(
-            'One Hundred Twenty Three',
-            Solution().numberToWords(123))
+            'One Hundred Twenty Three', Solution().numberToWords(123)
+        )
 
     def test_12345(self):
         self.assertEqual(
             'Twelve Thousand Three Hundred Forty Five',
-            Solution().numberToWords(12345))
+            Solution().numberToWords(12345),
+        )
 
     def test_1234567(self):
         self.assertEqual(
             'One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven',  # noqa
-            Solution().numberToWords(1234567))
+            Solution().numberToWords(1234567),
+        )
 
     def test_91(self):
         self.assertEqual('Ninety One', Solution().numberToWords(91))

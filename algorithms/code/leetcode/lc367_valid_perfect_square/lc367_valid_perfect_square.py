@@ -31,4 +31,4 @@ class TestCode(unittest.TestCase):
         self.assertTrue(Solution().isPerfectSquare(16))
 
     def test_maximum(self):
-        self.assertFalse(Solution().isPerfectSquare(2**31-1))
+        self.assertFalse(Solution().isPerfectSquare(2**31 - 1))

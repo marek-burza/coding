@@ -58,7 +58,7 @@ class TestCode(unittest.TestCase):
             io_lines[index] = [line.strip().split(' ') for line in lines]
         n = int(io_lines[0][0][0])
         m = int(io_lines[0][0][1])
-        edges = [[int(item) for item in row] for row in io_lines[0][1:1 + m]]
+        edges = [[int(item) for item in row] for row in io_lines[0][1 : 1 + m]]
         start = int(io_lines[0][1 + m][0])
         result = prims(n, edges, start)
         expected = int(io_lines[1][0][0])

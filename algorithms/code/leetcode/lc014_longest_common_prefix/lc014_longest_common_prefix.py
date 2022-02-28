@@ -19,13 +19,14 @@ class Solution:
                     done = True
                     break
             i += 1
-        return strs[0][0:i - 1]
+        return strs[0][0 : i - 1]
 
 
 class TestCode(unittest.TestCase):
     def test_Ala_AlaMaKota(self):
         self.assertEqual(
-            Solution().longestCommonPrefix(['Ala', 'Ala Ma Kota']), 'Ala')
+            Solution().longestCommonPrefix(['Ala', 'Ala Ma Kota']), 'Ala'
+        )
 
     def test_aa_a(self):
         self.assertEqual(Solution().longestCommonPrefix(['aa', 'a']), 'a')
@@ -44,7 +45,8 @@ class TestCode(unittest.TestCase):
 
     def test_same(self):
         self.assertEqual(
-            Solution().longestCommonPrefix(['same', 'same']), 'same')
+            Solution().longestCommonPrefix(['same', 'same']), 'same'
+        )
 
     def test_nothing(self):
         self.assertEqual(Solution().longestCommonPrefix(None), '')

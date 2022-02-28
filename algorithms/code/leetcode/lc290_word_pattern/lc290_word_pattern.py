@@ -22,7 +22,7 @@ class Solution:
         mapping_sp: Dict[str, str] = {}
         i = 0
         while i < len(words):
-            key = pattern[i:i + 1]
+            key = pattern[i : i + 1]
             check_ps = self.check(key, words[i], mapping_ps)
             check_sp = self.check(words[i], key, mapping_sp)
             if not check_ps or not check_sp:

@@ -47,6 +47,7 @@ class TestCode(unittest.TestCase):
 
             def __ne__(self, other):
                 return mycmp(self.obj, other.obj) != 0
+
         return K
 
     @staticmethod
@@ -66,7 +67,8 @@ class TestCode(unittest.TestCase):
         expected = [[1, 2], [1, 3], [1, 4], [2, 3], [2, 4], [3, 4]]
         result = Solution().combine(4, 2)
         result = sorted(
-            result, key=TestCode.cmp_to_key(TestCode.integer_list_comparator))
+            result, key=TestCode.cmp_to_key(TestCode.integer_list_comparator)
+        )
         self.assertEqual(len(expected), len(result))
         for i, _ in enumerate(expected):
             self.assertEqual(len(expected[i]), len(result[i]))

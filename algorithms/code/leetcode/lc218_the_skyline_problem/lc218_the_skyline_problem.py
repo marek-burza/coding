@@ -27,7 +27,7 @@ class Solution:
             if building[0] == building[1]:
                 continue
             entry = Solution.Building(*building)
-            for spot in building[0: 2]:
+            for spot in building[0:2]:
                 if spot not in spots:
                     spots[spot] = []
                 spots[spot].append(entry)
@@ -68,31 +68,31 @@ class TestCode(unittest.TestCase):
 
     def test_example_1(self):
         buildings = [
-            [2, 9, 10], [3, 7, 15],
-            [5, 12, 12], [15, 20, 10], [19, 24, 8]
+            [2, 9, 10],
+            [3, 7, 15],
+            [5, 12, 12],
+            [15, 20, 10],
+            [19, 24, 8],
         ]
         expected = [
-            [2, 10], [3, 15], [7, 12],
-            [12, 0], [15, 10], [20, 8], [24, 0]
+            [2, 10],
+            [3, 15],
+            [7, 12],
+            [12, 0],
+            [15, 10],
+            [20, 8],
+            [24, 0],
         ]
         self.generic(buildings, expected)
 
     def test_example_2(self):
-        buildings = [
-            [0, 2, 3], [2, 5, 3]
-        ]
-        expected = [
-            [0, 3], [5, 0]
-        ]
+        buildings = [[0, 2, 3], [2, 5, 3]]
+        expected = [[0, 3], [5, 0]]
         self.generic(buildings, expected)
 
     def test_coverage_gaps(self):
-        buildings = [
-            [0, 2, 3], [2, 5, 3], [0, 0, 10]
-        ]
-        expected = [
-            [0, 3], [5, 0]
-        ]
+        buildings = [[0, 2, 3], [2, 5, 3], [0, 0, 10]]
+        expected = [[0, 3], [5, 0]]
         self.generic(buildings, expected)
         self.assertEqual(len(Solution().getSkyline([])), 0)
         self.assertEqual(len(Solution().getSkyline(None)), 0)

@@ -6,9 +6,7 @@ import os
 import unittest
 from typing import List
 
-DELTAS = [
-    (-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)
-]
+DELTAS = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
 
 
 def check(matrix: List[List[int]], r: int, c: int) -> bool:

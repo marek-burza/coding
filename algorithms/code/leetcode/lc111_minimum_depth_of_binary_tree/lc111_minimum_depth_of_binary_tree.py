@@ -28,11 +28,17 @@ class Solution:
             if annotated.node.left is None and annotated.node.right is None:
                 return annotated.depth
             if annotated.node.left is not None:
-                queue.append(Solution.AnnotatedNode(
-                    annotated.node.left, annotated.depth + 1))
+                queue.append(
+                    Solution.AnnotatedNode(
+                        annotated.node.left, annotated.depth + 1
+                    )
+                )
             if annotated.node.right is not None:
-                queue.append(Solution.AnnotatedNode(
-                    annotated.node.right, annotated.depth + 1))
+                queue.append(
+                    Solution.AnnotatedNode(
+                        annotated.node.right, annotated.depth + 1
+                    )
+                )
 
 
 class TestCode(unittest.TestCase):

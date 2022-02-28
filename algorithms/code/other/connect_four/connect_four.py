@@ -24,7 +24,9 @@ class BoardState:
     MAX_STEPS = 4
 
     def __init__(self) -> None:
-        self.__board: List[List[Player]] = [[] for _ in range(BoardState.MAX_COLUMNS)]  # noqa
+        self.__board: List[List[Player]] = [
+            [] for _ in range(BoardState.MAX_COLUMNS)
+        ]  # noqa
 
     def check_drop(self, c: int) -> bool:
         return len(self.__board[c]) < BoardState.MAX_COLUMNS - 1
@@ -73,6 +75,7 @@ class BoardState:
 
         def line(r):
             return ''.join([lut[self.player_at(r, c)] for c in columns])
+
         return '\n'.join([line(r) for r in rows])
 
 
@@ -114,7 +117,8 @@ class TestCode(unittest.TestCase):
             '.......',
             '.......',
             '.......',
-            '...O...']
+            '...O...',
+        ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
     def test_too_high(self):
@@ -128,7 +132,8 @@ class TestCode(unittest.TestCase):
             '...X...',
             '...O...',
             '...X...',
-            '...O...']
+            '...O...',
+        ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
     def test_horizontal(self):
@@ -142,7 +147,8 @@ class TestCode(unittest.TestCase):
             '.......',
             '.......',
             '.......',
-            'XXXOOOO']
+            'XXXOOOO',
+        ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
     def test_vertical(self):
@@ -156,7 +162,8 @@ class TestCode(unittest.TestCase):
             '...O...',
             '.X.O...',
             '.X.O...',
-            '.X.O...']
+            '.X.O...',
+        ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
     def test_draw(self):
@@ -182,7 +189,8 @@ class TestCode(unittest.TestCase):
             'XOXOXOX',
             'OXOXOXO',
             'OXOXOXO',
-            'OXOXOXO']
+            'OXOXOXO',
+        ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
     def test_diagonal_ascending(self):
@@ -196,7 +204,8 @@ class TestCode(unittest.TestCase):
             '....X..',
             '..OXO..',
             '.OXXX..',
-            '.XOOO..']
+            '.XOOO..',
+        ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
     def test_diagonal_descending(self):
@@ -210,7 +219,8 @@ class TestCode(unittest.TestCase):
             '..X....',
             '..OXO..',
             '..XXXO.',
-            '..OOOX.']
+            '..OOOX.',
+        ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
     def test_one_more_move(self):
@@ -226,5 +236,6 @@ class TestCode(unittest.TestCase):
             '..X....',
             '..OXO..',
             '..XXXO.',
-            '..OOOX.']
+            '..OOOX.',
+        ]
         self.generic(Player.ONE, moves, outcomes, winners, board)

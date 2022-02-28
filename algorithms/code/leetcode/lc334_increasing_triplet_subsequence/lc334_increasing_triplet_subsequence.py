@@ -14,10 +14,10 @@ class Solution:
         minBefore[0] = nums[0]
         maxAfter[-1] = nums[-1]
         for i in range(1, len(nums) - 1):
-            minBefore[i] = min(
-                minBefore[i - 1], nums[i - 1])
+            minBefore[i] = min(minBefore[i - 1], nums[i - 1])
             maxAfter[len(nums) - 1 - i] = max(
-                maxAfter[len(nums) - i], nums[len(nums) - i])
+                maxAfter[len(nums) - i], nums[len(nums) - i]
+            )
         for i in range(1, len(nums) - 1):
             if minBefore[i] < nums[i] and nums[i] < maxAfter[i]:
                 return True

@@ -16,12 +16,5 @@ def staircase(n):
 
 class TestCode(unittest.TestCase):
     def test_example(self):
-        expected = [
-            '     #',
-            '    ##',
-            '   ###',
-            '  ####',
-            ' #####',
-            '######'
-        ]
+        expected = ['     #', '    ##', '   ###', '  ####', ' #####', '######']
         self.assertEqual(expected, staircase(6))

@@ -59,7 +59,7 @@ class TestCode(unittest.TestCase):
         offset = 1
         for t in range(tests):
             n = int(io_lines[0][offset][0])
-            matrix = io_lines[0][offset + 1:offset + n + 1]
+            matrix = io_lines[0][offset + 1 : offset + n + 1]
             matrix = [line[0] for line in matrix]
             k = int(io_lines[0][offset + 1 + n][0])
             offset += n + 2

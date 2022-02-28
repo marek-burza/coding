@@ -5,12 +5,37 @@ import os
 import unittest
 
 LUT = [
-    'zero', 'one', 'two', 'three', 'four', 'five',
-    'six', 'seven', 'eight', 'nine', 'ten',
-    'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen',
-    'sixteen', 'seventeen', 'eighteen', 'nineteen', 'twenty',
-    'twenty one', 'twenty two', 'twenty three', 'twenty four', 'twenty five',
-    'twenty six', 'twenty seven', 'twenty eight', 'twenty nine', 'thirty'
+    'zero',
+    'one',
+    'two',
+    'three',
+    'four',
+    'five',
+    'six',
+    'seven',
+    'eight',
+    'nine',
+    'ten',
+    'eleven',
+    'twelve',
+    'thirteen',
+    'fourteen',
+    'fifteen',
+    'sixteen',
+    'seventeen',
+    'eighteen',
+    'nineteen',
+    'twenty',
+    'twenty one',
+    'twenty two',
+    'twenty three',
+    'twenty four',
+    'twenty five',
+    'twenty six',
+    'twenty seven',
+    'twenty eight',
+    'twenty nine',
+    'thirty',
 ]
 
 
@@ -79,5 +104,4 @@ class TestCode(unittest.TestCase):
         self.assertEqual('half past three', time_in_words(3, 30))
 
     def test_03_20(self):
-        self.assertEqual(
-            'twenty minutes past three', time_in_words(3, 20))
+        self.assertEqual('twenty minutes past three', time_in_words(3, 20))

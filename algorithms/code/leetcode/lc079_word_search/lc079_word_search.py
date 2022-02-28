@@ -43,9 +43,16 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example(self):
-        self.assertTrue(Solution().exist(
-            [['A', 'B', 'C', 'E'], ['S', 'F', 'C', 'S'], ['A', 'D', 'E', 'E']],
-            'ABCCED'))
+        self.assertTrue(
+            Solution().exist(
+                [
+                    ['A', 'B', 'C', 'E'],
+                    ['S', 'F', 'C', 'S'],
+                    ['A', 'D', 'E', 'E'],
+                ],
+                'ABCCED',
+            )
+        )
 
     def test_other(self):
         self.assertTrue(Solution().exist([['a', 'b'], ['c', 'd']], 'acdb'))

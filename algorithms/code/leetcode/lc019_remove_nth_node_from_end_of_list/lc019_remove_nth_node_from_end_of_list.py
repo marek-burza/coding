@@ -13,7 +13,9 @@ class ListNode:
 
 class Solution:
     # pylint: disable=C0301
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:  # noqa
+    def removeNthFromEnd(
+        self, head: Optional[ListNode], n: int
+    ) -> Optional[ListNode]:  # noqa
         # Translate the index number from counted
         # from the back to a one counted from the front
         node = head

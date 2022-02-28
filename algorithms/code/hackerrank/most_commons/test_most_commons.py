@@ -15,7 +15,8 @@ def mangle(s):
     ordered = sorted(
         counted.keys(),
         key=lambda key: (counted[key] << 8) | (256 - ord(key)),
-        reverse=True)
+        reverse=True,
+    )
     return ordered, counted
 
 

@@ -25,14 +25,16 @@ class Solution:
         if rows and target <= matrix[rowZ][colM]:
             if self.__searchMatrix(matrix, target, rowM + 1, rowZ, colA, colM):
                 return True
-        if not(rows and cols):
+        if not (rows and cols):
             return False
         return self.__searchMatrix(
-            matrix, target, rowM + 1, rowZ, colM + 1, colZ)
+            matrix, target, rowM + 1, rowZ, colM + 1, colZ
+        )
 
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         return self.__searchMatrix(
-            matrix, target, 0, len(matrix) - 1, 0, len(matrix[0]) - 1)
+            matrix, target, 0, len(matrix) - 1, 0, len(matrix[0]) - 1
+        )
 
 
 class TestCode(unittest.TestCase):
@@ -41,7 +43,7 @@ class TestCode(unittest.TestCase):
         [2, 5, 8, 12, 19],
         [3, 6, 9, 16, 22],
         [10, 13, 14, 17, 24],
-        [18, 21, 23, 26, 30]
+        [18, 21, 23, 26, 30],
     ]
 
     def test_example_1(self):
@@ -64,5 +66,6 @@ class TestCode(unittest.TestCase):
             [6, 7, 8, 9, 10],
             [11, 12, 13, 14, 15],
             [16, 17, 18, 19, 20],
-            [21, 22, 23, 24, 25]]
+            [21, 22, 23, 24, 25],
+        ]
         self.assertTrue(Solution().searchMatrix(matrix, 5))

@@ -31,8 +31,9 @@ class TestCode(unittest.TestCase):
         self.assertFalse(Solution().isValidSerialization('#1'))
 
     def test_example_1(self):
-        self.assertTrue(Solution().isValidSerialization(
-            '9,3,4,#,#,1,#,#,2,#,6,#,#'))
+        self.assertTrue(
+            Solution().isValidSerialization('9,3,4,#,#,1,#,#,2,#,6,#,#')
+        )
 
     def test_example_2(self):
         self.assertFalse(Solution().isValidSerialization('1,#'))

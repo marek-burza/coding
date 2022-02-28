@@ -12,7 +12,9 @@ class TreeNode:
 
 
 class Solution:
-    def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:  # noqa
+    def lowestCommonAncestor(
+        self, root: TreeNode, p: TreeNode, q: TreeNode
+    ) -> TreeNode:  # noqa
         left = None
         right = None
         if root.left is not None:
@@ -49,10 +51,13 @@ class TestCode(unittest.TestCase):
         tree.left.right.right = TreeNode(5)
         tree.right.left = TreeNode(7)
         tree.right.right = TreeNode(9)
-        self.assertEqual(tree, Solution().lowestCommonAncestor(
-            tree, tree.left, tree.right))
-        self.assertEqual(tree.left, Solution().lowestCommonAncestor(
-            tree, tree.left, tree.left.right))
+        self.assertEqual(
+            tree, Solution().lowestCommonAncestor(tree, tree.left, tree.right)
+        )
+        self.assertEqual(
+            tree.left,
+            Solution().lowestCommonAncestor(tree, tree.left, tree.left.right),
+        )
 
     def test_example_1(self):
         tree = TreeNode(5)
@@ -61,8 +66,12 @@ class TestCode(unittest.TestCase):
         tree.left.left = TreeNode(2)
         tree.left.right = TreeNode(4)
         tree.left.left.left = TreeNode(1)
-        self.assertEqual(3, Solution().lowestCommonAncestor(
-            tree, tree.left.left.left, tree.left.right).val)
+        self.assertEqual(
+            3,
+            Solution()
+            .lowestCommonAncestor(tree, tree.left.left.left, tree.left.right)
+            .val,
+        )
 
     def test_example_2(self):
         tree = self.generic_example()
@@ -70,17 +79,25 @@ class TestCode(unittest.TestCase):
         tree.right.right = TreeNode(9)
         tree.left.right.left = TreeNode(3)
         tree.left.right.right = TreeNode(5)
-        self.assertEqual(4, Solution().lowestCommonAncestor(
-            tree, tree.left.right.left, tree.left.right.right).val)
+        self.assertEqual(
+            4,
+            Solution()
+            .lowestCommonAncestor(
+                tree, tree.left.right.left, tree.left.right.right
+            )
+            .val,
+        )
 
     def test_example_3(self):
         tree = TreeNode(2)
         tree.left = TreeNode(1)
-        self.assertEqual(2, Solution().lowestCommonAncestor(
-            tree, tree, tree.left).val)
+        self.assertEqual(
+            2, Solution().lowestCommonAncestor(tree, tree, tree.left).val
+        )
 
     def test_example_4(self):
         tree = TreeNode(2)
         tree.right = TreeNode(3)
-        self.assertEqual(2, Solution().lowestCommonAncestor(
-            tree, tree.right, tree).val)
+        self.assertEqual(
+            2, Solution().lowestCommonAncestor(tree, tree.right, tree).val
+        )

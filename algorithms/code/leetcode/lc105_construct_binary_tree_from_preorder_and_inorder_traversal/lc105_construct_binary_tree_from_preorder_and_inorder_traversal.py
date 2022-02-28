@@ -16,14 +16,16 @@ class TreeNode:
 
 class Solution:
     # pylint: disable=C0301
-    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:  # noqa
+    def buildTree(
+        self, preorder: List[int], inorder: List[int]
+    ) -> Optional[TreeNode]:  # noqa
         node = preorder[0]
 
         index = inorder.index(node)
         left_inorder = inorder[0:index]
-        right_inorder = inorder[index+1:]
-        left_preorder = preorder[1:len(left_inorder)+1]
-        right_preorder = preorder[len(left_inorder)+1:]
+        right_inorder = inorder[index + 1 :]
+        left_preorder = preorder[1 : len(left_inorder) + 1]
+        right_preorder = preorder[len(left_inorder) + 1 :]
 
         node_obj = TreeNode(node)
 

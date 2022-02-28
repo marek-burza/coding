@@ -13,7 +13,9 @@ class ListNode:
 
 class Solution:
     # pylint: disable=C0301
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:  # noqa
+    def swapPairs(
+        self, head: Optional[ListNode]
+    ) -> Optional[ListNode]:  # noqa
         result = ListNode()
         result.next = head
         head = result

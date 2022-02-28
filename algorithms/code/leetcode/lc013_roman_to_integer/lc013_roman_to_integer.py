@@ -18,7 +18,8 @@ class Solution:
                 'L': 50,
                 'C': 100,
                 'D': 500,
-                'M': 1000}[s[i]]
+                'M': 1000,
+            }[s[i]]
             current = -current if current < previous else current
             result += current
             previous = current
