@@ -11,9 +11,16 @@ class Solution:
             return []
         mapping = [
             ' ',
-            '1', 'abc', 'def',
-            'ghi', 'jkl', 'mno',
-            'pqrs', 'tuv', 'wxyz']
+            '1',
+            'abc',
+            'def',
+            'ghi',
+            'jkl',
+            'mno',
+            'pqrs',
+            'tuv',
+            'wxyz',
+        ]
         mapped = []
         mapped.append('')
         for digit in digits:

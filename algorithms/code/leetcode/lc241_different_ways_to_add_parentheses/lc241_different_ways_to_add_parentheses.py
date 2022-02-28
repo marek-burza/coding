@@ -29,6 +29,7 @@ class Solution:
                             elif items[operator] == '*':
                                 result.append(ante * post)
             return result
+
         return traverse(0, len(items) - 1)
 
 

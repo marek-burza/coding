@@ -56,12 +56,14 @@ class TestCode(unittest.TestCase):  # pragma: no cover
     @staticmethod
     def __min_height(root):
         return TestCode.__find_extreme(
-            root, float('inf'), lambda level, extremum: level < extremum)
+            root, float('inf'), lambda level, extremum: level < extremum
+        )
 
     @staticmethod
     def __max_height(root):
         return TestCode.__find_extreme(
-            root, float('-inf'), lambda level, extremum: level > extremum)
+            root, float('-inf'), lambda level, extremum: level > extremum
+        )
 
     @staticmethod
     def __reconstruct(root, listed):

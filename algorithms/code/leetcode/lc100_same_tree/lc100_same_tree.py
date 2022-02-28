@@ -34,7 +34,9 @@ def noneCheck(tree1, tree2):
 class Solution:
 
     # pylint: disable=C0301
-    def isSameTree(self, tree1: Optional[TreeNode], tree2: Optional[TreeNode]) -> bool:  # noqa
+    def isSameTree(
+        self, tree1: Optional[TreeNode], tree2: Optional[TreeNode]
+    ) -> bool:  # noqa
         check = noneCheck(tree1, tree2)
         if check != NoneCheckResult.NONE_NONE:
             return check == NoneCheckResult.ALL_NONE

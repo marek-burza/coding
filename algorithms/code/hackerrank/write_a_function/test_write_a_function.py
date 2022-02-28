@@ -42,6 +42,7 @@ class TestCode(unittest.TestCase):
             2200: False,
             2300: False,
             2400: True,
-            2500: False}
+            2500: False,
+        }
         for year in lut:
             self.assertEqual(is_leap(year), lut[year])

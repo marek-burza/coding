@@ -53,6 +53,35 @@ class TestCode(unittest.TestCase):
         self.assertEqual(4, Solution().longestConsecutive(nums1))
 
     def test_longer(self):
-        nums2 = [4, 2, 2, -4, 0, -2, 4, -3, -4, -4, -5, 1, 4, -9,
-                 5, 0, 6, -8, -1, -3, 6, 5, -8, -1, -5, -1, 2, -9, 1]
+        nums2 = [
+            4,
+            2,
+            2,
+            -4,
+            0,
+            -2,
+            4,
+            -3,
+            -4,
+            -4,
+            -5,
+            1,
+            4,
+            -9,
+            5,
+            0,
+            6,
+            -8,
+            -1,
+            -3,
+            6,
+            5,
+            -8,
+            -1,
+            -5,
+            -1,
+            2,
+            -9,
+            1,
+        ]
         self.assertEqual(8, Solution().longestConsecutive(nums2))

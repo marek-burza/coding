@@ -35,6 +35,7 @@ class MyStack:
     def empty(self) -> bool:
         return not bool(self.__active)
 
+
 # It's also possible with just one stack
 
 

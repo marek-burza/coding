@@ -54,7 +54,8 @@ class TestCode(unittest.TestCase):
             ['1', '1', '0', '0', '0'],
             ['1', '1', '0', '0', '0'],
             ['0', '0', '1', '0', '0'],
-            ['0', '0', '0', '1', '1']]
+            ['0', '0', '0', '1', '1'],
+        ]
         self.assertEqual(3, Solution().numIslands(grid))
 
     def test_nothing(self):

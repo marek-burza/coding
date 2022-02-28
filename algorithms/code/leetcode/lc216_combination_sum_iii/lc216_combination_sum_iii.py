@@ -15,7 +15,8 @@ class Solution:
                 mask = 1 << i
                 # if (contains & mask) == 0:
                 self.__traverse(
-                    contains | mask, summed + i, left - 1, n, found, i + 1)
+                    contains | mask, summed + i, left - 1, n, found, i + 1
+                )
 
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
         found: List[int] = []

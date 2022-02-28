@@ -20,22 +20,22 @@ class TestCode(unittest.TestCase):
         nums = [1, 1, 1, 2, 2, 3]
         expected = [1, 1, 2, 2, 3]
         self.assertEqual(5, Solution().removeDuplicates(nums))
-        self.assertListEqual(expected, nums[:len(expected)])
+        self.assertListEqual(expected, nums[: len(expected)])
 
     def test_1_1_1_1_3_3(self):
         nums = [1, 1, 1, 1, 3, 3]
         expected = [1, 1, 3, 3]
         self.assertEqual(4, Solution().removeDuplicates(nums))
-        self.assertListEqual(expected, nums[:len(expected)])
+        self.assertListEqual(expected, nums[: len(expected)])
 
     def test_1_1(self):
         nums = [1, 1]
         expected = [1, 1]
         self.assertEqual(2, Solution().removeDuplicates(nums))
-        self.assertListEqual(expected, nums[:len(expected)])
+        self.assertListEqual(expected, nums[: len(expected)])
 
     def test_1_2_2(self):
         nums = [1, 2, 2]
         expected = [1, 2, 2]
         self.assertEqual(3, Solution().removeDuplicates(nums))
-        self.assertListEqual(expected, nums[:len(expected)])
+        self.assertListEqual(expected, nums[: len(expected)])

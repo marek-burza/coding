@@ -73,11 +73,7 @@ class TestCode(unittest.TestCase):
     def test_example1(self):
         lockers = [(0, 0)]
         result = locker_distances(3, 5, lockers)
-        expected = [
-            [0, 1, 2, 3, 4],
-            [1, 2, 3, 4, 5],
-            [2, 3, 4, 5, 6]
-        ]
+        expected = [[0, 1, 2, 3, 4], [1, 2, 3, 4, 5], [2, 3, 4, 5, 6]]
         self.assertEqual(result, expected)
 
     def test_example2(self):
@@ -88,6 +84,6 @@ class TestCode(unittest.TestCase):
             [2, 1, 0, 1, 2, 3, 2],
             [3, 2, 1, 2, 3, 2, 1],
             [4, 3, 2, 3, 2, 1, 0],
-            [5, 4, 3, 4, 3, 2, 1]
+            [5, 4, 3, 4, 3, 2, 1],
         ]
         self.assertEqual(result, expected)

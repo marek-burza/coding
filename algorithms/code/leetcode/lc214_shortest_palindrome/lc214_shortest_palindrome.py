@@ -15,13 +15,14 @@ class Solution:
             while index > 0 and A[index] != A[i]:
                 index = cont[index - 1]
             cont[i] = index + (1 if A[index] == A[i] else 0)
-        return s[cont[- 1]:][::-1] + s
+        return s[cont[-1] :][::-1] + s
 
 
 class TestCode(unittest.TestCase):
     def test_aacecaaa(self):
         self.assertEqual(
-            'aaacecaaa', Solution().shortestPalindrome('aacecaaa'))
+            'aaacecaaa', Solution().shortestPalindrome('aacecaaa')
+        )
 
     def test_abcd(self):
         self.assertEqual('dcbabcd', Solution().shortestPalindrome('abcd'))

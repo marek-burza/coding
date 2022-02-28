@@ -38,8 +38,9 @@ class TestCode(unittest.TestCase):
 
     def test_example(self):
         triangle = [[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]]
-        self.assertEqual(11, Solution().minimumTotal(
-            self.__construct(triangle)))
+        self.assertEqual(
+            11, Solution().minimumTotal(self.__construct(triangle))
+        )
 
     def test_nothing(self):
         self.assertEqual(0, Solution().minimumTotal(None))

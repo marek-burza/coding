@@ -37,10 +37,14 @@ class TestCode(unittest.TestCase):
         self.assertTrue(Solution().wordBreak('a', self.__prepare(['a'])))
 
     def test_other(self):
-        self.assertFalse(Solution().wordBreak(
-            'catsandog',
-            self.__prepare(['cats', 'dog', 'sand', 'and', 'cat'])))
+        self.assertFalse(
+            Solution().wordBreak(
+                'catsandog',
+                self.__prepare(['cats', 'dog', 'sand', 'and', 'cat']),
+            )
+        )
 
     def test_another(self):
-        self.assertTrue(Solution().wordBreak(
-            'leetcode', self.__prepare(['leet', 'code'])))
+        self.assertTrue(
+            Solution().wordBreak('leetcode', self.__prepare(['leet', 'code']))
+        )

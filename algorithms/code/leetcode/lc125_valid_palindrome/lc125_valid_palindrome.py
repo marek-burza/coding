@@ -28,8 +28,9 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_a_man_a_plan_a_canal_Panama(self):
-        self.assertTrue(Solution().isPalindrome(
-            'A man, a plan, a canal: Panama'))
+        self.assertTrue(
+            Solution().isPalindrome('A man, a plan, a canal: Panama')
+        )
 
     def test_race_a_car(self):
         self.assertFalse(Solution().isPalindrome('race a car'))

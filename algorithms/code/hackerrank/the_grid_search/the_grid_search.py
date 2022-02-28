@@ -18,7 +18,7 @@ def grid_search(G: List[str], P: List[str]) -> str:
         offset = at
         ok = True
         for chunk in P:
-            if everything[offset:offset + len(chunk)] != chunk:
+            if everything[offset : offset + len(chunk)] != chunk:
                 ok = False
                 break
             offset += len(G[0])
@@ -39,10 +39,10 @@ class TestCode(unittest.TestCase):
         offset = 1
         for test in range(tests):
             r_g = int(io_lines[0][offset][0])
-            g = io_lines[0][offset + 1:offset + 1 + r_g]
+            g = io_lines[0][offset + 1 : offset + 1 + r_g]
             g = [row[0] for row in g]
             r_p = int(io_lines[0][offset + 1 + r_g][0])
-            p = io_lines[0][offset + 1 + r_g + 1:offset + 1 + r_g + 1 + r_p]
+            p = io_lines[0][offset + 1 + r_g + 1 : offset + 1 + r_g + 1 + r_p]
             p = [row[0] for row in p]
             offset += r_g + r_p + 2
             result = grid_search(g, p)

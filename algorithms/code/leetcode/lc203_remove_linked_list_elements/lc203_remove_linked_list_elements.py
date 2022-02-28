@@ -12,7 +12,9 @@ class ListNode:
 
 
 class Solution:
-    def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:  # noqa
+    def removeElements(
+        self, head: Optional[ListNode], val: int
+    ) -> Optional[ListNode]:  # noqa
         if head is None:
             return None
         previous = None

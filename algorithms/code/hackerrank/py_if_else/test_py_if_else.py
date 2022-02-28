@@ -40,9 +40,32 @@ class TestCode(unittest.TestCase):
 
     def test_1_to_24(self):
         expected = [
-            None, True, False, True, False, True, True, True, True, True,
-            True, True, True, True, True, True, True, True, True, True,
-            True, True, False, True, False]
+            None,
+            True,
+            False,
+            True,
+            False,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            True,
+            False,
+            True,
+            False,
+        ]
         result = [None]
         for value in range(1, 25):
             result.append(is_weird(value))

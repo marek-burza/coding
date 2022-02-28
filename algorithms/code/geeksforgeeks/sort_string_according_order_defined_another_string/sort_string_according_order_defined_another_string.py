@@ -18,16 +18,15 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self):
-        self.assertEqual(
-            'bca',
-            Solution().sortByPattern('abc', 'bca'))
+        self.assertEqual('bca', Solution().sortByPattern('abc', 'bca'))
 
     def test_example_2(self):
         self.assertEqual(
-            'bbbcccaaa',
-            Solution().sortByPattern('abcabcabc', 'bxyzca'))
+            'bbbcccaaa', Solution().sortByPattern('abcabcabc', 'bxyzca')
+        )
 
     def test_example_3(self):
         self.assertEqual(
             'codijak',
-            Solution().sortByPattern('jcdokai', 'wcyuogmlrdfphitxjakqvzbnes'))
+            Solution().sortByPattern('jcdokai', 'wcyuogmlrdfphitxjakqvzbnes'),
+        )

@@ -13,7 +13,9 @@ class ListNode:
 
 class Solution:
     # pylint: disable=C0301
-    def insertionSortList(self, head: Optional[ListNode]) -> Optional[ListNode]:  # noqa
+    def insertionSortList(
+        self, head: Optional[ListNode]
+    ) -> Optional[ListNode]:  # noqa
         handle = ListNode(0)
         handle.next = head
         tail = handle

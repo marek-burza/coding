@@ -15,12 +15,15 @@ class Solution:
         partial = 0
         while partial <= target - total and index < len(candidates):
             self.__combinationSum(
-                candidates, target, inner, total + partial, index + 1, combos)
+                candidates, target, inner, total + partial, index + 1, combos
+            )
             inner.append(candidates[index])
             partial += candidates[index]
 
     # pylint: disable=C0301
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:  # noqa
+    def combinationSum(
+        self, candidates: List[int], target: int
+    ) -> List[List[int]]:  # noqa
         combos: List[List[int]] = []
         self.__combinationSum(candidates, target, [], 0, 0, combos)
         return combos
@@ -73,7 +76,8 @@ class TestCode(unittest.TestCase):
         for listed in combos:
             listed.sort()
         combos = sorted(
-            combos, key=TestCode.cmp_to_key(TestCode.deep_comparator))
+            combos, key=TestCode.cmp_to_key(TestCode.deep_comparator)
+        )
         self.assertEqual(len(expected), len(combos))
         i = 0
         while i < len(expected):

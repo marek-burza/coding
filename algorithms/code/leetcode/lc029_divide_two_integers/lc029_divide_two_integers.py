@@ -33,19 +33,16 @@ class TestCode(unittest.TestCase):
     def test_Minus1010369383_Minus2147483648(self):
         self.assertEqual(
             Solution().divide(-1010369383, -2147483648),
-            -1010369383 // -2147483648)
+            -1010369383 // -2147483648,
+        )
 
     def test_Minus2147483648_Minus1(self):
         self.assertEqual(
-            Solution().divide(-2147483648, -1),
-            Solution.MAX_VALUE)
+            Solution().divide(-2147483648, -1), Solution.MAX_VALUE
+        )
 
     def test_divisor_0(self):
-        self.assertEqual(
-            Solution().divide(1, 0),
-            Solution.MAX_VALUE)
+        self.assertEqual(Solution().divide(1, 0), Solution.MAX_VALUE)
 
     def test_dividend_0(self):
-        self.assertEqual(
-            Solution().divide(0, 1),
-            0)
+        self.assertEqual(Solution().divide(0, 1), 0)

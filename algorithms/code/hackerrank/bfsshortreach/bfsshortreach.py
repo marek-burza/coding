@@ -41,7 +41,7 @@ class TestCode(unittest.TestCase):
         for test in range(tests):
             n = int(io_lines[0][offset][0])
             m = int(io_lines[0][offset][1])
-            edges = io_lines[0][offset + 1:offset + 1 + m]
+            edges = io_lines[0][offset + 1 : offset + 1 + m]
             edges = [[int(item) for item in row] for row in edges]
             s = int(io_lines[0][offset + 1 + m][0])
             offset += 1 + m + 1

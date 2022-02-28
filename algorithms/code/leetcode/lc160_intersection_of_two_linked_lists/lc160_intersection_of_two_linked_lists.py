@@ -32,7 +32,9 @@ class Solution:
             listed = listed.next
         return listed
 
-    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:  # noqa
+    def getIntersectionNode(
+        self, headA: ListNode, headB: ListNode
+    ) -> ListNode:  # noqa
         if headA is None or headB is None:
             return None
         last = self.__last(headA)

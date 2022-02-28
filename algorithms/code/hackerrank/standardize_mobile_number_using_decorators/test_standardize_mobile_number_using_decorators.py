@@ -11,6 +11,7 @@ def wrapper(f):
     def fun(numbers):
         numbers = [f'+91 {number[-10:-5]} {number[-5:]}' for number in numbers]
         f(numbers)
+
     return fun
 
 

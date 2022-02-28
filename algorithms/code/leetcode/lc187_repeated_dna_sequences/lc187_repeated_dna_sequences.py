@@ -47,7 +47,8 @@ class TestCode(unittest.TestCase):
     def test_AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT(self):
         expected = ['AAAAACCCCC', 'CCCCCAAAAA']
         result = Solution().findRepeatedDnaSequences(
-            'AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT')
+            'AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT'
+        )
         result.sort()
         self.assertListEqual(expected, result)
 
@@ -59,7 +60,6 @@ class TestCode(unittest.TestCase):
 
     def test_AAAAAAAAAAAAA(self):
         expected = ['AAAAAAAAAA']
-        result = Solution().findRepeatedDnaSequences(
-            'AAAAAAAAAAAAA')
+        result = Solution().findRepeatedDnaSequences('AAAAAAAAAAAAA')
         result.sort()
         self.assertListEqual(expected, result)

@@ -13,7 +13,9 @@ class ListNode:
 
 class Solution:
     # pylint: disable=C0301
-    def partition(self, head: Optional[ListNode], x: int) -> Optional[ListNode]:  # noqa
+    def partition(
+        self, head: Optional[ListNode], x: int
+    ) -> Optional[ListNode]:  # noqa
         if head is None:
             return None
         less = ListNode(0)

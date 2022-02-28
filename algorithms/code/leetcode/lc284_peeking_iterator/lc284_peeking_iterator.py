@@ -39,6 +39,7 @@ class TestCode(unittest.TestCase):
 
             def next(self):
                 return self.__items.pop(0)
+
         return TestingIterator(items)
 
     def test_example(self):

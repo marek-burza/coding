@@ -54,7 +54,12 @@ class TestCode(unittest.TestCase):
 
     def test_101023(self):
         expected = [
-            '1.0.10.23', '1.0.102.3', '10.1.0.23', '10.10.2.3', '101.0.2.3']
+            '1.0.10.23',
+            '1.0.102.3',
+            '10.1.0.23',
+            '10.10.2.3',
+            '101.0.2.3',
+        ]
         result = self.__freeze(Solution().restoreIpAddresses('101023'))
         result.sort()
         self.assertListEqual(expected, result)
