@@ -19,7 +19,7 @@ class MyQueue:
 
     # Removes the element from in front of queue.
     def pop(self) -> int:
-        self.__stack.pop()
+        return self.__stack.pop()
 
     # Get the front element.
     def peek(self) -> int:

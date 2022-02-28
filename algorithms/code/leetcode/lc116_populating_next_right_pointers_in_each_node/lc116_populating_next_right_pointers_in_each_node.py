@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 
 import unittest
@@ -38,6 +37,7 @@ class Solution:
                 if i < size - 1:
                     node.next = current[i + 1]
             current = future
+        return root
 
 
 class TestCode(unittest.TestCase):

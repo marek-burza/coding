@@ -12,15 +12,16 @@ class Solution:
         dp = [0] * n
         dp[0] = 1
         for i in range(1, n):
-            dp[i] = float('inf')
+            dp_i = float('inf')
             temp1 = -1
             for j in range(m):
                 temp2 = dp[mul[j]] * primes[j]
-                if dp[i] > temp2:
-                    dp[i] = temp2
+                if dp_i > temp2:
+                    dp_i = temp2
+                    dp[i] = dp_i
                     temp1 = j
                 else:
-                    if dp[i] == temp2:
+                    if dp_i == temp2:
                         mul[j] += 1
             mul[temp1] += 1
         return dp[n - 1]

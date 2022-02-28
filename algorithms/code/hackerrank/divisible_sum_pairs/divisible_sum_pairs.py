@@ -9,7 +9,7 @@ from typing import Dict, List
 def n_choose_k(N: int, K: int) -> int:
     result = 1
     for k in range(K):
-        result = result * (N - k) / (k + 1)
+        result = result * (N - k) // (k + 1)
     return result
 
 
