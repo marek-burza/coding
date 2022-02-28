@@ -28,7 +28,7 @@ def maximum_edge(
     total: int,
     minimum: List[int],
     seen: Set[int],
-) -> int:  # noqa
+) -> int:
     if v in seen:
         return 0
     summed = graph[v][INDEX_VALUE]
@@ -36,8 +36,11 @@ def maximum_edge(
     for other in graph[v][INDEX_ADJACENT]:
         partial = maximum_edge(graph, other[INDEX_INDEX], total, minimum, seen)
         candidate = abs(total - 2 * partial)
-        if candidate < minimum[0]:
-            minimum[0] = candidate
+        if not minimum or candidate < minimum[0]:
+            if not minimum:
+                minimum.append(candidate)
+            else:
+                minimum[0] = candidate
         summed += partial
     return summed
 
@@ -45,7 +48,7 @@ def maximum_edge(
 def cut_the_tree(data: List[int], edges: List[List[int]]) -> int:
     graph = build_graph(data, edges)
     total = sum(data)
-    minimum = [float('inf')]
+    minimum: List[int] = []
     seen: Set[int] = set()
     maximum_edge(graph, 1, total, minimum, seen)
     return minimum[0]

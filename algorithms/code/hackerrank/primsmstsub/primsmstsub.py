@@ -21,12 +21,8 @@ class Edge:
 
 
 def prims(n: int, edges: List[List[int]], start: int) -> int:
-    adjacency = [None] * (n + 1)
+    adjacency: List[List[Edge]] = [[] for _ in range(n + 1)]
     for edge in edges:
-        if adjacency[edge[0]] is None:
-            adjacency[edge[0]] = []
-        if adjacency[edge[1]] is None:
-            adjacency[edge[1]] = []
         adjacency[edge[0]].append(Edge(edge[0], edge[1], edge[2]))
         adjacency[edge[1]].append(Edge(edge[1], edge[0], edge[2]))
     connected: Set[int] = set()

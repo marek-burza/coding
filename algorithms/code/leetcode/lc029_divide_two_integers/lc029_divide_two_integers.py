@@ -12,7 +12,7 @@ class Solution:
             return Solution.MAX_VALUE
         if dividend == 0:
             return 0
-        sign = (dividend / abs(dividend)) * (divisor / abs(divisor))
+        sign = (dividend // abs(dividend)) * (divisor // abs(divisor))
         dividend = abs(dividend)
         divisor = abs(divisor)
         counter = 0
