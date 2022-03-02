@@ -2,7 +2,6 @@
 # https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 
 import unittest
-
 from typing import Optional
 
 
@@ -118,5 +117,5 @@ class TestCode(unittest.TestCase):
             Solution().lowestCommonAncestor,
             TreeNode(1),
             TreeNode(2),
-            TreeNode(1)
+            TreeNode(1),
         )

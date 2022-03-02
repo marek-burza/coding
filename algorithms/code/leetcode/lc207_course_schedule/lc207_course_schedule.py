@@ -18,9 +18,7 @@ class Solution:
                     queue.append((other, ancestors | set([node])))
         return True
 
-    def canFinish(
-        self, _: int, prerequisites: List[List[int]]
-    ) -> bool:
+    def canFinish(self, _: int, prerequisites: List[List[int]]) -> bool:
         graph: Dict[int, Set[int]] = {}
         for prerequisite in prerequisites:
             a_set = None
