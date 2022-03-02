@@ -44,7 +44,6 @@ class TestCode(unittest.TestCase):
     def test_short(self):
         self.assertEqual(1, Solution().wiggleMaxLength([0, 0]))
 
-    # pylint: disable=C0301
     def test_long_with_plateau_1(self):
         self.assertEqual(
             202,
@@ -352,9 +351,8 @@ class TestCode(unittest.TestCase):
                     222,
                 ]
             ),
-        )  # noqa
+        )
 
-    # pylint: disable=C0301
     def test_long_with_plateau_2(self):
         self.assertEqual(
             334,
@@ -862,7 +860,7 @@ class TestCode(unittest.TestCase):
                     185,
                 ]
             ),
-        )  # noqa
+        )
 
     def test_nothing(self):
         self.assertEqual(0, Solution().wiggleMaxLength([]))

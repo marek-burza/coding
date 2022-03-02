@@ -12,10 +12,9 @@ class ListNode:
 
 
 class Solution:
-    # pylint: disable=C0301
     def mergeTwoLists(
         self, l1: Optional[ListNode], l2: Optional[ListNode]
-    ) -> Optional[ListNode]:  # noqa
+    ) -> Optional[ListNode]:
         handle = ListNode()
         current = handle
         current.next = None

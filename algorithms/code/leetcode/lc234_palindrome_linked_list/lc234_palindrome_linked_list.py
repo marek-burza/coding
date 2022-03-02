@@ -13,6 +13,8 @@ class ListNode:
 
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        if head is None:
+            return True
         count = 0
         node = head
         while node is not None:

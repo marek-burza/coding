@@ -51,7 +51,6 @@ class TestCode(unittest.TestCase):
         expected = [[-1, 0, 1], [-1, -1, 2]]
         self.check(expected, Solution().threeSum(s))
 
-    # pylint: disable=C0301
     def test_oversized(self):
         s = [
             14,
@@ -180,7 +179,7 @@ class TestCode(unittest.TestCase):
             -14,
             8,
             14,
-        ]  # noqa
+        ]
         expected = [
             [-15, 1, 14],
             [-15, 2, 13],
@@ -302,7 +301,7 @@ class TestCode(unittest.TestCase):
             [-1, -1, 2],
             [-1, 0, 1],
             [0, 0, 0],
-        ]  # noqa
+        ]
         self.check(expected, Solution().threeSum(s))
 
     def test_empty(self):

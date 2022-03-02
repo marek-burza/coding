@@ -12,10 +12,9 @@ class ListNode:
 
 
 class Solution:
-    # pylint: disable=C0301
     def partition(
         self, head: Optional[ListNode], x: int
-    ) -> Optional[ListNode]:  # noqa
+    ) -> Optional[ListNode]:
         if head is None:
             return None
         less = ListNode(0)

@@ -26,7 +26,7 @@ class BoardState:
     def __init__(self) -> None:
         self.__board: List[List[Player]] = [
             [] for _ in range(BoardState.MAX_COLUMNS)
-        ]  # noqa
+        ]
 
     def check_drop(self, c: int) -> bool:
         return len(self.__board[c]) < BoardState.MAX_COLUMNS - 1

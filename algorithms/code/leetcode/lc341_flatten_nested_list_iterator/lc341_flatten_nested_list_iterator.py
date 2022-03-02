@@ -35,8 +35,6 @@ class NestedIterator:
         return self.Item(nested.getList(), skip)
 
     def __find(self):
-        if not self.__stack:
-            return
         while len(self.__stack) != 0 and not self.__stack[-1].item.isInteger():
             top = self.__stack[-1]
             listed = top.item.getList()
@@ -47,9 +45,8 @@ class NestedIterator:
             top.skip += 1
 
     def next(self) -> int:
-        if self.hasNext():
-            return self.__stack.pop().item.getInteger()
-        return None
+        # if not self.hasNext(): return None
+        return self.__stack.pop().item.getInteger()
 
     def hasNext(self) -> bool:
         self.__find()
@@ -63,7 +60,6 @@ class TestCode(unittest.TestCase):
             self.assertTrue(nested.hasNext())
             self.assertEqual(value, nested.next())
         self.assertFalse(nested.hasNext())
-        self.assertEqual(None, nested.next())
 
     def test_example_1(self):
         list_1_1_a = []

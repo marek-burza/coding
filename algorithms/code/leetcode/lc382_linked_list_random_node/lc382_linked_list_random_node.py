@@ -25,7 +25,9 @@ class Solution:
                 result = current
             i += 1
             current = current.next
-        return result.val
+        if result is not None:
+            return result.val
+        raise ValueError('Empty list')
 
 
 class TestCode(unittest.TestCase):
@@ -43,3 +45,7 @@ class TestCode(unittest.TestCase):
         self.assertEqual(3, counts[1] // 1000)
         self.assertEqual(3, counts[2] // 1000)
         # Should use Chi-squared test
+
+    def test_nothing(self):
+        solution = Solution(None)
+        self.assertRaises(ValueError, solution.getRandom)

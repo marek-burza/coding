@@ -18,10 +18,9 @@ class Solution:
                     queue.append((other, ancestors | set([node])))
         return True
 
-    # pylint: disable=C0301
     def canFinish(
         self, _: int, prerequisites: List[List[int]]
-    ) -> bool:  # noqa
+    ) -> bool:
         graph: Dict[int, Set[int]] = {}
         for prerequisite in prerequisites:
             a_set = None
@@ -39,7 +38,6 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    # pylint: disable=C0301
     def test_large_example(self):
         prerequisites = [
             [995, 1232],
@@ -2041,7 +2039,7 @@ class TestCode(unittest.TestCase):
             [1969, 593],
             [593, 1143],
             [1143, 643],
-        ]  # noqa
+        ]
         self.assertTrue(Solution().canFinish(2, prerequisites))
 
     def test_other(self):

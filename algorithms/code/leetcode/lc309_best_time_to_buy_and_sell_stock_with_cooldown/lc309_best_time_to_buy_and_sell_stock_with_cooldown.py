@@ -9,7 +9,7 @@ class Solution:
     def maxProfit(self, prices: List[int]) -> int:
         sell = 0
         previous_sell = 0
-        buy = float('-inf')
+        buy = -prices[0]
         previous_buy = None
         for price in prices:
             previous_buy = buy
@@ -24,7 +24,6 @@ class TestCode(unittest.TestCase):
         prices = [1, 2, 3, 0, 2]
         self.assertEqual(3, Solution().maxProfit(prices))
 
-    # pylint: disable=C0301
     def test_long_example(self):
         prices = [
             70,
@@ -1027,7 +1026,7 @@ class TestCode(unittest.TestCase):
             49,
             62,
             89,
-        ]  # noqa
+        ]
         self.assertEqual(13755, Solution().maxProfit(prices))
 
     # pylint: disable=C0301

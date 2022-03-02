@@ -6,7 +6,7 @@ import unittest
 
 class Solution:
     def numSquares(self, n: int) -> int:
-        lut = [float('inf')] * (n + 1)
+        lut = [2 * n] * (n + 1)  # Instead of inf
         lut[0] = 0
         i = 1
         ii = 1

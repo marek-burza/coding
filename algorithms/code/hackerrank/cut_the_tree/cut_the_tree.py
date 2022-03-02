@@ -21,7 +21,6 @@ def build_graph(data: List[int], edges: List[List[int]]) -> Dict[int, tuple]:
     return mapped
 
 
-# pylint: disable=C0301
 def maximum_edge(
     graph: Dict[int, tuple],
     v: int,

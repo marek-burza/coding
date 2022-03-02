@@ -15,10 +15,9 @@ class TreeNode:
 
 
 class Solution:
-    # pylint: disable=C0301
     def buildTree(
         self, preorder: List[int], inorder: List[int]
-    ) -> Optional[TreeNode]:  # noqa
+    ) -> Optional[TreeNode]:
         node = preorder[0]
 
         index = inorder.index(node)

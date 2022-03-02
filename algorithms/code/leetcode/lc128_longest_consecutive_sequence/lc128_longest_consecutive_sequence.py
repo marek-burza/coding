@@ -29,12 +29,12 @@ class Solution:
                 post = mapped[num + 1]
             a = num
             z = num
-            if less and more:
+            if ante and post:
                 a = ante.a
                 z = post.z
-            if less:
+            if ante:
                 a = ante.a
-            if more:
+            if post:
                 z = post.z
             ranged = self.Range(a, z)
             mapped[a] = ranged

@@ -9,7 +9,7 @@ class Solution:
     def getRow(self, rowIndex: int) -> List[int]:
         rowIndex += 1
         if rowIndex < 0:
-            return None
+            return []
         previous: List[int] = []
         current = None
         for i in range(rowIndex):
@@ -27,9 +27,7 @@ class TestCode(unittest.TestCase):
     def test_3(self):
         expected = [1, 3, 3, 1]
         result = Solution().getRow(3)
-        self.assertEqual(len(expected), len(result))
-        for expected_i, result_i in zip(expected, result):
-            self.assertEqual(expected_i, result_i)
+        self.assertListEqual(expected, result)
 
     def test_nothing(self):
-        self.assertIsNone(Solution().getRow(-2))
+        self.assertListEqual([], Solution().getRow(-2))

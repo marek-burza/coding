@@ -15,7 +15,7 @@ class Solution:
         while i < len(prices):
             mins[i] = prices[i] if prices[i] < mins[i - 1] else mins[i - 1]
             i += 1
-        profit = float('-inf')
+        profit = min(prices) - max(mins)  # Instead of -inf
         maximum = prices[len(prices) - 1]
         for i in range(len(prices) - 1, -1, -1):
             maximum = prices[i] if prices[i] > maximum else maximum

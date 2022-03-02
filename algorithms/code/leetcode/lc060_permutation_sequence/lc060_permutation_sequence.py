@@ -7,7 +7,7 @@ import unittest
 class Solution:
     def getPermutation(self, n: int, k: int) -> str:
         if n < 0 or k < 0:
-            return None
+            return ''
         result = ''
         remaining = []
         factorials = []
@@ -34,5 +34,5 @@ class TestCode(unittest.TestCase):
         self.assertEqual('132', Solution().getPermutation(3, 2))
 
     def test_nothing(self):
-        self.assertIsNone(Solution().getPermutation(1, -1))
-        self.assertIsNone(Solution().getPermutation(-1, 1))
+        self.assertEqual('', Solution().getPermutation(1, -1))
+        self.assertEqual('', Solution().getPermutation(-1, 1))

@@ -12,21 +12,20 @@ class ListNode:
 
 
 class Solution:
-    # pylint: disable=C0301
     def swapPairs(
         self, head: Optional[ListNode]
-    ) -> Optional[ListNode]:  # noqa
+    ) -> Optional[ListNode]:
         result = ListNode()
         result.next = head
-        head = result
-        while head.next is not None and head.next.next is not None:
-            first = head.next
-            second = head.next.next
-            after = head.next.next.next
-            head.next = second
+        node = result
+        while node.next is not None and node.next.next is not None:
+            first = node.next
+            second = node.next.next
+            after = node.next.next.next
+            node.next = second
             second.next = first
             first.next = after
-            head = head.next.next
+            node = node.next.next
         return result.next
 
 
@@ -58,3 +57,6 @@ class TestCode(unittest.TestCase):
             self.assertNotEqual(None, result)
             self.assertEqual(result.val, value)
             result = result.next
+
+    def test_nothing(self):
+        self.assertIsNone(Solution().swapPairs(None))
