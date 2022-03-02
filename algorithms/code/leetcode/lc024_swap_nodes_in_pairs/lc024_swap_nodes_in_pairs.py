@@ -12,9 +12,7 @@ class ListNode:
 
 
 class Solution:
-    def swapPairs(
-        self, head: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
         result = ListNode()
         result.next = head
         node = result
