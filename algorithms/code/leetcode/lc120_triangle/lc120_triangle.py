@@ -16,9 +16,12 @@ class Solution:
             line = triangle[i]
             n = len(line)
             for j in range(n - 1, -1, -1):
-                left = float('inf') if j == 0 else sums[j - 1]
-                right = float('inf') if j == n - 1 else sums[j]
-                sums[j] = min(left, right) + line[j]
+                values = []
+                if j != 0:
+                    values.append(sums[j - 1])
+                if j != n - 1:
+                    values.append(sums[j])
+                sums[j] = min(values) + line[j]
         minimum = sums[0]
         for i, _ in enumerate(sums):
             if sums[i] < minimum:

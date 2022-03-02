@@ -8,7 +8,7 @@ from typing import List
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
         if numRows < 0:
-            return None
+            return []
         triangle = []
         for i in range(numRows):
             row: List[int] = []
@@ -31,4 +31,4 @@ class TestCode(unittest.TestCase):
             self.assertListEqual(expected_i, result_i)
 
     def test_nothing(self):
-        self.assertIsNone(Solution().generate(-1))
+        self.assertListEqual([], Solution().generate(-1))

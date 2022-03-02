@@ -3,6 +3,8 @@
 
 import unittest
 
+from typing import Optional
+
 
 class TreeNode:
     def __init__(self, x):
@@ -12,15 +14,15 @@ class TreeNode:
 
 
 class Solution:
-    def lowestCommonAncestor(
+    def __lowestCommonAncestor(
         self, root: TreeNode, p: TreeNode, q: TreeNode
-    ) -> TreeNode:  # noqa
+    ) -> Optional[TreeNode]:
         left = None
         right = None
         if root.left is not None:
-            left = self.lowestCommonAncestor(root.left, p, q)
+            left = self.__lowestCommonAncestor(root.left, p, q)
         if root.right is not None:
-            right = self.lowestCommonAncestor(root.right, p, q)
+            right = self.__lowestCommonAncestor(root.right, p, q)
         if left is not None and left is not p and left is not q:
             return left
         if right is not None and right is not p and right is not q:
@@ -34,6 +36,14 @@ class Solution:
         if gotQ:
             return q
         return None
+
+    def lowestCommonAncestor(
+        self, root: TreeNode, p: TreeNode, q: TreeNode
+    ) -> TreeNode:
+        result = self.__lowestCommonAncestor(root, p, q)
+        if result is not None:
+            return result
+        raise ValueError('Disjoint nodes')
 
 
 class TestCode(unittest.TestCase):
@@ -100,4 +110,13 @@ class TestCode(unittest.TestCase):
         tree.right = TreeNode(3)
         self.assertEqual(
             2, Solution().lowestCommonAncestor(tree, tree.right, tree).val
+        )
+
+    def test_nothing(self):
+        self.assertRaises(
+            ValueError,
+            Solution().lowestCommonAncestor,
+            TreeNode(1),
+            TreeNode(2),
+            TreeNode(1)
         )

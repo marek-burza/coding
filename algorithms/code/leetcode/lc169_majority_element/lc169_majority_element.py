@@ -11,8 +11,8 @@ class Solution:
         frequencies: collections.Counter = collections.Counter()
         for value in nums:
             frequencies[value] += 1
-        result = float('-inf')
-        count = float('-inf')
+        result = 0  # Instead of -inf
+        count = 0  # Instead of -inf
         for value in frequencies.keys():
             other = frequencies[value]
             if count <= other:

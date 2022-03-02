@@ -7,7 +7,7 @@ import unittest
 class Solution:
     def countAndSay(self, n: int) -> str:
         if n < 1:
-            return None
+            return ''
         result = '1'
         while n > 1:
             current = ''
@@ -46,4 +46,4 @@ class TestCode(unittest.TestCase):
         self.assertEqual('111221', Solution().countAndSay(5))
 
     def test_0(self):
-        self.assertIsNone(Solution().countAndSay(0))
+        self.assertEqual('', Solution().countAndSay(0))

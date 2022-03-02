@@ -34,7 +34,7 @@ class Solution:
 
     def getIntersectionNode(
         self, headA: ListNode, headB: ListNode
-    ) -> ListNode:  # noqa
+    ) -> ListNode:
         if headA is None or headB is None:
             return None
         last = self.__last(headA)

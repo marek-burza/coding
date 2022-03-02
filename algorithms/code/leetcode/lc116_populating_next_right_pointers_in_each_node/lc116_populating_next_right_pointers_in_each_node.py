@@ -6,14 +6,13 @@ from typing import Optional
 
 
 class Node:
-    # pylint: disable=C0301
     def __init__(
         self,
         val: int = 0,
         left: 'Node' = None,
         right: 'Node' = None,
         following: 'Node' = None,
-    ):  # noqa
+    ):
         self.val = val
         self.left = left
         self.right = right

@@ -13,6 +13,8 @@ class ListNode:
 
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None:
+            return None
         p1 = head
         p2 = head
         while p2 is not None and p2.next is not None:

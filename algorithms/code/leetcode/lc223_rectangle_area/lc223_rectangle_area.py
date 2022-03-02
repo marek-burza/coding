@@ -8,7 +8,7 @@ class Solution:
     def __area(self, left, bottom, right, top):
         return (right - left) * (top - bottom)
 
-    # pylint: disable=C0301,R0913
+    # pylint: disable=R0913
     def computeArea(
         self,
         ax1: int,
@@ -19,7 +19,7 @@ class Solution:
         by1: int,
         bx2: int,
         by2: int,
-    ) -> int:  # noqa
+    ) -> int:
         total = self.__area(ax1, ay1, ax2, ay2)
         total += self.__area(bx1, by1, bx2, by2)
         top = min(ay2, by2)

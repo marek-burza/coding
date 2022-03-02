@@ -7,7 +7,7 @@ from typing import List
 
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        maximum = float('-inf')
+        maximum = min(nums) - 1  # Instead of -inf
         cmin = 0
         cmax = 0
         for num in nums:

@@ -13,8 +13,8 @@ class Solution:
         maxE = max(nums)
         minE = min(nums)
         length = float((maxE - minE)) / float((n - 1))
-        maxA = [float('-inf')] * n
-        minA = [float('inf')] * n
+        maxA = [minE - 1] * n  # Instead of -inf
+        minA = [maxE + 1] * n  # Instead of inf
         for num in nums:
             index = int(((num - minE) / length))
             maxA[index] = max(maxA[index], num)
@@ -22,7 +22,7 @@ class Solution:
         gap = 0
         prev = maxA[0]
         for i in range(1, n):
-            if minA[i] == float('inf'):
+            if minA[i] == maxE + 1:  # Instead of inf
                 continue
             gap = max(gap, minA[i] - prev)
             prev = maxA[i]

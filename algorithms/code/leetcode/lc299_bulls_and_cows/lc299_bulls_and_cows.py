@@ -1,26 +1,23 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/bulls-and-cows/
 
+import collections
 import unittest
-from typing import Dict
 
 
 class Solution:
     def getHint(self, secret: str, guess: str) -> str:
-        countKnown: Dict[str, int] = {}
-        countAsked: Dict[str, int] = {}
+        countKnown: collections.Counter = collections.Counter()
+        countAsked: collections.Counter = collections.Counter()
         bulls = 0
         cows = 0
-        count = None
         i = 0
         while i < min(len(secret), len(guess)):
             # Count characters of each type
             known = secret[i]
             asked = guess[i]
-            count = countKnown.get(known, 0)
-            countKnown[known] = count + 1
-            count = countAsked.get(asked, 0)
-            countAsked[asked] = count + 1
+            countKnown[known] += 1
+            countAsked[asked] += 1
             # Check for a bull
             if known == asked:
                 bulls += 1

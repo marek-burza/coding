@@ -24,7 +24,7 @@ class Solution:
         if root is not None:
             queue.append(self.AnnotatedNode(root, 1))
         depth = 0
-        line: List[int] = None
+        line: List[int] = []
         while queue:
             annotated = queue.pop(0)
             if depth != annotated.depth:

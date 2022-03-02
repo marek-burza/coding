@@ -37,14 +37,16 @@ class Solution:
 
 
 def thaw(array: List[int]) -> ListNode:
-    handle = ListNode(0)
-    handle.next = None
-    tail = handle
+    handle = ListNode()
+    following = handle
+    previous = ListNode()
     for value in array:
-        tail.next = ListNode(value)
-        tail.next.next = None
-        tail = tail.next
-    return handle.next
+        previous = following
+        following = ListNode()
+        previous.val = value
+        previous.next = following
+    previous.next = None
+    return handle
 
 
 def freeze(listed: ListNode) -> List[int]:

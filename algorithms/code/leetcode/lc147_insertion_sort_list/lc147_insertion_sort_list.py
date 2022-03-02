@@ -12,10 +12,9 @@ class ListNode:
 
 
 class Solution:
-    # pylint: disable=C0301
     def insertionSortList(
         self, head: Optional[ListNode]
-    ) -> Optional[ListNode]:  # noqa
+    ) -> Optional[ListNode]:
         handle = ListNode(0)
         handle.next = head
         tail = handle
