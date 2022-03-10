@@ -1,5 +1,5 @@
 ---
-name: Automation Python
+name: Python
 
 on: [push]
 

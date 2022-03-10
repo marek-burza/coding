@@ -1,5 +1,5 @@
 ---
-name: Automation C#
+name: C#
 
 on: [push]
 
