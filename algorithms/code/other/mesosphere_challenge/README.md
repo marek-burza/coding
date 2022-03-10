@@ -10,14 +10,12 @@ You can use the language of your choice to implement an elevator control system.
 * time-stepping the simulation.
 * For example, we could imagine in Scala an interface like this:
 
-```
     trait ElevatorControlSystem {
       def status(): Seq[(Int, Int, Int)]
       def update(Int, Int, Int)
       def pickup(Int, Int)
       def step()
     }
-```
 
 Here we have chosen to represent elevator state as 3 integers:
 
@@ -46,7 +44,7 @@ is an important part of your submission. It counts to show your work.
 
 Good luck!
 
-# Missing information
+## Missing information
 
 * There is no mention of lift capacity so this needs to be added.
 * There seems to be no way of expressing the intention of the goal floor
@@ -60,7 +58,7 @@ Good luck!
 * Next to the up/down directions (+/-) the state of the lift can also be idle
   (0).
 
-# Improving the scheduling
+## Improving the scheduling
 
 Given that lifts have usually capacity bigger than 1 passenger first improvement
 would be to allow the lift to opportunistically pick up "hitchhikers" along
@@ -79,7 +77,7 @@ the goal floor then the algorithm picks the closest lift to queue
 the request to. The distance is calculated also by taking into account
 if the lift is heading towards the pickup floor or away.
 
-# Assumptions
+## Assumptions
 
 It is assumed here that the passengers will only get on the lift only
 if it goes in the direction of their intended floor.
@@ -89,7 +87,7 @@ and the passengers enter and leave the lift momentarily.
 
 It is assumed that the passengers obey their order of getting on.
 
-# Usage
+## Usage
 
 The script assumes Python 3.
 * To run an interactive mode imply run the script without any parameter.
@@ -101,7 +99,7 @@ The script assumes Python 3.
 * To compare statistic on automated randomized tests run the script with
   any parameter.
 
-# Issues
+## Issues
 
 The available capacity of the lifts is not taken into account when selecting
 the lift to queue to request to. As a consequence the request might be requeued
