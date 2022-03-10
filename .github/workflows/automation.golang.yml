@@ -1,5 +1,5 @@
 ---
-name: Automation Go
+name: Go
 
 on: [push]
 

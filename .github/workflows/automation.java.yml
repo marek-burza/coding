@@ -1,5 +1,5 @@
 ---
-name: Automation Java
+name: Java
 
 on: [push]
 
