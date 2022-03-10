@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from abc import ABC, abstractmethod
 import collections
 import math
 import random
 import sys
 import unittest
+from abc import ABC, abstractmethod
 
 
 def direction(origin, goal):
@@ -302,13 +302,6 @@ if __name__ == '__main__':  # pragma: no cover
         main_capacity = 4
         main_request_probability = 0.75
         main_system = ElevatorControlSystem(
-            main_lift_cnt,
-            main_floor_cnt,
-            main_capacity
+            main_lift_cnt, main_floor_cnt, main_capacity
         )
-        simulation(
-            main_system,
-            main_floor_cnt,
-            main_request_probability,
-            None
-        )
+        simulation(main_system, main_floor_cnt, main_request_probability, None)
