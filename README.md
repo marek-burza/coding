@@ -47,10 +47,10 @@
 
 ### [Practice algorithm design challenges](algorithms)
 
-![Status Python][https://github.com/altermarkive/training/workflows/Python/badge.svg]
-![Status Go][https://github.com/altermarkive/training/workflows/Go/badge.svg]
-![Status Java][https://github.com/altermarkive/training/workflows/Java/badge.svg]
-![Status C#][https://github.com/altermarkive/training/workflows/C%23/badge.svg]
+![Status Python](https://github.com/altermarkive/training/workflows/Python/badge.svg)
+![Status Go](https://github.com/altermarkive/training/workflows/Go/badge.svg)
+![Status Java](https://github.com/altermarkive/training/workflows/Java/badge.svg)
+![Status C#](https://github.com/altermarkive/training/workflows/C%23/badge.svg)
 [![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
 
 * [HackerRank](https://www.hackerrank.com/) - [my solutions](algorithms/code/hackerrank)
