@@ -4,7 +4,6 @@
 
 import io
 import re
-import sre_constants
 import sys
 import unittest
 
@@ -13,7 +12,7 @@ def check(pattern):
     try:
         re.compile(pattern)
         return True
-    except sre_constants.error:
+    except Exception:
         return False
 
 
