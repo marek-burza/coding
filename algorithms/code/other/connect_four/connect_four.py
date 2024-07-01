@@ -101,7 +101,7 @@ class TestCode(unittest.TestCase):
         i = 1
         for move, outcome, winner in zip(moves, outcomes, winners):
             result = g.drop_for_current_player(move)
-            message = f'Round {i} :\n{str(g)}'
+            message = f'Round {i} : \n{str(g)}'
             self.assertEqual(outcome, result, message)
             self.assertEqual(winner, g.check_winning(), message)
             i += 1
