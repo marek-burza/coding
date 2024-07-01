@@ -62,7 +62,7 @@ namespace AlgorithmDesign.code.leetcode.lc002_add_two_numbers
         {
             int[] array1 = { 2, 4 };
             int[] array2 = { 5, 6 };
-            ListNode list = new Solution().AddTwoNumbers(thaw(array1), thaw(array2));
+            ListNode list = new Solution().AddTwoNumbers(Thaw(array1), Thaw(array2));
             int[] expected = { 7, 0, 1 };
             Assert.Equal(expected, Freeze(list));
         }

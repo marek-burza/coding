@@ -4,7 +4,7 @@ namespace AlgorithmDesign.code.leetcode.lc024_swap_nodes_in_pairs
 {
     public class SolutionTests
     {
-        private void generic(ListNode head, int[] expected)
+        private void Generic(ListNode head, int[] expected)
         {
             ListNode result = new Solution().SwapPairs(head);
             foreach (int value in expected)
