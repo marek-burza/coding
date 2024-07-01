@@ -4,7 +4,7 @@ namespace AlgorithmDesign.code.leetcode.lc002_add_two_numbers
 {
     public class SolutionTests
     {
-        private ListNode thaw(int[] array)
+        private ListNode Thaw(int[] array)
         {
             ListNode handle = new ListNode();
             ListNode tail = handle;
@@ -16,7 +16,7 @@ namespace AlgorithmDesign.code.leetcode.lc002_add_two_numbers
             return handle.next;
         }
 
-        private int[] freeze(ListNode list)
+        private int[] Freeze(ListNode list)
         {
             int count = 0;
             ListNode copy = list;
@@ -40,9 +40,9 @@ namespace AlgorithmDesign.code.leetcode.lc002_add_two_numbers
         {
             int[] array1 = { 2, 4, 3 };
             int[] array2 = { 5, 6, 4 };
-            ListNode list = new Solution().AddTwoNumbers(thaw(array1), thaw(array2));
+            ListNode list = new Solution().AddTwoNumbers(Thaw(array1), Thaw(array2));
             int[] expected = { 7, 0, 8 };
-            Assert.Equal(expected, freeze(list));
+            Assert.Equal(expected, Freeze(list));
         }
 
 
@@ -52,9 +52,9 @@ namespace AlgorithmDesign.code.leetcode.lc002_add_two_numbers
         {
             int[] array1 = { 2, 4 };
             int[] array2 = { 5, 6, 4 };
-            ListNode list = new Solution().AddTwoNumbers(thaw(array1), thaw(array2));
+            ListNode list = new Solution().AddTwoNumbers(Thaw(array1), Thaw(array2));
             int[] expected = { 7, 0, 5 };
-            Assert.Equal(expected, freeze(list));
+            Assert.Equal(expected, Freeze(list));
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace AlgorithmDesign.code.leetcode.lc002_add_two_numbers
             int[] array2 = { 5, 6 };
             ListNode list = new Solution().AddTwoNumbers(thaw(array1), thaw(array2));
             int[] expected = { 7, 0, 1 };
-            Assert.Equal(expected, freeze(list));
+            Assert.Equal(expected, Freeze(list));
         }
     }
 }
