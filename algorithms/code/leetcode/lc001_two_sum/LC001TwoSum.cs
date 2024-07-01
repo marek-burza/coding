@@ -16,9 +16,9 @@ namespace AlgorithmDesign.code.leetcode.lc001_two_sum
             for (int i = 0; i < nums.Length; i++)
             {
                 int expected = target - nums[i];
-                if (map.ContainsKey(expected))
+                int found;
+                if (map.TryGetValue(expected, out found))
                 {
-                    int found = map[expected];
                     return new[] { found, i };
                 }
                 else

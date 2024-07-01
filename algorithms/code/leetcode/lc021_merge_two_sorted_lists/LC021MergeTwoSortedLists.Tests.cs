@@ -4,7 +4,7 @@ namespace AlgorithmDesign.code.leetcode.lc021_merge_two_sorted_lists
 {
     public class SolutionTests
     {
-        private void generic(ListNode n0)
+        private void Generic(ListNode n0)
         {
             Assert.Equal(1, n0.val);
             Assert.Equal(2, n0.next.val);
@@ -26,7 +26,7 @@ namespace AlgorithmDesign.code.leetcode.lc021_merge_two_sorted_lists
             ListNode n4 = new ListNode { val = 4, next = n6 };
             ListNode n2 = new ListNode { val = 2, next = n4 };
             ListNode n0 = new Solution().MergeTwoLists(n1, n2);
-            generic(n0);
+            Generic(n0);
             Assert.Equal(7, n0.next.next.next.next.next.next.val);
             Assert.Equal(9, n0.next.next.next.next.next.next.next.val);
         }
@@ -41,7 +41,7 @@ namespace AlgorithmDesign.code.leetcode.lc021_merge_two_sorted_lists
             ListNode n5 = new ListNode { val = 5, next = n6 };
             ListNode n4 = new ListNode { val = 4, next = n5 };
             ListNode n0 = new Solution().MergeTwoLists(n1, n4);
-            generic(n0);
+            Generic(n0);
             Assert.Null(n0.next.next.next.next.next.next);
         }
     }

@@ -29,10 +29,10 @@ namespace AlgorithmDesign.code.leetcode.lc017_letter_combinations_of_a_phone_num
             IList<string> result = new Solution().LetterCombinations("23");
             List<string> sorted = result.ToList();
             sorted.Sort();
-            Assert.Equal(expected.Length, result.Count);
+            Assert.Equal(expected.Length, sorted.Count);
             for (int i = 0; i < expected.Length; i++)
             {
-                Assert.Equal(expected[i], result[i]);
+                Assert.Equal(expected[i], sorted[i]);
             }
         }
     }

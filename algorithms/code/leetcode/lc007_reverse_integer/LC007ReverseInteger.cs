@@ -24,7 +24,7 @@ namespace AlgorithmDesign.code.leetcode.lc007_reverse_integer
                 digits[collected++] = x % 10;
                 x /= 10;
             }
-            int[] limits = new int[] { 2, 1, 4, 7, 4, 8, 3, 6, 4, 7 };
+            int[] limits = new[] { 2, 1, 4, 7, 4, 8, 3, 6, 4, 7 };
             int length = limits.Length;
             int padding = length - collected;
             Array.Copy(digits, 0, digits, padding, collected);

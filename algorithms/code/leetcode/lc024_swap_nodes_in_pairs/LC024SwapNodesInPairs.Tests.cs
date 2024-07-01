@@ -26,7 +26,7 @@ namespace AlgorithmDesign.code.leetcode.lc024_swap_nodes_in_pairs
             n2.next = n3;
             n3.next = n4;
             int[] expected = { 2, 1, 4, 3 };
-            generic(n1, expected);
+            Generic(n1, expected);
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace AlgorithmDesign.code.leetcode.lc024_swap_nodes_in_pairs
             n1.next = n2;
             n2.next = n3;
             int[] expected = { 2, 1, 3 };
-            generic(n1, expected);
+            Generic(n1, expected);
         }
     }
 }
