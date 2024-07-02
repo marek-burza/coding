@@ -13,7 +13,7 @@ def check(pattern):
     try:
         re.compile(pattern)
         return True
-    except sre_constants.error:  # type: ignore[no-member]
+    except sre_constants.error:  # pylint: disable=no-member
         return False
 
 
