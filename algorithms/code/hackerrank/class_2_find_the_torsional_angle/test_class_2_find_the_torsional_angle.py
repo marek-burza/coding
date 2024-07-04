@@ -52,7 +52,7 @@ def main():
     b = Vector(*tuple(map(float, input().strip().split())))
     c = Vector(*tuple(map(float, input().strip().split())))
     d = Vector(*tuple(map(float, input().strip().split())))
-    print('%.2f' % torsional_angle(a, b, c, d))
+    print(f'{torsional_angle(a, b, c, d):.2f}')
 
 
 if __name__ == '__main__':  # pragma: no cover
@@ -61,13 +61,17 @@ if __name__ == '__main__':  # pragma: no cover
 
 class TestCode(unittest.TestCase):
     def generalized_test(self, which):
-        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
-        sys.stdout = io.StringIO()
-        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
-        main()
-        self.assertEqual(sys.stdout.getvalue(), expected.read())
-        for handle in [sys.stdin, sys.stdout, expected]:
-            handle.close()
+        with (
+            open(
+                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+            ) as expected,
+            open(
+                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+            ) as sys.stdin,
+            io.StringIO() as sys.stdout,
+        ):
+            main()
+            self.assertEqual(sys.stdout.getvalue(), expected.read())
 
     def test_0(self):
         self.generalized_test('0')

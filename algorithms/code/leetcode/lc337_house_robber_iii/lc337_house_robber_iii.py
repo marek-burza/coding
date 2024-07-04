@@ -13,18 +13,22 @@ class TreeNode:
         self.right = right
 
 
+@cache
+def rob_cached(root: Optional[TreeNode]) -> int:
+    if root is None:
+        return 0
+    excl = rob_cached(root.left) + rob_cached(root.right)
+    incl = root.val
+    if root.left is not None:
+        incl += rob_cached(root.left.left) + rob_cached(root.left.right)
+    if root.right is not None:
+        incl += rob_cached(root.right.left) + rob_cached(root.right.right)
+    return max(incl, excl)
+
+
 class Solution:
-    @cache
     def rob(self, root: Optional[TreeNode]) -> int:
-        if root is None:
-            return 0
-        excl = self.rob(root.left) + self.rob(root.right)
-        incl = root.val
-        if root.left is not None:
-            incl += self.rob(root.left.left) + self.rob(root.left.right)
-        if root.right is not None:
-            incl += self.rob(root.right.left) + self.rob(root.right.right)
-        return max(incl, excl)
+        return rob_cached(root)
 
     # # Bottom-up
     # def rob(self, root: Optional[TreeNode]) -> int:

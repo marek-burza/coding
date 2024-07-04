@@ -20,7 +20,9 @@ def unboundedKnapsack(w, values):
 
 def main():
     if 'OUTPUT_PATH' in os.environ:  # pragma: no cover
-        fptr = open(os.environ['OUTPUT_PATH'], 'w')
+        fptr = open(  # pylint: disable=R1732,W1514
+            os.environ['OUTPUT_PATH'], 'w'
+        )
     else:
         fptr = sys.stdout
     t = int(input().strip())
@@ -42,13 +44,21 @@ if __name__ == '__main__':  # pragma: no cover
 class TestCode(unittest.TestCase):
     def generalized_test(self, which):
         resources = os.path.dirname(__file__)
-        sys.stdin = open(os.path.join(resources, f'input{which}.txt'), 'r')
-        sys.stdout = io.StringIO()
-        expected = open(os.path.join(resources, f'output{which}.txt'), 'r')
-        main()
-        self.assertEqual(sys.stdout.getvalue(), expected.read())
-        for handle in [sys.stdin, sys.stdout, expected]:
-            handle.close()
+        with (
+            open(
+                os.path.join(resources, f'output{which}.txt'),
+                'r',
+                encoding='utf-8',
+            ) as expected,
+            open(
+                os.path.join(resources, f'input{which}.txt'),
+                'r',
+                encoding='utf-8',
+            ) as sys.stdin,
+            io.StringIO() as sys.stdout,
+        ):
+            main()
+            self.assertEqual(sys.stdout.getvalue(), expected.read())
 
     def test_example(self):
         self.generalized_test('example')

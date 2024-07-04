@@ -35,5 +35,5 @@ class TestCode(unittest.TestCase):
         result = Solution().generateMatrix(3)
         self.assertIsNotNone(result)
         self.assertEqual(len(expected), len(result))
-        for i, _ in enumerate(expected):
-            self.assertListEqual(expected[i], result[i])
+        for i, expected_i in enumerate(expected):
+            self.assertListEqual(expected_i, result[i])

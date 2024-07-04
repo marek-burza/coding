@@ -16,14 +16,14 @@ def non_divisible_subset(k: int, s: List[int]) -> int:
         else:
             counted[rest] += 1
     ok = set()
-    for a in counted:
+    for a, counted_a in counted.items():
         b = k - a
         if a in [0, b]:
             continue
         if b not in counted:
             ok.add(a)
         else:
-            countA = counted[a]
+            countA = counted_a
             countB = counted[b]
             ok.add(a if countA > countB else b)
     total = 0
@@ -41,7 +41,7 @@ class TestCode(unittest.TestCase):
         io_lines = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r') as handle:
+            with open(path, 'r', encoding='utf-8') as handle:
                 lines = handle.readlines()
             io_lines[index] = [line.strip().split(' ') for line in lines]
         k = int(io_lines[0][0][1])

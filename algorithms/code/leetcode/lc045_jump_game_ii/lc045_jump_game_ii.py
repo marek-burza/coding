@@ -15,8 +15,7 @@ class Solution:
         while horizon < len(nums) - 1:
             replacement = horizon
             while i <= horizon:
-                if i + nums[i] > replacement:
-                    replacement = i + nums[i]
+                replacement = max(replacement, i + nums[i])
                 i += 1
             i -= 1
             horizon = replacement

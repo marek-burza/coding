@@ -13,7 +13,7 @@ jobs:
       - name: Preparing
         uses: actions/setup-python@v1
         with:
-          python-version: '3.9.x'
+          python-version: '3.12.x'
       - name: Linting
         run: |
           /bin/sh .github/workflows/python.linter.get.sh

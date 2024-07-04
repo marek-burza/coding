@@ -32,7 +32,7 @@ class TestCode(unittest.TestCase):
         io_lines = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r') as handle:
+            with open(path, 'r', encoding='utf-8') as handle:
                 lines = handle.readlines()
             io_lines[index] = [line.strip().split(' ') for line in lines]
         k = int(io_lines[0][0][1])

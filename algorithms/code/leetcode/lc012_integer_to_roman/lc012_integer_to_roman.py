@@ -23,9 +23,9 @@ class Solution:
         ]
         weights = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
         roman = ''
-        for i, _ in enumerate(digits):
+        for i, digits_i in enumerate(digits):
             multiple = num // weights[i]
-            roman += digits[i] * multiple
+            roman += digits_i * multiple
             num -= multiple * weights[i]
         return roman
 

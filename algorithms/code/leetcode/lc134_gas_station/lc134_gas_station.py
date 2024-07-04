@@ -13,8 +13,7 @@ class Solution:
         for i, _ in enumerate(gas):
             index = i % len(gas)
             gauge += gas[index] - cost[index]
-            if gauge < minimum:
-                minimum = gauge
+            minimum = min(minimum, gauge)
         i = 0
         while minimum < 0 and i < len(gas):
             index = len(gas) - i - 1

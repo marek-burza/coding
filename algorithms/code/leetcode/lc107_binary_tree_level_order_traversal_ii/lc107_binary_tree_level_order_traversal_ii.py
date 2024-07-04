@@ -55,7 +55,7 @@ class TestCode(unittest.TestCase):
         expected = [[15, 7], [9, 20], [3]]
         result = Solution().levelOrderBottom(n3)
         self.assertEqual(len(expected), len(result))
-        for i, _ in enumerate(expected):
-            self.assertEqual(len(expected[i]), len(result[i]))
-            for j, _ in enumerate(expected[i]):
-                self.assertEqual(expected[i][j], result[i][j])
+        for i, expected_i in enumerate(expected):
+            self.assertEqual(len(expected_i), len(result[i]))
+            for j, expected_i_j in enumerate(expected_i):
+                self.assertEqual(expected_i_j, result[i][j])

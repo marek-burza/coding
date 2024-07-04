@@ -21,8 +21,7 @@ class Solution:
             cmin = num if num < cmin else cmin
             cmax = tmax if tmin < tmax else tmin
             cmax = cmax if num < cmax else num
-            if cmax > maximum:
-                maximum = cmax
+            maximum = max(maximum, cmax)
         return maximum
 
 

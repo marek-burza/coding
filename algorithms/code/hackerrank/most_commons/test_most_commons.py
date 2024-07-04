@@ -24,7 +24,7 @@ def main():
     s = input().strip()
     ordered, counted = mangle(s)
     for entry in ordered[:3]:
-        print('%s %d' % (entry, counted[entry]))
+        print(f'{entry} {counted[entry]}')
 
 
 if __name__ == '__main__':  # pragma: no cover
@@ -33,13 +33,17 @@ if __name__ == '__main__':  # pragma: no cover
 
 class TestCode(unittest.TestCase):
     def generalized_test(self, which):
-        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
-        sys.stdout = io.StringIO()
-        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
-        main()
-        self.assertEqual(sys.stdout.getvalue(), expected.read())
-        for handle in [sys.stdin, sys.stdout, expected]:
-            handle.close()
+        with (
+            open(
+                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+            ) as expected,
+            open(
+                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+            ) as sys.stdin,
+            io.StringIO() as sys.stdout,
+        ):
+            main()
+            self.assertEqual(sys.stdout.getvalue(), expected.read())
 
     def test_0(self):
         self.generalized_test('0')

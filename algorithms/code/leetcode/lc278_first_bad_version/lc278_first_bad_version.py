@@ -7,7 +7,7 @@ lc278_first_bad_version = 0
 
 
 def isBadVersion(version):
-    # pylint: disable=W0603
+    # pylint: disable=W0602,W0603
     global lc278_first_bad_version
     return lc278_first_bad_version <= version
 

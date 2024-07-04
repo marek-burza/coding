@@ -30,9 +30,9 @@ class Solution:
                 return
         check: List[int] = []
         visited: Set[int] = set()
-        for i, _ in enumerate(board):
+        for i, board_i in enumerate(board):
             self.__enqueue(i, 0, check, visited)
-            self.__enqueue(i, len(board[i]) - 1, check, visited)
+            self.__enqueue(i, len(board_i) - 1, check, visited)
         for j, _ in enumerate(board[0]):
             self.__enqueue(0, j, check, visited)
         for j, _ in enumerate(board[-1]):
@@ -61,8 +61,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def construct(self, compact):
         board = []
-        for i, _ in enumerate(compact):
-            board.append(list(compact[i]))
+        for item in compact:
+            board.append(list(item))
         return board
 
     def test_small(self):
@@ -70,8 +70,8 @@ class TestCode(unittest.TestCase):
         board = self.construct(compact)
         Solution().solve(board)
         expected = ['XXXX', 'XXXX', 'XXXX', 'XOXX']
-        for i, _ in enumerate(board):
-            self.assertEqual(expected[i], ''.join(board[i]))
+        for i, board_i in enumerate(board):
+            self.assertEqual(expected[i], ''.join(board_i))
 
     # pylint: disable=C0301
     def test_large(self):
@@ -581,8 +581,8 @@ class TestCode(unittest.TestCase):
             'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXO',  # noqa
         ]
         Solution().solve(board)
-        for i, _ in enumerate(board):
-            self.assertEqual(expected[i], ''.join(board[i]))
+        for i, board_i in enumerate(board):
+            self.assertEqual(expected[i], ''.join(board_i))
 
     def test_nothing(self):
         Solution().solve(None)

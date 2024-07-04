@@ -35,10 +35,10 @@ class Solution:
         if grid is None or len(grid) == 0:
             return 0
         count = 0
-        for x, _ in enumerate(grid):
-            if grid[x] is None:
+        for x, grid_x in enumerate(grid):
+            if grid_x is None:
                 return 0
-            for y, _ in enumerate(grid[x]):
+            for y, _ in enumerate(grid_x):
                 if self.__traverse(grid, x, y):
                     count += 1
         return count

@@ -18,8 +18,7 @@ class Solution:
                 return True
             if i == front and nums[front] == 0:
                 return False
-            if front < i + nums[i]:
-                front = i + nums[i]
+            front = max(front, i + nums[i])
             i += 1
         # return False
 

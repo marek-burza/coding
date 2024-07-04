@@ -41,10 +41,10 @@ class Solution:
 class TestCode(unittest.TestCase):
     def __test(self, expected, board):
         self.assertEqual(len(expected), len(board))
-        for row, _ in enumerate(board):
-            self.assertEqual(len(expected[row]), len(board[row]))
-            for col, _ in enumerate(board[row]):
-                self.assertEqual(expected[row][col], board[row][col])
+        for row, board_row in enumerate(board):
+            self.assertEqual(len(expected[row]), len(board_row))
+            for col, board_row_col in enumerate(board_row):
+                self.assertEqual(expected[row][col], board_row_col)
 
     def test_empty(self):
         board = [[]]

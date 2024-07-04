@@ -37,11 +37,11 @@ class TestCode(unittest.TestCase):
         for entry in result:
             entry.sort()
         self.assertEqual(len(expected), len(result))
-        for i, _ in enumerate(expected):
+        for i, expected_i in enumerate(expected):
             entry = result[i]
-            self.assertEqual(len(expected[i]), len(entry))
-            for j, _ in enumerate(expected[i]):
-                self.assertEqual(expected[i][j], entry[j])
+            self.assertEqual(len(expected_i), len(entry))
+            for j, expected_i_j in enumerate(expected_i):
+                self.assertEqual(expected_i_j, entry[j])
 
     def test_3_7(self):
         expected = [[1, 2, 4]]

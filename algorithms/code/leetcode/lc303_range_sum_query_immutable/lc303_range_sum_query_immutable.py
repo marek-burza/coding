@@ -9,8 +9,8 @@ class NumArray:
     def __init__(self, nums: List[int]):
         self.__sums = [0] * len(nums)
         summed = 0
-        for i, _ in enumerate(nums):
-            summed += nums[i]
+        for i, nums_i in enumerate(nums):
+            summed += nums_i
             self.__sums[i] = summed
 
     def sumRange(self, left: int, right: int) -> int:
