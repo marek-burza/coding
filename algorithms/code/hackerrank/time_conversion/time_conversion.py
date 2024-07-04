@@ -8,7 +8,7 @@ def to_military(s):
     afternoon = s[8] == 'P'
     hour = s[0:2]
     afternoon = not afternoon if hour == '12' else afternoon
-    hour = '%02d' % ((int(hour) + (12 if afternoon else 0)) % 24)
+    hour = f'{(int(hour) + (12 if afternoon else 0)) % 24:02d}'
     return hour + s[2:8]
 
 

@@ -140,13 +140,21 @@ if __name__ == '__main__':  # pragma: no cover
 class TestCode(unittest.TestCase):
     def generalized_test(self, which, quick=True):
         resources = os.path.dirname(__file__)
-        sys.stdin = open(os.path.join(resources, f'input{which}.txt'), 'r')
-        sys.stdout = io.StringIO()
-        expected = open(os.path.join(resources, f'output{which}.txt'), 'r')
-        main(quick)
-        self.assertEqual(sys.stdout.getvalue(), expected.read())
-        for handle in [sys.stdin, sys.stdout, expected]:
-            handle.close()
+        with (
+            open(
+                os.path.join(resources, f'output{which}.txt'),
+                'r',
+                encoding='utf-8',
+            ) as expected,
+            open(
+                os.path.join(resources, f'input{which}.txt'),
+                'r',
+                encoding='utf-8',
+            ) as sys.stdin,
+            io.StringIO() as sys.stdout,
+        ):
+            main(quick)
+            self.assertEqual(sys.stdout.getvalue(), expected.read())
 
     def test_search_for_absent(self):
         heap = [6, 3, 0, 5]

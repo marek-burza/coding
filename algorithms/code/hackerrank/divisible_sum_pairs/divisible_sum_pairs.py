@@ -25,20 +25,20 @@ def divisible_sum_pairs(n: int, k: int, arr: List[int]) -> int:
             counted[rest] = count + 1
     total = 0
     covered = set()
-    for a in counted:
+    for a, counted_a in counted.items():
         if a in covered:
             continue
         if a == 0:
-            total += n_choose_k(counted[a], 2)
+            total += n_choose_k(counted_a, 2)
             covered.add(a)
         else:
             b = k - a
             if b == a:
-                total += n_choose_k(counted[a], 2)
+                total += n_choose_k(counted_a, 2)
                 covered.add(a)
             else:
                 if b in counted:
-                    total += counted[a] * counted[b]
+                    total += counted_a * counted[b]
                     covered.add(a)
                     covered.add(b)
     return total
@@ -49,7 +49,7 @@ class TestCode(unittest.TestCase):
         io_lines = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r') as handle:
+            with open(path, 'r', encoding='utf-8') as handle:
                 lines = handle.readlines()
             io_lines[index] = [line.strip().split(' ') for line in lines]
         n = int(io_lines[0][0][0])

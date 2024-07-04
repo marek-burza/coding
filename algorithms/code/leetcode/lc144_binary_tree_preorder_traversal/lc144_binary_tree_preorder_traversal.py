@@ -35,5 +35,5 @@ class TestCode(unittest.TestCase):
         node2.left = node3
         result = Solution().preorderTraversal(node1)
         expected = [1, 2, 3]
-        for i, _ in enumerate(expected):
-            self.assertEqual(expected[i], result[i])
+        for i, expected_i in enumerate(expected):
+            self.assertEqual(expected_i, result[i])

@@ -31,9 +31,9 @@ class TestCode(unittest.TestCase):
     def test_example(self):
         expected = [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32]
         primes = [2, 7, 13, 19]
-        for i, _ in enumerate(expected):
+        for i, expected_i in enumerate(expected):
             self.assertEqual(
-                expected[i], Solution().nthSuperUglyNumber(i + 1, primes)
+                expected_i, Solution().nthSuperUglyNumber(i + 1, primes)
             )
 
     def test_other(self):

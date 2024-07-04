@@ -61,10 +61,10 @@ class TestCode(unittest.TestCase):
     def generic(self, buildings, expected):
         skyline = Solution().getSkyline(buildings)
         self.assertEqual(len(skyline), len(expected))
-        for i, _ in enumerate(expected):
-            self.assertEqual(len(skyline[i]), len(expected[i]))
-            for j, _ in enumerate(expected[i]):
-                self.assertEqual(skyline[i][j], expected[i][j])
+        for i, expected_i in enumerate(expected):
+            self.assertEqual(len(skyline[i]), len(expected_i))
+            for j, expected_i_j in enumerate(expected_i):
+                self.assertEqual(skyline[i][j], expected_i_j)
 
     def test_example_1(self):
         buildings = [

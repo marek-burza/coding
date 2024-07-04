@@ -36,7 +36,7 @@ class TestCode(unittest.TestCase):
         result = sorted(result)
         expected = [[1, 1, 2], [1, 2, 1], [2, 1, 1]]
         self.assertEqual(len(result), len(expected))
-        for i, _ in enumerate(expected):
-            self.assertEqual(len(result[i]), len(expected[i]))
-            for j, _ in enumerate(expected[i]):
-                self.assertEqual(result[i][j], expected[i][j])
+        for i, expected_i in enumerate(expected):
+            self.assertEqual(len(result[i]), len(expected_i))
+            for j, expected_i_j in enumerate(expected_i):
+                self.assertEqual(result[i][j], expected_i_j)

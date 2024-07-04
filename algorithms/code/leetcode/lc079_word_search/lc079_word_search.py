@@ -33,9 +33,9 @@ class Solution:
     def exist(self, board, word):
         if board is None or word is None or len(word) == 0:
             return False
-        visited = [[False] * len(board[i]) for i, _ in enumerate(board)]
-        for i, _ in enumerate(board):
-            for j, _ in enumerate(board[i]):
+        visited = [[False] * len(board_i) for i, board_i in enumerate(board)]
+        for i, board_i in enumerate(board):
+            for j, _ in enumerate(board_i):
                 if self.__exist(board, word, visited, 0, i, j):
                     return True
         return False

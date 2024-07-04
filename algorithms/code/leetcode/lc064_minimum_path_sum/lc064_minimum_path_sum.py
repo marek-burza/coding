@@ -8,7 +8,7 @@ from typing import List
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:
         visited = [[False] * len(grid[0]) for _ in enumerate(grid)]
-        total = sum([sum(line) for line in grid])  # Instead of inf
+        total = sum(sum(line) for line in grid)  # Instead of inf
         sums = [[total] * len(grid[0]) for _ in enumerate(grid)]
         sums[0][0] = grid[0][0]
         queue = []

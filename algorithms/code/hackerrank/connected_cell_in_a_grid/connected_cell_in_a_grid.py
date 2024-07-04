@@ -31,8 +31,8 @@ def traverse(matrix: List[List[int]], r: int, c: int) -> int:
 
 def connected_cell(matrix: List[List[int]]) -> int:
     result = 0
-    for r, _ in enumerate(matrix):
-        for c, _ in enumerate(matrix[r]):
+    for r, matrix_r in enumerate(matrix):
+        for c, _ in enumerate(matrix_r):
             result = max(traverse(matrix, r, c), result)
     return result
 
@@ -42,7 +42,7 @@ class TestCode(unittest.TestCase):
         io_lines = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r') as handle:
+            with open(path, 'r', encoding='utf-8') as handle:
                 lines = handle.readlines()
             io_lines[index] = [line.strip().split(' ') for line in lines]
         matrix = io_lines[0][2:]

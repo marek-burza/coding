@@ -29,9 +29,9 @@ def count_luck(matrix: List[str], k: int) -> str:
     counts: collections.deque = collections.deque()
     counts.append(0)
     forest = [list(row) for row in matrix]
-    for r, _ in enumerate(forest):
-        for c, _ in enumerate(forest[r]):
-            if forest[r][c] == 'M':
+    for r, forest_r in enumerate(forest):
+        for c, forest_r_c in enumerate(forest_r):
+            if forest_r_c == 'M':
                 queue.append((r, c))
     while queue:
         at = queue.pop()
@@ -52,7 +52,7 @@ class TestCode(unittest.TestCase):
         io_lines = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r') as handle:
+            with open(path, 'r', encoding='utf-8') as handle:
                 lines = handle.readlines()
             io_lines[index] = [line.strip().split(' ') for line in lines]
         tests = int(io_lines[0][0][0])

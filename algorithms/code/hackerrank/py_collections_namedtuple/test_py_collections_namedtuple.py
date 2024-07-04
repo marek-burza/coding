@@ -25,7 +25,7 @@ def main():
     table = []
     for _ in range(n):
         table.append(input().strip().split())
-    print('%.2f' % average(order, table))
+    print(f'{average(order, table):.2f}')
 
 
 if __name__ == '__main__':  # pragma: no cover
@@ -34,13 +34,17 @@ if __name__ == '__main__':  # pragma: no cover
 
 class TestCode(unittest.TestCase):
     def generalized_test(self, which):
-        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
-        sys.stdout = io.StringIO()
-        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
-        main()
-        self.assertEqual(sys.stdout.getvalue(), expected.read())
-        for handle in [sys.stdin, sys.stdout, expected]:
-            handle.close()
+        with (
+            open(
+                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+            ) as expected,
+            open(
+                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+            ) as sys.stdin,
+            io.StringIO() as sys.stdout,
+        ):
+            main()
+            self.assertEqual(sys.stdout.getvalue(), expected.read())
 
     def test_1(self):
         self.generalized_test('1')

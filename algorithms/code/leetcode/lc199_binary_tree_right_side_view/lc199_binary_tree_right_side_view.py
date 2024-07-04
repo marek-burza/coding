@@ -49,5 +49,5 @@ class TestCode(unittest.TestCase):
         n6.right = None
         expected = [1, 3, 4, 6]
         result = Solution().rightSideView(n1)
-        for i, _ in enumerate(expected):
-            self.assertEqual(expected[i], result[i])
+        for i, expected_i in enumerate(expected):
+            self.assertEqual(expected_i, result[i])

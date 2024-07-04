@@ -46,7 +46,7 @@ class Request:
     def show(self):  # pragma: no cover
         if self is None:
             return '()'
-        return '(%d->%d)' % (self.origin, self.goal)
+        return f'({self.origin}->{self.goal})'
 
 
 class Lift:
@@ -133,7 +133,7 @@ class ElevatorControlSystemBase(ABC):
         print('')
         for i, lift in enumerate(self.lifts):
             items = [request.show() for request in lift.passengers]
-            print('L%d %s' % (i, ' '.join(items)))
+            print(f'L{i} {" ".join(items)}')
 
     def stats(self):
         through = self.through
@@ -186,8 +186,8 @@ class FCFS(ElevatorControlSystemBase):
     def show(self):  # pragma: no cover
         ElevatorControlSystemBase.show(self)
         items = [Request.show(assignment) for assignment in self.assignments]
-        print('A %s' % ' '.join(items))
-        print('Q %s' % ' '.join([request.show() for request in self.queue]))
+        print(f'A {" ".join(items)}')
+        print(f'Q {" ".join([request.show() for request in self.queue])}')
 
 
 class ElevatorControlSystem(ElevatorControlSystemBase):
@@ -248,7 +248,7 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
         ElevatorControlSystemBase.show(self)
         for i, _ in enumerate(self.lifts):
             q = ' '.join([request.show() for request in self.queues[i]])
-            print('Q%d %s' % (i, q))
+            print(f'Q{i} {q}')
 
 
 def simulation(

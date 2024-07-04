@@ -23,8 +23,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self):
         expected = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12]
-        for i, _ in enumerate(expected):
-            self.assertEqual(expected[i], Solution().nthUglyNumber(i + 1))
+        for i, expected_i in enumerate(expected):
+            self.assertEqual(expected_i, Solution().nthUglyNumber(i + 1))
 
     def test_bigger(self):
         self.assertEqual(536870912, Solution().nthUglyNumber(1407))

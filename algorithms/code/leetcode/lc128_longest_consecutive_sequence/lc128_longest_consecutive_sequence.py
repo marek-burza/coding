@@ -40,8 +40,7 @@ class Solution:
             mapped[a] = ranged
             mapped[z] = ranged
             span = z - a + 1
-            if span > length:
-                length = span
+            length = max(length, span)
         return length
         # This can be simplified by storing only the length of the range
         # in the hash table instead of range itself

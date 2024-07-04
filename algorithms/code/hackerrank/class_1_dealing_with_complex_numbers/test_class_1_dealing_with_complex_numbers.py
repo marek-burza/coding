@@ -37,10 +37,10 @@ class Complex:
         return result
 
     def __str__(self):
-        real = '%.2f' % self.real
+        real = f'{self.real:.2f}'
         middle = '+' if self.imaginary >= 0 else ''
-        imaginary = '%.2f' % self.imaginary
-        return '%s%s%si' % (real, middle, imaginary)
+        imaginary = f'{self.imaginary:.2f}'
+        return f'{real}{middle}{imaginary}i'
 
     def mod(self):
         value = math.sqrt(math.pow(self.real, 2) + math.pow(self.imaginary, 2))
@@ -66,13 +66,17 @@ if __name__ == '__main__':  # pragma: no cover
 
 class TestCode(unittest.TestCase):
     def generalized_test(self, which):
-        sys.stdin = open(__file__.replace('.py', f'.{which}.in'), 'r')
-        sys.stdout = io.StringIO()
-        expected = open(__file__.replace('.py', f'.{which}.out'), 'r')
-        main()
-        self.assertEqual(sys.stdout.getvalue(), expected.read())
-        for handle in [sys.stdin, sys.stdout, expected]:
-            handle.close()
+        with (
+            open(
+                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+            ) as expected,
+            open(
+                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+            ) as sys.stdin,
+            io.StringIO() as sys.stdout,
+        ):
+            main()
+            self.assertEqual(sys.stdout.getvalue(), expected.read())
 
     def test_0(self):
         self.generalized_test('0')

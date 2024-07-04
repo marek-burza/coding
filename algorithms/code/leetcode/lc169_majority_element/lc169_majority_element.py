@@ -13,8 +13,8 @@ class Solution:
             frequencies[value] += 1
         result = 0  # Instead of -inf
         count = 0  # Instead of -inf
-        for value in frequencies.keys():
-            other = frequencies[value]
+        for value, frequencies_value in frequencies.items():
+            other = frequencies_value
             if count <= other:
                 result = value
                 count = other
