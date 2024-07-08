@@ -1,18 +1,14 @@
 import unittest
-from typing import List, Optional
+from typing import List
 
 
 def twoSum(
     nums: List[int],
     target: int,
-    left: Optional[int] = None,
-    right: Optional[int] = None,
+    left: int,
+    right: int,
 ) -> List[List[int]]:
     results: List[List[int]] = []
-    if left is None:
-        left = 0
-    if right is None:
-        right = len(nums) - 1
     original_left = left
     original_right = right
     while left < right:
@@ -43,13 +39,11 @@ def kSum(
     results: List[List[int]],
 ) -> None:
     if (
-        not nums or (
-            right - left + 1 < k
-        ) or (
-            k < 2
-        ) or (
-            nums[left] * k > target
-        ) or nums[right] * k < target
+        not nums
+        or (right - left + 1 < k)
+        or (k < 2)
+        or (nums[left] * k > target)
+        or nums[right] * k < target
     ):
         return
     if k > 2:
