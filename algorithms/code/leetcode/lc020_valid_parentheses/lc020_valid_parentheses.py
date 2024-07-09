@@ -17,22 +17,11 @@ class Solution:
         if result is not None:
             return result
         stack = []
+        lut = {')': '(', '}': '{', ']': '['}
         for character in s:
-            if character in ['(', '{', '[']:
+            if character in lut.values():
                 stack.append(character)
-            elif character == ')':
-                if len(stack) == 0 or stack[-1] != '(':
-                    return False
-                stack.pop()
-            elif character == '}':
-                if len(stack) == 0 or stack[-1] != '{':
-                    return False
-                stack.pop()
-            elif character == ']':
-                if len(stack) == 0 or stack[-1] != '[':
-                    return False
-                stack.pop()
-            else:
+            elif not stack or stack.pop() != lut[character]:
                 return False
         return len(stack) == 0
 
