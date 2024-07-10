@@ -63,7 +63,7 @@
 * [ACM-ICPC questions](https://icpc.baylor.edu/worldfinals/problems)
 * [Codejam questions](https://code.google.com/codejam/past-contests)
 
-### [Flashcards](https://github.com/altermarkive/training/releases)
+### [Flashcards](http://altermarkive.github.io/training/algorithms/algorithms.html) ([print-to-PDF](http://altermarkive.github.io/training/algorithms/algorithms.html?print-pdf))
 
 ----------
 
