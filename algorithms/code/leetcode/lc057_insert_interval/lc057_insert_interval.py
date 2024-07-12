@@ -8,7 +8,8 @@ from typing import List
 class Solution:
     def insert(
         self,
-        intervals: List[List[int]], newInterval: List[int],
+        intervals: List[List[int]],
+        newInterval: List[int],
     ) -> List[List[int]]:
         start = newInterval[0]
         end = newInterval[1]
@@ -40,5 +41,5 @@ class TestCode(unittest.TestCase):
             Solution().insert(
                 [[1, 2], [3, 5], [6, 7], [8, 10], [12, 16]],
                 [4, 8],
-            )
+            ),
         )
