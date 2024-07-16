@@ -24,6 +24,9 @@ def canPartitionSubset(
         canPartitionSubset(nums, count - 1, summed - nums[count - 1], cache)
         or canPartitionSubset(nums, count - 1, summed, cache)
     )
+    cached = canPartitionSubset(
+        nums, count - 1, summed - nums[count - 1], cache
+    ) or canPartitionSubset(nums, count - 1, summed, cache)
     cache[count][summed] = cached
     return cached
 
