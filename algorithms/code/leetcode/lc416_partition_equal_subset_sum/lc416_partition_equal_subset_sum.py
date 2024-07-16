@@ -20,10 +20,6 @@ def canPartitionSubset(
         return cached
     if nums[count - 1] > summed:
         return canPartitionSubset(nums, count - 1, summed, cache)
-    cached = (
-        canPartitionSubset(nums, count - 1, summed - nums[count - 1], cache)
-        or canPartitionSubset(nums, count - 1, summed, cache)
-    )
     cached = canPartitionSubset(
         nums, count - 1, summed - nums[count - 1], cache
     ) or canPartitionSubset(nums, count - 1, summed, cache)
