@@ -26,4 +26,5 @@ class TestCode(unittest.TestCase):
         self.assertEqual(2, Solution().findMaxLength([0, 1, 0]))
 
     def test_other_1(self):
-        self.assertEqual(6, Solution().findMaxLength([0, 0, 1, 0, 0, 0, 1, 1]))
+        nums = [0, 0, 1, 0, 0, 0, 1, 1]
+        self.assertEqual(6, Solution().findMaxLength(nums))
