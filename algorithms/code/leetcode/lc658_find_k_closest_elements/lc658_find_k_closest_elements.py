@@ -14,7 +14,7 @@ class Solution:
                 end = middle - 1
             else:
                 begin = middle + 1
-        return arr[begin:begin + k]
+        return arr[begin : begin + k]
 
 
 class TestCode(unittest.TestCase):
