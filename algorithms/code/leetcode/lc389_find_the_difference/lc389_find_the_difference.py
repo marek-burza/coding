@@ -19,9 +19,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self):
-        self.assertListEqual(
-            'e', Solution().findTheDifference('abcd', 'abcde')
-        )
+        self.assertEqual('e', Solution().findTheDifference('abcd', 'abcde'))
 
     def test_example_2(self):
-        self.assertListEqual('e', Solution().findTheDifference('', 'y'))
+        self.assertEqual('y', Solution().findTheDifference('', 'y'))
