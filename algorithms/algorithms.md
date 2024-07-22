@@ -1,4 +1,4 @@
-## DYNAMIC PROGRAMMING
+# DYNAMIC PROGRAMMING
 
 ---
 
@@ -7,7 +7,7 @@ BOTTOM-UP: TABULATION (SUBPROBLEMS)
 
 ---
 
-## DFS vs. BFS
+# DFS vs. BFS
 
 ---
 
@@ -39,7 +39,7 @@ IMPLEMENTATION CAN BE FAST<br/>
 
 ---
 
-# HEAPS
+# HEAPS (part 1)
 (Java: PriorityQueue)<br/>
 [HackerRank: qheap1](https://www.hackerrank.com/challenges/qheap1)<br/>
 [LeetCode: min-stack](https://leetcode.com/problems/min-stack/)<br/>
@@ -47,17 +47,18 @@ IMPLEMENTATION CAN BE FAST<br/>
 
 ---
 
-*CHILD = INDEX * 2*<br/>
+*CHILD = INDEX × 2*<br/>
 *PARENT = INDEX / 2*<br/>
 (correct index by 1 for 0-based array; *O* - WORST/AVG)<br/>
-* BUILD: for each index from last parent to 0 (the root) traverse down picking the biggest/smallest child and correcting parent-child order<br/>
-* INSERT: append to the end of the array and traverse up correcting parent-child order *O(log(n))*<br/>
-* DELETE: overwrite node with last one and if less/greater than parent traverse up/down *O(log(n))*<br/>
-* SEARCH: linear scan through the array *O(n)*<br/>
+
+* BUILD: for each index from last parent to 0 (the root) traverse down picking the biggest/smallest child and correcting parent-child order
+* INSERT: append to the end of the array and traverse up correcting parent-child order *O(log(n))*
+* DELETE: overwrite node with last one and if less/greater than parent traverse up/down *O(log(n))*
+* SEARCH: linear scan through the array *O(n)*
 
 ---
 
-# HEAPS
+# HEAPS (part 2)
 (USAGE)
 
 ---
@@ -79,7 +80,7 @@ PRO: LOOKUP TIME (MANY CONNECTIONS)<br/>
 CON: SIZE (ALL POSSIBLE CONNECTIONS)
 * **ADJACENCY LIST**<br/>
 PRO: SIZE, SPEED (FEW CONNECTIONS), SPARSE
-**SPACE TRADEOFF:** *X * E vs. N² / 8*<br/>
+**SPACE TRADEOFF:** *X × E vs. N² / 8*<br/>
 (X - pointer size in bytes; matrix is packed - 8 booleans per byte)
 * **OBJECTS AND POINTERS**
 
@@ -116,8 +117,8 @@ Other algorithm: AVL tree (uses rotation)
 
 UNSTABLE<br/>
 WORST: *O(N²)* **!!!**<br/>
-BEST: *O(N * log(N))*<br/>
-AVERAGE: *O(N * log(N))*
+BEST: *O(N × log(N))*<br/>
+AVERAGE: *O(N × log(N))*
 
 ---
 
@@ -130,9 +131,9 @@ AVERAGE: *O(N * log(N))*
 * MERGE SUBLISTS
 
 STABLE<br/>
-WORST: *O(N * log(N))* **!!!**<br/>
-BEST: *O(N * log(N))*<br/>
-AVERAGE: *O(N * log(N))*
+WORST: *O(N × log(N))* **!!!**<br/>
+BEST: *O(N × log(N))*<br/>
+AVERAGE: *O(N × log(N))*
 
 ---
 
@@ -145,7 +146,7 @@ EXAMPLE **PRIM'S ALGORITHM**
 2. CREATE SET OF ALL EDGES
 3. LOOP TILL EVERY EDGE USED: USE AN EDGE WITH SMALLEST WEIGHT CONNECTING VERTEX IN THE TREE TO VERTEX NOT YET IN THE TREE
 
-*O((|E| + |V|) * log|V|)* WITH BINARY HEAP AND ADJACENCY
+*O((|E| + |V|) × log|V|)* WITH BINARY HEAP AND ADJACENCY
 
 ---
 
@@ -161,7 +162,7 @@ SHORTEST PATH *O(|V|²)*:
 4. LOWEST DISTANCE UNVISITED NODE AS CURRENT
 5. END WHEN ALL VISITED
 
-*O((|E| + |V|) * log|V|)* WITH A PRIORITY QUEUE (SELF-BALANCING BST OR BINARY HEAP)
+*O((|E| + |V|) × log|V|)* WITH A PRIORITY QUEUE (SELF-BALANCING BST OR BINARY HEAP)
 
 ---
 
@@ -172,10 +173,10 @@ SHORTEST PATH *O(|V|²)*:
 **LELANN-CHANG-ROBERTS**<br/>
 ONLY FORWARD LARGER ID IF HAVE NOT SENT OWN<br/>
 TIME *O(N)*<br/>
-AVERAGE MESSAGE *O(N * log(N))*<br/>
+AVERAGE MESSAGE *O(N × log(N))*<br/>
 WORST MESSAGE *O(N²)*<br/>
 **HIRSCHBERG-SINCLAIR** ELECTION IN NEIGHBORHOOD<br/>
-WORST MESSAGE *O(N * log(N))*
+WORST MESSAGE *O(N × log(N))*
 
 ---
 
