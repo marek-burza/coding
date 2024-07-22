@@ -14,7 +14,7 @@ class Solution:
         character = s[0]
         at = t.find(character)
         if at != -1:
-            return self.isSubsequence(s[1:], t[at + 1:])
+            return self.isSubsequence(s[1:], t[at + 1 :])
         return False
 
 
