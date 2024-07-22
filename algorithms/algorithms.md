@@ -315,7 +315,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, matches - regex, replaceAll - regex, replaceFirst - regex, split, substring, toUpperCase, trim
+compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, matches - reg. exp., replaceAll - reg. exp., replaceFirst - reg. exp., split, substring, toUpperCase, trim
 
 ---
 
