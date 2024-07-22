@@ -1,4 +1,8 @@
-# DYNAMIC PROGRAMMING
+# ALGORITHMS
+
+---
+
+## DYNAMIC PROGRAMMING
 
 ---
 
@@ -7,7 +11,7 @@ BOTTOM-UP: TABULATION (SUBPROBLEMS)
 
 ---
 
-# DFS vs. BFS
+## DFS vs. BFS
 
 ---
 
@@ -20,7 +24,7 @@ POST-ORDER: VISIT CHILDREN
 
 ---
 
-# HASH TABLES
+## HASH TABLES
 
 ---
 
@@ -39,7 +43,7 @@ IMPLEMENTATION CAN BE FAST<br/>
 
 ---
 
-# HEAPS (part 1)
+## HEAPS (part 1)
 (Java: PriorityQueue)<br/>
 [HackerRank: qheap1](https://www.hackerrank.com/challenges/qheap1)<br/>
 [LeetCode: min-stack](https://leetcode.com/problems/min-stack/)<br/>
@@ -58,7 +62,7 @@ IMPLEMENTATION CAN BE FAST<br/>
 
 ---
 
-# HEAPS (part 2)
+## HEAPS (part 2)
 (USAGE)
 
 ---
@@ -71,7 +75,7 @@ REMOVE OUTGOING SIMILAR
 
 ---
 
-# GRAPHS
+## GRAPHS
 
 ---
 
@@ -86,7 +90,7 @@ PRO: SIZE, SPEED (FEW CONNECTIONS), SPARSE
 
 ---
 
-# TRIE TREE
+## TRIE TREE
 
 ---
 
@@ -97,7 +101,7 @@ indicating if this character is a terminating one.
 
 ---
 
-# SELF-BALANCING BST
+## SELF-BALANCING BST
 
 ---
 
@@ -106,7 +110,7 @@ Other algorithm: AVL tree (uses rotation)
 
 ---
 
-# QUICK SORT
+## QUICK SORT
 
 ---
 
@@ -122,7 +126,7 @@ AVERAGE: *O(N × log(N))*
 
 ---
 
-# MERGE SORT
+## MERGE SORT
 
 ---
 
@@ -137,7 +141,7 @@ AVERAGE: *O(N × log(N))*
 
 ---
 
-# MINIMUM SPANNING TREE
+## MINIMUM SPANNING TREE
 
 ---
 
@@ -150,7 +154,7 @@ EXAMPLE **PRIM'S ALGORITHM**
 
 ---
 
-# DIJKSTRA'S ALGORITHM
+## DIJKSTRA'S ALGORITHM
 (BUT FLOYD ON NEGATIVE)
 
 ---
@@ -166,7 +170,7 @@ SHORTEST PATH *O(|V|²)*:
 
 ---
 
-# LEADER ELECTION
+## LEADER ELECTION
 
 ---
 
@@ -180,7 +184,7 @@ WORST MESSAGE *O(N × log(N))*
 
 ---
 
-# P vs. NP
+## P vs. NP
 COMPLETE
 
 ---
@@ -194,7 +198,7 @@ COMPLETE
 
 ---
 
-# NP-COMPLETE PROBLEMS
+## NP-COMPLETE PROBLEMS
 
 ---
 
@@ -207,7 +211,7 @@ SET COVER PROBLEM
 
 ---
 
-# UNBOUNDED KNAPSACK PROBLEM
+## UNBOUNDED KNAPSACK PROBLEM
 [HackerRank: unbounded-knapsack](http://www.hackerrank.com/challenges/unbounded-knapsack)
 
 ---
@@ -221,7 +225,7 @@ PSEUDO POLYNOMIAL TIME (LIKE TESTING IF N IS PRIME) - EXPONENTIAL IN LENGTH (NUM
 
 ---
 
-# SET COVER PROBLEM
+## SET COVER PROBLEM
 
 ---
 
@@ -231,7 +235,7 @@ GREEDY (CHOOSE ONE COVERING MOST)
 
 ---
 
-# TRAVELING SALESMAN PROBLEM
+## TRAVELING SALESMAN PROBLEM
 
 ---
 
@@ -243,7 +247,7 @@ GREEDY (CHOOSE ONE COVERING MOST)
 
 ---
 
-# PROCESS VERSUS THREAD
+## PROCESS VERSUS THREAD
 CONTEXT SWITCH
 
 ---
@@ -253,7 +257,7 @@ CONTEXT SWITCH
 
 ---
 
-# DEADLOCK vs. LIVELOCK
+## DEADLOCK vs. LIVELOCK
 
 ---
 
@@ -265,7 +269,7 @@ AVOIDANCE BY RANDOMIZATION
 
 ---
 
-# LOCKS
+## LOCKS
 
 ---
 
@@ -279,7 +283,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-# DINING PHILOSOPHERS
+## DINING PHILOSOPHERS
 
 ---
 
@@ -289,7 +293,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-# LOCK (JAVA, PYTHON), CONCURRENT
+## LOCK (JAVA, PYTHON), CONCURRENT
 
 ---
 
@@ -300,7 +304,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-# SCHEDULING
+## SCHEDULING
 
 ---
 
@@ -311,7 +315,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-# STRING (JAVA)
+## STRING (JAVA)
 
 ---
 
@@ -319,7 +323,7 @@ compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, ma
 
 ---
 
-# SORT AND BINARY SEARCH (JAVA)
+## SORT AND BINARY SEARCH (JAVA)
 
 ---
 
@@ -330,7 +334,7 @@ compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, ma
 
 ---
 
-# LISTS (JAVA)
+## LISTS (JAVA)
 
 ---
 
@@ -349,7 +353,7 @@ Where `List`: `ArrayList` or `LinkedList`
 
 ---
 
-# SORT (PYTHON)
+## SORT (PYTHON)
 
 ---
 
@@ -357,7 +361,7 @@ Where `List`: `ArrayList` or `LinkedList`
 
 ---
 
-# TCP HANDSHAKE
+## TCP HANDSHAKE
 
 ---
 
@@ -374,7 +378,7 @@ CLOSE
 
 ---
 
-# COMBINATORIAL
+## COMBINATORIAL
 
 ---
 
