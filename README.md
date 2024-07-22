@@ -130,7 +130,6 @@ Algorithm Design:
 * [Cracking the Coding Interview](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
 * [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
 * [Google: Prepare for an Engineering Interview](https://youtu.be/ko-KkSmp-Lk)
-* [Google: Example Coding/Engineering Interview](https://youtu.be/XKu_SEDAykw)
 * [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
 * [Google: How We Hire](https://careers.google.com/how-we-hire/interview)
 * Coursera Princeton University Algorithms - [Part 1](https://www.coursera.org/learn/algorithms-part1) & [Part 2](https://www.coursera.org/learn/algorithms-part2)
