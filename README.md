@@ -88,10 +88,15 @@
 * Show specific alternatives / solution space
 * **Ballpark estimates**
 
+### 4. Iterate
+
+* Is anything missing (look closer at details/aspects)?
+
 ### Additional materials
 
 * [Alex Yu - System Design Interview](https://www.amazon.com/dp/B08B3FWYBX/ref=cm_sw_em_r_mt_dp_X3C1WZV5Q0VX0Q0HX7CX)
 * Review [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
+* [NeetCode: System Design (including 20 system design concepts in 10 Minutes)](https://www.youtube.com/playlist?list=PLot-Xpze53le35rQuIbRET3YwEtrcJfdt)
 * [Watch the lecture on Scalability Harvard Web Development](https://youtu.be/-W9F__D3oY4)
 * [Review an example - Restaurant Waiting Time](http://altermarkive.github.io/training/system-design/restaurant-waiting-time.html)
 * [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
@@ -109,15 +114,6 @@
 * Embracing System Failure: [OWASP Top Ten](https://owasp.org/www-project-top-ten/), [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering) & [Antifragile Engineering](https://en.wikipedia.org/wiki/Antifragile)
 * [Microservices](https://www.google.com/search?q=awesome+microservices): [best practices](https://microservices.io/) & [antipatterns / pitfalls](https://www.oreilly.com/content/microservices-antipatterns-and-pitfalls/)
 * [Gergely Orosz - Preparing for the Systems Design and Coding Interview](https://blog.pragmaticengineer.com/preparing-for-the-systems-design-and-coding-interviews/)
-
-----------
-
-## Object Oriented Design
-
-1. What do we want to do (with the objects)?
-2. What are the core objects (we operate on)?
-3. Anything missing (look closer at details/aspects)?
-4. Go deeper - how will the methods work?
 
 ----------
 
