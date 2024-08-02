@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# https://leetcode.com/problems/partition-equal-subset-sum/
+# https://leetcode.com/problems/third-maximum-number/
 
 import heapq
 import unittest
