@@ -103,8 +103,8 @@ type testServer struct {
 
 func (s *testServer) Shutdown() error {
 	if err := server.Shutdown(context.TODO()); err != nil {
-        return err
-    }
+		return err
+	}
 	return nil
 }
 
@@ -202,10 +202,10 @@ func TestDataStoreExtended(t *testing.T) {
 	if _, code, _ := freeForm(t, "DELETE", []string{"data", "reg6", "obj6", "con6"}, nil); code != http.StatusBadRequest {
 		t.Fatalf("error making DELETE request with too many params")
 	}
-	if _, code, _ := freeForm(t, "YKWIM", []string{"data", "reg6", "obj6", "con6"}, nil); code != http.StatusMethodNotAllowed {  // Note: Added after submission
+	if _, code, _ := freeForm(t, "YKWIM", []string{"data", "reg6", "obj6", "con6"}, nil); code != http.StatusMethodNotAllowed { // Note: Added after submission
 		t.Fatalf("error making YKWIM request with too many params")
 	}
-	if _, code, _ := freeForm(t, "DELETE", []string{"data", "reg7", "unknown"}, nil); code != http.StatusNotFound {  // Note: Added after submission
+	if _, code, _ := freeForm(t, "DELETE", []string{"data", "reg7", "unknown"}, nil); code != http.StatusNotFound { // Note: Added after submission
 		t.Fatalf("error making DELETE with not found params")
 	}
 
@@ -226,7 +226,7 @@ func TestDataStoreRepositorySeparation(t *testing.T) {
 	payload2 := strings.NewReader(content2)
 
 	_, code1, rep1 := freeForm(t, "PUT", []string{"data", "rep1"}, payload1)
-	if code1 != http.StatusCreated && rep1 != nil{
+	if code1 != http.StatusCreated && rep1 != nil {
 		t.Fatalf("error making first put request")
 	}
 	_, code2, rep2 := freeForm(t, "PUT", []string{"data", "rep2"}, payload2)
@@ -242,7 +242,6 @@ func TestDataStoreRepositorySeparation(t *testing.T) {
 		t.Fatalf("error making get request")
 	}
 }
-
 
 func freeForm(t *testing.T, method string, items []string, payload io.Reader) (string, int, *_response) {
 	joined := strings.Join(items, "/")
@@ -269,7 +268,7 @@ func freeForm(t *testing.T, method string, items []string, payload io.Reader) (s
 		return string(body), res.StatusCode, nil
 	}
 	if err := json.Unmarshal(body, &data); err != nil {
-   		return string(body), res.StatusCode, nil
+		return string(body), res.StatusCode, nil
 	}
 	return string(body), res.StatusCode, &data
 }

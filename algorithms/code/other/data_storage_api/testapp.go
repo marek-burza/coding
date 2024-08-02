@@ -17,8 +17,8 @@ type replyPut struct {
 }
 
 /*
-	This is a rather naive function for figuring out the
-	repository and objectID from the URL.
+This is a rather naive function for figuring out the
+repository and objectID from the URL.
 */
 func urlMatch(url string) (repository string, objectID string, count int) {
 	fragments := strings.SplitN(url, "/", -1)
@@ -50,7 +50,7 @@ func getData(w http.ResponseWriter, req *http.Request, repository string, object
 		w.Write(buffer)
 		// count, fail := w.Write(buffer)
 		// if fail != nil || count != len(buffer) {
-		// 	w.WriteHeader(http.StatusInternalServerError)
+		//     w.WriteHeader(http.StatusInternalServerError)
 		// }
 	} else {
 		w.WriteHeader(http.StatusNotFound)
@@ -72,13 +72,13 @@ func putData(w http.ResponseWriter, req *http.Request, repository string, object
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	mutex.Lock()  // Note: Added after submission
+	mutex.Lock() // Note: Added after submission
 	buffer, _ := ioutil.ReadAll(req.Body)
 	// buffer, fail := ioutil.ReadAll(req.Body)
 	// if fail != nil {
-	// 	w.WriteHeader(http.StatusInternalServerError)
-	// 	mutex.Unlock()
-	// 	return
+	//     w.WriteHeader(http.StatusInternalServerError)
+	//     mutex.Unlock()
+	//     return
 	// }
 	identifier := []byte(repository)
 	identifier = append(identifier, buffer...)
@@ -89,19 +89,19 @@ func putData(w http.ResponseWriter, req *http.Request, repository string, object
 	buffer, _ = json.Marshal(reply)
 	// buffer, fail = json.Marshal(reply)
 	// if fail != nil {
-	// 	delete(storage, objectID)
-	// 	w.WriteHeader(http.StatusInternalServerError)
-	// 	mutex.Unlock()
-	// 	return
+	//     delete(storage, objectID)
+	//     w.WriteHeader(http.StatusInternalServerError)
+	//     mutex.Unlock()
+	//     return
 	// }
 	w.WriteHeader(http.StatusCreated)
 	w.Write(buffer)
 	// count, fail = w.Write(buffer)
 	// if fail != nil || count != len(buffer) {
-	// 	delete(storage, objectID)
-	// 	w.WriteHeader(http.StatusInternalServerError)
+	//     delete(storage, objectID)
+	//     w.WriteHeader(http.StatusInternalServerError)
 	// }
-	mutex.Unlock()  // Note: Added after submission
+	mutex.Unlock() // Note: Added after submission
 }
 
 /*
@@ -118,17 +118,17 @@ func deleteData(w http.ResponseWriter, req *http.Request, repository string, obj
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	mutex.Lock()  // Note: Added after submission
-    if _, found := storage[objectID]; found {
-	    delete(storage, objectID)
-	    w.WriteHeader(http.StatusOK)
-    } else {
-	    w.WriteHeader(http.StatusNotFound)
-    }
-	mutex.Unlock()  // Note: Added after submission
+	mutex.Lock() // Note: Added after submission
+	if _, found := storage[objectID]; found {
+		delete(storage, objectID)
+		w.WriteHeader(http.StatusOK)
+	} else {
+		w.WriteHeader(http.StatusNotFound)
+	}
+	mutex.Unlock() // Note: Added after submission
 }
 
-var mutex sync.Mutex  // Note: Added after submission
+var mutex sync.Mutex // Note: Added after submission
 var server *http.Server
 var handled bool = false
 
@@ -153,12 +153,12 @@ func main() {
 	}
 
 	if !handled {
-	    http.HandleFunc("/data/", handler)
+		http.HandleFunc("/data/", handler)
 		handled = true
 	}
 	server = &http.Server{Addr: ":8282"}
 	server.ListenAndServe()
 	// if err := server.ListenAndServe(); err != http.ErrServerClosed {
-	// 	log.Fatal(err)
+	//     log.Fatal(err)
 	// }
 }
