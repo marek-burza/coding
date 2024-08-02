@@ -68,7 +68,7 @@ func TestExample1(t *testing.T) {
 		{1, 2, 3, 4, 5},
 		{2, 3, 4, 5, 6},
 	}
-	generic(t, result, expected);
+	generic(t, result, expected)
 }
 
 func TestExample2(t *testing.T) {
@@ -84,5 +84,5 @@ func TestExample2(t *testing.T) {
 		{4, 3, 2, 3, 2, 1, 0},
 		{5, 4, 3, 4, 3, 2, 1},
 	}
-	generic(t, result, expected);
+	generic(t, result, expected)
 }

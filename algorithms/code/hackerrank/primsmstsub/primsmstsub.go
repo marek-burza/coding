@@ -97,7 +97,7 @@ func Prims(n int32, edges [][]int32, start int32) int32 {
 		}
 		// _, startInConnected := connected[start]
 		// if vertex == start && startInConnected {
-		// 	break
+		//     break
 		// }
 		connected[vertex] = exists
 		for _, edge := range adjacency[vertex] {

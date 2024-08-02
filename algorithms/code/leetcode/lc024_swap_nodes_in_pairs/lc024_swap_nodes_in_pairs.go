@@ -4,8 +4,8 @@ package lc024
 
 // ListNode defines a singly-linked list
 type ListNode struct {
-    Val int
-    Next *ListNode
+	Val  int
+	Next *ListNode
 }
 
 // SwapPairs swaps every two adjacent nodes in the linked list
