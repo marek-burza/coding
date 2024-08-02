@@ -14,7 +14,6 @@ func generic(t *testing.T, result int, expected int, nums []int, expectedNums []
     }
 }
 
-
 func Test042124234And42(t *testing.T) {
     nums := []int{0, 42, 1, 2, 42, 3, 4};
     expected := 5
