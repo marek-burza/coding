@@ -26,7 +26,7 @@ func Divide(dividend int, divisor int) int {
 	sign := (longDividend / abs(longDividend)) * (longDivisor / abs(longDivisor))
 	longDividend = abs(longDividend)
 	longDivisor = abs(longDivisor)
-	var counter int64 = 0
+	var counter int64
 	for longDividend >= longDivisor {
 		subtractor := longDivisor
 		incrementor := int64(1)
