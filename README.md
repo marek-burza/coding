@@ -87,6 +87,8 @@
 * Say how to distribute and how to fix whats broken by distributing
 * Show specific alternatives / solution space
 * **Ballpark estimates**
+* If you do not know something - be upfront about it but do offer a direction
+* If you are particularly familiar with an aspect - do mention it
 
 ### 4. Iterate
 
