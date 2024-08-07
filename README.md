@@ -75,7 +75,7 @@
 
 * **Disambiguate**, gather requirements - ask clarifying questions (missing details or restrictions) - beware of assumptions!
 * Agree on **scope** / **use cases**
-  (First a minimum viable product then explore other functions: API vs UI? Customizable? Monetization? Analytics? Scale / numbers?)
+  (First a minimum viable product then explore other functions - embodyment, features, feature aspects/specifics, scale/numbers: Mobile vs. web? API vs UI? Customizable? Monetization? descending/random? Analytics? Scale / numbers?)
 
 ### 2. Design - break down the system into parts
 
