@@ -83,7 +83,7 @@
 
 ### 3. Scale-up / distribute
 
-* **Say what can fail / overflow**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
+* **Say what can fail / overflow / bottleneck**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
 * Say how to distribute and how to fix whats broken by distributing
 * Show specific alternatives / solution space
 * **Ballpark estimates**
