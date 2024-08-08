@@ -29,7 +29,7 @@ class TestCode(unittest.TestCase):
     def test_example_3(self):
         self.assertEqual(
             '/home/user/Pictures',
-            Solution().simplifyPath('/home/user/Documents/../Pictures')
+            Solution().simplifyPath('/home/user/Documents/../Pictures'),
         )
 
     def test_example_4(self):
@@ -37,6 +37,5 @@ class TestCode(unittest.TestCase):
 
     def test_example_5(self):
         self.assertEqual(
-            '/.../b/d',
-            Solution().simplifyPath('/.../a/../b/c/../d/./')
+            '/.../b/d', Solution().simplifyPath('/.../a/../b/c/../d/./')
         )
