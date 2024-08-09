@@ -50,6 +50,7 @@
 ![Status Python](https://github.com/altermarkive/training/workflows/Python/badge.svg)
 ![Status Go](https://github.com/altermarkive/training/workflows/Go/badge.svg)
 ![Status Java](https://github.com/altermarkive/training/workflows/Java/badge.svg)
+![Status C#](https://github.com/altermarkive/training/workflows/C%23/badge.svg)
 [![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
 
 * [HackerRank](https://www.hackerrank.com/) - [my solutions](algorithms/code/hackerrank)
@@ -68,15 +69,16 @@
 
 ## System Design
 
-### 0. Communicate, steer (be the tech lead), get feedback
+### 0. Be the tech lead; Iterate **quickly** on the design while prioritizing what to work on next; Communicate trade-offs, decissions, have a dialog with your stakeholder (interviewer), dare to ask for help if necessary (but own it with confidence)
 
 ### 1. Explore and understand
 
+* Go from an ill-defined goal to a formulated statement of what to build (and what is out of scope)
 * **Disambiguate**, gather requirements - ask clarifying questions (missing details or restrictions) - beware of assumptions!
 * Agree on **scope** / **use cases**
-  (First a minimum viable product then explore other functions - embodiment, features, feature aspects/specifics, scale/numbers: Mobile vs. web? API vs UI? Customizable? Monetization? descending/random? Analytics? Scale / numbers?)
+  (First a minimum viable product then explore other functions - embodiment, features, feature aspects/specifics, scale/numbers: Mobile vs. web? API vs UI? Customizable? Monetization? Descending or random order? Analytics? Scale / numbers?)
 
-### 2. Design - break down the system into parts
+### 2. Design - break down the system into simple parts
 
 * Start with basic, **abstract** design (e.g. key-value store, web server); Prioritize
 
@@ -92,6 +94,7 @@
 ### 4. Iterate
 
 * Is anything missing (look closer at details/aspects)?
+* How would it change the behavior of users?
 
 ### Additional materials
 
@@ -139,6 +142,7 @@ System Design:
 * [High Scalability Blog](https://highscalability.com/)
 * [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
 * [System Design Primer](https://github.com/donnemartin/system-design-primer)
+* Patrick Halina - [Systems Design Interview Guide](http://patrickhalina.com/posts/systems-design-interview-guide) & [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
 
 Other:
 
