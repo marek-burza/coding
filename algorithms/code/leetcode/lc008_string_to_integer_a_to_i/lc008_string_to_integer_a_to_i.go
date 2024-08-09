@@ -8,7 +8,7 @@ import (
 )
 
 func myAtoi(s string) int {
-	var result int64 = 0
+	var result int64
 	var sign int64 = 1
 	index := 0
 	for index < len(s) && unicode.IsSpace(rune(s[index])) {
