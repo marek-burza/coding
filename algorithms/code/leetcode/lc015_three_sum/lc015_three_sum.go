@@ -21,11 +21,12 @@ func threeSum(nums []int) [][]int {
 				continue
 			}
 			sum := nums[i] + nums[j] + nums[k]
-			if sum > 0 {
+			switch {
+			case sum > 0:
 				k--
-			} else if sum < 0 {
+			case sum < 0:
 				j++
-			} else {
+			default:
 				result = append(result, []int{nums[i], nums[j], nums[k]})
 				j++
 				k--
