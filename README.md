@@ -68,7 +68,12 @@
 
 ## System Design
 
-### 0. Be the tech lead; Iterate **quickly** on the design while prioritizing what to work on next; Communicate trade-offs, decissions, have a dialog with your stakeholder (interviewer), dare to ask for help if necessary (but own it with confidence)
+### 0. Be the tech lead
+
+* Iterate **quickly** on the design while prioritizing what to work on next
+* Communicate trade-offs, decissions
+* Have a dialog with your stakeholder (interviewer)
+* Dare to ask for help if necessary (but own it with confidence)
 
 ### 1. Explore and understand
 
@@ -79,7 +84,10 @@
 
 ### 2. Design - break down the system into simple parts
 
-* Start with basic, **abstract** design (e.g. key-value store, web server); Prioritize
+* Start with basic, **abstract** design (e.g. key-value store, web server)
+* Delineate what is where (cloud, user's equipment)
+* Describe how the user interacts with the system and what is the sequence (of inner system interactions)
+* Prioritize the next steps
 
 ### 3. Scale-up / distribute
 
