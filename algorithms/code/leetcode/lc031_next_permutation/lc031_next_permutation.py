@@ -21,9 +21,7 @@ class Solution:
                 if nums[i] > nums[index1]:
                     index2 = i
                     break
-            exchange = nums[index1]
-            nums[index1] = nums[index2]
-            nums[index2] = exchange
+            nums[index1], nums[index2] = nums[index2], nums[index1]
             nums[index1 + 1 :] = nums[index1 + 1 :][::-1]
 
 
