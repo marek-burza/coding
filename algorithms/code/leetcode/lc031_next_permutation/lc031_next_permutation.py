@@ -24,7 +24,7 @@ class Solution:
             exchange = nums[index1]
             nums[index1] = nums[index2]
             nums[index2] = exchange
-            nums[index1 + 1:] = nums[index1 + 1:][::-1]
+            nums[index1 + 1 :] = nums[index1 + 1 :][::-1]
 
 
 class TestCode(unittest.TestCase):
