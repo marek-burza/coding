@@ -15,18 +15,19 @@
 * Missing details? Special cases & their indication / handling?
 * Restrictions? Guarantees?
 * Types? Ranges? Sizes? Cardinality? How often? Unique / repetitions / empty / partially ordered?
+* Can I modify the input data structure?
 * Function signature & spec?
 * Accounted for entirety of interviewer's description?
 * Beware of: assumptions, **"familiar" exercises**, **early optimization**; Start simple
 
 ### 2. Talk through the design process / List ideas
-* List alternatives telling their pros and cons (e.g. time/space complexity)
+* List alternatives telling their pros and cons (e.g. time/space complexity); is there a time vs. space trade-off?
 * Tactic: Write (or draw) examples to identify a pattern
 * Tactic: Simplify (relax constraints) then generalize
 * Tactic: Base case & build up (induction, scale), dyn. prog.
 * Tactic: Match to other similar problem / data struct. (for example: **heap**, **graph**, stack, etc.)
 * Tactic: (Consider greedy alg., backtracking, iterating the smaller param.)
-* Pick one achievable in an interview (**solution likely to be simple enough**)
+* Pick one achievable in an interview (**solution likely to be simple enough**); indicate complexity
 
 ### 3. Code
 
@@ -36,12 +37,14 @@
 * Beware of < vs <=, +1 vs +0, null checks, overflows
 * Code must compile - obey syntax, but okay to ask if don't remember name or behavior
 
-### 4. Test - describe how would you test, run through a simple case
+### 4. Test
 
+* Describe how would you test, run through a simple case
 * Normal case
 * Non-trivial, corner cases
 * Full coverage time permitting
 * (Other: invalid input, randomized tests, load testing)
+* Point out options for refactoring (?)
 
 ### 5. Keep improving - can we do better?
 
