@@ -41,3 +41,9 @@ class TestCode(unittest.TestCase):
             ['0', '2->4', '6', '8->9'],
             Solution().summaryRanges([0, 2, 3, 4, 6, 8, 9]),
         )
+
+    def test_empty(self):
+        self.assertListEqual([], Solution().summaryRanges([]))
+
+    def test_single(self):
+        self.assertListEqual(['0'], Solution().summaryRanges([0]))
