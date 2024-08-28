@@ -36,7 +36,7 @@ of recommendations, which describes how to train the model and most importantly;
 how to assess and improve the privacy-preserving capabilities of the model.
 You are a machine learning engineer, developing a new "UNet" model for our
 model registry, to enable our customers to perform image segmentation on unseen
-images provided by a 3rd party.
+images provided by a third-party.
 
 
 ### Written section

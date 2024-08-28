@@ -4,8 +4,7 @@ from functools import partial
 from typing import Callable, List, Optional, Tuple
 
 import torch
-from torch import nn
-from torch import optim
+from torch import nn, optim
 
 
 class SimpleNN(nn.Module):
@@ -66,7 +65,7 @@ class Gateway:
         name: str,
         batches_per_round: int = 4,
         loss_function: Callable = nn.CrossEntropyLoss,
-        optimizer: Callable = partial(optim.Adam, lr=0.01)
+        optimizer: Callable = partial(optim.Adam, lr=0.01),
     ):
         # IMPLEMENTATION: BEGIN
         # For training reproducibility
@@ -199,6 +198,8 @@ class TestCode(unittest.TestCase):
 
     def test_reproducibility(self):
         self.assertEqual(len({main() for _ in range(10)}), 1)
+
+
 # IMPLEMENTATION: END
 
 
