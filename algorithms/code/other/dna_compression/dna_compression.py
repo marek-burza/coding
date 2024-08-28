@@ -1,46 +1,108 @@
+import re
 import sys
+import tempfile
+import unittest
+from pathlib import Path
+from typing import Iterator
 
-def main(path_in: str, path_out: str) -> None:
-    with open(path_in, 'r') as handle:
-        body = handle.readlines()
-    for i, line in enumerate(body):
-        if line.startswith('     '):
-            body = body[i:]
-            break
-    dna = ''.join(body)
-    body = [item for item in dna if item in ['a', 'c', 'g', 't']]
-    joined = "".join(body)
-    # counter = 0
-    buffer = bytearray()
-    octet = 0
-    busy = 0
-    lut = {'a': 0, 'c': 1, 'g': 2, 't': 3}
-    for item in body:
-        octet = (octet << 2) | lut[item]
-        busy += 1
-        # counter += 1
-        if busy == 4:
-            buffer.append(octet)
-            octet = 0
-            busy = 0
-    if busy != 0:
-        buffer.append(octet)
+
+def read_next_aminoacid(gcg_path: Path) -> Iterator[str]:
+    with gcg_path.open() as handle:
+        while (line := handle.readline()) != '':
+            if line.startswith('     '):
+                line = re.sub(r'[^acgt]+', '', line)
+                yield from line
+
+
+def read_next_quartet(packed_path: Path) -> Iterator[int]:
+    with packed_path.open('rb') as handle:
+        while quartet := handle.read(1):
+            yield quartet[0]
+
+
+def encode_quartet(quartet: str) -> int:
+    encoded = 0
+    for aminoacid in quartet:
+        encoded = (encoded << 2) | 'acgt'.index(aminoacid)
+    return encoded
+
+
+def decode_quartet(quartet: int) -> str:
+    decoded = ''
+    for shift in range(6, -2, -2):
+        aminoacid = (quartet >> shift) & 3
+        decoded += 'acgt'[aminoacid]
+    return decoded
+
+
+def encode_file(path_in: Path, path_out: Path) -> None:
+    with path_out.open('wb') as handle:
+        handle.write(bytes([0]))
+        quartet = ''
+        for aminoacid in read_next_aminoacid(path_in):
+            quartet += aminoacid
+            if len(quartet) == 4:
+                handle.write(bytes([encode_quartet(quartet)]))
+                quartet = ''
+        busy = len(quartet)
+        if busy == 0:
+            busy = 4
+        else:
+            while len(quartet) < 4:
+                quartet += 'a'
+            handle.write(bytes([encode_quartet(quartet)]))
+        handle.seek(0)
+        handle.write(bytes([busy]))
+
+
+def decode_file(path_in: Path, path_out: Path) -> None:
+    with path_out.open('w') as handle:
+        size = path_in.stat().st_size
+        busy = None
+        index = 0
+        for quartet in read_next_quartet(path_in):
+            if busy is None:
+                busy = quartet
+            else:
+                aminoacids = decode_quartet(quartet)
+                if index == size - 1:
+                    aminoacids = aminoacids[:busy]
+                handle.write(aminoacids)
+            index += 1
+
+
+def main(path_in: Path, path_out: Path) -> None:
+    if path_in.name.endswith('gcg'):
+        encode_file(path_in, path_out)
     else:
-        busy = 4
-    buffer.append(busy)
-    with open(path_out, 'wb') as handle:
-        handle.write(buffer)
-    with open(path_out, 'rb') as handle:
-        body = handle.read()
-    lut = {0: 'a', 1: 'c', 2: 'g', 3: 't'}
-    result = ''
-    for octet in body[:-1]:
-        for position in range(3, -1, -1):
-            item = lut[(octet >> (2 * position)) & 3]
-            result += item
-            sys.stdout.write(item)
-    assert joined == result
+        decode_file(path_in, path_out)
 
 
-if __name__ == '__main__':
-    main('/home/coderpad/data/input.in', 'ouput.out')
+class TestCode(unittest.TestCase):
+    def test_quartet(self) -> None:
+        self.assertEqual(decode_quartet(encode_quartet('tcag')), 'tcag')
+
+    def generic_equivalence(self, original_path: Path) -> None:
+        with (
+            tempfile.NamedTemporaryFile(suffix='.packed') as encoded_path,
+            tempfile.NamedTemporaryFile(suffix='.txt') as decoded_path,
+        ):
+            main(original_path, Path(encoded_path.name))
+            main(Path(encoded_path.name), Path(decoded_path.name))
+            self.assertEqual(
+                Path(decoded_path.name).read_text(encoding='utf-8'),
+                ''.join(read_next_aminoacid(original_path)),
+            )
+
+    def test_encoding_and_decoding(self) -> None:
+        original_path = Path(__file__).parent / 'input4.gcg'
+        self.generic_equivalence(original_path)
+
+    def test_encoding_and_decoding_padded(self):
+        original_path = Path(__file__).parent / 'input1.gcg'
+        self.generic_equivalence(original_path)
+
+
+if __name__ == '__main__':  # pragma: no cover
+    if len(sys.argv) >= 3:
+        main(Path(sys.argv[1]), Path(sys.argv[2]))
