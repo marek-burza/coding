@@ -95,16 +95,16 @@ Here is a summary following from my brief research of and reflection on the topi
 1. The model weights are pre-trained and fixed - the user performs inference against
 the source data and retrieves the resulting segmentations.
 
-  * Risk:
-    * One of the risks can be potential identification of entries present in the original training set
-    (by testing specific input images & detecting for much stronger/crisper model response)
-    or attempting to infer sensitive attributes present in the training set (perhaps with a mirror
-    model - GAN or autoencoder based? - trained on the reverse of the inputs & outputs from the original model)
-  * Mitigations:
-    * mitigation could be to apply quantization (or other lossy techniques - adding perturbation, noise)
-    to the model output to restrict the possibility of reasoning about the model output
-    * another mitigation could be to monitor for synthetic inputs or access patterns
-    which could indicate attempts at probing the model
+* Risk:
+  * One of the risks can be potential identification of entries present in the original training set
+  (by testing specific input images & detecting for much stronger/crisper model response)
+  or attempting to infer sensitive attributes present in the training set (perhaps with a mirror
+  model - GAN or autoencoder based? - trained on the reverse of the inputs & outputs from the original model)
+* Mitigations:
+  * mitigation could be to apply quantization (or other lossy techniques - adding perturbation, noise)
+  to the model output to restrict the possibility of reasoning about the model output
+  * another mitigation could be to monitor for synthetic inputs or access patterns
+  which could indicate attempts at probing the model
 
 2. The model structure is fixed, but the user can provide their own weights to run
 inference as above.
