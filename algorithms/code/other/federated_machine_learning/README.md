@@ -13,18 +13,18 @@ computation, retrieves the results and aggregates them such that raw data should
 be returned to the end user.
 
 ```mermaid
-graph FML
+graph TD
 
+  CONSUMER[Data Consumer]
+  ORCHESTRATOR[Orchestrator]
   GATEWAY1[Gateway 1]
   GATEWAY2[Gateway 2]
   GATEWAY3[Gateway 3]
-  ORCHESTRATOR[Orchestrator]
-  CONSUMER[Data Consumer]
 
-  GATEWAY2 <--> ORCHESTRATOR
-  GATEWAY1 <--> ORCHESTRATOR
+  CONSUMER <--> ORCHESTRATOR
+  ORCHESTRATOR <--> GATEWAY1
+  ORCHESTRATOR <--> GATEWAY2
   ORCHESTRATOR <--> GATEWAY3
-  ORCHESTRATOR <--> CONSUMER
 ```
 
 A number of internally developed statistical and machine learning models are provided,
@@ -37,6 +37,7 @@ how to assess and improve the privacy-preserving capabilities of the model.
 You are a machine learning engineer, developing a new "UNet" model for our
 model registry, to enable our customers to perform image segmentation on unseen
 images provided by a 3rd party.
+
 
 ### Written section
 
@@ -59,6 +60,7 @@ Some examples to consider:
 access to the sensitive data?
 * How do different model hyper-parameters affect convergence patterns and what
 might those convergence patterns reveal about the underlying data?
+
 
 ### Coding Test
 
@@ -85,6 +87,7 @@ model. However, your code should run and we would expect to see the accuracy pla
 around 80-90% with what is provided here.
 You may wish to add some tests to ensure that your additions work as expected.
 
+
 ## Written assignment: Federated learning - potential privacy and security implications & mitigations
 
 Here is a summary following from my brief research of and reflection on the topic:
@@ -92,71 +95,60 @@ Here is a summary following from my brief research of and reflection on the topi
 1. The model weights are pre-trained and fixed - the user performs inference against
 the source data and retrieves the resulting segmentations.
 
-Risk:
-
-* One of the risks can be potential identification of entries present in the original training set
-(by testing specific input images & detecting for much stronger/crisper model response)
-or attempting to infer sensitive attributes present in the training set (perhaps with a mirror
-model - GAN or autoencoder based? - trained on the reverse of the inputs & outputs from the original model)
-
-Mitigations:
-
-* mitigation could be to apply quantization (or other lossy techniques - adding perturbation, noise)
-to the model output to restrict the possibility of reasoning about the model output
-* another mitigation could be to monitor for synthetic inputs or access patterns
-which could indicate attempts at probing the model
+  * Risk:
+    * One of the risks can be potential identification of entries present in the original training set
+    (by testing specific input images & detecting for much stronger/crisper model response)
+    or attempting to infer sensitive attributes present in the training set (perhaps with a mirror
+    model - GAN or autoencoder based? - trained on the reverse of the inputs & outputs from the original model)
+  * Mitigations:
+    * mitigation could be to apply quantization (or other lossy techniques - adding perturbation, noise)
+    to the model output to restrict the possibility of reasoning about the model output
+    * another mitigation could be to monitor for synthetic inputs or access patterns
+    which could indicate attempts at probing the model
 
 2. The model structure is fixed, but the user can provide their own weights to run
 inference as above.
 
-Risk:
-
-* The most obvious risk here is that the adversary could maliciously tune (amplify/dampen) the weights in such a way
-that the original input into the model from a restricted dataset would not be aggregated (or: passed through a complex function)
-but instead follow an isolated path through the network (or: passed through a much simpler, possibly reversible function) which could lead to leakage of sensitive information (either through direct read-out of the original values or reconstruction of original values as encoded by the "simplified" network)
-
-Mitigations:
-
-* the way to mitigate it could perhaps be to collect typical statistics about weights and scanning submitted weights for outliers / anomaly detection
-* another mitigation measure could be to screen outputs for correlation to inputs and flagging repeated, high correlation (either by scanning on synthetic data or withholding outputs for flagged cases)
+* Risk:
+  * The most obvious risk here is that the adversary could maliciously tune (amplify/dampen) the weights in such a way
+  that the original input into the model from a restricted dataset would not be aggregated (or: passed through a complex function)
+  but instead follow an isolated path through the network (or: passed through a much simpler, possibly reversible function) which could lead to leakage of sensitive information (either through direct read-out of the original values or reconstruction of original values as encoded by the "simplified" network)
+* Mitigations:
+  * the way to mitigate it could perhaps be to collect typical statistics about weights and scanning submitted weights for outliers / anomaly detection
+  * another mitigation measure could be to screen outputs for correlation to inputs and flagging repeated, high correlation (either by scanning on synthetic data or withholding outputs for flagged cases)
 
 3. The user is able to train a model against the sensitive data and download the
 resulting weights.
 
-Risk:
-
-* Here the biggest risk could be related to transfer learning (and, consequently, model/data theft)
-or reconstruction of the sensitive inputs (by constructing the model using reversible operations or architectures)
-
-Mitigations:
-
-* the mitigation could be to apply weight pruning or precission reduction to restrict fidelity of the weights
-and consequently of the outputs
-* restriction of the set of operations avalable to construct the model
-* some of the mitigations from point 2 could also be applicable here
-* speculative: application of formal methods (epistemic modal logic?) or model checkers
+* Risk:
+  * Here the biggest risk could be related to transfer learning (and, consequently, model/data theft)
+  or reconstruction of the sensitive inputs (by constructing the model using reversible operations or architectures)
+* Mitigations:
+  * the mitigation could be to apply weight pruning or precission reduction to restrict fidelity of the weights
+  and consequently of the outputs
+  * restriction of the set of operations avalable to construct the model
+  * some of the mitigations from point 2 could also be applicable here
+  * speculative: application of formal methods (epistemic modal logic?) or model checkers
 
 4. Other risks could be related to security vulnerabilities (buffer overflow, access elevation, etc.)
 in the inference pipelines (through carefuly crafted requests, weights or models) which would lead
 to execution of arbitrary code and creating a side channel
 
-Mitigation:
-
-* here the mitigation would be similar to typical security threats (sanitization of inputs,
-enclave isolation of executed code, regular and prompt application of security patches,
-preventive pen-testing / read teaming)
+* Mitigation:
+  * here the mitigation would be similar to typical security threats (sanitization of inputs,
+  enclave isolation of executed code, regular and prompt application of security patches,
+  preventive pen-testing / read teaming)
 
 5. There are some specifics of UNet architecture which may require particular attention,
 such as: shorter channels (skip connections) between the two arms of the model, tendency to over-segment
 (and thus reveal more information than may be necessary)
 
-Mitigation:
+* Mitigation:
+  * specific model also requires it own specific audit and mitigation measures - such as: selective
+  masking on skip connections, lower segmentation fidelity applied during training, resolution downsampling, etc.
 
-* specific model also requires it own specific audit and mitigation measures - such as: selective
-masking on skip connections, lower segmentation fidelity applied during training, resolution downsampling, etc.
 
-
-# Coding Test
+## Coding Test
 
 The task does not prescribe two aspects required for model training:
 1. The loss function - I opted for `CrossEntropyLoss` since its a frequent choice
