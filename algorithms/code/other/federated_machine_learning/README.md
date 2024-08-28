@@ -148,7 +148,7 @@ such as: shorter channels (skip connections) between the two arms of the model, 
   masking on skip connections, lower segmentation fidelity applied during training, resolution downsampling, etc.
 
 
-## Coding Test
+## Coding Test Implementation
 
 The task does not prescribe two aspects required for model training:
 1. The loss function - I opted for `CrossEntropyLoss` since its a frequent choice
