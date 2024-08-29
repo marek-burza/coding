@@ -1,4 +1,4 @@
-FROM golang:1.22.5-bookworm
+FROM golang:1.23-bookworm
 
 COPY . /code
 WORKDIR /code
