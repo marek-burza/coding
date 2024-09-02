@@ -3,4 +3,4 @@
 set -e
 
 cd algorithms
-rustup component add clippy
+rustup component add clippy rustfmt
