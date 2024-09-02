@@ -2,9 +2,9 @@
 
 set -e
 
-CARGO_INCREMENTAL=0
-RUSTFLAGS='-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
-RUSTDOCFLAGS='-Zprofile -Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off -Cpanic=abort -Zpanic_abort_tests'
+export CARGO_INCREMENTAL=0
+export RUSTFLAGS='-Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off'
+export RUSTDOCFLAGS='-Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off'
 cd algorithms
 rm -rf Cargo.lock
 cargo test  # -vv
