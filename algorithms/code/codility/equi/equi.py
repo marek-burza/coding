@@ -2,9 +2,10 @@
 # http://blog.codility.com/2011/03/solutions-for-task-equi.html
 
 import unittest
+from typing import List
 
 
-def find_aquilibrium_index(array):
+def find_aquilibrium_index(array: List[int]) -> int:
     n = len(array)
     if n == 0:
         return -1
