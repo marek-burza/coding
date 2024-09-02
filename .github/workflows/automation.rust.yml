@@ -24,7 +24,7 @@ jobs:
           /bin/sh .github/workflows/rust.tester.get.sh
           /bin/sh .github/workflows/rust.tester.run.sh
       - name: Covering
-        uses: actions-rs/grcov@v0
+        uses: actions-rs/grcov@v0.1
       - name: Reporting
         uses: codecov/codecov-action@v4
         with:
