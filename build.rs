@@ -29,5 +29,5 @@ fn traverse(path: PathBuf) {
 }
 
 fn main() {
-    traverse(PathBuf::from("code"));
+    traverse(PathBuf::from("algorithms/code"));
 }

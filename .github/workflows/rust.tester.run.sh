@@ -5,7 +5,6 @@ set -e
 export CARGO_INCREMENTAL=0
 export RUSTFLAGS='-Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off'
 export RUSTDOCFLAGS='-Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off'
-cd algorithms
-rm -rf Cargo.lock
+rm -rf Cargo.lock target
 cargo test  # -vv
 find . -name mod.rs -exec rm {} \;
