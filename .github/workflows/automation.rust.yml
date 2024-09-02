@@ -13,10 +13,12 @@ jobs:
       - name: Preparing
         uses: actions-rs/toolchain@v1
         with:
-            toolchain: 1.80.1
+            toolchain: 1.80
             override: true
       - name: Linting
         run: |
+          pwd
+          find .
           /bin/sh .github/workflows/rust.linter.get.sh
           /bin/sh .github/workflows/rust.linter.run.sh
       - name: Testing
