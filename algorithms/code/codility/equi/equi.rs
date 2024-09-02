@@ -4,7 +4,7 @@ extern crate num_traits;
 use self::num_bigint::BigInt;
 use self::num_traits::Zero;
 
-fn find_equilibrium_index(array: &[i32]) -> i32 {
+pub fn find_equilibrium_index(array: &[i32]) -> i32 {
     let n = array.len();
     if n == 0 {
         return -1;

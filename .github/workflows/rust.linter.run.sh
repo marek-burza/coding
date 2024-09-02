@@ -2,7 +2,6 @@
 
 set -e
 
-cd algorithms
-rm -rf Cargo.lock
+rm -rf Cargo.lock target
 cargo clippy
 find . -name mod.rs -exec rm {} \;
