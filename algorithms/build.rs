@@ -24,7 +24,7 @@ fn traverse(path: PathBuf) {
             }
         }
         // println!("{:?}\n{:?}", mod_rs_path, mod_rs_content);
-        fs::write(&mod_rs_path, mod_rs_content).unwrap();
+        fs::write(mod_rs_path, mod_rs_content).unwrap();
     }
 }
 
