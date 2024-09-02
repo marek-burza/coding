@@ -1,0 +1,11 @@
+[package]
+name = "training"
+version = "0.0.0"
+
+[dependencies]
+num-bigint = "0.4"
+num-traits = "0.2"
+
+[[bin]]
+name = "training"
+path = "code/main.rs"

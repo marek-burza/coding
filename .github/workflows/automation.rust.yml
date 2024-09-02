@@ -1,0 +1,32 @@
+---
+name: Rust
+
+on: [push]
+
+jobs:
+  pipeline:
+    name: Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initiating
+        uses: actions/checkout@v3
+      - name: Preparing
+        uses: actions-rs/toolchain@v1
+        with:
+            toolchain: 1.80
+            override: true
+      - name: Linting
+        run: |
+          /bin/sh .github/workflows/rust.linter.get.sh
+          /bin/sh .github/workflows/rust.linter.run.sh
+      - name: Testing
+        run: |
+          /bin/sh .github/workflows/rust.tester.get.sh
+          /bin/sh .github/workflows/rust.tester.run.sh
+      - name: Covering
+        uses: actions-rs/grcov@v0
+      - name: Reporting
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: rust
