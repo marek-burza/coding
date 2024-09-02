@@ -17,8 +17,6 @@ jobs:
             override: true
       - name: Linting
         run: |
-          pwd
-          find .
           /bin/sh .github/workflows/rust.linter.get.sh
           /bin/sh .github/workflows/rust.linter.run.sh
       - name: Testing
