@@ -7,5 +7,7 @@ export RUSTFLAGS='-Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Cover
 export RUSTDOCFLAGS='-Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Coverflow-checks=off'
 rm -rf Cargo.lock target
 LLVM_PROFILE_FILE="./target/coverage/training.profraw" cargo test
-./grcov ./target/coverage --binary-path ./target/debug/ -s . -o lcov.info --keep-only . --output-types lcov
 find . -name mod.rs -exec rm {} \;
+grcov ./target/coverage --binary-path ./target/debug/ -s . -o . --ignore-not-existing --keep-only 'algorithms/*' --output-types lcov,files
+cat files
+mv lcov lcov.info
