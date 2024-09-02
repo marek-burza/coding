@@ -1,3 +1,4 @@
+.DS_Store
 __pycache__
 .coverage
 algorithms/bin
@@ -10,3 +11,5 @@ algorithms/.classpath
 algorithms/.project
 algorithms/.settings
 algorithms/target
+Cargo.lock
+/target

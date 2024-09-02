@@ -53,6 +53,7 @@
 ![Status Python](https://github.com/altermarkive/training/workflows/Python/badge.svg)
 ![Status Go](https://github.com/altermarkive/training/workflows/Go/badge.svg)
 ![Status Java](https://github.com/altermarkive/training/workflows/Java/badge.svg)
+![Status Rust](https://github.com/altermarkive/training/workflows/Rust/badge.svg)
 [![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
 
 * [HackerRank](https://www.hackerrank.com/) - [my solutions](algorithms/code/hackerrank)
