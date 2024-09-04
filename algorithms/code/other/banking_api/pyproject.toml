@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=72.1,<73", "setuptools-scm>=8.1,<9"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "banking"
+description = "Banking API"
+version = "0.0.0"
+authors = [
+    { name = "noreply", email = "noreply@github.com" }
+]
+requires-python = ">=3.12"
+license = {text = "License: MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+  "fastapi>=0.112,<1",
+  "pydantic>=2.8.2,<3",
+  "sqlalchemy>=2.0.32,<3",
+  "uvicorn>=0.30.5,<1",
+]
+
+[project.optional-dependencies]
+tests = [
+  "bandit>=1.7.9,<2",
+  "black>=24.8.0,<25",
+  "coverage>=7.6.1,<8",
+  "flake8>=7.1.1,<8",
+  "httpx>=0.27.0,<1",
+  "isort>=5.13.2,<6",
+  "mypy>=1.11.1,<2",
+  "mypy-extensions>=1.0.0,<2",
+]
+
+[tool.black]
+line-length = 79
+target-version = ['py312']
+skip-string-normalization = true
+
+[tool.isort]
+line_length = 79
+profile = "black"
+multi_line_output = 3
