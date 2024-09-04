@@ -12,4 +12,7 @@ algorithms/.project
 algorithms/.settings
 algorithms/target
 Cargo.lock
+mod.rs
+files
+lcov.info
 /target
