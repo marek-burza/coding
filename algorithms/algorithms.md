@@ -314,19 +314,11 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-## STRING (JAVA)
+## STRING (PYTHON)
 
 ---
 
-compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, matches - reg. exp., replaceAll - reg. exp., replaceFirst - reg. exp., split, substring, toUpperCase, trim
-
----
-
-## *-∞*
-
----
-
-`float('-inf')`
+comparison operators (lexi), lower, upper, startswith, endswith, equals, find, split, strip, regex (TBD)
 
 ---
 
@@ -353,7 +345,18 @@ compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, ma
 
 ---
 
-* **PERMUTATION:** `itertools.permutations(iterable, None)`
-* **VARIATION WITHOUT REPETITIONS:** `itertools.chain.from_iterable(map(lambda c: itertools.permutations(c), itertools.combinations(iterable, k)))`
-* **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):** `itertools.product(iterable, repeat=k)`
-* **COMBINATION:** `itertools.combinations(iterable, k)`
+* **PERMUTATION:**
+`itertools.permutations(iterable, None)`
+* **VARIATION WITHOUT REPETITIONS:** 
+```
+itertools.chain.from_iterable(
+    map(
+        lambda c: itertools.permutations(c),
+        itertools.combinations(iterable, k),
+    )
+)
+```
+* **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):**
+`itertools.product(iterable, repeat=k)`
+* **COMBINATION:**
+`itertools.combinations(iterable, k)`
