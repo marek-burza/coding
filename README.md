@@ -66,6 +66,18 @@
 * [ACM-ICPC questions](https://icpc.baylor.edu/worldfinals/problems)
 * [Codejam questions](https://code.google.com/codejam/past-contests)
 
+### Additional Materials
+
+* [Patterns for Coding Questions](https://www.designgurus.io/course/grokking-the-coding-interview) !!!
+* [LeetCode - Top Interview Questions](https://leetcode.com/explore/featured/card/top-interview-questions-easy/) !!!
+* [Algorithm Design Process at Hired in Tech](https://www.hiredintech.com/algorithm-design/the-algorithm-design-canvas/)
+* [Actual interview questions on CareerCup](https://www.careercup.com/user?id=5095734581919744)
+* [Cracking the Coding Interview](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
+* [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
+* [Google: Prepare for an Engineering Interview](https://youtu.be/ko-KkSmp-Lk)
+* [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
+* [Coding Interview University](https://github.com/jwasham/coding-interview-university)
+
 ### [Flashcards](http://altermarkive.github.io/training/algorithms/algorithms.html) ([print-to-PDF](http://altermarkive.github.io/training/algorithms/algorithms.html?print-pdf))
 
 ----------
@@ -109,10 +121,14 @@
 
 ### Additional materials
 
-* [Alex Yu - System Design Interview](https://www.amazon.com/dp/B08B3FWYBX/ref=cm_sw_em_r_mt_dp_X3C1WZV5Q0VX0Q0HX7CX)
-* Review [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
-* [NeetCode: System Design (including 20 system design concepts in 10 Minutes)](https://www.youtube.com/playlist?list=PLot-Xpze53le35rQuIbRET3YwEtrcJfdt)
+* [Alex Yu - System Design Interview](https://www.amazon.com/dp/B08B3FWYBX/ref=cm_sw_em_r_mt_dp_X3C1WZV5Q0VX0Q0HX7CX) !!!
+* [NeetCode: System Design (including 20 system design concepts in 10 Minutes)](https://www.youtube.com/playlist?list=PLot-Xpze53le35rQuIbRET3YwEtrcJfdt) !!!
+* [Learn System Design in a Hurry](https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction) !!!
 * [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
+* [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
+* Patrick Halina - [Systems Design Interview Guide](http://patrickhalina.com/posts/systems-design-interview-guide) & [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
+* [System Design Primer](https://github.com/donnemartin/system-design-primer)
+* [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
 * Design principles, patterns, best practices - [SOLID](https://en.wikipedia.org/wiki/SOLID),
   Low Coupling & High Cohesion, [Heroku's 12 Factors](https://12factor.net/),
   [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design),
@@ -126,32 +142,12 @@
 * Architectural Safety Measures: [Circuit-breakers](https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern) & back-off timeouts, [Correlation IDs](https://dzone.com/articles/correlation-id-for-logging-in-microservices) & healthchecks & monitoring & logging & alerts, System Bulkheads
 * Embracing System Failure: [OWASP Top Ten](https://owasp.org/www-project-top-ten/), [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering) & [Antifragile Engineering](https://en.wikipedia.org/wiki/Antifragile)
 * [Microservices](https://www.google.com/search?q=awesome+microservices): [best practices](https://microservices.io/) & [antipatterns / pitfalls](https://www.oreilly.com/content/microservices-antipatterns-and-pitfalls/)
-* [Gergely Orosz - Preparing for the Systems Design and Coding Interview](https://blog.pragmaticengineer.com/preparing-for-the-systems-design-and-coding-interviews/)
 
 ----------
 
-## Extra materials
-
-Algorithm Design:
-
-* [LeetCode - Top Interview Questions](https://leetcode.com/explore/featured/card/top-interview-questions-easy/) !!!
-* [Review the Algorithm Design Process at Hired in Tech](https://www.hiredintech.com/algorithm-design/the-algorithm-design-canvas/)
-* [Actual interview questions on CareerCup](https://www.careercup.com/user?id=5095734581919744)
-* [Cracking the Coding Interview](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
-* [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
-* [Google: Prepare for an Engineering Interview](https://youtu.be/ko-KkSmp-Lk)
-* [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
-* [Coding Interview University](https://github.com/jwasham/coding-interview-university)
-
-System Design:
-
-* [Learn System Design in a Hurry](https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction)
-* Patrick Halina - [Systems Design Interview Guide](http://patrickhalina.com/posts/systems-design-interview-guide) & [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
-* [System Design Primer](https://github.com/donnemartin/system-design-primer)
-* [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
-
-Other:
+## Other Materials
 
 * [Tech Interview Handbook](https://www.techinterviewhandbook.org/) ([best practices](https://www.techinterviewhandbook.org/coding-interview-cheatsheet/)) !!!
+* [Gergely Orosz - Preparing for the Systems Design and Coding Interview](https://blog.pragmaticengineer.com/preparing-for-the-systems-design-and-coding-interviews/)
 * [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/) !!!
 * Mock interviews: [interviewing.io](https://interviewing.io/), [Pramp](https://www.pramp.com/), [Meet a Pro](https://www.meetapro.com/)
