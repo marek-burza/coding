@@ -54,7 +54,7 @@
 ![Status Go](https://github.com/altermarkive/training/workflows/Go/badge.svg)
 ![Status Java](https://github.com/altermarkive/training/workflows/Java/badge.svg)
 ![Status Rust](https://github.com/altermarkive/training/workflows/Rust/badge.svg)
-[![codecov](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
+[![Coverage](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
 
 * [HackerRank](https://www.hackerrank.com/) - [my solutions](algorithms/code/hackerrank)
 * [LeetCode](https://leetcode.com/) - [my solutions](algorithms/code/leetcode)
@@ -112,8 +112,6 @@
 * [Alex Yu - System Design Interview](https://www.amazon.com/dp/B08B3FWYBX/ref=cm_sw_em_r_mt_dp_X3C1WZV5Q0VX0Q0HX7CX)
 * Review [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
 * [NeetCode: System Design (including 20 system design concepts in 10 Minutes)](https://www.youtube.com/playlist?list=PLot-Xpze53le35rQuIbRET3YwEtrcJfdt)
-* [Watch the lecture on Scalability Harvard Web Development](https://youtu.be/-W9F__D3oY4)
-* [Review an example - Restaurant Waiting Time](http://altermarkive.github.io/training/system-design/restaurant-waiting-time.html)
 * [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
 * Design principles, patterns, best practices - [SOLID](https://en.wikipedia.org/wiki/SOLID),
   Low Coupling & High Cohesion, [Heroku's 12 Factors](https://12factor.net/),
@@ -136,26 +134,24 @@
 
 Algorithm Design:
 
+* [LeetCode - Top Interview Questions](https://leetcode.com/explore/featured/card/top-interview-questions-easy/) !!!
 * [Review the Algorithm Design Process at Hired in Tech](https://www.hiredintech.com/algorithm-design/the-algorithm-design-canvas/)
 * [Actual interview questions on CareerCup](https://www.careercup.com/user?id=5095734581919744)
 * [Cracking the Coding Interview](https://www.google.nl/search?q=cracking+the+coding+interview+filetype:pdf)
 * [Programming Interviews Exposed](https://www.google.nl/search?q=programming+interviews+exposed+filetype:pdf)
 * [Google: Prepare for an Engineering Interview](https://youtu.be/ko-KkSmp-Lk)
 * [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
-* [Google: How We Hire](https://careers.google.com/how-we-hire/interview)
-* Coursera Princeton University Algorithms - [Part 1](https://www.coursera.org/learn/algorithms-part1) & [Part 2](https://www.coursera.org/learn/algorithms-part2)
 * [Coding Interview University](https://github.com/jwasham/coding-interview-university)
-* [Tech Interview Handbook](https://github.com/yangshun/tech-interview-handbook)
-* [LeetCode - Top Interview Questions](https://leetcode.com/explore/featured/card/top-interview-questions-easy/)
 
 System Design:
 
-* [High Scalability Blog](https://highscalability.com/)
-* [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
-* [System Design Primer](https://github.com/donnemartin/system-design-primer)
+* [Learn System Design in a Hurry](https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction)
 * Patrick Halina - [Systems Design Interview Guide](http://patrickhalina.com/posts/systems-design-interview-guide) & [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
+* [System Design Primer](https://github.com/donnemartin/system-design-primer)
+* [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
 
 Other:
 
-* Google Code Style Guides: [Java](https://google.github.io/styleguide/javaguide.html), [Python](https://google.github.io/styleguide/pyguide.html)
-* [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/)
+* [Tech Interview Handbook](https://www.techinterviewhandbook.org/) ([best practices](https://www.techinterviewhandbook.org/coding-interview-cheatsheet/)) !!!
+* [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/) !!!
+* Mock interviews: [interviewing.io](https://interviewing.io/), [Pramp](https://www.pramp.com/), [Meet a Pro](https://www.meetapro.com/)
