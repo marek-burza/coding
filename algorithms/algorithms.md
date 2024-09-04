@@ -346,9 +346,11 @@ comparison operators (lexi), lower, upper, startswith, endswith, equals, find, s
 ---
 
 * **PERMUTATION:**
-`itertools.permutations(iterable, None)`
-* **VARIATION WITHOUT REPETITIONS:** 
+```python
+itertools.permutations(iterable, None)
 ```
+* **VARIATION WITHOUT REPETITIONS:** 
+```python
 itertools.chain.from_iterable(
     map(
         lambda c: itertools.permutations(c),
@@ -357,6 +359,10 @@ itertools.chain.from_iterable(
 )
 ```
 * **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):**
-`itertools.product(iterable, repeat=k)`
+```python
+itertools.product(iterable, repeat=k)
+```
 * **COMBINATION:**
-`itertools.combinations(iterable, k)`
+```python
+itertools.combinations(iterable, k)
+```
