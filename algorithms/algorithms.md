@@ -293,14 +293,13 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-## LOCK (JAVA, PYTHON), CONCURRENT
+## LOCK, CONCURRENT
 
 ---
 
 `threading.Lock.acquire([blocking])`<br/>
 `threading.Lock.release([blocking])`<br/>
-`synchronized`<br/>
-[java.util.concurrent](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html)
+`import multiprocessing`
 
 ---
 
@@ -323,32 +322,10 @@ compareTo - lexi, ignoreCase, starts, endsWith, equals, indexOf, lastIndexOf, ma
 
 ---
 
-## SORT AND BINARY SEARCH (JAVA)
+## *-∞*
 
 ---
 
-`Arrays`<br/>
-`Collections.sort(List[, Comparator])`<br/>
-`int compare(T, T)`<br/>
-`binarySearch(T[] array, T key)`
-
----
-
-## LISTS (JAVA)
-
----
-
-`Vector`<br/>
-`Collections.synchronizedList(List)`<br/>
-Where `List`: `ArrayList` or `LinkedList`
-
----
-
-*-∞* (JAVA, PYTHON)
-
----
-
-`Double.NEGATIVE_INFINITY`<br/>
 `float('-inf')`
 
 ---
@@ -361,32 +338,22 @@ Where `List`: `ArrayList` or `LinkedList`
 
 ---
 
-## TCP HANDSHAKE
+## COMBINATORIAL (MATH)
 
 ---
 
-OPEN
-1. → SYN
-2. ← SYN-ACK
-3. → ACK
-
-CLOSE
-1. → FIN
-2. ← ACK
-3. ← FIN
-4. → ACK
+* **PERMUTATION:** *N!* ← factorial
+* **VARIATION WITHOUT REPETITIONS:** *N! / (N - K)!*
+* **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):** *N<sup>K</sup>*
+* **COMBINATION:** *N-choose-K*
 
 ---
 
-## COMBINATORIAL
+## COMBINATORIAL (PYTHON)
 
 ---
 
-* **PERMUTATION:** *N!* ← factorial<br/>
-`itertools.permutations(iterable, None)`
-* **VARIATION WITHOUT REPETITIONS:** *N! / (N - K)!*<br/>
-`itertools.chain.from_iterable(map(lambda c: itertools.permutations(c), itertools.combinations(iterable, k)))`
-* **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):** *N<sup>K</sup>*<br/>
-`itertools.product(iterable, repeat=k)`
-* **COMBINATION:** *N-choose-K*<br/>
-`itertools.combinations(iterable, k)`
+* **PERMUTATION:** `itertools.permutations(iterable, None)`
+* **VARIATION WITHOUT REPETITIONS:** `itertools.chain.from_iterable(map(lambda c: itertools.permutations(c), itertools.combinations(iterable, k)))`
+* **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):** `itertools.product(iterable, repeat=k)`
+* **COMBINATION:** `itertools.combinations(iterable, k)`
