@@ -1,9 +1,10 @@
 FROM python:3.12-alpine
 
-ADD . /tmp/banking
+COPY . /tmp/banking
 
-RUN cd /tmp/banking && \
-    pip install --disable-pip-version-check --no-cache-dir . && \
+WORKDIR /tmp/banking
+
+RUN pip install --disable-pip-version-check --no-cache-dir . && \
     rm -rf /tmp/banking
 
 WORKDIR /var/db

@@ -36,7 +36,8 @@ class TestTransfers(unittest.TestCase):
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = client.put(
-            '/accounts/', params={'customer_identifier': 15, 'balance': 10000},
+            '/accounts/',
+            params={'customer_identifier': 15, 'balance': 10000},
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         from_account_identifier = response.json()['identifier']
@@ -154,7 +155,7 @@ class TestTransfers(unittest.TestCase):
             params={
                 'customer_identifier': 16,
                 'account_identifier': to_account_identifier,
-            }
+            },
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json()[0]['balance'], 5000)

@@ -168,7 +168,7 @@ The first three steps are grouped into convenience scripts:
 
 * [`automation/1.build.sh`](./automation/1.build.sh) builds the Docker container image
 * [`automation/2.lint.sh`](./automation/2.lint.sh) & [`automation/3_test.sh`](./automation/3.test.sh) run linting & testing respectively,
-and use the Docker container image built in the first step
+and uses the Docker container image built earlier
 (to ensure uniformity of the environment between linting/testing & production runtime environments)
 
 Note: All of the scripts feature `set -e` to ensure the script exits upon the first failure.
@@ -213,8 +213,8 @@ You are expected to design any other required models and routes for your API.
 * Maintainability: is it written in a clean, maintainable way?
 * Testing: is the system adequately tested?
 * Documentation:
-   * is the API well-documented?
-   * are design choices well-explained?
+  * is the API well-documented?
+  * are design choices well-explained?
 
 ## Appendix B: Next Steps
 
