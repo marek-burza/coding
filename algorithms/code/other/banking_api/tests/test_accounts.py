@@ -49,7 +49,7 @@ class TestAccounts(unittest.TestCase):
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_successful_account_read_with_customer_and_account_ids(
-        self
+        self,
     ) -> None:
         response = client.put(
             '/customers/',
