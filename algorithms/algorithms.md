@@ -318,7 +318,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-comparison operators (lexi), lower, upper, startswith, endswith, equals, find, split, strip, regex (TBD)
+comparison operators (lexi), lower, upper, startswith, endswith, equals, find, split, strip, regular expression (TBD)
 
 ---
 
@@ -349,7 +349,7 @@ comparison operators (lexi), lower, upper, startswith, endswith, equals, find, s
 ```python
 itertools.permutations(iterable, None)
 ```
-* **VARIATION WITHOUT REPETITIONS:** 
+* **VARIATION WITHOUT REPETITIONS:**
 ```python
 itertools.chain.from_iterable(
     map(
