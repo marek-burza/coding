@@ -31,7 +31,8 @@ class TestAccounts(unittest.TestCase):
         response = client.put(
             '/customers/',
             params={
-                'customer_identifier': 11, 'customer_name': 'Bob Eleventh'
+                'customer_identifier': 11,
+                'customer_name': 'Bob Eleventh',
             },
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -44,9 +45,7 @@ class TestAccounts(unittest.TestCase):
         )
 
     def test_unsuccessful_account_creation_without_customer(self) -> None:
-        response = client.put(
-            '/accounts/', params={'customer_identifier': -1}
-        )
+        response = client.put('/accounts/', params={'customer_identifier': -1})
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_successful_account_read_with_customer_and_account_ids(
@@ -125,7 +124,7 @@ class TestAccounts(unittest.TestCase):
         )
 
     def test_unsuccessful_account_read_with_non_existing_customer_id(
-        self
+        self,
     ) -> None:
         response = client.get('/accounts/', params={'customer_identifier': -1})
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

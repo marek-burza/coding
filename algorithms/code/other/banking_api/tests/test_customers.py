@@ -44,14 +44,16 @@ class TestCustomers(unittest.TestCase):
         response = client.put(
             '/customers/',
             params={
-                'customer_identifier': 2, 'customer_name': 'Alice Repeated'
+                'customer_identifier': 2,
+                'customer_name': 'Alice Repeated',
             },
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         response = client.put(
             '/customers/',
             params={
-                'customer_identifier': 3, 'customer_name': 'Alice Repeated'
+                'customer_identifier': 3,
+                'customer_name': 'Alice Repeated',
             },
         )
         self.assertEqual(response.status_code, status.HTTP_409_CONFLICT)
@@ -78,9 +80,7 @@ class TestCustomers(unittest.TestCase):
             params={'customer_identifier': 5, 'customer_name': 'Alice Fifth'},
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        response = client.get(
-            '/customers/', params={'customer_identifier': 5}
-        )
+        response = client.get('/customers/', params={'customer_identifier': 5})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         parsed_response = response.json()
         self.assertEqual(len(parsed_response), 1)

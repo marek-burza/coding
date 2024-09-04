@@ -13,7 +13,7 @@ class AccountBase(BaseModel):
 
     @field_validator('balance', mode='before')
     def validate_balance_is_not_negative(
-        cls, value: int, info: FieldValidationInfo
+        self, value: int, info: FieldValidationInfo
     ) -> int:
         if value < 0:
             raise HTTPException(
