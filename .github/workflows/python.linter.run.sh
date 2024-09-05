@@ -2,6 +2,8 @@
 
 set -e
 
+echo "--- isort ---"
+isort --settings-file .github/linters/.isort.cfg --check algorithms/code
 echo "--- pycodestyle ---"
 pycodestyle --ignore=E203,W503 .
 echo "--- flake8 ---"
