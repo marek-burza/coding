@@ -7,7 +7,7 @@ fn traverse(path: PathBuf) {
     queue.push_back(path);
     while let Some(path) = queue.pop_front() {
         let mod_rs_path = format!("{}/mod.rs", path.to_str().unwrap());
-        let mut mod_rs_content = String::new();
+        let mut mod_rs_content: Vec<String> = vec![];
         if let Ok(entries) = fs::read_dir(&path) {
             for entry in entries.flatten() {
                 if let Ok(file_type) = entry.file_type() {
@@ -16,15 +16,19 @@ fn traverse(path: PathBuf) {
                     let entry_stem = entry_path.file_stem().unwrap().to_str().unwrap();
                     if file_type.is_dir() {
                         queue.push_back(entry_path.clone());
-                        mod_rs_content.push_str(&format!("pub mod {};\n", entry_stem));
+                        mod_rs_content.push(format!("pub mod {};\n", entry_stem));
                     } else if entry_name.ends_with("rs") & (entry_name != "mod.rs") {
-                        mod_rs_content.push_str(&format!("pub mod {};\n", entry_stem));
+                        mod_rs_content.push(format!("pub mod {};\n", entry_stem));
                     }
                 }
             }
         }
-        // println!("{:?}\n{:?}", mod_rs_path, mod_rs_content);
-        fs::write(mod_rs_path, mod_rs_content).unwrap();
+        mod_rs_content.sort();
+        let mut mod_rs_body = mod_rs_content.join("\n");
+        if mod_rs_body.is_empty() {
+            mod_rs_body = String::from("\n");
+        }
+        fs::write(mod_rs_path, mod_rs_body).unwrap();
     }
 }
 
