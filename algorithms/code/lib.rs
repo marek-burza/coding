@@ -2,3 +2,4 @@
 
 pub mod codility;
 pub mod geeksforgeeks;
+pub mod leetcode;
