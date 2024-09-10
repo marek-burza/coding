@@ -9,5 +9,5 @@ rm -rf Cargo.lock target
 LLVM_PROFILE_FILE="./target/coverage/training.profraw" cargo test
 find . -name mod.rs -exec rm {} \;
 grcov ./target/coverage --binary-path ./target/debug/ -s . -o . --ignore-not-existing --keep-only 'algorithms/*' --output-types lcov,files
-cat files | sort
+sort < files
 mv lcov lcov.info
