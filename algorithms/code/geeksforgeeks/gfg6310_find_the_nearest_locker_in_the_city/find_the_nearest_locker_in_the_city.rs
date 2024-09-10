@@ -72,7 +72,7 @@ pub fn locker_distances(sizex: usize, sizey: usize, lockers: &[Coordinates]) -> 
 mod tests {
     use super::*;
 
-    fn generic_test(result: &Vec<Vec<u64>>, expected: &Vec<Vec<u64>>) {
+    fn generic_test(result: &[Vec<u64>], expected: &[Vec<u64>]) {
         assert_eq!(result.len(), expected.len());
         for i in 0..expected.len() {
             assert_eq!(result[i].len(), expected[i].len());

@@ -82,7 +82,7 @@ mod tests {
 
     fn create_network() -> Network {
         Network {
-            friendships: HashMap::from(convert_map(
+            friendships: convert_map(
                 [
                     ("Jack", vec!["Jane", "John"]),
                     ("John", vec!["Alice", "Jack", "Jane"]),
@@ -92,8 +92,8 @@ mod tests {
                     ("Loner", vec![]),
                 ]
                 .into(),
-            )),
-            attendances: HashMap::from(convert_map(
+            ),
+            attendances: convert_map(
                 [
                     ("Jack", vec!["Science 1"]),
                     ("John", vec!["Science 1", "Arts"]),
@@ -103,28 +103,28 @@ mod tests {
                     ("Loner", vec!["Philosophy"]),
                 ]
                 .into(),
-            )),
+            ),
         }
     }
 
     fn create_other() -> Network {
         Network {
-            friendships: HashMap::from(convert_map(
+            friendships: convert_map(
                 [
                     ("Student1", vec!["Student2", "Student3"]),
                     ("Student2", vec!["Student1", "Student3"]),
                     ("Student3", vec!["Student1", "Student2"]),
                 ]
                 .into(),
-            )),
-            attendances: HashMap::from(convert_map(
+            ),
+            attendances: convert_map(
                 [
                     ("Student1", vec!["Course1"]),
                     ("Student2", vec!["Course2"]),
                     ("Student3", vec!["Course3"]),
                 ]
                 .into(),
-            )),
+            ),
         }
     }
 
