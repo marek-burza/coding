@@ -22,7 +22,7 @@ impl Solution {
 
     fn nth_node(head: &mut Option<Box<ListNode>>, n: i32) -> Option<&mut Box<ListNode>> {
         let mut current = head.as_mut();
-        for _ in 0..(n) {
+        for _ in 0..n {
             match current {
                 Some(node) => current = node.next.as_mut(),
                 None => return None,
