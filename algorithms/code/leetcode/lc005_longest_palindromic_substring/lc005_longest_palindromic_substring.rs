@@ -1,7 +1,7 @@
 // https://leetcode.com/problems/longest-palindromic-substring/
 // See also: Manacher algorithm
 
-pub struct Solution {}
+pub struct Solution;
 
 impl Solution {
     pub fn longest_palindrome(s: String) -> String {

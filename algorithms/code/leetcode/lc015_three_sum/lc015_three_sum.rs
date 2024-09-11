@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/3sum/
 
-pub struct Solution {}
+pub struct Solution;
 
 impl Solution {
     pub fn three_sum(nums: Vec<i32>) -> Vec<Vec<i32>> {
