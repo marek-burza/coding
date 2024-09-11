@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/string-to-integer-atoi/
 
-pub struct Solution {}
+pub struct Solution;
 
 impl Solution {
     pub fn my_atoi(s: String) -> i32 {

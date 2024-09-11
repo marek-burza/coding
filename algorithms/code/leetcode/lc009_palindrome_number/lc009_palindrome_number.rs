@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/palindrome-number/
 
-pub struct Solution {}
+pub struct Solution;
 
 impl Solution {
     pub fn is_palindrome(mut x: i32) -> bool {

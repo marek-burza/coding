@@ -1,6 +1,6 @@
 // https://leetcode.com/problems/reverse-integer/
 
-pub struct Solution {}
+pub struct Solution;
 
 impl Solution {
     pub fn reverse(mut x: i32) -> i32 {
