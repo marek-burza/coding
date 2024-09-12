@@ -41,6 +41,15 @@ impl Solution {
 mod tests {
     use super::*;
 
+    fn check(head: Option<Box<ListNode>>, expected: &[i32]) {
+        let mut result = Solution::swap_pairs(head);
+        for value in expected {
+            assert_ne!(result, None);
+            assert_eq!(result.as_ref().unwrap().val, *value);
+            result = result.unwrap().next;
+        }
+    }
+
     #[test]
     fn test_example() {
         let mut n1 = Some(Box::new(ListNode::new(1)));
@@ -51,12 +60,7 @@ mod tests {
         n2.as_mut().unwrap().next = n3;
         n1.as_mut().unwrap().next = n2;
         let expected = vec![2, 1, 4, 3];
-        let mut result = Solution::swap_pairs(n1);
-        for value in expected {
-            assert_ne!(result, None);
-            assert_eq!(result.as_ref().unwrap().val, value);
-            result = result.unwrap().next;
-        }
+        check(n1, &expected);
     }
 
     #[test]
@@ -67,12 +71,7 @@ mod tests {
         n2.as_mut().unwrap().next = n3;
         n1.as_mut().unwrap().next = n2;
         let expected = vec![2, 1, 3];
-        let mut result = Solution::swap_pairs(n1);
-        for value in expected {
-            assert_ne!(result, None);
-            assert_eq!(result.as_ref().unwrap().val, value);
-            result = result.unwrap().next;
-        }
+        check(n1, &expected);
     }
 
     #[test]
