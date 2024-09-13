@@ -6,11 +6,12 @@ use std::vec;
 
 pub fn locate_test_file(origin: &str, prefix: &str, name: &str) -> String {
     let path = Path::new(&origin);
+    let mut result = "".to_string();
     if let Some(parent) = path.parent() {
         let test_file_name = format!("{}{}.txt", prefix, name).to_string();
-        return parent.join(test_file_name).to_str().unwrap().to_string();
+        result = parent.join(test_file_name).to_str().unwrap().to_string();
     }
-    origin.to_string()
+    result
 }
 
 pub fn write_lines(origin: &str, name: &str, lines: &[String]) {
@@ -38,10 +39,8 @@ pub fn diff_check(origin: &str, name: &str) {
         .expect("Failed to execute diff!");
     remove_file(results_file_path).ok();
     let success = diff.status.success();
-    if !success {
-        io::stdout().write_all(&diff.stdout).unwrap();
-        io::stderr().write_all(&diff.stderr).unwrap();
-    }
+    io::stdout().write_all(&diff.stdout).unwrap();
+    io::stderr().write_all(&diff.stderr).unwrap();
     assert!(success);
 }
 
