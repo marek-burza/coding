@@ -6,14 +6,14 @@ on: [push]
 jobs:
   pipeline:
     name: Pipeline
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Initiating
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Preparing
         uses: actions/setup-python@v1
         with:
-          python-version: '3.12.x'
+          python-version: "3.12.x"
       - name: Linting
         run: |
           /bin/sh .github/workflows/python.linter.get.sh
