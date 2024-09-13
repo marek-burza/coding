@@ -15,4 +15,4 @@ Cargo.lock
 mod.rs
 files
 lcov.info
-/target
+target
