@@ -1,17 +1,15 @@
 [package]
-name = "training"
+name = "data_storage_api"
 version = "0.0.0"
 edition = "2021"
 
 [dependencies]
 axum = "0.7.5"
-num-bigint = "0.4"
-num-traits = "0.2"
 serde = { version = "1.0.210", features = ["derive"] }
 sha2 = "0.10.8"
 tokio = { version = "1.40.0", features = ["rt-multi-thread"] }
 tracing-subscriber = "0.3.18"
 
-[lib]
-name = "training"
-path = "algorithms/code/lib.rs"
+[[bin]]
+name = "data_storage_api"
+path = "data_storage_api.rs"

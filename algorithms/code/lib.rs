@@ -4,3 +4,4 @@ pub mod codility;
 pub mod geeksforgeeks;
 pub mod hackerrank;
 pub mod leetcode;
+pub mod other;

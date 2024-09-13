@@ -13,6 +13,9 @@ fn traverse(path: PathBuf) {
                 if let Ok(file_type) = entry.file_type() {
                     let entry_path = entry.path();
                     let entry_name = entry_path.file_name().unwrap().to_str().unwrap();
+                    if entry_name.starts_with(".") || entry_name.contains('-') {
+                        continue;
+                    }
                     let entry_stem = entry_path.file_stem().unwrap().to_str().unwrap();
                     if file_type.is_dir() {
                         queue.push_back(entry_path.clone());

@@ -24,7 +24,7 @@ mod tests {
 
     #[test]
     fn test_00() {
-        assert_eq!(Solution::two_sum(vec![], 0), []);
+        assert_eq!(Solution::two_sum(vec![], 0), [] as [i32; 0]);
     }
 
     #[test]
