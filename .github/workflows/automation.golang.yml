@@ -6,14 +6,14 @@ on: [push]
 jobs:
   pipeline:
     name: Pipeline
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Initiating
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Preparing
         uses: actions/setup-go@v1
         with:
-          go-version: '1.23.x'
+          go-version: "1.23.x"
       - name: Linting
         run: |
           /bin/sh .github/workflows/golang.linter.get.sh

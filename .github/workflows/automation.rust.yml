@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initiating
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Preparing
         uses: actions-rs/toolchain@v1
         with:
-            toolchain: '1.80'
-            override: true
+          toolchain: "1.80"
+          override: true
       - name: Linting
         run: |
           /bin/sh .github/workflows/rust.linter.get.sh
