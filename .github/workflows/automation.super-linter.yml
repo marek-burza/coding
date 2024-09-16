@@ -15,7 +15,7 @@ jobs:
           cd algorithms/code/leetcode/lc278_first_bad_version
           rm lc278_first_bad_version.py
       - name: Super-Linter
-        uses: github/super-linter@v4
+        uses: super-linter/super-linter@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_RUST_2015: false
