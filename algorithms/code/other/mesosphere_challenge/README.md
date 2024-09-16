@@ -4,18 +4,18 @@ Design and implement an elevator control system. What data structures, interface
 
 You can use the language of your choice to implement an elevator control system. In the end, your control system should provide an interface for:
 
-* Querying the state of the elevators (what floor are they on and where they are going),
-* receiving an update about the status of an elevator,
-* receiving a pickup request,
-* time-stepping the simulation.
-* For example, we could imagine in Scala an interface like this:
+- Querying the state of the elevators (what floor are they on and where they are going),
+- receiving an update about the status of an elevator,
+- receiving a pickup request,
+- time-stepping the simulation.
+- For example, we could imagine in Scala an interface like this:
 
-    trait ElevatorControlSystem {
-      def status(): Seq[(Int, Int, Int)]
-      def update(Int, Int, Int)
-      def pickup(Int, Int)
-      def step()
-    }
+  trait ElevatorControlSystem {
+  def status(): Seq[(Int, Int, Int)]
+  def update(Int, Int, Int)
+  def pickup(Int, Int)
+  def step()
+  }
 
 Here we have chosen to represent elevator state as 3 integers:
 
@@ -46,16 +46,16 @@ Good luck!
 
 ## Missing information
 
-* There is no mention of lift capacity so this needs to be added.
-* There seems to be no way of expressing the intention of the goal floor
+- There is no mention of lift capacity so this needs to be added.
+- There seems to be no way of expressing the intention of the goal floor
   on behalf of a passenger (to be taken into account by the system once
   the passenger is picked up) - this needs to be added, for simplicity
   it will be added as a parameter of the pickup function.
-* The purpose for exposing the update function is not explained enough
+- The purpose for exposing the update function is not explained enough
   but it is assumed here that the user of the interface is not expected
   to be able to change the position and the direction of the lift arbitrarily.
   Thus, it is assumed here that the function is for internal use only.
-* Next to the up/down directions (+/-) the state of the lift can also be idle
+- Next to the up/down directions (+/-) the state of the lift can also be idle
   (0).
 
 ## Improving the scheduling
@@ -90,13 +90,14 @@ It is assumed that the passengers obey their order of getting on.
 ## Usage
 
 The script assumes Python 3.
-* To run an interactive mode imply run the script without any parameter.
+
+- To run an interactive mode imply run the script without any parameter.
   The script uses example values for lift count, lift capacity and floor counts
   and simulates randomly appearing requests. Step through the simulation
   by pressing (or holding) ENTER. With every step the script will display
   position of the lifts, number of passengers (and below their origin and goal
   floor) as well as the queue for each lift.
-* To compare statistic on automated randomized tests run the script with
+- To compare statistic on automated randomized tests run the script with
   any parameter.
 
 ## Issues

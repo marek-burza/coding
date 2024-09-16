@@ -15,7 +15,7 @@ BOTTOM-UP: TABULATION (SUBPROBLEMS)
 
 ---
 
-WORST CASE *O(B<sup>D</sup>)*<br/>
+WORST CASE _O(B<sup>D</sup>)_<br/>
 DFS: RECURSIVE versus BFS: FIFO<br/>
 (DFS MAY OVERFLOW THE STACK)<br/>
 PRE-ORDER: VISIT ROOT<br/>
@@ -28,22 +28,24 @@ POST-ORDER: VISIT CHILDREN
 
 ---
 
-* **FLOAT:** *((KEY - MIN) / (MAX - MIN)) % M*<br/>
-* **INT:** *KEY % M* where *{M: MERSENNE PRIME}*<br/>
-IMPLEMENTATION CAN BE FAST<br/>
-* **STRING:** *binary(string) % M*<br/>
-(CAST CONSIDERING NUMBER OF CHARACTER CODING BITS)<br/>
+- **FLOAT:** _((KEY - MIN) / (MAX - MIN)) % M_<br/>
+- **INT:** _KEY % M_ where _{M: MERSENNE PRIME}_<br/>
+  IMPLEMENTATION CAN BE FAST<br/>
+- **STRING:** _binary(string) % M_<br/>
+  (CAST CONSIDERING NUMBER OF CHARACTER CODING BITS)<br/>
 
 **RESOLUTION**<br/>
 (constant if enough buckets, linear within a bucket)<br/>
-* SEPARATE CHAINING (LISTS)<br/>
-(OPEN HASHING, CLOSED ADDRESSING)
-* LINEAR PROBING (ARRAY)<br/>
-(CLOSED HASHING, OPEN ADDRESSING)
+
+- SEPARATE CHAINING (LISTS)<br/>
+  (OPEN HASHING, CLOSED ADDRESSING)
+- LINEAR PROBING (ARRAY)<br/>
+  (CLOSED HASHING, OPEN ADDRESSING)
 
 ---
 
 ## HEAPS (part 1)
+
 (Java: PriorityQueue)<br/>
 [HackerRank: qheap1](https://www.hackerrank.com/challenges/qheap1)<br/>
 [LeetCode: min-stack](https://leetcode.com/problems/min-stack/)<br/>
@@ -51,18 +53,19 @@ IMPLEMENTATION CAN BE FAST<br/>
 
 ---
 
-*CHILD = INDEX × 2*<br/>
-*PARENT = INDEX / 2*<br/>
-(correct index by 1 for 0-based array; *O* - WORST/AVG)<br/>
+_CHILD = INDEX × 2_<br/>
+_PARENT = INDEX / 2_<br/>
+(correct index by 1 for 0-based array; _O_ - WORST/AVG)<br/>
 
-* BUILD: for each index from last parent to 0 (the root) traverse down picking the biggest/smallest child and correcting parent-child order
-* INSERT: append to the end of the array and traverse up correcting parent-child order *O(log(n))*
-* DELETE: overwrite node with last one and if less/greater than parent traverse up/down *O(log(n))*
-* SEARCH: linear scan through the array *O(n)*
+- BUILD: for each index from last parent to 0 (the root) traverse down picking the biggest/smallest child and correcting parent-child order
+- INSERT: append to the end of the array and traverse up correcting parent-child order _O(log(n))_
+- DELETE: overwrite node with last one and if less/greater than parent traverse up/down _O(log(n))_
+- SEARCH: linear scan through the array _O(n)_
 
 ---
 
 ## HEAPS (part 2)
+
 (USAGE)
 
 ---
@@ -79,14 +82,14 @@ REMOVE OUTGOING SIMILAR
 
 ---
 
-* **ADJACENCY MATRIX**<br/>
-PRO: LOOKUP TIME (MANY CONNECTIONS)<br/>
-CON: SIZE (ALL POSSIBLE CONNECTIONS)
-* **ADJACENCY LIST**<br/>
-PRO: SIZE, SPEED (FEW CONNECTIONS), SPARSE
-**SPACE TRADE-OFF:** *X × E vs. N² / 8*<br/>
-(X - pointer size in bytes; matrix is packed - 8 booleans per byte)
-* **OBJECTS AND POINTERS**
+- **ADJACENCY MATRIX**<br/>
+  PRO: LOOKUP TIME (MANY CONNECTIONS)<br/>
+  CON: SIZE (ALL POSSIBLE CONNECTIONS)
+- **ADJACENCY LIST**<br/>
+  PRO: SIZE, SPEED (FEW CONNECTIONS), SPARSE
+  **SPACE TRADE-OFF:** _X × E vs. N² / 8_<br/>
+  (X - pointer size in bytes; matrix is packed - 8 booleans per byte)
+- **OBJECTS AND POINTERS**
 
 ---
 
@@ -114,15 +117,15 @@ Other algorithm: AVL tree (uses rotation)
 
 ---
 
-* (**shuffle** first or sample for pivot - median as pivot helps; [LeetCode: shuffle-an-array](https://leetcode.com/problems/shuffle-an-array/))
-* PICK PIVOT
-* REORDER WITH RESPECT TO PIVOT
-* APPLY TO ARRAYS SEPARATED BY PIVOT
+- (**shuffle** first or sample for pivot - median as pivot helps; [LeetCode: shuffle-an-array](https://leetcode.com/problems/shuffle-an-array/))
+- PICK PIVOT
+- REORDER WITH RESPECT TO PIVOT
+- APPLY TO ARRAYS SEPARATED BY PIVOT
 
 UNSTABLE<br/>
-WORST: *O(N²)* **!!!**<br/>
-BEST: *O(N × log(N))*<br/>
-AVERAGE: *O(N × log(N))*
+WORST: _O(N²)_ **!!!**<br/>
+BEST: _O(N × log(N))_<br/>
+AVERAGE: _O(N × log(N))_
 
 ---
 
@@ -130,14 +133,14 @@ AVERAGE: *O(N × log(N))*
 
 ---
 
-* DIVIDE INTO SUBLISTS
-* SORT SUBLISTS RECURSIVELY
-* MERGE SUBLISTS
+- DIVIDE INTO SUBLISTS
+- SORT SUBLISTS RECURSIVELY
+- MERGE SUBLISTS
 
 STABLE<br/>
-WORST: *O(N × log(N))* **!!!**<br/>
-BEST: *O(N × log(N))*<br/>
-AVERAGE: *O(N × log(N))*
+WORST: _O(N × log(N))_ **!!!**<br/>
+BEST: _O(N × log(N))_<br/>
+AVERAGE: _O(N × log(N))_
 
 ---
 
@@ -146,27 +149,30 @@ AVERAGE: *O(N × log(N))*
 ---
 
 EXAMPLE **PRIM'S ALGORITHM**
+
 1. CREATE TREE WITH ONE RANDOM VERTEX
 2. CREATE SET OF ALL EDGES
 3. LOOP TILL EVERY EDGE USED: USE AN EDGE WITH SMALLEST WEIGHT CONNECTING VERTEX IN THE TREE TO VERTEX NOT YET IN THE TREE
 
-*O((|E| + |V|) × log|V|)* WITH BINARY HEAP AND ADJACENCY
+_O((|E| + |V|) × log|V|)_ WITH BINARY HEAP AND ADJACENCY
 
 ---
 
 ## DIJKSTRA'S ALGORITHM
+
 (BUT FLOYD ON NEGATIVE)
 
 ---
 
-SHORTEST PATH *O(|V|²)*:
-1. FOREACH 0 IF INITIAL, *∞* OTHERWISE (DISTANCE)
+SHORTEST PATH _O(|V|²)_:
+
+1. FOREACH 0 IF INITIAL, _∞_ OTHERWISE (DISTANCE)
 2. MARK ALL UNVISITED; INITIAL AS CURRENT
 3. BREADTH FIRST; FOR EACH CHILD ITS DISTANCE AND OVERWRITE IF LESS
 4. LOWEST DISTANCE UNVISITED NODE AS CURRENT
 5. END WHEN ALL VISITED
 
-*O((|E| + |V|) × log|V|)* WITH A PRIORITY QUEUE (SELF-BALANCING BST OR BINARY HEAP)
+_O((|E| + |V|) × log|V|)_ WITH A PRIORITY QUEUE (SELF-BALANCING BST OR BINARY HEAP)
 
 ---
 
@@ -176,25 +182,26 @@ SHORTEST PATH *O(|V|²)*:
 
 **LELANN-CHANG-ROBERTS**<br/>
 ONLY FORWARD LARGER ID IF HAVE NOT SENT OWN<br/>
-TIME *O(N)*<br/>
-AVERAGE MESSAGE *O(N × log(N))*<br/>
-WORST MESSAGE *O(N²)*<br/>
+TIME _O(N)_<br/>
+AVERAGE MESSAGE _O(N × log(N))_<br/>
+WORST MESSAGE _O(N²)_<br/>
 **HIRSCHBERG-SINCLAIR** ELECTION IN NEIGHBORHOOD<br/>
-WORST MESSAGE *O(N × log(N))*
+WORST MESSAGE _O(N × log(N))_
 
 ---
 
 ## P vs. NP
+
 COMPLETE
 
 ---
 
-* **P**: SOLUTION FOUND IN POLYNOMIAL TIME
-* **NP**: SOLUTION VERIFIABLE IN POLYNOMIAL TIME
-* **COMPLETE**: IF ANY PROBLEM IN THAT CLASS CAN BE REDUCED TO IT
-* **HARD**: IF PROBLEM ALLOWS QUICKLY SOLVE ANY PROBLEM IN THE CLASS
+- **P**: SOLUTION FOUND IN POLYNOMIAL TIME
+- **NP**: SOLUTION VERIFIABLE IN POLYNOMIAL TIME
+- **COMPLETE**: IF ANY PROBLEM IN THAT CLASS CAN BE REDUCED TO IT
+- **HARD**: IF PROBLEM ALLOWS QUICKLY SOLVE ANY PROBLEM IN THE CLASS
 
-*P ≠ NP*: *P ⊂ NP*, *NP-COMPLETE ≡ NP - NP-HARD*
+_P ≠ NP_: _P ⊂ NP_, _NP-COMPLETE ≡ NP - NP-HARD_
 
 ---
 
@@ -212,6 +219,7 @@ SET COVER PROBLEM
 ---
 
 ## UNBOUNDED KNAPSACK PROBLEM
+
 [HackerRank: unbounded-knapsack](http://www.hackerrank.com/challenges/unbounded-knapsack)
 
 ---
@@ -239,21 +247,23 @@ GREEDY (CHOOSE ONE COVERING MOST)
 
 ---
 
-**EXACT ALGORITHM:** HELD-KARP *O(N²2<sup>N</sup>))*<br/>
+**EXACT ALGORITHM:** HELD-KARP _O(N²2<sup>N</sup>))_<br/>
 **APPROXIMATE ALGORITHM:**
-* **CONSTRUCTIVE HEURISTICS** GREEDY (NN - 25% of optimal), MINIMUM SPANNING TREE BASED ALGORITHMS (CHRISTOFIDES ALGORITHM)
-* **ITERATIVE IMPROVEMENT**
-* **RANDOM IMPROVEMENT** ANT COLONY OPTIMIZATION
+
+- **CONSTRUCTIVE HEURISTICS** GREEDY (NN - 25% of optimal), MINIMUM SPANNING TREE BASED ALGORITHMS (CHRISTOFIDES ALGORITHM)
+- **ITERATIVE IMPROVEMENT**
+- **RANDOM IMPROVEMENT** ANT COLONY OPTIMIZATION
 
 ---
 
 ## PROCESS VERSUS THREAD
+
 CONTEXT SWITCH
 
 ---
 
-* **THREAD:** PART OF PROCESS, SHARED MEMORY, ONLY STACK AND REGISTERS SAVED, CTX SWITCH - SMALLER CACHE IMPACT
-* **PROCESS:** INDEPENDENT, SEPARATE MEMORY (MAP), STATE / IPC (FILE HANDLES, DEVICE HANDLES, SOCKETS), CTX SWITCH - MEMORY MAP SWITCH, BIGGER CACHE IMPACT (SOME ARCHITECTURES MUST FLUSH), POSSIBLY STATE SWITCH, PAGING
+- **THREAD:** PART OF PROCESS, SHARED MEMORY, ONLY STACK AND REGISTERS SAVED, CTX SWITCH - SMALLER CACHE IMPACT
+- **PROCESS:** INDEPENDENT, SEPARATE MEMORY (MAP), STATE / IPC (FILE HANDLES, DEVICE HANDLES, SOCKETS), CTX SWITCH - MEMORY MAP SWITCH, BIGGER CACHE IMPACT (SOME ARCHITECTURES MUST FLUSH), POSSIBLY STATE SWITCH, PAGING
 
 ---
 
@@ -277,9 +287,9 @@ SLEEPLOCK - SPINLOCK
 
 TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
-* **MUTEX:** 2 STATE
-* **SEMAPHORE:** COUNTS NO OF UNITS OF RESOURCE AVAILABLE
-* **MONITOR:** OBJECTS WHERE METHODS ARE MUTUALLY EXCLUSIVE
+- **MUTEX:** 2 STATE
+- **SEMAPHORE:** COUNTS NO OF UNITS OF RESOURCE AVAILABLE
+- **MONITOR:** OBJECTS WHERE METHODS ARE MUTUALLY EXCLUSIVE
 
 ---
 
@@ -287,9 +297,9 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-* SEMAPHORES / MUTEXES (GRAB FIRST THEN SECOND; RISK: CAN STARVE)
-* CENTRAL MONITOR/WAITER/CONDUCTOR (CAN EAT IF NEITHER NEIGHBOR EATS; RISK: REDUCED PARALLELISM)
-* RESOURCE HIERARCHY (NUMBER FORKS; PICK AND PUT DOWN IN ORDER; RISK: LOW EFFICIENCY)
+- SEMAPHORES / MUTEXES (GRAB FIRST THEN SECOND; RISK: CAN STARVE)
+- CENTRAL MONITOR/WAITER/CONDUCTOR (CAN EAT IF NEITHER NEIGHBOR EATS; RISK: REDUCED PARALLELISM)
+- RESOURCE HIERARCHY (NUMBER FORKS; PICK AND PUT DOWN IN ORDER; RISK: LOW EFFICIENCY)
 
 ---
 
@@ -307,10 +317,10 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-* FIFO
-* FIXED PRIORITY PREEMPTIVE (NOT COOPERATIVE)
-* ROUND ROBIN (NO INTERRUPTS)
-* MULTILEVEL FEEDBACK QUEUE: 1 - PREFERENCE TO SHORT OR I/O, 2 - MULTIPLE FIFO, 3 - STARTS AT END OF TOP FIFO, 4 - (NORMALLY) TO THE END OF QUEUE (VOLUNTARY), 5 - USES UP QUANTUM - PREEMPT AND LOWER QUEUE
+- FIFO
+- FIXED PRIORITY PREEMPTIVE (NOT COOPERATIVE)
+- ROUND ROBIN (NO INTERRUPTS)
+- MULTILEVEL FEEDBACK QUEUE: 1 - PREFERENCE TO SHORT OR I/O, 2 - MULTIPLE FIFO, 3 - STARTS AT END OF TOP FIFO, 4 - (NORMALLY) TO THE END OF QUEUE (VOLUNTARY), 5 - USES UP QUANTUM - PREEMPT AND LOWER QUEUE
 
 ---
 
@@ -334,10 +344,10 @@ comparison operators (lexi), lower, upper, startswith, endswith, equals, find, s
 
 ---
 
-* **PERMUTATION:** *N!* ← factorial
-* **VARIATION WITHOUT REPETITIONS:** *N! / (N - K)!*
-* **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):** *N<sup>K</sup>*
-* **COMBINATION:** *N-choose-K*
+- **PERMUTATION:** _N!_ ← factorial
+- **VARIATION WITHOUT REPETITIONS:** _N! / (N - K)!_
+- **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):** _N<sup>K</sup>_
+- **COMBINATION:** _N-choose-K_
 
 ---
 
@@ -345,11 +355,14 @@ comparison operators (lexi), lower, upper, startswith, endswith, equals, find, s
 
 ---
 
-* **PERMUTATION:**
+- **PERMUTATION:**
+
 ```python
 itertools.permutations(iterable, None)
 ```
-* **VARIATION WITHOUT REPETITIONS:**
+
+- **VARIATION WITHOUT REPETITIONS:**
+
 ```python
 itertools.chain.from_iterable(
     map(
@@ -358,11 +371,15 @@ itertools.chain.from_iterable(
     )
 )
 ```
-* **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):**
+
+- **VARIATION WITH REPETITIONS (EQUIVALENT GROUPS REPEAT):**
+
 ```python
 itertools.product(iterable, repeat=k)
 ```
-* **COMBINATION:**
+
+- **COMBINATION:**
+
 ```python
 itertools.combinations(iterable, k)
 ```

@@ -11,20 +11,20 @@ We ask you complete this exercise so you have an opportunity to build a service 
 
 ## General Requirements
 
-* The service should de-duplicate data objects by repository.
-* The service should listen on port `8282`.
-* The included tests should pass and not be modified. Adding additional tests is encouraged.
-* The service must implement the API as described below.
-* The data can be persisted in memory, on disk, or wherever you like.
-* Do not include any extra dependencies. Anything in the Go standard library is fine.
+- The service should de-duplicate data objects by repository.
+- The service should listen on port `8282`.
+- The included tests should pass and not be modified. Adding additional tests is encouraged.
+- The service must implement the API as described below.
+- The data can be persisted in memory, on disk, or wherever you like.
+- Do not include any extra dependencies. Anything in the Go standard library is fine.
 
 ## Suggestions
 
-* Your code will be read by humans, so organize it sensibly.
-* Use this repository to store your work. Committing just the final solution is *OK* but we'd love to see your incremental progress. We suggest taking a look at [GitHub flow](https://guides.github.com/introduction/flow/) to structure your commits.
-* [Submit a pull request](https://help.github.com/articles/creating-a-pull-request/) once you are happy with your work.
-* Treat this pull request as if you’re at work submitting it to your colleagues, or to an open source project. The body of the pull request can be used to describe your reasoning and any assumptions, limitations or trade-offs in your implementation, or anything you're really proud of in your submission 😄.
-* Remember that this is a web application and concurrent requests could come in. If you have time, this is a good problem to address.
+- Your code will be read by humans, so organize it sensibly.
+- Use this repository to store your work. Committing just the final solution is _OK_ but we'd love to see your incremental progress. We suggest taking a look at [GitHub flow](https://guides.github.com/introduction/flow/) to structure your commits.
+- [Submit a pull request](https://help.github.com/articles/creating-a-pull-request/) once you are happy with your work.
+- Treat this pull request as if you’re at work submitting it to your colleagues, or to an open source project. The body of the pull request can be used to describe your reasoning and any assumptions, limitations or trade-offs in your implementation, or anything you're really proud of in your submission 😄.
+- Remember that this is a web application and concurrent requests could come in. If you have time, this is a good problem to address.
 
 ## API
 

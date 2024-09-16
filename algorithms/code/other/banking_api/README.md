@@ -35,8 +35,8 @@ and ease API implementation.
 
 The two combinations of API framework & HTTP server framework I am familiar with are:
 
-* [`FastAPI`](https://github.com/fastapi/fastapi) & [`uvicorn`](https://github.com/encode/uvicorn)
-* [`Connexion`](https://github.com/spec-first/connexion) & [`aiohttp`](https://github.com/aio-libs/aiohttp)
+- [`FastAPI`](https://github.com/fastapi/fastapi) & [`uvicorn`](https://github.com/encode/uvicorn)
+- [`Connexion`](https://github.com/spec-first/connexion) & [`aiohttp`](https://github.com/aio-libs/aiohttp)
 
 There are certainly more frameworks and their combinations available, but I chose `FastAPI` & `uvicorn`
 given their maturity on one hand and simplicity of the code using it on the other.
@@ -76,18 +76,18 @@ Aside from this I implemented additionally:
 
 Validation of:
 
-* UUID account identifiers
+- UUID account identifiers
 
 Sanitization of:
 
-* Customer name - all special characters are removed (and only spaces and letters of broadly understood alphabets remain)
+- Customer name - all special characters are removed (and only spaces and letters of broadly understood alphabets remain)
 
 I implemented also a number of other safeguards, e.g.:
 
-* To create an account for a customer, the customer must exist
-* The balance (neither the initial one nor subsequent after transfer) cannot be less than zero
-* The transfer amount must be greater than zero
-* To execute a transfer, both source and destination accounts must exist
+- To create an account for a customer, the customer must exist
+- The balance (neither the initial one nor subsequent after transfer) cannot be less than zero
+- The transfer amount must be greater than zero
+- To execute a transfer, both source and destination accounts must exist
 
 The more complex operations (such as transfer of funds) are ensured to be atomic by application of transactions.
 
@@ -107,29 +107,29 @@ The code was structured following the typical template used for modern Python pa
 code residing in the `src` directory and test code in the `tests` directory. Furthermore, the code was broken up
 to separate different concerns:
 
-* [`main.py`](./src/banking/main.py) is the main entry point for the application - it starts up the `uvicorn` server
-(binding it to port 80), couples it with `FastAPI` API routes (while also providing a redirect of `/` URL
-to the OpenAPI documentation & UI)
-* [`database.py`](./src/banking/database.py) establishes the connection to the `SQLite` database
-* three directories: [`api`](./src/banking/api/) (which holds the implementation of the HTTP API endpoints
-interacting with the database), [`models`](./src/banking/models/) (which implements the classes mapped to the database entries),
-and [`schemas`](./src/banking/schemas/) (which define the classes of objects the API operates on)
-* in each of the three directories there are three files corresponding to the three entities the API
-operates on: `customers`, `accounts` and `transfers`.
+- [`main.py`](./src/banking/main.py) is the main entry point for the application - it starts up the `uvicorn` server
+  (binding it to port 80), couples it with `FastAPI` API routes (while also providing a redirect of `/` URL
+  to the OpenAPI documentation & UI)
+- [`database.py`](./src/banking/database.py) establishes the connection to the `SQLite` database
+- three directories: [`api`](./src/banking/api/) (which holds the implementation of the HTTP API endpoints
+  interacting with the database), [`models`](./src/banking/models/) (which implements the classes mapped to the database entries),
+  and [`schemas`](./src/banking/schemas/) (which define the classes of objects the API operates on)
+- in each of the three directories there are three files corresponding to the three entities the API
+  operates on: `customers`, `accounts` and `transfers`.
 
 Packaging is covered here in two ways:
 
-* On one hand the code is sufficiently complete to act as a Python package which can be installed
-with `pip` and/or published as a `wheel` file. This is covered by the [`pyproject.toml`](./pyproject.toml) file
-which encompasses specification of package metadata & dependencies, and configuration of quality-related
-tooling (linting / testing).
-* On the other hand the code is packaged as a Docker container image which is the current de-facto
-standard packaging for server app distribution (e.g. Kubernetes, ECS, Lambda). In this context,
-Alpine-based Python Docker image was selected to ensure small Docker container image size (and thus
-its faster distribution and start-up time). Additionally, only the implementation of the API
-is packaged with its dependencies (rather than also including the testing code and its dependencies too).
-One can also consider this as a best practice for maintaining hygiene of the development environment
-(in particular its repeatability and restriction to just the bare necessities).
+- On one hand the code is sufficiently complete to act as a Python package which can be installed
+  with `pip` and/or published as a `wheel` file. This is covered by the [`pyproject.toml`](./pyproject.toml) file
+  which encompasses specification of package metadata & dependencies, and configuration of quality-related
+  tooling (linting / testing).
+- On the other hand the code is packaged as a Docker container image which is the current de-facto
+  standard packaging for server app distribution (e.g. Kubernetes, ECS, Lambda). In this context,
+  Alpine-based Python Docker image was selected to ensure small Docker container image size (and thus
+  its faster distribution and start-up time). Additionally, only the implementation of the API
+  is packaged with its dependencies (rather than also including the testing code and its dependencies too).
+  One can also consider this as a best practice for maintaining hygiene of the development environment
+  (in particular its repeatability and restriction to just the bare necessities).
 
 ### Dependencies
 
@@ -143,12 +143,12 @@ In the interest of maintainability and to ensure basic code quality level as wel
 the code is a subject to linting.
 To have a broad coverage of various aspects, a combination of tools is applied:
 
-* [`isort`](https://github.com/PyCQA/isort) (to standardize how imports are formatted for an easy overview),
-* [`black`](https://github.com/psf/black) (to enforce a common code style),
-* [`flake8`](https://github.com/PyCQA/flake8) & [`mypy`](https://github.com/python/mypy)
-(to ensure type hint consistency and basic code quality)
-* and finally [`bandit`](https://github.com/PyCQA/bandit) (to flag common security issues,
-since it is potentially an internet-facing API).
+- [`isort`](https://github.com/PyCQA/isort) (to standardize how imports are formatted for an easy overview),
+- [`black`](https://github.com/psf/black) (to enforce a common code style),
+- [`flake8`](https://github.com/PyCQA/flake8) & [`mypy`](https://github.com/python/mypy)
+  (to ensure type hint consistency and basic code quality)
+- and finally [`bandit`](https://github.com/PyCQA/bandit) (to flag common security issues,
+  since it is potentially an internet-facing API).
 
 ### Testing
 
@@ -166,10 +166,10 @@ Similarly to the API as well as schemas & models, also tests are organized aroun
 
 The first three steps are grouped into convenience scripts:
 
-* [`automation/1.build.sh`](./automation/1.build.sh) builds the Docker container image
-* [`automation/2.lint.sh`](./automation/2.lint.sh) & [`automation/3_test.sh`](./automation/3.test.sh) run linting & testing respectively,
-and uses the Docker container image built earlier
-(to ensure uniformity of the environment between linting/testing & production runtime environments)
+- [`automation/1.build.sh`](./automation/1.build.sh) builds the Docker container image
+- [`automation/2.lint.sh`](./automation/2.lint.sh) & [`automation/3_test.sh`](./automation/3.test.sh) run linting & testing respectively,
+  and uses the Docker container image built earlier
+  (to ensure uniformity of the environment between linting/testing & production runtime environments)
 
 Note: All of the scripts feature `set -e` to ensure the script exits upon the first failure.
 
@@ -192,34 +192,34 @@ It could ultimately be consumed by multiple frontends (web, iOS, Android etc).
 
 ### Tasks
 
-* Implement assignment using:
-  * Language: Python
-* There should be API routes that allow them to:
-  * Create a new bank account for a customer, with an initial deposit amount.
+- Implement assignment using:
+  - Language: Python
+- There should be API routes that allow them to:
+  - Create a new bank account for a customer, with an initial deposit amount.
     A single customer may have multiple bank accounts.
-  * Transfer amounts between any two accounts, including those owned by
+  - Transfer amounts between any two accounts, including those owned by
     different customers.
-  * Retrieve balances for a given account.
-  * Retrieve transfer history for a given account.
-* Write tests for your business logic.
+  - Retrieve balances for a given account.
+  - Retrieve transfer history for a given account.
+- Write tests for your business logic.
 
 You are expected to design any other required models and routes for your API.
 
 ### Evaluation Criteria
 
-* Python best practices
-* Completeness: did you complete the features?
-* Correctness: does the functionality act in sensible, thought-out ways?
-* Maintainability: is it written in a clean, maintainable way?
-* Testing: is the system adequately tested?
-* Documentation:
-  * is the API well-documented?
-  * are design choices well-explained?
+- Python best practices
+- Completeness: did you complete the features?
+- Correctness: does the functionality act in sensible, thought-out ways?
+- Maintainability: is it written in a clean, maintainable way?
+- Testing: is the system adequately tested?
+- Documentation:
+  - is the API well-documented?
+  - are design choices well-explained?
 
 ## Appendix B: Next Steps
 
-* Use MySQL or PostgreSQL instead of SQLite
-* Provide basic service setup for Kubernetes
-* Introduce a cleaner separation between application layers (e.g. API & DB handling)
-* Provide unit as well as integration tests
-* Review industry standards for REST interfaces and apply best practices
+- Use MySQL or PostgreSQL instead of SQLite
+- Provide basic service setup for Kubernetes
+- Introduce a cleaner separation between application layers (e.g. API & DB handling)
+- Provide unit as well as integration tests
+- Review industry standards for REST interfaces and apply best practices
