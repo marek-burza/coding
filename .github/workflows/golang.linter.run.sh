@@ -2,5 +2,5 @@
 
 set -e
 
-$(which golint 2> /dev/null || echo /home/runner/go/bin/golint) -set_exit_status ./...
-$(which goimports 2> /dev/null || echo /home/runner/go/bin/goimports) -d .
+$(which golint 2>/dev/null || echo /home/runner/go/bin/golint) -set_exit_status ./...
+$(which goimports 2>/dev/null || echo /home/runner/go/bin/goimports) -d .

@@ -3,4 +3,4 @@
 set -e
 
 cd algorithms
-mvn compile checkstyle:check spotbugs:check  # pmd:check
+mvn compile checkstyle:check spotbugs:check # pmd:check
