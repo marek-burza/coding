@@ -38,7 +38,7 @@ such an elevator! Please discuss how your algorithm improves on FCFS
 in your write-up.
 
 Please provide a source tarball (or link to a GitHub repository) containing
-code in the language of your choice, as well as a README discussing
+code in the language of your choice, as well as a documentation discussing
 your solution (and providing build instructions). The accompanying documentation
 is an important part of your submission. It counts to show your work.
 

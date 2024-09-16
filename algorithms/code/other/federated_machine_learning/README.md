@@ -77,7 +77,7 @@ Each `Gateway` should train a local model based on a number of samples generated
 `_generate_training_batch` function.
 The `Orchestrator` should then gather all the trained weights from the gateways, aggregate
 them and redistribute them to the gateways, before starting the next federation round.
-In the script you'll notice some TODOs, please implement these such that your model is able
+In the script you'll notice some "to do" items, please implement these such that your model is able
 to train over the randomly generated data.
 Your solution should run in Python 3.12. If you add dependencies, please include an
 updated requirements file to ensure we can reproduce your results.

@@ -23,7 +23,7 @@ We ask you complete this exercise so you have an opportunity to build a service 
 * Your code will be read by humans, so organize it sensibly.
 * Use this repository to store your work. Committing just the final solution is *OK* but we'd love to see your incremental progress. We suggest taking a look at [GitHub flow](https://guides.github.com/introduction/flow/) to structure your commits.
 * [Submit a pull request](https://help.github.com/articles/creating-a-pull-request/) once you are happy with your work.
-* Treat this pull request as if you’re at work submitting it to your colleagues, or to an open source project. The body of the pull request can be used to describe your reasoning and any assumptions, limitations or tradeoffs in your implementation, or anything you're really proud of in your submission 😄.
+* Treat this pull request as if you’re at work submitting it to your colleagues, or to an open source project. The body of the pull request can be used to describe your reasoning and any assumptions, limitations or trade-offs in your implementation, or anything you're really proud of in your submission 😄.
 * Remember that this is a web application and concurrent requests could come in. If you have time, this is a good problem to address.
 
 ## API
