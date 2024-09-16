@@ -8,6 +8,6 @@ export RUSTDOCFLAGS='-Ccodegen-units=1 -Cinline-threshold=0 -Clink-dead-code -Co
 rm -rf Cargo.lock target
 LLVM_PROFILE_FILE="./target/coverage/training.profraw" cargo test
 find . -name mod.rs -exec rm -f {} \;
-grcov ./target/coverage --binary-path ./target/debug/ -s . -o . --ignore-not-existing --keep-only 'algorithms/*' --output-types lcov,text
-sort <files
+grcov ./target/coverage --binary-path ./target/debug/ -s . -o . --ignore-not-existing --keep-only 'algorithms/*' --output-types lcov
 mv lcov lcov.info
+grep -E "^SF|^DA:.+,0$" lcov.info | sed s/\,0$//g | awk -F: '{print $2}'
