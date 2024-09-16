@@ -84,7 +84,7 @@ PRO: LOOKUP TIME (MANY CONNECTIONS)<br/>
 CON: SIZE (ALL POSSIBLE CONNECTIONS)
 * **ADJACENCY LIST**<br/>
 PRO: SIZE, SPEED (FEW CONNECTIONS), SPARSE
-**SPACE TRADEOFF:** *X × E vs. N² / 8*<br/>
+**SPACE TRADE-OFF:** *X × E vs. N² / 8*<br/>
 (X - pointer size in bytes; matrix is packed - 8 booleans per byte)
 * **OBJECTS AND POINTERS**
 
