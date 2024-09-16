@@ -12,7 +12,7 @@ class Solution:
         digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         first = 1 if len(prefix) == 0 else 0
         for i in range(first, len(digits)):
-            if not digits[i] in prefix:
+            if digits[i] not in prefix:
                 summed += self.__count(prefix + digits[i], n)
         return summed
 
