@@ -38,7 +38,6 @@ You are a machine learning engineer, developing a new "UNet" model for our
 model registry, to enable our customers to perform image segmentation on unseen
 images provided by a third-party.
 
-
 ### Written section
 
 Write a short summary (max 500 words) of the potential privacy and security implications
@@ -46,21 +45,20 @@ for running a UNet segmentation model on sensitive data and how one might mitiga
 Your should consider both ML and engineering concerns and cover at least the following
 three cases:
 
-* The model weights are pre-trained and fixed - the user performs inference against
-the source data and retrieves the resulting segmentations.
-* The model structure is fixed, but the user can provide their own weights to run
-inference as above.
-* The user is able to train a model against the sensitive data and download the
-resulting weights.
+- The model weights are pre-trained and fixed - the user performs inference against
+  the source data and retrieves the resulting segmentations.
+- The model structure is fixed, but the user can provide their own weights to run
+  inference as above.
+- The user is able to train a model against the sensitive data and download the
+  resulting weights.
 
 Some examples to consider:
 
-* What are some common privacy attacks for computer vision models?
-* How might a malicious user exploit the ability to upload a set of weights to gain
-access to the sensitive data?
-* How do different model hyper-parameters affect convergence patterns and what
-might those convergence patterns reveal about the underlying data?
-
+- What are some common privacy attacks for computer vision models?
+- How might a malicious user exploit the ability to upload a set of weights to gain
+  access to the sensitive data?
+- How do different model hyper-parameters affect convergence patterns and what
+  might those convergence patterns reveal about the underlying data?
 
 ### Coding Test
 
@@ -87,88 +85,88 @@ model. However, your code should run and we would expect to see the accuracy pla
 around 80-90% with what is provided here.
 You may wish to add some tests to ensure that your additions work as expected.
 
-
 ## Written assignment: Federated learning - potential privacy and security implications & mitigations
 
 Here is a summary following from my brief research of and reflection on the topic:
 
 1. The model weights are pre-trained and fixed - the user performs inference against
-the source data and retrieves the resulting segmentations.
+   the source data and retrieves the resulting segmentations.
 
-* Risk:
-  * One of the risks can be potential identification of entries present in the original training set
-  (by testing specific input images & detecting for much stronger/crisper model response)
-  or attempting to infer sensitive attributes present in the training set (perhaps with a mirror
-  model - GAN or autoencoder based? - trained on the reverse of the inputs & outputs from the original model)
-* Mitigations:
-  * mitigation could be to apply quantization (or other lossy techniques - adding perturbation, noise)
-  to the model output to restrict the possibility of reasoning about the model output
-  * another mitigation could be to monitor for synthetic inputs or access patterns
-  which could indicate attempts at probing the model
+- Risk:
+  - One of the risks can be potential identification of entries present in the original training set
+    (by testing specific input images & detecting for much stronger/crisper model response)
+    or attempting to infer sensitive attributes present in the training set (perhaps with a mirror
+    model - GAN or autoencoder based? - trained on the reverse of the inputs & outputs from the original model)
+- Mitigations:
+  - mitigation could be to apply quantization (or other lossy techniques - adding perturbation, noise)
+    to the model output to restrict the possibility of reasoning about the model output
+  - another mitigation could be to monitor for synthetic inputs or access patterns
+    which could indicate attempts at probing the model
 
 2. The model structure is fixed, but the user can provide their own weights to run
-inference as above.
+   inference as above.
 
-* Risk:
-  * The most obvious risk here is that the adversary could maliciously tune (amplify/dampen) the weights in such a way
-  that the original input into the model from a restricted dataset would not be aggregated (or: passed through a complex function)
-  but instead follow an isolated path through the network (or: passed through a much simpler, possibly reversible function) which could lead to leakage of sensitive information (either through direct read-out of the original values or reconstruction of original values as encoded by the "simplified" network)
-* Mitigations:
-  * the way to mitigate it could perhaps be to collect typical statistics about weights and scanning submitted weights for outliers / anomaly detection
-  * another mitigation measure could be to screen outputs for correlation to inputs and flagging repeated, high correlation (either by scanning on synthetic data or withholding outputs for flagged cases)
+- Risk:
+  - The most obvious risk here is that the adversary could maliciously tune (amplify/dampen) the weights in such a way
+    that the original input into the model from a restricted dataset would not be aggregated (or: passed through a complex function)
+    but instead follow an isolated path through the network (or: passed through a much simpler, possibly reversible function) which could lead to leakage of sensitive information (either through direct read-out of the original values or reconstruction of original values as encoded by the "simplified" network)
+- Mitigations:
+  - the way to mitigate it could perhaps be to collect typical statistics about weights and scanning submitted weights for outliers / anomaly detection
+  - another mitigation measure could be to screen outputs for correlation to inputs and flagging repeated, high correlation (either by scanning on synthetic data or withholding outputs for flagged cases)
 
 3. The user is able to train a model against the sensitive data and download the
-resulting weights.
+   resulting weights.
 
-* Risk:
-  * Here the biggest risk could be related to transfer learning (and, consequently, model/data theft)
-  or reconstruction of the sensitive inputs (by constructing the model using reversible operations or architectures)
-* Mitigations:
-  * the mitigation could be to apply weight pruning or precission reduction to restrict fidelity of the weights
-  and consequently of the outputs
-  * restriction of the set of operations avalable to construct the model
-  * some of the mitigations from point 2 could also be applicable here
-  * speculative: application of formal methods (epistemic modal logic?) or model checkers
+- Risk:
+  - Here the biggest risk could be related to transfer learning (and, consequently, model/data theft)
+    or reconstruction of the sensitive inputs (by constructing the model using reversible operations or architectures)
+- Mitigations:
+  - the mitigation could be to apply weight pruning or precission reduction to restrict fidelity of the weights
+    and consequently of the outputs
+  - restriction of the set of operations avalable to construct the model
+  - some of the mitigations from point 2 could also be applicable here
+  - speculative: application of formal methods (epistemic modal logic?) or model checkers
 
 4. Other risks could be related to security vulnerabilities (buffer overflow, access elevation, etc.)
-in the inference pipelines (through carefuly crafted requests, weights or models) which would lead
-to execution of arbitrary code and creating a side channel
+   in the inference pipelines (through carefuly crafted requests, weights or models) which would lead
+   to execution of arbitrary code and creating a side channel
 
-* Mitigation:
-  * here the mitigation would be similar to typical security threats (sanitization of inputs,
-  enclave isolation of executed code, regular and prompt application of security patches,
-  preventive pen-testing / read teaming)
+- Mitigation:
+  - here the mitigation would be similar to typical security threats (sanitization of inputs,
+    enclave isolation of executed code, regular and prompt application of security patches,
+    preventive pen-testing / read teaming)
 
 5. There are some specifics of UNet architecture which may require particular attention,
-such as: shorter channels (skip connections) between the two arms of the model, tendency to over-segment
-(and thus reveal more information than may be necessary)
+   such as: shorter channels (skip connections) between the two arms of the model, tendency to over-segment
+   (and thus reveal more information than may be necessary)
 
-* Mitigation:
-  * specific model also requires it own specific audit and mitigation measures - such as: selective
-  masking on skip connections, lower segmentation fidelity applied during training, resolution downsampling, etc.
-
+- Mitigation:
+  - specific model also requires it own specific audit and mitigation measures - such as: selective
+    masking on skip connections, lower segmentation fidelity applied during training, resolution downsampling, etc.
 
 ## Coding Test Implementation
 
 The task does not prescribe two aspects required for model training:
+
 1. The loss function - I opted for `CrossEntropyLoss` since its a frequent choice
-for classification tasks where the model outputs logits and the target is a class index
-(as is the case here). Other options could be `BCEWithLogitsLoss` (specifically designed
-for binary classification) or `MSELoss` (but only if we can treat the problem
-at hand as a regression to the target values of 0 and 1), other loss functions can be
-considered depending on the dataset or model characteristics.
+   for classification tasks where the model outputs logits and the target is a class index
+   (as is the case here). Other options could be `BCEWithLogitsLoss` (specifically designed
+   for binary classification) or `MSELoss` (but only if we can treat the problem
+   at hand as a regression to the target values of 0 and 1), other loss functions can be
+   considered depending on the dataset or model characteristics.
 2. The optimizer to handle gradient descent for learning the model weights (see more details below)
 
 I tried three optimizers:
-* `SGD` (staple stochastic gradient descent) - which reached accuracy of 84.38%
-* `Adagrad` (only out of curiosity; I realize that it is more applicable to sparse data) - 96.88%
-* `Adam` (closer to the current state of the art than `SGD`) - 100.00%
-Given that `Adam` is an adaptive optimizer it can converge quicker and this could explain reaching
-higher accuracy in the same number of rounds as `SGD`. However, it comes at a price of higher demands
-on the performance (thus if more cost effective compute instances are more desirable, `SGD` could be chosen
-and let run for more rounds). On the other hand if weight decay were observed then `AdamW` variant can be
-applied instead of `Adam`. In the context of federated lerning I could imagine that faster convergence
-can be very beneficial, since it reduces number of communication rounds in a distributed system.
+
+- `SGD` (staple stochastic gradient descent) - which reached accuracy of 84.38%
+- `Adagrad` (only out of curiosity; I realize that it is more applicable to sparse data) - 96.88%
+- `Adam` (closer to the current state of the art than `SGD`) - 100.00%
+  Given that `Adam` is an adaptive optimizer it can converge quicker and this could explain reaching
+  higher accuracy in the same number of rounds as `SGD`. However, it comes at a price of higher demands
+  on the performance (thus if more cost effective compute instances are more desirable, `SGD` could be chosen
+  and let run for more rounds). On the other hand if weight decay were observed then `AdamW` variant can be
+  applied instead of `Adam`. In the context of federated lerning I could imagine that faster convergence
+  can be very beneficial, since it reduces number of communication rounds in a distributed system.
 
 Note: To ensure training reproducibility I fixed the random seed to a constant value.
 
@@ -179,6 +177,7 @@ docker build -t fml . && docker run --rm -it fml
 ```
 
 I included only a couple of elementary tests:
+
 1. One which runs the training multiple times and ensures training reaches each time the minimum bar of 80%
 2. Another one specifically testing reproducibility of training
 
