@@ -7,4 +7,7 @@ COPY federated_machine_learning.py /app/app.py
 
 WORKDIR /app
 
+RUN useradd -m user
+USER user
+
 ENTRYPOINT [ "/usr/local/bin/python", "/app/app.py" ]

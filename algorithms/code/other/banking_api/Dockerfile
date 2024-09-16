@@ -9,4 +9,7 @@ RUN pip install --disable-pip-version-check --no-cache-dir . && \
 
 WORKDIR /var/db
 
+RUN useradd -m user
+USER user
+
 ENTRYPOINT [ "/usr/local/bin/python", "/usr/local/lib/python3.12/site-packages/banking/main.py" ]
