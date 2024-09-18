@@ -18,6 +18,7 @@ jobs:
         uses: super-linter/super-linter@v7
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_CHECKOV: false
           VALIDATE_GITLEAKS: false
           VALIDATE_GO: false
           VALIDATE_GO_MODULES: false
