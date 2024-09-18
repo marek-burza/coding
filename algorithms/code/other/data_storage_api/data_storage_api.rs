@@ -10,6 +10,7 @@ use std::{
     collections::HashMap,
     sync::{Arc, RwLock},
 };
+#[cfg(not(test))]
 use tokio::net::TcpListener;
 
 #[derive(Deserialize, Serialize)]
@@ -111,6 +112,7 @@ fn create_router(shared_state: &SharedState) -> Router {
         .with_state(Arc::clone(shared_state))
 }
 
+#[cfg(not(test))]
 #[tokio::main]
 pub async fn main() {
     // We'll store the data in memory in a map.

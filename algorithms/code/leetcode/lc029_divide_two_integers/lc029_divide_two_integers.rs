@@ -63,4 +63,10 @@ mod tests {
     fn test_dividend_0() {
         assert_eq!(Solution::divide(0, 1), 0);
     }
+
+    #[test]
+    fn test_minus1_1() {
+        assert_eq!(Solution::divide(-1, 1), -1);
+    }
+
 }
