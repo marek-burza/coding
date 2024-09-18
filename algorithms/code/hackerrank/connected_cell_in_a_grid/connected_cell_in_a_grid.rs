@@ -9,14 +9,14 @@ struct Here {
 
 fn traverse(matrix: &mut [Vec<i32>], r: i32, c: i32) -> i32 {
     let deltas = [
-        [-1, -1],
-        [0, -1],
-        [1, -1],
-        [-1, 0],
-        [1, 0],
-        [-1, 1],
-        [0, 1],
-        [1, 1],
+        (-1, -1),
+        (0, -1),
+        (1, -1),
+        (-1, 0),
+        (1, 0),
+        (-1, 1),
+        (0, 1),
+        (1, 1),
     ];
     let mut size: i32 = 0;
     let mut queue = Vec::new();
@@ -28,8 +28,8 @@ fn traverse(matrix: &mut [Vec<i32>], r: i32, c: i32) -> i32 {
             matrix[r as usize][c as usize] = -1;
             size += 1;
             for delta in deltas.iter() {
-                let rd = delta[0];
-                let cd = delta[1];
+                let rd = delta.0;
+                let cd = delta.1;
                 let rn = r + rd;
                 let cn = c + cd;
                 if rn >= 0
