@@ -13,7 +13,10 @@ fn traverse(path: PathBuf) {
                 if let Ok(file_type) = entry.file_type() {
                     let entry_path = entry.path();
                     let entry_name = entry_path.file_name().unwrap().to_str().unwrap();
-                    if entry_name.starts_with('.') || entry_name.contains('-') || entry_name.starts_with("rmeta") {
+                    if entry_name.starts_with('.')
+                        || entry_name.contains('-')
+                        || entry_name.starts_with("rmeta")
+                    {
                         continue;
                     }
                     let entry_stem = entry_path.file_stem().unwrap().to_str().unwrap();
