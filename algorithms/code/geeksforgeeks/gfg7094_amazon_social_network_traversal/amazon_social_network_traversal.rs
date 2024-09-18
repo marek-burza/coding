@@ -2,7 +2,8 @@
 
 use std::collections::{HashMap, HashSet};
 
-struct Network {
+#[allow(dead_code)]
+pub struct Network {
     friendships: HashMap<String, Vec<String>>,
     attendances: HashMap<String, Vec<String>>,
 }
@@ -47,7 +48,7 @@ impl Network {
         counted_courses
     }
 
-    pub fn order_courses_by_count(counted_courses: HashMap<String, u32>) -> Vec<String> {
+    fn order_courses_by_count(counted_courses: HashMap<String, u32>) -> Vec<String> {
         let mut courses: Vec<(String, u32)> = counted_courses.into_iter().collect();
         courses.sort_by(|a, b| b.1.cmp(&a.1));
         courses.into_iter().map(|(course, _count)| course).collect()

@@ -19,8 +19,10 @@ impl Solution {
             ('C', 100),
             ('D', 500),
             ('M', 1000)
-        ].into_iter().collect();
-    for i in (0..s.len()).rev() {
+        ]
+        .into_iter()
+        .collect();
+        for i in (0..s.len()).rev() {
             let mut current = 0;
             if let Some(&value) = roman_values.get(&s.chars().nth(i).unwrap()) {
                 current = value;

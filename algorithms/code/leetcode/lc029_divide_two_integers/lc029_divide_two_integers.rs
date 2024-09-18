@@ -68,5 +68,4 @@ mod tests {
     fn test_minus1_1() {
         assert_eq!(Solution::divide(-1, 1), -1);
     }
-
 }
