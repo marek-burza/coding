@@ -147,14 +147,14 @@ mod tests {
     fn test_search_for_absent() {
         let mut heap: VecDeque<i32> = VecDeque::from([6, 3, 0, 5]);
         heap_build(&mut heap);
-        assert_eq!(heap_search(&mut heap, -1 as i32), None);
+        assert_eq!(heap_search(&heap, -1), None);
     }
 
     #[test]
     fn test_delete_swaps_on_same_level() {
         let mut heap: VecDeque<i32> = VecDeque::from([0, 10, 8, 13, 14, 9]);
         heap_delete_index(&mut heap, 4);
-        assert_ne!(*heap.get(heap.len() - 1).unwrap(), 9);
+        assert_ne!(*heap.back().unwrap(), 9);
     }
 
     #[test]

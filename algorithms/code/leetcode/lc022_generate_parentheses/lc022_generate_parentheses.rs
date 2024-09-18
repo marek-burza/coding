@@ -32,14 +32,14 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::cmp::max;
 
     fn check(mut expected: Vec<String>, n: i32) {
         let mut result = Solution::generate_parenthesis(n);
         result.sort();
         expected.sort();
-        for i in 0..max(result.len(), expected.len()) {
-            assert_eq!(result.get(i), Some(&expected[i]));
+        assert_eq!(result.len(), expected.len());
+        for (i, expected_i) in expected.iter().enumerate() {
+            assert_eq!(result.get(i), Some(expected_i));
         }
     }
 
