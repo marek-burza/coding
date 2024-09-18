@@ -172,8 +172,7 @@ mod tests {
             .body(Body::empty())
             .expect("Failed to build request");
         let response = router.oneshot(request).await.expect("Request failed");
-        let status = response.status();
-        status
+        response.status()
     }
 
     #[tokio::test]
