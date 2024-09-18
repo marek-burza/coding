@@ -12,9 +12,7 @@ def bigger_is_greater(w):
             array[i:] = sorted(array[i:])
             for j in range(i, length):
                 if array[i - 1] < array[j]:
-                    exchange = array[i - 1]
-                    array[i - 1] = array[j]
-                    array[j] = exchange
+                    array[i - 1], array[j] = array[j], array[i - 1]
                     array[i:] = sorted(array[i:])
                     return ''.join(array)
     return 'no answer'
