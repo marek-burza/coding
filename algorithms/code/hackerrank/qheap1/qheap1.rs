@@ -130,11 +130,10 @@ pub fn main_tested(name: &str) {
                 let value = line[1].trim().parse::<i32>().unwrap();
                 heap_delete(&mut heap, value);
             }
-            3 => {
+            _ => {
                 let result = heap_root(&heap);
                 results.push(result.to_string());
             }
-            _ => {}
         }
     }
     write_and_check_output(origin, name, &results);

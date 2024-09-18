@@ -2,7 +2,7 @@
 
 use std::collections::{HashMap, HashSet};
 
-pub struct Network {
+struct Network {
     friendships: HashMap<String, Vec<String>>,
     attendances: HashMap<String, Vec<String>>,
 }
@@ -29,7 +29,7 @@ impl Network {
         Vec::from_iter(circle_set)
     }
 
-    fn count_circle_courses_without_own(
+    pub fn count_circle_courses_without_own(
         &self,
         circle: Vec<String>,
         own: HashSet<String>,
@@ -47,7 +47,7 @@ impl Network {
         counted_courses
     }
 
-    fn order_courses_by_count(counted_courses: HashMap<String, u32>) -> Vec<String> {
+    pub fn order_courses_by_count(counted_courses: HashMap<String, u32>) -> Vec<String> {
         let mut courses: Vec<(String, u32)> = counted_courses.into_iter().collect();
         courses.sort_by(|a, b| b.1.cmp(&a.1));
         courses.into_iter().map(|(course, _count)| course).collect()

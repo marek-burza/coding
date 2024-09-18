@@ -14,13 +14,12 @@ impl Solution {
             index += 1;
         }
         if index < s.len() {
-            match s.chars().nth(index).unwrap() {
-                '-' => {
-                    sign = -1;
-                    index += 1;
-                }
-                '+' => index += 1,
-                _ => {}
+            let s_index = s.chars().nth(index).unwrap();
+            if s_index == '-' {
+                sign = -1;
+                index += 1;
+            } else if s_index == '+' {
+                index += 1;
             };
             while index < s.len() && s.chars().nth(index).unwrap().is_ascii_digit() {
                 result = result * 10 + s.chars().nth(index).unwrap() as i64 - '0' as i64;
@@ -83,5 +82,10 @@ mod tests {
     #[test]
     fn test_nothing() {
         assert_eq!(Solution::my_atoi(String::from("nothing")), 0);
+    }
+
+    #[test]
+    fn test_empty() {
+        assert_eq!(Solution::my_atoi(String::from("")), 0);
     }
 }

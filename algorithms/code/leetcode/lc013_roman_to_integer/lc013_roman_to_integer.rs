@@ -2,6 +2,8 @@
 
 pub struct Solution;
 
+use std::collections::HashMap;
+
 impl Solution {
     pub fn roman_to_int(s: String) -> i32 {
         if s.is_empty() {
@@ -9,31 +11,19 @@ impl Solution {
         }
         let mut result = 0;
         let mut previous = 0;
-        for i in (0..s.len()).rev() {
+        let roman_values: HashMap<char, i32> = vec![
+            ('I', 1),
+            ('V', 5),
+            ('X', 10),
+            ('L', 50),
+            ('C', 100),
+            ('D', 500),
+            ('M', 1000)
+        ].into_iter().collect();
+    for i in (0..s.len()).rev() {
             let mut current = 0;
-            match s.chars().nth(i).unwrap() {
-                'I' => {
-                    current = 1;
-                }
-                'V' => {
-                    current = 5;
-                }
-                'X' => {
-                    current = 10;
-                }
-                'L' => {
-                    current = 50;
-                }
-                'C' => {
-                    current = 100;
-                }
-                'D' => {
-                    current = 500;
-                }
-                'M' => {
-                    current = 1000;
-                }
-                _ => {}
+            if let Some(&value) = roman_values.get(&s.chars().nth(i).unwrap()) {
+                current = value;
             }
             if current < previous {
                 current = -current;
