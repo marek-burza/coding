@@ -14,4 +14,4 @@ algorithms/target
 Cargo.lock
 mod.rs
 lcov.info
-target
+target*
