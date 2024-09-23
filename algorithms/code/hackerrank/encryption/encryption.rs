@@ -5,19 +5,11 @@ use crate::hackerrank::tester::{read_input, write_and_check_output};
 pub fn encryption(plain: &str) -> String {
     let p: Vec<char> = plain.chars().collect();
     let length = p.len();
-    let floor = (length as f64).sqrt() as usize;
-    let ceil = (length as f64).sqrt().ceil() as usize;
-    let mut rows: i32 = -1;
-    let mut cols: i32 = -1;
-    for c in (floor..=ceil).rev() {
-        let extend = if length % c > 0 { 1 } else { 0 };
-        let r = (length / c) + extend;
-        if r * c >= length {
-            rows = r as i32;
-            cols = c as i32;
-            break;
-        }
-    }
+    let c = (length as f64).sqrt().ceil() as usize;
+    let extend = if length % c > 0 { 1 } else { 0 };
+    let r = (length / c) + extend;
+    let rows = r as i32;
+    let cols = c as i32;
     let mut result = String::new();
     for c in 0..cols {
         if c != 0 {
