@@ -150,7 +150,7 @@ How will we ensure scalability?
 
 **ANSWER 2**
 
-Throttle most frequent 3rd party API requests, cache replies, shard database
+Throttle most frequent third-party API requests, cache replies, shard database
 
 ---
 
@@ -224,7 +224,7 @@ Enqueue requests for estimating capacity for<br/>newly added restaurants (and pr
 
 ```
 
-Persistently cache the static results of 3rd party APIs,<br/>store the calculated estimates
+Persistently cache the static results of third-party APIs,<br/>store the calculated estimates
 
 ---
 
