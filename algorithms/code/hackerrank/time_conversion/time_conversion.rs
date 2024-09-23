@@ -10,9 +10,7 @@ pub fn to_military(s: &str) -> String {
         true => 12,
         false => 0,
     };
-    let before = (hour + shift) % 24;
-    let after = format!("{:02}", before);
-    format!("{}{}", after, &s[2..8])
+    format!("{:02}{}", (hour + shift) % 24, &s[2..8])
 }
 
 #[cfg(test)]
