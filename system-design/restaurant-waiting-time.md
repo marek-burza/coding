@@ -16,7 +16,7 @@ I encountered a variation of this system design assignment during on-site interv
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
   +--------+       .   +-----+    +------------------------+
   | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
@@ -58,7 +58,7 @@ We provide an API for the restaurants and enrolled restaurants will provide the 
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
   +--------+       .   +-----+    +------------------------+
   | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
@@ -111,7 +111,7 @@ Automate data collection and prepopulate database with estimates
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -156,7 +156,7 @@ Throttle most frequent third-party API requests, cache replies, shard database
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -193,7 +193,7 @@ Enqueue requests for estimating capacity for<br/>newly added restaurants (and pr
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -230,7 +230,7 @@ Persistently cache the static results of third-party APIs,<br/>store the calcula
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -277,7 +277,7 @@ The key would be based on geographical location, cryptographically hashed to spr
 
 ** REVISED ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -324,7 +324,7 @@ Use a quadtree (superimposed over a world map) as an index to facilitate searchi
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -404,7 +404,7 @@ What about the security?
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 6pt;">
+<pre style="font-size: 10pt;">
 
                   .   +-----+    +------------------------+                                      +---+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |                                      | V |
