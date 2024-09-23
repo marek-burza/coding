@@ -275,7 +275,7 @@ The key would be based on geographical location, cryptographically hashed to spr
 
 ---
 
-** REVISED ARCHITECTURE**
+**REVISED ARCHITECTURE**
 
 <pre style="font-size: 10pt;">
 
