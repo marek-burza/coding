@@ -16,6 +16,7 @@ I encountered a variation of this system design assignment during on-site interv
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
+<small>
 ```
 
   +--------+       .   +-----+    +------------------------+
@@ -31,6 +32,7 @@ I encountered a variation of this system design assignment during on-site interv
                    .
 
 ```
+</small>
 
 But this leaves some questions to be answered...
 
@@ -58,6 +60,7 @@ We provide an API for the restaurants and enrolled restaurants will provide the 
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
+<small>
 ```
 
   +--------+       .   +-----+    +------------------------+
@@ -66,13 +69,14 @@ We provide an API for the restaurants and enrolled restaurants will provide the 
   +--------+       .
                    .   +-----------+ API   +----------+
                    .   |   LOAD    |   /  +----------+| \    +----------+
-                   .---|           |--+  +----------+|+  &lt;--&gt;| DATABASE |
+                   .---|           |--+  +----------+|+  >--<| DATABASE |
                    .   | BALANCING |   \ | μSERVICE |+  /    +----------+
   +------------+   .   +-----------+     +----------+
   | RESTAURANT |---.
   +------------+   .
 
 ```
+</small>
 
 It would be extended with an interface towards the restaurants...
 
@@ -111,6 +115,7 @@ Automate data collection and prepopulate database with estimates
 
 **REVISED ARCHITECTURE**
 
+<small>
 ```
 
                   .   +-----+    +------------------------+
@@ -141,6 +146,7 @@ Automate data collection and prepopulate database with estimates
                   .            .   +-----------------------------+
 
 ```
+</small>
 
 ---
 
@@ -156,6 +162,7 @@ Throttle most frequent third-party API requests, cache replies, shard database
 
 **REVISED ARCHITECTURE**
 
+<small>
 ```
 
                   .   +-----+    +------------------------+
@@ -186,6 +193,7 @@ Throttle most frequent third-party API requests, cache replies, shard database
                   .            .   +-----------------------------+
 
 ```
+</small>
 
 Enqueue requests for estimating capacity for<br/>newly added restaurants (and process them offline)
 
@@ -193,6 +201,7 @@ Enqueue requests for estimating capacity for<br/>newly added restaurants (and pr
 
 **REVISED ARCHITECTURE**
 
+</small>
 ```
 
                   .   +-----+    +------------------------+
@@ -223,6 +232,7 @@ Enqueue requests for estimating capacity for<br/>newly added restaurants (and pr
                   .            .   +-----------------------------+
 
 ```
+</small>
 
 Persistently cache the static results of third-party APIs,<br/>store the calculated estimates
 
@@ -230,6 +240,7 @@ Persistently cache the static results of third-party APIs,<br/>store the calcula
 
 **REVISED ARCHITECTURE**
 
+<small>
 ```
 
                   .   +-----+    +------------------------+
@@ -260,6 +271,7 @@ Persistently cache the static results of third-party APIs,<br/>store the calcula
                   .            .   +-----------------------------+
 
 ```
+</small>
 
 Use a highly scalable, sharded NoSQL database
 
@@ -277,6 +289,7 @@ The key would be based on geographical location, cryptographically hashed to spr
 
 ** REVISED ARCHITECTURE**
 
+<small>
 ```
 
                   .   +-----+    +------------------------+
@@ -307,6 +320,7 @@ The key would be based on geographical location, cryptographically hashed to spr
                   .            .   +-----------------------------+
 
 ```
+</small>
 
 Concatenated latitude and longitude as key, cryptographically hashed to prevent lopsided shards
 
@@ -324,6 +338,7 @@ Use a quadtree (superimposed over a world map) as an index to facilitate searchi
 
 **REVISED ARCHITECTURE**
 
+<small>
 ```
 
                   .   +-----+    +------------------------+
@@ -354,6 +369,7 @@ Use a quadtree (superimposed over a world map) as an index to facilitate searchi
                   .            .   +-----------------------------+
 
 ```
+</small>
 
 Adjacent to the database,<br/>there would be a quadtree-based index
 
@@ -404,6 +420,7 @@ What about the security?
 
 **REVISED ARCHITECTURE**
 
+<small>
 ```
 
                   .   +-----+    +------------------------+                                      +---+
@@ -434,6 +451,7 @@ What about the security?
                   .            .   +-----------------------------+            +-------------+
 
 ```
+</small>
 
 ---
 
