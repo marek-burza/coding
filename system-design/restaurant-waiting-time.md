@@ -16,8 +16,7 @@ I encountered a variation of this system design assignment during on-site interv
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
-<small>
-```
+<pre style="font-size: 6pt;">
 
   +--------+       .   +-----+    +------------------------+
   | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
@@ -31,8 +30,7 @@ I encountered a variation of this system design assignment during on-site interv
                    .
                    .
 
-```
-</small>
+</pre>
 
 But this leaves some questions to be answered...
 
@@ -60,8 +58,7 @@ We provide an API for the restaurants and enrolled restaurants will provide the 
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
-<small>
-```
+<pre style="font-size: 6pt;">
 
   +--------+       .   +-----+    +------------------------+
   | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
@@ -75,8 +72,7 @@ We provide an API for the restaurants and enrolled restaurants will provide the 
   | RESTAURANT |---.
   +------------+   .
 
-```
-</small>
+</pre>
 
 It would be extended with an interface towards the restaurants...
 
@@ -115,8 +111,7 @@ Automate data collection and prepopulate database with estimates
 
 **REVISED ARCHITECTURE**
 
-<small>
-```
+<pre style="font-size: 6pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -145,8 +140,7 @@ Automate data collection and prepopulate database with estimates
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-```
-</small>
+</pre>
 
 ---
 
@@ -162,8 +156,7 @@ Throttle most frequent third-party API requests, cache replies, shard database
 
 **REVISED ARCHITECTURE**
 
-<small>
-```
+<pre style="font-size: 6pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -192,8 +185,7 @@ Throttle most frequent third-party API requests, cache replies, shard database
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-```
-</small>
+</pre>
 
 Enqueue requests for estimating capacity for<br/>newly added restaurants (and process them offline)
 
@@ -201,8 +193,7 @@ Enqueue requests for estimating capacity for<br/>newly added restaurants (and pr
 
 **REVISED ARCHITECTURE**
 
-</small>
-```
+<pre style="font-size: 6pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -231,8 +222,7 @@ Enqueue requests for estimating capacity for<br/>newly added restaurants (and pr
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-```
-</small>
+</pre>
 
 Persistently cache the static results of third-party APIs,<br/>store the calculated estimates
 
@@ -240,8 +230,7 @@ Persistently cache the static results of third-party APIs,<br/>store the calcula
 
 **REVISED ARCHITECTURE**
 
-<small>
-```
+<pre style="font-size: 6pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -270,8 +259,7 @@ Persistently cache the static results of third-party APIs,<br/>store the calcula
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-```
-</small>
+</pre>
 
 Use a highly scalable, sharded NoSQL database
 
@@ -289,8 +277,7 @@ The key would be based on geographical location, cryptographically hashed to spr
 
 ** REVISED ARCHITECTURE**
 
-<small>
-```
+<pre style="font-size: 6pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -319,8 +306,7 @@ The key would be based on geographical location, cryptographically hashed to spr
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-```
-</small>
+</pre>
 
 Concatenated latitude and longitude as key, cryptographically hashed to prevent lopsided shards
 
@@ -338,8 +324,7 @@ Use a quadtree (superimposed over a world map) as an index to facilitate searchi
 
 **REVISED ARCHITECTURE**
 
-<small>
-```
+<pre style="font-size: 6pt;">
 
                   .   +-----+    +------------------------+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
@@ -368,8 +353,7 @@ Use a quadtree (superimposed over a world map) as an index to facilitate searchi
                   .            .   | APP LOCATION TRACKING, ETC. |
                   .            .   +-----------------------------+
 
-```
-</small>
+</pre>
 
 Adjacent to the database,<br/>there would be a quadtree-based index
 
@@ -420,8 +404,7 @@ What about the security?
 
 **REVISED ARCHITECTURE**
 
-<small>
-```
+<pre style="font-size: 6pt;">
 
                   .   +-----+    +------------------------+                                      +---+
         +-----+   .---| CDN |----| STATIC CONTENT STORAGE |                                      | V |
@@ -450,8 +433,7 @@ What about the security?
                   .            .   | APP LOCATION TRACKING, ETC. |            | REPLICATION |
                   .            .   +-----------------------------+            +-------------+
 
-```
-</small>
+</pre>
 
 ---
 
