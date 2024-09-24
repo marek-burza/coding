@@ -67,24 +67,18 @@ pub fn count_luck(matrix: &[String], k: i32) -> String {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let t = input.next().unwrap().trim().parse::<i32>().unwrap();
+    let input = read_input(origin, name);
+    let tests = input[0][0].parse::<usize>().unwrap();
     let mut results: Vec<String> = Vec::new();
-    for _ in 0..t {
-        let first_line: Vec<String> = input
-            .next()
-            .unwrap()
-            .split(' ')
-            .map(|s| s.to_string())
+    let mut offset = 1;
+    for _ in 0..tests {
+        let n = input[offset][0].parse::<usize>().unwrap();
+        let matrix: Vec<String> = input[offset + 1..offset + 1 + n]
+            .iter()
+            .map(|line| line[0].clone())
             .collect();
-        let n = first_line[0].trim().parse::<i32>().unwrap();
-        // let m = first_line[1].trim().parse::<i32>().unwrap();
-        let mut matrix: Vec<String> = Vec::with_capacity(n as usize);
-        for _ in 0..n {
-            let matrix_item = input.next().unwrap();
-            matrix.push(matrix_item);
-        }
-        let k = input.next().unwrap().trim().parse::<i32>().unwrap();
+        let k = input[offset + 1 + n][0].parse::<i32>().unwrap();
+        offset += 1 + n + 1;
         results.push(count_luck(&matrix, k));
     }
     write_and_check_output(origin, name, &results);

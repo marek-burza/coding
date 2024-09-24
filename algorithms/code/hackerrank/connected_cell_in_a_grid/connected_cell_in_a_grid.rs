@@ -60,20 +60,12 @@ pub fn connected_cell(matrix: &mut [Vec<i32>]) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let n = input.next().unwrap().trim().parse::<i32>().unwrap();
-    let m = input.next().unwrap().trim().parse::<i32>().unwrap();
-    let mut matrix: Vec<Vec<i32>> = Vec::with_capacity(n as usize);
-    for i in 0..n {
-        matrix.push(Vec::with_capacity(m as usize));
-        matrix[i as usize] = input
-            .next()
-            .unwrap()
-            .trim_end()
-            .split(' ')
-            .map(|s| s.to_string().parse::<i32>().unwrap())
-            .collect();
-    }
+    let input = read_input(origin, name);
+    let n = input[0][0].parse::<usize>().unwrap();
+    let mut matrix: Vec<Vec<i32>> = input[2..2 + n]
+        .iter()
+        .map(|inner| inner.iter().map(|s| s.parse::<i32>().unwrap()).collect())
+        .collect();
     let results = [connected_cell(&mut matrix).to_string()];
     write_and_check_output(origin, name, &results);
 }

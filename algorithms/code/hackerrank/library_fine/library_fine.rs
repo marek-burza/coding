@@ -19,26 +19,14 @@ pub fn library_fine(d1: i32, m1: i32, y1: i32, d2: i32, m2: i32, y2: i32) -> i32
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let first_line: Vec<String> = input
-        .next()
-        .unwrap()
-        .split(' ')
-        .map(|s| s.to_string())
-        .collect();
-    let d1 = first_line[0].trim().parse::<i32>().unwrap();
-    let m1 = first_line[1].trim().parse::<i32>().unwrap();
-    let y1 = first_line[2].trim().parse::<i32>().unwrap();
-    let second_line: Vec<String> = input
-        .next()
-        .unwrap()
-        .split(' ')
-        .map(|s| s.to_string())
-        .collect();
-    let d2 = second_line[0].trim().parse::<i32>().unwrap();
-    let m2 = second_line[1].trim().parse::<i32>().unwrap();
-    let y2 = second_line[2].trim().parse::<i32>().unwrap();
+    let d1 = input[0][0].parse::<i32>().unwrap();
+    let m1 = input[0][1].parse::<i32>().unwrap();
+    let y1 = input[0][2].parse::<i32>().unwrap();
+    let d2 = input[1][0].parse::<i32>().unwrap();
+    let m2 = input[1][1].parse::<i32>().unwrap();
+    let y2 = input[1][2].parse::<i32>().unwrap();
     results.push(library_fine(d1, m1, y1, d2, m2, y2).to_string());
     write_and_check_output(origin, name, &results);
 }

@@ -23,10 +23,10 @@ pub fn kaprekar_numbers(p: i32, q: i32) -> Vec<String> {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let p = input.next().unwrap().trim().parse::<i32>().unwrap();
-    let q = input.next().unwrap().trim().parse::<i32>().unwrap();
+    let p = input[0][0].parse::<i32>().unwrap();
+    let q = input[1][0].parse::<i32>().unwrap();
     results.push(
         kaprekar_numbers(p, q)
             .iter()

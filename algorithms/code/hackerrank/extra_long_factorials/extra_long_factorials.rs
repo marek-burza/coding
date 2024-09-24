@@ -13,10 +13,10 @@ pub fn extra_long_factorials(n: u32) -> String {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    for line in &mut input {
-        let n = line.trim().parse::<u32>().unwrap();
+    for line in input {
+        let n = line[0].parse::<u32>().unwrap();
         results.push(extra_long_factorials(n));
     }
     write_and_check_output(origin, name, &results);

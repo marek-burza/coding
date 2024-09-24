@@ -13,10 +13,10 @@ pub fn maximizing_xor(l: i32, r: i32) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let l = input.next().unwrap().trim().parse::<i32>().unwrap();
-    let r = input.next().unwrap().trim().parse::<i32>().unwrap();
+    let l = input[0][0].parse::<i32>().unwrap();
+    let r = input[1][0].parse::<i32>().unwrap();
     results.push(maximizing_xor(l, r).to_string());
     write_and_check_output(origin, name, &results);
 }

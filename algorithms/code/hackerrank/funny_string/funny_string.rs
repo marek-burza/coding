@@ -24,11 +24,11 @@ fn funny_string(s: String) -> String {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let n = input.next().unwrap().trim().parse::<u32>().unwrap();
+    let input = read_input(origin, name);
+    let n = input[0][0].parse::<usize>().unwrap();
     let mut results: Vec<String> = Vec::new();
-    for _ in 0..n {
-        results.push(funny_string(input.next().unwrap().trim().to_string()));
+    for i in 0..n {
+        results.push(funny_string(input[1 + i][0].clone()));
     }
     write_and_check_output(origin, name, &results);
 }

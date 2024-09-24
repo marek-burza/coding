@@ -23,13 +23,15 @@ pub fn stones(n: i32, a: i32, b: i32) -> Vec<i32> {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let t = input.next().unwrap().trim().parse::<u32>().unwrap();
+    let t = input[0][0].parse::<u32>().unwrap();
+    let mut offset = 0;
     for _ in 0..t {
-        let n = input.next().unwrap().trim().parse::<i32>().unwrap();
-        let a = input.next().unwrap().trim().parse::<i32>().unwrap();
-        let b = input.next().unwrap().trim().parse::<i32>().unwrap();
+        let n = input[offset + 1][0].parse::<i32>().unwrap();
+        let a = input[offset + 2][0].parse::<i32>().unwrap();
+        let b = input[offset + 3][0].parse::<i32>().unwrap();
+        offset += 3;
         results.push(
             stones(n, a, b)
                 .iter()

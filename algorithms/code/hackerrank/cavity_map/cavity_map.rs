@@ -36,13 +36,9 @@ pub fn cavity_map(grid: &[String]) -> Vec<String> {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let n = input.next().unwrap().trim().parse::<i32>().unwrap();
-    let mut grid: Vec<String> = Vec::with_capacity(n as usize);
-    for _ in 0..n {
-        let grid_item = input.next().unwrap();
-        grid.push(grid_item);
-    }
+    let input = read_input(origin, name);
+    let n = input[0][0].parse::<usize>().unwrap();
+    let grid: Vec<String> = input[1..1 + n].iter().map(|line| line[0].clone()).collect();
     let results = cavity_map(&grid);
     write_and_check_output(origin, name, &results);
 }

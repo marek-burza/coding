@@ -78,9 +78,9 @@ pub fn time_in_words(h: i32, m: i32) -> String {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let h = input.next().unwrap().trim().parse::<i32>().unwrap();
-    let m = input.next().unwrap().trim().parse::<i32>().unwrap();
+    let input = read_input(origin, name);
+    let h = input[0][0].parse::<i32>().unwrap();
+    let m = input[1][0].parse::<i32>().unwrap();
     let results: Vec<String> = vec![time_in_words(h, m)];
     write_and_check_output(origin, name, &results);
 }
