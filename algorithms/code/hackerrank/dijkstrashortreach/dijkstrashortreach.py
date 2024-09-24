@@ -14,45 +14,34 @@ Edge = collections.namedtuple('Edge', ['origin', 'vertex', 'weight'])
 # pylint: disable=R0903
 @functools.total_ordering
 class Vertex:
-    def __init__(self, distance, edges):
+    def __init__(self, index: int, distance: int):
+        self.index = index
         self.distance = distance
-        self.edges = edges
 
     def __lt__(self, other):
         return self.distance < other.distance
 
-    def assign_distance(self, distance):
-        self.distance = distance
-
-
-def replace(value, from_value, to_value):
-    return to_value if value == from_value else value
-
 
 def shortest_reach(n: int, edges: List[List[int]], s: int) -> List[int]:
-    maximum = float('inf')
     adjacency: List[List[Edge]] = [[] for _ in range(n + 1)]
     for edge in edges:
         adjacency[edge[0]].append(Edge(edge[0], edge[1], edge[2]))
         adjacency[edge[1]].append(Edge(edge[1], edge[0], edge[2]))
-    vertices: List[Vertex] = []
-    for adjacent in adjacency:
-        vertices.append(Vertex(maximum, adjacent))
+    distances = [-1] * (n + 1)
+    distances[s] = 0
     unvisited: List[Vertex] = []
-    heapq.heappush(unvisited, vertices[s])
-    vertices[s].assign_distance(0)
+    heapq.heappush(unvisited, Vertex(s, 0))
     while unvisited:
         vertex = heapq.heappop(unvisited)
-        for edge_obj in vertex.edges:
-            other = vertices[edge_obj.vertex]
+        for edge_obj in adjacency[vertex.index]:
+            other = edge_obj.vertex
             candidate = vertex.distance + edge_obj.weight
-            if candidate < other.distance:
-                other.assign_distance(candidate)
-                heapq.heappush(unvisited, other)
-    del vertices[s]
-    distances = [vertex.distance for vertex in vertices[1:]]
-    distances = [replace(distance, maximum, -1) for distance in distances]
-    return distances
+            if distances[other] == -1 or candidate < distances[other]:
+                distances[other] = candidate
+                heapq.heappush(unvisited, Vertex(other, candidate))
+    return [
+        distance for i, distance in enumerate(distances) if i not in [0, s]
+    ]
 
 
 class TestCode(unittest.TestCase):
