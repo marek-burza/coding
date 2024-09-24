@@ -48,6 +48,13 @@ pub fn read_input(origin: &str, name: &str) -> vec::IntoIter<String> {
     read_lines(origin, name).into_iter()
 }
 
+pub fn read_input_improved(origin: &str, name: &str) -> Vec<Vec<String>> {
+    read_lines(origin, name)
+        .iter()
+        .map(|line| line.split_whitespace().map(|s| s.to_string()).collect())
+        .collect()
+}
+
 pub fn write_and_check_output(origin: &str, name: &str, results: &[String]) {
     write_lines(origin, name, results);
     diff_check(origin, name);
