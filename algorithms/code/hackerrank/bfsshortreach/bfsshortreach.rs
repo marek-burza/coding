@@ -7,9 +7,9 @@ struct Entry {
     distance: i32,
 }
 
-pub fn bfs(n: i32, _m: i32, edges: Vec<Vec<i32>>, s: i32) -> Vec<i32> {
+pub fn bfs(n: i32, _m: i32, edges: &[Vec<i32>], s: i32) -> Vec<i32> {
     let mut adjacency = vec![vec![false; n as usize]; n as usize];
-    for edge in &edges {
+    for edge in edges {
         adjacency[(edge[0] - 1) as usize][(edge[1] - 1) as usize] = true;
         adjacency[(edge[1] - 1) as usize][(edge[0] - 1) as usize] = true;
     }
@@ -50,13 +50,13 @@ pub fn main_tested(name: &str) {
     for _ in 0..tests {
         let n = input[offset][0].parse::<i32>().unwrap();
         let m = input[offset][1].parse::<i32>().unwrap();
-        let edges = input[(offset + 1)..(offset + 1 + m as usize)]
+        let edges: Vec<Vec<i32>> = input[(offset + 1)..(offset + 1 + m as usize)]
             .iter()
             .map(|inner| inner.iter().map(|s| s.parse::<i32>().unwrap()).collect())
             .collect();
         let s = input[offset + 1 + m as usize][0].parse::<i32>().unwrap();
         offset += 1 + m as usize + 1;
-        let result = bfs(n, m, edges, s);
+        let result = bfs(n, m, &edges, s);
         results.push(
             result
                 .iter()
