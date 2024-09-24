@@ -18,29 +18,17 @@ pub fn taum_bday(b: i32, w: i32, bc: i32, wc: i32, z: i32) -> i64 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let t = input.next().unwrap().trim().parse::<i32>().unwrap();
+    let input = read_input(origin, name);
+    let t = input[0][0].parse::<i32>().unwrap();
     let mut results: Vec<String> = Vec::new();
+    let mut offset = 1;
     for _ in 0..t {
-        let first_line: Vec<i32> = input
-            .next()
-            .unwrap()
-            .trim_end()
-            .split(' ')
-            .map(|s| s.to_string().parse::<i32>().unwrap())
-            .collect();
-        let b = first_line[0];
-        let w = first_line[1];
-        let second_line: Vec<i32> = input
-            .next()
-            .unwrap()
-            .trim_end()
-            .split(' ')
-            .map(|s| s.to_string().parse::<i32>().unwrap())
-            .collect();
-        let bc = second_line[0];
-        let wc = second_line[1];
-        let z = second_line[2];
+        let b = input[offset][0].parse::<i32>().unwrap();
+        let w = input[offset][1].parse::<i32>().unwrap();
+        let bc = input[offset + 1][0].parse::<i32>().unwrap();
+        let wc = input[offset + 1][1].parse::<i32>().unwrap();
+        let z = input[offset + 1][2].parse::<i32>().unwrap();
+        offset += 2;
         results.push(taum_bday(b, w, bc, wc, z).to_string());
     }
     write_and_check_output(origin, name, &results);

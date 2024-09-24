@@ -17,18 +17,12 @@ pub fn kangaroo(x1: i32, v1: i32, x2: i32, v2: i32) -> String {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let first_line: Vec<String> = input
-        .next()
-        .unwrap()
-        .split(' ')
-        .map(|s| s.to_string())
-        .collect();
-    let x1 = first_line[0].trim().parse::<i32>().unwrap();
-    let v1 = first_line[1].trim().parse::<i32>().unwrap();
-    let x2 = first_line[2].trim().parse::<i32>().unwrap();
-    let v2 = first_line[3].trim().parse::<i32>().unwrap();
+    let x1 = input[0][0].parse::<i32>().unwrap();
+    let v1 = input[0][1].parse::<i32>().unwrap();
+    let x2 = input[0][2].parse::<i32>().unwrap();
+    let v2 = input[0][3].parse::<i32>().unwrap();
     results.push(kangaroo(x1, v1, x2, v2));
     write_and_check_output(origin, name, &results);
 }

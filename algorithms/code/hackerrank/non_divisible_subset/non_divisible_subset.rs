@@ -40,20 +40,11 @@ pub fn non_divisible_subset(k: i32, s: &[i32]) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let first_line: Vec<String> = input
-        .next()
-        .unwrap()
-        .split(' ')
-        .map(|s| s.to_string())
-        .collect();
-    let k = first_line[1].trim().parse::<i32>().unwrap();
-    let s: Vec<i32> = input
-        .next()
-        .unwrap()
-        .trim_end()
-        .split(' ')
+    let k = input[0][1].trim().parse::<i32>().unwrap();
+    let s: Vec<i32> = input[1]
+        .iter()
         .map(|s| s.to_string().parse::<i32>().unwrap())
         .collect();
     results.push(non_divisible_subset(k, &s).to_string());

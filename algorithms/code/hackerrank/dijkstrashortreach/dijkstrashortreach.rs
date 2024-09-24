@@ -1,7 +1,7 @@
 // https://www.hackerrank.com/challenges/dijkstrashortreach
 // #linking
 
-use crate::hackerrank::tester::{read_input_improved, write_and_check_output};
+use crate::hackerrank::tester::{read_input, write_and_check_output};
 use std::cmp::Ordering;
 use std::collections::BinaryHeap;
 
@@ -70,7 +70,7 @@ pub fn shortest_reach(n: usize, edges: &[Vec<i32>], s: usize) -> Vec<i32> {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let input = read_input_improved(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
     let tests = input[0][0].parse::<usize>().unwrap();
     let mut offset = 1;

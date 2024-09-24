@@ -18,25 +18,17 @@ pub fn unbounded_knapsack(k: i32, arr: &[i32]) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let t = input.next().unwrap().trim().parse::<i32>().unwrap();
+    let input = read_input(origin, name);
+    let t = input[0][0].parse::<i32>().unwrap();
     let mut results: Vec<String> = Vec::new();
+    let mut offset = 1;
     for _ in 0..t {
-        let first_line: Vec<String> = input
-            .next()
-            .unwrap()
-            .split(' ')
-            .map(|s| s.to_string())
-            .collect();
-        // let n = first_line[0].trim().parse::<i32>().unwrap();
-        let k = first_line[1].trim().parse::<i32>().unwrap();
-        let arr: Vec<i32> = input
-            .next()
-            .unwrap()
-            .trim_end()
-            .split(' ')
+        let k = input[offset][1].parse::<i32>().unwrap();
+        let arr: Vec<i32> = input[offset + 1]
+            .iter()
             .map(|s| s.to_string().parse::<i32>().unwrap())
             .collect();
+        offset += 2;
         let result = unbounded_knapsack(k, &arr);
         results.push(result.to_string());
     }

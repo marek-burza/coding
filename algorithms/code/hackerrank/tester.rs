@@ -2,7 +2,6 @@ use std::fs::{read_to_string, remove_file, write};
 use std::io::{self, Write};
 use std::path::Path;
 use std::process::Command;
-use std::vec;
 
 pub fn locate_test_file(origin: &str, prefix: &str, name: &str) -> String {
     let path = Path::new(&origin);
@@ -44,11 +43,7 @@ pub fn diff_check(origin: &str, name: &str) {
     assert!(success);
 }
 
-pub fn read_input(origin: &str, name: &str) -> vec::IntoIter<String> {
-    read_lines(origin, name).into_iter()
-}
-
-pub fn read_input_improved(origin: &str, name: &str) -> Vec<Vec<String>> {
+pub fn read_input(origin: &str, name: &str) -> Vec<Vec<String>> {
     read_lines(origin, name)
         .iter()
         .map(|line| line.split_whitespace().map(|s| s.to_string()).collect())

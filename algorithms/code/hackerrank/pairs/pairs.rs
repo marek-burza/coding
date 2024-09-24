@@ -30,20 +30,11 @@ pub fn pairs(k: i32, arr: &mut [i32]) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let first_line: Vec<String> = input
-        .next()
-        .unwrap()
-        .split(' ')
-        .map(|s| s.to_string())
-        .collect();
-    let k = first_line[1].trim().parse::<i32>().unwrap();
-    let mut arr: Vec<i32> = input
-        .next()
-        .unwrap()
-        .trim_end()
-        .split(' ')
+    let k = input[0][1].trim().parse::<i32>().unwrap();
+    let mut arr: Vec<i32> = input[1]
+        .iter()
         .map(|s| s.to_string().parse::<i32>().unwrap())
         .collect();
     results.push(pairs(k, &mut arr).to_string());

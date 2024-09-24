@@ -19,18 +19,16 @@ pub fn balanced_sums(arr: &[i32]) -> String {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let t = input.next().unwrap().trim().parse::<u32>().unwrap();
+    let input = read_input(origin, name);
+    let t = input[0][0].parse::<u32>().unwrap();
     let mut results: Vec<String> = Vec::new();
+    let mut offset = 2;
     for _ in 0..t {
-        input.next(); // n
-        let arr: Vec<i32> = input
-            .next()
-            .unwrap()
-            .trim_end()
-            .split(' ')
+        let arr: Vec<i32> = input[offset]
+            .iter()
             .map(|s| s.to_string().parse::<i32>().unwrap())
             .collect();
+        offset += 2;
         results.push(balanced_sums(&arr));
     }
     write_and_check_output(origin, name, &results);

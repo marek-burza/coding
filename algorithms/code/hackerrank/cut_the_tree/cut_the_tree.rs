@@ -50,27 +50,16 @@ pub fn cut_the_tree(data: &[i32], edges: &[Vec<i32>]) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let n = input.next().unwrap().trim().parse::<i32>().unwrap();
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let data: Vec<i32> = input
-        .next()
-        .unwrap()
-        .trim_end()
-        .split(' ')
+    let data: Vec<i32> = input[1]
+        .iter()
         .map(|s| s.to_string().parse::<i32>().unwrap())
         .collect();
-    let mut edges: Vec<Vec<i32>> = Vec::with_capacity((n - 1) as usize);
-    for i in 0..(n - 1) as usize {
-        edges.push(Vec::with_capacity(2_usize));
-        edges[i] = input
-            .next()
-            .unwrap()
-            .trim_end()
-            .split(' ')
-            .map(|s| s.to_string().parse::<i32>().unwrap())
-            .collect();
-    }
+    let edges: Vec<Vec<i32>> = input[2..]
+        .iter()
+        .map(|inner| inner.iter().map(|s| s.parse::<i32>().unwrap()).collect())
+        .collect();
     results.push(cut_the_tree(&data, &edges).to_string());
     write_and_check_output(origin, name, &results);
 }

@@ -43,23 +43,11 @@ pub fn divisible_sum_pairs(_n: i32, k: i32, arr: &Vec<i32>) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let first_line: Vec<String> = input
-        .next()
-        .unwrap()
-        .split(' ')
-        .map(|s| s.to_string())
-        .collect();
-    let n = first_line[0].trim().parse::<i32>().unwrap();
-    let k = first_line[1].trim().parse::<i32>().unwrap();
-    let arr: Vec<i32> = input
-        .next()
-        .unwrap()
-        .trim_end()
-        .split(' ')
-        .map(|s| s.to_string().parse::<i32>().unwrap())
-        .collect();
+    let n = input[0][0].parse::<i32>().unwrap();
+    let k = input[0][1].parse::<i32>().unwrap();
+    let arr: Vec<i32> = input[1].iter().map(|s| s.parse::<i32>().unwrap()).collect();
     results.push(divisible_sum_pairs(n, k, &arr).to_string());
     write_and_check_output(origin, name, &results);
 }

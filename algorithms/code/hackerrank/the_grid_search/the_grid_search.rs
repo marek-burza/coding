@@ -33,30 +33,22 @@ pub fn grid_search(g: &[String], p: &[String]) -> String {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
-    let t = input.next().unwrap().trim().parse::<i32>().unwrap();
+    let input = read_input(origin, name);
+    let t = input[0][0].parse::<i32>().unwrap();
     let mut results: Vec<String> = Vec::new();
+    let mut offset = 1;
     for _ in 0..t {
-        let first_header: Vec<String> = input
-            .next()
-            .unwrap()
-            .split(' ')
-            .map(|s| s.to_string())
+        let g_length = input[offset][0].parse::<usize>().unwrap();
+        let g: Vec<String> = input[offset + 1..offset + 1 + g_length]
+            .iter()
+            .map(|line| line[0].clone())
             .collect();
-        let mut g: Vec<String> = Vec::new();
-        for _ in 0..first_header[0].trim().parse::<i32>().unwrap() {
-            g.push(input.next().unwrap());
-        }
-        let second_header: Vec<String> = input
-            .next()
-            .unwrap()
-            .split(' ')
-            .map(|s| s.to_string())
+        let p_length = input[offset + 1 + g_length][0].parse::<usize>().unwrap();
+        let p: Vec<String> = input[offset + 1 + g_length + 1..offset + 1 + g_length + 1 + p_length]
+            .iter()
+            .map(|line| line[0].clone())
             .collect();
-        let mut p: Vec<String> = Vec::new();
-        for _ in 0..second_header[0].trim().parse::<i32>().unwrap() {
-            p.push(input.next().unwrap());
-        }
+        offset += 1 + g_length + 1 + p_length;
         results.push(grid_search(&g, &p));
     }
     write_and_check_output(origin, name, &results);

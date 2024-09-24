@@ -27,9 +27,9 @@ pub fn encryption(plain: &str) -> String {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let plain = input.next().unwrap();
+    let plain = input[0][0].clone();
     results.push(encryption(&plain));
     write_and_check_output(origin, name, &results);
 }

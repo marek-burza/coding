@@ -24,19 +24,17 @@ pub fn icecream_parlor(m: i32, arr: &[i32]) -> Vec<i32> {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    let t = input.next().unwrap().trim().parse::<u32>().unwrap();
+    let t = input[0][0].parse::<u32>().unwrap();
+    let mut offset = 1;
     for _ in 0..t {
-        let m = input.next().unwrap().trim().parse::<i32>().unwrap();
-        input.next().unwrap().trim().parse::<i32>().unwrap(); // n
-        let arr: Vec<i32> = input
-            .next()
-            .unwrap()
-            .trim_end()
-            .split(' ')
-            .map(|s| s.to_string().parse::<i32>().unwrap())
+        let m = input[offset][0].parse::<i32>().unwrap();
+        let arr: Vec<i32> = input[offset + 2]
+            .iter()
+            .map(|s| s.parse::<i32>().unwrap())
             .collect();
+        offset += 3;
         results.push(
             icecream_parlor(m, &arr)
                 .iter()

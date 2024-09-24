@@ -1,7 +1,7 @@
 // https://www.hackerrank.com/challenges/primsmstsub
 // #linking
 
-use crate::hackerrank::tester::{read_input_improved, write_and_check_output};
+use crate::hackerrank::tester::{read_input, write_and_check_output};
 use std::cmp::Ordering;
 use std::collections::{BinaryHeap, HashSet};
 
@@ -65,7 +65,7 @@ pub fn prims(n: usize, edges: &[Vec<i32>], start: usize) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let input = read_input_improved(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
     let n = input[0][0].parse::<usize>().unwrap();
     let m = input[0][1].parse::<usize>().unwrap();

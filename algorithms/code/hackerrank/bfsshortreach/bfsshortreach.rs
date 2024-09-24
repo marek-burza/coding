@@ -1,6 +1,6 @@
 // https://www.hackerrank.com/challenges/bfsshortreach
 
-use crate::hackerrank::tester::{read_input_improved, write_and_check_output};
+use crate::hackerrank::tester::{read_input, write_and_check_output};
 
 struct Entry {
     vertex: i32,
@@ -43,7 +43,7 @@ pub fn bfs(n: i32, _m: i32, edges: &[Vec<i32>], s: i32) -> Vec<i32> {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let input = read_input_improved(origin, name);
+    let input = read_input(origin, name);
     let tests = input[0][0].parse::<i32>().unwrap();
     let mut results: Vec<String> = Vec::new();
     let mut offset = 1;

@@ -19,14 +19,10 @@ pub fn jumping_on_clouds(c: &[i32]) -> i32 {
 
 pub fn main_tested(name: &str) {
     let origin = file!();
-    let mut input = read_input(origin, name);
+    let input = read_input(origin, name);
     let mut results: Vec<String> = Vec::new();
-    input.next().unwrap().trim().parse::<i32>().unwrap(); // length
-    let arr: Vec<i32> = input
-        .next()
-        .unwrap()
-        .trim_end()
-        .split(' ')
+    let arr: Vec<i32> = input[1]
+        .iter()
         .map(|s| s.to_string().parse::<i32>().unwrap())
         .collect();
     results.push(jumping_on_clouds(&arr).to_string());
