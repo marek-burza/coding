@@ -41,7 +41,7 @@ pub fn prims(n: usize, edges: &[Vec<i32>], start: usize) -> i32 {
         });
     }
     let mut connected: HashSet<usize> = HashSet::new();
-    let mut queue: BinaryHeap<Edge> = BinaryHeap::new();
+    let mut queue: BinaryHeap<&Edge> = BinaryHeap::new();
     let mut total = 0;
     while connected.len() < n {
         let mut vertex = start;
@@ -57,7 +57,7 @@ pub fn prims(n: usize, edges: &[Vec<i32>], start: usize) -> i32 {
         // }
         connected.insert(vertex);
         for edge_obj in &adjacency[vertex] {
-            queue.push(edge_obj.clone());
+            queue.push(&edge_obj);
         }
     }
     total
