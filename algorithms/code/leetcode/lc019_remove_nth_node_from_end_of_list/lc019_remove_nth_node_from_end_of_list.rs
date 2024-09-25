@@ -46,7 +46,7 @@ impl Solution {
             node_before.next = node_before
                 .next
                 .as_mut()
-                .and_then(|next_node| next_node.next.take());
+                .and_then(|removed_node| removed_node.next.take());
         }
         head
     }
