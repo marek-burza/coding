@@ -117,3 +117,9 @@ jobs:
     - name: Lint
       run: golint ./...
 ```
+
+## Future
+
+- [Starter Axum, GraphQL and SeaORM Template](https://dev.to/aaronleopold/starter-axum-graphql-and-seaorm-template-3bnf)
+- [Building a Rust framework using axum and async-graphql](https://blog.hellolanding.tech/building-a-rust-framework-using-axum-and-async-graphql-5c54e80fc9ec)
+- Found `async-graphql` on [Community Tools and Libraries using GraphQL](https://graphql.org/community/tools-and-libraries/?tags=rust)
