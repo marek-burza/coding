@@ -57,7 +57,7 @@ pub fn prims(n: usize, edges: &[Vec<i32>], start: usize) -> i32 {
         // }
         connected.insert(vertex);
         for edge_obj in &adjacency[vertex] {
-            queue.push(&edge_obj);
+            queue.push(edge_obj);
         }
     }
     total
