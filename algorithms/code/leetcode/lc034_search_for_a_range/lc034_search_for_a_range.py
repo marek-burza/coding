@@ -17,7 +17,7 @@ class Solution:
                 z = m
             if nums[m] > target:
                 z = m - 1
-        if a == z and nums[a] == target:  # a == z and nums[a] == target
+        if a == z and nums[a] == target:
             return a
         return -1
 
