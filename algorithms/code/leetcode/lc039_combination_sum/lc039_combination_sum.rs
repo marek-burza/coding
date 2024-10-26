@@ -57,6 +57,7 @@ mod tests {
         }
         std::cmp::Ordering::Equal
     }
+
     #[test]
     fn test_deep_comparator_empty_lists() {
         assert_eq!(deep_comparator(&[], &[]), std::cmp::Ordering::Equal);
