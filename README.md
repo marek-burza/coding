@@ -138,7 +138,7 @@
   [Idempotent Operations](https://microservices.io/patterns/communication-style/idempotent-consumer.html),
   [event sourcing](https://microservices.io/patterns/data/event-sourcing.html), Minimal Privileges & Isolation,
   Encryption in Transit & at Rest, Service discovery and Service Registry (Zookeeper, etcd, Consul),
-  ACID (atomicity, consistency, isolation, durability)
+  ACID (atomicity, consistency, isolation, durability), [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/#specification)
 - Architectural Safety Measures: [Circuit-breakers](https://en.wikipedia.org/wiki/Circuit_breaker_design_pattern) & back-off timeouts, [Correlation IDs](https://dzone.com/articles/correlation-id-for-logging-in-microservices) & healthchecks & monitoring & logging & alerts, System Bulkheads
 - Embracing System Failure: [OWASP Top Ten](https://owasp.org/www-project-top-ten/), [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering) & [Antifragile Engineering](https://en.wikipedia.org/wiki/Antifragile)
 - [Microservices](https://www.google.com/search?q=awesome+microservices): [best practices](https://microservices.io/) & [antipatterns / pitfalls](https://www.oreilly.com/content/microservices-antipatterns-and-pitfalls/)
@@ -151,3 +151,4 @@
 - [Gergely Orosz - Preparing for the Systems Design and Coding Interview](https://blog.pragmaticengineer.com/preparing-for-the-systems-design-and-coding-interviews/)
 - [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/) ❗
 - Mock interviews: [interviewing.io](https://interviewing.io/), [Pramp](https://www.pramp.com/), [Meet a Pro](https://www.meetapro.com/)
+- [Valve: Handbook for New Employees](https://cdn.cloudflare.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf)
