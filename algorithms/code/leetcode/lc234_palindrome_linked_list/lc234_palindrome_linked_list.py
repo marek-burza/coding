@@ -13,28 +13,13 @@ class ListNode:
 
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        if head is None:
-            return True
-        count = 0
-        node = head
-        while node is not None:
-            count += 1
-            node = node.next
-        previous = None
-        i = 0
-        while i < count // 2:
-            following = head.next
-            head.next = previous
-            previous = head
-            head = following
-            i += 1
-        forward = head.next if (count & 1) == 1 else head
-        backward = previous
-        while forward is not None:
-            if forward.val != backward.val:
+        listed = []
+        while head is not None:
+            listed.append(head.val)
+            head = head.next
+        for i in range(len(listed) // 2):
+            if listed[i] != listed[-1 - i]:
                 return False
-            forward = forward.next
-            backward = backward.next
         return True
 
 
