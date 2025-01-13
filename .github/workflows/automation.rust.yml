@@ -14,12 +14,12 @@ jobs:
         uses: dtolnay/rust-toolchain@1.80.0
       - name: Linting
         run: |
-          /bin/sh .github/workflows/rust.linter.get.sh
-          /bin/sh .github/workflows/rust.linter.run.sh
+          /bin/sh .github/workflows/rust.environment.sh
+          /bin/sh .github/workflows/rust.linter.sh
       - name: Testing
         run: |
-          /bin/sh .github/workflows/rust.tester.get.sh
-          /bin/sh .github/workflows/rust.tester.run.sh
+          /bin/sh .github/workflows/rust.environment.sh
+          /bin/sh .github/workflows/rust.tester.sh
       - name: Reporting
         uses: codecov/codecov-action@v4
         with:

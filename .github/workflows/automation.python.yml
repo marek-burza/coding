@@ -16,12 +16,12 @@ jobs:
           python-version: "3.12.x"
       - name: Linting
         run: |
-          /bin/sh .github/workflows/python.linter.get.sh
-          /bin/sh .github/workflows/python.linter.run.sh
+          /bin/sh .github/workflows/python.environment.sh
+          /bin/sh .github/workflows/python.linter.sh
       - name: Testing
         run: |
-          /bin/sh .github/workflows/python.tester.get.sh
-          /bin/sh .github/workflows/python.tester.run.sh
+          /bin/sh .github/workflows/python.environment.sh
+          /bin/sh .github/workflows/python.tester.sh
       - name: Reporting
         uses: codecov/codecov-action@v4
         with:

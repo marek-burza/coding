@@ -17,12 +17,12 @@ jobs:
           java-version: 11
       - name: Linting
         run: |
-          /bin/sh .github/workflows/java.linter.get.sh
-          /bin/sh .github/workflows/java.linter.run.sh
+          /bin/sh .github/workflows/java.environment.sh
+          /bin/sh .github/workflows/java.linter.sh
       - name: Testing
         run: |
-          /bin/sh .github/workflows/java.tester.get.sh
-          /bin/sh .github/workflows/java.tester.run.sh
+          /bin/sh .github/workflows/java.environment.sh
+          /bin/sh .github/workflows/java.tester.sh
       - name: Reporting
         uses: codecov/codecov-action@v4
         with:
