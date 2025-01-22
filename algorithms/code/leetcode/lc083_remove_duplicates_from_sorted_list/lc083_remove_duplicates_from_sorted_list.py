@@ -2,7 +2,7 @@
 # https://leetcode.com/problems/remove-duplicates-from-sorted-list/
 
 import unittest
-from typing import Optional
+from typing import List, Optional
 
 
 class ListNode:
@@ -12,41 +12,37 @@ class ListNode:
 
 
 class Solution:
+    @staticmethod
+    def linked_to_listed(linked: Optional[ListNode]) -> List:
+        listed: List = []
+        while linked is not None:
+            listed.append(linked.val)
+            linked = linked.next
+        return listed
+
+    @staticmethod
+    def listed_to_linked(listed: List) -> Optional[ListNode]:
+        linked: Optional[ListNode] = None
+        for value in listed[::-1]:
+            linked = ListNode(value, linked)
+        return linked
+
     def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        anchor = head
-        while head is not None:
-            while head.next is not None and head.val == head.next.val:
-                head.next = head.next.next
-            head = head.next
-        return anchor
+        listed = Solution.linked_to_listed(head)
+        deduplicated: List = []
+        for value in listed:
+            if not deduplicated or deduplicated[-1] != value:
+                deduplicated.append(value)
+        return Solution.listed_to_linked(deduplicated)
 
 
 class TestCode(unittest.TestCase):
     def test_1_1_2(self):
-        n1a = ListNode(1)
-        n1b = ListNode(1)
-        n2 = ListNode(2)
-        n1a.next = n1b
-        n1b.next = n2
-        n2.next = None
-        result = Solution().deleteDuplicates(n1a)
-        self.assertEqual(1, result.val)
-        self.assertEqual(2, result.next.val)
-        self.assertEqual(None, result.next.next)
+        linked = Solution.listed_to_linked([1, 1, 2])
+        result = Solution().deleteDuplicates(linked)
+        self.assertListEqual([1, 2], Solution.linked_to_listed(result))
 
     def test_1_1_2_3_3(self):
-        n1a = ListNode(1)
-        n1b = ListNode(1)
-        n2 = ListNode(2)
-        n3a = ListNode(3)
-        n3b = ListNode(3)
-        n1a.next = n1b
-        n1b.next = n2
-        n2.next = n3a
-        n3a.next = n3b
-        n3b.next = None
-        result = Solution().deleteDuplicates(n1a)
-        self.assertEqual(1, result.val)
-        self.assertEqual(2, result.next.val)
-        self.assertEqual(3, result.next.next.val)
-        self.assertEqual(None, result.next.next.next)
+        linked = Solution.listed_to_linked([1, 1, 2, 3, 3])
+        result = Solution().deleteDuplicates(linked)
+        self.assertListEqual([1, 2, 3], Solution.linked_to_listed(result))
