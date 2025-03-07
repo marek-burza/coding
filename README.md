@@ -52,7 +52,6 @@
 ### [Practice algorithm design challenges](algorithms)
 
 ![Status Python](https://github.com/altermarkive/training/workflows/Python/badge.svg)
-![Status Java](https://github.com/altermarkive/training/workflows/Java/badge.svg)
 ![Status Rust](https://github.com/altermarkive/training/workflows/Rust/badge.svg)
 [![Coverage](https://codecov.io/gh/altermarkive/training/branch/master/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
 
