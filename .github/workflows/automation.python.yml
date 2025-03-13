@@ -11,9 +11,9 @@ jobs:
       - name: Initiating
         uses: actions/checkout@v4
       - name: Preparing
-        uses: actions/setup-python@v5
+        uses: astral-sh/setup-uv@v4
         with:
-          python-version: "3.12.x"
+          version: "latest"
       - name: Linting
         run: |
           /bin/sh .github/workflows/python.environment.sh
