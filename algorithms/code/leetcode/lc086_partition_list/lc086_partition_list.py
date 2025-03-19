@@ -25,7 +25,7 @@ class Solution:
             if head.val < x:
                 less.next = head
                 less = head
-            if head.val >= x:
+            else:
                 more.next = head
                 more = head
             head = head.next
