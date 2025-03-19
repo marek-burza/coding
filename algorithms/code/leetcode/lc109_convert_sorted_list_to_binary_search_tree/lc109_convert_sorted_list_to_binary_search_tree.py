@@ -2,7 +2,7 @@
 # https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
 
 import unittest
-from typing import Optional
+from typing import List, Optional
 
 
 class ListNode:
@@ -19,30 +19,37 @@ class TreeNode:
 
 
 class Solution:
-    def __length(self, head):
-        count = 0
-        while head is not None:
-            count += 1
-            head = head.next
-        return count
+    @staticmethod
+    def linked_to_listed(linked: Optional[ListNode]) -> List:
+        listed: List = []
+        while linked is not None:
+            listed.append(linked.val)
+            linked = linked.next
+        return listed
 
-    def __generate(self, head, length):
-        if head is None or length <= 0:
+    @staticmethod
+    def __generate(listed: List, head: int, tail: int) -> Optional[TreeNode]:
+        if head >= tail:
             return None
-        half = length >> 1
-        middle = head
-        for _ in range(half):
-            middle = middle.next
-        root = TreeNode(middle.val)
-        root.left = self.__generate(head, half)
-        root.right = self.__generate(middle.next, length - half - 1)
-        return root
+        length = tail - head
+        half = head + (length >> 1)
+        root_left = Solution.__generate(listed, head, half)
+        root_right = Solution.__generate(listed, half + 1, tail)
+        return TreeNode(listed[half], root_left, root_right)
 
     def sortedListToBST(self, head: Optional[ListNode]) -> Optional[TreeNode]:
-        return self.__generate(head, self.__length(head))
+        listed = Solution.linked_to_listed(head)
+        return Solution.__generate(listed, 0, len(listed))
 
 
 class TestCode(unittest.TestCase):
+    @staticmethod
+    def listed_to_linked(listed: List) -> Optional[ListNode]:
+        linked: Optional[ListNode] = None
+        for value in listed[::-1]:
+            linked = ListNode(value, linked)
+        return linked
+
     class MinMax:
         def __init__(self):
             self.min = float('inf')
@@ -56,31 +63,19 @@ class TestCode(unittest.TestCase):
             self.__depth(root.left, level + 1, depths)
             self.__depth(root.right, level + 1, depths)
 
-    def __iterated(self, minimum, maximum):
-        array = [0] * (maximum - minimum + 1)
-        for i, _ in enumerate(array):
-            array[i] = minimum + i
-        length = len(array)
-        listed = ListNode(0)
-        node = listed
-        for i in range(length):
-            node.next = ListNode(array[i])
-            node = node.next
-        return listed.next
-
-    def __test(self, root, listed):
-        if root is None:
-            return listed
-        listed = self.__test(root.left, listed)
-        self.assertEqual(listed.val, root.val)
-        listed = listed.next
-        listed = self.__test(root.right, listed)
-        return listed
+    def __test(self, root, linked):
+        if root is not None:
+            linked = self.__test(root.left, linked)
+            self.assertEqual(linked.val, root.val)
+            linked = linked.next
+            linked = self.__test(root.right, linked)
+        return linked
 
     def test_bigger(self):
-        listed = self.__iterated(-999, 15340)
-        root = Solution().sortedListToBST(listed)
+        listed = list(range(-999, 15340 + 1))
+        linked = self.listed_to_linked(listed)
+        root = Solution().sortedListToBST(linked)
         depths = self.MinMax()
         self.__depth(root, 0, depths)
         self.assertTrue(depths.max - depths.min < 2)
-        self.assertEqual(None, self.__test(root, listed))
+        self.assertEqual(None, self.__test(root, linked))
