@@ -40,15 +40,9 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __freeze(self, listed):
-        result = [None] * len(listed)
-        for i, _ in enumerate(result):
-            result[i] = listed[i]
-        return result
-
     def test_25525511135(self):
         expected = ['255.255.11.135', '255.255.111.35']
-        result = self.__freeze(Solution().restoreIpAddresses('25525511135'))
+        result = Solution().restoreIpAddresses('25525511135')
         result.sort()
         self.assertListEqual(expected, result)
 
@@ -60,6 +54,6 @@ class TestCode(unittest.TestCase):
             '10.10.2.3',
             '101.0.2.3',
         ]
-        result = self.__freeze(Solution().restoreIpAddresses('101023'))
+        result = Solution().restoreIpAddresses('101023')
         result.sort()
         self.assertListEqual(expected, result)
