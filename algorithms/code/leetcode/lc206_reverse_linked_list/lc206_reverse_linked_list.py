@@ -2,7 +2,7 @@
 # https://leetcode.com/problems/reverse-linked-list/
 
 import unittest
-from typing import Optional
+from typing import List, Optional
 
 
 class ListNode:
@@ -25,45 +25,35 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def generate(self, length):
-        listed = None
-        last = None
-        for i in range(length):
-            node = ListNode(self, i)
-            node.next = None
-            if listed is None:
-                listed = node
-            else:
-                last.next = node
-            last = node
+    @staticmethod
+    def linked_to_listed(linked: Optional[ListNode]) -> List:
+        listed: List = []
+        while linked is not None:
+            listed.append(linked.val)
+            linked = linked.next
         return listed
 
-    def freeze(self, listed):
-        count = 0
-        copy = listed
-        while copy is not None:
-            count += 1
-            copy = copy.next
-        frozen = [0 for _ in range(count)]
-        for i in range(count):
-            frozen[i] = listed.val
-            listed = listed.next
-        return frozen
+    @staticmethod
+    def listed_to_linked(listed: List) -> Optional[ListNode]:
+        linked: Optional[ListNode] = None
+        for value in listed[::-1]:
+            linked = ListNode(value, linked)
+        return linked
 
-    def generic(self, listed):
-        original = self.freeze(listed)
-        result = self.freeze(Solution().reverseList(listed))
+    def generic(self, linked):
+        original = TestCode.linked_to_listed(linked)
+        result = TestCode.linked_to_listed(Solution().reverseList(linked))
         self.assertEqual(len(original), len(result))
         for i, _ in enumerate(original):
             self.assertEqual(original[len(original) - 1 - i], result[i])
 
     def test_15(self):
-        listed = self.generate(15)
-        self.generic(listed)
+        linked = TestCode.listed_to_linked(list(range(15)))
+        self.generic(linked)
 
     def test_1(self):
-        listed = self.generate(1)
-        self.generic(listed)
+        linked = TestCode.listed_to_linked(list(range(1)))
+        self.generic(linked)
 
     def test_nothing(self):
         self.assertIsNone(Solution().reverseList(None))
