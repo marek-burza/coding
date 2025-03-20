@@ -2,7 +2,7 @@
 # https://leetcode.com/problems/add-two-numbers/
 
 import unittest
-from typing import List
+from typing import List, Optional
 
 
 class ListNode:
@@ -36,51 +36,48 @@ class Solution:
         return handle.next
 
 
-def thaw(array: List[int]) -> ListNode:
-    handle = ListNode()
-    following = handle
-    previous = ListNode()
-    for value in array:
-        previous = following
-        following = ListNode()
-        previous.val = value
-        previous.next = following
-    previous.next = None
-    return handle
-
-
-def freeze(listed: ListNode) -> List[int]:
-    count = 0
-    copy = listed
-    while copy is not None:
-        count += 1
-        copy = copy.next
-    frozen = [0] * count
-    copy = listed
-    for i in range(0, count):
-        frozen[i] = copy.val
-        copy = copy.next
-    return frozen
-
-
 class TestCode(unittest.TestCase):
+    @staticmethod
+    def linked_to_listed(linked: Optional[ListNode]) -> List:
+        listed: List = []
+        while linked is not None:
+            listed.append(linked.val)
+            linked = linked.next
+        return listed
+
+    @staticmethod
+    def listed_to_linked(listed: List) -> Optional[ListNode]:
+        linked: Optional[ListNode] = None
+        for value in listed[::-1]:
+            linked = ListNode(value, linked)
+        return linked
+
     def test_example(self):
         array1 = [2, 4, 3]
         array2 = [5, 6, 4]
-        listed = Solution().addTwoNumbers(thaw(array1), thaw(array2))
+        linked = Solution().addTwoNumbers(
+            TestCode.listed_to_linked(array1),
+            TestCode.listed_to_linked(array2),
+        )
         expected = [7, 0, 8]
-        self.assertEqual(freeze(listed), expected)
+        self.assertEqual(TestCode.linked_to_listed(linked), expected)
 
     def test_uneven(self):
         array1 = [2, 4]
         array2 = [5, 6, 4]
-        listed = Solution().addTwoNumbers(thaw(array1), thaw(array2))
+        linked = Solution().addTwoNumbers(
+            TestCode.listed_to_linked(array1),
+            TestCode.listed_to_linked(array2),
+        )
         expected = [7, 0, 5]
-        self.assertEqual(freeze(listed), expected)
+        self.assertEqual(TestCode.linked_to_listed(linked), expected)
 
     def test_carry(self):
         array1 = [2, 4]
         array2 = [5, 6]
-        listed = Solution().addTwoNumbers(thaw(array1), thaw(array2))
+        linked = Solution().addTwoNumbers(
+            TestCode.listed_to_linked(array1),
+            TestCode.listed_to_linked(array2),
+        )
         expected = [7, 0, 1]
-        self.assertEqual(freeze(listed), expected)
+        self.assertEqual(TestCode.linked_to_listed(linked), expected)
