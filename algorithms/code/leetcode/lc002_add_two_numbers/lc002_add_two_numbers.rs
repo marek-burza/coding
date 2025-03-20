@@ -53,51 +53,51 @@ impl Solution {
 mod tests {
     use super::*;
 
-    fn thaw(array: Vec<i32>) -> Option<Box<ListNode>> {
-        let mut handle: Option<Box<ListNode>> = None;
-        for &value in array.iter().rev() {
+    fn vector_to_list(vector: Vec<i32>) -> Option<Box<ListNode>> {
+        let mut list: Option<Box<ListNode>> = None;
+        for &value in vector.iter().rev() {
             let node = Box::new(ListNode {
                 val: value,
-                next: handle,
+                next: list,
             });
-            handle = Some(node);
+            list = Some(node);
         }
-        handle
+        list
     }
 
-    fn freeze(mut listed: Option<Box<ListNode>>) -> Vec<i32> {
-        let mut frozen = Vec::new();
-        while let Some(node) = listed {
-            frozen.push(node.val);
-            listed = node.next;
+    fn list_to_vector(mut list: Option<Box<ListNode>>) -> Vec<i32> {
+        let mut vector = Vec::new();
+        while let Some(node) = list {
+            vector.push(node.val);
+            list = node.next;
         }
-        frozen
+        vector
     }
 
     #[test]
     fn test_example() {
         let array1 = vec![2, 4, 3];
         let array2 = vec![5, 6, 4];
-        let listed = Solution::add_two_numbers(thaw(array1), thaw(array2));
+        let listed = Solution::add_two_numbers(vector_to_list(array1), vector_to_list(array2));
         let expected = vec![7, 0, 8];
-        assert_eq!(freeze(listed), expected);
+        assert_eq!(list_to_vector(listed), expected);
     }
 
     #[test]
     fn test_uneven() {
         let array1 = vec![2, 4];
         let array2 = vec![5, 6, 4];
-        let listed = Solution::add_two_numbers(thaw(array1), thaw(array2));
+        let listed = Solution::add_two_numbers(vector_to_list(array1), vector_to_list(array2));
         let expected = vec![7, 0, 5];
-        assert_eq!(freeze(listed), expected);
+        assert_eq!(list_to_vector(listed), expected);
     }
 
     #[test]
     fn test_carry() {
         let array1 = vec![2, 4];
         let array2 = vec![5, 6];
-        let listed = Solution::add_two_numbers(thaw(array1), thaw(array2));
+        let listed = Solution::add_two_numbers(vector_to_list(array1), vector_to_list(array2));
         let expected = vec![7, 0, 1];
-        assert_eq!(freeze(listed), expected);
+        assert_eq!(list_to_vector(listed), expected);
     }
 }
