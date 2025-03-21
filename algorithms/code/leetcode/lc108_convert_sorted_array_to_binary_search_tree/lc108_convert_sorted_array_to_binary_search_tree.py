@@ -15,17 +15,20 @@ class TreeNode:
 
 
 class Solution:
-    def __sortedArrayToBST(self, nums, from_here, to_there):
-        if from_here > to_there:
+    @staticmethod
+    def __sortedArrayToBST(
+        nums: List[int], head: int, tail: int
+    ) -> Optional[TreeNode]:
+        if head >= tail:
             return None
-        at = (from_here + to_there) >> 1
-        node = TreeNode(nums[at])
-        node.left = self.__sortedArrayToBST(nums, from_here, at - 1)
-        node.right = self.__sortedArrayToBST(nums, at + 1, to_there)
-        return node
+        length = tail - head
+        half = head + (length >> 1)
+        root_left = Solution.__sortedArrayToBST(nums, head, half)
+        root_right = Solution.__sortedArrayToBST(nums, half + 1, tail)
+        return TreeNode(nums[half], root_left, root_right)
 
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
-        return self.__sortedArrayToBST(nums, 0, len(nums) - 1)
+        return Solution.__sortedArrayToBST(nums, 0, len(nums))
 
 
 class TestCode(unittest.TestCase):  # pragma: no cover
@@ -42,8 +45,7 @@ class TestCode(unittest.TestCase):  # pragma: no cover
             node = nodes.popleft()
             level = levels.popleft()
             if node.left is None and node.right is None:
-                if relation(level, extremum):
-                    extremum = level
+                extremum = relation(level, extremum)
             else:
                 if node.left is not None:
                     nodes.append(node.left)
@@ -56,13 +58,13 @@ class TestCode(unittest.TestCase):  # pragma: no cover
     @staticmethod
     def __min_height(root):
         return TestCode.__find_extreme(
-            root, float('inf'), lambda level, extremum: level < extremum
+            root, float('inf'), min
         )
 
     @staticmethod
     def __max_height(root):
         return TestCode.__find_extreme(
-            root, float('-inf'), lambda level, extremum: level > extremum
+            root, float('-inf'), max
         )
 
     @staticmethod
