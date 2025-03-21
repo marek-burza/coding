@@ -2,6 +2,9 @@
 
 set -e
 
+rustup component add llvm-tools-preview
+cargo install grcov
+
 export CARGO_INCREMENTAL=0
 export RUSTFLAGS='-Ccodegen-units=1 -Clink-dead-code -Coverflow-checks=off -Cinstrument-coverage'
 export RUSTDOCFLAGS='-Ccodegen-units=1 -Clink-dead-code -Coverflow-checks=off'

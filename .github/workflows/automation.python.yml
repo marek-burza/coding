@@ -16,11 +16,9 @@ jobs:
           version: "latest"
       - name: Linting
         run: |
-          /bin/sh .github/workflows/python.environment.sh
           /bin/sh .github/workflows/python.linter.sh
       - name: Testing
         run: |
-          /bin/sh .github/workflows/python.environment.sh
           /bin/sh .github/workflows/python.tester.sh
       - name: Reporting
         uses: codecov/codecov-action@v4
