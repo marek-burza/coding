@@ -24,14 +24,12 @@ class Solution:
         if root is not None:
             queue.append(self.AnnotatedNode(root, 1))
         depth = 0
-        line: List[int] = []
         while queue:
             annotated = queue.pop(0)
             if depth != annotated.depth:
                 depth = annotated.depth
-                line = []
-                result.append(line)
-            # if line is not None:
+                result.append([])
+            line = result[-1]
             line.append(annotated.node.val)
             if annotated.node.left is not None:
                 queue.append(
