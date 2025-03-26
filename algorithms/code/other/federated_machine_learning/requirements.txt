@@ -1,4 +1,4 @@
 --find-links https://download.pytorch.org/whl/cpu
 
 numpy<2.0.0  # Added to silence a warning issued by Torch when running under Docker; capped due to recent release of backwards incompatible major numpy version
-torch==2.3.1
+torch==2.4.0
