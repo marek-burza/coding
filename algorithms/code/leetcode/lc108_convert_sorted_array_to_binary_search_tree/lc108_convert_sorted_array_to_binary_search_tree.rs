@@ -107,6 +107,16 @@ mod tests {
     }
 
     #[test]
+    fn test_self() {
+        assert_eq!(0, min_height(&None));
+        assert!(!is_bst(&TreeNode::new(
+            0,
+            TreeNode::new(10, None, None),
+            None,
+        )));
+    }
+
+    #[test]
     fn test_empty() {
         assert!(Solution::sorted_array_to_bst(vec![]).is_none());
     }
