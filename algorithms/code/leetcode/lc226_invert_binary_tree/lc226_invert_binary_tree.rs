@@ -24,17 +24,6 @@ impl TreeNode {
 pub struct Solution;
 
 impl Solution {
-    //pub fn invert(&mut self) {
-    //    if let Some(left) = &mut self.left {
-    //        std::mem::swap(&mut left.as_ref().unwrap().borrow_mut(), &mut self.right);
-    //        left.borrow_mut().invert();
-    //    }
-    //    if let Some(right) = &mut self.right {
-    //        std::mem::swap(&mut right.as_ref().unwrap().borrow_mut(), &mut self.left);
-    //        right.borrow_mut().invert();
-    //    }
-    //}
-
     pub fn invert_tree(root: Option<Rc<RefCell<TreeNode>>>) -> Option<Rc<RefCell<TreeNode>>> {
         if let Some(some_root) = root.clone() {
             let mut root_borrowed = some_root.borrow_mut();
@@ -45,9 +34,7 @@ impl Solution {
             Self::invert_tree(root_borrowed.left.clone());
             Self::invert_tree(root_borrowed.right.clone());
             drop(root_borrowed);
-            //return root.clone();
         }
-        //let mut root = root.as_ref().unwrap();
         root
     }
 }
