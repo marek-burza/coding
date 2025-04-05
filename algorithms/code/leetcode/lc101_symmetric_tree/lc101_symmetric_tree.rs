@@ -35,8 +35,8 @@ enum NullCheckResult {
 }
 
 fn null_check(
-    tree1: Option<Rc<RefCell<TreeNode>>>,
-    tree2: Option<Rc<RefCell<TreeNode>>>,
+    tree1: &Option<Rc<RefCell<TreeNode>>>,
+    tree2: &Option<Rc<RefCell<TreeNode>>>,
 ) -> NullCheckResult {
     match (tree1, tree2) {
         (None, None) => NullCheckResult::All,
@@ -63,7 +63,7 @@ impl Solution {
                     if node1.val != node2.val {
                         return false;
                     }
-                    let check_left_right = null_check(node1.left.clone(), node2.right.clone());
+                    let check_left_right = null_check(&node1.left, &node2.right);
                     if check_left_right == NullCheckResult::None {
                         queue.push_back(TreeNodePair {
                             node1: node1.left.clone().unwrap().clone(),
@@ -72,7 +72,7 @@ impl Solution {
                     } else if check_left_right == NullCheckResult::Some {
                         return false;
                     }
-                    let check_right_left = null_check(node1.right.clone(), node2.left.clone());
+                    let check_right_left = null_check(&node1.right, &node2.left);
                     if check_right_left == NullCheckResult::None {
                         queue.push_back(TreeNodePair {
                             node1: node1.right.clone().unwrap().clone(),

@@ -1,5 +1,7 @@
 // https://www.hackerrank.com/challenges/bfsshortreach
 
+use std::collections::VecDeque;
+
 use crate::hackerrank::tester::{read_input, write_and_check_output};
 
 struct Entry {
@@ -13,18 +15,18 @@ pub fn bfs(n: i32, _m: i32, edges: &[Vec<i32>], s: i32) -> Vec<i32> {
         adjacency[(edge[0] - 1) as usize][(edge[1] - 1) as usize] = true;
         adjacency[(edge[1] - 1) as usize][(edge[0] - 1) as usize] = true;
     }
-    let mut queue = Vec::new();
-    queue.push(Entry {
+    let mut queue = VecDeque::new();
+    queue.push_back(Entry {
         vertex: s - 1,
         distance: 0,
     });
     let mut distances = vec![-1; n as usize];
-    while let Some(item) = queue.pop() {
+    while let Some(item) = queue.pop_front() {
         if distances[item.vertex as usize] == -1 {
             distances[item.vertex as usize] = item.distance;
             for i in 0..n as usize {
                 if adjacency[item.vertex as usize][i] {
-                    queue.push(Entry {
+                    queue.push_back(Entry {
                         vertex: i as i32,
                         distance: item.distance + 6,
                     });
