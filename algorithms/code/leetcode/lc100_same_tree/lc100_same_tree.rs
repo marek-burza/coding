@@ -2,6 +2,7 @@
 // #easy
 
 use std::cell::RefCell;
+use std::collections::VecDeque;
 use std::rc::Rc;
 
 #[derive(Debug, PartialEq, Eq)]
@@ -55,11 +56,12 @@ impl Solution {
         if check != NullCheckResult::None {
             return check == NullCheckResult::All;
         }
-        let mut queue = vec![TreeNodePair {
+        let mut queue = VecDeque::new();
+        queue.push_back(TreeNodePair {
             node1: tree1.unwrap(),
             node2: tree2.unwrap(),
-        }];
-        while let Some(pair) = queue.pop() {
+        });
+        while let Some(pair) = queue.pop_front() {
             let node1 = pair.node1.borrow();
             let node2 = pair.node2.borrow();
             if node1.val != node2.val {
@@ -67,7 +69,7 @@ impl Solution {
             }
             let check_left = null_check(&node1.left, &node2.left);
             if check_left == NullCheckResult::None {
-                queue.push(TreeNodePair {
+                queue.push_back(TreeNodePair {
                     node1: node1.left.as_ref().unwrap().clone(),
                     node2: node2.left.as_ref().unwrap().clone(),
                 });
@@ -76,7 +78,7 @@ impl Solution {
             }
             let check_right = null_check(&node1.right, &node2.right);
             if check_right == NullCheckResult::None {
-                queue.push(TreeNodePair {
+                queue.push_back(TreeNodePair {
                     node1: node1.right.as_ref().unwrap().clone(),
                     node2: node2.right.as_ref().unwrap().clone(),
                 });

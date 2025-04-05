@@ -1,5 +1,7 @@
 // https://www.hackerrank.com/challenges/connected-cell-in-a-grid
 
+use std::collections::VecDeque;
+
 use crate::hackerrank::tester::{read_input, write_and_check_output};
 
 struct Here {
@@ -19,9 +21,9 @@ fn traverse(matrix: &mut [Vec<i32>], r: i32, c: i32) -> i32 {
         (1, 1),
     ];
     let mut size: i32 = 0;
-    let mut queue = Vec::new();
-    queue.push(Here { row: r, col: c });
-    while let Some(at) = queue.pop() {
+    let mut queue = VecDeque::new();
+    queue.push_back(Here { row: r, col: c });
+    while let Some(at) = queue.pop_front() {
         let r = at.row;
         let c = at.col;
         if matrix[r as usize][c as usize] == 1 {
@@ -37,7 +39,7 @@ fn traverse(matrix: &mut [Vec<i32>], r: i32, c: i32) -> i32 {
                     && rn < matrix.len() as i32
                     && cn < matrix[rn as usize].len() as i32
                 {
-                    queue.push(Here { row: rn, col: cn });
+                    queue.push_back(Here { row: rn, col: cn });
                 }
             }
         }

@@ -1,5 +1,7 @@
 // https://www.hackerrank.com/challenges/count-luck
 
+use std::collections::VecDeque;
+
 use crate::hackerrank::tester::{read_input, write_and_check_output};
 
 #[derive(Clone, Copy)]
@@ -29,20 +31,20 @@ fn look_around(forest: &[Vec<char>], at: &Here) -> Vec<Here> {
 }
 
 pub fn count_luck(matrix: &[String], k: i32) -> String {
-    let mut queue: Vec<Here> = Vec::new();
+    let mut queue: VecDeque<Here> = VecDeque::new();
     let mut counts: Vec<i32> = vec![0];
     let mut forest: Vec<Vec<char>> = matrix.iter().map(|s| s.chars().collect()).collect();
     for (r, row) in forest.iter().enumerate() {
         for (c, _) in row.iter().enumerate() {
             if 'M' == row[c] {
-                queue.push(Here {
+                queue.push_back(Here {
                     row: r as i32,
                     col: c as i32,
                 });
             }
         }
     }
-    while let Some(at) = queue.pop() {
+    while let Some(at) = queue.pop_front() {
         let count = counts[0];
         counts.remove(0);
         if '*' == forest[at.row as usize][at.col as usize] {
@@ -54,7 +56,7 @@ pub fn count_luck(matrix: &[String], k: i32) -> String {
         forest[at.row as usize][at.col as usize] = 'X';
         let ways = look_around(&forest, &at);
         for way in ways.iter() {
-            queue.push(*way);
+            queue.push_back(*way);
             if ways.len() > 1 {
                 counts.push(count + 1);
             } else {
