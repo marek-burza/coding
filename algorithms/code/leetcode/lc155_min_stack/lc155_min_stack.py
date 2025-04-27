@@ -1,37 +1,43 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/min-stack/
 
-import heapq
 import unittest
 
 
 class MinStack:
     def __init__(self):
         self.stack = []
-        self.heap = []
+        self.min_stack = []
 
     def push(self, val: int) -> None:
         self.stack.append(val)
-        heapq.heappush(self.heap, val)
+        if not self.min_stack or val <= self.min_stack[-1]:
+            self.min_stack.append(val)
 
     def pop(self) -> None:
-        value = self.stack.pop()
-        index = self.heap.index(value)
-        self.heap[index], self.heap[-1] = self.heap[-1], self.heap[index]
-        self.heap.pop()
-        heapq.heapify(self.heap)
-        return value
+        if not self.stack:
+            return
+        if self.stack[-1] == self.min_stack[-1]:
+            self.min_stack.pop()
+        self.stack.pop()
 
     def top(self) -> int:
+        if not self.stack:
+            return -1
         return self.stack[-1]
 
     def getMin(self) -> int:
-        return self.heap[0]
+        if not self.min_stack:
+            return -1
+        return self.min_stack[-1]
 
 
 class TestCode(unittest.TestCase):
     def test_examle(self):
         solution = MinStack()
+        solution.pop()
+        self.assertEqual(-1, solution.top())
+        self.assertEqual(-1, solution.getMin())
         solution.push(5)
         self.assertEqual(5, solution.getMin())
         solution.push(4)
