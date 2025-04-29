@@ -21,54 +21,15 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    @staticmethod
-    def cmp_to_key(mycmp):  # pragma: no cover
-        class K:
-            def __init__(self, obj, *_):
-                self.obj = obj
-
-            def __lt__(self, other):
-                return mycmp(self.obj, other.obj) < 0
-
-            def __gt__(self, other):
-                return mycmp(self.obj, other.obj) > 0
-
-            def __eq__(self, other):
-                return mycmp(self.obj, other.obj) == 0
-
-            def __le__(self, other):
-                return mycmp(self.obj, other.obj) <= 0
-
-            def __ge__(self, other):
-                return mycmp(self.obj, other.obj) >= 0
-
-            def __ne__(self, other):
-                return mycmp(self.obj, other.obj) != 0
-
-        return K
-
-    @staticmethod
-    def orderly_comparator(l1, l2):  # pragma: no cover
-        difference = len(l1) - len(l2)
-        if difference != 0:
-            return difference
-        for l1s, l2s in zip(l1, l2):
-            if l1s < l2s:
-                return -1
-            if l1s > l2s:
-                return 1
-        return 0
-
     def __test(self, expected, result):
-        result = sorted(
-            result, key=TestCode.cmp_to_key(TestCode.orderly_comparator)
-        )
+        result = sorted(result)
+        expected = sorted(expected)
         self.assertEqual(len(expected), len(result))
         for i, expected_i in enumerate(expected):
             self.assertEqual(len(expected_i), len(result[i]))
-            result[i].sort()
-            for j, expected_i_j in enumerate(expected_i):
-                self.assertEqual(expected_i_j, result[i][j])
+            result_i = sorted(result[i])
+            expected_i = sorted(expected_i)
+            self.assertListEqual(expected_i, result_i)
 
     def test_1_2_3(self):
         listed = Solution().subsets([1, 2, 3])
