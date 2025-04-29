@@ -40,10 +40,10 @@ impl Solution {
             result.push(prefix);
         } else {
             if let Some(left) = root.left.clone() {
-                Solution::binary_tree_paths_helper(left, prefix.clone(), result);
+                Self::binary_tree_paths_helper(left, prefix.clone(), result);
             }
             if let Some(right) = root.right.clone() {
-                Solution::binary_tree_paths_helper(right, prefix.clone(), result);
+                Self::binary_tree_paths_helper(right, prefix.clone(), result);
             }
         }
     }
@@ -51,7 +51,7 @@ impl Solution {
     pub fn binary_tree_paths(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<String> {
         let mut result = Vec::new();
         if let Some(root) = root {
-            Solution::binary_tree_paths_helper(root, String::new(), &mut result);
+            Self::binary_tree_paths_helper(root, String::new(), &mut result);
         }
         result
     }

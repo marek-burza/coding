@@ -19,7 +19,7 @@ impl Solution {
         let limit = s.len().min(at + length);
         for i in at + 1..=limit {
             if word_dict.contains(&s[at..i])
-                && (i == s.len() || Solution::word_break_internal(s, word_dict, i, length, checked))
+                && (i == s.len() || Self::word_break_internal(s, word_dict, i, length, checked))
             {
                 return true;
             }
@@ -31,7 +31,7 @@ impl Solution {
     pub fn word_break(s: &str, word_dict: Vec<String>) -> bool {
         let length = word_dict.iter().map(|w| w.len()).max().unwrap();
         let mut checked = vec![false; s.len()];
-        Solution::word_break_internal(s, &HashSet::from_iter(word_dict), 0, length, &mut checked)
+        Self::word_break_internal(s, &HashSet::from_iter(word_dict), 0, length, &mut checked)
     }
 }
 
