@@ -151,3 +151,42 @@
 - [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/) ❗
 - Mock interviews: [interviewing.io](https://interviewing.io/), [Pramp](https://www.pramp.com/), [Meet a Pro](https://www.meetapro.com/)
 - [Valve: Handbook for New Employees](https://cdn.cloudflare.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf)
+
+---
+
+## Experiments
+
+Attempting to port easier LeetCode problems with `llama3.2`:
+
+```python
+import sys
+from pathlib import Path
+
+from ollama import ChatResponse, chat
+
+
+if __name__ == '__main__':
+    # uv run --with ollama \
+    #   algorithms/assisted_porting.py Java Rust OldCode.java
+    from_language = sys.argv[1]
+    to_language = sys.argv[2]
+    code_path = Path(sys.argv[3])
+    code = code_path.read_text(encoding='utf-8')
+    prompt = (
+        f'Port this code from f{from_language} to f{to_language}'
+        + 'and be as faithful as possible to the original structure,'
+        + 'naming and comments - give me only the code.'
+        + f'Here is the code to convert:\n\n{code}'
+    )
+    response: ChatResponse = chat(
+        model='llama3.2',
+        messages=[
+            {
+                'role': 'user',
+                'content': prompt,
+            },
+        ]
+    )
+    with code_path.open('a', encoding='utf-8') as handle:
+        handle.write(response['message']['content'])
+```
