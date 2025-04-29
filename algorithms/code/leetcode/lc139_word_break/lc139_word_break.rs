@@ -18,10 +18,10 @@ impl Solution {
         }
         let limit = s.len().min(at + length);
         for i in at + 1..=limit {
-            if word_dict.contains(&s[at..i]) {
-                if i == s.len() || Solution::word_break_internal(s, word_dict, i, length, checked) {
-                    return true;
-                }
+            if word_dict.contains(&s[at..i])
+                && (i == s.len() || Solution::word_break_internal(s, word_dict, i, length, checked))
+            {
+                return true;
             }
         }
         checked[at] = true;
