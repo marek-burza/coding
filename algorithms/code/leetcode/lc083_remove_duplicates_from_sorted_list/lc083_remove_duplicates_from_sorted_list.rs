@@ -32,14 +32,14 @@ impl Solution {
     }
 
     pub fn delete_duplicates(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
-        let vector = Solution::list_to_vector(head);
+        let vector = Self::list_to_vector(head);
         let mut deduplicated = Vec::new();
         for &value in &vector {
             if deduplicated.is_empty() || *deduplicated.last().unwrap() != value {
                 deduplicated.push(value);
             }
         }
-        Solution::vector_to_list(deduplicated)
+        Self::vector_to_list(deduplicated)
     }
 }
 
