@@ -12,11 +12,11 @@ class Solution:
             return False
         limit = min(len(s), at + length)
         for i in range(at + 1, limit + 1):
-            if s[at:i] in wordDict:
-                if i == len(s) or self.__wordBreak(
-                    s, wordDict, i, length, checked
-                ):
-                    return True
+            if s[at:i] in wordDict and (
+                i == len(s)
+                or self.__wordBreak(s, wordDict, i, length, checked)
+            ):
+                return True
         checked[at] = True
         return False
 
