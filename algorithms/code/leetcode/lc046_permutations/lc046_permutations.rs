@@ -14,7 +14,7 @@ impl Solution {
         if remaining.is_empty() {
             permutations.push(prefix.clone());
         } else {
-             for value in remaining.iter() {
+            for value in remaining.iter() {
                 prefix.push(*value);
                 let mut reduced = remaining.clone();
                 reduced.remove(value);
