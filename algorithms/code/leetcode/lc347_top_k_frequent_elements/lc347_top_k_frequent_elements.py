@@ -15,11 +15,7 @@ class Solution:
                 frequencies[value] = 1
         keys = list(frequencies.keys())
         keys.sort(key=lambda item: frequencies[item], reverse=True)
-        selected: List[int] = []
-        for value in keys:
-            if len(selected) >= k:
-                break
-            selected.append(value)
+        selected: List[int] = keys[:k]
         return selected
 
 
