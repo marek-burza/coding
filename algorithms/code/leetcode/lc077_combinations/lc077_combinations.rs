@@ -28,49 +28,23 @@ mod tests {
     use super::*;
     use std::cmp::Ordering;
 
-    struct IntegerVector(Vec<i32>);
-
-    struct IntegerVectorComparator;
-
-    impl IntegerVectorComparator {
-        pub fn compare(l1: &IntegerVector, l2: &IntegerVector) -> Ordering {
-            if l1.0.len() < l2.0.len() {
+    pub fn compare_integer_vectors(l1: &Vec<i32>, l2: &Vec<i32>) -> Ordering {
+        if l1.len() < l2.len() {
+            return Ordering::Less;
+        }
+        if l1.len() > l2.len() {
+            return Ordering::Greater;
+        }
+        for (a, b) in l1.iter().zip(l2.iter()) {
+            if a < b {
                 return Ordering::Less;
             }
-            if l1.0.len() > l2.0.len() {
+            if a > b {
                 return Ordering::Greater;
             }
-            for (a, b) in l1.0.iter().zip(l2.0.iter()) {
-                if a < b {
-                    return Ordering::Less;
-                }
-                if a > b {
-                    return Ordering::Greater;
-                }
-            }
-            Ordering::Equal
         }
+        Ordering::Equal
     }
-
-    impl Ord for IntegerVector {
-        fn cmp(&self, other: &Self) -> Ordering {
-            IntegerVectorComparator::compare(self, other)
-        }
-    }
-
-    impl PartialOrd for IntegerVector {
-        fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-            Some(self.cmp(other))
-        }
-    }
-
-    impl PartialEq for IntegerVector {
-        fn eq(&self, other: &Self) -> bool {
-            self.cmp(other) == Ordering::Equal
-        }
-    }
-
-    impl Eq for IntegerVector {}
 
     #[test]
     fn test_example() {
@@ -82,56 +56,32 @@ mod tests {
             vec![2, 4],
             vec![3, 4],
         ];
-        let result = Solution::combine(4, 2);
-        let mut custom_sortable: Vec<IntegerVector> = result
-            .into_iter()
-            .map(|vector| IntegerVector(vector)) // Create IntegerList directly in the map
-            .collect();
-        custom_sortable.sort();
-        let result: Vec<Vec<i32>> = custom_sortable
-            .into_iter()
-            .map(|IntegerVector(vector)| vector)
-            .collect();
+        let mut result = Solution::combine(4, 2);
+        result.sort_by(compare_integer_vectors);
         assert_eq!(expected, result);
     }
 
     #[test]
     fn test_comparator() {
         assert_eq!(
-            IntegerVectorComparator::compare(
-                &IntegerVector(vec![1, 2]),
-                &IntegerVector(vec![1, 2, 3])
-            ),
+            compare_integer_vectors(&vec![1, 2], &vec![1, 2, 3]),
             Ordering::Less
         );
         assert_eq!(
-            IntegerVectorComparator::compare(
-                &IntegerVector(vec![1, 2, 3]),
-                &IntegerVector(vec![1, 2])
-            ),
+            compare_integer_vectors(&vec![1, 2, 3], &vec![1, 2]),
             Ordering::Greater
         );
         assert_eq!(
-            IntegerVectorComparator::compare(
-                &IntegerVector(vec![1, 2]),
-                &IntegerVector(vec![1, 2])
-            ),
+            compare_integer_vectors(&vec![1, 2], &vec![1, 2]),
             Ordering::Equal
         );
         assert_eq!(
-            IntegerVectorComparator::compare(
-                &IntegerVector(vec![0, 2]),
-                &IntegerVector(vec![1, 2])
-            ),
+            compare_integer_vectors(&vec![0, 2], &vec![1, 2]),
             Ordering::Less
         );
         assert_eq!(
-            IntegerVectorComparator::compare(
-                &IntegerVector(vec![2, 3]),
-                &IntegerVector(vec![1, 2])
-            ),
+            compare_integer_vectors(&vec![2, 3], &vec![1, 2]),
             Ordering::Greater
         );
-        assert!(IntegerVector(vec![1, 2]) == IntegerVector(vec![1, 2]));
     }
 }
