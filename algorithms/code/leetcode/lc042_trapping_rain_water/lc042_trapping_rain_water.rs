@@ -6,6 +6,16 @@ use std::cmp::Ordering;
 pub struct Solution;
 
 impl Solution {
+    fn mapping_comparator(i1: &usize, i2: &usize, map: &[i32]) -> Ordering {
+        if map[*i1] > map[*i2] {
+            return Ordering::Less;
+        }
+        if map[*i1] < map[*i2] {
+            return Ordering::Greater;
+        }
+        Ordering::Equal
+    }
+
     fn amount(height: &[i32], from: usize, to: usize) -> i32 {
         let amount = height[from].min(height[to]) * (to - from - 1) as i32;
         amount - height[from + 1..to].iter().sum::<i32>()
@@ -20,15 +30,7 @@ impl Solution {
         for i in 0..height.len() {
             sorted.push(i);
         }
-        sorted.sort_by(|i1, i2| {
-            if height[*i1] > height[*i2] {
-                return Ordering::Less;
-            }
-            if height[*i1] < height[*i2] {
-                return Ordering::Greater;
-            }
-            Ordering::Equal
-        });
+        sorted.sort_by(|i1, i2| Self::mapping_comparator(i1, i2, height));
         // Fill from the top
         // (pick highest and then extend "exclusion zone")
         let mut count = 0;
@@ -61,5 +63,22 @@ mod tests {
     #[test]
     fn test_nothing() {
         assert_eq!(Solution::trap(&vec![0, 1]), 0);
+    }
+
+    #[test]
+    fn test_comparator() {
+        let height = vec![0i32, 1i32];
+        assert_eq!(
+            Solution::mapping_comparator(&1usize, &0usize, &height),
+            Ordering::Less
+        );
+        assert_eq!(
+            Solution::mapping_comparator(&0usize, &1usize, &height),
+            Ordering::Greater
+        );
+        assert_eq!(
+            Solution::mapping_comparator(&0usize, &0usize, &height),
+            Ordering::Equal
+        );
     }
 }
