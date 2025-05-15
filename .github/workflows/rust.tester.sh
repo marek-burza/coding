@@ -3,7 +3,7 @@
 set -e
 
 rustup component add llvm-tools-preview
-cargo install grcov
+cargo install 'grcov@<=0.8.20'  # Note: Newer versions of grcov had necessary zip dependency yanked
 
 export CARGO_INCREMENTAL=0
 export RUSTFLAGS='-Ccodegen-units=1 -Clink-dead-code -Coverflow-checks=off -Cinstrument-coverage'
