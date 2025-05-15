@@ -8,7 +8,7 @@ lc374_number_higher_or_lower = 0
 
 def guess(num: int) -> int:
     # pylint: disable=W0602,W0603
-    global lc374_number_higher_or_lower
+    global lc374_number_higher_or_lower  # noqa: F824
     if lc374_number_higher_or_lower < num:
         return -1
     if lc374_number_higher_or_lower > num:
