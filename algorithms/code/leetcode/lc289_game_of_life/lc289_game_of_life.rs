@@ -65,12 +65,12 @@ mod tests {
 
     #[test]
     fn test_empty() {
-        let mut board: Vec<Vec<_>> = vec![vec![]];
+        let mut board: Vec<Vec<i32>> = vec![vec![]];
         let mut tmp = board
             .iter_mut()
             .map(|v| v.as_mut_slice())
             .collect::<Vec<_>>();
-        let expected: Vec<Vec<_>> = vec![vec![]];
+        let expected: Vec<Vec<i32>> = vec![vec![]];
         Solution::game_of_life(tmp.as_mut_slice());
         assert_eq!(board, expected);
     }
