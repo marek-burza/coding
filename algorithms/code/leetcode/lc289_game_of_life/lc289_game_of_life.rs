@@ -70,7 +70,7 @@ mod tests {
             .iter_mut()
             .map(|v| v.as_mut_slice())
             .collect::<Vec<_>>();
-        let expected = vec![vec![]];
+        let expected: Vec<Vec<_>> = vec![vec![]];
         Solution::game_of_life(tmp.as_mut_slice());
         assert_eq!(board, expected);
     }
