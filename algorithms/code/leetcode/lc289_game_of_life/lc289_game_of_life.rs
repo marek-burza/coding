@@ -65,7 +65,7 @@ mod tests {
 
     #[test]
     fn test_empty() {
-        let mut board = vec![vec![]];
+        let mut board: Vec<Vec<_>> = vec![vec![]];
         let mut tmp = board
             .iter_mut()
             .map(|v| v.as_mut_slice())
