@@ -4,7 +4,7 @@
 pub struct Solution;
 
 impl Solution {
-    const MAGNITUDE: [&str; 10] = [
+    const MAGNITUDE: [&'static str; 10] = [
         "",
         " Thousand",
         " Million",
@@ -17,11 +17,11 @@ impl Solution {
         " Octillion",
     ];
 
-    const TENS: [&str; 10] = [
+    const TENS: [&'static str; 10] = [
         "", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety",
     ];
 
-    const DIGITS: [&str; 20] = [
+    const DIGITS: [&'static str; 20] = [
         "",
         "One",
         "Two",
