@@ -75,7 +75,7 @@ mod tests {
 
     #[test]
     fn test_nothing() {
-        let matrix: Vec<i32> = vec![];
+        let matrix: Vec<Vec<i32>> = vec![];
         let expected: Vec<i32> = vec![];
         assert_eq!(Solution::spiral_order(matrix), expected);
     }
