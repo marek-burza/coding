@@ -6,4 +6,4 @@ mypy==1.11.1
 numpy<2.0.0
 pycodestyle==2.12.1
 pylint==3.2.6
-torch==2.6.0
+torch==2.7.1
