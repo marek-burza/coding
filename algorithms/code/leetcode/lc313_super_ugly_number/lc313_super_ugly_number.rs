@@ -37,7 +37,10 @@ mod tests {
         let expected = vec![1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32];
         let primes = vec![2, 7, 13, 19];
         for i in 0..expected.len() {
-            assert_eq!(expected[i], Solution::nth_super_ugly_number((i + 1) as i32, primes.clone()));
+            assert_eq!(
+                expected[i],
+                Solution::nth_super_ugly_number((i + 1) as i32, primes.clone()),
+            );
         }
     }
 
