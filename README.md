@@ -123,6 +123,7 @@
 - [Alex Yu - System Design Interview](https://www.amazon.com/dp/B08B3FWYBX/ref=cm_sw_em_r_mt_dp_X3C1WZV5Q0VX0Q0HX7CX) ❗
 - [NeetCode: System Design (including 20 system design concepts in 10 Minutes)](https://www.youtube.com/playlist?list=PLot-Xpze53le35rQuIbRET3YwEtrcJfdt) ❗
 - [Learn System Design in a Hurry](https://www.hellointerview.com/learn/system-design/in-a-hurry/introduction) ❗
+- [System Design Primer](https://github.com/donnemartin/system-design-primer) ❗
 - [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
 - [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
 - Patrick Halina - [Systems Design Interview Guide](http://patrickhalina.com/posts/systems-design-interview-guide) & [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
