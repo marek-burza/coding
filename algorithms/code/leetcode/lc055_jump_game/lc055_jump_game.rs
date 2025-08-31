@@ -1,5 +1,6 @@
 // https://leetcode.com/problems/jump-game/
 // #medium
+
 pub struct Solution;
 
 impl Solution {
