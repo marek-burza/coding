@@ -11,7 +11,7 @@ impl Solution {
                 return (i - 1) as i32;
             }
         }
-        return -1;
+        -1
     }
 }
 
