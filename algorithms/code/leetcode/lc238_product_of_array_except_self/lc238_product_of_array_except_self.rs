@@ -24,7 +24,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_1234() {
+    fn test_1_2_3_4() {
         let nums = vec![1, 2, 3, 4];
         let expected = vec![24, 12, 8, 6];
         let actual = Solution::product_except_self(nums);
@@ -32,7 +32,7 @@ mod tests {
     }
 
     #[test]
-    fn test_90_minus2() {
+    fn test_9_0_minus2() {
         let nums = vec![9, 0, -2];
         let expected = vec![0, -18, 0];
         let actual = Solution::product_except_self(nums);
