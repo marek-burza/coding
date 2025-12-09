@@ -1,3 +1,4 @@
+import csv
 import unittest
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -10,9 +11,10 @@ EXAMPLE_STOCK = Path(__file__).parent / 'stock.csv'
 
 def load_menu(menu_path: Path) -> dict[str, dict[str, int]]:
     menu: dict[str, dict[str, int]] = defaultdict(dict)
+    entries = []
     with menu_path.open() as handle:
-        lines = handle.readlines()[1:]
-    entries = [line.strip().split(',') for line in lines]
+        for row in csv.DictReader(handle):
+            entries.append([row['dish'], row['item'], row['quantity']])
     for group, item, quantity in entries:
         if group not in menu:
             menu[group] = {}
@@ -50,17 +52,18 @@ def collect_basic_items(
 
 def load_demand(demand_path: Path) -> dict[int, dict[str, int]]:
     demand: dict[int, dict[str, int]] = defaultdict(dict)
+    entries = []
     with demand_path.open() as handle:
-        lines = handle.readlines()[1:]
-        entries = [line.strip().split(',') for line in lines]
-        demand = {}
-        for item, need, day in entries:
-            day_no = int(day)
-            if day_no not in demand:
-                demand[day_no] = {}
-            if item not in demand[day_no]:
-                demand[day_no][item] = 0
-            demand[day_no][item] += int(need)
+        for row in csv.DictReader(handle):
+            entries.append([row['item'], row['demand'], row['day']])
+    demand = {}
+    for item, need, day in entries:
+        day_no = int(day)
+        if day_no not in demand:
+            demand[day_no] = {}
+        if item not in demand[day_no]:
+            demand[day_no][item] = 0
+        demand[day_no][item] += int(need)
     return demand
 
 
@@ -92,11 +95,12 @@ def collect_basic_demand_items_for_day(
 
 def load_stock(stock_path: Path) -> Counter[str]:
     stock: Counter[str] = Counter()
+    entries = []
     with stock_path.open() as handle:
-        lines = handle.readlines()[1:]
-        entries = [line.strip().split(',') for line in lines]
-        for item, count in entries:
-            stock[item] += int(count)
+        for row in csv.DictReader(handle):
+            entries.append([row['item'], row['quantity']])
+    for item, quantity in entries:
+        stock[item] += int(quantity)
     return stock
 
 
