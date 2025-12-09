@@ -1,0 +1,55 @@
+dish,item,quantity
+Happy Menu,Kalbsleber Berliner Art,1
+Happy Menu,Backofen Haenchenfluegel,2
+Happy Menu,Geschmorter Ochsenschwanz,1
+Happy Menu,Haxengroestl,4
+Happy Menu,Kaiserschmarrn,1
+Happy Menu,Wiener Schnitzel,1
+Happy Menu,Geschmorter Schweinebauch,1
+Kalbsleber Berliner Art,Kalbsleber,1
+Kalbsleber Berliner Art,Berliner Sosse,1
+Kalbsleber Berliner Art,Butter,20
+Kalbsleber Berliner Art,Butterfly,20
+Berliner Sosse,Berliner Luft,2
+Berliner Sosse,Ampelman,2
+Berliner Sosse,Salz,8
+Backofen Haenchenfluegel,Fluegel Feder,1
+Backofen Haenchenfluegel,Fluegelknochen,5
+Backofen Haenchenfluegel,Fluegel Haut,2
+Backofen Haenchenfluegel,Fluegelgelenk,1
+Backofen Haenchenfluegel,Salz,12
+Geschmorter Ochsenschwanz,Vertikaler Knochen,1
+Geschmorter Ochsenschwanz,Horizontal Knochen,1
+Geschmorter Ochsenschwanz,Schwanzgelenk,1
+Geschmorter Ochsenschwanz,Schwanzspitze,1
+Geschmorter Ochsenschwanz,Salz,10
+Haxengroestl,Beingelenk,1
+Haxengroestl,Beinmuskel,1
+Haxengroestl,Beinfett,1
+Haxengroestl,Beinhaut,1
+Haxengroestl,Butter,4
+Kaiserschmarrn,Pfannkuchenteig,1
+Kaiserschmarrn,Rosinen,1
+Kaiserschmarrn,Apfelmousse,1
+Kaiserschmarrn,Mandeln,1
+Kaiserschmarrn,Zucker,1
+Pfannkuchenteig,Eier,6
+Pfannkuchenteig,Mehl,1
+Pfannkuchenteig,Backpulver,12
+Pfannkuchenteig,Zimmt,1
+Wiener Schnitzel,Wiener,1
+Wiener Schnitzel,Schnitzel,1
+Wiener Schnitzel,Eiweiss,1
+Wiener Schnitzel,Semmelbroesel,2
+Wiener Schnitzel,Pfeffer,1
+Wiener Schnitzel,Salz,4
+Geschmorter Schweinebauch,Geschmorter,1
+Geschmorter Schweinebauch,Schweinebauch,1
+Geschmorter Schweinebauch,Salz,6
+Geschmorter,Pfanne,2
+Geschmorter,Deckel,1
+Geschmorter,Ofen,1
+Geschmorter,Salz,8
+Schweinebauch,Schwein,1
+Schweinebauch,Bauch,1
+Schweinebauch,Dreck,1
