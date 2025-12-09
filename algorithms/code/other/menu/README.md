@@ -8,7 +8,7 @@ A grouping of ingredients that have been prepared is called an _dish_.
 
 Each menu we serve comes with a list of ingredients, which details which dish each ingredient is in, and how many of these ingredients are needed to create that dish. This is typically presented in the format of "dish", "item", and "quantity", e.g.:
 
-```
+```csv
 dish,item,quantity
 Kaiserschmarrn,Apfelmousse,1
 ```
@@ -35,7 +35,7 @@ _Example: There are 60 x Salt in an entire Happy Menu_
 
 It's common to track the demand for each ingredient on a day-by-day basis. Demand is tracked in the following format:
 
-```
+```csv
 item,demand,day
 Schnitzel,2,32
 ```
@@ -54,7 +54,7 @@ _Example: There are 316 x Salt needed in day 32_
 
 In addition to tracking the list of ingredients and the demand for each day, we also track the amount of stock we currently have of each ingredient and dish. This is tracked in the following format:
 
-```
+```csv
 item,quantity
 Schnitzel,10
 ```
