@@ -175,9 +175,7 @@ class TestCode(unittest.TestCase):
             'Wiener Schnitzel': 1,
             'Geschmorter Schweinebauch': 1,
         }
-        items = set(
-            list(test_dishes.keys()) + list(expected_dishes.keys())
-        )
+        items = set(list(test_dishes.keys()) + list(expected_dishes.keys()))
         for item in items:
             self.assertEqual(test_dishes[item], expected_dishes[item])
 
@@ -335,40 +333,42 @@ if __name__ == '__main__':  # pragma: no cover
     # Q1
     example_menu = load_menu(EXAMPLE_MENU)
     example_quantity = len(example_menu)
-    print(
-        f'Q1: Menu data loaded successfully. {example_quantity} dishes.\n'
-    )
+    print(f'Q1: Menu data loaded successfully. {example_quantity} dishes.\n')
     # Q2
     example_dishes = collect_dishes(example_menu, 'Happy Menu')
     print(format_counted('Q2: Dishes in Happy Menu', example_dishes))
     # Q3
     example_basic_items = collect_basic_items(example_menu, 'Happy Menu')
-    print(format_counted(
-        'Q3: All basic items needed for one Happy Menu', example_basic_items
-    ))
+    print(
+        format_counted(
+            'Q3: All basic items needed for one Happy Menu',
+            example_basic_items,
+        )
+    )
     # Q4
     example_demand = load_demand(EXAMPLE_DEMAND)
     example_quantity = len(example_demand)
-    print(
-        f'Q4: Demand data loaded successfully. {example_quantity} days.\n'
-    )
+    print(f'Q4: Demand data loaded successfully. {example_quantity} days.\n')
     # Q5
     example_basic_items_demand = collect_basic_demand_items_for_day(
         example_menu, example_demand, 32
     )
-    print(format_counted(
-        'Q5: All basic items needed for day 32', example_basic_items_demand
-    ))
+    print(
+        format_counted(
+            'Q5: All basic items needed for day 32',
+            example_basic_items_demand,
+        )
+    )
     # Q6
     example_stock = load_stock(EXAMPLE_STOCK)
     example_quantity = len(example_stock)
-    print(
-        f'Q6: Stock data loaded successfully. {example_quantity} items.\n'
-    )
+    print(f'Q6: Stock data loaded successfully. {example_quantity} items.\n')
     example_basic_items_demand = collect_demand_items_without_stock(
         example_menu, example_demand, 32, example_stock
     )
-    print(format_counted(
-        'All basic items demand for day 32 (considering stock)',
-        example_basic_items_demand,
-    ))
+    print(
+        format_counted(
+            'All basic items demand for day 32 (considering stock)',
+            example_basic_items_demand,
+        )
+    )
