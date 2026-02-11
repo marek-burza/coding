@@ -1,0 +1,27 @@
+---
+name: Go
+
+on: [push]
+
+jobs:
+  pipeline:
+    name: Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initiating
+        uses: actions/checkout@v6
+      - name: Preparing
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.x"
+      - name: Linting
+        run: |
+          /bin/sh .github/workflows/golang.linter.sh
+      - name: Testing
+        run: |
+          /bin/sh .github/workflows/golang.tester.sh
+      - name: Reporting
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: golang
