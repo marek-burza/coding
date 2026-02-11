@@ -2,4 +2,8 @@ rules:
   unpinned-uses:
     config:
       policies:
-        '*': ref-pin
+        'actions/*': ref-pin
+        'github/*': ref-pin
+        'super-linter/*': ref-pin
+        'codecov/*': ref-pin
+        'astral-sh/*': ref-pin
