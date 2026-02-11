@@ -383,7 +383,7 @@ What can fail? How to handle failures?
 
 **ANSWER 5**
 
-- Static data storage failures: Cold-storage backup for the static content and persistant cache
+- Static data storage failures: Cold-storage backup for the static content and persistent cache
 - Dynamic data storage failures: Read-optimized shard replication
 - Computing instance failures: Multiple instances of microservices (behind the load balancer)
 
