@@ -1,7 +1,7 @@
 // https://leetcode.com/problems/linked-list-random-node/
 // #medium
 
-use rand::{rng, rngs::ThreadRng, Rng};
+use rand::{Rng, rng, rngs::ThreadRng};
 
 #[derive(PartialEq, Eq, Clone, Debug)]
 pub struct ListNode {

@@ -27,11 +27,7 @@ impl Solution {
             power += repeat * previous;
             previous >>= 1;
         }
-        if n < 0 {
-            1.0 / result
-        } else {
-            result
-        }
+        if n < 0 { 1.0 / result } else { result }
     }
 }
 
