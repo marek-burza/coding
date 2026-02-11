@@ -7,8 +7,6 @@ from typing import List
 
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        if nums is None:
-            return 0
         index = 0
         for i, _ in enumerate(nums):
             nums[index] = nums[i]
@@ -26,5 +24,5 @@ class TestCode(unittest.TestCase):
         self.assertListEqual(expected, nums[:length])
 
     def test_nothing(self):
-        length = Solution().removeElement(None, 42)
+        length = Solution().removeElement([], 42)
         self.assertEqual(length, 0)

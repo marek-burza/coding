@@ -7,7 +7,7 @@ from typing import List
 
 class Solution:
     def minimumTotal(self, triangle: List[List[int]]) -> int:
-        if triangle is None or len(triangle) == 0 or len(triangle[0]) == 0:
+        if len(triangle) == 0 or len(triangle[0]) == 0:
             return 0
         height = len(triangle)
         sums = [0] * len(triangle[height - 1])
@@ -46,6 +46,5 @@ class TestCode(unittest.TestCase):
         )
 
     def test_nothing(self):
-        self.assertEqual(0, Solution().minimumTotal(None))
         self.assertEqual(0, Solution().minimumTotal([]))
         self.assertEqual(0, Solution().minimumTotal([[]]))

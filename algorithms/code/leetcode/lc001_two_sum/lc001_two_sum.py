@@ -7,8 +7,6 @@ from typing import Dict, List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        if nums is None:
-            return []
         mapped: Dict[int, int] = {}
         for i, num in enumerate(nums):
             expected = target - num
@@ -20,9 +18,6 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_0(self):
-        self.assertListEqual(Solution().twoSum(None, 0), [])
-
     def test_00(self):
         self.assertListEqual(Solution().twoSum([], 0), [])
 

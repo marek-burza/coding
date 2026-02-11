@@ -42,5 +42,4 @@ class TestCode(unittest.TestCase):
         self.assertFalse(Solution().isValidSerialization('9,#,#,1'))
 
     def test_nothing(self):
-        self.assertFalse(Solution().isValidSerialization(None))
         self.assertFalse(Solution().isValidSerialization(''))

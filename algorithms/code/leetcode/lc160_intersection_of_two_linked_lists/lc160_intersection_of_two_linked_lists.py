@@ -35,8 +35,6 @@ class Solution:
     def getIntersectionNode(
         self, headA: ListNode, headB: ListNode
     ) -> ListNode:
-        if headA is None or headB is None:
-            return None
         last = self.__last(headA)
         last.next = headB
         node = self.__detectCycle(headA)
@@ -77,8 +75,3 @@ class TestCode(unittest.TestCase):
         l5 = ListNode(5)
         l5.next = l1
         self.assertIsNone(Solution().getIntersectionNode(l2, l5))
-
-    def test_one_empty(self):
-        non_empty = ListNode(1)
-        self.assertIsNone(Solution().getIntersectionNode(non_empty, None))
-        self.assertIsNone(Solution().getIntersectionNode(None, non_empty))

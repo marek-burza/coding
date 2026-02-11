@@ -6,7 +6,7 @@ import unittest
 
 class Solution:
     def romanToInt(self, s: str) -> int:
-        if s is None:
+        if not s:
             return 0
         result = 0
         previous = 0
@@ -31,4 +31,4 @@ class TestCode(unittest.TestCase):
         self.assertEqual(Solution().romanToInt('MCMLIV'), 1954)
 
     def test_nothing(self):
-        self.assertEqual(Solution().romanToInt(None), 0)
+        self.assertEqual(Solution().romanToInt(''), 0)

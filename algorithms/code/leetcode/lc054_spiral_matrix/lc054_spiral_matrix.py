@@ -10,7 +10,7 @@ class Solution:
 
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
         listed: List[int] = []
-        if matrix is None or len(matrix) == 0:
+        if len(matrix) == 0:
             return listed
         index = 0
         top = 0
@@ -69,5 +69,4 @@ class TestCode(unittest.TestCase):
         self.__test(expected, matrix)
 
     def test_nothing(self):
-        self.assertListEqual([], Solution().spiralOrder(None))
         self.assertListEqual([], Solution().spiralOrder([]))

@@ -38,5 +38,4 @@ class TestCode(unittest.TestCase):
         self.assertEqual(37, Solution().maximumGap(nums1))
 
     def test_nothing(self):
-        self.assertEqual(0, Solution().maximumGap(None))
         self.assertEqual(0, Solution().maximumGap([]))

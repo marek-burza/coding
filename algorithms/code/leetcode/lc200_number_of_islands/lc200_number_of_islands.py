@@ -36,8 +36,6 @@ class Solution:
             return 0
         count = 0
         for x, grid_x in enumerate(grid):
-            if grid_x is None:
-                return 0
             for y, _ in enumerate(grid_x):
                 if self.__traverse(grid, x, y):
                     count += 1
@@ -59,7 +57,5 @@ class TestCode(unittest.TestCase):
         self.assertEqual(3, Solution().numIslands(grid))
 
     def test_nothing(self):
-        self.assertEqual(0, Solution().numIslands(None))
         self.assertEqual(0, Solution().numIslands([]))
-        self.assertEqual(0, Solution().numIslands([None]))
         self.assertEqual(0, Solution().numIslands([[]]))
