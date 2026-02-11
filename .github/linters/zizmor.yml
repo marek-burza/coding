@@ -1,9 +1,0 @@
-rules:
-  unpinned-uses:
-    config:
-      policies:
-        'actions/*': ref-pin
-        'github/*': ref-pin
-        'super-linter/*': ref-pin
-        'codecov/*': ref-pin
-        'astral-sh/*': ref-pin
