@@ -95,7 +95,7 @@ class ElevatorControlSystemBase(ABC):
         self.through.append(request)
 
     @abstractmethod
-    def pickup(self, request: Request) -> None:
+    def pickup(self, request: Request) -> None:  # pragma: no cover
         pass
 
     @abstractmethod

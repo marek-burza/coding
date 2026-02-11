@@ -14,8 +14,6 @@ class Solution:
         return self.__nums.copy()
 
     def shuffle(self) -> List[int]:
-        if self.__nums is None:
-            return None
         result = self.__nums.copy()
         for i in range(len(self.__nums) - 1, 0, -1):
             j = random.SystemRandom().randint(0, i)
@@ -39,5 +37,5 @@ class TestCode(unittest.TestCase):
         # Should use Chi-squared test
 
     def test_nothing(self):
-        solution = Solution(None)
-        self.assertIsNone(solution.shuffle())
+        solution = Solution([])
+        self.assertListEqual(solution.shuffle(), [])

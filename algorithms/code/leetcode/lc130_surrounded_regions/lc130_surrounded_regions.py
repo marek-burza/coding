@@ -23,10 +23,10 @@ class Solution:
 
     # pylint: disable=R0912
     def solve(self, board: List[List[str]]) -> None:
-        if board is None or len(board) == 0:
+        if len(board) == 0:
             return
         for row in board:
-            if row is None or len(row) == 0:
+            if len(row) == 0:
                 return
         check: List[int] = []
         visited: Set[int] = set()
@@ -585,7 +585,5 @@ class TestCode(unittest.TestCase):
             self.assertEqual(expected[i], ''.join(board_i))
 
     def test_nothing(self):
-        Solution().solve(None)
         Solution().solve([])
-        Solution().solve([None])
         Solution().solve([[]])

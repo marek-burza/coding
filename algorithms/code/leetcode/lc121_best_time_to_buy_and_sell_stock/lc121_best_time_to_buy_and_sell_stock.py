@@ -7,7 +7,7 @@ from typing import List
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        if prices is None or len(prices) <= 1:
+        if len(prices) <= 1:
             return 0
         mins = [0 for _ in range(len(prices))]
         mins[0] = prices[0]
@@ -26,7 +26,6 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_empty(self):
-        self.assertEqual(0, Solution().maxProfit(None))
         self.assertEqual(0, Solution().maxProfit([]))
 
     def test_1(self):

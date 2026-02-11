@@ -53,8 +53,6 @@ class TestCode(unittest.TestCase):
         self.assertListEqual(expected, result)
 
     def test_nothing(self):
-        result = Solution().findRepeatedDnaSequences(None)
-        self.assertListEqual([], result)
         result = Solution().findRepeatedDnaSequences('')
         self.assertListEqual([], result)
 

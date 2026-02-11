@@ -7,7 +7,7 @@ from typing import List
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        if nums is None or len(nums) == 0:
+        if len(nums) == 0:
             return False
         if len(nums) == 1:
             return True
@@ -38,6 +38,5 @@ class TestCode(unittest.TestCase):
         self.assertTrue(Solution().canJump(nums2))
 
     def test_nothing(self):
-        self.assertFalse(Solution().canJump(None))
         self.assertFalse(Solution().canJump([]))
         self.assertTrue(Solution().canJump([0]))

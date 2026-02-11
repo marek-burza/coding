@@ -7,7 +7,7 @@ from typing import List
 
 class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
-        if nums is None or len(nums) < 3:
+        if len(nums) < 3:
             return False
         minBefore = [0] * len(nums)
         maxAfter = [0] * len(nums)
@@ -38,7 +38,7 @@ class TestCode(unittest.TestCase):
         self.assertTrue(Solution().increasingTriplet([1, 2, 3, 1, 2, 1]))
 
     def test_nothing(self):
-        self.assertFalse(Solution().increasingTriplet(None))
+        self.assertFalse(Solution().increasingTriplet([]))
         self.assertFalse(Solution().increasingTriplet([0, 1]))
 
     def test_516(self):

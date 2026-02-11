@@ -7,7 +7,7 @@ from typing import List
 
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        if nums is None or len(nums) == 0:
+        if len(nums) == 0:
             return 0
         lis = [1] * len(nums)
         for i in range(1, len(nums)):
@@ -24,5 +24,4 @@ class TestCode(unittest.TestCase):
         self.assertEqual(4, Solution().lengthOfLIS(nums))
 
     def test_nothing(self):
-        self.assertEqual(0, Solution().lengthOfLIS(None))
         self.assertEqual(0, Solution().lengthOfLIS([]))

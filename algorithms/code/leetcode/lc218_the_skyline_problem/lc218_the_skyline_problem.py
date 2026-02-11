@@ -95,4 +95,3 @@ class TestCode(unittest.TestCase):
         expected = [[0, 3], [5, 0]]
         self.generic(buildings, expected)
         self.assertEqual(len(Solution().getSkyline([])), 0)
-        self.assertEqual(len(Solution().getSkyline(None)), 0)

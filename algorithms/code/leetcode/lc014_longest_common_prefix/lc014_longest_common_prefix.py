@@ -7,14 +7,12 @@ from typing import List
 
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        if strs is None or len(strs) == 0:
+        if len(strs) == 0:
             return ''
         i = 0
         done = False
         while not done:
             for item in strs:
-                if item is None:
-                    return ''
                 if i >= len(item) or item[i] != strs[0][i]:
                     done = True
                     break
@@ -40,13 +38,7 @@ class TestCode(unittest.TestCase):
     def test_empty_b(self):
         self.assertEqual(Solution().longestCommonPrefix(['', 'b']), '')
 
-    def test_none_b(self):
-        self.assertEqual(Solution().longestCommonPrefix([None, 'b']), '')
-
     def test_same(self):
         self.assertEqual(
             Solution().longestCommonPrefix(['same', 'same']), 'same'
         )
-
-    def test_nothing(self):
-        self.assertEqual(Solution().longestCommonPrefix(None), '')

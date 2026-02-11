@@ -5,17 +5,15 @@ import unittest
 
 
 class Solution:
-    def check(self, s):
-        if s is None:
-            return False
+    def check(self, s: str) -> bool:
         if len(s) == 0:
             return True
-        return None
+        return False
 
     def isValid(self, s: str) -> bool:
         result = self.check(s)
-        if result is not None:
-            return result
+        if result:
+            return True
         stack = []
         lut = {')': '(', '}': '{', ']': '['}
         for character in s:
@@ -60,5 +58,4 @@ class TestCode(unittest.TestCase):
         self.assertEqual(Solution().isValid('}'), False)
 
     def test_nothing(self):
-        self.assertEqual(Solution().isValid(None), False)
         self.assertEqual(Solution().isValid(''), True)

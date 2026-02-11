@@ -7,7 +7,7 @@ import unittest
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
         s = columnTitle
-        if s is None:
+        if not s:
             return -1
         result = 0
         i = 0
@@ -38,4 +38,4 @@ class TestCode(unittest.TestCase):
         self.assertEqual(28, Solution().titleToNumber('AB'))
 
     def test_nothing(self):
-        self.assertEqual(-1, Solution().titleToNumber(None))
+        self.assertEqual(-1, Solution().titleToNumber(''))

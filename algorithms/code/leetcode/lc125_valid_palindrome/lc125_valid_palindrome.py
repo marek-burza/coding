@@ -6,7 +6,7 @@ import unittest
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        if s is None or len(s) == 0:
+        if len(s) == 0:
             return True
         i = 0
         j = len(s) - 1
@@ -42,5 +42,4 @@ class TestCode(unittest.TestCase):
         self.assertFalse(Solution().isPalindrome('burger'))
 
     def test_nothing(self):
-        self.assertTrue(Solution().isPalindrome(None))
         self.assertTrue(Solution().isPalindrome(''))

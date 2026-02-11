@@ -37,7 +37,7 @@ class Solution:
         return -1
 
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        if nums is None or len(nums) == 0:
+        if len(nums) == 0:
             return [-1, -1]
         infimum = self.__bsInfimum(nums, target)
         supremum = self.__bsSupremum(nums, target)
@@ -62,5 +62,4 @@ class TestCode(unittest.TestCase):
 
     def test_nothing(self):
         expected = [-1, -1]
-        self.assertListEqual(expected, Solution().searchRange(None, 3))
         self.assertListEqual(expected, Solution().searchRange([], 3))

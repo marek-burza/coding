@@ -8,7 +8,7 @@ from typing import List
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         indices = [0] * 2
-        if numbers is None or len(numbers) < 2:
+        if len(numbers) < 2:
             return indices
         a = 0
         z = len(numbers) - 1
@@ -33,5 +33,5 @@ class TestCode(unittest.TestCase):
         self.assertListEqual([0, 0], Solution().twoSum([1, 5, 6, 9], 9))
 
     def test_nothing(self):
-        self.assertListEqual([0, 0], Solution().twoSum(None, 0))
+        self.assertListEqual([0, 0], Solution().twoSum([], 0))
         self.assertListEqual([0, 0], Solution().twoSum([0], 0))

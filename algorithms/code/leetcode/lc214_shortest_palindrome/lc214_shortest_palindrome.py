@@ -28,5 +28,4 @@ class TestCode(unittest.TestCase):
         self.assertEqual('dcbabcd', Solution().shortestPalindrome('abcd'))
 
     def test_nothing(self):
-        self.assertIsNone(Solution().shortestPalindrome(None))
         self.assertEqual('', Solution().shortestPalindrome(''))

@@ -6,7 +6,7 @@ import unittest
 
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
-        if s is None or numRows < 1:
+        if not s or numRows < 1:
             return ''
         buffer = ''
         n = len(s)
@@ -44,7 +44,7 @@ class TestCode(unittest.TestCase):
         self.assertEqual(Solution().convert('ABC', 2), 'ACB')
 
     def test_nothing(self):
-        self.assertEqual(Solution().convert(None, 2), '')
+        self.assertEqual(Solution().convert('', 2), '')
 
     def test_zero(self):
         self.assertEqual(Solution().convert('A', 0), '')
