@@ -127,7 +127,7 @@ mod tests {
     use super::*;
     use axum::{
         Router,
-        body::{to_bytes, Body},
+        body::{Body, to_bytes},
         http::{self, Request, StatusCode},
     };
     use tower::util::ServiceExt;

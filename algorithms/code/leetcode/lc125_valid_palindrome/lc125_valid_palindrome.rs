@@ -21,7 +21,7 @@ impl Solution {
                 j -= 1;
                 continue;
             }
-            if a.to_ascii_uppercase() != b.to_ascii_uppercase() {
+            if !a.eq_ignore_ascii_case(&b) {
                 return false;
             } else {
                 i += 1;

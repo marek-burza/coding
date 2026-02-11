@@ -13,6 +13,7 @@ impl Solution {
             }
         }
         let mut col0 = false;
+        #[allow(clippy::needless_range_loop)]
         for col in 0..matrix[0].len() {
             if matrix[0][col] == 0 {
                 col0 = true;
