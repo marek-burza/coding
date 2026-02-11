@@ -4,7 +4,7 @@
 
 - Talk through your thinking process, flag uncertainty
 - Be: fast, positive/enthusiastic/passionate, transparent, fact-based, methodical, and express explicitly (to prevent hidden assumptions and getting stuck)
-- If stuck: **remain calm**, check asumptions, **try more examples**, **simplify**, **ask**, avoid silence or filling it
+- If stuck: **remain calm**, check assumptions, **try more examples**, **simplify**, **ask**, avoid silence or filling it
 
 ---
 
@@ -87,7 +87,7 @@
 ### 0. Be the tech lead
 
 - Iterate **quickly** on the design while prioritizing what to work on next
-- Communicate trade-offs, decissions
+- Communicate trade-offs, decisions
 - Have a dialog with your stakeholder (interviewer)
 - Dare to ask for help if necessary (but own it with confidence)
 
@@ -108,7 +108,7 @@
 ### 3. Scale-up / distribute
 
 - **Say what can fail / overflow / bottleneck**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
-- Say how to distribute and how to fix whats broken by distributing
+- Say how to distribute and how to fix what is broken by distributing
 - Show specific alternatives / solution space
 - **Ballpark estimates**
 - If you do not know something - be upfront about it but do offer a direction

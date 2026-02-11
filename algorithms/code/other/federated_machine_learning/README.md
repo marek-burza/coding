@@ -121,14 +121,14 @@ Here is a summary following from my brief research of and reflection on the topi
   - Here the biggest risk could be related to transfer learning (and, consequently, model/data theft)
     or reconstruction of the sensitive inputs (by constructing the model using reversible operations or architectures)
 - Mitigations:
-  - the mitigation could be to apply weight pruning or precission reduction to restrict fidelity of the weights
+  - the mitigation could be to apply weight pruning or precision reduction to restrict fidelity of the weights
     and consequently of the outputs
-  - restriction of the set of operations avalable to construct the model
+  - restriction of the set of operations available to construct the model
   - some of the mitigations from point 2 could also be applicable here
   - speculative: application of formal methods (epistemic modal logic?) or model checkers
 
 4. Other risks could be related to security vulnerabilities (buffer overflow, access elevation, etc.)
-   in the inference pipelines (through carefuly crafted requests, weights or models) which would lead
+   in the inference pipelines (through carefully crafted requests, weights or models) which would lead
    to execution of arbitrary code and creating a side channel
 
 - Mitigation:
@@ -165,7 +165,7 @@ I tried three optimizers:
   higher accuracy in the same number of rounds as `SGD`. However, it comes at a price of higher demands
   on the performance (thus if more cost effective compute instances are more desirable, `SGD` could be chosen
   and let run for more rounds). On the other hand if weight decay were observed then `AdamW` variant can be
-  applied instead of `Adam`. In the context of federated lerning I could imagine that faster convergence
+  applied instead of `Adam`. In the context of federated learning I could imagine that faster convergence
   can be very beneficial, since it reduces number of communication rounds in a distributed system.
 
 Note: To ensure training reproducibility I fixed the random seed to a constant value.
