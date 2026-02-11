@@ -1,0 +1,2 @@
+[src]
+exclude = ["algorithms/code/other/banking_api", "algorithms/code/other/federated_machine_learning"]
