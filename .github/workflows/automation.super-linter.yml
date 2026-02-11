@@ -1,5 +1,5 @@
 ---
-name: Automation GitHub Super-Linter
+name: Super-Linter
 
 on: [push]
 
