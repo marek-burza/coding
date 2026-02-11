@@ -3,6 +3,9 @@ name: GitHub CodeQL
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
   pipeline:
     name: Pipeline
@@ -11,7 +14,9 @@ jobs:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:

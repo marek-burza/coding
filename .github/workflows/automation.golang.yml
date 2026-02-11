@@ -3,6 +3,9 @@ name: Go
 
 on: [push]
 
+permissions:
+  contents: read
+
 jobs:
   pipeline:
     name: Pipeline
