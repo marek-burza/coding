@@ -1,8 +1,5 @@
 import unittest
 
-from fastapi import status
-from fastapi.testclient import TestClient
-
 from banking.api.transfers import (
     ERROR_DESTINATION_ACCOUNT_NOT_FOUND,
     ERROR_INSUFFICIENT_FUNDS,
@@ -13,6 +10,8 @@ from banking.api.transfers import (
     ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO,
 )
 from banking.main import app
+from fastapi import status
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 

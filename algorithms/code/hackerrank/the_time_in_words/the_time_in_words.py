@@ -65,7 +65,7 @@ def time_in_words(h: int, m: int) -> str:
             h = (h + 1) % 12
     result += LUT[h]
     if m == 0:
-        result += ' o\' clock'
+        result += " o' clock"
     return result
 
 

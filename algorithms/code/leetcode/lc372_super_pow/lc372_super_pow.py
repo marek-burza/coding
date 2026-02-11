@@ -6,7 +6,6 @@ from typing import List
 
 
 class Solution:
-
     __MODULO_1337 = 1337
 
     def __findPowerLoop(self, value):

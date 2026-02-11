@@ -1,14 +1,13 @@
 import unittest
 
-from fastapi import status
-from fastapi.testclient import TestClient
-
 from banking.api.customers import (
-    ERROR_INVALID_CUSTOMER_NAME,
     ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS,
     ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS,
+    ERROR_INVALID_CUSTOMER_NAME,
 )
 from banking.main import app
+from fastapi import status
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
