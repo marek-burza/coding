@@ -6,7 +6,7 @@ pub fn encryption(plain: &str) -> String {
     let p: Vec<char> = plain.chars().collect();
     let length = p.len();
     let c = (length as f64).sqrt().ceil() as usize;
-    let extend = if length % c > 0 { 1 } else { 0 };
+    let extend = if length.is_multiple_of(c) { 0 } else { 1 };
     let r = (length / c) + extend;
     let rows = r as i32;
     let cols = c as i32;

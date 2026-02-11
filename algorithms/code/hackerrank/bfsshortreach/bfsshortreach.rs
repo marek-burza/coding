@@ -24,8 +24,12 @@ pub fn bfs(n: i32, _m: i32, edges: &[Vec<i32>], s: i32) -> Vec<i32> {
     while let Some(item) = queue.pop_front() {
         if distances[item.vertex as usize] == -1 {
             distances[item.vertex as usize] = item.distance;
-            for i in 0..n as usize {
-                if adjacency[item.vertex as usize][i] {
+            for (i, i_adjacent) in adjacency[item.vertex as usize]
+                .iter()
+                .enumerate()
+                .take(n as usize)
+            {
+                if *i_adjacent {
                     queue.push_back(Entry {
                         vertex: i as i32,
                         distance: item.distance + 6,
