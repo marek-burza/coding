@@ -31,11 +31,9 @@ def main():
     operations = []
     for _ in range(n):
         operation = input().strip().split(' ')
-        if operation[0] in ['insert', 'remove', 'append']:
-            operation[1] = int(operation[1])
-            if operation[0] == 'insert':
-                operation[2] = int(operation[2])
-        operations.append(operation)
+        operations.append(
+            [operation[0]] + [int(argument) for argument in operation[1:]]
+        )
     process(operations)
 
 
