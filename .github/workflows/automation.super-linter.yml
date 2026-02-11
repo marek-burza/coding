@@ -23,7 +23,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_CHECKOV: false
           VALIDATE_GITLEAKS: false
-          VALIDATE_GOOGLE_JAVA_FORMAT: false
+          VALIDATE_GO: false
+          VALIDATE_GO_MODULES: false
           VALIDATE_HTML_PRETTIER: false
           VALIDATE_JAVA: false
           VALIDATE_JSCPD: false
