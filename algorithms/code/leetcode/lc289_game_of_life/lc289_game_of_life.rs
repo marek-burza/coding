@@ -38,11 +38,7 @@ impl Solution {
             for col in 0..board[row].len() {
                 let count = Self::count_alive(board, row, col);
                 let mask = if (board[row][col] & 1) == 1 {
-                    if !(2..=3).contains(&count) {
-                        0
-                    } else {
-                        2
-                    }
+                    if !(2..=3).contains(&count) { 0 } else { 2 }
                 } else if count == 3 {
                     2
                 } else {

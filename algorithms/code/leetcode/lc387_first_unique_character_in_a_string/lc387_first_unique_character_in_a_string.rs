@@ -20,11 +20,7 @@ impl Solution {
                 min = Some(index[i]);
             }
         }
-        if let Some(min) = min {
-            min as i32
-        } else {
-            -1
-        }
+        if let Some(min) = min { min as i32 } else { -1 }
     }
 }
 

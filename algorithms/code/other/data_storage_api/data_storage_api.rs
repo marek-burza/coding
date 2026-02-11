@@ -1,8 +1,8 @@
 use axum::{
+    Json, Router,
     extract::{Path, State},
     http::StatusCode,
     routing::{delete, get, put},
-    Json, Router,
 };
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
@@ -126,9 +126,9 @@ pub async fn main() {
 mod tests {
     use super::*;
     use axum::{
+        Router,
         body::{to_bytes, Body},
         http::{self, Request, StatusCode},
-        Router,
     };
     use tower::util::ServiceExt;
 
