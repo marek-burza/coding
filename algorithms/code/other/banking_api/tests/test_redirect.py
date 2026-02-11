@@ -1,9 +1,8 @@
 import unittest
 
+from banking.main import app
 from fastapi import status
 from fastapi.testclient import TestClient
-
-from banking.main import app
 
 client = TestClient(app)
 

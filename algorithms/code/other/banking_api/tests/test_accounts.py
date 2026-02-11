@@ -1,12 +1,11 @@
 import unittest
 
-from fastapi import status
-from fastapi.testclient import TestClient
-
 from banking.api.accounts import ERROR_INVALID_ACCOUNT_IDENTIFIER
 from banking.main import app
 from banking.schemas.accounts import ERROR_BALANCE_CANNOT_BE_NEGATIVE
 from banking.utilities import is_identifier_valid
+from fastapi import status
+from fastapi.testclient import TestClient
 
 client = TestClient(app)
 
