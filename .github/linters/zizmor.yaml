@@ -1,0 +1,11 @@
+---
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        actions/*': ref-pin
+        github/*': ref-pin
+        super-linter/codeql-action/*: ref-pin
+        codecov/codecov-action: ref-pin
+        astral-sh/uvsetup-uv: ref-pin
+        dtolnay/rust-toolchain: ref-pin
