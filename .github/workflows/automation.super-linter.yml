@@ -11,8 +11,8 @@ jobs:
       - name: Initiating
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0
           persist-credentials: false
+          fetch-depth: 0
       - name: Preventing a false alarm
         run: |
           cd algorithms/code/leetcode/lc278_first_bad_version
