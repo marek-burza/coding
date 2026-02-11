@@ -5,7 +5,7 @@ rules:
       policies:
         actions/*: ref-pin
         github/*: ref-pin
-        super-linter/codeql-action/*: ref-pin
+        super-linter/super-linter: ref-pin
         codecov/codecov-action: ref-pin
-        astral-sh/uvsetup-uv: ref-pin
+        astral-sh/setup-uv: ref-pin
         dtolnay/rust-toolchain: ref-pin
