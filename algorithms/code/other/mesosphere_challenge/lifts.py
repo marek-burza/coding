@@ -29,11 +29,11 @@ class Request:
     def riding(self) -> None:
         self.ridden += 1
 
-    @staticmethod
-    def show(request: 'Request' | None) -> str:  # pragma: no cover
-        if request is None:
-            return '()'
-        return f'({request.origin}->{request.goal})'
+
+def show_request(request: Request | None) -> str:  # pragma: no cover
+    if request is None:
+        return '()'
+    return f'({request.origin}->{request.goal})'
 
 
 class Lift:
@@ -139,7 +139,7 @@ class ElevatorControlSystemBase(ABC):
         print(''.join([lut[lift.direction] for lift in self.lifts]))
         print('')
         for i, lift in enumerate(self.lifts):
-            items = [Request.show(request) for request in lift.passengers]
+            items = [show_request(request) for request in lift.passengers]
             print(f'L{i} {" ".join(items)}')
 
     def stats(self) -> dict:
@@ -192,9 +192,11 @@ class FCFS(ElevatorControlSystemBase):
 
     def show(self) -> None:  # pragma: no cover
         ElevatorControlSystemBase.show(self)
-        items = [Request.show(assignment) for assignment in self.assignments]
+        items = [show_request(assignment) for assignment in self.assignments]
         print(f'A {" ".join(items)}')
-        print(f'Q {" ".join([request.show() for request in self.queue])}')
+        print(
+            f'Q {" ".join([show_request(request) for request in self.queue])}'
+        )
 
 
 class ElevatorControlSystem(ElevatorControlSystemBase):
@@ -254,7 +256,7 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
     def show(self) -> None:  # pragma: no cover
         ElevatorControlSystemBase.show(self)
         for i, _ in enumerate(self.lifts):
-            q = ' '.join([Request.show(request) for request in self.queues[i]])
+            q = ' '.join([show_request(request) for request in self.queues[i]])
             print(f'Q{i} {q}')
 
 
