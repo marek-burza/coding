@@ -104,8 +104,12 @@ def qheap_delete(heap, value):
     heap[index] = heap[-1]
     heap.pop()
     if index < len(heap):
-        heapq._siftup(heap, index)  # pylint: disable=protected-access  # ty: ignore[unresolved-attribute]  # noqa: E501
-        heapq._siftdown(heap, 0, index)  # pylint: disable=protected-access  # ty: ignore[unresolved-attribute]  # noqa: E501
+        heapq._siftup(  # pylint: disable=protected-access  # ty: ignore[unresolved-attribute]  # noqa: E501
+            heap, index
+        )
+        heapq._siftdown(  # pylint: disable=protected-access  # ty: ignore[unresolved-attribute]  # noqa: E501
+            heap, 0, index
+        )
 
 
 def qheap_root(heap):
