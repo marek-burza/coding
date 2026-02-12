@@ -53,8 +53,9 @@ class TestCode(unittest.TestCase):
         expected = [1, 2, 2, 4, 3, 5]
         result = Solution().partition(listed, 3)
         for value in expected:
-            self.assertEqual(value, result.val)
+            assert result is not None
+            assert value == result.val
             result = result.next
 
     def test_nothing(self):
-        self.assertIsNone(Solution().partition(None, 0))
+        assert Solution().partition(None, 0) is None

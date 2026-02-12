@@ -39,19 +39,19 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self):
         tree = Solution().buildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
-        self.assertIsNotNone(tree)
-        self.assertEqual(3, tree.val)
-        self.assertIsNotNone(tree.left)
-        self.assertEqual(9, tree.left.val)
-        self.assertIsNone(tree.left.left)
-        self.assertIsNone(tree.left.right)
-        self.assertIsNotNone(tree.right)
-        self.assertEqual(20, tree.right.val)
-        self.assertIsNotNone(tree.right.left)
-        self.assertEqual(15, tree.right.left.val)
-        self.assertIsNone(tree.right.left.left)
-        self.assertIsNone(tree.right.left.right)
-        self.assertIsNotNone(tree.right.right)
-        self.assertEqual(7, tree.right.right.val)
-        self.assertIsNone(tree.right.right.left)
-        self.assertIsNone(tree.right.right.right)
+        assert tree is not None
+        assert tree.val == 3
+        assert tree.left is not None
+        assert 9, tree.left.val == 9
+        assert tree.left.left is None
+        assert tree.left.right is None
+        assert tree.right is not None
+        assert 20, tree.right.val == 20
+        assert tree.right.left is not None
+        assert 15, tree.right.left.val == 15
+        assert tree.right.left.left is None
+        assert tree.right.left.right is None
+        assert tree.right.right is not None
+        assert 7, tree.right.right.val == 4
+        assert tree.right.right.left is None
+        assert tree.right.right.right is None

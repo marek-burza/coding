@@ -52,8 +52,10 @@ class TestCode(unittest.TestCase):
         n9 = TreeNode(9, None, None)
         n8 = TreeNode(8, n7, n9)
         n6 = TreeNode(6, n2, n8)
-        self.assertEqual(6, Solution().lowestCommonAncestor(n6, n2, n8).val)
-        self.assertEqual(2, Solution().lowestCommonAncestor(n2, n2, n4).val)
+        result = Solution().lowestCommonAncestor(n6, n2, n8)
+        assert result is not None and result.val == 6
+        result = Solution().lowestCommonAncestor(n2, n2, n4)
+        assert result is not None and result.val == 2
 
     def test_example_1(self):
         n1 = TreeNode(1, None, None)
@@ -62,7 +64,8 @@ class TestCode(unittest.TestCase):
         n3 = TreeNode(3, n2, n4)
         n6 = TreeNode(6, None, None)
         n5 = TreeNode(5, n3, n6)
-        self.assertEqual(3, Solution().lowestCommonAncestor(n5, n1, n4).val)
+        result = Solution().lowestCommonAncestor(n5, n1, n4)
+        assert result is not None and result.val == 3
 
     def test_example_2(self):
         n3 = TreeNode(3, None, None)
@@ -73,17 +76,20 @@ class TestCode(unittest.TestCase):
         n9 = TreeNode(9, None, None)
         n8 = TreeNode(8, None, n9)
         n6 = TreeNode(6, n2, n8)
-        self.assertEqual(4, Solution().lowestCommonAncestor(n6, n3, n5).val)
+        result = Solution().lowestCommonAncestor(n6, n3, n5)
+        assert result is not None and result.val == 4
 
     def test_example_3(self):
         n1 = TreeNode(1, None, None)
         n2 = TreeNode(2, n1, None)
-        self.assertEqual(2, Solution().lowestCommonAncestor(n2, n2, n1).val)
+        result = Solution().lowestCommonAncestor(n2, n2, n1)
+        assert result is not None and result.val == 2
 
     def test_example_4(self):
         n2 = TreeNode(2, None, None)
         n3 = TreeNode(3, None, n2)
-        self.assertEqual(2, Solution().lowestCommonAncestor(n2, n3, n2).val)
+        result = Solution().lowestCommonAncestor(n2, n3, n2)
+        assert result is not None and result.val == 2
 
     def test_nothing(self):
-        self.assertIsNone(Solution().lowestCommonAncestor(None, None, None))
+        assert Solution().lowestCommonAncestor(None, None, None) is None

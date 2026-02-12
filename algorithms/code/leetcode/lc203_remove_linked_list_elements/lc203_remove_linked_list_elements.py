@@ -51,8 +51,9 @@ class TestCode(unittest.TestCase):
         listed = Solution().removeElements(listed, 6)
         expected = [1, 2, 3, 4, 5, 7]
         for value in expected:
-            self.assertEqual(value, listed.val)
+            assert listed is not None
+            assert value == listed.val
             listed = listed.next
 
     def test_nothing(self):
-        self.assertIsNone(Solution().removeElements(None, 0))
+        assert Solution().removeElements(None, 0) is None
