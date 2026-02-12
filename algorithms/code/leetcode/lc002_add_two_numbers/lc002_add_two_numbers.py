@@ -1,12 +1,13 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/add-two-numbers/
 
 import unittest
-from typing import List, Optional
+from typing import Optional
 
 
 class ListNode:
-    def __init__(self, val=0, next_item=None):
+    def __init__(
+        self, val: int = 0, next_item: Optional['ListNode'] = None
+    ) -> None:
         self.val = val
         self.next = next_item
 
@@ -17,42 +18,46 @@ class Solution:
         handle.next = None
         tail = handle
         carry = 0
-        while l1 is not None or l2 is not None or carry != 0:
-            if l1 is None:
+        n1: ListNode | None = l1
+        n2: ListNode | None = l2
+        while n1 is not None or n2 is not None or carry != 0:
+            if n1 is None:
                 value1 = 0
             else:
-                value1 = l1.val
-                l1 = l1.next
-            if l2 is None:
+                value1 = n1.val
+                n1 = n1.next
+            if n2 is None:
                 value2 = 0
             else:
-                value2 = l2.val
-                l2 = l2.next
+                value2 = n2.val
+                n2 = n2.next
             summed = carry + value1 + value2
             tail.next = ListNode(summed % 10)
             tail.next.next = None
             tail = tail.next
             carry = summed // 10
+        assert handle.next is not None
         return handle.next
 
 
 class TestCode(unittest.TestCase):
     @staticmethod
-    def linked_to_listed(linked: Optional[ListNode]) -> List:
-        listed: List = []
+    def linked_to_listed(linked: ListNode | None) -> list[int]:
+        listed: list[int] = []
         while linked is not None:
             listed.append(linked.val)
             linked = linked.next
         return listed
 
     @staticmethod
-    def listed_to_linked(listed: List) -> Optional[ListNode]:
-        linked: Optional[ListNode] = None
+    def listed_to_linked(listed: list[int]) -> ListNode:
+        linked: ListNode | None = None
         for value in listed[::-1]:
             linked = ListNode(value, linked)
+        assert linked is not None
         return linked
 
-    def test_example(self):
+    def test_example(self) -> None:
         array1 = [2, 4, 3]
         array2 = [5, 6, 4]
         linked = Solution().addTwoNumbers(
@@ -60,9 +65,9 @@ class TestCode(unittest.TestCase):
             TestCode.listed_to_linked(array2),
         )
         expected = [7, 0, 8]
-        self.assertEqual(TestCode.linked_to_listed(linked), expected)
+        assert TestCode.linked_to_listed(linked) == expected
 
-    def test_uneven(self):
+    def test_uneven(self) -> None:
         array1 = [2, 4]
         array2 = [5, 6, 4]
         linked = Solution().addTwoNumbers(
@@ -70,9 +75,9 @@ class TestCode(unittest.TestCase):
             TestCode.listed_to_linked(array2),
         )
         expected = [7, 0, 5]
-        self.assertEqual(TestCode.linked_to_listed(linked), expected)
+        assert TestCode.linked_to_listed(linked) == expected
 
-    def test_carry(self):
+    def test_carry(self) -> None:
         array1 = [2, 4]
         array2 = [5, 6]
         linked = Solution().addTwoNumbers(
@@ -80,4 +85,4 @@ class TestCode(unittest.TestCase):
             TestCode.listed_to_linked(array2),
         )
         expected = [7, 0, 1]
-        self.assertEqual(TestCode.linked_to_listed(linked), expected)
+        assert TestCode.linked_to_listed(linked) == expected

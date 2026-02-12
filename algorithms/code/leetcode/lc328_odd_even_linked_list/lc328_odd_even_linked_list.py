@@ -6,7 +6,7 @@ from typing import Optional
 
 
 class ListNode:
-    def __init__(self, val=0, following=None):
+    def __init__(self, val: int = 0, following: Optional['ListNode'] = None):
         self.val = val
         self.next = following
 
@@ -43,9 +43,10 @@ class TestCode(unittest.TestCase):
         result = Solution().oddEvenList(head.next)
         expected = [1, 3, 5, 2, 4]
         for value in expected:
-            self.assertEqual(value, result.val)
+            assert result is not None
+            assert value, result.val
             result = result.next
-        self.assertEqual(None, result)
+        assert result is None
 
     def test_null(self):
-        self.assertEqual(None, Solution().oddEvenList(None))
+        assert Solution().oddEvenList(None) is None

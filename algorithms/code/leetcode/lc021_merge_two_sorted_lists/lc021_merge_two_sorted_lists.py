@@ -35,12 +35,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def __generic(self, n0):
-        self.assertEqual(n0.val, 1)
-        self.assertEqual(n0.next.val, 2)
-        self.assertEqual(n0.next.next.val, 3)
-        self.assertEqual(n0.next.next.next.val, 4)
-        self.assertEqual(n0.next.next.next.next.val, 5)
-        self.assertEqual(n0.next.next.next.next.next.val, 6)
+        assert n0 is not None
+        assert n0.val == 1
+        assert n0.next.val == 2
+        assert n0.next.next.val == 3
+        assert n0.next.next.next.val == 4
+        assert n0.next.next.next.next.val == 5
+        assert n0.next.next.next.next.next.val == 6
 
     def test_1_3_5_7_9__2_4_6(self):
         n9 = ListNode(9)
@@ -61,8 +62,15 @@ class TestCode(unittest.TestCase):
         n2.next = n4
         n0 = Solution().mergeTwoLists(n1, n2)
         self.__generic(n0)
-        self.assertEqual(n0.next.next.next.next.next.next.val, 7)
-        self.assertEqual(n0.next.next.next.next.next.next.next.val, 9)
+        assert n0 is not None
+        assert n0.next is not None
+        assert n0.next.next is not None
+        assert n0.next.next.next is not None
+        assert n0.next.next.next.next is not None
+        assert n0.next.next.next.next.next is not None
+        assert n0.next.next.next.next.next.next is not None
+        assert n0.next.next.next.next.next.next.val == 7
+        assert n0.next.next.next.next.next.next.next.val == 9
 
     def test_1_2_3__4_5_6(self):
         n3 = ListNode(3, None)
@@ -73,4 +81,10 @@ class TestCode(unittest.TestCase):
         n4 = ListNode(4, n5)
         n0 = Solution().mergeTwoLists(n1, n4)
         self.__generic(n0)
-        self.assertEqual(n0.next.next.next.next.next.next, None)
+        assert n0 is not None
+        assert n0.next is not None
+        assert n0.next.next is not None
+        assert n0.next.next.next is not None
+        assert n0.next.next.next.next is not None
+        assert n0.next.next.next.next.next is not None
+        assert n0.next.next.next.next.next.next is None

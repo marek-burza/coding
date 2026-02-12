@@ -2,15 +2,14 @@
 # https://leetcode.com/problems/pascals-triangle-ii/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def getRow(self, rowIndex: int) -> List[int]:
+    def getRow(self, rowIndex: int) -> list[int]:
         rowIndex += 1
         if rowIndex < 0:
             return []
-        previous: List[int] = []
+        previous: list[int] = []
         current = None
         for i in range(rowIndex):
             current = []
@@ -20,6 +19,7 @@ class Solution:
                     current.append(previous[j] + previous[j + 1])
                 current.append(1)
             previous = current
+        assert current is not None
         return current
 
 

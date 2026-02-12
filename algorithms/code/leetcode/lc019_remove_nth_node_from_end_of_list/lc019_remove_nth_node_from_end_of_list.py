@@ -44,14 +44,17 @@ class TestCode(unittest.TestCase):
         n2.next = None
         n = n1
         solution = Solution()
-        self.assertEqual(n.val, 1)
-        self.assertEqual(n.next.val, 2)
+        assert n is not None
+        assert n.val == 1
+        assert n.next is not None
+        assert n.next.val == 2
         n = solution.removeNthFromEnd(n, 1)
-        self.assertEqual(n.val, 1)
+        assert n is not None
+        assert n.val == 1
         n = solution.removeNthFromEnd(n, 1)
-        self.assertEqual(n, None)
+        assert n is None
 
     def test_none_0(self):
         solution = Solution()
         n = solution.removeNthFromEnd(None, 0)
-        self.assertEqual(n, None)
+        assert n is None

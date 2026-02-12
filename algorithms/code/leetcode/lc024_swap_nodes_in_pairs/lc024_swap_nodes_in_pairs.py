@@ -39,8 +39,8 @@ class TestCode(unittest.TestCase):
         expected = [2, 1, 4, 3]
         result = Solution().swapPairs(n1)
         for value in expected:
-            self.assertNotEqual(None, result)
-            self.assertEqual(result.val, value)
+            assert result is not None
+            assert result.val == value
             result = result.next
 
     def test_example_impaired(self):
@@ -52,9 +52,9 @@ class TestCode(unittest.TestCase):
         expected = [2, 1, 3]
         result = Solution().swapPairs(n1)
         for value in expected:
-            self.assertNotEqual(None, result)
-            self.assertEqual(result.val, value)
+            assert result is not None
+            assert result.val == value
             result = result.next
 
     def test_nothing(self):
-        self.assertIsNone(Solution().swapPairs(None))
+        assert Solution().swapPairs(None) is None

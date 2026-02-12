@@ -39,10 +39,17 @@ class TestCode(unittest.TestCase):
         n7.left = n6
         n7.right = n9
         inverted = Solution().invertTree(n4)
-        self.assertEqual(4, inverted.val)
-        self.assertEqual(7, inverted.left.val)
-        self.assertEqual(9, inverted.left.left.val)
-        self.assertEqual(6, inverted.left.right.val)
-        self.assertEqual(2, inverted.right.val)
-        self.assertEqual(3, inverted.right.left.val)
-        self.assertEqual(1, inverted.right.right.val)
+        assert inverted is not None
+        assert inverted.val == 4
+        assert inverted.left is not None
+        assert inverted.left.val == 7
+        assert inverted.left.left is not None
+        assert inverted.left.left.val == 9
+        assert inverted.left.right is not None
+        assert inverted.left.right.val == 6
+        assert inverted.right is not None
+        assert inverted.right.val == 2
+        assert inverted.right.left is not None
+        assert inverted.right.left.val == 3
+        assert inverted.right.right is not None
+        assert inverted.right.right.val == 1

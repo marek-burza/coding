@@ -34,6 +34,7 @@ class LRUCache:
             self.remove(key)
         else:
             if len(self.lut) >= self.capacity:
+                assert self.tail.preceding is not None
                 self.remove(self.tail.preceding.key)
         self.insert(key, value)
 
@@ -41,6 +42,7 @@ class LRUCache:
         node = Node(key, value)
         node.preceding = self.head
         node.following = self.head.following
+        assert node.following is not None
         node.preceding.following = node
         node.following.preceding = node
         self.lut[key] = node
@@ -48,6 +50,8 @@ class LRUCache:
     def remove(self, key: int) -> int:
         node = self.lut[key]
         del self.lut[key]
+        assert node.preceding is not None
+        assert node.following is not None
         node.preceding.following = node.following
         node.following.preceding = node.preceding
         return node.value
@@ -58,16 +62,16 @@ class TestCode(unittest.TestCase):
         lru = LRUCache(2)
         lru.put(1, 1)
         lru.put(2, 2)
-        self.assertEqual(lru.get(1), 1)
+        assert lru.get(1) == 1
         lru.put(3, 3)
-        self.assertEqual(lru.get(2), -1)
+        assert lru.get(2) == -1
         lru.put(4, 4)
-        self.assertEqual(lru.get(1), -1)
-        self.assertEqual(lru.get(3), 3)
-        self.assertEqual(lru.get(4), 4)
+        assert lru.get(1) == -1
+        assert lru.get(3) == 3
+        assert lru.get(4) == 4
 
     def test_repeated_put_same(self):
         lru = LRUCache(1)
         lru.put(1, 1)
         lru.put(1, 1)
-        self.assertEqual(lru.get(1), 1)
+        assert lru.get(1) == 1
