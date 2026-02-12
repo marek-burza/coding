@@ -43,12 +43,12 @@ func generic(t *testing.T, result [][]uint64, expected [][]uint64) {
 		return
 	}
 	if len(expected) != len(result) {
-		t.Errorf("LockerDistances returns grid with incorrect numer of rows!")
+		t.Errorf("LockerDistances returns grid with incorrect number of rows!")
 		return
 	}
 	for row := 0; row < len(expected); row++ {
 		if len(expected[row]) != len(result[row]) {
-			t.Errorf("LockerDistances returns grid with incorrect numer of columns!")
+			t.Errorf("LockerDistances returns grid with incorrect number of columns!")
 		}
 		for column := 0; column < len(expected[row]); column++ {
 			if expected[row][column] != result[row][column] {
