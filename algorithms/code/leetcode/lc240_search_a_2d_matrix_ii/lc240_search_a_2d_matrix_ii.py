@@ -1,13 +1,19 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/search-a-2d-matrix-ii/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    # pylint: disable=R0911,R0913
-    def __searchMatrix(self, matrix, target, rowA, rowZ, colA, colZ):
+    # pylint: disable=R0911,R0913,R0917
+    def __searchMatrix(
+        self,
+        matrix: list[list[int]],
+        target: int,
+        rowA: int,
+        rowZ: int,
+        colA: int,
+        colZ: int,
+    ) -> bool:
         if rowA == rowZ and colA == colZ:
             return matrix[rowZ][colZ] == target
         # if target < matrix[rowA][colA] or matrix[rowZ][colZ] < target:
@@ -38,7 +44,7 @@ class Solution:
             matrix, target, rowM + 1, rowZ, colM + 1, colZ
         )
 
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
         return self.__searchMatrix(
             matrix, target, 0, len(matrix) - 1, 0, len(matrix[0]) - 1
         )
@@ -53,21 +59,21 @@ class TestCode(unittest.TestCase):
         [18, 21, 23, 26, 30],
     ]
 
-    def test_example_1(self):
-        self.assertTrue(Solution().searchMatrix(TestCode.EXAMPLE_MATRIX, 5))
+    def test_example_1(self) -> None:
+        assert Solution().searchMatrix(TestCode.EXAMPLE_MATRIX, 5)
 
-    def test_example_2(self):
-        self.assertFalse(Solution().searchMatrix(TestCode.EXAMPLE_MATRIX, 20))
+    def test_example_2(self) -> None:
+        assert not Solution().searchMatrix(TestCode.EXAMPLE_MATRIX, 20)
 
-    def test_other_1(self):
+    def test_other_1(self) -> None:
         matrix = [[1, 4], [2, 5]]
-        self.assertTrue(Solution().searchMatrix(matrix, 2))
+        assert Solution().searchMatrix(matrix, 2)
 
-    def test_other_2(self):
+    def test_other_2(self) -> None:
         matrix = [[-1, 3]]
-        self.assertFalse(Solution().searchMatrix(matrix, 1))
+        assert not Solution().searchMatrix(matrix, 1)
 
-    def test_other_3(self):
+    def test_other_3(self) -> None:
         matrix = [
             [1, 2, 3, 4, 5],
             [6, 7, 8, 9, 10],
@@ -75,4 +81,4 @@ class TestCode(unittest.TestCase):
             [16, 17, 18, 19, 20],
             [21, 22, 23, 24, 25],
         ]
-        self.assertTrue(Solution().searchMatrix(matrix, 5))
+        assert Solution().searchMatrix(matrix, 5)

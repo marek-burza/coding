@@ -1,14 +1,13 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/rectangle-area/
 
 import unittest
 
 
 class Solution:
-    def __area(self, left, bottom, right, top):
+    def __area(self, left: int, bottom: int, right: int, top: int) -> int:
         return (right - left) * (top - bottom)
 
-    # pylint: disable=R0913
+    # pylint: disable=R0913,R0917
     def computeArea(
         self,
         ax1: int,
@@ -32,13 +31,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_minus3_0_3_4_0_minus1_9_2(self):
-        self.assertEqual(45, Solution().computeArea(-3, 0, 3, 4, 0, -1, 9, 2))
+    def test_minus3_0_3_4_0_minus1_9_2(self) -> None:
+        assert Solution().computeArea(-3, 0, 3, 4, 0, -1, 9, 2) == 45
 
-    def test_minus2_minus2_2_2_minus1_4_1_6(self):
-        self.assertEqual(20, Solution().computeArea(-2, -2, 2, 2, -1, 4, 1, 6))
+    def test_minus2_minus2_2_2_minus1_4_1_6(self) -> None:
+        assert Solution().computeArea(-2, -2, 2, 2, -1, 4, 1, 6) == 20
 
-    def test_minus5_minus5_minus4_0_minus3_minus3_3_3(self):
-        self.assertEqual(
-            41, Solution().computeArea(-5, -5, -4, 0, -3, -3, 3, 3)
-        )
+    def test_minus5_minus5_minus4_0_minus3_minus3_3_3(self) -> None:
+        assert Solution().computeArea(-5, -5, -4, 0, -3, -3, 3, 3) == 41

@@ -8,7 +8,7 @@ lc278_first_bad_version = 0
 
 def isBadVersion(version):
     # pylint: disable=W0602,W0603
-    global lc278_first_bad_version
+    global lc278_first_bad_version  # noqa: F824
     return lc278_first_bad_version <= version
 
 
@@ -28,7 +28,7 @@ class Solution:
 class TestCode(unittest.TestCase):
     def generic(self, n, expected):
         # pylint: disable=W0603
-        global lc278_first_bad_version
+        global lc278_first_bad_version  # noqa: F824
         lc278_first_bad_version = expected
         self.assertEqual(expected, Solution().firstBadVersion(n))
 

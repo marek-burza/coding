@@ -1,13 +1,22 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/combination-sum/
 
+from __future__ import annotations
+
 import unittest
-from typing import List
+from typing import Callable
 
 
 class Solution:
-    # pylint: disable=R0913
-    def __combinationSum(self, candidates, target, path, total, index, combos):
+    # pylint: disable=R0913,R0917
+    def __combinationSum(
+        self,
+        candidates: list[int],
+        target: int,
+        path: list[int],
+        total: int,
+        index: int,
+        combos: list[list[int]],
+    ) -> None:
         if total == target:
             combos.append(path.copy())
             return
@@ -21,42 +30,52 @@ class Solution:
             partial += candidates[index]
 
     def combinationSum(
-        self, candidates: List[int], target: int
-    ) -> List[List[int]]:
-        combos: List[List[int]] = []
+        self, candidates: list[int], target: int
+    ) -> list[list[int]]:
+        combos: list[list[int]] = []
         self.__combinationSum(candidates, target, [], 0, 0, combos)
         return combos
 
 
 class TestCode(unittest.TestCase):
     @staticmethod
-    def cmp_to_key(mycmp):  # pragma: no cover
+    def cmp_to_key(
+        mycmp: Callable[[list[list[int]], list[list[int]]], int],
+    ):  # pragma: no cover
         class K:
-            def __init__(self, obj, *_):
+            def __init__(self, obj: list[list[int]], *_) -> None:
                 self.obj = obj
 
-            def __lt__(self, other):
+            def __lt__(self, other: object) -> bool:
+                assert isinstance(other, K)
                 return mycmp(self.obj, other.obj) < 0
 
-            def __gt__(self, other):
+            def __gt__(self, other: object) -> bool:
+                assert isinstance(other, K)
                 return mycmp(self.obj, other.obj) > 0
 
-            def __eq__(self, other):
+            def __eq__(self, other: object) -> bool:
+                assert isinstance(other, K)
                 return mycmp(self.obj, other.obj) == 0
 
-            def __le__(self, other):
+            def __le__(self, other: object) -> bool:
+                assert isinstance(other, K)
                 return mycmp(self.obj, other.obj) <= 0
 
-            def __ge__(self, other):
+            def __ge__(self, other: object) -> bool:
+                assert isinstance(other, K)
                 return mycmp(self.obj, other.obj) >= 0
 
-            def __ne__(self, other):
+            def __ne__(self, other: object) -> bool:
+                assert isinstance(other, K)
                 return mycmp(self.obj, other.obj) != 0
 
         return K
 
     @staticmethod
-    def deep_comparator(list1, list2):  # pragma: no cover
+    def deep_comparator(
+        list1: list[list[int]], list2: list[list[int]]
+    ) -> int:  # pragma: no cover
         if len(list1) < len(list2):
             return -1
         if len(list1) > len(list2):
@@ -68,7 +87,7 @@ class TestCode(unittest.TestCase):
                 return 1
         return 0
 
-    def test_example(self):
+    def test_example(self) -> None:
         candidates = [2, 3, 6, 7]
         expected = [[7], [2, 2, 3]]
         combos = Solution().combinationSum(candidates, 7)
@@ -77,12 +96,12 @@ class TestCode(unittest.TestCase):
         combos = sorted(
             combos, key=TestCode.cmp_to_key(TestCode.deep_comparator)
         )
-        self.assertEqual(len(expected), len(combos))
+        assert len(expected) == len(combos)
         i = 0
         while i < len(expected):
-            self.assertEqual(len(expected[i]), len(combos[i]))
+            assert len(expected[i]) == len(combos[i])
             j = 0
             while j < len(expected[i]):
-                self.assertEqual(expected[i][j], int(combos[i][j]))
+                assert expected[i][j] == int(combos[i][j])
                 j += 1
             i += 1
