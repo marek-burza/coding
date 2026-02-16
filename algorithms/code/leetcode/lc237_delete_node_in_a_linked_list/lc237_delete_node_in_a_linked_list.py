@@ -1,23 +1,25 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/delete-node-in-a-linked-list/
+
+from __future__ import annotations
 
 import unittest
 
 
 class ListNode:
-    def __init__(self, x):
+    def __init__(self, x: int) -> None:
         self.val = x
-        self.next = None
+        self.next: 'ListNode' | None = None
 
 
 class Solution:
-    def deleteNode(self, node):
+    def deleteNode(self, node: ListNode) -> None:
+        assert node.next is not None
         node.val = node.next.val
         node.next = node.next.next
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n1 = ListNode(1)
         n2 = ListNode(2)
         n3 = ListNode(3)
@@ -27,9 +29,9 @@ class TestCode(unittest.TestCase):
         n3.next = n4
         Solution().deleteNode(n3)
         expected = [1, 2, 4]
-        n = n1
+        n: ListNode | None = n1
         for value in expected:
-            self.assertIsNotNone(n)
-            self.assertEqual(value, n.val)
+            assert n is not None
+            assert value == n.val
             n = n.next
-        self.assertIsNone(n)
+        assert n is None

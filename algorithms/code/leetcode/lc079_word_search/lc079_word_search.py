@@ -1,12 +1,19 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/word-search/
 
 import unittest
 
 
 class Solution:
-    # pylint: disable=R0911,R0912,R0913
-    def __exist(self, board, word, visited, index, i, j):
+    # pylint: disable=R0911,R0912,R0913,R0917
+    def __exist(
+        self,
+        board: list[list[str]],
+        word: str,
+        visited: list[list[bool]],
+        index: int,
+        i: int,
+        j: int,
+    ) -> bool:
         if visited[i][j]:
             # index >= len(word) or visited[i][j]
             return False
@@ -34,8 +41,8 @@ class Solution:
             return False
         return False
 
-    def exist(self, board, word):
-        if board is None or word is None or len(word) == 0:
+    def exist(self, board: list[list[str]], word: str) -> bool:
+        if not board or not word:
             return False
         visited = [[False] * len(board_i) for i, board_i in enumerate(board)]
         for i, board_i in enumerate(board):
@@ -46,31 +53,28 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
-        self.assertTrue(
-            Solution().exist(
-                [
-                    ['A', 'B', 'C', 'E'],
-                    ['S', 'F', 'C', 'S'],
-                    ['A', 'D', 'E', 'E'],
-                ],
-                'ABCCED',
-            )
+    def test_example(self) -> None:
+        assert Solution().exist(
+            [
+                ['A', 'B', 'C', 'E'],
+                ['S', 'F', 'C', 'S'],
+                ['A', 'D', 'E', 'E'],
+            ],
+            'ABCCED',
         )
 
-    def test_other(self):
-        self.assertTrue(Solution().exist([['a', 'b'], ['c', 'd']], 'acdb'))
+    def test_other(self) -> None:
+        assert Solution().exist([['a', 'b'], ['c', 'd']], 'acdb')
 
-    def test_a__ab(self):
-        self.assertFalse(Solution().exist([['a']], 'ab'))
+    def test_a__ab(self) -> None:
+        assert not Solution().exist([['a']], 'ab')
 
-    def test_a__a(self):
-        self.assertTrue(Solution().exist([['a']], 'a'))
+    def test_a__a(self) -> None:
+        assert Solution().exist([['a']], 'a')
 
-    def test_a_a__aaa(self):
-        self.assertFalse(Solution().exist([['a', 'a']], 'aaa'))
+    def test_a_a__aaa(self) -> None:
+        assert not Solution().exist([['a', 'a']], 'aaa')
 
-    def test_nothing(self):
-        self.assertFalse(Solution().exist(None, 'dummy'))
-        self.assertFalse(Solution().exist([['a']], None))
-        self.assertFalse(Solution().exist([['a']], ''))
+    def test_nothing(self) -> None:
+        assert not Solution().exist([], 'dummy')
+        assert not Solution().exist([['a']], '')

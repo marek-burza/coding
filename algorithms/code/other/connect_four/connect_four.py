@@ -1,9 +1,7 @@
-#!/usr/bin/env python3
 # https://en.wikipedia.org/wiki/Connect_Four
 
 import enum
 import unittest
-from typing import List, Optional
 
 
 class Player(enum.IntEnum):
@@ -24,7 +22,7 @@ class BoardState:
     MAX_STEPS = 4
 
     def __init__(self) -> None:
-        self.__board: List[List[Player]] = [
+        self.__board: list[list[Player]] = [
             [] for _ in range(BoardState.MAX_COLUMNS)
         ]
 
@@ -39,12 +37,12 @@ class BoardState:
         self.__board[c].append(player)
         return True
 
-    def player_at(self, r: int, c: int) -> Optional[Player]:
+    def player_at(self, r: int, c: int) -> Player | None:
         if c < len(self.__board) and r < len(self.__board[c]):
             return self.__board[c][r]
         return None
 
-    def check_winning_at(self, r: int, c: int) -> Optional[Player]:
+    def check_winning_at(self, r: int, c: int) -> Player | None:
         player = self.player_at(r, c)
         for dr, dc in [(0, 1), (1, 0), (1, -1), (1, 1)]:
             for delta in range(1, BoardState.MAX_STEPS):
@@ -54,7 +52,7 @@ class BoardState:
                     return player
         return None
 
-    def check_winning(self) -> Optional[Winner]:
+    def check_winning(self) -> Winner | None:
         columns = range(BoardState.MAX_COLUMNS)
         for c in columns:
             for r in range(BoardState.MAX_ROWS):
@@ -68,7 +66,7 @@ class BoardState:
             return Winner.DRAW
         return Winner.UNDECIDED
 
-    def __str__(self):
+    def __str__(self) -> str:
         lut = {Player.ONE: 'O', Player.TWO: 'X', None: '.'}
         rows = range(BoardState.MAX_ROWS - 1, -1, -1)
         columns = range(BoardState.MAX_COLUMNS)
@@ -95,8 +93,15 @@ class GameState(BoardState):
 
 
 class TestCode(unittest.TestCase):
-    # pylint: disable=R0913
-    def generic(self, first, moves, outcomes, winners, board):
+    # pylint: disable=R0913,R0917
+    def generic(
+        self,
+        first: Player,
+        moves: list[int],
+        outcomes: list[bool],
+        winners: list[Winner],
+        board: list[str],
+    ):
         g = GameState(first)
         i = 1
         for move, outcome, winner in zip(
@@ -104,12 +109,12 @@ class TestCode(unittest.TestCase):
         ):
             result = g.drop_for_current_player(move)
             message = f'Round {i} : \n{str(g)}'
-            self.assertEqual(outcome, result, message)
-            self.assertEqual(winner, g.check_winning(), message)
+            assert outcome == result, message
+            assert winner == g.check_winning(), message
             i += 1
-        self.assertEqual('\n'.join(board), str(g))
+        assert '\n'.join(board) == str(g)
 
-    def test_one_in_the_middle(self):
+    def test_one_in_the_middle(self) -> None:
         moves = [3]
         outcomes = [True]
         winners = [Winner.UNDECIDED]
@@ -123,7 +128,7 @@ class TestCode(unittest.TestCase):
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
-    def test_too_high(self):
+    def test_too_high(self) -> None:
         moves = [3] * (BoardState.MAX_ROWS + 1)
         outcomes = [True] * BoardState.MAX_ROWS
         outcomes.append(False)
@@ -138,11 +143,11 @@ class TestCode(unittest.TestCase):
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
-    def test_horizontal(self):
+    def test_horizontal(self) -> None:
         moves = [3, 0, 4, 1, 5, 2, 6]
         outcomes = [True] * 7
         winners = [Winner.UNDECIDED] * 6
-        winners.append(Player.ONE)
+        winners.append(Winner.ONE)
         board = [
             '.......',
             '.......',
@@ -153,11 +158,11 @@ class TestCode(unittest.TestCase):
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
-    def test_vertical(self):
+    def test_vertical(self) -> None:
         moves = [3, 1, 3, 1, 3, 1, 3]
         outcomes = [True] * 7
         winners = [Winner.UNDECIDED] * 6
-        winners.append(Player.ONE)
+        winners.append(Winner.ONE)
         board = [
             '.......',
             '.......',
@@ -168,7 +173,7 @@ class TestCode(unittest.TestCase):
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
-    def test_draw(self):
+    def test_draw(self) -> None:
         cell_count = BoardState.MAX_COLUMNS * BoardState.MAX_ROWS
         moves = []
         for i in range(3):
@@ -195,11 +200,11 @@ class TestCode(unittest.TestCase):
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
-    def test_diagonal_ascending(self):
+    def test_diagonal_ascending(self) -> None:
         moves = [2, 1, 1, 2, 3, 3, 2, 3, 4, 4, 4, 4]
         outcomes = [True] * len(moves)
         winners = [Winner.UNDECIDED] * (len(moves) - 1)
-        winners.append(Player.TWO)
+        winners.append(Winner.TWO)
         board = [
             '.......',
             '.......',
@@ -210,11 +215,11 @@ class TestCode(unittest.TestCase):
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
-    def test_diagonal_descending(self):
+    def test_diagonal_descending(self) -> None:
         moves = [4, 5, 5, 4, 3, 3, 4, 3, 2, 2, 2, 2]
         outcomes = [True] * len(moves)
         winners = [Winner.UNDECIDED] * (len(moves) - 1)
-        winners.append(Player.TWO)
+        winners.append(Winner.TWO)
         board = [
             '.......',
             '.......',
@@ -225,13 +230,13 @@ class TestCode(unittest.TestCase):
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
-    def test_one_more_move(self):
+    def test_one_more_move(self) -> None:
         moves = [4, 5, 5, 4, 3, 3, 4, 3, 2, 2, 2, 2, 0]
         outcomes = [True] * len(moves)
         outcomes[-1] = False
         winners = [Winner.UNDECIDED] * len(moves)
-        winners[-2] = Player.TWO
-        winners[-1] = Player.TWO
+        winners[-2] = Winner.TWO
+        winners[-1] = Winner.TWO
         board = [
             '.......',
             '.......',

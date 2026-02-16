@@ -1,13 +1,18 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/word-break/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    # pylint: disable=R0913
-    def __wordBreak(self, s, wordDict, at, length, checked):
+    # pylint: disable=R0913,R0917
+    def __wordBreak(
+        self,
+        s: str,
+        wordDict: set[str],
+        at: int,
+        length: int,
+        checked: list[bool],
+    ) -> bool:
         if checked[at]:
             return False
         limit = min(len(s), at + length)
@@ -20,31 +25,21 @@ class Solution:
         checked[at] = True
         return False
 
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        length = 0
-        for word in wordDict:
-            length = max(len(word), length)
+    def wordBreak(self, s: str, wordDict: list[str]) -> bool:
+        length = max(len(word) for word in wordDict)
         checked = [False] * len(s)
         return self.__wordBreak(s, set(wordDict), 0, length, checked)
 
 
 class TestCode(unittest.TestCase):
-    def __prepare(self, words):
-        a_set = set(words)
-        return a_set
+    def test_a__a(self) -> None:
+        assert Solution().wordBreak('a', ['a'])
 
-    def test_a__a(self):
-        self.assertTrue(Solution().wordBreak('a', self.__prepare(['a'])))
-
-    def test_other(self):
-        self.assertFalse(
-            Solution().wordBreak(
-                'catsandog',
-                self.__prepare(['cats', 'dog', 'sand', 'and', 'cat']),
-            )
+    def test_other(self) -> None:
+        assert not Solution().wordBreak(
+            'catsandog',
+            ['cats', 'dog', 'sand', 'and', 'cat'],
         )
 
-    def test_another(self):
-        self.assertTrue(
-            Solution().wordBreak('leetcode', self.__prepare(['leet', 'code']))
-        )
+    def test_another(self) -> None:
+        assert Solution().wordBreak('leetcode', ['leet', 'code'])
