@@ -13,10 +13,10 @@ class GFG7094AmazonSocialNetworkTraversal:
         self.attendances = attendances
 
     def get_direct_friends_for_user(self, user):
-        return self.friendships[user] if user in self.friendships else set()
+        return self.friendships.get(user, set())
 
     def get_attended_courses_for_user(self, user):
-        return self.attendances[user] if user in self.attendances else set()
+        return self.attendances.get(user, set())
 
     def get_ranked_courses(self, user):
         own_friends = self.get_direct_friends_for_user(user)

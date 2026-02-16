@@ -15,10 +15,10 @@ class Solution:
             while j < len(nums) and nums[j - 1] == nums[j]:
                 count += 1
                 j += 1
-            for j in range(count):
+            for _ in range(count):
                 current.append(nums[i])
                 self.__subsets(nums, i + count, current, listed)
-            for j in range(count):
+            for _ in range(count):
                 current.pop()
             i += count
 
@@ -61,7 +61,7 @@ class TestCode(unittest.TestCase):
         difference = len(l1) - len(l2)
         if difference != 0:
             return difference
-        for l1s, l2s in zip(l1, l2):
+        for l1s, l2s in zip(l1, l2, strict=True):
             if l1s < l2s:
                 return -1
             if l1s > l2s:

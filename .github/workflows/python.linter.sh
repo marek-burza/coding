@@ -3,14 +3,10 @@
 set -e
 
 echo "--- ruff ---"
-uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project ruff check --select I algorithms/code
+uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project ruff check --select I,E,B,SIM algorithms/code
 uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project ruff format --check --diff --config .github/linters/.ruff.toml algorithms/code
 echo "--- ty ---"
 uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project ty check algorithms/code
-echo "--- isort ---"
-uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project isort --settings-file .github/linters/.isort.cfg --check algorithms/code
-echo "--- pycodestyle ---"
-uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project pycodestyle --ignore=E203,W503 .
 echo "--- flake8 ---"
 uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project flake8 --ignore=E203,W503
 echo "--- pylint ---"

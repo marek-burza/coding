@@ -16,15 +16,22 @@ class Solution:
         colM = (colA + colZ) // 2
         cols = colA < colZ
         rows = rowA < rowZ
-        if target <= matrix[rowM][colM]:
-            if self.__searchMatrix(matrix, target, rowA, rowM, colA, colM):
-                return True
-        if cols and target <= matrix[rowM][colZ]:
-            if self.__searchMatrix(matrix, target, rowA, rowM, colM + 1, colZ):
-                return True
-        if rows and target <= matrix[rowZ][colM]:
-            if self.__searchMatrix(matrix, target, rowM + 1, rowZ, colA, colM):
-                return True
+        if target <= matrix[rowM][colM] and self.__searchMatrix(
+            matrix, target, rowA, rowM, colA, colM
+        ):
+            return True
+        if (
+            cols
+            and target <= matrix[rowM][colZ]
+            and self.__searchMatrix(matrix, target, rowA, rowM, colM + 1, colZ)
+        ):
+            return True
+        if (
+            rows
+            and target <= matrix[rowZ][colM]
+            and self.__searchMatrix(matrix, target, rowM + 1, rowZ, colA, colM)
+        ):
+            return True
         if not (rows and cols):
             return False
         return self.__searchMatrix(

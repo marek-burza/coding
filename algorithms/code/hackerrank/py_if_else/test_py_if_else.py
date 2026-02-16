@@ -12,9 +12,7 @@ def is_weird(value):
         return True
     if 2 <= value <= 5:
         return False
-    if 6 <= value <= 20:
-        return True
-    return False
+    return 6 <= value <= 20
 
 
 def main():

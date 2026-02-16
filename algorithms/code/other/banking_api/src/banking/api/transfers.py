@@ -85,7 +85,7 @@ async def put_transfer(
             description='Amount to transfer (origin account must have sufficient funds)'  # noqa
         ),
     ],
-    db_session: Session = Depends(database.get_session),
+    db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> TransferRead:
     validate_account_identifier(
         from_account_identifier, ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER
@@ -143,7 +143,7 @@ async def get_transfers(
             description='UUID identifier of the account to fetch transfers for'
         ),
     ],
-    db_session: Session = Depends(database.get_session),
+    db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> List[TransferRead]:
     validate_account_identifier(
         account_identifier, ERROR_INVALID_ACCOUNT_IDENTIFIER

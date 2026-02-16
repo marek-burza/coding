@@ -29,10 +29,7 @@ class Solution:
                 graph[prerequisite[1]] = a_set
             a_set.add(prerequisite[0])
         visited: Set[int] = set()
-        for start in graph:
-            if not self.__dfs(graph, start, visited):
-                return False
-        return True
+        return all(self.__dfs(graph, start, visited) for start in graph)
 
 
 class TestCode(unittest.TestCase):

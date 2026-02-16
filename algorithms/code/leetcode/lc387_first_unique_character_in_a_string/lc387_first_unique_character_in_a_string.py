@@ -16,9 +16,8 @@ class Solution:
             count[key] += 1
         minimum = -1
         for i in range(size):
-            if count[i] == 1:
-                if minimum == -1 or index[i] < minimum:
-                    minimum = index[i]
+            if count[i] == 1 and (minimum == -1 or index[i] < minimum):
+                minimum = index[i]
         return minimum
 
 

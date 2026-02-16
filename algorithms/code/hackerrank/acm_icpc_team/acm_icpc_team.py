@@ -11,7 +11,7 @@ def acm_team(topic):
     for i in range(length - 1):
         for j in range(i + 1, length):
             count = 0
-            for pair in zip(topic[i], topic[j]):
+            for pair in zip(topic[i], topic[j], strict=True):
                 count += 1 if '1' in pair else 0
             if count > coverage_count:
                 coverage_count = count

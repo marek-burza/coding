@@ -19,12 +19,7 @@ def unboundedKnapsack(w, values):
 
 
 def main():
-    if 'OUTPUT_PATH' in os.environ:  # pragma: no cover
-        fptr = open(  # pylint: disable=R1732,W1514
-            os.environ['OUTPUT_PATH'], 'w'
-        )
-    else:
-        fptr = sys.stdout
+    fptr = sys.stdout
     t = int(input().strip())
     for _ in range(t):
         first_multiple_input = input().rstrip().split()
@@ -33,8 +28,6 @@ def main():
         arr = list(map(int, input().rstrip().split()))
         result = unboundedKnapsack(k, arr)
         fptr.write(str(result) + '\n')
-    if 'OUTPUT_PATH' in os.environ:  # pragma: no cover
-        fptr.close()
 
 
 if __name__ == '__main__':  # pragma: no cover

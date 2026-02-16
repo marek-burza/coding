@@ -6,9 +6,7 @@ import unittest
 
 class Solution:
     def check(self, s: str) -> bool:
-        if len(s) == 0:
-            return True
-        return False
+        return len(s) == 0
 
     def isValid(self, s: str) -> bool:
         result = self.check(s)

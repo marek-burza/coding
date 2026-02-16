@@ -27,10 +27,9 @@ class Solution:
         node.next = head
         head = node
         while head is not None:
-            if n == 0:
-                if head.next is not None:
-                    head.next = head.next.next
-                    break
+            if n == 0 and head.next is not None:
+                head.next = head.next.next
+                break
             head = head.next
             n -= 1
         return node.next

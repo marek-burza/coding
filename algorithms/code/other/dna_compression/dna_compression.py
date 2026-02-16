@@ -59,8 +59,7 @@ def decode_file(path_in: Path, path_out: Path) -> None:
     with path_out.open('w') as handle:
         size = path_in.stat().st_size
         busy = None
-        index = 0
-        for quartet in read_next_quartet(path_in):
+        for index, quartet in enumerate(read_next_quartet(path_in)):
             if busy is None:
                 busy = quartet
             else:
@@ -68,7 +67,6 @@ def decode_file(path_in: Path, path_out: Path) -> None:
                 if index == size - 1:
                     aminoacids = aminoacids[:busy]
                 handle.write(aminoacids)
-            index += 1
 
 
 def main(path_in: Path, path_out: Path) -> None:

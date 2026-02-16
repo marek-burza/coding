@@ -61,7 +61,7 @@ class TestCode(unittest.TestCase):
             return -1
         if len(list1) > len(list2):
             return 1
-        for list1i, list2i in zip(list1, list2):
+        for list1i, list2i in zip(list1, list2, strict=True):
             if list1i < list2i:
                 return -1
             if list1i > list2i:

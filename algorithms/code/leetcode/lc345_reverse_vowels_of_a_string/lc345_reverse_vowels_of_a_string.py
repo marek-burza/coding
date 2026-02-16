@@ -7,10 +7,7 @@ import unittest
 class Solution:
     def __isVowel(self, letter):
         vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
-        for vowel in vowels:
-            if vowel == letter:
-                return True
-        return False
+        return any(vowel == letter for vowel in vowels)
 
     def reverseVowels(self, s: str) -> str:
         text = list(s)

@@ -61,7 +61,7 @@ async def put_account(
             description='Initial balance for the account (cannot be < 0)',
         ),
     ] = 0,
-    db_session: Session = Depends(database.get_session),
+    db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> AccountRead:
     with db_session.begin():
         query_and_verify_customer_identifier(customer_identifier, db_session)
@@ -100,7 +100,7 @@ async def get_accounts(
             description='UUID identifier of the account (to fetch one account)'
         ),
     ] = None,
-    db_session: Session = Depends(database.get_session),
+    db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> List[AccountRead]:
     with db_session.begin():
         accounts = db_session.query(Account)
