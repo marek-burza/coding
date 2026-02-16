@@ -14,10 +14,7 @@ def check(cubes):
     while q:
         left = q[0]
         right = q[-1]
-        if left < right:
-            current = q.pop()
-        else:
-            current = q.popleft()
+        current = q.pop() if left < right else q.popleft()
         if previous is not None and previous < current:
             return False
         previous = current

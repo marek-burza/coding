@@ -99,7 +99,9 @@ class TestCode(unittest.TestCase):
     def generic(self, first, moves, outcomes, winners, board):
         g = GameState(first)
         i = 1
-        for move, outcome, winner in zip(moves, outcomes, winners):
+        for move, outcome, winner in zip(
+            moves, outcomes, winners, strict=True
+        ):
             result = g.drop_for_current_player(move)
             message = f'Round {i} : \n{str(g)}'
             self.assertEqual(outcome, result, message)
@@ -173,7 +175,7 @@ class TestCode(unittest.TestCase):
             for _ in range(3):
                 moves.append(2 * i)
                 moves.append(2 * i + 1)
-        for i in range(3):
+        for _ in range(3):
             moves.append(6)
             moves.append(0)
         for i in range(3):

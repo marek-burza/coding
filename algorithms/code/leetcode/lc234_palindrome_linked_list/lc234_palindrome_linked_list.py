@@ -17,10 +17,9 @@ class Solution:
         while head is not None:
             listed.append(head.val)
             head = head.next
-        for i in range(len(listed) // 2):
-            if listed[i] != listed[-1 - i]:
-                return False
-        return True
+        return all(
+            listed[i] == listed[-1 - i] for i in range(len(listed) // 2)
+        )
 
 
 class TestCode(unittest.TestCase):

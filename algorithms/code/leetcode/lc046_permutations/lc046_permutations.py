@@ -57,7 +57,7 @@ class TestCode(unittest.TestCase):
             return -1
         if len(l1) > len(l2):
             return 1
-        for l1i, l2i in zip(l1, l2):
+        for l1i, l2i in zip(l1, l2, strict=True):
             if l1i < l2i:
                 return -1
             if l1i > l2i:

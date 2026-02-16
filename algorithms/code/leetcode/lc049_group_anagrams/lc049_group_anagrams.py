@@ -57,7 +57,7 @@ class TestCode(unittest.TestCase):
         difference = len(l1) - len(l2)
         if difference != 0:
             return difference
-        for l1s, l2s in zip(l1, l2):
+        for l1s, l2s in zip(l1, l2, strict=True):
             if l1s < l2s:
                 return -1
             if l1s > l2s:

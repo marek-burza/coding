@@ -14,18 +14,22 @@ class Solution:
             if index == len(word) - 1:
                 return True
             visited[i][j] = True
-            if i + 1 < len(visited):
-                if self.__exist(board, word, visited, index + 1, i + 1, j):
-                    return True
-            if i - 1 >= 0:
-                if self.__exist(board, word, visited, index + 1, i - 1, j):
-                    return True
-            if j + 1 < len(visited[i]):
-                if self.__exist(board, word, visited, index + 1, i, j + 1):
-                    return True
-            if j - 1 >= 0:
-                if self.__exist(board, word, visited, index + 1, i, j - 1):
-                    return True
+            if i + 1 < len(visited) and self.__exist(
+                board, word, visited, index + 1, i + 1, j
+            ):
+                return True
+            if i - 1 >= 0 and self.__exist(
+                board, word, visited, index + 1, i - 1, j
+            ):
+                return True
+            if j + 1 < len(visited[i]) and self.__exist(
+                board, word, visited, index + 1, i, j + 1
+            ):
+                return True
+            if j - 1 >= 0 and self.__exist(
+                board, word, visited, index + 1, i, j - 1
+            ):
+                return True
             visited[i][j] = False
             return False
         return False

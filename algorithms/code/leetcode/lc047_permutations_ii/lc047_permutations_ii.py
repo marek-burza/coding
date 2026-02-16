@@ -19,7 +19,7 @@ class Solution:
         if len(permutation) == limit:
             permutations.append(permutation.copy())
             return
-        for key in counted.keys():
+        for key in counted:
             count = counted.get(key)
             if count != 0:
                 permutation.append(key)

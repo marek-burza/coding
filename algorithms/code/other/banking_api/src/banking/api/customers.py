@@ -83,7 +83,7 @@ async def put_customer(
             description='Name of the customer (will be sanitized to only letters and spaces'  # noqa
         ),
     ],
-    db_session: Session = Depends(database.get_session),
+    db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> CustomerRead:
     customer_name = cleanse_customer_name(customer_name)
     if customer_name == '':
@@ -103,12 +103,12 @@ async def put_customer(
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
                 detail=ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS,
-            )
+            ) from error
         if 'customers.name' in str(error):
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
                 detail=ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS,
-            )
+            ) from error
     return db_customer
 
 
@@ -130,7 +130,7 @@ async def get_customers(
         Optional[int],
         Query(description='Integer identifier of the customer'),
     ] = None,
-    db_session: Session = Depends(database.get_session),
+    db_session: Session = Depends(database.get_session),  # noqa: B008
 ):
     return query_and_verify_customer_identifier(
         customer_identifier, db_session
