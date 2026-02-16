@@ -1,22 +1,22 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/lru-cache/
 
+from __future__ import annotations
+
 import unittest
-from typing import Dict
 
 
 class Node:
-    def __init__(self, key, value):
+    def __init__(self, key: int, value: int) -> None:
         self.key = key
         self.value = value
-        self.preceding = None
-        self.following = None
+        self.preceding: Node | None = None
+        self.following: Node | None = None
 
 
 class LRUCache:
     def __init__(self, capacity: int):
         self.capacity = capacity
-        self.lut: Dict[int, Node] = {}
+        self.lut: dict[int, Node] = {}
         self.head = Node(0, 0)
         self.tail = Node(0, 0)
         self.head.following = self.tail
@@ -58,7 +58,7 @@ class LRUCache:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         lru = LRUCache(2)
         lru.put(1, 1)
         lru.put(2, 2)
@@ -70,7 +70,7 @@ class TestCode(unittest.TestCase):
         assert lru.get(3) == 3
         assert lru.get(4) == 4
 
-    def test_repeated_put_same(self):
+    def test_repeated_put_same(self) -> None:
         lru = LRUCache(1)
         lru.put(1, 1)
         lru.put(1, 1)

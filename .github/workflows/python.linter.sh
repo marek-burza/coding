@@ -13,5 +13,7 @@ echo "--- pylint ---"
 uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project sh -c "find . -name '*.py' | grep -v banking_api | xargs pylint --disable=C0103,C0111,C0302,R0801,R0903"
 echo "--- mypy ---"
 uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project mypy algorithms --exclude banking_api
+echo "--- pyright ---"
+uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project pyright algorithms
 echo "--- bandit ---"
 uv run --with-requirements .github/workflows/python.environment.requirements.txt --no-project bandit --skip B101 -r .

@@ -1,13 +1,11 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/py-if-else
-# #python
 
 import io
 import sys
 import unittest
 
 
-def is_weird(value):
+def is_weird(value: int) -> bool:
     if (value % 2) == 1:
         return True
     if 2 <= value <= 5:
@@ -15,7 +13,7 @@ def is_weird(value):
     return 6 <= value <= 20
 
 
-def main():
+def main() -> None:
     print('Weird' if is_weird(int(input().strip())) else 'Not Weird')
 
 
@@ -24,7 +22,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -35,14 +33,13 @@ class TestCode(unittest.TestCase):
             io.StringIO() as sys.stdout,
         ):
             main()
-            self.assertEqual(sys.stdout.getvalue(), expected.read())
+            assert sys.stdout.getvalue() == expected.read()
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')
 
-    def test_1_to_24(self):
+    def test_1_to_24(self) -> None:
         expected = [
-            None,
             True,
             False,
             True,
@@ -68,7 +65,7 @@ class TestCode(unittest.TestCase):
             True,
             False,
         ]
-        result = [None]
+        result = []
         for value in range(1, 25):
             result.append(is_weird(value))
-        self.assertEqual(result, expected)
+        assert result == expected

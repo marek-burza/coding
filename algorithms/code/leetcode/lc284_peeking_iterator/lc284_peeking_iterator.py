@@ -1,29 +1,29 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/peeking-iterator/
 
 import unittest
+from typing import Any
 
 
 class PeekingIterator:
-    def __init__(self, iterator):
+    def __init__(self, iterator: Any) -> None:
         self.__iterator = iterator
         self.__got = False
         self.__value = None
 
-    def peek(self):
+    def peek(self) -> Any:
         if not self.__got:
             self.__got = True
             self.__value = self.__iterator.next()
         return self.__value
 
-    def next(self):
+    def next(self) -> Any:
         if self.__got:
             self.__got = False
         else:
             self.__value = self.__iterator.next()
         return self.__value
 
-    def hasNext(self):
+    def hasNext(self) -> bool:
         return self.__got or self.__iterator.hasNext()
 
 

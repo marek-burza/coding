@@ -1,24 +1,24 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/linked-list-cycle/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class ListNode:
-    def __init__(self, x):
+    def __init__(self, x: int) -> None:
         self.val = x
-        self.next = None
+        self.next: ListNode | None = None
 
 
 class Solution:
-    def hasCycle(self, head: Optional[ListNode]) -> bool:
+    def hasCycle(self, head: ListNode | None) -> bool:
         if head is None:
             return False
         if head.next is head:
             return True
         previous = None
-        current = head
+        current: ListNode | None = head
         count = 0
         while current is not None:
             if current is head:
@@ -31,27 +31,27 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_empty(self):
-        self.assertFalse(Solution().hasCycle(None))
+    def test_empty(self) -> None:
+        assert not Solution().hasCycle(None)
 
-    def test_single_cycle(self):
+    def test_single_cycle(self) -> None:
         node = ListNode(1)
         node.next = node
-        self.assertTrue(Solution().hasCycle(node))
+        assert Solution().hasCycle(node)
 
-    def test_single_no_cycle(self):
+    def test_single_no_cycle(self) -> None:
         node = ListNode(1)
-        self.assertFalse(Solution().hasCycle(node))
+        assert not Solution().hasCycle(node)
 
-    def test_two_cycle(self):
+    def test_two_cycle(self) -> None:
         node1 = ListNode(1)
         node2 = ListNode(2)
         node1.next = node2
         node2.next = node1
-        self.assertTrue(Solution().hasCycle(node1))
+        assert Solution().hasCycle(node1)
 
-    def test_two_no_cycle(self):
+    def test_two_no_cycle(self) -> None:
         node1 = ListNode(1)
         node2 = ListNode(2)
         node1.next = node2
-        self.assertFalse(Solution().hasCycle(node1))
+        assert not Solution().hasCycle(node1)
