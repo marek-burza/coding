@@ -8,7 +8,7 @@ import unittest
 
 class ListNode:
     def __init__(
-        self, val: int = 0, following: 'ListNode' | None = None
+        self, val: int = 0, following: ListNode | None = None
     ) -> None:
         self.val = val
         self.next = following

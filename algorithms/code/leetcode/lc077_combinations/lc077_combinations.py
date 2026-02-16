@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/combinations/
 
 import unittest
-from typing import Callable
+from typing import Any, Callable
 
 
 class Solution:
@@ -32,7 +32,7 @@ class TestCode(unittest.TestCase):
     @staticmethod
     def cmp_to_key(
         mycmp: Callable[[list[list[int]], list[list[int]]], int],
-    ):  # pragma: no cover
+    ) -> Any:  # pragma: no cover
         class K:
             def __init__(self, obj: list[list[int]], *_) -> None:
                 self.obj = obj
