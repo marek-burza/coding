@@ -4,6 +4,7 @@ COPY . /tmp/banking
 
 WORKDIR /tmp/banking
 
+# hadolint ignore=DL3013
 RUN pip install --disable-pip-version-check --no-cache-dir .[tests] && \
     rm -rf /tmp/banking
 
