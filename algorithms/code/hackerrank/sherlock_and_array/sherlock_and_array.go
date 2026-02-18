@@ -10,7 +10,7 @@ func BalancedSums(arr []int32) string {
 		left[i] = left[i-1] + arr[i-1]
 		right[len(arr)-1-i] = right[len(arr)-i] + arr[len(arr)-i]
 	}
-	for i := 0; i < len(arr); i++ {
+	for i := range arr {
 		if left[i] == right[i] {
 			return "YES"
 		}

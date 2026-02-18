@@ -45,7 +45,7 @@ func generic(t *testing.T, result []string, expected []string) {
 		t.Errorf("GetRankedCourses returns slice with incorrect length!")
 		return
 	}
-	for i := 0; i < len(expected); i++ {
+	for i := range expected {
 		if expected[i] != result[i] {
 			t.Errorf("GetRankedCourses returns wrong values in slice!")
 		}

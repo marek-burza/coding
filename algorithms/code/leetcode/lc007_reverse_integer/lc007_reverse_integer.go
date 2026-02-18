@@ -23,10 +23,10 @@ func reverse(x int) int {
 	length := len(limits)
 	padding := length - collected
 	copy(digits[padding:], digits[:collected])
-	for i := 0; i < padding; i++ {
+	for i := range padding {
 		digits[i] = 0
 	}
-	for i := 0; i < length; i++ {
+	for i := range length {
 		if digits[i] > limits[i] {
 			return 0
 		}

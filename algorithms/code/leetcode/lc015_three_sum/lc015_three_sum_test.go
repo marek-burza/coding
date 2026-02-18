@@ -11,7 +11,7 @@ func check(t *testing.T, expected [][]int, result [][]int) {
 		t.Errorf("ThreeSum - Expected %d results, got %d!", len(expected), len(result))
 	}
 	sort.Slice(expected, func(i, j int) bool {
-		for k := 0; k < 3; k++ {
+		for k := range 3 {
 			if expected[i][k] != expected[j][k] {
 				return expected[i][k] < expected[j][k]
 			}
@@ -19,7 +19,7 @@ func check(t *testing.T, expected [][]int, result [][]int) {
 		return false
 	})
 	sort.Slice(result, func(i, j int) bool {
-		for k := 0; k < 3; k++ {
+		for k := range 3 {
 			if result[i][k] != result[j][k] {
 				return result[i][k] < result[j][k]
 			}

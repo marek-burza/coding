@@ -14,14 +14,14 @@ func Runner(t *testing.T, name string) {
 	for i, template := range []string{"input%s.txt", "output%s.txt"} {
 		path := fmt.Sprintf(template, name)
 		data, _ := os.ReadFile(path)
-		for _, line := range strings.Split(strings.TrimSpace(string(data)), "\n") {
+		for line := range strings.SplitSeq(strings.TrimSpace(string(data)), "\n") {
 			ioLines[i] = append(ioLines[i], strings.Fields(line))
 		}
 	}
 	convertedTests, _ := strconv.Atoi(ioLines[0][0][0])
 	tests := int(convertedTests)
 	offset := 1
-	for test := 0; test < tests; test++ {
+	for test := range tests {
 		convertedN, _ := strconv.Atoi(ioLines[0][offset][0])
 		n := int32(convertedN)
 		convertedM, _ := strconv.Atoi(ioLines[0][offset][1])

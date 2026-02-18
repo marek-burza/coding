@@ -3,12 +3,12 @@ package cavitymap
 // https://www.hackerrank.com/challenges/cut-the-sticks
 
 import (
-	"sort"
+	"slices"
 )
 
 // CutTheSticks - implements the solution to the problem
 func CutTheSticks(arr []int32) []int32 {
-	sort.Slice(arr, func(i, j int) bool { return arr[i] < arr[j] })
+	slices.Sort(arr)
 	cuts := make([]int32, 0)
 	n := int32(len(arr))
 	i := int32(0)

@@ -19,7 +19,7 @@ func abs(value int32) int32 {
 
 func buildGraph(data []int32, edges [][]int32) map[int32]vertex {
 	mapped := make(map[int32]vertex)
-	for i := 0; i < len(data); i++ {
+	for i := range data {
 		index := int32(i + 1)
 		other := make([]vertex, 0)
 		mapped[index] = vertex{index, data[i], &other}

@@ -47,7 +47,7 @@ func Runner(t *testing.T, name string) {
 	n := int(convertedN)
 	grid := make([]string, n)
 	expected := make([]string, n)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		grid[i] = ioLines[0][i+1][0]
 		expected[i] = ioLines[1][i][0]
 	}

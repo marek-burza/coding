@@ -25,8 +25,8 @@ func initCity(sizex int, sizey int) [][]uint64 {
 }
 
 func fillCity(sizex int, sizey int, city *[][]uint64, value uint64) {
-	for x := 0; x < sizex; x++ {
-		for y := 0; y < sizey; y++ {
+	for x := range sizex {
+		for y := range sizey {
 			(*city)[x][y] = value
 		}
 	}

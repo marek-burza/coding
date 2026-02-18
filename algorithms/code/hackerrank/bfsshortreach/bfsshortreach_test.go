@@ -46,7 +46,7 @@ func Runner(t *testing.T, name string) {
 	convertedTests, _ := strconv.ParseInt(ioLines[0][0][0], 10, 32)
 	tests := int(convertedTests)
 	offset := 1
-	for test := 0; test < tests; test++ {
+	for test := range tests {
 		convertedN, _ := strconv.ParseInt(ioLines[0][offset][0], 10, 32)
 		n := int32(convertedN)
 		convertedM, _ := strconv.ParseInt(ioLines[0][offset][1], 10, 32)
