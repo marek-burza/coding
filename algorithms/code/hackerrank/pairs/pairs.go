@@ -1,6 +1,6 @@
 package pairs
 
-import "sort"
+import "slices"
 
 // https://www.hackerrank.com/challenges/pairs
 
@@ -21,7 +21,7 @@ func binarySearch(array []int32, fromIndex int, toIndex int, key int32) int {
 
 // Pairs - implements the solution to the problem
 func Pairs(k int32, arr []int32) int32 {
-	sort.Slice(arr, func(i, j int) bool { return arr[i] < arr[j] })
+	slices.Sort(arr)
 	count := int32(0)
 	for i := 0; i < len(arr)-1; i++ {
 		if binarySearch(arr, i+1, len(arr)-1, arr[i]+k) >= 0 {

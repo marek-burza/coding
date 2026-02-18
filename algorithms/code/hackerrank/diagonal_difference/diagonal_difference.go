@@ -6,7 +6,7 @@ package diagonaldifference
 func DiagonalDifference(arr [][]int32) int32 {
 	var result int32
 	n := len(arr)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		result += arr[i][i] - arr[n-1-i][i]
 	}
 	if result < 0 {

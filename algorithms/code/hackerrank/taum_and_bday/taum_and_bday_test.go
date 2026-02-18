@@ -43,7 +43,7 @@ func Runner(t *testing.T, name string) {
 		}
 	}
 	count, _ := strconv.Atoi(ioLines[0][0][0])
-	for index := 0; index < count; index++ {
+	for index := range count {
 		line1 := ioLines[0][1+index*2]
 		b, _ := strconv.Atoi(line1[0])
 		w, _ := strconv.Atoi(line1[1])

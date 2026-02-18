@@ -43,7 +43,7 @@ func Runner(t *testing.T, name string) {
 		}
 	}
 	count, _ := strconv.Atoi(ioLines[0][0][0])
-	for i := 0; i < count; i++ {
+	for i := range count {
 		converted, _ := strconv.ParseInt(ioLines[0][1+i*2][0], 10, 32)
 		arr := make([]int32, converted)
 		for j, value := range ioLines[0][2+i*2] {

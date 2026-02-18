@@ -7,7 +7,7 @@ func CavityMap(grid []string) []string {
 	deltas := [][]int{{-1, 0}, {0, -1}, {1, 0}, {0, 1}}
 	n := len(grid)
 	cells := make([][]rune, n)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		cells[i] = []rune(grid[i])
 	}
 	for i := 1; i < n-1; i++ {
@@ -23,7 +23,7 @@ func CavityMap(grid []string) []string {
 			}
 		}
 	}
-	for i := 0; i < n; i++ {
+	for i := range n {
 		grid[i] = string(cells[i])
 	}
 	return grid

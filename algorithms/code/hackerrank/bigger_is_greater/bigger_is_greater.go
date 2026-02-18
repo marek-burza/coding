@@ -3,7 +3,7 @@ package biggerisgreater
 // https://www.hackerrank.com/challenges/bigger-is-greater
 
 import (
-	"sort"
+	"slices"
 )
 
 // BiggerIsGreater - implements the solution to the problem
@@ -13,12 +13,12 @@ func BiggerIsGreater(w string) string {
 	for i := length - 1; 0 < i; i-- {
 		if array[i-1] < array[i] {
 			rest := array[i:]
-			sort.Slice(rest, func(k, l int) bool { return rest[k] < rest[l] })
+			slices.Sort(rest)
 			for j := i; j < length; j++ {
 				if array[i-1] < array[j] {
 					array[i-1], array[j] = array[j], array[i-1]
 					rest := array[i:]
-					sort.Slice(rest, func(k, l int) bool { return rest[k] < rest[l] })
+					slices.Sort(rest)
 					return string(array)
 				}
 			}

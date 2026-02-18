@@ -11,7 +11,7 @@ func AcmTeam(topic []string) []int32 {
 	for i := 0; i < n-1; i++ {
 		for j := i + 1; j < n; j++ {
 			count := 0
-			for k := 0; k < m; k++ {
+			for k := range m {
 				if topic[i][k] == '1' || topic[j][k] == '1' {
 					count++
 				}

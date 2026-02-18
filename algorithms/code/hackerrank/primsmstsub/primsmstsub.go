@@ -1,13 +1,11 @@
+// https://www.hackerrank.com/challenges/primsmstsub
 package primsmstsub
 
 import "container/heap"
 
-// https://www.hackerrank.com/challenges/primsmstsub
-
-// GenericHeap - Generic heap implementation
 type GenericHeap struct {
-	items   []interface{}
-	compare func(interface{}, interface{}) int
+	items   []any
+	compare func(any, any) int
 }
 
 // Len - Size of the generic heap
@@ -15,23 +13,19 @@ func (gh GenericHeap) Len() int {
 	return len(gh.items)
 }
 
-// Less - Implements the generic heap comparator
 func (gh GenericHeap) Less(i, j int) bool {
 	return gh.compare(gh.items[i], gh.items[j]) < 0
 }
 
-// Swap - Implements the generic heap swap
 func (gh GenericHeap) Swap(i, j int) {
 	gh.items[i], gh.items[j] = gh.items[j], gh.items[i]
 }
 
-// Push - Implements the generic heap push operation
-func (gh *GenericHeap) Push(item interface{}) {
+func (gh *GenericHeap) Push(item any) {
 	gh.items = append(gh.items, item)
 }
 
-// Pop - Implements the generic heap pop operation
-func (gh *GenericHeap) Pop() interface{} {
+func (gh *GenericHeap) Pop() any {
 	old := gh.items
 	n := len(old)
 	item := old[n-1]
@@ -40,17 +34,17 @@ func (gh *GenericHeap) Pop() interface{} {
 	return item
 }
 
-func heapInit(comparator func(interface{}, interface{}) int) *GenericHeap {
-	genericHeap := &GenericHeap{make([]interface{}, 0), comparator}
+func heapInit(comparator func(any, any) int) *GenericHeap {
+	genericHeap := &GenericHeap{make([]any, 0), comparator}
 	heap.Init(genericHeap)
 	return genericHeap
 }
 
-func (gh *GenericHeap) heapInsert(value interface{}) {
+func (gh *GenericHeap) heapInsert(value any) {
 	heap.Push(gh, value)
 }
 
-func (gh *GenericHeap) heapPop() interface{} {
+func (gh *GenericHeap) heapPop() any {
 	return heap.Pop(gh)
 }
 
@@ -58,20 +52,18 @@ func (gh *GenericHeap) heapEmpty() bool {
 	return gh.Len() == 0
 }
 
-// Edge - Weighted graph edge
 type Edge struct {
 	origin int32
 	vertex int32
 	weight int32
 }
 
-func compareEdges(thisRaw interface{}, otherRaw interface{}) int {
+func compareEdges(thisRaw any, otherRaw any) int {
 	this := thisRaw.(*Edge)
 	other := otherRaw.(*Edge)
 	return int(this.weight - other.weight)
 }
 
-// Prims - implements the solution to the problem
 func Prims(n int32, edges [][]int32, start int32) int32 {
 	adjacency := make([][]*Edge, n+1)
 	for _, edge := range edges {

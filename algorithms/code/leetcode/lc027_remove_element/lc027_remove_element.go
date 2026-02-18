@@ -8,7 +8,7 @@ func RemoveElement(nums []int, val int) int {
 		return 0
 	}
 	index := 0
-	for i := 0; i < len(nums); i++ {
+	for i := range nums {
 		nums[index] = nums[i]
 		if nums[i] != val {
 			index++

@@ -33,7 +33,7 @@ func CountLuck(matrix []string, k int32) string {
 	counts := make([]int32, 0)
 	counts = append(counts, 0)
 	forest := make([][]rune, len(matrix))
-	for r := 0; r < len(matrix); r++ {
+	for r := range matrix {
 		forest[r] = []rune(matrix[r])
 		for c := 0; c < len(forest[r]); c++ {
 			if forest[r][c] == 'M' {

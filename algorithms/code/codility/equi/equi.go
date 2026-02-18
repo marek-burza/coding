@@ -14,7 +14,7 @@ func FindEquilibriumIndex(array []int) int {
 	}
 
 	after := make([]*big.Int, n)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		after[i] = big.NewInt(0)
 	}
 	after[n-1] = big.NewInt(0)
@@ -24,7 +24,7 @@ func FindEquilibriumIndex(array []int) int {
 	}
 
 	summed := big.NewInt(0)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		if summed.Cmp(after[i]) == 0 {
 			return i
 		}

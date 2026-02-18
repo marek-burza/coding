@@ -3,19 +3,19 @@ package missingnumbers
 // https://www.hackerrank.com/challenges/missing-numbers
 
 import (
-	"sort"
+	"slices"
 )
 
 // MissingNumbers - implements the solution to the problem
 func MissingNumbers(arr []int32, brr []int32) []int32 {
 	exists := struct{}{}
 	missing := make(map[int32]struct{})
-	sort.Slice(arr, func(i, j int) bool { return arr[i] < arr[j] })
-	sort.Slice(brr, func(i, j int) bool { return brr[i] < brr[j] })
+	slices.Sort(arr)
+	slices.Sort(brr)
 	n := len(arr)
 	m := len(brr)
 	i := 0
-	for j := 0; j < m; j++ {
+	for j := range m {
 		if i < n {
 			if arr[i] == brr[j] {
 				i++
@@ -30,6 +30,6 @@ func MissingNumbers(arr []int32, brr []int32) []int32 {
 	for key := range missing {
 		keys = append(keys, key)
 	}
-	sort.Slice(keys, func(i, j int) bool { return keys[i] < keys[j] })
+	slices.Sort(keys)
 	return keys
 }

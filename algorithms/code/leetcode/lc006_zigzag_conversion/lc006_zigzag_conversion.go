@@ -19,7 +19,7 @@ func convert(s string, numRows int) string {
 	if scan == 0 {
 		scan = 1
 	}
-	for row := 0; row < numRows; row++ {
+	for row := range numRows {
 		for i := row; i < n; i += scan {
 			buffer.WriteByte(s[i])
 			if row > 0 && row < numRows-1 {
