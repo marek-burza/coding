@@ -9,7 +9,6 @@ linters:
     - unconvert
     - gocyclo
     - goconst
-    # - goimports
     - gocritic
     - govet
     - revive
