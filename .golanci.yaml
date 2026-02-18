@@ -1,0 +1,9 @@
+---
+run:
+  deadline: 1m
+
+linters:
+  enable-all: true
+
+issues:
+  exclude-use-default: false
