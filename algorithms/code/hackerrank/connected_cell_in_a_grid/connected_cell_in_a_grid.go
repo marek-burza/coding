@@ -1,6 +1,5 @@
+// Package connectedcellinagrid implements https://www.hackerrank.com/challenges/connected-cell-in-a-grid
 package connectedcellinagrid
-
-// https://www.hackerrank.com/challenges/connected-cell-in-a-grid
 
 type here struct {
 	row int

@@ -1,6 +1,5 @@
+// Package gfg7094 implements https://web.archive.org/web/20180317031648/http://qa.geeksforgeeks.org/7094/amazon-social-network-traversal
 package gfg7094
-
-// https://web.archive.org/web/20180317031648/http://qa.geeksforgeeks.org/7094/amazon-social-network-traversal
 
 import (
 	"sort"

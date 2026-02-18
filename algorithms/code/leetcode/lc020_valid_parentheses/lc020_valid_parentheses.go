@@ -1,6 +1,5 @@
+// Package lc020 implements https://leetcode.com/problems/valid-parentheses/
 package lc020
-
-// https://leetcode.com/problems/valid-parentheses/
 
 func isValid(s string) bool {
 	if s == "" {

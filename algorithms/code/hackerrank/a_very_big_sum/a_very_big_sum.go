@@ -1,6 +1,5 @@
+// Package averybigsum implements https://www.hackerrank.com/challenges/a-very-big-sum
 package averybigsum
-
-// https://www.hackerrank.com/challenges/a-very-big-sum
 
 // AVeryBigSum - implements the solution to the problem
 func AVeryBigSum(ar []int32) int64 {

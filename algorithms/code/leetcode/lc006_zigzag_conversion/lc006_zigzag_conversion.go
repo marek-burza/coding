@@ -1,6 +1,5 @@
+// Package lc006 implements https://leetcode.com/problems/zigzag-conversion/
 package lc006
-
-// https://leetcode.com/problems/zigzag-conversion/
 
 import (
 	"strings"

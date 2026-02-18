@@ -1,6 +1,5 @@
+// Package lc008 implements https://leetcode.com/problems/string-to-integer-atoi/
 package lc008
-
-// https://leetcode.com/problems/string-to-integer-atoi/
 
 import (
 	"math"

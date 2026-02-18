@@ -1,6 +1,5 @@
+// Package divisiblesumpairs implements https://www.hackerrank.com/challenges/divisible-sum-pairs
 package divisiblesumpairs
-
-// https://www.hackerrank.com/challenges/divisible-sum-pairs
 
 func nChooseK(n, k uint32) uint64 {
 	result := uint64(1)
@@ -11,7 +10,7 @@ func nChooseK(n, k uint32) uint64 {
 }
 
 // DivisibleSumPairs - implements the solution to the problem
-func DivisibleSumPairs(n int32, k int32, ar []int32) int32 {
+func DivisibleSumPairs(_ int32, k int32, ar []int32) int32 {
 	counted := make(map[uint32]uint32)
 	for _, value := range ar {
 		rest := uint32(value % k)

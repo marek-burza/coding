@@ -1,6 +1,5 @@
+// Package staircase implements https://www.hackerrank.com/challenges/staircase
 package staircase
-
-// https://www.hackerrank.com/challenges/staircase
 
 import "strings"
 

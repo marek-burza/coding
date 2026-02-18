@@ -1,6 +1,5 @@
+// Package lc009 implements https://leetcode.com/problems/palindrome-number/
 package lc009
-
-// https://leetcode.com/problems/palindrome-number/
 
 func isPalindrome(x int) bool {
 	if x < 0 {

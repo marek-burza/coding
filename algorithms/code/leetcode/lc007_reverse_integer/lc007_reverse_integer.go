@@ -1,6 +1,5 @@
+// Package lc007 implements https://leetcode.com/problems/reverse-integer/
 package lc007
-
-// https://leetcode.com/problems/reverse-integer/
 
 import "math"
 

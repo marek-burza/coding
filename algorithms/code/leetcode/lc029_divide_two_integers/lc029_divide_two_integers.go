@@ -1,6 +1,5 @@
+// Package lc029 implements https://leetcode.com/problems/divide-two-integers/
 package lc029
-
-// https://leetcode.com/problems/divide-two-integers/
 
 import (
 	"math"

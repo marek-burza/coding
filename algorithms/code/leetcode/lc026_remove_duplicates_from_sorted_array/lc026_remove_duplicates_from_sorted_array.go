@@ -1,6 +1,5 @@
+// Package lc026 implements https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 package lc026
-
-// https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
 // RemoveDuplicates function removes duplicates from a sorted array in place
 func RemoveDuplicates(nums []int) int {

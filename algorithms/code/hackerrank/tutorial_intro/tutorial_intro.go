@@ -1,6 +1,5 @@
+// Package tutorialintro implements https://www.hackerrank.com/challenges/tutorial-intro
 package tutorialintro
-
-// https://www.hackerrank.com/challenges/tutorial-intro
 
 // IntroTutorial - implements the solution to the problem
 func IntroTutorial(v int32, arr []int32) int32 {

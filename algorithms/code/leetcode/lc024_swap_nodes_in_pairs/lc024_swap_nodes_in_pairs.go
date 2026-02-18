@@ -1,6 +1,5 @@
+// Package lc024 implements https://leetcode.com/problems/swap-nodes-in-pairs/
 package lc024
-
-// https://leetcode.com/problems/swap-nodes-in-pairs/
 
 // ListNode defines a singly-linked list
 type ListNode struct {

@@ -1,6 +1,5 @@
+// Package lc017 implements https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 package lc017
-
-// https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
 func letterCombinations(digits string) []string {
 	if digits == "" {

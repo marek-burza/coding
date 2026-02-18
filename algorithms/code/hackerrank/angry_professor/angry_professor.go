@@ -1,6 +1,5 @@
+// Package angryprofessor implements https://www.hackerrank.com/challenges/angry-professor
 package angryprofessor
-
-// https://www.hackerrank.com/challenges/angry-professor
 
 // AngryProfessor - implements the solution to the problem
 func AngryProfessor(k int, a []int) string {

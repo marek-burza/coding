@@ -1,6 +1,5 @@
+// Package jumpingontheclouds implements https://www.hackerrank.com/challenges/jumping-on-the-clouds
 package jumpingontheclouds
-
-// https://www.hackerrank.com/challenges/jumping-on-the-clouds
 
 // JumpingOnClouds - implements the solution to the problem
 func JumpingOnClouds(c []int32) int32 {

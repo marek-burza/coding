@@ -1,6 +1,5 @@
+// Package lc021 implements https://leetcode.com/problems/merge-two-sorted-lists/
 package lc021
-
-// https://leetcode.com/problems/merge-two-sorted-lists/
 
 // ListNode Defines a singly-linked list
 type ListNode struct {

@@ -1,6 +1,5 @@
+// Package camelcase implements https://www.hackerrank.com/challenges/camelcase
 package camelcase
-
-// https://www.hackerrank.com/challenges/camelcase
 
 import (
 	"unicode"

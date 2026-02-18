@@ -32,7 +32,7 @@ func fillCity(sizex int, sizey int, city *[][]uint64, value uint64) {
 	}
 }
 
-func markLockers(sizex int, sizey int, city *[][]uint64, lockers *[]Coordinates) {
+func markLockers(_ int, _ int, city *[][]uint64, lockers *[]Coordinates) {
 	for _, locker := range *lockers {
 		(*city)[locker.x][locker.y] = 0
 	}

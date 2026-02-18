@@ -1,6 +1,5 @@
+// Package acmicpcteam implements https://www.hackerrank.com/challenges/acm-icpc-team
 package acmicpcteam
-
-// https://www.hackerrank.com/challenges/acm-icpc-team
 
 // AcmTeam - looks for highest topic coverage and its incidence
 func AcmTeam(topic []string) []int32 {

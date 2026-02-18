@@ -1,6 +1,5 @@
+// Package tutorialintro implements https://www.hackerrank.com/challenges/plus-minus
 package tutorialintro
-
-// https://www.hackerrank.com/challenges/plus-minus
 
 // PlusMinus - implements the solution to the problem
 func PlusMinus(arr []int32) []float64 {

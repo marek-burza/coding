@@ -1,6 +1,5 @@
+// Package lc027 implements https://leetcode.com/problems/remove-element/
 package lc027
-
-// https://leetcode.com/problems/remove-element/
 
 // RemoveElement removes val item from nums array and returns new length
 func RemoveElement(nums []int, val int) int {

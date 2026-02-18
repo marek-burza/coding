@@ -1,8 +1,7 @@
+// Package maximumperimetertriangle implements https://www.hackerrank.com/challenges/maximum-perimeter-triangle
 package maximumperimetertriangle
 
 import "sort"
-
-// https://www.hackerrank.com/challenges/maximum-perimeter-triangle
 
 // MaximumPerimeterTriangle - implements the solution to the problem
 func MaximumPerimeterTriangle(sticks []int32) []int32 {

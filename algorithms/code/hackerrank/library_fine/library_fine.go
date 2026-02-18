@@ -1,6 +1,5 @@
+// Package libraryfine implements https://www.hackerrank.com/challenges/library-fine
 package libraryfine
-
-// https://www.hackerrank.com/challenges/library-fine
 
 // LibraryFine - implements the solution to the problem
 func LibraryFine(d1 int32, m1 int32, y1 int32, d2 int32, m2 int32, y2 int32) int32 {

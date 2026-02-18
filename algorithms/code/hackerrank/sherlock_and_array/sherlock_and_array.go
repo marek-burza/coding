@@ -1,6 +1,5 @@
+// Package sherlockandarray implements https://www.hackerrank.com/challenges/sherlock-and-array
 package sherlockandarray
-
-// https://www.hackerrank.com/challenges/sherlock-and-array
 
 // BalancedSums - implements the solution to the problem
 func BalancedSums(arr []int32) string {

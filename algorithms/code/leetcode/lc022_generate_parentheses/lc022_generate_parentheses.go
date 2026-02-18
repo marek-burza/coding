@@ -1,6 +1,5 @@
+// Package lc022 implements https://leetcode.com/problems/generate-parentheses/
 package lc022
-
-// https://leetcode.com/problems/generate-parentheses/
 
 func generateParenthesisInternal(prefix string, standing, n int, found *[]string) {
 	if n == 0 && standing == 0 {

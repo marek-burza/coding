@@ -1,6 +1,5 @@
+// Package countluck implements https://www.hackerrank.com/challenges/count-luck
 package countluck
-
-// https://www.hackerrank.com/challenges/count-luck
 
 type here struct {
 	row int
@@ -27,6 +26,8 @@ func lookAround(forest [][]rune, at here) []here {
 	return ways
 }
 
+const oops = "Oops!"
+
 // CountLuck - implements the solution to the problem
 func CountLuck(matrix []string, k int32) string {
 	queue := make([]here, 0)
@@ -50,7 +51,7 @@ func CountLuck(matrix []string, k int32) string {
 			if count == k {
 				return "Impressed"
 			}
-			return "Oops!"
+			return oops
 		}
 		forest[at.row][at.col] = 'X'
 		ways := lookAround(forest, at)
@@ -63,5 +64,5 @@ func CountLuck(matrix []string, k int32) string {
 			}
 		}
 	}
-	return "Oops!"
+	return oops
 }

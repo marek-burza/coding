@@ -1,6 +1,5 @@
+// Package lc013 implements https://leetcode.com/problems/roman-to-integer/
 package lc013
-
-// https://leetcode.com/problems/roman-to-integer/
 
 func romanToInt(s string) int {
 	if s == "" {

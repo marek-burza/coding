@@ -1,6 +1,5 @@
+// Package bfsshortreach implements https://www.hackerrank.com/challenges/bfsshortreach
 package bfsshortreach
-
-// https://www.hackerrank.com/challenges/bfsshortreach
 
 type entry struct {
 	vertex   int32
@@ -8,7 +7,7 @@ type entry struct {
 }
 
 // Bfs - implements the solution to the problem
-func Bfs(n int32, m int32, edges [][]int32, s int32) []int32 {
+func Bfs(n int32, _ int32, edges [][]int32, s int32) []int32 {
 	adjacency := make([][]bool, n)
 	for i := 0; i < int(n); i++ {
 		adjacency[i] = make([]bool, n)

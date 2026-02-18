@@ -1,6 +1,5 @@
+// Package lc015 implements https://leetcode.com/problems/3sum/
 package lc015
-
-// https://leetcode.com/problems/3sum/
 
 import (
 	"sort"

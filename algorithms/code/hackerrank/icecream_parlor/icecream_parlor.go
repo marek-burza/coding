@@ -1,6 +1,5 @@
+// Package icecreamparlor implements https://www.hackerrank.com/challenges/icecream-parlor
 package icecreamparlor
-
-// https://www.hackerrank.com/challenges/icecream-parlor
 
 // IcecreamParlor - implements the solution to the problem
 func IcecreamParlor(m int32, arr []int32) []int32 {

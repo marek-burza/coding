@@ -1,6 +1,5 @@
+// Package diagonaldifference implements https://www.hackerrank.com/challenges/diagonal-difference
 package diagonaldifference
-
-// https://www.hackerrank.com/challenges/diagonal-difference
 
 // DiagonalDifference - implements the solution to the problem
 func DiagonalDifference(arr [][]int32) int32 {

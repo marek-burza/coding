@@ -1,6 +1,5 @@
+// Package lc002 implements https://leetcode.com/problems/add-two-numbers/
 package lc002
-
-// https://leetcode.com/problems/add-two-numbers/
 
 // ListNode defines a singly-linked list
 type ListNode struct {
