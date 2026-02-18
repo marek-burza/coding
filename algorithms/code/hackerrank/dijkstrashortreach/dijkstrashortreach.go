@@ -56,9 +56,9 @@ func ShortestReach(n int32, edges [][]int32, s int32) []int32 {
 	for i, adjacent := range adjacency {
 		vertices[i] = &Vertex{math.MaxInt64, adjacent}
 	}
+	vertices[s].distance = 0
 	unvisited := &VertexHeap{}
 	heap.Init(unvisited)
-	vertices[s].distance = 0
 	heap.Push(unvisited, vertices[s])
 	for unvisited.Len() > 0 {
 		vertex := heap.Pop(unvisited).(*Vertex)
