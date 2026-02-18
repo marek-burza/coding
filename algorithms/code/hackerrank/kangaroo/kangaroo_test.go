@@ -64,7 +64,7 @@ func TestExample1(t *testing.T) {
 }
 
 func TestSame(t *testing.T) {
-	if "YES" != Kangaroo(1, 2, 1, 2) {
+	if Kangaroo(1, 2, 1, 2) != "YES" {
 		t.Errorf("Failed with the same values!")
 	}
 }

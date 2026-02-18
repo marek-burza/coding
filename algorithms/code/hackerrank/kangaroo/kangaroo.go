@@ -12,7 +12,7 @@ func Kangaroo(x1 int32, v1 int32, x2 int32, v2 int32) string {
 		}
 		return no
 	}
-	if 0 == (x2-x1)%(v2-v1) && 0 > (x2-x1)/(v2-v1) {
+	if (x2-x1)%(v2-v1) == 0 && (x2-x1)/(v2-v1) < 0 {
 		return yes
 	}
 	return no

@@ -72,17 +72,17 @@ func TestJane(t *testing.T) {
 
 func TestLeftovers(t *testing.T) {
 	result1 := (&network).GetAttendedCoursesForUser("")
-	if 0 != len(result1) {
+	if len(result1) != 0 {
 		t.Errorf("GetAttendedCoursesForUser returns incorrect value for unknown student!")
 		return
 	}
 	result2 := (&network).GetDirectFriendsForUser("")
-	if 0 != len(result2) {
+	if len(result2) != 0 {
 		t.Errorf("GetDirectFriendsForUser returns incorrect value for unknown student!")
 		return
 	}
 	result3 := (&other).GetRankedCourses("Student1")
-	if 2 != len(result3) {
+	if len(result3) != 2 {
 		t.Errorf("GetRankedCourses returns incorrect result for an even network!")
 		return
 	}

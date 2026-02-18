@@ -10,7 +10,7 @@ func TestExample(t *testing.T) {
 		{4, 5, 6},
 		{10, 8, -12},
 	}
-	if 15 != DiagonalDifference(arr) {
+	if DiagonalDifference(arr) != 15 {
 		t.Errorf("DiagonalDifference failed with example!")
 	}
 }

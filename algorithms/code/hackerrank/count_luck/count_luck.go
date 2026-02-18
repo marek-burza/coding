@@ -18,7 +18,7 @@ func lookAround(forest [][]rune, at here) []here {
 		if dc < 0 || len(forest[dr]) <= dc {
 			continue
 		}
-		if 'X' == forest[dr][dc] {
+		if forest[dr][dc] == 'X' {
 			continue
 		}
 		ways = append(ways, here{dr, dc})
@@ -47,7 +47,7 @@ func CountLuck(matrix []string, k int32) string {
 		queue = queue[1:]
 		count := counts[0]
 		counts = counts[1:]
-		if '*' == forest[at.row][at.col] {
+		if forest[at.row][at.col] == '*' {
 			if count == k {
 				return "Impressed"
 			}
