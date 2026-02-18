@@ -3,65 +3,37 @@ package primsmstsub
 
 import "container/heap"
 
-type GenericHeap struct {
-	items   []any
-	compare func(any, any) int
+type EdgeHeap []*Edge
+
+func (eh EdgeHeap) Len() int {
+	return len(eh)
 }
 
-// Len - Size of the generic heap
-func (gh GenericHeap) Len() int {
-	return len(gh.items)
+func (eh EdgeHeap) Less(i, j int) bool {
+	return eh[i].weight < eh[j].weight
 }
 
-func (gh GenericHeap) Less(i, j int) bool {
-	return gh.compare(gh.items[i], gh.items[j]) < 0
+func (eh EdgeHeap) Swap(i, j int) {
+	eh[i], eh[j] = eh[j], eh[i]
 }
 
-func (gh GenericHeap) Swap(i, j int) {
-	gh.items[i], gh.items[j] = gh.items[j], gh.items[i]
+func (eh *EdgeHeap) Push(item any) {
+	*eh = append(*eh, item.(*Edge))
 }
 
-func (gh *GenericHeap) Push(item any) {
-	gh.items = append(gh.items, item)
-}
-
-func (gh *GenericHeap) Pop() any {
-	old := gh.items
+func (eh *EdgeHeap) Pop() any {
+	old := *eh
 	n := len(old)
 	item := old[n-1]
 	old[n-1] = nil // avoid memory leak
-	gh.items = old[0 : n-1]
+	*eh = old[:n-1]
 	return item
-}
-
-func heapInit(comparator func(any, any) int) *GenericHeap {
-	genericHeap := &GenericHeap{make([]any, 0), comparator}
-	heap.Init(genericHeap)
-	return genericHeap
-}
-
-func (gh *GenericHeap) heapInsert(value any) {
-	heap.Push(gh, value)
-}
-
-func (gh *GenericHeap) heapPop() any {
-	return heap.Pop(gh)
-}
-
-func (gh *GenericHeap) heapEmpty() bool {
-	return gh.Len() == 0
 }
 
 type Edge struct {
 	origin int32
 	vertex int32
 	weight int32
-}
-
-func compareEdges(thisRaw any, otherRaw any) int {
-	this := thisRaw.(*Edge)
-	other := otherRaw.(*Edge)
-	return int(this.weight - other.weight)
 }
 
 func Prims(n int32, edges [][]int32, start int32) int32 {
@@ -74,12 +46,12 @@ func Prims(n int32, edges [][]int32, start int32) int32 {
 	}
 	connected := make(map[int32]struct{}, 0)
 	exists := struct{}{}
-	queue := heapInit(compareEdges)
+	queue := &EdgeHeap{}
 	total := int32(0)
 	for len(connected) < int(n) {
 		vertex := start
-		for !queue.heapEmpty() {
-			edge := queue.heapPop().(*Edge)
+		for queue.Len() > 0 {
+			edge := heap.Pop(queue).(*Edge)
 			_, edgeVertexInConnected := connected[edge.vertex]
 			if !edgeVertexInConnected {
 				vertex = edge.vertex
@@ -89,11 +61,11 @@ func Prims(n int32, edges [][]int32, start int32) int32 {
 		}
 		// _, startInConnected := connected[start]
 		// if vertex == start && startInConnected {
-		//     break
+		// 	break
 		// }
 		connected[vertex] = exists
 		for _, edge := range adjacency[vertex] {
-			queue.heapInsert(edge)
+			heap.Push(queue, edge)
 		}
 	}
 	return total
