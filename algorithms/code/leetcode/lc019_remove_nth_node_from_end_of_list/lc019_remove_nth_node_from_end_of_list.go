@@ -1,6 +1,5 @@
+// Package lc019 implements https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 package lc019
-
-// https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
 // ListNode defines a single-linked list node
 type ListNode struct {

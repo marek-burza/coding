@@ -1,6 +1,5 @@
+// Package equi implements http://blog.codility.com/2011/03/solutions-for-task-equi.html
 package equi
-
-// http://blog.codility.com/2011/03/solutions-for-task-equi.html
 
 import (
 	"math/big"

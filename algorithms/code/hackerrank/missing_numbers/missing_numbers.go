@@ -1,6 +1,5 @@
+// Package missingnumbers implements https://www.hackerrank.com/challenges/missing-numbers
 package missingnumbers
-
-// https://www.hackerrank.com/challenges/missing-numbers
 
 import (
 	"slices"

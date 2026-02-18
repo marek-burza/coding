@@ -1,6 +1,5 @@
+// Package simplearraysum implements https://www.hackerrank.com/challenges/simple-array-sum
 package simplearraysum
-
-// https://www.hackerrank.com/challenges/simple-array-sum
 
 // SimpleArraySum - implements the solution to the problem
 func SimpleArraySum(ar []int32) int32 {

@@ -1,4 +1,4 @@
-// https://www.hackerrank.com/challenges/dijkstrashortreach
+// Package dijkstrashortreach implements https://www.hackerrank.com/challenges/dijkstrashortreach
 package dijkstrashortreach
 
 import (
@@ -6,24 +6,30 @@ import (
 	"math"
 )
 
+// VertexHeap - Vertex heap implementation
 type VertexHeap []*Vertex
 
+// Len - Size of the generic heap
 func (vh VertexHeap) Len() int {
 	return len(vh)
 }
 
+// Less - Implements the generic heap comparator
 func (vh VertexHeap) Less(i, j int) bool {
 	return vh[i].distance < vh[j].distance
 }
 
+// Swap - Implements the generic heap swap
 func (vh VertexHeap) Swap(i, j int) {
 	vh[i], vh[j] = vh[j], vh[i]
 }
 
+// Push - Implements the generic heap push operation
 func (vh *VertexHeap) Push(item any) {
 	*vh = append(*vh, item.(*Vertex))
 }
 
+// Pop - Implements the generic heap pop operation
 func (vh *VertexHeap) Pop() any {
 	old := *vh
 	n := len(old)
@@ -33,17 +39,20 @@ func (vh *VertexHeap) Pop() any {
 	return item
 }
 
+// Edge - Weighted graph edge
 type Edge struct {
 	origin int32
 	vertex int32
 	weight int32
 }
 
+// Vertex - Graph vertex
 type Vertex struct {
 	distance int64
 	edges    []*Edge
 }
 
+// ShortestReach - implements the solution to the problem
 func ShortestReach(n int32, edges [][]int32, s int32) []int32 {
 	adjacency := make(map[int32][]*Edge)
 	for _, edge := range edges {

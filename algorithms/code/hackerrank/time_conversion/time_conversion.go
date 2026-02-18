@@ -1,6 +1,5 @@
+// Package timeconversion implements https://www.hackerrank.com/challenges/time-conversion
 package timeconversion
-
-// https://www.hackerrank.com/challenges/time-conversion
 
 import (
 	"fmt"
@@ -19,7 +18,7 @@ func ToMilitary(s string) string {
 	if afternoon {
 		shift = 12
 	}
-	// nolint:errcheck
+	//nolint:errcheck,gosec
 	before, _ := strconv.Atoi(hour)
 	after := fmt.Sprintf("%02d", (before+shift)%24)
 	return after + s[2:8]

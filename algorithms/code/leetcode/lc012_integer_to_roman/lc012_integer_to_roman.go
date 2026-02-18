@@ -1,6 +1,5 @@
+// Package lc012 implements https://leetcode.com/problems/integer-to-roman/
 package lc012
-
-// https://leetcode.com/problems/integer-to-roman/
 
 import (
 	"strings"

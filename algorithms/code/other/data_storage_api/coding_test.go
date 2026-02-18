@@ -1,3 +1,4 @@
+// Package datastorageapi implements the Data Storage API as defined in the README
 package datastorageapi
 
 import (
@@ -25,11 +26,13 @@ func TestDataStore(t *testing.T) {
 	testDelete(t)
 }
 
+const other = "other"
+
 func testPut(t *testing.T) {
 	payload1 := strings.NewReader("something")
 	res1 := putBlob(t, payload1)
 
-	payload2 := strings.NewReader("other")
+	payload2 := strings.NewReader(other)
 	res2 := putBlob(t, payload2)
 
 	if res1.OID == res2.OID {
@@ -50,7 +53,7 @@ func testGet(t *testing.T) {
 	payload1 := strings.NewReader(content1)
 	res1 := putBlob(t, payload1)
 
-	content2 := "other"
+	content2 := other
 	payload2 := strings.NewReader(content2)
 	res2 := putBlob(t, payload2)
 
@@ -169,7 +172,7 @@ func deleteBlob(t *testing.T, oid string) int {
 	if err != nil {
 		t.Fatalf("error making DELETE request: %s", err)
 	}
-	res.Body.Close() // ignore error
+	res.Body.Close() //nolint:errcheck,gosec
 
 	return res.StatusCode
 }
@@ -219,9 +222,9 @@ func TestDataStoreRepositorySeparation(t *testing.T) {
 		_ = s.Shutdown()
 	})
 
-	content1 := "other"
+	content1 := other
 	payload1 := strings.NewReader(content1)
-	content2 := "other"
+	content2 := other
 	payload2 := strings.NewReader(content2)
 
 	_, code1, rep1 := freeForm(t, "PUT", []string{"data", "rep1"}, payload1)
@@ -237,7 +240,7 @@ func TestDataStoreRepositorySeparation(t *testing.T) {
 		t.Fatalf("error making delete request")
 	}
 	body5, code4, _ := freeForm(t, "GET", []string{"data", "rep2", rep2.OID}, nil)
-	if code4 != http.StatusOK || body5 != "other" {
+	if code4 != http.StatusOK || body5 != other {
 		t.Fatalf("error making get request")
 	}
 }

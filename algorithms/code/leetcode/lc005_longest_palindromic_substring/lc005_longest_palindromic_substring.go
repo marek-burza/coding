@@ -1,7 +1,6 @@
-package lc005
-
-// https://leetcode.com/problems/longest-palindromic-substring/
+// Package lc005 implements https://leetcode.com/problems/longest-palindromic-substring/
 // See also: Manacher algorithm
+package lc005
 
 func longestPalindrome(s string) string {
 	longest := ""

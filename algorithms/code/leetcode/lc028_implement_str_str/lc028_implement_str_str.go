@@ -1,6 +1,5 @@
+// Package lc028 implements https://leetcode.com/problems/implement-strstr/
 package lc028
-
-// https://leetcode.com/problems/implement-strstr/
 
 // StrStr function implements the substring search algorithm.
 func StrStr(haystack string, needle string) int {

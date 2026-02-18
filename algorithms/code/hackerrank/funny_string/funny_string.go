@@ -1,6 +1,5 @@
+// Package funnystring implements https://www.hackerrank.com/challenges/funny-string
 package funnystring
-
-// https://www.hackerrank.com/challenges/funny-string
 
 func absDiff(ar, br rune) uint16 {
 	a := uint16(ar)

@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"strings"
 	"sync"
+	"time"
 )
 
 type replyPut struct {
@@ -21,7 +22,7 @@ This is a rather naive function for figuring out the
 repository and objectID from the URL.
 */
 func urlMatch(url string) (repository string, objectID string, count int) {
-	fragments := strings.SplitN(url, "/", -1)
+	fragments := strings.Split(url, "/")
 	repository = fragments[2]
 	objectID = ""
 	if len(fragments) > 3 {
@@ -40,14 +41,14 @@ Status: 200 OK
 {object data}
 Objects that are not on the server will return a 404 Not Found.
 */
-func getData(w http.ResponseWriter, req *http.Request, repository string, objectID string, count int, storage map[string][]byte) {
+func getData(w http.ResponseWriter, _ *http.Request, _ string, objectID string, count int, storage map[string][]byte) {
 	if count != 4 {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 	if buffer, found := storage[objectID]; found {
 		w.WriteHeader(http.StatusOK)
-		w.Write(buffer) // nolint:errcheck
+		w.Write(buffer) //nolint:errcheck,gosec
 		// count, fail := w.Write(buffer)
 		// if fail != nil || count != len(buffer) {
 		//     w.WriteHeader(http.StatusInternalServerError)
@@ -95,7 +96,7 @@ func putData(w http.ResponseWriter, req *http.Request, repository string, object
 	//     return
 	// }
 	w.WriteHeader(http.StatusCreated)
-	w.Write(buffer) // nolint:errcheck
+	w.Write(buffer) //nolint:errcheck,gosec
 	// count, fail = w.Write(buffer)
 	// if fail != nil || count != len(buffer) {
 	//     delete(storage, objectID)
@@ -113,7 +114,7 @@ Response
 Status: 200 OK
 Objects that are not on the server will return a 404 Not Found.
 */
-func deleteData(w http.ResponseWriter, req *http.Request, repository string, objectID string, count int, storage map[string][]byte) {
+func deleteData(w http.ResponseWriter, _ *http.Request, _ string, objectID string, count int, storage map[string][]byte) {
 	if count != 4 {
 		w.WriteHeader(http.StatusBadRequest)
 		return
@@ -130,7 +131,7 @@ func deleteData(w http.ResponseWriter, req *http.Request, repository string, obj
 
 var mutex sync.Mutex // Note: Added after submission
 var server *http.Server
-var handled bool = false
+var handled = false
 
 func main() {
 	// We'll store the data in memory in a map.
@@ -156,8 +157,11 @@ func main() {
 		http.HandleFunc("/data/", handler)
 		handled = true
 	}
-	server = &http.Server{Addr: ":8282"}
-	server.ListenAndServe() // nolint:errcheck
+	server = &http.Server{
+		Addr:              ":8282",
+		ReadHeaderTimeout: 10 * time.Second,
+	}
+	server.ListenAndServe() //nolint:errcheck,gosec
 	// if err := server.ListenAndServe(); err != http.ErrServerClosed {
 	//     log.Fatal(err)
 	// }

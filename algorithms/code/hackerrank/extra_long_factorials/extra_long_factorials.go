@@ -1,8 +1,7 @@
+// Package extralongfactorials implements https://www.hackerrank.com/challenges/extra-long-factorials
 package extralongfactorials
 
 import "math/big"
-
-// https://www.hackerrank.com/challenges/extra-long-factorials
 
 // ExtraLongFactorials - implements the solution to the problem
 func ExtraLongFactorials(n int32) string {

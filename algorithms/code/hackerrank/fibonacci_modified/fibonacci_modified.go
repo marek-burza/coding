@@ -1,6 +1,5 @@
+// Package fibonaccimodified implements https://www.hackerrank.com/challenges/fibonacci-modified
 package fibonaccimodified
-
-// https://www.hackerrank.com/challenges/fibonacci-modified
 
 import (
 	"math/big"

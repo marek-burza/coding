@@ -1,6 +1,5 @@
+// Package biggerisgreater implements https://www.hackerrank.com/challenges/bigger-is-greater
 package biggerisgreater
-
-// https://www.hackerrank.com/challenges/bigger-is-greater
 
 import (
 	"slices"

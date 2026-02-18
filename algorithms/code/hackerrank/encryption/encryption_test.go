@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 )
@@ -14,11 +15,12 @@ func Runner(t *testing.T, name string) {
 	ioLines := make([][][]string, 2)
 	for index, template := range []string{"input%s.txt", "output%s.txt"} {
 		path := fmt.Sprintf(template, name)
-		file, fail := os.Open(path)
+		cleanPath := filepath.Clean(path)
+		file, fail := os.Open(cleanPath)
 		if fail != nil {
 			t.Fatalf("Failed opening file %s: %s", path, fail)
 		}
-		defer file.Close()
+		defer file.Close() //nolint:errcheck,gosec
 		lines := make([][]string, 0)
 		ioLines[index] = lines
 		reader := bufio.NewReader(file)

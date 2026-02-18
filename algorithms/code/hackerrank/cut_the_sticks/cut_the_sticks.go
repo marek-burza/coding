@@ -1,6 +1,5 @@
-package cavitymap
-
-// https://www.hackerrank.com/challenges/cut-the-sticks
+// Package cutthesticks implements https://www.hackerrank.com/challenges/cut-the-sticks
+package cutthesticks
 
 import (
 	"slices"

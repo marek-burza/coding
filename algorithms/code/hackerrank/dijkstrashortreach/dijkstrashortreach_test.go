@@ -1,8 +1,10 @@
+// Package dijkstrashortreach implements https://www.hackerrank.com/challenges/dijkstrashortreach
 package dijkstrashortreach
 
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"reflect"
 	"strconv"
 	"strings"
@@ -13,19 +15,20 @@ func Runner(t *testing.T, name string) {
 	ioLines := make([][][]string, 2)
 	for i, template := range []string{"input%s.txt", "output%s.txt"} {
 		path := fmt.Sprintf(template, name)
-		data, _ := os.ReadFile(path)
+		cleanPath := filepath.Clean(path)
+		data, _ := os.ReadFile(cleanPath)
 		for line := range strings.SplitSeq(strings.TrimSpace(string(data)), "\n") {
 			ioLines[i] = append(ioLines[i], strings.Fields(line))
 		}
 	}
 	convertedTests, _ := strconv.Atoi(ioLines[0][0][0])
-	tests := int(convertedTests)
+	tests := convertedTests
 	offset := 1
 	for test := range tests {
 		convertedN, _ := strconv.Atoi(ioLines[0][offset][0])
 		n := int32(convertedN)
 		convertedM, _ := strconv.Atoi(ioLines[0][offset][1])
-		m := int(convertedM)
+		m := convertedM
 		edges := make([][]int32, 0)
 		for _, row := range ioLines[0][offset+1 : offset+1+m] {
 			edge := make([]int32, 0)
@@ -37,7 +40,7 @@ func Runner(t *testing.T, name string) {
 		}
 		convertedS, _ := strconv.Atoi(ioLines[0][offset+1+m][0])
 		s := int32(convertedS)
-		offset += 1 + int(m) + 1
+		offset += 1 + m + 1
 		result := ShortestReach(n, edges, s)
 		expected := make([]int32, 0)
 		for _, textual := range ioLines[1][test] {

@@ -1,6 +1,5 @@
+// Package nondivisiblesubset implements https://www.hackerrank.com/challenges/non-divisible-subset
 package nondivisiblesubset
-
-// https://www.hackerrank.com/challenges/non-divisible-subset
 
 // NonDivisibleSubset - implements the solution to the problem
 func NonDivisibleSubset(k int32, s []int32) int32 {

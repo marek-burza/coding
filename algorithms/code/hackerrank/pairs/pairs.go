@@ -1,8 +1,7 @@
+// Package pairs implements https://www.hackerrank.com/challenges/pairs
 package pairs
 
 import "slices"
-
-// https://www.hackerrank.com/challenges/pairs
 
 func binarySearch(array []int32, fromIndex int, toIndex int, key int32) int {
 	for fromIndex <= toIndex {

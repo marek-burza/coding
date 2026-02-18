@@ -1,6 +1,5 @@
+// Package lc014 implements https://leetcode.com/problems/longest-common-prefix/
 package lc014
-
-// https://leetcode.com/problems/longest-common-prefix/
 
 func longestCommonPrefix(strs []string) string {
 	if len(strs) == 0 {

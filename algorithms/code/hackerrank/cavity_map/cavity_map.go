@@ -1,6 +1,5 @@
+// Package cavitymap implements https://www.hackerrank.com/challenges/cavity-map
 package cavitymap
-
-// https://www.hackerrank.com/challenges/cavity-map
 
 // CavityMap - implements the solution to the problem
 func CavityMap(grid []string) []string {

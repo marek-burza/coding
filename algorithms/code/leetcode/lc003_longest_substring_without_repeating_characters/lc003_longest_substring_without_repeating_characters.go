@@ -1,6 +1,5 @@
+// Package lc003 implements https://leetcode.com/problems/longest-substring-without-repeating-characters/
 package lc003
-
-// https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
 func foundInSeen(seen map[byte]struct{}, found byte) bool {
 	_, exists := seen[found]

@@ -1,6 +1,5 @@
-package cavitymap
-
-// https://www.hackerrank.com/challenges/the-time-in-words
+// Package thetimeinwords implements https://www.hackerrank.com/challenges/the-time-in-words
+package thetimeinwords
 
 var lut = []string{
 	"zero", "one", "two", "three", "four", "five",

@@ -1,6 +1,5 @@
+// Package cutthetree implements https://www.hackerrank.com/challenges/cut-the-tree
 package cutthetree
-
-// https://www.hackerrank.com/challenges/cut-the-tree
 
 var exists = struct{}{}
 

@@ -1,26 +1,32 @@
-// https://www.hackerrank.com/challenges/primsmstsub
+// Package primsmstsub implements https://www.hackerrank.com/challenges/primsmstsub
 package primsmstsub
 
 import "container/heap"
 
+// EdgeHeap - Edge heap implementation
 type EdgeHeap []*Edge
 
+// Len - Size of the generic heap
 func (eh EdgeHeap) Len() int {
 	return len(eh)
 }
 
+// Less - Implements the generic heap comparator
 func (eh EdgeHeap) Less(i, j int) bool {
 	return eh[i].weight < eh[j].weight
 }
 
+// Swap - Implements the generic heap swap
 func (eh EdgeHeap) Swap(i, j int) {
 	eh[i], eh[j] = eh[j], eh[i]
 }
 
+// Push - Implements the generic heap push operation
 func (eh *EdgeHeap) Push(item any) {
 	*eh = append(*eh, item.(*Edge))
 }
 
+// Pop - Implements the generic heap pop operation
 func (eh *EdgeHeap) Pop() any {
 	old := *eh
 	n := len(old)
@@ -30,12 +36,14 @@ func (eh *EdgeHeap) Pop() any {
 	return item
 }
 
+// Edge - Weighted graph edge
 type Edge struct {
 	origin int32
 	vertex int32
 	weight int32
 }
 
+// Prims - implements the solution to the problem
 func Prims(n int32, edges [][]int32, start int32) int32 {
 	adjacency := make([][]*Edge, n+1)
 	for _, edge := range edges {

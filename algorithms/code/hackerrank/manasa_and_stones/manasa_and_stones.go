@@ -1,6 +1,5 @@
-package cavitymap
-
-// https://www.hackerrank.com/challenges/manasa-and-stones
+// Package manasaandstones implements https://www.hackerrank.com/challenges/manasa-and-stones
+package manasaandstones
 
 // Stones - implements the solution to the problem
 func Stones(n int32, a int32, b int32) []int32 {

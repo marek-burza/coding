@@ -1,6 +1,5 @@
-package cavitymap
-
-// https://www.hackerrank.com/challenges/taum-and-bday
+// Package taumandbday implements https://www.hackerrank.com/challenges/taum-and-bday
+package taumandbday
 
 // TaumBday - implements the solution to the problem
 func TaumBday(b int32, w int32, bc int32, wc int32, z int32) int64 {

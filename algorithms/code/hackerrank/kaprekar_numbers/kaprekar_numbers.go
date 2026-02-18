@@ -1,6 +1,5 @@
+// Package kaprekarnumbers implements https://www.hackerrank.com/challenges/kaprekar-numbers
 package kaprekarnumbers
-
-// https://www.hackerrank.com/challenges/kaprekar-numbers
 
 import (
 	"math"

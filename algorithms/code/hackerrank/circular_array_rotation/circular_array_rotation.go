@@ -1,6 +1,5 @@
+// Package circulararrayrotation implements https://www.hackerrank.com/challenges/circular-array-rotation
 package circulararrayrotation
-
-// https://www.hackerrank.com/challenges/circular-array-rotation
 
 // CircularArrayRotation - implements the solution to the problem
 func CircularArrayRotation(k int, a []int, queries []int) []int {

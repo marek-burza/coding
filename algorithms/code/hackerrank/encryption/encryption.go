@@ -1,6 +1,5 @@
+// Package encryption implements https://www.hackerrank.com/challenges/encryption
 package encryption
-
-// https://www.hackerrank.com/challenges/encryption
 
 import (
 	"math"

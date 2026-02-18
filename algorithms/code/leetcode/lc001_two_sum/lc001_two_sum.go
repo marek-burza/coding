@@ -1,6 +1,5 @@
+// Package lc001 implements https://leetcode.com/problems/two-sum/
 package lc001
-
-// https://leetcode.com/problems/two-sum/
 
 func twoSum(nums []int, target int) []int {
 	if nums == nil {
