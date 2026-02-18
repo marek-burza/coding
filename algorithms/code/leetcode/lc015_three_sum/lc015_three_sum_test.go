@@ -48,7 +48,7 @@ func TestOversized(t *testing.T) {
 func TestEmpty(t *testing.T) {
 	nums := []int{}
 	result := threeSum(nums)
-	if 0 != len(result) {
+	if len(result) != 0 {
 		t.Errorf("ThreeSum - Expected empty result, got %v!", result)
 	}
 }

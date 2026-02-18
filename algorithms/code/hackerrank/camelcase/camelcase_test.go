@@ -5,7 +5,7 @@ import (
 )
 
 func TestExample(t *testing.T) {
-	if 5 != Camelcase("saveChangesInTheEditor") {
+	if Camelcase("saveChangesInTheEditor") != 5 {
 		t.Errorf("Camelcase failed with saveChangesInTheEditor!")
 	}
 }

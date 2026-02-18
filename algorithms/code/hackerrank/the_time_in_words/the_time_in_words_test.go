@@ -67,35 +67,35 @@ func TestExample2(t *testing.T) {
 
 func Test0359(t *testing.T) {
 	result := TimeInWords(3, 59)
-	if "one minute to four" != result {
+	if result != "one minute to four" {
 		t.Errorf("Failed by returning wrong value - '%s' instead of 'one minute to four'!", result)
 	}
 }
 
 func Test0301(t *testing.T) {
 	result := TimeInWords(3, 1)
-	if "one minute past three" != result {
+	if result != "one minute past three" {
 		t.Errorf("Failed by returning wrong value - '%s' instead of 'one minute past three'!", result)
 	}
 }
 
 func Test0345(t *testing.T) {
 	result := TimeInWords(3, 45)
-	if "quarter to four" != result {
+	if result != "quarter to four" {
 		t.Errorf("Failed by returning wrong value - '%s' instead of 'quarter to four'!", result)
 	}
 }
 
 func Test0330(t *testing.T) {
 	result := TimeInWords(3, 30)
-	if "half past three" != result {
+	if result != "half past three" {
 		t.Errorf("Failed by returning wrong value - '%s' instead of 'half past three'!", result)
 	}
 }
 
 func Test0320(t *testing.T) {
 	result := TimeInWords(3, 20)
-	if "twenty minutes past three" != result {
+	if result != "twenty minutes past three" {
 		t.Errorf("Failed by returning wrong value - '%s' instead of 'twenty minutes past three'!", result)
 	}
 }

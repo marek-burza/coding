@@ -5,19 +5,19 @@ import (
 )
 
 func Test070545PM(t *testing.T) {
-	if "19:05:45" != ToMilitary("07:05:45PM") {
+	if ToMilitary("07:05:45PM") != "19:05:45" {
 		t.Errorf("ToMilitary failed with 07:05:45PM!")
 	}
 }
 
 func Test120000PM(t *testing.T) {
-	if "12:00:00" != ToMilitary("12:00:00PM") {
+	if ToMilitary("12:00:00PM") != "12:00:00" {
 		t.Errorf("ToMilitary failed with 07:05:45PM!")
 	}
 }
 
 func Test120000AM(t *testing.T) {
-	if "00:00:00" != ToMilitary("12:00:00AM") {
+	if ToMilitary("12:00:00AM") != "00:00:00" {
 		t.Errorf("ToMilitary failed with 07:05:45PM!")
 	}
 }

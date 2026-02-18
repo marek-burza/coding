@@ -12,7 +12,7 @@ func MaximumPerimeterTriangle(sticks []int32) []int32 {
 				a := sticks[i]
 				b := sticks[k]
 				c := sticks[j]
-				if !(a+b <= c || a+c <= b) {
+				if a+b > c && a+c > b {
 					return []int32{a, b, c}
 				}
 			}
