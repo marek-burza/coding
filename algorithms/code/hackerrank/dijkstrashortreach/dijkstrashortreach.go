@@ -3,7 +3,6 @@ package dijkstrashortreach
 
 import (
 	"container/heap"
-	"math"
 )
 
 // VertexHeap - Vertex heap implementation
@@ -48,9 +47,11 @@ type Edge struct {
 
 // Vertex - Graph vertex
 type Vertex struct {
-	distance int64
+	distance int32
 	edges    []*Edge
 }
+
+const unknown = -1
 
 // ShortestReach - implements the solution to the problem
 func ShortestReach(n int32, edges [][]int32, s int32) []int32 {
@@ -63,7 +64,7 @@ func ShortestReach(n int32, edges [][]int32, s int32) []int32 {
 	}
 	vertices := make([]*Vertex, n+1)
 	for i, adjacent := range adjacency {
-		vertices[i] = &Vertex{math.MaxInt64, adjacent}
+		vertices[i] = &Vertex{unknown, adjacent}
 	}
 	vertices[s].distance = 0
 	unvisited := &VertexHeap{}
@@ -73,8 +74,8 @@ func ShortestReach(n int32, edges [][]int32, s int32) []int32 {
 		vertex := heap.Pop(unvisited).(*Vertex)
 		for _, edge := range vertex.edges {
 			other := vertices[edge.vertex]
-			candidate := vertex.distance + int64(edge.weight)
-			if candidate < other.distance {
+			candidate := vertex.distance + edge.weight
+			if other.distance == unknown || candidate < other.distance {
 				other.distance = candidate
 				heap.Push(unvisited, other)
 			}
@@ -83,7 +84,7 @@ func ShortestReach(n int32, edges [][]int32, s int32) []int32 {
 	distances := make([]int32, 0, n-1)
 	for i := int32(1); i <= n; i++ {
 		if i != s {
-			distances = append(distances, int32(vertices[i].distance))
+			distances = append(distances, vertices[i].distance)
 		}
 	}
 	return distances

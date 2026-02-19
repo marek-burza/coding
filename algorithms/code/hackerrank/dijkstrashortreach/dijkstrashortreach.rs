@@ -30,6 +30,8 @@ impl Ord for Vertex {
     }
 }
 
+const UNKNOWN: i32 = -1;
+
 pub fn shortest_reach(n: usize, edges: &[Vec<i32>], s: usize) -> Vec<i32> {
     let mut adjacency: Vec<Vec<Edge>> = vec![Vec::new(); n + 1];
     for edge in edges {
@@ -40,7 +42,7 @@ pub fn shortest_reach(n: usize, edges: &[Vec<i32>], s: usize) -> Vec<i32> {
             weight,
         });
     }
-    let mut distances = vec![-1; n + 1];
+    let mut distances = vec![UNKNOWN; n + 1];
     distances[s] = 0;
     let mut unvisited: BinaryHeap<Vertex> = BinaryHeap::new();
     unvisited.push(Vertex {
@@ -51,7 +53,7 @@ pub fn shortest_reach(n: usize, edges: &[Vec<i32>], s: usize) -> Vec<i32> {
         for edge_obj in &adjacency[vertex.index] {
             let other = edge_obj.vertex;
             let candidate = vertex.distance + edge_obj.weight;
-            if distances[other] == -1 || candidate < distances[other] {
+            if distances[other] == UNKNOWN || candidate < distances[other] {
                 distances[other] = candidate;
                 unvisited.push(Vertex {
                     index: other,
