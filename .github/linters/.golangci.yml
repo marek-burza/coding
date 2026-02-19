@@ -3,14 +3,14 @@ version: "2"
 run:
   deadline: 1m
 linters:
-  # enable-all: true
-  enable:
-    - gosec
-    - unconvert
-    - gocyclo
-    - goconst
-    - gocritic
-    - govet
-    - revive
+  enable-all: true
+  # enable:
+  #   - gosec
+  #   - unconvert
+  #   - gocyclo
+  #   - goconst
+  #   - gocritic
+  #   - govet
+  #   - revive
 issues:
   exclude-use-default: false
