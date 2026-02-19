@@ -1,6 +1,7 @@
 package lc022
 
 import (
+	"slices"
 	"sort"
 	"testing"
 )
@@ -9,14 +10,8 @@ func generic(t *testing.T, expected []string, n int) {
 	result := generateParenthesis(n)
 	sort.Strings(result)
 	sort.Strings(expected)
-	var maximum = len(result)
-	if maximum < len(expected) {
-		maximum = len(expected)
-	}
-	for i := 0; i < maximum; i++ {
-		if result[i] != expected[i] {
-			t.Errorf("GenerateParenthesis - Expected %s, got %s!", expected[i], result[i])
-		}
+	if !slices.Equal(result, expected) {
+		t.Errorf("GenerateParenthesis - Expected %q, got %q!", expected, result)
 	}
 }
 
