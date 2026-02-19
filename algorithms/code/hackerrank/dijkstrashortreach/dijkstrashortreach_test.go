@@ -25,7 +25,7 @@ func Runner(t *testing.T, name string) {
 	tests := convertedTests
 	offset := 1
 	for test := range tests {
-		convertedN, _ := strconv.Atoi(ioLines[0][offset][0])
+		convertedN, _ := strconv.ParseInt(ioLines[0][offset][0], 10, 32)
 		n := int32(convertedN)
 		convertedM, _ := strconv.Atoi(ioLines[0][offset][1])
 		m := convertedM
@@ -33,18 +33,18 @@ func Runner(t *testing.T, name string) {
 		for _, row := range ioLines[0][offset+1 : offset+1+m] {
 			edge := make([]int32, 0)
 			for _, textual := range row {
-				converted, _ := strconv.Atoi(textual)
+				converted, _ := strconv.ParseInt(textual, 10, 32)
 				edge = append(edge, int32(converted))
 			}
 			edges = append(edges, edge)
 		}
-		convertedS, _ := strconv.Atoi(ioLines[0][offset+1+m][0])
+		convertedS, _ := strconv.ParseInt(ioLines[0][offset+1+m][0], 10, 32)
 		s := int32(convertedS)
 		offset += 1 + m + 1
 		result := ShortestReach(n, edges, s)
 		expected := make([]int32, 0)
 		for _, textual := range ioLines[1][test] {
-			converted, _ := strconv.Atoi(textual)
+			converted, _ := strconv.ParseInt(textual, 10, 32)
 			expected = append(expected, int32(converted))
 		}
 		if !reflect.DeepEqual(result, expected) {

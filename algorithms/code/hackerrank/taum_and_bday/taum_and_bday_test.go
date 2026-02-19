@@ -47,12 +47,12 @@ func Runner(t *testing.T, name string) {
 	count, _ := strconv.Atoi(ioLines[0][0][0])
 	for index := range count {
 		line1 := ioLines[0][1+index*2]
-		b, _ := strconv.Atoi(line1[0])
-		w, _ := strconv.Atoi(line1[1])
+		b, _ := strconv.ParseInt(line1[0], 10, 32)
+		w, _ := strconv.ParseInt(line1[1], 10, 32)
 		line2 := ioLines[0][2+index*2]
-		bc, _ := strconv.Atoi(line2[0])
-		wc, _ := strconv.Atoi(line2[1])
-		z, _ := strconv.Atoi(line2[2])
+		bc, _ := strconv.ParseInt(line2[0], 10, 32)
+		wc, _ := strconv.ParseInt(line2[1], 10, 32)
+		z, _ := strconv.ParseInt(line2[2], 10, 32)
 		result := TaumBday(int32(b), int32(w), int32(bc), int32(wc), int32(z))
 		expected, _ := strconv.ParseInt(ioLines[1][index][0], 10, 64)
 		if result != expected {
