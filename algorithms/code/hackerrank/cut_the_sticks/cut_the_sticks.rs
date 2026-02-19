@@ -5,15 +5,14 @@ use crate::hackerrank::tester::{read_input, write_and_check_output};
 pub fn cut_the_sticks(arr: &mut [i32]) -> Vec<i32> {
     arr.sort();
     let mut cuts = vec![];
-    let n = arr.len() as i32;
-    let mut i = 0;
-    while i < n {
-        cuts.push(n - i);
-        let cut = arr[i as usize];
-        while i < n && arr[i as usize] - cut <= 0 {
-            i += 1;
+    let mut count = 0;
+    for i in (0..arr.len()).rev() {
+        count += 1;
+        if i == 0 || arr[i] != arr[i - 1] {
+            cuts.push(count);
         }
     }
+    cuts.reverse();
     cuts
 }
 
