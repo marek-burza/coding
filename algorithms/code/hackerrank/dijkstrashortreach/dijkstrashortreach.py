@@ -22,6 +22,9 @@ class Vertex:
         return self.distance < other.distance
 
 
+UNKNOWN = -1
+
+
 def shortest_reach(n: int, edges: List[List[int]], s: int) -> List[int]:
     adjacency: List[List[Edge]] = [[] for _ in range(n + 1)]
     for edge in edges:
@@ -36,7 +39,7 @@ def shortest_reach(n: int, edges: List[List[int]], s: int) -> List[int]:
         for edge_obj in adjacency[vertex.index]:
             other = edge_obj.vertex
             candidate = vertex.distance + edge_obj.weight
-            if distances[other] == -1 or candidate < distances[other]:
+            if distances[other] == UNKNOWN or candidate < distances[other]:
                 distances[other] = candidate
                 heapq.heappush(unvisited, Vertex(other, candidate))
     return [
