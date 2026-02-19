@@ -11,9 +11,9 @@ func nChooseK(n, k uint32) uint64 {
 
 // DivisibleSumPairs - implements the solution to the problem
 func DivisibleSumPairs(_ int32, k int32, ar []int32) int32 {
-	counted := make(map[uint32]uint32)
+	counted := make(map[int32]uint32)
 	for _, value := range ar {
-		rest := uint32(value % k)
+		rest := value % k
 		_, present := counted[rest]
 		if present {
 			counted[rest]++
@@ -22,7 +22,7 @@ func DivisibleSumPairs(_ int32, k int32, ar []int32) int32 {
 		}
 	}
 	total := uint64(0)
-	covered := make(map[uint32]struct{})
+	covered := make(map[int32]struct{})
 	exists := struct{}{}
 	for a := range counted {
 		countedA := counted[a]
@@ -34,7 +34,7 @@ func DivisibleSumPairs(_ int32, k int32, ar []int32) int32 {
 			total += nChooseK(countedA, 2)
 			covered[a] = exists
 		} else {
-			b := uint32(k) - a
+			b := k - a
 			if b == a {
 				total += nChooseK(countedA, 2)
 				covered[a] = exists
