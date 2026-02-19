@@ -9,24 +9,26 @@ func threeSum(nums []int) [][]int {
 	sort.Ints(nums)
 	var result [][]int
 	length := len(nums)
-	for i := range length {
-		if i > 0 && nums[i] == nums[i-1] {
+	var previousNum *int
+	for i, num := range nums {
+		if previousNum != nil && num == *previousNum {
 			continue
 		}
+		previousNum = &num
 		j, k := i+1, length-1
 		for j < k {
 			if k < length-1 && nums[k] == nums[k+1] {
 				k--
 				continue
 			}
-			sum := nums[i] + nums[j] + nums[k]
+			sum := num + nums[j] + nums[k]
 			switch {
 			case sum > 0:
 				k--
 			case sum < 0:
 				j++
 			default:
-				result = append(result, []int{nums[i], nums[j], nums[k]})
+				result = append(result, []int{num, nums[j], nums[k]})
 				j++
 				k--
 			}

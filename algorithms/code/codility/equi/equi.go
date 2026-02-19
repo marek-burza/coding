@@ -23,11 +23,11 @@ func FindEquilibriumIndex(array []int) int {
 	}
 
 	summed := big.NewInt(0)
-	for i := range n {
+	for i, v := range array {
 		if summed.Cmp(after[i]) == 0 {
 			return i
 		}
-		summed.Add(summed, big.NewInt(int64(array[i])))
+		summed.Add(summed, big.NewInt(int64(v)))
 	}
 	return -1
 }
