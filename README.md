@@ -154,3 +154,4 @@
 - Mock interviews: [interviewing.io](https://interviewing.io/), [Pramp](https://www.pramp.com/), [Meet a Pro](https://www.meetapro.com/)
 - [Valve: Handbook for New Employees](https://cdn.cloudflare.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf)
 - [Go Advice](https://github.com/cristaloleg/go-advice)
+- [Good answers](https://www.linkedin.com/posts/jithesh-anand_interviewpreparation-jobinterviewtips-careersuccess-activity-7213379334311448576-Z-HS?utm_source=share&utm_medium=member_desktop&rcm=ACoAAABBEiIBPa9sjDv4CfeszVuVO8NhSkKYtHA) to behavioral questions
