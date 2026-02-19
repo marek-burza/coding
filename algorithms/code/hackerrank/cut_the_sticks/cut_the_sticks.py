@@ -9,14 +9,11 @@ from typing import List
 def cut_the_sticks(arr: List[int]) -> List[int]:
     arr = sorted(arr)
     cuts = []
-    n = len(arr)
-    i = 0
-    while i < n:
-        cuts.append(n - i)
-        cut = arr[i]
-        while i < n and arr[i] - cut <= 0:
-            i += 1
-    return cuts
+    for index, i in enumerate(range(len(arr) - 1, -1, -1)):
+        count = index + 1
+        if i == 0 or arr[i] != arr[i - 1]:
+            cuts.append(count)
+    return cuts[::-1]
 
 
 class TestCode(unittest.TestCase):
