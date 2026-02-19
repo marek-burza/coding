@@ -4,7 +4,6 @@ package datastorageapi
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 	"strings"
@@ -124,9 +123,9 @@ func launchServer() (*testServer, error) {
 }
 
 func getBlob(t *testing.T, oid string) (string, int) {
-	objURL := fmt.Sprintf("http://localhost:8282/data/codingtest/%s", oid)
+	objURL := "http://localhost:8282/data/codingtest/" + oid
 	req, _ := http.NewRequest("GET", objURL, nil)
-	res, err := http.DefaultClient.Do(req)
+	res, err := http.DefaultClient.Do(req) //nolint:gosec // G704: Test code
 	if err != nil {
 		t.Fatalf("error making GET request: %s", err)
 	}
@@ -142,7 +141,7 @@ func getBlob(t *testing.T, oid string) (string, int) {
 
 func putBlob(t *testing.T, payload io.Reader) *_response {
 	req, _ := http.NewRequest("PUT", "http://localhost:8282/data/codingtest", payload)
-	res, err := http.DefaultClient.Do(req)
+	res, err := http.DefaultClient.Do(req) //nolint:gosec // G704: Test code
 	if err != nil {
 		t.Fatalf("error making PUT request: %s", err)
 	}
@@ -166,9 +165,9 @@ func putBlob(t *testing.T, payload io.Reader) *_response {
 }
 
 func deleteBlob(t *testing.T, oid string) int {
-	objURL := fmt.Sprintf("http://localhost:8282/data/codingtest/%s", oid)
+	objURL := "http://localhost:8282/data/codingtest/" + oid
 	req, _ := http.NewRequest("DELETE", objURL, nil)
-	res, err := http.DefaultClient.Do(req)
+	res, err := http.DefaultClient.Do(req) //nolint:gosec // G704: Test code
 	if err != nil {
 		t.Fatalf("error making DELETE request: %s", err)
 	}
@@ -247,9 +246,9 @@ func TestDataStoreRepositorySeparation(t *testing.T) {
 
 func freeForm(t *testing.T, method string, items []string, payload io.Reader) (string, int, *_response) {
 	joined := strings.Join(items, "/")
-	objURL := fmt.Sprintf("http://localhost:8282/%s", joined)
+	objURL := "http://localhost:8282/" + joined
 	req, _ := http.NewRequest(method, objURL, payload)
-	res, err := http.DefaultClient.Do(req)
+	res, err := http.DefaultClient.Do(req) //nolint:gosec // G704: Test code
 	if err != nil {
 		t.Fatalf("error making %s request: %s", method, err)
 	}
