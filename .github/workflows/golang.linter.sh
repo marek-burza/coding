@@ -7,8 +7,8 @@ go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
 cd algorithms
 gofmt -d .
 golangci-lint run --config ../.github/linters/.golangci.yml
-if [ -n "$(go fix ./...)" ]; then
-	go fix ./...
+if [ -n "$(go fix -diff ./...)" ]; then
+	go fix -diff ./...
 	exit 1
 fi
 go vet ./...
