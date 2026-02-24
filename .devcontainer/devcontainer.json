@@ -1,0 +1,5 @@
+{
+  "image": "ghcr.io/altermarkive/utilities:latest",
+  "remoteUser": "user",
+  "features": {}
+}
