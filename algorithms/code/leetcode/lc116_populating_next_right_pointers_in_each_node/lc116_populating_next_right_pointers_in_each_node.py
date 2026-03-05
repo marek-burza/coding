@@ -9,9 +9,9 @@ class Node:
     def __init__(
         self,
         val: int = 0,
-        left: 'Node | None' = None,
-        right: 'Node | None' = None,
-        following: 'Node | None' = None,
+        left: Node | None = None,
+        right: Node | None = None,
+        following: Node | None = None,
     ) -> None:
         self.val = val
         self.left = left
