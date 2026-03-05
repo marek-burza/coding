@@ -2,11 +2,16 @@
 # https://leetcode.com/problems/valid-sudoku/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def validate(self, board, indices, dx, dy):
+    def validate(
+        self,
+        board: list[list[str]],
+        indices: list[list[int]],
+        dx: int,
+        dy: int,
+    ) -> bool:
         check = 0
         for at in indices:
             spot = board[at[1] + dy][at[0] + dx]
@@ -19,7 +24,7 @@ class Solution:
                 return False
         return True
 
-    def isValidSudoku(self, board: List[List[str]]) -> bool:
+    def isValidSudoku(self, board: list[list[str]]) -> bool:
         row = [
             [0, 0],
             [1, 0],
@@ -76,10 +81,10 @@ class TestCode(unittest.TestCase):
         ['.', '.', '.', '.', '8', '.', '.', '7', '9'],
     ]
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.assertTrue(Solution().isValidSudoku(TestCode.EXAMPLE_BOARD))
 
-    def test_other_example(self):
+    def test_other_example(self) -> None:
         board = [
             ['.', '8', '7', '6', '5', '4', '3', '2', '1'],
             ['2', '.', '.', '.', '.', '.', '.', '.', '.'],
@@ -93,14 +98,14 @@ class TestCode(unittest.TestCase):
         ]
         self.assertTrue(Solution().isValidSudoku(board))
 
-    def test_another_1(self):
+    def test_another_1(self) -> None:
         board = [line[:] for line in TestCode.EXAMPLE_BOARD]
         board[2][0] = '.'
         board[2][1] = '9'
         board[2][2] = '8'
         self.assertTrue(Solution().isValidSudoku(board))
 
-    def test_another_2(self):
+    def test_another_2(self) -> None:
         board = [
             ['.', '.', '4', '.', '.', '.', '6', '3', '.'],
             ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
@@ -114,7 +119,7 @@ class TestCode(unittest.TestCase):
         ]
         self.assertFalse(Solution().isValidSudoku(board))
 
-    def test_another_3(self):
+    def test_another_3(self) -> None:
         board = [
             ['.', '.', '.', '.', '5', '.', '.', '1', '.'],
             ['.', '4', '.', '3', '.', '.', '.', '.', '.'],
@@ -130,7 +135,7 @@ class TestCode(unittest.TestCase):
 
     BLANK = ['.', '.', '.', '.', '.', '.', '.', '.', '.']
 
-    def test_another_4(self):
+    def test_another_4(self) -> None:
         board = [
             ['7', '.', '.', '.', '4', '.', '.', '.', '.'],
             ['.', '.', '.', '8', '6', '5', '.', '.', '.'],

@@ -24,10 +24,10 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_3(self):
+    def test_3(self) -> None:
         expected = [1, 3, 3, 1]
         result = Solution().getRow(3)
         self.assertListEqual(expected, result)
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertListEqual([], Solution().getRow(-2))

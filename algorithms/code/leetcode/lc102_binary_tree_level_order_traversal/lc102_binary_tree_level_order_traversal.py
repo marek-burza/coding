@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/binary-tree-level-order-traversal/
 
+from __future__ import annotations
+
 import unittest
-from typing import List, Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
@@ -14,12 +20,12 @@ class TreeNode:
 
 class Solution:
     class AnnotatedNode:
-        def __init__(self, node, depth):
+        def __init__(self, node: TreeNode, depth: int) -> None:
             self.node = node
             self.depth = depth
 
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        result: List[List[int]] = []
+    def levelOrder(self, root: TreeNode | None) -> list[list[int]]:
+        result: list[list[int]] = []
         queue = []
         if root is not None:
             queue.append(self.AnnotatedNode(root, 1))
@@ -47,7 +53,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n3 = TreeNode(3)
         n7 = TreeNode(7)
         n9 = TreeNode(9)
@@ -65,6 +71,6 @@ class TestCode(unittest.TestCase):
             for j, expected_i_j in enumerate(expected_i):
                 self.assertEqual(expected_i_j, result[i][j])
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         result = Solution().levelOrder(None)
         self.assertEqual(0, len(result))

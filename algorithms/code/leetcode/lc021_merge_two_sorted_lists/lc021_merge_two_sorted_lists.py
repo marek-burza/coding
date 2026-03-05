@@ -1,20 +1,23 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/merge-two-sorted-lists/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class ListNode:
-    def __init__(self, val=0, following=None):
+    def __init__(
+        self, val: int = 0, following: 'ListNode | None' = None
+    ) -> None:
         self.val = val
         self.next = following
 
 
 class Solution:
     def mergeTwoLists(
-        self, l1: Optional[ListNode], l2: Optional[ListNode]
-    ) -> Optional[ListNode]:
+        self, l1: ListNode | None, l2: ListNode | None
+    ) -> ListNode | None:
         handle = ListNode()
         current = handle
         current.next = None
@@ -34,16 +37,21 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __generic(self, n0):
+    def __generic(self, n0: ListNode | None) -> None:
         assert n0 is not None
         assert n0.val == 1
+        assert n0.next is not None
         assert n0.next.val == 2
+        assert n0.next.next is not None
         assert n0.next.next.val == 3
+        assert n0.next.next.next is not None
         assert n0.next.next.next.val == 4
+        assert n0.next.next.next.next is not None
         assert n0.next.next.next.next.val == 5
+        assert n0.next.next.next.next.next is not None
         assert n0.next.next.next.next.next.val == 6
 
-    def test_1_3_5_7_9__2_4_6(self):
+    def test_1_3_5_7_9__2_4_6(self) -> None:
         n9 = ListNode(9)
         n9.next = None
         n7 = ListNode(7)
@@ -70,9 +78,10 @@ class TestCode(unittest.TestCase):
         assert n0.next.next.next.next.next is not None
         assert n0.next.next.next.next.next.next is not None
         assert n0.next.next.next.next.next.next.val == 7
+        assert n0.next.next.next.next.next.next.next is not None
         assert n0.next.next.next.next.next.next.next.val == 9
 
-    def test_1_2_3__4_5_6(self):
+    def test_1_2_3__4_5_6(self) -> None:
         n3 = ListNode(3, None)
         n2 = ListNode(2, n3)
         n1 = ListNode(1, n2)

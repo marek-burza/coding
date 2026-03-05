@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/minimum-depth-of-binary-tree/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
@@ -14,11 +20,11 @@ class TreeNode:
 
 class Solution:
     class AnnotatedNode:
-        def __init__(self, node, depth):
+        def __init__(self, node: TreeNode, depth: int) -> None:
             self.node = node
             self.depth = depth
 
-    def minDepth(self, root: Optional[TreeNode]) -> int:
+    def minDepth(self, root: TreeNode | None) -> int:
         if root is None:
             return 0
         queue = []
@@ -42,7 +48,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n3 = TreeNode(3)
         n7 = TreeNode(7)
         n9 = TreeNode(9)
@@ -55,17 +61,17 @@ class TestCode(unittest.TestCase):
         n7.left = n7.right = n9.left = n9.right = n15.left = n15.right = None
         self.assertEqual(2, Solution().minDepth(n3))
 
-    def test_left_nothing(self):
+    def test_left_nothing(self) -> None:
         root = TreeNode(3)
         right = TreeNode(7)
         root.right = right
         self.assertEqual(2, Solution().minDepth(root))
 
-    def test_right_nothing(self):
+    def test_right_nothing(self) -> None:
         root = TreeNode(3)
         left = TreeNode(7)
         root.right = left
         self.assertEqual(2, Solution().minDepth(root))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().minDepth(None))

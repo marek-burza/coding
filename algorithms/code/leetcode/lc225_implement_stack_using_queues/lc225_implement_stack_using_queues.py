@@ -3,14 +3,15 @@
 
 import collections
 import unittest
+from typing import Deque
 
 
 class MyStack:
-    def __init__(self):
-        self.__active = collections.deque()
-        self.__other = collections.deque()
+    def __init__(self) -> None:
+        self.__active: Deque[int] = collections.deque()
+        self.__other: Deque[int] = collections.deque()
 
-    def __swap(self):
+    def __swap(self) -> None:
         swap = self.__other
         self.__other = self.__active
         self.__active = swap
@@ -40,7 +41,7 @@ class MyStack:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         solution = MyStack()
         solution.push(5)
         solution.push(2)

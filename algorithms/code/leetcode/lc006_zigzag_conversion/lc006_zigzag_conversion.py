@@ -24,27 +24,27 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertEqual(
             Solution().convert('PAYPALISHIRING', 3), 'PAHNAPLSIIGYIR'
         )
 
-    def test_2(self):
+    def test_2(self) -> None:
         self.assertEqual(
             Solution().convert('PAYPALISHIRING', 4), 'PINALSIGYAHRPI'
         )
 
-    def test_3(self):
+    def test_3(self) -> None:
         self.assertEqual(Solution().convert('A', 1), 'A')
 
-    def test_abcd(self):
+    def test_abcd(self) -> None:
         self.assertEqual(Solution().convert('ABCD', 3), 'ABDC')
 
-    def test_abc(self):
+    def test_abc(self) -> None:
         self.assertEqual(Solution().convert('ABC', 2), 'ACB')
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(Solution().convert('', 2), '')
 
-    def test_zero(self):
+    def test_zero(self) -> None:
         self.assertEqual(Solution().convert('A', 0), '')

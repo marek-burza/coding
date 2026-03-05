@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/single-number-iii/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def singleNumber(self, nums: List[int]) -> List[int]:
+    def singleNumber(self, nums: list[int]) -> list[int]:
         xor = 0
         for value in nums:
             xor ^= value
@@ -21,7 +20,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test(self):
+    def test(self) -> None:
         result = Solution().singleNumber([1, 2, 1, 3, 2, 5])
         result.sort()
         self.assertListEqual([3, 5], result)

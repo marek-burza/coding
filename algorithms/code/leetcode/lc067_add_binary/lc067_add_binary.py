@@ -24,14 +24,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual('100', Solution().addBinary('11', '1'))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual('10101', Solution().addBinary('1010', '1011'))
 
-    def test_example_1_reversed(self):
+    def test_example_1_reversed(self) -> None:
         self.assertEqual('100', Solution().addBinary('1', '11'))
 
-    def test_no_carry(self):
+    def test_no_carry(self) -> None:
         self.assertEqual('1', Solution().addBinary('1', '0'))

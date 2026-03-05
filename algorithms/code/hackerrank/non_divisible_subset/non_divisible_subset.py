@@ -3,11 +3,10 @@
 
 import os
 import unittest
-from typing import Dict, List
 
 
-def non_divisible_subset(k: int, s: List[int]) -> int:
-    counted: Dict[int, int] = {}
+def non_divisible_subset(k: int, s: list[int]) -> int:
+    counted: dict[int, int] = {}
     for value in s:
         rest = value % k
         count = counted.get(rest)
@@ -37,8 +36,8 @@ def non_divisible_subset(k: int, s: List[int]) -> int:
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -50,14 +49,14 @@ class TestCode(unittest.TestCase):
         expected = int(io_lines[1][0][0])
         self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')
 
-    def test_06(self):
+    def test_06(self) -> None:
         self.runner('06')
 
-    def test_07(self):
+    def test_07(self) -> None:
         self.runner('07')
 
-    def test_16(self):
+    def test_16(self) -> None:
         self.runner('16')

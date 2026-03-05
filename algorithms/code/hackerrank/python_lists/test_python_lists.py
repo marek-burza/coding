@@ -5,10 +5,11 @@
 import io
 import sys
 import unittest
+from typing import Any
 
 
-def process(operations):
-    listed = []
+def process(operations: list[list[Any]]) -> None:
+    listed: list[int] = []
     for operation in operations:
         if operation[0] == 'insert':
             listed.insert(operation[1], operation[2])
@@ -26,7 +27,7 @@ def process(operations):
             listed.reverse()
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     operations = []
     for _ in range(n):
@@ -42,7 +43,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -55,5 +56,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

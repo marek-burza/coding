@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def __bsInfimum(self, nums, target):
+    def __bsInfimum(self, nums: list[int], target: int) -> int:
         a = 0
         z = len(nums) - 1
         while a < z:
@@ -21,7 +20,7 @@ class Solution:
             return a
         return -1
 
-    def __bsSupremum(self, nums, target):
+    def __bsSupremum(self, nums: list[int], target: int) -> int:
         a = 0
         z = len(nums) - 1
         while a < z:
@@ -36,7 +35,7 @@ class Solution:
             return a
         return -1
 
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
+    def searchRange(self, nums: list[int], target: int) -> list[int]:
         if len(nums) == 0:
             return [-1, -1]
         infimum = self.__bsInfimum(nums, target)
@@ -45,21 +44,21 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         nums = [5, 7, 7, 8, 8, 10]
         expected = [3, 4]
         self.assertListEqual(expected, Solution().searchRange(nums, 8))
 
-    def test_other(self):
+    def test_other(self) -> None:
         nums = [5, 7, 7, 8, 8, 10]
         expected = [-1, -1]
         self.assertListEqual(expected, Solution().searchRange(nums, 6))
 
-    def test_another(self):
+    def test_another(self) -> None:
         nums = [2, 2]
         expected = [-1, -1]
         self.assertListEqual(expected, Solution().searchRange(nums, 3))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         expected = [-1, -1]
         self.assertListEqual(expected, Solution().searchRange([], 3))

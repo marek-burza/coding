@@ -3,10 +3,9 @@
 
 import os
 import unittest
-from typing import List
 
 
-def missing_numbers(arr: List[int], brr: List[int]) -> List[int]:
+def missing_numbers(arr: list[int], brr: list[int]) -> list[int]:
     missing = set()
     arr = sorted(arr)
     brr = sorted(brr)
@@ -25,8 +24,8 @@ def missing_numbers(arr: List[int], brr: List[int]) -> List[int]:
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -38,11 +37,11 @@ class TestCode(unittest.TestCase):
         expected = [int(item) for item in io_lines[1][0]]
         self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')
 
-    def test_01(self):
+    def test_01(self) -> None:
         self.runner('01')
 
-    def test_03(self):
+    def test_03(self) -> None:
         self.runner('03')

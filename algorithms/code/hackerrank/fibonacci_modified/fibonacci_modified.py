@@ -4,7 +4,7 @@
 import unittest
 
 
-def fibonacci_modified(t1, t2, n):
+def fibonacci_modified(t1: int, t2: int, n: int) -> int:
     tn1 = t1
     tn2 = t2
     while n >= 3:
@@ -19,8 +19,8 @@ def fibonacci_modified(t1, t2, n):
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual(5, fibonacci_modified(0, 1, 5))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual(84266613096281243382112, fibonacci_modified(0, 1, 10))

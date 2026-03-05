@@ -2,20 +2,19 @@
 # https://leetcode.com/problems/number-of-islands/
 
 import unittest
-from typing import List
 
 
 class Solution:
     __DELTAS = [[0, 1], [1, 0], [0, -1], [-1, 0]]
 
-    def __land(self, grid, x, y):
+    def __land(self, grid: list[list[str]], x: int, y: int) -> bool:
         if not 0 <= x < len(grid):
             return False
         if not 0 <= y < len(grid[x]):
             return False
         return grid[x][y] == '1'
 
-    def __traverse(self, grid, x, y):
+    def __traverse(self, grid: list[list[str]], x: int, y: int) -> bool:
         items = []
         items.append((x, y))
         land = False
@@ -31,7 +30,7 @@ class Solution:
                     items.append((xx, yy))
         return land
 
-    def numIslands(self, grid: List[List[str]]) -> int:
+    def numIslands(self, grid: list[list[str]]) -> int:
         if grid is None or len(grid) == 0:
             return 0
         count = 0
@@ -43,11 +42,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         grid = [['1']]
         self.assertEqual(1, Solution().numIslands(grid))
 
-    def test_other(self):
+    def test_other(self) -> None:
         grid = [
             ['1', '1', '0', '0', '0'],
             ['1', '1', '0', '0', '0'],
@@ -56,6 +55,6 @@ class TestCode(unittest.TestCase):
         ]
         self.assertEqual(3, Solution().numIslands(grid))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().numIslands([]))
         self.assertEqual(0, Solution().numIslands([[]]))

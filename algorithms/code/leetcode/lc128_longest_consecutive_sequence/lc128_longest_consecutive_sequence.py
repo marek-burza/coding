@@ -2,18 +2,17 @@
 # https://leetcode.com/problems/longest-consecutive-sequence/
 
 import unittest
-from typing import Dict, List
 
 
 class Solution:
     class Range:
-        def __init__(self, a, z):
+        def __init__(self, a: int, z: int) -> None:
             self.a = a
             self.z = z
 
-    def longestConsecutive(self, nums: List[int]) -> int:
+    def longestConsecutive(self, nums: list[int]) -> int:
         seen = set()
-        mapped: Dict[int, Solution.Range] = {}
+        mapped: dict[int, Solution.Range] = {}
         length = 0
         for num in nums:
             if num in seen:
@@ -47,11 +46,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_100_4_200_1_3_2(self):
+    def test_100_4_200_1_3_2(self) -> None:
         nums1 = [100, 4, 200, 1, 3, 2]
         self.assertEqual(4, Solution().longestConsecutive(nums1))
 
-    def test_longer(self):
+    def test_longer(self) -> None:
         nums2 = [
             4,
             2,

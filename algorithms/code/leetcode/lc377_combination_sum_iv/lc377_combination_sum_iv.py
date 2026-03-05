@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/combination-sum-iv/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def combinationSum4(self, nums: List[int], target: int) -> int:
+    def combinationSum4(self, nums: list[int], target: int) -> int:
         cache = [0] * (target + 1)
         cache[0] = 1
         for i in range(target):
@@ -19,14 +18,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         nums = [1, 2, 3]
         self.assertEqual(7, Solution().combinationSum4(nums, 4))
 
-    def test_longer_example(self):
+    def test_longer_example(self) -> None:
         nums = [4, 2, 1]
         self.assertEqual(39882198, Solution().combinationSum4(nums, 32))
 
-    def test_with_gaps(self):
+    def test_with_gaps(self) -> None:
         nums = [3, 2]
         self.assertEqual(28, Solution().combinationSum4(nums, 15))

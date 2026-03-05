@@ -11,7 +11,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1_to_16(self):
+    def test_1_to_16(self) -> None:
         expected = [0, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 4]
         for i, expected_i in enumerate(expected):
             self.assertEqual(expected_i, Solution().bulbSwitch(i))

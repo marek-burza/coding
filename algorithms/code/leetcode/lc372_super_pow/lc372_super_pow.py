@@ -2,13 +2,12 @@
 # https://leetcode.com/problems/super-pow/
 
 import unittest
-from typing import List
 
 
 class Solution:
     __MODULO_1337 = 1337
 
-    def __findPowerLoop(self, value):
+    def __findPowerLoop(self, value: int) -> list[int]:
         modulos = []
         lut = [False] * self.__MODULO_1337
         modulo = value
@@ -18,14 +17,14 @@ class Solution:
             modulo = (modulo * value) % self.__MODULO_1337
         return modulos
 
-    def __modulo(self, dividend, divisor):
+    def __modulo(self, dividend: list[int], divisor: int) -> int:
         length = len(dividend)
         modulo = 0
         for i in range(length):
             modulo = (modulo * 10 + dividend[i]) % divisor
         return modulo
 
-    def superPow(self, a: int, b: List[int]) -> int:
+    def superPow(self, a: int, b: list[int]) -> int:
         # Assume: a = (1337 * n + m) where 0 <= m < 1337
         # Then: a^b mod 1337 = (1337 * n + m)^n mod 1337 == m^b mod 1337
         # This multiplication will cycle through certain 'digits' of base 1337
@@ -41,8 +40,8 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_2_3(self):
+    def test_2_3(self) -> None:
         self.assertEqual(8, Solution().superPow(2, [3]))
 
-    def test_2_1_0(self):
+    def test_2_1_0(self) -> None:
         self.assertEqual(1024, Solution().superPow(2, [1, 0]))

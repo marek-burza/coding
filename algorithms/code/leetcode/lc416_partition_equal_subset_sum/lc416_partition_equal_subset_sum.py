@@ -2,14 +2,13 @@
 # https://leetcode.com/problems/partition-equal-subset-sum/
 
 import unittest
-from typing import List, Optional
 
 
 def canPartitionSubset(
-    nums: List[int],
+    nums: list[int],
     count: int,
     summed: int,
-    cache: List[List[Optional[bool]]],
+    cache: list[list[bool | None]],
 ) -> bool:
     if summed == 0:
         return True
@@ -28,24 +27,24 @@ def canPartitionSubset(
 
 
 class Solution:
-    def canPartition(self, nums: List[int]) -> bool:
+    def canPartition(self, nums: list[int]) -> bool:
         count = len(nums)
         summed = sum(nums)
         if summed % 2 != 0:
             return False
-        cache: List[List[Optional[bool]]] = [
+        cache: list[list[bool | None]] = [
             [None] * (summed + 1) for _ in range(count + 1)
         ]
         return canPartitionSubset(nums, count, summed // 2, cache)
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertTrue(Solution().canPartition([1, 5, 11, 5]))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertFalse(Solution().canPartition([1, 2, 3, 5]))
 
-    def test_longer(self):
+    def test_longer(self) -> None:
         nums = ([100] * 198) + [99, 97]
         self.assertFalse(Solution().canPartition(nums))

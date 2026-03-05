@@ -7,11 +7,11 @@ import sys
 import unittest
 
 
-def is_leap(year):
+def is_leap(year: int) -> bool:
     return (year % 4) == 0 and ((year % 100) != 0 or (year % 400) == 0)
 
 
-def main():
+def main() -> None:
     year_in = int(input().strip())
     print(is_leap(year_in))
 
@@ -21,7 +21,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -34,10 +34,10 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')
 
-    def test_several(self):
+    def test_several(self) -> None:
         lut = {
             1800: False,
             1900: False,

@@ -2,34 +2,35 @@
 # https://leetcode.com/problems/surrounded-regions/
 
 import unittest
-from typing import List, Set
 
 
 class Solution:
-    def __key(self, i, j):
+    def __key(self, i: int, j: int) -> int:
         return (int(i) << 32) | j
 
-    def __i(self, key):
+    def __i(self, key: int) -> int:
         return int(key >> 32)
 
-    def __j(self, key):
+    def __j(self, key: int) -> int:
         return int(key & 0xFFFFFFFF)
 
-    def __enqueue(self, i, j, check, visited):
+    def __enqueue(
+        self, i: int, j: int, check: list[int], visited: set[int]
+    ) -> None:
         key = self.__key(i, j)
         if key not in visited:
             check.append(key)
             visited.add(key)
 
     # pylint: disable=R0912
-    def solve(self, board: List[List[str]]) -> None:
+    def solve(self, board: list[list[str]]) -> None:
         if len(board) == 0:
             return
         for row in board:
             if len(row) == 0:
                 return
-        check: List[int] = []
-        visited: Set[int] = set()
+        check: list[int] = []
+        visited: set[int] = set()
         for i, board_i in enumerate(board):
             self.__enqueue(i, 0, check, visited)
             self.__enqueue(i, len(board_i) - 1, check, visited)
@@ -59,13 +60,13 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def construct(self, compact):
+    def construct(self, compact: list[str]) -> list[list[str]]:
         board = []
         for item in compact:
             board.append(list(item))
         return board
 
-    def test_small(self):
+    def test_small(self) -> None:
         compact = ['XXXX', 'XOOX', 'XXOX', 'XOXX']
         board = self.construct(compact)
         Solution().solve(board)
@@ -74,7 +75,7 @@ class TestCode(unittest.TestCase):
             self.assertEqual(expected[i], ''.join(board_i))
 
     # pylint: disable=C0301
-    def test_large(self):
+    def test_large(self) -> None:
         compact = [
             'OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO',  # noqa
             'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXO',  # noqa
@@ -584,6 +585,6 @@ class TestCode(unittest.TestCase):
         for i, board_i in enumerate(board):
             self.assertEqual(expected[i], ''.join(board_i))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         Solution().solve([])
         Solution().solve([[]])

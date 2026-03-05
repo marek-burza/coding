@@ -15,14 +15,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_aa_a(self):
+    def test_aa_a(self) -> None:
         self.assertFalse(Solution().isAnagram('aa', 'a'))
 
-    def test_a_b(self):
+    def test_a_b(self) -> None:
         self.assertFalse(Solution().isAnagram('a', 'b'))
 
-    def test_anagram_nagaram(self):
+    def test_anagram_nagaram(self) -> None:
         self.assertTrue(Solution().isAnagram('anagram', 'nagaram'))
 
-    def test_rat_car(self):
+    def test_rat_car(self) -> None:
         self.assertFalse(Solution().isAnagram('rat', 'car'))

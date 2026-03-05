@@ -12,8 +12,8 @@ def taum_bday(b: int, w: int, bc: int, wc: int, z: int) -> int:
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -23,13 +23,13 @@ class TestCode(unittest.TestCase):
         for index in range(t):
             b_w = io_lines[0][1 + index * 2]
             bc_wc_z = io_lines[0][2 + index * 2]
-            arguments = [*b_w, *bc_wc_z]
-            arguments = [int(item) for item in arguments]
+            arguments_raw = [*b_w, *bc_wc_z]
+            arguments = [int(item) for item in arguments_raw]
             result = taum_bday(*arguments)
             self.assertEqual(int(io_lines[1][index][0]), result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')
 
-    def test_05(self):
+    def test_05(self) -> None:
         self.runner('05')

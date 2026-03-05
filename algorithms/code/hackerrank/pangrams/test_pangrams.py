@@ -7,7 +7,7 @@ import sys
 import unittest
 
 
-def pangram(text):
+def pangram(text: str) -> bool:
     text = text.lower()
     remaining = {chr(i) for i in range(ord('a'), ord('z') + 1)}
     for key in text:
@@ -18,7 +18,7 @@ def pangram(text):
     return False
 
 
-def main():
+def main() -> None:
     print('pangram' if pangram(input().strip()) else 'not pangram')
 
 
@@ -27,7 +27,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -40,8 +40,8 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')
 
-    def test_1(self):
+    def test_1(self) -> None:
         self.generalized_test('1')

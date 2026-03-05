@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/palindrome-linked-list/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class ListNode:
-    def __init__(self, val=0, following=None):
+    def __init__(
+        self, val: int = 0, following: 'ListNode | None' = None
+    ) -> None:
         self.val = val
         self.next = following
 
 
 class Solution:
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+    def isPalindrome(self, head: ListNode | None) -> bool:
         listed = []
         while head is not None:
             listed.append(head.val)
@@ -23,7 +26,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_palindrome_odd(self):
+    def test_palindrome_odd(self) -> None:
         listed = ListNode(0)
         listed.next = ListNode(1)
         listed.next.next = ListNode(2)
@@ -31,14 +34,14 @@ class TestCode(unittest.TestCase):
         listed.next.next.next.next = ListNode(0)
         self.assertTrue(Solution().isPalindrome(listed))
 
-    def test_palindrome_even(self):
+    def test_palindrome_even(self) -> None:
         listed = ListNode(0)
         listed.next = ListNode(1)
         listed.next.next = ListNode(1)
         listed.next.next.next = ListNode(0)
         self.assertTrue(Solution().isPalindrome(listed))
 
-    def test_not_palindrome_odd(self):
+    def test_not_palindrome_odd(self) -> None:
         listed = ListNode(0)
         listed.next = ListNode(1)
         listed.next.next = ListNode(2)
@@ -46,15 +49,15 @@ class TestCode(unittest.TestCase):
         listed.next.next.next.next = ListNode(0)
         self.assertFalse(Solution().isPalindrome(listed))
 
-    def test_not_palindrome_even(self):
+    def test_not_palindrome_even(self) -> None:
         listed = ListNode(0)
         listed.next = ListNode(1)
         listed.next.next = ListNode(8)
         listed.next.next.next = ListNode(0)
         self.assertFalse(Solution().isPalindrome(listed))
 
-    def test_empty(self):
+    def test_empty(self) -> None:
         self.assertTrue(Solution().isPalindrome(None))
 
-    def test_single(self):
+    def test_single(self) -> None:
         self.assertTrue(Solution().isPalindrome(ListNode(0)))

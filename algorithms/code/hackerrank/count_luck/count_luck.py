@@ -4,13 +4,14 @@
 import collections
 import os
 import unittest
-from typing import List
 
 DELTAS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
 
-def look_around(forest: List[List[str]], at: tuple) -> List[tuple]:
-    ways: List[tuple] = []
+def look_around(
+    forest: list[list[str]], at: tuple[int, int]
+) -> list[tuple[int, int]]:
+    ways: list[tuple[int, int]] = []
     for delta in DELTAS:
         dr = at[0] + delta[0]
         dc = at[1] + delta[1]
@@ -24,7 +25,7 @@ def look_around(forest: List[List[str]], at: tuple) -> List[tuple]:
     return ways
 
 
-def count_luck(matrix: List[str], k: int) -> str:
+def count_luck(matrix: list[str], k: int) -> str:
     queue: collections.deque = collections.deque()
     counts: collections.deque = collections.deque()
     counts.append(0)
@@ -48,8 +49,8 @@ def count_luck(matrix: List[str], k: int) -> str:
 
 class TestCode(unittest.TestCase):
     # pylint: disable=R0914
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -59,18 +60,18 @@ class TestCode(unittest.TestCase):
         offset = 1
         for t in range(tests):
             n = int(io_lines[0][offset][0])
-            matrix = io_lines[0][offset + 1 : offset + n + 1]
-            matrix = [line[0] for line in matrix]
+            matrix_lines = io_lines[0][offset + 1 : offset + n + 1]
+            matrix = [line[0] for line in matrix_lines]
             k = int(io_lines[0][offset + 1 + n][0])
             offset += n + 2
             result = count_luck(matrix, k)
             expected = io_lines[1][t][0]
             self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')
 
-    def test_empty(self):
+    def test_empty(self) -> None:
         result = count_luck([], 0)
         expected = 'Oops!'
         self.assertEqual(expected, result)

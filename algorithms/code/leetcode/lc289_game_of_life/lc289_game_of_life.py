@@ -2,16 +2,15 @@
 # https://leetcode.com/problems/game-of-life/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def __count(self, board, row, col):
+    def __count(self, board: list[list[int]], row: int, col: int) -> int:
         if 0 <= row < len(board) and 0 <= col < len(board[row]):
             return board[row][col] & 1
         return 0
 
-    def __countAlive(self, board, row, col):
+    def __countAlive(self, board: list[list[int]], row: int, col: int) -> int:
         count = 0
         count += self.__count(board, row - 1, col - 1)
         count += self.__count(board, row - 1, col)
@@ -23,7 +22,7 @@ class Solution:
         count += self.__count(board, row + 1, col + 1)
         return count
 
-    def gameOfLife(self, board: List[List[int]]) -> None:
+    def gameOfLife(self, board: list[list[int]]) -> None:
         for row, _ in enumerate(board):
             for col, _ in enumerate(board[row]):
                 count = self.__countAlive(board, row, col)
@@ -39,32 +38,34 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __test(self, expected, board):
+    def __test(
+        self, expected: list[list[int]], board: list[list[int]]
+    ) -> None:
         self.assertEqual(len(expected), len(board))
         for row, board_row in enumerate(board):
             self.assertEqual(len(expected[row]), len(board_row))
             for col, board_row_col in enumerate(board_row):
                 self.assertEqual(expected[row][col], board_row_col)
 
-    def test_empty(self):
-        board = [[]]
-        expected = [[]]
+    def test_empty(self) -> None:
+        board: list[list[int]] = [[]]
+        expected: list[list[int]] = [[]]
         Solution().gameOfLife(board)
         self.__test(expected, board)
 
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         board = [[0, 1, 0], [0, 0, 1], [1, 1, 1], [0, 0, 0]]
         expected = [[0, 0, 0], [1, 0, 1], [0, 1, 1], [0, 1, 0]]
         Solution().gameOfLife(board)
         self.__test(expected, board)
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         board = [[1, 1], [1, 0]]
         expected = [[1, 1], [1, 1]]
         Solution().gameOfLife(board)
         self.__test(expected, board)
 
-    def test_other(self):
+    def test_other(self) -> None:
         board = [
             [0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0],

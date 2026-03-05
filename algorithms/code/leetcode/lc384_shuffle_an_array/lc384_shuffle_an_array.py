@@ -3,17 +3,16 @@
 
 import random
 import unittest
-from typing import List
 
 
 class Solution:
-    def __init__(self, nums: List[int]):
+    def __init__(self, nums: list[int]) -> None:
         self.__nums = nums
 
-    def reset(self) -> List[int]:
+    def reset(self) -> list[int]:
         return self.__nums.copy()
 
-    def shuffle(self) -> List[int]:
+    def shuffle(self) -> list[int]:
         result = self.__nums.copy()
         for i in range(len(self.__nums) - 1, 0, -1):
             j = random.SystemRandom().randint(0, i)
@@ -22,7 +21,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __test(self, nums):
+    def __test(self, nums: list[int]) -> None:
         solution = Solution(nums.copy())
         result = solution.shuffle()
         reset = solution.reset()
@@ -31,11 +30,11 @@ class TestCode(unittest.TestCase):
         result.sort()
         self.assertListEqual(nums, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         nums = [1, 2, 3]
         self.__test(nums)
         # Should use Chi-squared test
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         solution = Solution([])
         self.assertListEqual(solution.shuffle(), [])

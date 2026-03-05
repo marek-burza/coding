@@ -27,8 +27,8 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_MCMLIV(self):
+    def test_MCMLIV(self) -> None:
         self.assertEqual(Solution().romanToInt('MCMLIV'), 1954)
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(Solution().romanToInt(''), 0)

@@ -5,28 +5,27 @@ import functools
 import heapq
 import os
 import unittest
-from typing import List, Set
 
 
 # pylint: disable=R0903
 @functools.total_ordering
 class Edge:
-    def __init__(self, origin, vertex, weight):
+    def __init__(self, origin: int, vertex: int, weight: int) -> None:
         self.origin = origin
         self.vertex = vertex
         self.weight = weight
 
-    def __lt__(self, other):
+    def __lt__(self, other: 'Edge') -> bool:
         return self.weight < other.weight
 
 
-def prims(n: int, edges: List[List[int]], start: int) -> int:
-    adjacency: List[List[Edge]] = [[] for _ in range(n + 1)]
+def prims(n: int, edges: list[list[int]], start: int) -> int:
+    adjacency: list[list[Edge]] = [[] for _ in range(n + 1)]
     for edge in edges:
         adjacency[edge[0]].append(Edge(edge[0], edge[1], edge[2]))
         adjacency[edge[1]].append(Edge(edge[1], edge[0], edge[2]))
-    connected: Set[int] = set()
-    queue: List[Edge] = []
+    connected: set[int] = set()
+    queue: list[Edge] = []
     total = 0
     while len(connected) < n:
         vertex = start
@@ -45,8 +44,8 @@ def prims(n: int, edges: List[List[int]], start: int) -> int:
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -60,11 +59,11 @@ class TestCode(unittest.TestCase):
         expected = int(io_lines[1][0][0])
         self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')
 
-    def test_05(self):
+    def test_05(self) -> None:
         self.runner('05')
 
-    def test_06(self):
+    def test_06(self) -> None:
         self.runner('06')

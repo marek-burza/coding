@@ -28,26 +28,26 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_MinusMinus3241(self):
+    def test_MinusMinus3241(self) -> None:
         self.assertEqual(Solution().myAtoi('--3241'), 0)
 
-    def test_PlusPlus3241(self):
+    def test_PlusPlus3241(self) -> None:
         self.assertEqual(Solution().myAtoi('++3241'), 0)
 
-    def test_MinusPlus3241(self):
+    def test_MinusPlus3241(self) -> None:
         self.assertEqual(Solution().myAtoi('-+3241'), 0)
 
-    def test_Minus3241(self):
+    def test_Minus3241(self) -> None:
         self.assertEqual(Solution().myAtoi('-3241'), -3241)
 
-    def test_SpaceMinusPlus3241A(self):
+    def test_SpaceMinusPlus3241A(self) -> None:
         self.assertEqual(Solution().myAtoi(' -3241a'), -3241)
 
-    def test_9223372036854775809(self):
+    def test_9223372036854775809(self) -> None:
         self.assertEqual(Solution().myAtoi('9223372036854775809'), 2**31 - 1)
 
-    def test_Minus9223372036854775809(self):
+    def test_Minus9223372036854775809(self) -> None:
         self.assertEqual(Solution().myAtoi('-9223372036854775809'), -(2**31))
 
-    def test_Nothing(self):
+    def test_Nothing(self) -> None:
         self.assertEqual(Solution().myAtoi('nothing'), 0)

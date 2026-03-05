@@ -29,17 +29,17 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_smaller(self):
+    def test_smaller(self) -> None:
         x = 34.00515
         n = -3
         expected = x**n
         self.assertEqual(expected, Solution().myPow(x, n), 0)
 
-    def test_bigger(self):
+    def test_bigger(self) -> None:
         x = 0.00001
         n = 2147483647
         expected = x**n
         self.assertEqual(expected, Solution().myPow(x, n), 0)
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.assertEqual(1.0, Solution().myPow(0, 0), 0)

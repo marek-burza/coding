@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def maxSubArray(self, nums):
+    def maxSubArray(self, nums: list[int]) -> int:
         summed = 0
         minimum = 0
         maximum = float('-inf')
@@ -16,23 +16,23 @@ class Solution:
             delta = summed - minimum
             maximum = delta if delta > maximum else maximum
             i += 1
-        return maximum
+        return int(maximum)
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual(
             6, Solution().maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])
         )
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual(1, Solution().maxSubArray([1]))
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         self.assertEqual(23, Solution().maxSubArray([5, 4, -1, 7, 8]))
 
-    def test_Minus2_1(self):
+    def test_Minus2_1(self) -> None:
         self.assertEqual(1, Solution().maxSubArray([-2, 1]))
 
-    def test_Minus2_Minus1(self):
+    def test_Minus2_Minus1(self) -> None:
         self.assertEqual(-1, Solution().maxSubArray([-2, -1]))

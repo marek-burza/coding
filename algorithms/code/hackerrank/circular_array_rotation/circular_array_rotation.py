@@ -2,9 +2,12 @@
 # https://www.hackerrank.com/challenges/circular-array-rotation
 
 import unittest
+from typing import Any
 
 
-def circular_array_rotation(k, a, queries):
+def circular_array_rotation(
+    k: int, a: list[int], queries: list[int]
+) -> list[int]:
     n = len(a)
     results = []
     for query in queries:
@@ -13,7 +16,7 @@ def circular_array_rotation(k, a, queries):
 
 
 class TestCode(unittest.TestCase):
-    def run_test(self, test):
+    def run_test(self, test: dict[str, Any]) -> None:
         k = test['k']
         a = test['a']
         queries = test['queries']
@@ -21,7 +24,7 @@ class TestCode(unittest.TestCase):
         results = circular_array_rotation(k, a, queries)
         self.assertEqual(results, expected)
 
-    def test_example(self):
+    def test_example(self) -> None:
         test = {
             'k': 2,
             'a': [1, 2, 3],
@@ -30,7 +33,8 @@ class TestCode(unittest.TestCase):
         }
         self.run_test(test)
 
-    def test_bigger(self):
+    # pylint: disable=R0915
+    def test_bigger(self) -> None:
         test = {
             'k': 100000,
             'a': [

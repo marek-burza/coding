@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/container-with-most-water/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def maxArea(self, height: List[int]) -> int:
+    def maxArea(self, height: list[int]) -> int:
         maximum = 0
         low = 0
         high = len(height) - 1
@@ -21,20 +20,20 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1_2_1(self):
+    def test_1_2_1(self) -> None:
         test = [1, 2, 1]
         self.assertEqual(Solution().maxArea(test), 2)
 
-    def test_1_3_5_2(self):
+    def test_1_3_5_2(self) -> None:
         test = [1, 3, 5, 2]
         self.assertEqual(Solution().maxArea(test), 4)
 
-    def test_oversized(self):
+    def test_oversized(self) -> None:
         test = 15000 * [0]
         for i in range(15000):
             test[i] = i + 1
         self.assertEqual(Solution().maxArea(test), 56250000)
 
-    def test_huh(self):
+    def test_huh(self) -> None:
         test = [1, 2, 1, 15, 15, 1, 2, 1]
         self.assertEqual(Solution().maxArea(test), 15)

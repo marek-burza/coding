@@ -53,7 +53,7 @@ class Solution:
         'Nineteen',
     ]
 
-    def __tripleToWords(self, i):
+    def __tripleToWords(self, i: int) -> str:
         result = ''
         if i >= 100:
             result += self.__DIGITS[i // 100]
@@ -71,7 +71,7 @@ class Solution:
                 result += self.__DIGITS[i]
         return str(result)
 
-    def numberToWords(self, i):
+    def numberToWords(self, i: int) -> str:
         if i == 0:
             return 'Zero'
         result = ''
@@ -89,37 +89,37 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_123(self):
+    def test_123(self) -> None:
         self.assertEqual(
             'One Hundred Twenty Three', Solution().numberToWords(123)
         )
 
-    def test_12345(self):
+    def test_12345(self) -> None:
         self.assertEqual(
             'Twelve Thousand Three Hundred Forty Five',
             Solution().numberToWords(12345),
         )
 
-    def test_1234567(self):
+    def test_1234567(self) -> None:
         self.assertEqual(
             'One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven',  # noqa
             Solution().numberToWords(1234567),
         )
 
-    def test_91(self):
+    def test_91(self) -> None:
         self.assertEqual('Ninety One', Solution().numberToWords(91))
 
-    def test_19(self):
+    def test_19(self) -> None:
         self.assertEqual('Nineteen', Solution().numberToWords(19))
 
-    def test_100(self):
+    def test_100(self) -> None:
         self.assertEqual('One Hundred', Solution().numberToWords(100))
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.assertEqual('Zero', Solution().numberToWords(0))
 
-    def test_1000(self):
+    def test_1000(self) -> None:
         self.assertEqual('One Thousand', Solution().numberToWords(1000))
 
-    def test_20(self):
+    def test_20(self) -> None:
         self.assertEqual('Twenty', Solution().numberToWords(20))

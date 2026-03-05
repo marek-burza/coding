@@ -17,11 +17,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_a_b(self):
+    def test_example_a_b(self) -> None:
         self.assertFalse(Solution().canConstruct('a', 'b'))
 
-    def test_example_aa_ab(self):
+    def test_example_aa_ab(self) -> None:
         self.assertFalse(Solution().canConstruct('aa', 'ab'))
 
-    def test_example_aa_aab(self):
+    def test_example_aa_aab(self) -> None:
         self.assertTrue(Solution().canConstruct('aa', 'aab'))

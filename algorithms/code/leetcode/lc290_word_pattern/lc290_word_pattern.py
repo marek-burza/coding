@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/word-pattern/
 
 import unittest
-from typing import Dict
 
 
 class Solution:
-    def check(self, first, second, mapping):
+    def check(self, first: str, second: str, mapping: dict[str, str]) -> bool:
         if first in mapping:
             if mapping[first] != second:
                 return False
@@ -18,8 +17,8 @@ class Solution:
         words = s.split(' ')
         if len(pattern) != len(words):
             return False
-        mapping_ps: Dict[str, str] = {}
-        mapping_sp: Dict[str, str] = {}
+        mapping_ps: dict[str, str] = {}
+        mapping_sp: dict[str, str] = {}
         i = 0
         while i < len(words):
             key = pattern[i : i + 1]
@@ -32,20 +31,20 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_abba__dog_cat_cat_dog(self):
+    def test_abba__dog_cat_cat_dog(self) -> None:
         self.assertTrue(Solution().wordPattern('abba', 'dog cat cat dog'))
 
-    def test_abba__dog_cat_cat_fish(self):
+    def test_abba__dog_cat_cat_fish(self) -> None:
         self.assertFalse(Solution().wordPattern('abba', 'dog cat cat fish'))
 
-    def test_aaaa__dog_cat_cat_dog(self):
+    def test_aaaa__dog_cat_cat_dog(self) -> None:
         self.assertFalse(Solution().wordPattern('aaaa', 'dog cat cat dog'))
 
-    def test_abba__dog_dog_dog_dog(self):
+    def test_abba__dog_dog_dog_dog(self) -> None:
         self.assertFalse(Solution().wordPattern('abba', 'dog dog dog dog'))
 
-    def test_ab_b_c(self):
+    def test_ab_b_c(self) -> None:
         self.assertTrue(Solution().wordPattern('ab', 'b c'))
 
-    def test_mismatched(self):
+    def test_mismatched(self) -> None:
         self.assertFalse(Solution().wordPattern('ab', 'c'))

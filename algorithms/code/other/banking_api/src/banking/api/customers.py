@@ -1,4 +1,4 @@
-from typing import Annotated, List, Optional
+from typing import Annotated, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.exc import IntegrityError
@@ -37,7 +37,7 @@ ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS = (
 
 def query_and_verify_customer_identifier(
     customer_identifier: Optional[int], db_session: Session
-) -> List[CustomerRead]:
+) -> list[CustomerRead]:
     customers = db_session.query(Customer)
     if customer_identifier is not None:
         customers = customers.filter(
@@ -115,7 +115,7 @@ async def put_customer(
 @router.get(
     '/customers/',
     tags=['get_customers'],
-    response_model=List[CustomerRead],
+    response_model=list[CustomerRead],
     responses={
         status.HTTP_404_NOT_FOUND: {
             'description': 'Issued when customer with given identifier does not exist'  # noqa
@@ -131,7 +131,7 @@ async def get_customers(
         Query(description='Integer identifier of the customer'),
     ] = None,
     db_session: Session = Depends(database.get_session),  # noqa: B008
-):
+) -> list[CustomerRead]:
     return query_and_verify_customer_identifier(
         customer_identifier, db_session
     )

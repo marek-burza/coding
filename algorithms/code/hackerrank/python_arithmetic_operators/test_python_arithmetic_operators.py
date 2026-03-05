@@ -9,14 +9,14 @@ import sys
 import unittest
 
 
-def mix(first, second):
+def mix(first: int, second: int) -> tuple[int, int, int]:
     added = first + second
     subtracted = first - second
     multiplied = first * second
     return added, subtracted, multiplied
 
 
-def main():
+def main() -> None:
     first_in = int(input().strip())
     second_in = int(input().strip())
     added_out, subtracted_out, multiplied_out = mix(first_in, second_in)
@@ -30,7 +30,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -43,10 +43,10 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')
 
-    def test_random(self):
+    def test_random(self) -> None:
         first = struct.unpack('<L', os.urandom(4))[0]
         second = struct.unpack('<L', os.urandom(4))[0]
         for _ in range(100):

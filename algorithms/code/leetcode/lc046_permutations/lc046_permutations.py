@@ -2,11 +2,16 @@
 # https://leetcode.com/problems/permutations/
 
 import unittest
-from typing import List
+from typing import Any, Callable
 
 
 class Solution:
-    def __permute(self, prefix, remaining, permutations):
+    def __permute(
+        self,
+        prefix: list[int],
+        remaining: set[int],
+        permutations: list[list[int]],
+    ) -> None:
         if len(remaining) == 0:
             permutations.append(prefix.copy())
         else:
@@ -17,8 +22,8 @@ class Solution:
                 self.__permute(prefix, reduced, permutations)
                 prefix.pop()
 
-    def permute(self, nums: List[int]) -> List[List[int]]:
-        permutations: List[List[int]] = []
+    def permute(self, nums: list[int]) -> list[list[int]]:
+        permutations: list[list[int]] = []
         remaining = set(nums)
         self.__permute([], remaining, permutations)
         return permutations
@@ -26,33 +31,35 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     @staticmethod
-    def cmp_to_key(mycmp):  # pragma: no cover
+    def cmp_to_key(mycmp: Callable) -> Any:  # pragma: no cover
         class K:
-            def __init__(self, obj, *_):
+            def __init__(self, obj: Any, *_: Any) -> None:
                 self.obj = obj
 
-            def __lt__(self, other):
+            def __lt__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) < 0
 
-            def __gt__(self, other):
+            def __gt__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) > 0
 
-            def __eq__(self, other):
+            def __eq__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) == 0
 
-            def __le__(self, other):
+            def __le__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) <= 0
 
-            def __ge__(self, other):
+            def __ge__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) >= 0
 
-            def __ne__(self, other):
+            def __ne__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) != 0
 
         return K
 
     @staticmethod
-    def integer_list_comparator(l1, l2):  # pragma: no cover
+    def integer_list_comparator(
+        l1: list[int], l2: list[int]
+    ) -> int:  # pragma: no cover
         if len(l1) < len(l2):
             return -1
         if len(l1) > len(l2):
@@ -64,7 +71,7 @@ class TestCode(unittest.TestCase):
                 return 1
         return 0
 
-    def test_example(self):
+    def test_example(self) -> None:
         nums = [1, 2, 3]
         expected = [
             [1, 2, 3],

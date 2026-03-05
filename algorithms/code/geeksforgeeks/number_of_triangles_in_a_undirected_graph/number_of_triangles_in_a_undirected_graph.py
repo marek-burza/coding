@@ -6,20 +6,26 @@ import unittest
 
 
 class Solution:
-    def multiply(self, a, b, c, v):
+    def multiply(
+        self,
+        a: list[list[int]],
+        b: list[list[int]],
+        c: list[list[int]],
+        v: int,
+    ) -> None:
         for i in range(v):
             for j in range(v):
                 c[i][j] = 0
                 for k in range(v):
                     c[i][j] += a[i][k] * b[k][j]
 
-    def get_trace(self, graph, v):
+    def get_trace(self, graph: list[list[int]], v: int) -> int:
         trace = 0
         for i in range(v):
             trace += graph[i][i]
         return trace
 
-    def triangle_in_graph(self, graph, v):
+    def triangle_in_graph(self, graph: list[list[int]], v: int) -> int:
         aux2 = [[0] * v for _ in range(v)]
         aux3 = [[0] * v for _ in range(v)]
 
@@ -31,6 +37,6 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         graph = [[0, 1, 1, 0], [1, 0, 1, 1], [1, 1, 0, 1], [0, 1, 1, 0]]
         self.assertEqual(2, Solution().triangle_in_graph(graph, 4))

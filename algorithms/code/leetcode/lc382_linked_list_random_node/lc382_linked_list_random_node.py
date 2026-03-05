@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/linked-list-random-node/
 
+from __future__ import annotations
+
 import random
 import unittest
-from typing import Optional
 
 
 class ListNode:
-    def __init__(self, val=0, following=None):
+    def __init__(
+        self, val: int = 0, following: 'ListNode | None' = None
+    ) -> None:
         self.val = val
         self.next = following
 
 
 class Solution:
-    def __init__(self, head: Optional[ListNode]):
+    def __init__(self, head: ListNode | None) -> None:
         self.__head = head
 
     def getRandom(self) -> int:
@@ -31,7 +34,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         head = ListNode(1)
         head.next = ListNode(2)
         head.next.next = ListNode(3)
@@ -46,6 +49,6 @@ class TestCode(unittest.TestCase):
         self.assertEqual(3, counts[2] // 1000)
         # Should use Chi-squared test
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         solution = Solution(None)
         self.assertRaises(ValueError, solution.getRandom)

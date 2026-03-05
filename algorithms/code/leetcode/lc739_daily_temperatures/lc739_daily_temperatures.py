@@ -2,12 +2,11 @@
 # https://leetcode.com/problems/find-all-duplicates-in-an-array/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        stack: List[int] = []
+    def dailyTemperatures(self, temperatures: list[int]) -> list[int]:
+        stack: list[int] = []
         result = [0] * len(temperatures)
         for index, temperature in enumerate(temperatures):
             while stack and temperature > temperatures[stack[-1]]:
@@ -18,18 +17,18 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertListEqual(
             [1, 1, 4, 2, 1, 1, 0, 0],
             Solution().dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]),
         )
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertListEqual(
             [1, 1, 1, 0], Solution().dailyTemperatures([30, 40, 50, 60])
         )
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         self.assertListEqual(
             [1, 1, 0], Solution().dailyTemperatures([30, 60, 90])
         )

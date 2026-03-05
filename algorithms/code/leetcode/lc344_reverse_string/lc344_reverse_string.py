@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/reverse-string/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def reverseString(self, s: List[str]) -> None:
+    def reverseString(self, s: list[str]) -> None:
         for i in range(round(len(s) / 2)):
             exchange = s[i]
             s[i] = s[len(s) - 1 - i]
@@ -14,7 +13,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         s = list('hello')
         Solution().reverseString(s)
         self.assertListEqual(list('olleh'), s)

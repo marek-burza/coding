@@ -31,8 +31,8 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1234(self):
+    def test_1234(self) -> None:
         self.assertEqual(Solution().intToRoman(1234), 'MCCXXXIV')
 
-    def test_9(self):
+    def test_9(self) -> None:
         self.assertEqual(Solution().intToRoman(9), 'IX')

@@ -8,9 +8,9 @@ import sys
 import unittest
 
 
-def orderly(words):
+def orderly(words: list[str]) -> tuple[list[str], dict[str, int]]:
     unique = []
-    counted = collections.Counter()
+    counted: collections.Counter = collections.Counter()
     for word in words:
         if word not in counted:
             unique.append(word)
@@ -18,7 +18,7 @@ def orderly(words):
     return unique, counted
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     words = []
     for _ in range(n):
@@ -33,7 +33,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -46,5 +46,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

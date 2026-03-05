@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/find-peak-element/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def findPeakElement(self, nums: List[int]) -> int:
+    def findPeakElement(self, nums: list[int]) -> int:
         for i in range(1, len(nums) + 1):
             postFalling = None
             postFalling = i == len(nums) or nums[i - 1] > nums[i]
@@ -16,11 +15,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1_2_3_1(self):
+    def test_1_2_3_1(self) -> None:
         self.assertEqual(2, Solution().findPeakElement([1, 2, 3, 1]))
 
-    def test_1_2_3_4(self):
+    def test_1_2_3_4(self) -> None:
         self.assertEqual(3, Solution().findPeakElement([1, 2, 3, 4]))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(-1, Solution().findPeakElement([]))

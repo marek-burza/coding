@@ -22,5 +22,5 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_5__7(self):
+    def test_5__7(self) -> None:
         self.assertEqual(4, Solution().rangeBitwiseAnd(5, 7))

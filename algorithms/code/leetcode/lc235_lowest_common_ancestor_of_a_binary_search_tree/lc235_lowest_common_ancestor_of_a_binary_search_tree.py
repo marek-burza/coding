@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
+from typing import Any
 
 
 class TreeNode:
-    def __init__(self, val, left=None, right=None):
+    def __init__(
+        self,
+        val: Any,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
@@ -15,10 +22,10 @@ class TreeNode:
 class Solution:
     def lowestCommonAncestor(
         self,
-        root: Optional[TreeNode],
-        p: Optional[TreeNode],
-        q: Optional[TreeNode],
-    ) -> Optional[TreeNode]:
+        root: TreeNode | None,
+        p: TreeNode | None,
+        q: TreeNode | None,
+    ) -> TreeNode | None:
         if root is not None:
             left = None
             right = None
@@ -42,7 +49,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n3 = TreeNode(3, None, None)
         n5 = TreeNode(5, None, None)
         n4 = TreeNode(4, n3, n5)
@@ -57,7 +64,7 @@ class TestCode(unittest.TestCase):
         result = Solution().lowestCommonAncestor(n2, n2, n4)
         assert result is not None and result.val == 2
 
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         n1 = TreeNode(1, None, None)
         n2 = TreeNode(2, n1, None)
         n4 = TreeNode(4, None, None)
@@ -67,7 +74,7 @@ class TestCode(unittest.TestCase):
         result = Solution().lowestCommonAncestor(n5, n1, n4)
         assert result is not None and result.val == 3
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         n3 = TreeNode(3, None, None)
         n5 = TreeNode(5, None, None)
         n4 = TreeNode(4, n3, n5)
@@ -79,17 +86,17 @@ class TestCode(unittest.TestCase):
         result = Solution().lowestCommonAncestor(n6, n3, n5)
         assert result is not None and result.val == 4
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         n1 = TreeNode(1, None, None)
         n2 = TreeNode(2, n1, None)
         result = Solution().lowestCommonAncestor(n2, n2, n1)
         assert result is not None and result.val == 2
 
-    def test_example_4(self):
+    def test_example_4(self) -> None:
         n2 = TreeNode(2, None, None)
         n3 = TreeNode(3, None, n2)
         result = Solution().lowestCommonAncestor(n2, n3, n2)
         assert result is not None and result.val == 2
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         assert Solution().lowestCommonAncestor(None, None, None) is None

@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/sort-colors/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def sortColors(self, nums: List[int]) -> None:
+    def sortColors(self, nums: list[int]) -> None:
         counters = [0, 0, 0]
         for value in nums:
             counters[value] += 1
@@ -22,13 +21,13 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_2(self):
+    def test_2(self) -> None:
         nums = [2]
         expected = [2]
         Solution().sortColors(nums)
         self.assertListEqual(expected, nums)
 
-    def test_1_0(self):
+    def test_1_0(self) -> None:
         nums = [1, 0]
         expected = [0, 1]
         Solution().sortColors(nums)

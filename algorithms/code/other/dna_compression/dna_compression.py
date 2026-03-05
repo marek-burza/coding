@@ -96,7 +96,7 @@ class TestCode(unittest.TestCase):
         original_path = Path(__file__).parent / 'input4.gcg'
         self.generic_equivalence(original_path)
 
-    def test_encoding_and_decoding_padded(self):
+    def test_encoding_and_decoding_padded(self) -> None:
         original_path = Path(__file__).parent / 'input1.gcg'
         self.generic_equivalence(original_path)
 

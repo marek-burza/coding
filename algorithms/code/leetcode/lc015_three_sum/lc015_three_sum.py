@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/3sum/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
         nums = sorted(nums)
         result = []
         length = len(nums)
@@ -32,7 +31,9 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def check(self, expected, result):
+    def check(
+        self, expected: list[list[int]], result: list[list[int]]
+    ) -> None:
         self.assertEqual(len(result), len(expected))
         for entry in expected:
             for candidate in result:
@@ -46,12 +47,12 @@ class TestCode(unittest.TestCase):
                     break
         self.assertEqual(len(result), 0)
 
-    def test_example(self):
+    def test_example(self) -> None:
         s = [-1, 0, 1, 2, -1, -4]
         expected = [[-1, 0, 1], [-1, -1, 2]]
         self.check(expected, Solution().threeSum(s))
 
-    def test_oversized(self):
+    def test_oversized(self) -> None:
         s = [
             14,
             -11,
@@ -304,6 +305,6 @@ class TestCode(unittest.TestCase):
         ]
         self.check(expected, Solution().threeSum(s))
 
-    def test_empty(self):
-        s = []
+    def test_empty(self) -> None:
+        s: list[int] = []
         self.assertEqual(len(Solution().threeSum(s)), 0)

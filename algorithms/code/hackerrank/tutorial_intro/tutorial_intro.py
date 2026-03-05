@@ -4,7 +4,7 @@
 import unittest
 
 
-def intro_tutorial(v, arr):
+def intro_tutorial(v: int, arr: list[int]) -> int:
     a = 0
     z = len(arr) - 1
     while a <= z:
@@ -19,11 +19,11 @@ def intro_tutorial(v, arr):
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         self.assertEqual(1, intro_tutorial(4, [1, 4, 5, 7, 9, 12]))
 
-    def test_another(self):
+    def test_another(self) -> None:
         self.assertEqual(3, intro_tutorial(7, [1, 4, 5, 7, 9, 12]))
 
-    def test_invalid(self):
+    def test_invalid(self) -> None:
         self.assertEqual(-1, intro_tutorial(20, [1, 4, 5, 7, 9, 12]))

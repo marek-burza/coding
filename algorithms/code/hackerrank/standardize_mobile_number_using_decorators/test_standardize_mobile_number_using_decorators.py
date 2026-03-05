@@ -5,10 +5,11 @@
 import io
 import sys
 import unittest
+from typing import Callable
 
 
-def wrapper(f):
-    def fun(numbers):
+def wrapper(f: Callable) -> Callable:
+    def fun(numbers: list[str]) -> None:
         numbers = [f'+91 {number[-10:-5]} {number[-5:]}' for number in numbers]
         f(numbers)
 
@@ -16,11 +17,11 @@ def wrapper(f):
 
 
 @wrapper
-def sort_phone(numbers):
+def sort_phone(numbers: list[str]) -> None:
     print(*sorted(numbers), sep='\n')
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     numbers = [input() for _ in range(n)]
     sort_phone(numbers)
@@ -31,7 +32,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -44,5 +45,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

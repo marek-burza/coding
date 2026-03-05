@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def searchInsert(self, nums, target):
+    def searchInsert(self, nums: list[int], target: int) -> int:
         a = 0
         z = len(nums)
         while a != z:
@@ -18,26 +18,26 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test__empty__5(self):
-        nums = []
+    def test__empty__5(self) -> None:
+        nums: list[int] = []
         self.assertEqual(0, Solution().searchInsert(nums, 5))
 
-    def test__1_3_5_6__5(self):
+    def test__1_3_5_6__5(self) -> None:
         nums = [1, 3, 5, 6]
         self.assertEqual(2, Solution().searchInsert(nums, 5))
 
-    def test__1_3_5_6__2(self):
+    def test__1_3_5_6__2(self) -> None:
         nums = [1, 3, 5, 6]
         self.assertEqual(1, Solution().searchInsert(nums, 2))
 
-    def test__1_3_5_6__7(self):
+    def test__1_3_5_6__7(self) -> None:
         nums = [1, 3, 5, 6]
         self.assertEqual(4, Solution().searchInsert(nums, 7))
 
-    def test__1_3_5_6__0(self):
+    def test__1_3_5_6__0(self) -> None:
         nums = [1, 3, 5, 6]
         self.assertEqual(0, Solution().searchInsert(nums, 0))
 
-    def test__1_3_5_6__1(self):
+    def test__1_3_5_6__1(self) -> None:
         nums = [1, 3, 5, 6]
         self.assertEqual(0, Solution().searchInsert(nums, 1))

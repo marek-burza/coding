@@ -71,14 +71,14 @@ class BoardState:
         rows = range(BoardState.MAX_ROWS - 1, -1, -1)
         columns = range(BoardState.MAX_COLUMNS)
 
-        def line(r):
+        def line(r: int) -> str:
             return ''.join([lut[self.player_at(r, c)] for c in columns])
 
         return '\n'.join([line(r) for r in rows])
 
 
 class GameState(BoardState):
-    def __init__(self, first):
+    def __init__(self, first: Player) -> None:
         super().__init__()
         self.__turn = first
 
@@ -101,7 +101,7 @@ class TestCode(unittest.TestCase):
         outcomes: list[bool],
         winners: list[Winner],
         board: list[str],
-    ):
+    ) -> None:
         g = GameState(first)
         i = 1
         for move, outcome, winner in zip(

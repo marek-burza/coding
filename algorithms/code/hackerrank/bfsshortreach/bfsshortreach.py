@@ -4,11 +4,10 @@
 import collections
 import os
 import unittest
-from typing import List
 
 
 # pylint: disable=W0613
-def bfs(n: int, m: int, edges: List[List[int]], s: int) -> List[int]:
+def bfs(n: int, m: int, edges: list[list[int]], s: int) -> list[int]:
     adjacency = [[False] * n for _ in range(n)]
     for edge in edges:
         adjacency[edge[0] - 1][edge[1] - 1] = True
@@ -29,8 +28,8 @@ def bfs(n: int, m: int, edges: List[List[int]], s: int) -> List[int]:
 
 class TestCode(unittest.TestCase):
     # pylint: disable=R0914
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -41,13 +40,13 @@ class TestCode(unittest.TestCase):
         for test in range(tests):
             n = int(io_lines[0][offset][0])
             m = int(io_lines[0][offset][1])
-            edges = io_lines[0][offset + 1 : offset + 1 + m]
-            edges = [[int(item) for item in row] for row in edges]
+            edges_raw = io_lines[0][offset + 1 : offset + 1 + m]
+            edges = [[int(item) for item in row] for row in edges_raw]
             s = int(io_lines[0][offset + 1 + m][0])
             offset += 1 + m + 1
             result = bfs(n, m, edges, s)
             expected = [int(item) for item in io_lines[1][test]]
             self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')

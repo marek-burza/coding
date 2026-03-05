@@ -8,8 +8,8 @@ import sys
 import unittest
 
 
-def mangle(s):
-    counted = collections.Counter()
+def mangle(s: str) -> tuple[list[str], dict[str, int]]:
+    counted: collections.Counter = collections.Counter()
     for entry in s:
         counted[entry] += 1
     ordered = sorted(
@@ -20,7 +20,7 @@ def mangle(s):
     return ordered, counted
 
 
-def main():
+def main() -> None:
     s = input().strip()
     ordered, counted = mangle(s)
     for entry in ordered[:3]:
@@ -32,7 +32,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -45,5 +45,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

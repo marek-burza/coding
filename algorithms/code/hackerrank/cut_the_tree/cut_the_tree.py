@@ -3,37 +3,40 @@
 
 import os
 import unittest
-from typing import Dict, List, Set
-
-INDEX_INDEX = 0
-INDEX_VALUE = 1
-INDEX_ADJACENT = 2
+from dataclasses import dataclass
 
 
-def build_graph(data: List[int], edges: List[List[int]]) -> Dict[int, tuple]:
-    mapped: Dict[int, tuple] = {}
+@dataclass
+class Vertex:
+    index: int
+    value: int
+    adjacent: list
+
+
+def build_graph(data: list[int], edges: list[list[int]]) -> dict[int, Vertex]:
+    mapped: dict[int, Vertex] = {}
     for i, _ in enumerate(data):
         index = i + 1
-        mapped[index] = (index, data[i], [])
+        mapped[index] = Vertex(index, data[i], [])
     for edge in edges:
-        mapped[edge[0]][INDEX_ADJACENT].append(mapped[edge[1]])
-        mapped[edge[1]][INDEX_ADJACENT].append(mapped[edge[0]])
+        mapped[edge[0]].adjacent.append(mapped[edge[1]])
+        mapped[edge[1]].adjacent.append(mapped[edge[0]])
     return mapped
 
 
 def maximum_edge(
-    graph: Dict[int, tuple],
+    graph: dict[int, Vertex],
     v: int,
     total: int,
-    minimum: List[int],
-    seen: Set[int],
+    minimum: list[int],
+    seen: set[int],
 ) -> int:
     if v in seen:
         return 0
-    summed = graph[v][INDEX_VALUE]
+    summed = graph[v].value
     seen.add(v)
-    for other in graph[v][INDEX_ADJACENT]:
-        partial = maximum_edge(graph, other[INDEX_INDEX], total, minimum, seen)
+    for other in graph[v].adjacent:
+        partial = maximum_edge(graph, other.index, total, minimum, seen)
         candidate = abs(total - 2 * partial)
         if not minimum or candidate < minimum[0]:
             if not minimum:
@@ -44,18 +47,18 @@ def maximum_edge(
     return summed
 
 
-def cut_the_tree(data: List[int], edges: List[List[int]]) -> int:
+def cut_the_tree(data: list[int], edges: list[list[int]]) -> int:
     graph = build_graph(data, edges)
     total = sum(data)
-    minimum: List[int] = []
-    seen: Set[int] = set()
+    minimum: list[int] = []
+    seen: set[int] = set()
     maximum_edge(graph, 1, total, minimum, seen)
     return minimum[0]
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -71,5 +74,5 @@ class TestCode(unittest.TestCase):
         expected = int(io_lines[1][0][0])
         self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')

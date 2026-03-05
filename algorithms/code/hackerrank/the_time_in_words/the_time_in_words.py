@@ -70,38 +70,36 @@ def time_in_words(h: int, m: int) -> str:
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
                 lines = handle.readlines()
             io_lines[index] = [line.strip().split(' ') for line in lines]
-        arguments = io_lines[0][1]
-        arguments = [int(item) for item in arguments]
         result = time_in_words(int(io_lines[0][0][0]), int(io_lines[0][1][0]))
         self.assertEqual(' '.join(io_lines[1][0]), result)
 
-    def test_example_0(self):
+    def test_example_0(self) -> None:
         self.runner('_example_0')
 
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.runner('_example_1')
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.runner('_example_2')
 
-    def test_03_59(self):
+    def test_03_59(self) -> None:
         self.assertEqual('one minute to four', time_in_words(3, 59))
 
-    def test_03_01(self):
+    def test_03_01(self) -> None:
         self.assertEqual('one minute past three', time_in_words(3, 1))
 
-    def test_03_45(self):
+    def test_03_45(self) -> None:
         self.assertEqual('quarter to four', time_in_words(3, 45))
 
-    def test_03_30(self):
+    def test_03_30(self) -> None:
         self.assertEqual('half past three', time_in_words(3, 30))
 
-    def test_03_20(self):
+    def test_03_20(self) -> None:
         self.assertEqual('twenty minutes past three', time_in_words(3, 20))

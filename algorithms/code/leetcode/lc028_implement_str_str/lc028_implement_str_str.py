@@ -15,14 +15,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_empty(self):
+    def test_empty(self) -> None:
         self.assertEqual(Solution().strStr('', ''), 0)
 
-    def test_mississippi_a(self):
+    def test_mississippi_a(self) -> None:
         self.assertEqual(Solution().strStr('mississippi', 'a'), -1)
 
-    def test_mississippi_si(self):
+    def test_mississippi_si(self) -> None:
         self.assertEqual(Solution().strStr('mississippi', 'si'), 3)
 
-    def test_bigger_in_smaller(self):
+    def test_bigger_in_smaller(self) -> None:
         self.assertEqual(Solution().strStr('', 'si'), -1)

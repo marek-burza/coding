@@ -1,22 +1,29 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/swap-nodes-in-pairs/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class ListNode:
-    def __init__(self, val=0, following=None):
+    def __init__(
+        self, val: int = 0, following: 'ListNode | None' = None
+    ) -> None:
         self.val = val
         self.next = following
 
 
 class Solution:
-    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def swapPairs(self, head: ListNode | None) -> ListNode | None:
         result = ListNode()
         result.next = head
-        node = result
-        while node.next is not None and node.next.next is not None:
+        node: ListNode | None = result
+        while (
+            node is not None
+            and node.next is not None
+            and node.next.next is not None
+        ):
             first = node.next
             second = node.next.next
             after = node.next.next.next
@@ -28,7 +35,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n1 = ListNode(1)
         n2 = ListNode(2)
         n3 = ListNode(3)
@@ -43,7 +50,7 @@ class TestCode(unittest.TestCase):
             assert result.val == value
             result = result.next
 
-    def test_example_impaired(self):
+    def test_example_impaired(self) -> None:
         n1 = ListNode(1)
         n2 = ListNode(2)
         n3 = ListNode(3)
@@ -56,5 +63,5 @@ class TestCode(unittest.TestCase):
             assert result.val == value
             result = result.next
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         assert Solution().swapPairs(None) is None

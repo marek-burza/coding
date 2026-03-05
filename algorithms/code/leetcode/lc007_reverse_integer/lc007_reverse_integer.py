@@ -34,17 +34,17 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_minus2000000002(self):
+    def test_minus2000000002(self) -> None:
         self.assertEqual(Solution().reverse(2000000002), 2000000002)
 
-    def test_minus2147483648(self):
+    def test_minus2147483648(self) -> None:
         self.assertEqual(Solution().reverse(-2147483648), 0)
 
-    def test_1000000003(self):
+    def test_1000000003(self) -> None:
         self.assertEqual(Solution().reverse(1000000003), 0)
 
-    def test_1534236469(self):
+    def test_1534236469(self) -> None:
         self.assertEqual(Solution().reverse(1534236469), 0)
 
-    def test_minus321(self):
+    def test_minus321(self) -> None:
         self.assertEqual(Solution().reverse(-321), -123)

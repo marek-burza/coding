@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def plusOne(self, digits):
+    def plusOne(self, digits: list[int]) -> list[int]:
         carry = 1
         for i in range(len(digits) - 1, -1, -1):
             digits[i] += carry
@@ -19,10 +19,10 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1_9(self):
+    def test_1_9(self) -> None:
         expected = [2, 0]
         self.assertListEqual(expected, Solution().plusOne([1, 9]))
 
-    def test_9_9(self):
+    def test_9_9(self) -> None:
         expected = [1, 0, 0]
         self.assertListEqual(expected, Solution().plusOne([9, 9]))

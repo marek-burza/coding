@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/triangle/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def minimumTotal(self, triangle: List[List[int]]) -> int:
+    def minimumTotal(self, triangle: list[list[int]]) -> int:
         if len(triangle) == 0 or len(triangle[0]) == 0:
             return 0
         height = len(triangle)
@@ -30,21 +29,21 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __construct(self, compact):
-        triangle = []
+    def __construct(self, compact: list[list[int]]) -> list[list[int]]:
+        triangle: list[list[int]] = []
         for array in compact:
-            line = []
+            line: list[int] = []
             triangle.append(line)
             for value in array:
                 line.append(value)
         return triangle
 
-    def test_example(self):
+    def test_example(self) -> None:
         triangle = [[2], [3, 4], [6, 5, 7], [4, 1, 8, 3]]
         self.assertEqual(
             11, Solution().minimumTotal(self.__construct(triangle))
         )
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().minimumTotal([]))
         self.assertEqual(0, Solution().minimumTotal([[]]))

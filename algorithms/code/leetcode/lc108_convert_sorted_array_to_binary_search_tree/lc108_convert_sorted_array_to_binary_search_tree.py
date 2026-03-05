@@ -2,13 +2,20 @@
 
 # https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 
+from __future__ import annotations
+
 import collections
 import unittest
-from typing import List, Optional
+from typing import Callable, Deque
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
@@ -17,8 +24,8 @@ class TreeNode:
 class Solution:
     @staticmethod
     def __sortedArrayToBST(
-        nums: List[int], head: int, tail: int
-    ) -> Optional[TreeNode]:
+        nums: list[int], head: int, tail: int
+    ) -> TreeNode | None:
         if head >= tail:
             return None
         length = tail - head
@@ -27,18 +34,20 @@ class Solution:
         root_right = Solution.__sortedArrayToBST(nums, half + 1, tail)
         return TreeNode(nums[half], root_left, root_right)
 
-    def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
+    def sortedArrayToBST(self, nums: list[int]) -> TreeNode | None:
         return Solution.__sortedArrayToBST(nums, 0, len(nums))
 
 
 class TestCode(unittest.TestCase):  # pragma: no cover
     @staticmethod
-    def __find_extreme(root, init, relation):
+    def __find_extreme(
+        root: TreeNode | None, init: float, relation: Callable
+    ) -> float:
         if root is None:
             return 0
-        nodes = collections.deque()
+        nodes: Deque[TreeNode] = collections.deque()
         nodes.append(root)
-        levels = collections.deque()
+        levels: Deque[int] = collections.deque()
         levels.append(1)
         extremum = init
         while nodes:
@@ -56,15 +65,15 @@ class TestCode(unittest.TestCase):  # pragma: no cover
         return extremum
 
     @staticmethod
-    def __min_height(root):
+    def __min_height(root: TreeNode | None) -> float:
         return TestCode.__find_extreme(root, float('inf'), min)
 
     @staticmethod
-    def __max_height(root):
+    def __max_height(root: TreeNode | None) -> float:
         return TestCode.__find_extreme(root, float('-inf'), max)
 
     @staticmethod
-    def __reconstruct(root, listed):
+    def __reconstruct(root: TreeNode | None, listed: list[int]) -> None:
         if root is None:
             return
         if root.left is not None:
@@ -74,8 +83,8 @@ class TestCode(unittest.TestCase):  # pragma: no cover
             TestCode.__reconstruct(root.right, listed)
 
     @staticmethod
-    def __is_bst(root):
-        listed = []
+    def __is_bst(root: TreeNode | None) -> bool:
+        listed: list[int] = []
         TestCode.__reconstruct(root, listed)
         previous = float('-inf')
         for value in listed:
@@ -84,10 +93,10 @@ class TestCode(unittest.TestCase):  # pragma: no cover
             previous = value
         return True
 
-    def test_empty(self):
+    def test_empty(self) -> None:
         self.assertEqual(None, Solution().sortedArrayToBST([]))
 
-    def test_depth_and_ordering(self):
+    def test_depth_and_ordering(self) -> None:
         nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         root = Solution().sortedArrayToBST(nums)
         difference = TestCode.__max_height(root) - TestCode.__min_height(root)

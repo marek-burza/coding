@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def __isVowel(self, letter):
+    def __isVowel(self, letter: str) -> bool:
         vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']
         return any(vowel == letter for vowel in vowels)
 
@@ -28,14 +28,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual('holle', Solution().reverseVowels('hello'))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual('leetcode', Solution().reverseVowels('leotcede'))
 
-    def test_oe(self):
+    def test_oe(self) -> None:
         self.assertEqual('EO', Solution().reverseVowels('OE'))
 
-    def test_zt(self):
+    def test_zt(self) -> None:
         self.assertEqual('zt', Solution().reverseVowels('zt'))

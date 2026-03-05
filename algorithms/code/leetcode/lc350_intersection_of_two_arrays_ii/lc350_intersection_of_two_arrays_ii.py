@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/intersection-of-two-arrays-ii/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+    def intersect(self, nums1: list[int], nums2: list[int]) -> list[int]:
         nums1.sort()
         nums2.sort()
         found = []
@@ -26,31 +25,31 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         expected = [2, 2]
         result = Solution().intersect([1, 2, 2, 1], [2, 2])
         result.sort()
         self.assertListEqual(expected, result)
 
-    def test_example_flipped(self):
+    def test_example_flipped(self) -> None:
         expected = [2, 2]
         result = Solution().intersect([2, 2], [1, 2, 2, 1])
         result.sort()
         self.assertListEqual(expected, result)
 
-    def test_1_1(self):
+    def test_1_1(self) -> None:
         expected = [1]
         result = Solution().intersect([1], [1])
         result.sort()
         self.assertListEqual(expected, result)
 
-    def test_12_11(self):
+    def test_12_11(self) -> None:
         expected = [1]
         result = Solution().intersect([1, 2], [1, 1])
         result.sort()
         self.assertListEqual(expected, result)
 
-    def test_495_94985(self):
+    def test_495_94985(self) -> None:
         expected = [4, 5, 9]
         result = Solution().intersect([4, 9, 5], [9, 4, 9, 8, 5])
         result.sort()

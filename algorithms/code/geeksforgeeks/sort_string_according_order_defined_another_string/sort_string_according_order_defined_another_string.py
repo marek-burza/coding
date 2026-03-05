@@ -6,7 +6,7 @@ import unittest
 
 
 class Solution:
-    def sortByPattern(self, string, pat):
+    def sortByPattern(self, string: str, pat: str) -> str:
         # Build a decorating hash table
         lut = {}
         for i, key in enumerate(pat):
@@ -17,15 +17,15 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual('bca', Solution().sortByPattern('abc', 'bca'))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual(
             'bbbcccaaa', Solution().sortByPattern('abcabcabc', 'bxyzca')
         )
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         self.assertEqual(
             'codijak',
             Solution().sortByPattern('jcdokai', 'wcyuogmlrdfphitxjakqvzbnes'),

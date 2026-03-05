@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 class Solution:
-    def __kthSmallest(self, root, k, counter):
+    def __kthSmallest(self, root: TreeNode, k: int, counter: TreeNode) -> int:
         if root.left is not None:
             result = self.__kthSmallest(root.left, k, counter)
             if counter.val == k:
@@ -27,13 +33,14 @@ class Solution:
                 return result
         return 0
 
-    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+    def kthSmallest(self, root: TreeNode | None, k: int) -> int:
         counter = TreeNode(0)
+        assert root is not None
         return self.__kthSmallest(root, k, counter)
 
 
 class TestCode(unittest.TestCase):
-    def test_left(self):
+    def test_left(self) -> None:
         n1 = TreeNode(1)
         n2 = TreeNode(2)
         n3 = TreeNode(3)
@@ -43,7 +50,7 @@ class TestCode(unittest.TestCase):
         n2.left = n1
         self.assertEqual(2, Solution().kthSmallest(n4, 2))
 
-    def test_right(self):
+    def test_right(self) -> None:
         n1 = TreeNode(1)
         n2 = TreeNode(2)
         n3 = TreeNode(3)
@@ -53,7 +60,7 @@ class TestCode(unittest.TestCase):
         n3.right = n4
         self.assertEqual(2, Solution().kthSmallest(n1, 2))
 
-    def test_coverage(self):
+    def test_coverage(self) -> None:
         n1 = TreeNode(1)
         n2 = TreeNode(2)
         n3 = TreeNode(3)

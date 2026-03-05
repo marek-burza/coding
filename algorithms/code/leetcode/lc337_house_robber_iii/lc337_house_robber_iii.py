@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/house-robber-iii/
 
+from __future__ import annotations
+
 import unittest
 from functools import cache
-from typing import Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 @cache
-def rob_cached(root: Optional[TreeNode]) -> int:
+def rob_cached(root: TreeNode | None) -> int:
     if root is None:
         return 0
     excl = rob_cached(root.left) + rob_cached(root.right)
@@ -27,14 +33,14 @@ def rob_cached(root: Optional[TreeNode]) -> int:
 
 
 class Solution:
-    def rob(self, root: Optional[TreeNode]) -> int:
+    def rob(self, root: TreeNode | None) -> int:
         return rob_cached(root)
 
     # # Bottom-up
-    # def rob(self, root: Optional[TreeNode]) -> int:
+    # def rob(self, root: TreeNode | None) -> int:
     #     return max(self.rob_incl_excl(root))
 
-    # def rob_incl_excl(self, root: Optional[TreeNode]) -> List[int]:
+    # def rob_incl_excl(self, root: TreeNode | None) -> list[int]:
     #     if root is None:
     #         return [0, 0]
     #     incl_l, excl_l = self.rob_incl_excl(root.left)
@@ -45,7 +51,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         t3 = TreeNode(3)
         l2 = TreeNode(2)
         lr3 = TreeNode(3)
@@ -57,7 +63,7 @@ class TestCode(unittest.TestCase):
         t3.right.right = rr1
         self.assertEqual(Solution().rob(t3), 7)
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         t3 = TreeNode(3)
         l4 = TreeNode(4)
         ll1 = TreeNode(1)

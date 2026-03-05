@@ -34,14 +34,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1807__7810(self):
+    def test_1807__7810(self) -> None:
         self.assertEqual('1A3B', Solution().getHint('1807', '7810'))
 
-    def test_1123__0111(self):
+    def test_1123__0111(self) -> None:
         self.assertEqual('1A1B', Solution().getHint('1123', '0111'))
 
-    def test1122and2211(self):
+    def test1122and2211(self) -> None:
         self.assertEqual('0A4B', Solution().getHint('1122', '2211'))
 
-    def test11and10(self):
+    def test11and10(self) -> None:
         self.assertEqual('1A0B', Solution().getHint('11', '10'))

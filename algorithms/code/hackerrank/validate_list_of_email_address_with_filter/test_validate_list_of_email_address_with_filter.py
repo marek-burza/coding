@@ -8,7 +8,7 @@ import sys
 import unittest
 
 
-def check(email):
+def check(email: str) -> bool:
     items = email.split('@')
     if len(items) != 2:
         return False
@@ -22,13 +22,13 @@ def check(email):
     return 0 < len(items[1]) <= 3
 
 
-def process(emails):
+def process(emails: list[str]) -> list[str]:
     emails = list(filter(check, emails))
     emails.sort()
     return emails
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     emails = []
     for _ in range(n):
@@ -41,7 +41,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -54,17 +54,17 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')
 
-    def test_double_at(self):
+    def test_double_at(self) -> None:
         self.assertEqual(process(['somebody@somewhere@else.com']), [])
 
-    def test_double_dot(self):
+    def test_double_dot(self) -> None:
         self.assertEqual(process(['somebody@somewhere.else.com']), [])
 
-    def test_garbage(self):
+    def test_garbage(self) -> None:
         self.assertEqual(process(['somebody@some+where.com']), [])
 
-    def test_white_space(self):
+    def test_white_space(self) -> None:
         self.assertEqual(process(['somebody\t@somewhere.com']), [])

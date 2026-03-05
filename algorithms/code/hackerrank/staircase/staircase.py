@@ -4,7 +4,7 @@
 import unittest
 
 
-def staircase(n):
+def staircase(n: int) -> list[str]:
     result = []
     for index in range(n):
         line = ''
@@ -15,6 +15,6 @@ def staircase(n):
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         expected = ['     #', '    ##', '   ###', '  ####', ' #####', '######']
         self.assertEqual(expected, staircase(6))

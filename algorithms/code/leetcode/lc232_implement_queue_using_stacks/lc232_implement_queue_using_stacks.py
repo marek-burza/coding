@@ -5,9 +5,9 @@ import unittest
 
 
 class MyQueue:
-    def __init__(self):
-        self.__stack = []
-        self.__buffer = []
+    def __init__(self) -> None:
+        self.__stack: list[int] = []
+        self.__buffer: list[int] = []
 
     # Push element x to the back of queue.
     def push(self, x: int) -> None:
@@ -31,7 +31,7 @@ class MyQueue:
 
 
 class TestCode(unittest.TestCase):
-    def test_something(self):
+    def test_something(self) -> None:
         queue = MyQueue()
         for i in range(0, 6):
             queue.push(i)

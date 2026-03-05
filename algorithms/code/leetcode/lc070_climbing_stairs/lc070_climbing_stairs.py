@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def __climbStairs(self, n, at, lut):
+    def __climbStairs(self, n: int, at: int, lut: list[int]) -> int:
         if at + 2 == n:
             return 2
         if at + 1 == n:
@@ -21,5 +21,5 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_20(self):
+    def test_20(self) -> None:
         self.assertEqual(10946, Solution().climbStairs(20))

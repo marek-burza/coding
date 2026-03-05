@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/minimum-path-sum/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def minPathSum(self, grid: List[List[int]]) -> int:
+    def minPathSum(self, grid: list[list[int]]) -> int:
         visited = [[False] * len(grid[0]) for _ in enumerate(grid)]
         total = sum(sum(line) for line in grid)  # Instead of inf
         sums = [[total] * len(grid[0]) for _ in enumerate(grid)]
@@ -33,6 +32,6 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         grid = [[1, 1, 2, 2], [2, 1, 2, 2], [2, 1, 1, 2], [2, 2, 1, 1]]
         self.assertEqual(7, Solution().minPathSum(grid))

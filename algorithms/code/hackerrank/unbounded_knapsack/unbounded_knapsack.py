@@ -7,7 +7,7 @@ import sys
 import unittest
 
 
-def unboundedKnapsack(w, values):
+def unboundedKnapsack(w: int, values: list[int]) -> int:
     weights = values  # Special case
     n = len(values)
     m = [0] * (w + 1)
@@ -18,7 +18,7 @@ def unboundedKnapsack(w, values):
     return m[w]
 
 
-def main():
+def main() -> None:
     fptr = sys.stdout
     t = int(input().strip())
     for _ in range(t):
@@ -35,7 +35,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         resources = os.path.dirname(__file__)
         with (
             open(
@@ -53,5 +53,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.generalized_test('example')

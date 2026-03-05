@@ -8,8 +8,8 @@ import sys
 import unittest
 
 
-def aggregate(purchases):
-    aggregated = collections.OrderedDict()
+def aggregate(purchases: list[tuple[str, int]]) -> collections.OrderedDict:
+    aggregated: collections.OrderedDict[str, int] = collections.OrderedDict()
     for product, payment in purchases:
         if product in aggregated:
             aggregated[product] += payment
@@ -18,7 +18,7 @@ def aggregate(purchases):
     return aggregated
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     purchases = []
     for _ in range(n):
@@ -36,7 +36,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -49,5 +49,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

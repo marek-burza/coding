@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/move-zeroes/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def moveZeroes(self, nums: List[int]) -> None:
+    def moveZeroes(self, nums: list[int]) -> None:
         target = 0
         for index, _ in enumerate(nums):
             nums[target] = nums[index]
@@ -17,7 +16,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         nums = [0, 1, 0, 3, 12]
         Solution().moveZeroes(nums)
         expected = [1, 3, 12, 0, 0]

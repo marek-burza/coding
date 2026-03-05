@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+    def twoSum(self, numbers: list[int], target: int) -> list[int]:
         indices = [0] * 2
         if len(numbers) < 2:
             return indices
@@ -26,12 +25,12 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         self.assertListEqual([1, 2], Solution().twoSum([2, 7, 11, 15], 9))
 
-    def test_other_example(self):
+    def test_other_example(self) -> None:
         self.assertListEqual([0, 0], Solution().twoSum([1, 5, 6, 9], 9))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertListEqual([0, 0], Solution().twoSum([], 0))
         self.assertListEqual([0, 0], Solution().twoSum([0], 0))

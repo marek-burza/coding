@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/longest-increasing-subsequence/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def lengthOfLIS(self, nums: List[int]) -> int:
+    def lengthOfLIS(self, nums: list[int]) -> int:
         if len(nums) == 0:
             return 0
         lis = [1] * len(nums)
@@ -19,9 +18,9 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         nums = [10, 9, 2, 5, 3, 7, 101, 18]
         self.assertEqual(4, Solution().lengthOfLIS(nums))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().lengthOfLIS([]))

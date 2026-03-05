@@ -1,19 +1,27 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/binary-tree-paths/
 
+from __future__ import annotations
+
 import unittest
-from typing import List, Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 class Solution:
-    def __binaryTreePaths(self, root, prefix, result):
+    def __binaryTreePaths(
+        self, root: TreeNode, prefix: str, result: list[str]
+    ) -> None:
         prefix += ('' if len(prefix) == 0 else '->') + str(root.val)
         if root.left is None and root.right is None:
             result.append(prefix)
@@ -23,15 +31,15 @@ class Solution:
             if root.right is not None:
                 self.__binaryTreePaths(root.right, prefix, result)
 
-    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-        result: List[str] = []
+    def binaryTreePaths(self, root: TreeNode | None) -> list[str]:
+        result: list[str] = []
         if root is not None:
             self.__binaryTreePaths(root, '', result)
         return result
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n1 = TreeNode(1)
         n2 = TreeNode(2)
         n3 = TreeNode(3)
@@ -44,7 +52,7 @@ class TestCode(unittest.TestCase):
         result.sort()
         self.assertListEqual(expected, result)
 
-    def test_example_mirrored(self):
+    def test_example_mirrored(self) -> None:
         n1 = TreeNode(1)
         n2 = TreeNode(2)
         n3 = TreeNode(3)
@@ -57,5 +65,5 @@ class TestCode(unittest.TestCase):
         result.sort()
         self.assertListEqual(expected, result)
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertListEqual([], Solution().binaryTreePaths(None))

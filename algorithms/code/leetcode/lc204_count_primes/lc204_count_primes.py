@@ -22,8 +22,8 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_11(self):
+    def test_11(self) -> None:
         self.assertEqual(4, Solution().countPrimes(11))
 
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertEqual(0, Solution().countPrimes(1))

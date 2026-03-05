@@ -30,22 +30,22 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertEqual(Solution().longestPalindrome('babad'), 'bab')
 
-    def test_2(self):
+    def test_2(self) -> None:
         self.assertEqual(Solution().longestPalindrome('cbbd'), 'bb')
 
-    def test_3(self):
+    def test_3(self) -> None:
         self.assertEqual(Solution().longestPalindrome('a'), 'a')
 
-    def test_4(self):
+    def test_4(self) -> None:
         self.assertEqual(Solution().longestPalindrome('ac'), 'a')
 
-    def test_bb(self):
+    def test_bb(self) -> None:
         self.assertEqual(Solution().longestPalindrome('bb'), 'bb')
 
-    def test_longer(self):
+    def test_longer(self) -> None:
         self.assertEqual(
             # pylint: disable=C0301
             Solution().longestPalindrome(

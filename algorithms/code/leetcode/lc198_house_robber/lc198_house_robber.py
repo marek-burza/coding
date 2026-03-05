@@ -2,11 +2,12 @@
 # https://leetcode.com/problems/house-robber/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def __rob(self, nums, offset, maxed):
+    def __rob(
+        self, nums: list[int], offset: int, maxed: dict[int, int]
+    ) -> int:
         if len(nums) <= offset:
             return 0
         if offset in maxed:
@@ -18,11 +19,11 @@ class Solution:
         maxed[offset] = result
         return result
 
-    def rob(self, nums: List[int]) -> int:
+    def rob(self, nums: list[int]) -> int:
         return self.__rob(nums, 0, {})
 
 
 class TestCode(unittest.TestCase):
-    def test_6_6_4_8_4_3_3_10(self):
+    def test_6_6_4_8_4_3_3_10(self) -> None:
         nums = [6, 6, 4, 8, 4, 3, 3, 10]
         self.assertEqual(27, Solution().rob(nums))

@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
+    def maxProfit(self, prices: list[int]) -> int:
         if len(prices) <= 1:
             return 0
         mins = [0 for _ in range(len(prices))]
@@ -25,14 +24,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_empty(self):
+    def test_empty(self) -> None:
         self.assertEqual(0, Solution().maxProfit([]))
 
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertEqual(0, Solution().maxProfit([1]))
 
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual(5, Solution().maxProfit([7, 1, 5, 3, 6, 4]))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual(0, Solution().maxProfit([7, 6, 4, 3, 1]))

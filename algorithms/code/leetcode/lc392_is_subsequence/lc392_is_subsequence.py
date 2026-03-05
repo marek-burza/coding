@@ -19,14 +19,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertTrue(Solution().isSubsequence('abc', 'ahbgdc'))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertFalse(Solution().isSubsequence('axc', 'ahbgdc'))
 
-    def test_other_1(self):
+    def test_other_1(self) -> None:
         self.assertTrue(Solution().isSubsequence('', 'ahbgdc'))
 
-    def test_other_2(self):
+    def test_other_2(self) -> None:
         self.assertFalse(Solution().isSubsequence('aaaaaa', 'eeaaa'))

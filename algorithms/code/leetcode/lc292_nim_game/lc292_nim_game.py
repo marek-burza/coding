@@ -10,7 +10,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1to10(self):
+    def test_1to10(self) -> None:
         # +  1 o
         self.assertTrue(Solution().canWinNim(1))
         # +  2 o o

@@ -23,17 +23,17 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual(2, Solution().mySqrt(4))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual(2, Solution().mySqrt(8))
 
-    def test_64(self):
+    def test_64(self) -> None:
         self.assertEqual(8, Solution().mySqrt(64))
 
-    def test_2(self):
+    def test_2(self) -> None:
         self.assertEqual(1, Solution().mySqrt(2))
 
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertEqual(1, Solution().mySqrt(1))

@@ -1,4 +1,4 @@
-from typing import Annotated, List, Optional
+from typing import Annotated, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
@@ -76,7 +76,7 @@ async def put_account(
 @router.get(
     '/accounts/',
     tags=['get_accounts'],
-    response_model=List[AccountRead],
+    response_model=list[AccountRead],
     responses={
         status.HTTP_404_NOT_FOUND: {
             'description': 'Issued when customer with given identifier does not exist'  # noqa
@@ -101,7 +101,7 @@ async def get_accounts(
         ),
     ] = None,
     db_session: Session = Depends(database.get_session),  # noqa: B008
-) -> List[AccountRead]:
+) -> list[AccountRead]:
     with db_session.begin():
         accounts = db_session.query(Account)
         if customer_identifier is not None:

@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/maximum-product-subarray/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def maxProduct(self, nums: List[int]) -> int:
+    def maxProduct(self, nums: list[int]) -> int:
         maximum = min(nums) - 1  # Instead of -inf
         cmin = 0
         cmax = 0
@@ -26,6 +25,6 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_2_3_Minus2_4(self):
+    def test_2_3_Minus2_4(self) -> None:
         nums = [2, 3, -2, 4]
         self.assertEqual(6, Solution().maxProduct(nums))

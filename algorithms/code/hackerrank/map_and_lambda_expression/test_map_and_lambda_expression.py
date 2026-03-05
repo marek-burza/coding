@@ -7,20 +7,20 @@ import sys
 import unittest
 
 
-def fibonacci(n):
+def fibonacci(n: int) -> list[int]:
     listed = [0, 1]
     while len(listed) < n:
         listed.append(listed[-1] + listed[-2])
     return listed[:n]
 
 
-def square(n):
+def square(n: int) -> list[int]:
     listed = fibonacci(n)
     listed = list(map(lambda x: x * x * x, listed))
     return listed
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     print(square(n))
 
@@ -30,7 +30,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -43,5 +43,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

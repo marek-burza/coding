@@ -23,17 +23,17 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1__1(self):
+    def test_1__1(self) -> None:
         self.assertEqual(0, Solution().compareVersion('1', '1'))
 
-    def test_1__1_0(self):
+    def test_1__1_0(self) -> None:
         self.assertEqual(0, Solution().compareVersion('1', '1.0'))
 
-    def test_2__1(self):
+    def test_2__1(self) -> None:
         self.assertEqual(1, Solution().compareVersion('2', '1'))
 
-    def test_1__13_1(self):
+    def test_1__13_1(self) -> None:
         self.assertEqual(-1, Solution().compareVersion('1', '13.1'))
 
-    def test_1_0_1__1(self):
+    def test_1_0_1__1(self) -> None:
         self.assertEqual(1, Solution().compareVersion('1.0.1', '1'))

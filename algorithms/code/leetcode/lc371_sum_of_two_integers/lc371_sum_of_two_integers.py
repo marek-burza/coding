@@ -21,5 +21,5 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         self.assertEqual(3, Solution().getSum(1, 2))

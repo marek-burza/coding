@@ -2,11 +2,18 @@
 # https://leetcode.com/problems/closest-binary-search-tree-value/
 # #google
 
+from __future__ import annotations
+
 import unittest
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
@@ -27,7 +34,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         node1 = TreeNode(1)
         node3 = TreeNode(3)
         node2 = TreeNode(2, node1, node3)
@@ -35,7 +42,7 @@ class TestCode(unittest.TestCase):
         node4 = TreeNode(4, node2, node5)
         self.assertEqual(4, Solution().closestValue(node4, 3.714286))
 
-    def test_other(self):
+    def test_other(self) -> None:
         node1 = TreeNode(1)
         node3 = TreeNode(3)
         node2 = TreeNode(2, node1, node3)

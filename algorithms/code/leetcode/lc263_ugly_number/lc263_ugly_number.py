@@ -21,38 +21,38 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_minus(self):
+    def test_minus(self) -> None:
         self.assertFalse(Solution().isUgly(-1))
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.assertFalse(Solution().isUgly(0))
 
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertTrue(Solution().isUgly(1))
 
-    def test_2(self):
+    def test_2(self) -> None:
         self.assertTrue(Solution().isUgly(2))
 
-    def test_3(self):
+    def test_3(self) -> None:
         self.assertTrue(Solution().isUgly(3))
 
-    def test_7(self):
+    def test_7(self) -> None:
         self.assertFalse(Solution().isUgly(7))
 
-    def test_11(self):
+    def test_11(self) -> None:
         self.assertFalse(Solution().isUgly(11))
 
-    def test_14(self):
+    def test_14(self) -> None:
         self.assertFalse(Solution().isUgly(14))
 
-    def test_16(self):
+    def test_16(self) -> None:
         self.assertTrue(Solution().isUgly(16))
 
-    def test_27(self):
+    def test_27(self) -> None:
         self.assertTrue(Solution().isUgly(27))
 
-    def test_937351770(self):
+    def test_937351770(self) -> None:
         self.assertFalse(Solution().isUgly(937351770))
 
-    def test_905391974(self):
+    def test_905391974(self) -> None:
         self.assertFalse(Solution().isUgly(905391974))

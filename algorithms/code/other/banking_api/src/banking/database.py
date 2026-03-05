@@ -1,4 +1,7 @@
+from typing import Iterator
+
 from sqlalchemy import create_engine
+from sqlalchemy.orm import Session as SessionType
 from sqlalchemy.orm import sessionmaker
 
 from banking.models import Base
@@ -19,7 +22,7 @@ engine = create_engine(
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-def get_session():
+def get_session() -> Iterator[SessionType]:
     yield Session()
 
 

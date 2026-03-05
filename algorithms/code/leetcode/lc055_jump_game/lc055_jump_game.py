@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/jump-game/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def canJump(self, nums: List[int]) -> bool:
+    def canJump(self, nums: list[int]) -> bool:
         if len(nums) == 0:
             return False
         if len(nums) == 1:
@@ -24,7 +23,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_25002_integers(self):
+    def test_25002_integers(self) -> None:
         nums1 = [0] * 25003
         for i, _ in enumerate(nums1):
             nums1[i] = 25000 - i
@@ -33,10 +32,10 @@ class TestCode(unittest.TestCase):
         nums1[25002] = 0
         self.assertFalse(Solution().canJump(nums1))
 
-    def test_1_2_3(self):
+    def test_1_2_3(self) -> None:
         nums2 = [1, 2, 3]
         self.assertTrue(Solution().canJump(nums2))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertFalse(Solution().canJump([]))
         self.assertTrue(Solution().canJump([0]))

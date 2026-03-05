@@ -22,11 +22,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_leetcode(self):
+    def test_leetcode(self) -> None:
         self.assertEqual(0, Solution().firstUniqChar('leetcode'))
 
-    def test_loveleetcode(self):
+    def test_loveleetcode(self) -> None:
         self.assertEqual(2, Solution().firstUniqChar('loveleetcode'))
 
-    def test_empty(self):
+    def test_empty(self) -> None:
         self.assertEqual(-1, Solution().firstUniqChar(''))

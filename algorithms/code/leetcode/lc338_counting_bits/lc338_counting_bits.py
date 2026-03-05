@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/counting-bits/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def countBits(self, n: int) -> List[int]:
+    def countBits(self, n: int) -> list[int]:
         result = [0] * (n + 1)
         threshold = 1
         for i, _ in enumerate(result):
@@ -20,8 +19,8 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_2(self):
+    def test_2(self) -> None:
         self.assertListEqual([0, 1, 1], Solution().countBits(2))
 
-    def test_5(self):
+    def test_5(self) -> None:
         self.assertListEqual([0, 1, 1, 2, 1, 2], Solution().countBits(5))

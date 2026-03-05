@@ -3,11 +3,10 @@
 # #google
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def findDuplicates(self, nums: List[int]) -> List[int]:
+    def findDuplicates(self, nums: list[int]) -> list[int]:
         result = set()
         for i, _ in enumerate(nums):
             num = abs(nums[i])
@@ -19,13 +18,13 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertListEqual(
             [2, 3], Solution().findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])
         )
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertListEqual([1], Solution().findDuplicates([1, 1, 2]))
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         self.assertListEqual([], Solution().findDuplicates([1]))
