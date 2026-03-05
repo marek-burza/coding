@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def findMin(self, nums: List[int]) -> int:
+    def findMin(self, nums: list[int]) -> int:
         a = 0
         z = len(nums) - 1
         while a != z:
@@ -26,22 +25,22 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_0_1_2_4_5_6_7(self):
+    def test_0_1_2_4_5_6_7(self) -> None:
         nums = [0, 1, 2, 4, 5, 6, 7]
         self.assertEqual(0, Solution().findMin(nums))
 
-    def test_4_5_6_7_0_1_2(self):
+    def test_4_5_6_7_0_1_2(self) -> None:
         nums = [4, 5, 6, 7, 0, 1, 2]
         self.assertEqual(0, Solution().findMin(nums))
 
-    def test_1_2(self):
+    def test_1_2(self) -> None:
         nums = [1, 2]
         self.assertEqual(1, Solution().findMin(nums))
 
-    def test_2_1(self):
+    def test_2_1(self) -> None:
         nums = [2, 1]
         self.assertEqual(1, Solution().findMin(nums))
 
-    def test_1(self):
+    def test_1(self) -> None:
         nums = [1]
         self.assertEqual(1, Solution().findMin(nums))

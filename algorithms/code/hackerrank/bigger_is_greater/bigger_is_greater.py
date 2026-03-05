@@ -4,7 +4,7 @@
 import unittest
 
 
-def bigger_is_greater(w):
+def bigger_is_greater(w: str) -> str:
     array = list(w)
     length = len(array)
     for i in range(length - 1, 0, -1):
@@ -19,17 +19,17 @@ def bigger_is_greater(w):
 
 
 class TestCode(unittest.TestCase):
-    def test_ab(self):
+    def test_ab(self) -> None:
         self.assertEqual('ba', bigger_is_greater('ab'))
 
-    def test_bb(self):
+    def test_bb(self) -> None:
         self.assertEqual('no answer', bigger_is_greater('bb'))
 
-    def test_hefg(self):
+    def test_hefg(self) -> None:
         self.assertEqual('hegf', bigger_is_greater('hefg'))
 
-    def test_dhck(self):
+    def test_dhck(self) -> None:
         self.assertEqual('dhkc', bigger_is_greater('dhck'))
 
-    def test_dkhc(self):
+    def test_dkhc(self) -> None:
         self.assertEqual('hcdk', bigger_is_greater('dkhc'))

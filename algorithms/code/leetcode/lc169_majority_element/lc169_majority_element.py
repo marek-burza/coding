@@ -3,11 +3,10 @@
 
 import collections
 import unittest
-from typing import List
 
 
 class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
+    def majorityElement(self, nums: list[int]) -> int:
         frequencies: collections.Counter = collections.Counter()
         for value in nums:
             frequencies[value] += 1
@@ -22,6 +21,6 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1_2_3_1_5_1_6_1(self):
+    def test_1_2_3_1_5_1_6_1(self) -> None:
         nums = [1, 2, 3, 1, 5, 1, 6, 1]
         self.assertEqual(1, Solution().majorityElement(nums))

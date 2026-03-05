@@ -1,7 +1,7 @@
 import random
 import unittest
 from functools import partial
-from typing import Callable, List, Optional, Tuple
+from typing import Callable
 
 import torch
 from torch import nn, optim
@@ -12,7 +12,7 @@ class SimpleNN(nn.Module):
     A very basic FC network to model the distribution of some training data
     """
 
-    def __init__(self, input_size: int = 8):
+    def __init__(self, input_size: int = 8) -> None:
         super().__init__()
         self.fc1 = nn.Linear(input_size, 50)
         self.fc2 = nn.Linear(50, 2)
@@ -25,7 +25,7 @@ class SimpleNN(nn.Module):
 
 def _generate_training_batch(
     batch_size: int, input_dim: int
-) -> Tuple[torch.Tensor, torch.Tensor]:
+) -> tuple[torch.Tensor, torch.Tensor]:
     """
     Generate a random input/label pair to use as input to the model.
 
@@ -38,7 +38,7 @@ def _generate_training_batch(
     return input_sample, label
 
 
-def validate_model(model: SimpleNN):
+def validate_model(model: SimpleNN) -> float:
     """
     Validate a provided model against unseen data.
 
@@ -56,7 +56,7 @@ def validate_model(model: SimpleNN):
 
     result = model(new_sample)
     _, prediction = torch.max(result, dim=1)
-    return sum(targets == prediction) / prediction.numel()
+    return float(sum(targets == prediction) / prediction.numel())
 
 
 class Gateway:
@@ -66,7 +66,7 @@ class Gateway:
         batches_per_round: int = 4,
         loss_function: Callable = nn.CrossEntropyLoss,
         optimizer: Callable = partial(optim.Adam, lr=0.01),
-    ):
+    ) -> None:
         # IMPLEMENTATION: BEGIN
         # For training reproducibility
         # (assuming the same model instance is not retrained)
@@ -81,7 +81,7 @@ class Gateway:
         self.optimizer: optim.Optimizer = optimizer(self.model.parameters())
         # IMPLEMENTATION: END
 
-    def fed_round(self):
+    def fed_round(self) -> None:
         """
         Perform a single federation round of training using
         randomly generated data.
@@ -107,17 +107,17 @@ class Gateway:
             self.optimizer.step()
             # IMPLEMENTATION: END
 
-    def update_model(self, state_dict: dict):
+    def update_model(self, state_dict: dict) -> None:
         """Update the gateway's local model with a new set of weights"""
         self.model.load_state_dict(state_dict)
 
 
 class Orchestrator:
-    def __init__(self, gateways: List[Gateway]):
+    def __init__(self, gateways: list[Gateway]) -> None:
         self.gateways = gateways
-        self._server_model: Optional[nn.Module] = None
+        self._server_model: nn.Module | None = None
 
-    def train_fed_avg(self, num_rounds: int):
+    def train_fed_avg(self, num_rounds: int) -> SimpleNN:
         """
         Perform a federated training run for `num_rounds` rounds.
 
@@ -172,7 +172,7 @@ class Orchestrator:
         return state_dict
         # IMPLEMENTATION: END
 
-    def _update_gateways(self, state_dict: dict):
+    def _update_gateways(self, state_dict: dict) -> None:
         """
         Update all gateways' models with the provided state dict
         """
@@ -193,10 +193,10 @@ def main() -> float:
 
 # IMPLEMENTATION: BEGIN
 class TestCode(unittest.TestCase):
-    def test_minimum_bar(self):
+    def test_minimum_bar(self) -> None:
         self.assertTrue(all(main() > 80.0 for _ in range(10)))
 
-    def test_reproducibility(self):
+    def test_reproducibility(self) -> None:
         self.assertEqual(len({main() for _ in range(10)}), 1)
 
 

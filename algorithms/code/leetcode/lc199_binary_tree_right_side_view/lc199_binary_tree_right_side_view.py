@@ -1,19 +1,27 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/binary-tree-right-side-view/
 
+from __future__ import annotations
+
 import unittest
-from typing import List, Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 class Solution:
-    def __rightSideView(self, root, level, listed):
+    def __rightSideView(
+        self, root: TreeNode | None, level: int, listed: list[int]
+    ) -> None:
         if root is not None:
             level += 1
             if level > len(listed):
@@ -21,14 +29,14 @@ class Solution:
             self.__rightSideView(root.right, level, listed)
             self.__rightSideView(root.left, level, listed)
 
-    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        listed: List[int] = []
+    def rightSideView(self, root: TreeNode | None) -> list[int]:
+        listed: list[int] = []
         self.__rightSideView(root, 0, listed)
         return listed
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n1 = TreeNode(1)
         n2 = TreeNode(2)
         n3 = TreeNode(3)

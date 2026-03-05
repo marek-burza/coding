@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/range-sum-query-immutable/
 
 import unittest
-from typing import List
 
 
 class NumArray:
-    def __init__(self, nums: List[int]):
+    def __init__(self, nums: list[int]) -> None:
         self.__sums = [0] * len(nums)
         summed = 0
         for i, nums_i in enumerate(nums):
@@ -22,14 +21,14 @@ class NumArray:
 
 
 class TestCode(unittest.TestCase):
-    def test_0__2(self):
+    def test_0__2(self) -> None:
         nums = [-2, 0, 3, -5, 2, -1]
         self.assertEqual(1, NumArray(nums).sumRange(0, 2))
 
-    def test_2__5(self):
+    def test_2__5(self) -> None:
         nums = [-2, 0, 3, -5, 2, -1]
         self.assertEqual(-1, NumArray(nums).sumRange(2, 5))
 
-    def test_0__5(self):
+    def test_0__5(self) -> None:
         nums = [-2, 0, 3, -5, 2, -1]
         self.assertEqual(-3, NumArray(nums).sumRange(0, 5))

@@ -5,7 +5,9 @@ import unittest
 
 
 class Solution:
-    def __amount(self, height, from_keyword_conflict, to):
+    def __amount(
+        self, height: list[int], from_keyword_conflict: int, to: int
+    ) -> int:
         amount = min(height[from_keyword_conflict], height[to]) * (
             to - from_keyword_conflict - 1
         )
@@ -15,7 +17,7 @@ class Solution:
             i += 1
         return amount
 
-    def trap(self, height):
+    def trap(self, height: list[int] | None) -> int:
         if height is None or len(height) < 3:
             return 0
         # Sort the terrain
@@ -37,10 +39,10 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         terrain = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
         self.assertEqual(6, Solution().trap(terrain))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().trap(None))
         self.assertEqual(0, Solution().trap([0, 1]))

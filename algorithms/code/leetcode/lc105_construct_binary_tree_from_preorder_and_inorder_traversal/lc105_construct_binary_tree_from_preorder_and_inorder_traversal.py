@@ -3,12 +3,18 @@
 # #google
 # (works for both ordered & unordered trees)
 
+from __future__ import annotations
+
 import unittest
-from typing import List, Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
@@ -16,8 +22,8 @@ class TreeNode:
 
 class Solution:
     def buildTree(
-        self, preorder: List[int], inorder: List[int]
-    ) -> Optional[TreeNode]:
+        self, preorder: list[int], inorder: list[int]
+    ) -> TreeNode | None:
         node = preorder[0]
 
         index = inorder.index(node)
@@ -37,21 +43,21 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         tree = Solution().buildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
         assert tree is not None
         assert tree.val == 3
         assert tree.left is not None
-        assert 9, tree.left.val == 9
+        assert tree.left.val == 9
         assert tree.left.left is None
         assert tree.left.right is None
         assert tree.right is not None
-        assert 20, tree.right.val == 20
+        assert tree.right.val == 20
         assert tree.right.left is not None
-        assert 15, tree.right.left.val == 15
+        assert tree.right.left.val == 15
         assert tree.right.left.left is None
         assert tree.right.left.right is None
         assert tree.right.right is not None
-        assert 7, tree.right.right.val == 4
+        assert tree.right.right.val == 7
         assert tree.right.right.left is None
         assert tree.right.right.right is None

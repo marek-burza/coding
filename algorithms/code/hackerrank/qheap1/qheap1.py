@@ -8,23 +8,23 @@ import sys
 import unittest
 
 
-def sheap_child_left(index):
+def sheap_child_left(index: int) -> int:
     return (index << 1) + 1
 
 
-def sheap_child_right(index):
+def sheap_child_right(index: int) -> int:
     return (index << 1) + 2
 
 
-def sheap_parent(index):
+def sheap_parent(index: int) -> int:
     return (index - 1) >> 1
 
 
-def sheap_swap(heap, index1, index2):
+def sheap_swap(heap: list[int], index1: int, index2: int) -> None:
     heap[index1], heap[index2] = heap[index2], heap[index1]
 
 
-def sheap_ify_to_leaves(heap, index):
+def sheap_ify_to_leaves(heap: list[int], index: int) -> None:
     size = len(heap)
     # Initialize smallest as root
     smallest = index
@@ -46,13 +46,13 @@ def sheap_ify_to_leaves(heap, index):
         sheap_ify_to_leaves(heap, smallest)
 
 
-def sheap_ify_to_root(heap, index):
+def sheap_ify_to_root(heap: list[int], index: int) -> None:
     while index > 0 and heap[sheap_parent(index)] > heap[index]:
         sheap_swap(heap, index, sheap_parent(index))
         index = sheap_parent(index)
 
 
-def sheap_build(heap):
+def sheap_build(heap: list[int]) -> None:
     size = len(heap)
     index = (size // 2) - 1
     while index >= 0:
@@ -60,13 +60,13 @@ def sheap_build(heap):
         index -= 1
 
 
-def sheap_insert(heap, value):
+def sheap_insert(heap: list[int], value: int) -> None:
     heap.append(value)
     index = len(heap) - 1
     sheap_ify_to_root(heap, index)
 
 
-def sheap_delete_index(heap, index):
+def sheap_delete_index(heap: list[int], index: int) -> None:
     size = len(heap)
     sheap_swap(heap, index, size - 1)
     heap.pop()  # Can't swap on a popped value so first swap
@@ -78,11 +78,13 @@ def sheap_delete_index(heap, index):
         sheap_ify_to_root(heap, index)
 
 
-def sheap_delete(heap, value):
-    sheap_delete_index(heap, sheap_search(heap, value))
+def sheap_delete(heap: list[int], value: int) -> None:
+    found = sheap_search(heap, value)
+    assert found is not None
+    sheap_delete_index(heap, found)
 
 
-def sheap_search(heap, value):
+def sheap_search(heap: list[int], value: int) -> int | None:
     try:
         return heap.index(value)
     except ValueError:
@@ -91,15 +93,15 @@ def sheap_search(heap, value):
     # so stopping on first larger item might be premature
 
 
-def sheap_root(heap):
+def sheap_root(heap: list[int]) -> int:
     return heap[0]
 
 
-def qheap_insert(heap, value):
+def qheap_insert(heap: list[int], value: int) -> None:
     heapq.heappush(heap, value)
 
 
-def qheap_delete(heap, value):
+def qheap_delete(heap: list[int], value: int) -> None:
     index = heap.index(value)
     heap[index] = heap[-1]
     heap.pop()
@@ -112,11 +114,11 @@ def qheap_delete(heap, value):
         )
 
 
-def qheap_root(heap):
+def qheap_root(heap: list[int]) -> int:
     return heap[0]
 
 
-def main(quick=True):
+def main(quick: bool = True) -> None:
     if quick:
         heap_insert = qheap_insert
         heap_delete = qheap_delete
@@ -126,7 +128,7 @@ def main(quick=True):
         heap_delete = sheap_delete
         heap_root = sheap_root
     n = int(input().strip())
-    heap = []
+    heap: list[int] = []
     for _ in range(n):
         arguments = list(map(int, input().split()))
         if arguments[0] == 1:
@@ -142,7 +144,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which, quick=True):
+    def generalized_test(self, which: str, quick: bool = True) -> None:
         resources = os.path.dirname(__file__)
         with (
             open(
@@ -160,31 +162,31 @@ class TestCode(unittest.TestCase):
             main(quick)
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_search_for_absent(self):
+    def test_search_for_absent(self) -> None:
         heap = [6, 3, 0, 5]
         sheap_build(heap)
         self.assertIsNone(sheap_search(heap, -1))
 
-    def test_delete_swaps_on_same_level(self):
+    def test_delete_swaps_on_same_level(self) -> None:
         heap = [0, 10, 8, 13, 14, 9]
         sheap_delete_index(heap, 4)
         self.assertNotEqual(heap[-1], 9)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.generalized_test('example')
         self.generalized_test('example', False)
 
-    def test_00(self):
+    def test_00(self) -> None:
         self.generalized_test('00')
         self.generalized_test('00', False)
 
-    def test_01(self):
+    def test_01(self) -> None:
         self.generalized_test('01')
         self.generalized_test('01', False)
 
-    def test_02(self):
+    def test_02(self) -> None:
         self.generalized_test('02')
         self.generalized_test('02', False)
 
-    def test_08(self):
+    def test_08(self) -> None:
         self.generalized_test('08')

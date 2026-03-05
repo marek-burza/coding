@@ -29,20 +29,20 @@ class PeekingIterator:
 
 class TestCode(unittest.TestCase):
     @staticmethod
-    def __create_iterator(items):
+    def __create_iterator(items: list[Any]) -> Any:
         class TestingIterator:
-            def __init__(self, items):
+            def __init__(self, items: list[Any]) -> None:
                 self.__items = items
 
-            def hasNext(self):
+            def hasNext(self) -> bool:
                 return len(self.__items) != 0
 
-            def next(self):
+            def next(self) -> Any:
                 return self.__items.pop(0)
 
         return TestingIterator(items)
 
-    def test_example(self):
+    def test_example(self) -> None:
         values = [1, 2, 3]
         peeking = PeekingIterator(self.__create_iterator(values))
         self.assertEqual(1, int(peeking.next()))
@@ -51,7 +51,7 @@ class TestCode(unittest.TestCase):
         self.assertEqual(3, int(peeking.next()))
         self.assertFalse(peeking.hasNext())
 
-    def test_other(self):
+    def test_other(self) -> None:
         values = [1, 2, 3, 4]
         peeking = PeekingIterator(self.__create_iterator(values))
         self.assertTrue(peeking.hasNext())

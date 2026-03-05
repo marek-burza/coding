@@ -2,14 +2,13 @@
 # https://leetcode.com/problems/spiral-matrix/
 
 import unittest
-from typing import List
 
 
 class Solution:
     __DELTAS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
 
-    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        listed: List[int] = []
+    def spiralOrder(self, matrix: list[list[int]]) -> list[int]:
+        listed: list[int] = []
         if len(matrix) == 0:
             return listed
         index = 0
@@ -51,22 +50,22 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __test(self, expected, matrix):
+    def __test(self, expected: list[int], matrix: list[list[int]]) -> None:
         result = Solution().spiralOrder(matrix)
         array = [0] * len(result)
         for i, _ in enumerate(array):
             array[i] = result[i]
         self.assertListEqual(expected, array)
 
-    def test_2_5_8__4_0_Minus1(self):
+    def test_2_5_8__4_0_Minus1(self) -> None:
         matrix = [[2, 5, 8], [4, 0, -1]]
         expected = [2, 5, 8, -1, 0, 4]
         self.__test(expected, matrix)
 
-    def test_2_5__8_4__0_Minus1(self):
+    def test_2_5__8_4__0_Minus1(self) -> None:
         matrix = [[2, 5], [8, 4], [0, -1]]
         expected = [2, 5, 4, -1, 0, 8]
         self.__test(expected, matrix)
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertListEqual([], Solution().spiralOrder([]))

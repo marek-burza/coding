@@ -2,12 +2,13 @@
 # https://leetcode.com/problems/course-schedule/
 
 import unittest
-from typing import Dict, List, Set
 
 
 class Solution:
-    def __dfs(self, graph, node, visited):
-        queue = [(node, set())]
+    def __dfs(
+        self, graph: dict[int, set[int]], node: int, visited: set[int]
+    ) -> bool:
+        queue: list[tuple[int, set[int]]] = [(node, set())]
         while queue:
             node, ancestors = queue.pop(0)
             if node in ancestors:
@@ -18,8 +19,8 @@ class Solution:
                     queue.append((other, ancestors | set([node])))
         return True
 
-    def canFinish(self, _: int, prerequisites: List[List[int]]) -> bool:
-        graph: Dict[int, Set[int]] = {}
+    def canFinish(self, _: int, prerequisites: list[list[int]]) -> bool:
+        graph: dict[int, set[int]] = {}
         for prerequisite in prerequisites:
             a_set = None
             if prerequisite[1] in graph:
@@ -28,12 +29,12 @@ class Solution:
                 a_set = set()
                 graph[prerequisite[1]] = a_set
             a_set.add(prerequisite[0])
-        visited: Set[int] = set()
+        visited: set[int] = set()
         return all(self.__dfs(graph, start, visited) for start in graph)
 
 
 class TestCode(unittest.TestCase):
-    def test_large_example(self):
+    def test_large_example(self) -> None:
         prerequisites = [
             [995, 1232],
             [1232, 719],
@@ -2037,10 +2038,10 @@ class TestCode(unittest.TestCase):
         ]
         self.assertTrue(Solution().canFinish(2, prerequisites))
 
-    def test_other(self):
+    def test_other(self) -> None:
         self.assertFalse(Solution().canFinish(2, [[1, 0], [0, 1]]))
 
-    def test_another(self):
+    def test_another(self) -> None:
         self.assertFalse(
             Solution().canFinish(
                 20,

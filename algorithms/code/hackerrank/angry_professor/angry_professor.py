@@ -2,9 +2,10 @@
 # https://www.hackerrank.com/challenges/angry-professor
 
 import unittest
+from typing import Any
 
 
-def angry_professor(k, a):
+def angry_professor(k: int, a: list[int]) -> str:
     absent = 0
     n = len(a)
     threshold = n - k
@@ -17,7 +18,7 @@ def angry_professor(k, a):
 
 
 class TestCode(unittest.TestCase):
-    def run_tests(self, tests):
+    def run_tests(self, tests: list[dict[str, Any]]) -> None:
         for test in tests:
             k = test['k']
             a = test['a']
@@ -25,14 +26,14 @@ class TestCode(unittest.TestCase):
             result = angry_professor(k, a)
             self.assertEqual(result, expected)
 
-    def test_example(self):
+    def test_example(self) -> None:
         tests = [
             {'k': 3, 'a': [-1, -3, 4, 2], 'expected': 'YES'},
             {'k': 2, 'a': [0, -1, 2, 1], 'expected': 'NO'},
         ]
         self.run_tests(tests)
 
-    def test_01(self):
+    def test_01(self) -> None:
         tests = [
             {
                 'k': 4,

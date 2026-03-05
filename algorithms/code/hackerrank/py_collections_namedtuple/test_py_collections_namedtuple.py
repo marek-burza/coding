@@ -8,7 +8,7 @@ import sys
 import unittest
 
 
-def average(order, table):
+def average(order: list[str], table: list[list[str]]) -> float:
     students = []
     student_tuple = collections.namedtuple('Student', order)
     total = 0
@@ -19,7 +19,7 @@ def average(order, table):
     return total / len(students)
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     order = input().strip().split()
     table = []
@@ -33,7 +33,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -46,8 +46,8 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_1(self):
+    def test_1(self) -> None:
         self.generalized_test('1')
 
-    def test_2(self):
+    def test_2(self) -> None:
         self.generalized_test('2')

@@ -3,10 +3,9 @@
 
 import os
 import unittest
-from typing import List
 
 
-def grid_search(G: List[str], P: List[str]) -> str:
+def grid_search(G: list[str], P: list[str]) -> str:
     everything = ''.join(G)
     at = -1
     while True:
@@ -28,8 +27,8 @@ def grid_search(G: List[str], P: List[str]) -> str:
 
 class TestCode(unittest.TestCase):
     # pylint: disable=R0914
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -39,30 +38,32 @@ class TestCode(unittest.TestCase):
         offset = 1
         for test in range(tests):
             r_g = int(io_lines[0][offset][0])
-            g = io_lines[0][offset + 1 : offset + 1 + r_g]
-            g = [row[0] for row in g]
+            g_lines = io_lines[0][offset + 1 : offset + 1 + r_g]
+            g = [row[0] for row in g_lines]
             r_p = int(io_lines[0][offset + 1 + r_g][0])
-            p = io_lines[0][offset + 1 + r_g + 1 : offset + 1 + r_g + 1 + r_p]
-            p = [row[0] for row in p]
+            p_lines = io_lines[0][
+                offset + 1 + r_g + 1 : offset + 1 + r_g + 1 + r_p
+            ]
+            p = [row[0] for row in p_lines]
             offset += r_g + r_p + 2
             result = grid_search(g, p)
             expected = io_lines[1][test][0]
             self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')
 
-    def test_05(self):
+    def test_05(self) -> None:
         self.runner('05')
 
-    def test_07(self):
+    def test_07(self) -> None:
         self.runner('07')
 
-    def test_08(self):
+    def test_08(self) -> None:
         self.runner('08')
 
-    def test_09(self):
+    def test_09(self) -> None:
         self.runner('09')
 
-    def test_15(self):
+    def test_15(self) -> None:
         self.runner('15')

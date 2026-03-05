@@ -3,26 +3,26 @@
 
 import heapq
 import unittest
-from typing import Dict, List
+from typing import Any
 
 
 class Solution:
     class Building:
-        def __init__(self, left, right, height):
+        def __init__(self, left: int, right: int, height: int) -> None:
             self.left = left
             self.right = right
             self.height = height
 
-        def __lt__(self, other):
+        def __lt__(self, other: Any) -> bool:
             return self.height > other.height
 
     # pylint: disable=R0914
-    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
-        skyline: List[List[int]] = []
+    def getSkyline(self, buildings: list[list[int]]) -> list[list[int]]:
+        skyline: list[list[int]] = []
         if not buildings:
             return skyline
         # Build list of spots
-        spots: Dict[int, List[Solution.Building]] = {}
+        spots: dict[int, list[Solution.Building]] = {}
         for building in buildings:
             if building[0] == building[1]:
                 continue
@@ -34,7 +34,7 @@ class Solution:
         sorted_spots = sorted(spots.keys())
         # Prepare view
         ground = Solution.Building(0, sorted_spots[-1], 0)
-        view: List[Solution.Building] = []
+        view: list[Solution.Building] = []
         view.append(ground)
         # Check all spots and build skyline
         current = 0
@@ -58,7 +58,9 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def generic(self, buildings, expected):
+    def generic(
+        self, buildings: list[list[int]], expected: list[list[int]]
+    ) -> None:
         skyline = Solution().getSkyline(buildings)
         self.assertEqual(len(skyline), len(expected))
         for i, expected_i in enumerate(expected):
@@ -66,7 +68,7 @@ class TestCode(unittest.TestCase):
             for j, expected_i_j in enumerate(expected_i):
                 self.assertEqual(skyline[i][j], expected_i_j)
 
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         buildings = [
             [2, 9, 10],
             [3, 7, 15],
@@ -85,12 +87,12 @@ class TestCode(unittest.TestCase):
         ]
         self.generic(buildings, expected)
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         buildings = [[0, 2, 3], [2, 5, 3]]
         expected = [[0, 3], [5, 0]]
         self.generic(buildings, expected)
 
-    def test_coverage_gaps(self):
+    def test_coverage_gaps(self) -> None:
         buildings = [[0, 2, 3], [2, 5, 3], [0, 0, 10]]
         expected = [[0, 3], [5, 0]]
         self.generic(buildings, expected)

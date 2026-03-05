@@ -8,8 +8,8 @@ import sys
 import unittest
 
 
-def accountant(sizes, requests):
-    counted = collections.Counter()
+def accountant(sizes: list[int], requests: list[list[int]]) -> int:
+    counted: collections.Counter = collections.Counter()
     counted.update(sizes)
     haul = 0
     for size, price in requests:
@@ -19,7 +19,7 @@ def accountant(sizes, requests):
     return haul
 
 
-def main():
+def main() -> None:
     input()
     sizes_in = list(map(int, input().strip().split(' ')))
     requests_in = []
@@ -35,7 +35,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -48,5 +48,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

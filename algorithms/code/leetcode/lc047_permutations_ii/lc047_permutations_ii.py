@@ -3,25 +3,30 @@
 
 import unittest
 from collections import Counter
-from typing import List
 
 
 class Solution:
-    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+    def permuteUnique(self, nums: list[int]) -> list[list[int]]:
         # Count each number
         counted = Counter(nums)
         # Generate the permutations
-        permutations: List[List[int]] = []
+        permutations: list[list[int]] = []
         self.generate([], len(nums), counted, permutations)
         return permutations
 
-    def generate(self, permutation, limit, counted, permutations):
+    def generate(
+        self,
+        permutation: list[int],
+        limit: int,
+        counted: Counter[int],
+        permutations: list[list[int]],
+    ) -> None:
         if len(permutation) == limit:
             permutations.append(permutation.copy())
             return
         for key in counted:
             count = counted.get(key)
-            if count != 0:
+            if count is not None and count != 0:
                 permutation.append(key)
                 counted[key] -= 1
                 self.generate(permutation, limit, counted, permutations)
@@ -30,7 +35,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         nums = [1, 1, 2]
         result = Solution().permuteUnique(nums)
         result = sorted(result)

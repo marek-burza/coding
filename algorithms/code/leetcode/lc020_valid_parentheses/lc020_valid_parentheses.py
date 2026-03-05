@@ -23,37 +23,37 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_garbage(self):
+    def test_garbage(self) -> None:
         self.assertEqual(Solution().isValid('*'), False)
 
-    def test_RB(self):
+    def test_RB(self) -> None:
         self.assertEqual(Solution().isValid('('), False)
 
-    def test_RE(self):
+    def test_RE(self) -> None:
         self.assertEqual(Solution().isValid(')'), False)
 
-    def test_RB_RE(self):
+    def test_RB_RE(self) -> None:
         self.assertEqual(Solution().isValid('()'), True)
 
-    def test_RB_RE_SB_SE_CB_CE(self):
+    def test_RB_RE_SB_SE_CB_CE(self) -> None:
         self.assertEqual(Solution().isValid('()[]{}'), True)
 
-    def test_RB_SB_RE_SE(self):
+    def test_RB_SB_RE_SE(self) -> None:
         self.assertEqual(Solution().isValid('([)]'), False)
 
-    def test_RB_CB_RE_CE(self):
+    def test_RB_CB_RE_CE(self) -> None:
         self.assertEqual(Solution().isValid('({)}'), False)
 
-    def test_SB_RB_SE_RE(self):
+    def test_SB_RB_SE_RE(self) -> None:
         self.assertEqual(Solution().isValid('[(])'), False)
 
-    def test_CB_RB_CE_RE(self):
+    def test_CB_RB_CE_RE(self) -> None:
         self.assertEqual(Solution().isValid('{(})'), False)
 
-    def test_RE__SE__CE(self):
+    def test_RE__SE__CE(self) -> None:
         self.assertEqual(Solution().isValid(')'), False)
         self.assertEqual(Solution().isValid(']'), False)
         self.assertEqual(Solution().isValid('}'), False)
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(Solution().isValid(''), True)

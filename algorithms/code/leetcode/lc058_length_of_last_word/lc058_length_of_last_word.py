@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def lengthOfLastWord(self, s):
+    def lengthOfLastWord(self, s: str | None) -> int:
         if not s or len(s) == 0:
             return 0
         n = len(s)
@@ -18,18 +18,18 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_hello_horld(self):
+    def test_hello_horld(self) -> None:
         self.assertEqual(5, Solution().lengthOfLastWord('Hello World'))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().lengthOfLastWord(None))
         self.assertEqual(0, Solution().lengthOfLastWord(''))
 
-    def test_almost_nothing(self):
+    def test_almost_nothing(self) -> None:
         self.assertEqual(0, Solution().lengthOfLastWord(' '))
 
-    def test_trailing_space(self):
+    def test_trailing_space(self) -> None:
         self.assertEqual(5, Solution().lengthOfLastWord('Hello World  '))
 
-    def test_single_word(self):
+    def test_single_word(self) -> None:
         self.assertEqual(10, Solution().lengthOfLastWord('HelloWorld'))

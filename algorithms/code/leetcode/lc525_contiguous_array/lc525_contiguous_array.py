@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/contiguous-array/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def findMaxLength(self, nums: List[int]) -> int:
+    def findMaxLength(self, nums: list[int]) -> int:
         sums_before = {0: 0}  # Sum 0 was at index 0
         maximum = running_sum = 0
         for i, value in enumerate(nums):
@@ -19,12 +18,12 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual(2, Solution().findMaxLength([0, 1]))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual(2, Solution().findMaxLength([0, 1, 0]))
 
-    def test_other_1(self):
+    def test_other_1(self) -> None:
         nums = [0, 0, 1, 0, 0, 0, 1, 1]
         self.assertEqual(6, Solution().findMaxLength(nums))

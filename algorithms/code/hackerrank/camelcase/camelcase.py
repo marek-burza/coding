@@ -4,7 +4,7 @@
 import unittest
 
 
-def camelcase(s):
+def camelcase(s: str) -> int:
     count = 1
     for character in s:
         if character.isupper():
@@ -13,5 +13,5 @@ def camelcase(s):
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         self.assertEqual(5, camelcase('saveChangesInTheEditor'))

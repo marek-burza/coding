@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/search-in-rotated-sorted-array/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
+    def search(self, nums: list[int], target: int) -> int:
         a = 0
         z = len(nums) - 1
         while a <= z:
@@ -27,30 +26,30 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         nums = [4, 5, 6, 7, 0, 1, 2]
         self.assertEqual(5, Solution().search(nums, 1))
 
-    def test_single(self):
+    def test_single(self) -> None:
         nums = [1]
         self.assertEqual(0, Solution().search(nums, 1))
 
-    def test_other(self):
+    def test_other(self) -> None:
         nums = [4, 5, 6, 7, 0, 1, 2]
         self.assertEqual(-1, Solution().search(nums, 3))
 
-    def test_another(self):
+    def test_another(self) -> None:
         nums = [4, 5, 6, 7, 0, 1, 2]
         self.assertEqual(4, Solution().search(nums, 0))
 
-    def test_1_3__3(self):
+    def test_1_3__3(self) -> None:
         nums = [1, 3]
         self.assertEqual(1, Solution().search(nums, 3))
 
-    def test_3_5_1__3(self):
+    def test_3_5_1__3(self) -> None:
         nums = [3, 5, 1]
         self.assertEqual(0, Solution().search(nums, 3))
 
-    def test_5_1_2_3_4__1(self):
+    def test_5_1_2_3_4__1(self) -> None:
         nums = [5, 1, 2, 3, 4]
         self.assertEqual(1, Solution().search(nums, 1))

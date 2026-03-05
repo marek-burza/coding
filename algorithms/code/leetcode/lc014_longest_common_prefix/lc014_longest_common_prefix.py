@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/longest-common-prefix/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
+    def longestCommonPrefix(self, strs: list[str]) -> str:
         if len(strs) == 0:
             return ''
         i = 0
@@ -21,24 +20,24 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_Ala_AlaMaKota(self):
+    def test_Ala_AlaMaKota(self) -> None:
         self.assertEqual(
             Solution().longestCommonPrefix(['Ala', 'Ala Ma Kota']), 'Ala'
         )
 
-    def test_aa_a(self):
+    def test_aa_a(self) -> None:
         self.assertEqual(Solution().longestCommonPrefix(['aa', 'a']), 'a')
 
-    def test_ab_aa_coverage(self):
+    def test_ab_aa_coverage(self) -> None:
         self.assertEqual(Solution().longestCommonPrefix(['ab', 'aa']), 'a')
 
-    def test_none(self):
+    def test_none(self) -> None:
         self.assertEqual(Solution().longestCommonPrefix([]), '')
 
-    def test_empty_b(self):
+    def test_empty_b(self) -> None:
         self.assertEqual(Solution().longestCommonPrefix(['', 'b']), '')
 
-    def test_same(self):
+    def test_same(self) -> None:
         self.assertEqual(
             Solution().longestCommonPrefix(['same', 'same']), 'same'
         )

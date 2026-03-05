@@ -2,12 +2,11 @@
 # https://leetcode.com/problems/set-matrix-zeroes/
 
 import unittest
-from typing import List
 
 
 class Solution:
     # pylint: disable=R0912
-    def setZeroes(self, matrix: List[List[int]]) -> None:
+    def setZeroes(self, matrix: list[list[int]]) -> None:
         row0 = False
         for row, _ in enumerate(matrix):
             if matrix[row][0] == 0:
@@ -33,26 +32,28 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __test(self, expected, matrix):
+    def __test(
+        self, expected: list[list[int]], matrix: list[list[int]]
+    ) -> None:
         self.assertEqual(len(expected), len(matrix))
         row = 0
         while row < len(expected):
             self.assertListEqual(expected[row], matrix[row])
             row += 1
 
-    def test_smaller_example_1(self):
+    def test_smaller_example_1(self) -> None:
         matrix = [[1, 0]]
         expected = [[0, 0]]
         Solution().setZeroes(matrix)
         self.__test(expected, matrix)
 
-    def test_smaller_example_2(self):
+    def test_smaller_example_2(self) -> None:
         matrix = [[0, 1]]
         expected = [[0, 0]]
         Solution().setZeroes(matrix)
         self.__test(expected, matrix)
 
-    def test_bigger_example(self):
+    def test_bigger_example(self) -> None:
         matrix = [
             [0, 0, 0, 5],
             [4, 3, 1, 4],
@@ -70,7 +71,7 @@ class TestCode(unittest.TestCase):
         Solution().setZeroes(matrix)
         self.__test(expected, matrix)
 
-    def test_other(self):
+    def test_other(self) -> None:
         matrix = [[1, 1, 1], [1, 0, 1], [1, 1, 1]]
         expected = [[1, 0, 1], [0, 0, 0], [1, 0, 1]]
         Solution().setZeroes(matrix)

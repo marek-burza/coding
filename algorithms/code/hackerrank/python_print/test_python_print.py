@@ -5,13 +5,14 @@
 import io
 import sys
 import unittest
+from typing import IO, Any
 
 
-def printer(n, file):
+def printer(n: int, file: IO[Any]) -> None:
     list(map(lambda item: print(item, end='', file=file), range(1, n + 1)))
 
 
-def main():
+def main() -> None:
     printer(int(input().strip()), sys.stdout)
     print('')
 
@@ -21,7 +22,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -34,5 +35,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

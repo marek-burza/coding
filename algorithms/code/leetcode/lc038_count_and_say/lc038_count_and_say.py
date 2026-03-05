@@ -30,20 +30,20 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertEqual('1', Solution().countAndSay(1))
 
-    def test_2(self):
+    def test_2(self) -> None:
         self.assertEqual('11', Solution().countAndSay(2))
 
-    def test_3(self):
+    def test_3(self) -> None:
         self.assertEqual('21', Solution().countAndSay(3))
 
-    def test_4(self):
+    def test_4(self) -> None:
         self.assertEqual('1211', Solution().countAndSay(4))
 
-    def test_5(self):
+    def test_5(self) -> None:
         self.assertEqual('111221', Solution().countAndSay(5))
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.assertEqual('', Solution().countAndSay(0))

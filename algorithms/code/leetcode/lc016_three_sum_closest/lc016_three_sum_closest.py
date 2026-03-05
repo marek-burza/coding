@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/3sum-closest/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def threeSumClosest(self, nums: List[int], target: int) -> int:
+    def threeSumClosest(self, nums: list[int], target: int) -> int:
         nums.sort()
         result = sum(nums[:3])
         length = len(nums)
@@ -26,17 +25,17 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         nums = [-1, 2, 1, -4]
         expected = 2
         self.assertEqual(expected, Solution().threeSumClosest(nums, 1))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         nums = [0, 0, 0]
         expected = 0
         self.assertEqual(expected, Solution().threeSumClosest(nums, 1))
 
-    def test_other_1(self):
+    def test_other_1(self) -> None:
         nums = [0, 1, 2, 3]
         expected = 3
         self.assertEqual(expected, Solution().threeSumClosest(nums, 3))

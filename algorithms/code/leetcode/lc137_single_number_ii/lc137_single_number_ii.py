@@ -6,7 +6,7 @@ import unittest
 
 
 class Solution:
-    def singleNumber(self, nums):
+    def singleNumber(self, nums: list[int]) -> int:
         counters = [0] * 32
         for num in nums:
             for i, _ in enumerate(counters):
@@ -22,10 +22,10 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1112(self):
+    def test_1112(self) -> None:
         nums = [1, 1, 1, 2]
         self.assertEqual(2, Solution().singleNumber(nums))
 
-    def test_4344533(self):
+    def test_4344533(self) -> None:
         nums = [4, 3, 4, 4, 5, 3, 3]
         self.assertEqual(5, Solution().singleNumber(nums))

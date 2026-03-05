@@ -4,15 +4,14 @@
 import re
 import unittest
 from functools import cache
-from typing import List
 
 
 class Solution:
-    def diffWaysToCompute(self, expression: str) -> List[int]:
+    def diffWaysToCompute(self, expression: str) -> list[int]:
         items = re.findall(r'[+\-*]|\d+', expression)
 
         @cache
-        def traverse(a: int, z: int) -> List[int]:
+        def traverse(a: int, z: int) -> list[int]:
             result = []
             if a == z:
                 result.append(int(items[a]))
@@ -34,18 +33,18 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def generic(self, expected, result):
+    def generic(self, expected: list[int], result: list[int]) -> None:
         result = sorted(result)
         self.assertListEqual(expected, result)
 
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         expected = [0, 2]
         self.generic(expected, Solution().diffWaysToCompute('2-1-1'))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         expected = [-34, -14, -10, -10, 10]
         self.generic(expected, Solution().diffWaysToCompute('2*3-4*5'))
 
-    def test_other(self):
+    def test_other(self) -> None:
         expected = [7]
         self.generic(expected, Solution().diffWaysToCompute('3+4'))

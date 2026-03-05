@@ -8,28 +8,34 @@ import unittest
 
 
 class GFG7094AmazonSocialNetworkTraversal:
-    def __init__(self, friendships, attendances):
+    def __init__(
+        self,
+        friendships: dict[str, set[str]],
+        attendances: dict[str, set[str]],
+    ) -> None:
         self.friendships = friendships
         self.attendances = attendances
 
-    def get_direct_friends_for_user(self, user):
+    def get_direct_friends_for_user(self, user: str) -> set[str]:
         return self.friendships.get(user, set())
 
-    def get_attended_courses_for_user(self, user):
+    def get_attended_courses_for_user(self, user: str) -> set[str]:
         return self.attendances.get(user, set())
 
-    def get_ranked_courses(self, user):
+    def get_ranked_courses(self, user: str) -> list[str]:
         own_friends = self.get_direct_friends_for_user(user)
         second_degree = map(self.get_direct_friends_for_user, own_friends)
         network = set().union(*second_degree) - {user}
         own_courses = self.get_attended_courses_for_user(user)
-        second_courses = map(
+        second_courses_iter = map(
             lambda friend: list(
                 self.get_attended_courses_for_user(friend) - own_courses
             ),
             network,
         )
-        second_courses = functools.reduce(operator.iconcat, second_courses, [])
+        second_courses: list[str] = functools.reduce(
+            operator.iconcat, second_courses_iter, []
+        )
         counted_courses = collections.Counter(second_courses)
         ranked_courses = sorted(
             counted_courses.keys(),
@@ -57,28 +63,28 @@ class TestCode(unittest.TestCase):
         'Loner': {'Philosophy'},
     }
 
-    def test_loner(self):
+    def test_loner(self) -> None:
         network = GFG7094AmazonSocialNetworkTraversal(
             TestCode.EXAMPLE_FRIENDSHIPS, TestCode.EXAMPLE_ATTENDANCES
         )
         result = network.get_ranked_courses('Loner')
         self.assertEqual(result, [])
 
-    def test_jack(self):
+    def test_jack(self) -> None:
         network = GFG7094AmazonSocialNetworkTraversal(
             TestCode.EXAMPLE_FRIENDSHIPS, TestCode.EXAMPLE_ATTENDANCES
         )
         result = network.get_ranked_courses('Jack')
         self.assertEqual(result, ['Arts', 'Science 2', 'Sports'])
 
-    def test_jane(self):
+    def test_jane(self) -> None:
         network = GFG7094AmazonSocialNetworkTraversal(
             TestCode.EXAMPLE_FRIENDSHIPS, TestCode.EXAMPLE_ATTENDANCES
         )
         result = network.get_ranked_courses('Jane')
         self.assertEqual(result, [])
 
-    def test_leftovers(self):
+    def test_leftovers(self) -> None:
         network = GFG7094AmazonSocialNetworkTraversal(
             TestCode.EXAMPLE_FRIENDSHIPS, TestCode.EXAMPLE_ATTENDANCES
         )
@@ -96,7 +102,5 @@ class TestCode(unittest.TestCase):
             'Student2': {'Course2'},
             'Student3': {'Course3'},
         }
-        network = network = GFG7094AmazonSocialNetworkTraversal(
-            friendships, attendances
-        )
+        network = GFG7094AmazonSocialNetworkTraversal(friendships, attendances)
         self.assertEqual(2, len(network.get_ranked_courses('Student1')))

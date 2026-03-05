@@ -1,33 +1,41 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/binary-tree-inorder-traversal/
 
+from __future__ import annotations
+
 import unittest
-from typing import List, Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 class Solution:
-    def __preorderTraversal(self, root, result):
+    def __preorderTraversal(
+        self, root: TreeNode | None, result: list[int]
+    ) -> None:
         if root is None:
             return
         self.__preorderTraversal(root.left, result)
         result.append(root.val)
         self.__preorderTraversal(root.right, result)
 
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        result: List[int] = []
+    def inorderTraversal(self, root: TreeNode | None) -> list[int]:
+        result: list[int] = []
         self.__preorderTraversal(root, result)
         return result
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         node1 = TreeNode(1)
         node2 = TreeNode(2)
         node3 = TreeNode(3)

@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/summary-ranges/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def summaryRanges(self, nums: List[int]) -> List[str]:
+    def summaryRanges(self, nums: list[int]) -> list[str]:
         n = len(nums)
         if n == 0:
             return []
@@ -30,20 +29,20 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertListEqual(
             ['0->2', '4->5', '7'],
             Solution().summaryRanges([0, 1, 2, 4, 5, 7]),
         )
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertListEqual(
             ['0', '2->4', '6', '8->9'],
             Solution().summaryRanges([0, 2, 3, 4, 6, 8, 9]),
         )
 
-    def test_empty(self):
+    def test_empty(self) -> None:
         self.assertListEqual([], Solution().summaryRanges([]))
 
-    def test_single(self):
+    def test_single(self) -> None:
         self.assertListEqual(['0'], Solution().summaryRanges([0]))

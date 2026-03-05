@@ -2,12 +2,11 @@
 # https://leetcode.com/problems/isomorphic-strings/
 
 import unittest
-from typing import Dict
 
 
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
-        mapped: Dict[str, str] = {}
+        mapped: dict[str, str] = {}
         for i, _ in enumerate(s):
             source = s[i]
             target = t[i]
@@ -22,11 +21,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_aa__ab(self):
+    def test_aa__ab(self) -> None:
         self.assertFalse(Solution().isIsomorphic('aa', 'ab'))
 
-    def test_egg__add(self):
+    def test_egg__add(self) -> None:
         self.assertTrue(Solution().isIsomorphic('egg', 'add'))
 
-    def test_ac__bb(self):
+    def test_ac__bb(self) -> None:
         self.assertFalse(Solution().isIsomorphic('ac', 'bb'))

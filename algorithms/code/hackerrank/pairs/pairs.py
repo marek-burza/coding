@@ -3,10 +3,11 @@
 
 import os
 import unittest
-from typing import List
 
 
-def binary_search(array, from_index, to_index, key):
+def binary_search(
+    array: list[int], from_index: int, to_index: int, key: int
+) -> int:
     while from_index <= to_index:
         middle = (from_index + to_index) // 2
         if array[middle] < key:
@@ -18,7 +19,7 @@ def binary_search(array, from_index, to_index, key):
     return -1
 
 
-def pairs(k: int, arr: List[int]) -> int:
+def pairs(k: int, arr: list[int]) -> int:
     arr = sorted(arr)
     count = 0
     for i in range(0, len(arr) - 1):
@@ -28,8 +29,8 @@ def pairs(k: int, arr: List[int]) -> int:
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -41,10 +42,10 @@ class TestCode(unittest.TestCase):
         expected = int(io_lines[1][0][0])
         self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')
 
-    def test_other(self):
+    def test_other(self) -> None:
         expected = 4
         result = pairs(1, [1, 5, 3, 4, 2])
         self.assertEqual(expected, result)

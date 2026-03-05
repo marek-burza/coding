@@ -2,11 +2,17 @@
 # https://leetcode.com/problems/subsets-ii/
 
 import unittest
-from typing import List
+from typing import Any, Callable
 
 
 class Solution:
-    def __subsets(self, nums, offset, current, listed):
+    def __subsets(
+        self,
+        nums: list[int],
+        offset: int,
+        current: list[int],
+        listed: list[list[int]],
+    ) -> None:
         listed.append(current.copy())
         i = offset
         while i < len(nums):
@@ -22,42 +28,44 @@ class Solution:
                 current.pop()
             i += count
 
-    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+    def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
         nums.sort()
-        listed: List[List[int]] = []
+        listed: list[list[int]] = []
         self.__subsets(nums, 0, [], listed)
         return listed
 
 
 class TestCode(unittest.TestCase):
     @staticmethod
-    def cmp_to_key(mycmp):  # pragma: no cover
+    def cmp_to_key(mycmp: Callable) -> Any:  # pragma: no cover
         class K:
-            def __init__(self, obj, *_):
+            def __init__(self, obj: Any, *_: Any) -> None:
                 self.obj = obj
 
-            def __lt__(self, other):
+            def __lt__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) < 0
 
-            def __gt__(self, other):
+            def __gt__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) > 0
 
-            def __eq__(self, other):
+            def __eq__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) == 0
 
-            def __le__(self, other):
+            def __le__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) <= 0
 
-            def __ge__(self, other):
+            def __ge__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) >= 0
 
-            def __ne__(self, other):
+            def __ne__(self, other: Any) -> bool:
                 return mycmp(self.obj, other.obj) != 0
 
         return K
 
     @staticmethod
-    def orderly_comparator(l1, l2):  # pragma: no cover
+    def orderly_comparator(
+        l1: list[int], l2: list[int]
+    ) -> int:  # pragma: no cover
         difference = len(l1) - len(l2)
         if difference != 0:
             return difference
@@ -68,7 +76,9 @@ class TestCode(unittest.TestCase):
                 return 1
         return 0
 
-    def __test(self, expected, result):
+    def __test(
+        self, expected: list[list[int]], result: list[list[int]]
+    ) -> None:
         result = sorted(
             result, key=TestCode.cmp_to_key(TestCode.orderly_comparator)
         )
@@ -79,7 +89,7 @@ class TestCode(unittest.TestCase):
             for j, expected_i_j in enumerate(expected_i):
                 self.assertEqual(expected_i_j, result[i][j])
 
-    def test_1_2_2(self):
+    def test_1_2_2(self) -> None:
         listed = Solution().subsetsWithDup([1, 2, 2])
         expected = [[], [1], [2], [1, 2], [2, 2], [1, 2, 2]]
         self.__test(expected, listed)

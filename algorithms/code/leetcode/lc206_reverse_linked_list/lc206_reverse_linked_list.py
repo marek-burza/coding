@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/reverse-linked-list/
 
+from __future__ import annotations
+
 import unittest
-from typing import List, Optional
 
 
 class ListNode:
-    def __init__(self, val=0, following=None):
+    def __init__(
+        self, val: int = 0, following: 'ListNode | None' = None
+    ) -> None:
         self.val = val
         self.next = following
 
 
 class Solution:
-    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    def reverseList(self, head: ListNode | None) -> ListNode | None:
         if head is None:
             return None
         ante = None
@@ -26,34 +29,34 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     @staticmethod
-    def linked_to_listed(linked: Optional[ListNode]) -> List:
-        listed: List = []
+    def linked_to_listed(linked: ListNode | None) -> list:
+        listed: list = []
         while linked is not None:
             listed.append(linked.val)
             linked = linked.next
         return listed
 
     @staticmethod
-    def listed_to_linked(listed: List) -> Optional[ListNode]:
-        linked: Optional[ListNode] = None
+    def listed_to_linked(listed: list) -> ListNode | None:
+        linked: ListNode | None = None
         for value in listed[::-1]:
             linked = ListNode(value, linked)
         return linked
 
-    def generic(self, linked):
+    def generic(self, linked: ListNode | None) -> None:
         original = TestCode.linked_to_listed(linked)
         result = TestCode.linked_to_listed(Solution().reverseList(linked))
         self.assertEqual(len(original), len(result))
         for i, _ in enumerate(original):
             self.assertEqual(original[len(original) - 1 - i], result[i])
 
-    def test_15(self):
+    def test_15(self) -> None:
         linked = TestCode.listed_to_linked(list(range(15)))
         self.generic(linked)
 
-    def test_1(self):
+    def test_1(self) -> None:
         linked = TestCode.listed_to_linked(list(range(1)))
         self.generic(linked)
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertIsNone(Solution().reverseList(None))

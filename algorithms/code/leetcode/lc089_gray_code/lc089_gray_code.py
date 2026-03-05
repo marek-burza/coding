@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/gray-code/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def grayCode(self, bits: int) -> List[int]:
+    def grayCode(self, bits: int) -> list[int]:
         if bits == 0:
             listed = [0]
             return listed
@@ -23,10 +22,10 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_4(self):
+    def test_4(self) -> None:
         expected = [0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8]
         self.assertListEqual(expected, Solution().grayCode(4))
 
-    def test_0(self):
+    def test_0(self) -> None:
         expected = [0]
         self.assertListEqual(expected, Solution().grayCode(0))

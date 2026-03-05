@@ -8,7 +8,7 @@ import sys
 import unittest
 
 
-def check(cubes):
+def check(cubes: list[int]) -> bool:
     q = collections.deque(cubes)
     previous = None
     while q:
@@ -21,7 +21,7 @@ def check(cubes):
     return True
 
 
-def main():
+def main() -> None:
     t = int(input().strip())
     for _ in range(t):
         n = int(input().strip())
@@ -34,7 +34,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -47,5 +47,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

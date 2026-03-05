@@ -19,23 +19,23 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_A(self):
+    def test_A(self) -> None:
         self.assertEqual(1, Solution().titleToNumber('A'))
 
-    def test_B(self):
+    def test_B(self) -> None:
         self.assertEqual(2, Solution().titleToNumber('B'))
 
-    def test_C(self):
+    def test_C(self) -> None:
         self.assertEqual(3, Solution().titleToNumber('C'))
 
-    def test_Z(self):
+    def test_Z(self) -> None:
         self.assertEqual(26, Solution().titleToNumber('Z'))
 
-    def test_AA(self):
+    def test_AA(self) -> None:
         self.assertEqual(27, Solution().titleToNumber('AA'))
 
-    def test_AB(self):
+    def test_AB(self) -> None:
         self.assertEqual(28, Solution().titleToNumber('AB'))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(-1, Solution().titleToNumber(''))

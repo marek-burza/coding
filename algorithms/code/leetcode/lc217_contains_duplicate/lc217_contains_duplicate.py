@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/contains-duplicate/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def containsDuplicate(self, nums: List[int]) -> bool:
+    def containsDuplicate(self, nums: list[int]) -> bool:
         seen = set()
         for num in nums:
             if num in seen:
@@ -16,8 +15,8 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_0_5_7(self):
+    def test_0_5_7(self) -> None:
         self.assertFalse(Solution().containsDuplicate([0, 5, 7]))
 
-    def test_0_5_7_5_10(self):
+    def test_0_5_7_5_10(self) -> None:
         self.assertTrue(Solution().containsDuplicate([0, 5, 7, 5, 10]))

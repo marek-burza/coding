@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def __nck(self, n, k):
+    def __nck(self, n: int, k: int) -> int:
         if k > n:
             return 0
         if k * 2 > n:
@@ -24,14 +24,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_3_7(self):
+    def test_3_7(self) -> None:
         self.assertEqual(28, Solution().uniquePaths(3, 7))
 
-    def test_59_5(self):
+    def test_59_5(self) -> None:
         self.assertEqual(557845, Solution().uniquePaths(59, 5))
 
-    def test_1_10(self):
+    def test_1_10(self) -> None:
         self.assertEqual(1, Solution().uniquePaths(1, 10))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().uniquePaths(1, 0))

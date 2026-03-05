@@ -6,14 +6,15 @@ import io
 import operator
 import sys
 import unittest
+from typing import Any, Callable
 
 
-def title(gender):
+def title(gender: str) -> str:
     return 'Mr.' if gender == 'M' else 'Ms.'
 
 
-def person_lister(f):
-    def inner(people):
+def person_lister(f: Callable) -> Callable:
+    def inner(people: list[list[Any]]) -> list[str]:
         people.sort(key=operator.itemgetter(2))
         return [f(person) for person in people]
 
@@ -21,11 +22,11 @@ def person_lister(f):
 
 
 @person_lister
-def name_format(person):
+def name_format(person: list[Any]) -> str:
     return ' '.join([title(person[3]), person[0], person[1]])
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     people = [input().strip().split() for _ in range(n)]
     print(*name_format(people), sep='\n')
@@ -36,7 +37,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -49,5 +50,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

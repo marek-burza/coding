@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
+    def letterCombinations(self, digits: str) -> list[str]:
         if digits is None or len(digits) == 0:
             return []
         mapping = [
@@ -34,11 +33,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_empty(self):
+    def test_empty(self) -> None:
         result = Solution().letterCombinations('')
         self.assertEqual(len(result), 0)
 
-    def test_example(self):
+    def test_example(self) -> None:
         expected = ['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']
         expected = sorted(expected)
         result = Solution().letterCombinations('23')

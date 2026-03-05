@@ -2,18 +2,17 @@
 # https://leetcode.com/problems/wiggle-subsequence/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def __signum(self, value):
+    def __signum(self, value: int) -> int:
         if value > 0:
             return 1
         if value < 0:
             return -1
         return 0
 
-    def wiggleMaxLength(self, nums: List[int]) -> int:
+    def wiggleMaxLength(self, nums: list[int]) -> int:
         if len(nums) < 2:
             return len(nums)
         then = self.__signum(nums[1] - nums[0])
@@ -28,23 +27,23 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual(6, Solution().wiggleMaxLength([1, 7, 4, 9, 2, 5]))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual(
             7, Solution().wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8])
         )
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         self.assertEqual(
             2, Solution().wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9])
         )
 
-    def test_short(self):
+    def test_short(self) -> None:
         self.assertEqual(1, Solution().wiggleMaxLength([0, 0]))
 
-    def test_long_with_plateau_1(self):
+    def test_long_with_plateau_1(self) -> None:
         self.assertEqual(
             202,
             Solution().wiggleMaxLength(
@@ -353,7 +352,7 @@ class TestCode(unittest.TestCase):
             ),
         )
 
-    def test_long_with_plateau_2(self):
+    def test_long_with_plateau_2(self) -> None:
         self.assertEqual(
             334,
             Solution().wiggleMaxLength(
@@ -862,5 +861,5 @@ class TestCode(unittest.TestCase):
             ),
         )
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().wiggleMaxLength([]))

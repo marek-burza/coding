@@ -4,7 +4,7 @@
 import unittest
 
 
-def acm_team(topic):
+def acm_team(topic: list[str]) -> tuple[int, int]:
     length = len(topic)
     coverage_count = 0
     teams_count = 0
@@ -22,13 +22,13 @@ def acm_team(topic):
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         topic = ['10101', '11100', '11010', '00101']
         expected = (5, 2)
         result = acm_team(topic)
         self.assertEqual(result, expected)
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         topic = ['10101', '11110', '00010']
         expected = (5, 1)
         result = acm_team(topic)

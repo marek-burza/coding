@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def __re(self, n):
+    def __re(self, n: int) -> int:
         result = 0
         while n != 0:
             digit = n % 10
@@ -25,8 +25,8 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_19(self):
+    def test_19(self) -> None:
         self.assertTrue(Solution().isHappy(19))
 
-    def test_2(self):
+    def test_2(self) -> None:
         self.assertFalse(Solution().isHappy(2))

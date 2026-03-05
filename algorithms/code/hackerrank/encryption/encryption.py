@@ -29,8 +29,8 @@ def encryption(plain: str) -> str:
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -41,14 +41,14 @@ class TestCode(unittest.TestCase):
         expected = ' '.join(io_lines[1][0])
         self.assertEqual(expected, result)
 
-    def test_example_0(self):
+    def test_example_0(self) -> None:
         self.runner('_example_0')
 
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.runner('_example_1')
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.runner('_example_2')
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         self.runner('_example_3')

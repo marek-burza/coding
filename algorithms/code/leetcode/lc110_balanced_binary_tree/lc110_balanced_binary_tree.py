@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/balanced-binary-tree/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 class Solution:
-    def __balancedHeight(self, root):
+    def __balancedHeight(self, root: TreeNode | None) -> int:
         if root is None:
             return 0
         left = self.__balancedHeight(root.left)
@@ -26,34 +32,34 @@ class Solution:
             return -1
         return 1 + max(left, right)
 
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    def isBalanced(self, root: TreeNode | None) -> bool:
         return self.__balancedHeight(root) != -1
 
 
 class TestCode(unittest.TestCase):
-    def test_balanced(self):
+    def test_balanced(self) -> None:
         left = TreeNode(2, TreeNode(1, None, None), TreeNode(3, None, None))
         right = TreeNode(6, TreeNode(5, None, None), TreeNode(7, None, None))
         root = TreeNode(4, left, right)
         self.assertTrue(Solution().isBalanced(root))
 
-    def test_imbalanced_right(self):
+    def test_imbalanced_right(self) -> None:
         right = TreeNode(6, TreeNode(5, None, None), TreeNode(7, None, None))
         root = TreeNode(4, None, right)
         self.assertFalse(Solution().isBalanced(root))
 
-    def test_imbalanced_left(self):
+    def test_imbalanced_left(self) -> None:
         left = TreeNode(2, TreeNode(1, None, None), TreeNode(3, None, None))
         root = TreeNode(4, None, left)
         self.assertFalse(Solution().isBalanced(root))
 
-    def test_imbalanced_deep_left(self):
+    def test_imbalanced_deep_left(self) -> None:
         left = TreeNode(2, TreeNode(1, TreeNode(3, None, None), None), None)
         right = TreeNode(6, TreeNode(5, None, None), TreeNode(7, None, None))
         root = TreeNode(4, left, right)
         self.assertFalse(Solution().isBalanced(root))
 
-    def test_imbalanced_deep_right(self):
+    def test_imbalanced_deep_right(self) -> None:
         left = TreeNode(2, TreeNode(1, None, None), TreeNode(3, None, None))
         right = TreeNode(6, TreeNode(5, None, TreeNode(7, None, None)), None)
         root = TreeNode(4, left, right)

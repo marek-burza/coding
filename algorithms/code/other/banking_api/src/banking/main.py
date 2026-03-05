@@ -46,11 +46,11 @@ app.include_router(transfers.router)
 
 
 @app.get('/', include_in_schema=False)
-async def index():
+async def index() -> RedirectResponse:
     return RedirectResponse('/docs')
 
 
-def main():  # pragma: no cover
+def main() -> None:  # pragma: no cover
     pattern = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     logging.basicConfig(format=pattern, level=logging.INFO)
     config = uvicorn.config.LOGGING_CONFIG

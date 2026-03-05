@@ -2,25 +2,31 @@
 
 # https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
 
+from __future__ import annotations
+
 import unittest
-from typing import List, Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 class Solution:
-    def levelOrderBottom(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrderBottom(self, root: TreeNode | None) -> list[list[int]]:
         result = []
         current = []
         if root is not None:
             current.append(root)
         while current:
-            level: List[int] = []
+            level: list[int] = []
             result.append(level)
             future = []
             for node in current:
@@ -39,10 +45,10 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_empty(self):
+    def test_empty(self) -> None:
         self.assertEqual(0, len(Solution().levelOrderBottom(None)))
 
-    def test_example(self):
+    def test_example(self) -> None:
         n3 = TreeNode(3)
         n9 = TreeNode(9)
         n20 = TreeNode(20)

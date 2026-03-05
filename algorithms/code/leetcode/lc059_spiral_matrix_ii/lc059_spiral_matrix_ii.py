@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/spiral-matrix-ii/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def generateMatrix(self, n: int) -> List[List[int]]:
+    def generateMatrix(self, n: int) -> list[list[int]]:
         limits = [n - 1, n - 1, 0, 0]
         restrict = [1, -1, -1, 1]
         delta = [[0, 1], [1, 0], [0, -1], [-1, 0]]
@@ -30,7 +29,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         expected = [[1, 2, 3], [8, 9, 4], [7, 6, 5]]
         result = Solution().generateMatrix(3)
         self.assertIsNotNone(result)

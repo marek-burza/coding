@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/super-ugly-number/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def nthSuperUglyNumber(self, n: int, primes: List[int]) -> int:
+    def nthSuperUglyNumber(self, n: int, primes: list[int]) -> int:
         m = len(primes)
         mul = [0] * m
         dp = [0] * n
@@ -28,7 +27,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         expected = [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32]
         primes = [2, 7, 13, 19]
         for i, expected_i in enumerate(expected):
@@ -36,7 +35,7 @@ class TestCode(unittest.TestCase):
                 expected_i, Solution().nthSuperUglyNumber(i + 1, primes)
             )
 
-    def test_other(self):
+    def test_other(self) -> None:
         expected = 1092889481
         primes = [
             7,
@@ -74,7 +73,7 @@ class TestCode(unittest.TestCase):
             expected, Solution().nthSuperUglyNumber(100000, primes)
         )
 
-    def test_even_bigger(self):
+    def test_even_bigger(self) -> None:
         expected = 15132
         primes = [
             2,

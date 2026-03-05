@@ -33,7 +33,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_2_in_10(self):
+    def test_2_in_10(self) -> None:
         # pylint: disable=W0603
         global lc374_number_higher_or_lower
         lc374_number_higher_or_lower = 2
@@ -41,7 +41,7 @@ class TestCode(unittest.TestCase):
             lc374_number_higher_or_lower, Solution().guessNumber(10)
         )
 
-    def test_8_in_10(self):
+    def test_8_in_10(self) -> None:
         # pylint: disable=W0603
         global lc374_number_higher_or_lower
         lc374_number_higher_or_lower = 8
@@ -49,7 +49,7 @@ class TestCode(unittest.TestCase):
             lc374_number_higher_or_lower, Solution().guessNumber(10)
         )
 
-    def test_65789(self):
+    def test_65789(self) -> None:
         # pylint: disable=W0603
         global lc374_number_higher_or_lower
         lc374_number_higher_or_lower = 65789
@@ -57,7 +57,7 @@ class TestCode(unittest.TestCase):
             lc374_number_higher_or_lower, Solution().guessNumber(2**31 - 1)
         )
 
-    def test_1(self):
+    def test_1(self) -> None:
         # pylint: disable=W0603
         global lc374_number_higher_or_lower
         lc374_number_higher_or_lower = 1

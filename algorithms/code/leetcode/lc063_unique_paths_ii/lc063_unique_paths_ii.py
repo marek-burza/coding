@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/unique-paths-ii/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+    def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
         grid = obstacleGrid
         max_m = len(grid)
         max_n = len(grid[0])
@@ -27,7 +26,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual(
             2,
             Solution().uniquePathsWithObstacles(
@@ -35,7 +34,7 @@ class TestCode(unittest.TestCase):
             ),
         )
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual(
             1,
             Solution().uniquePathsWithObstacles(
@@ -43,7 +42,7 @@ class TestCode(unittest.TestCase):
             ),
         )
 
-    def test_other_1(self):
+    def test_other_1(self) -> None:
         self.assertEqual(
             0,
             Solution().uniquePathsWithObstacles(
@@ -51,7 +50,7 @@ class TestCode(unittest.TestCase):
             ),
         )
 
-    def test_other_2(self):
+    def test_other_2(self) -> None:
         self.assertEqual(
             0,
             Solution().uniquePathsWithObstacles(

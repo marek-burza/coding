@@ -6,7 +6,6 @@ import functools
 import heapq
 import os
 import unittest
-from typing import List
 
 Edge = collections.namedtuple('Edge', ['origin', 'vertex', 'weight'])
 
@@ -14,25 +13,25 @@ Edge = collections.namedtuple('Edge', ['origin', 'vertex', 'weight'])
 # pylint: disable=R0903
 @functools.total_ordering
 class Vertex:
-    def __init__(self, index: int, distance: int):
+    def __init__(self, index: int, distance: int) -> None:
         self.index = index
         self.distance = distance
 
-    def __lt__(self, other):
+    def __lt__(self, other: 'Vertex') -> bool:
         return self.distance < other.distance
 
 
 UNKNOWN = -1
 
 
-def shortest_reach(n: int, edges: List[List[int]], s: int) -> List[int]:
-    adjacency: List[List[Edge]] = [[] for _ in range(n + 1)]
+def shortest_reach(n: int, edges: list[list[int]], s: int) -> list[int]:
+    adjacency: list[list[Edge]] = [[] for _ in range(n + 1)]
     for edge in edges:
         adjacency[edge[0]].append(Edge(edge[0], edge[1], edge[2]))
         adjacency[edge[1]].append(Edge(edge[1], edge[0], edge[2]))
     distances = [-1] * (n + 1)
     distances[s] = 0
-    unvisited: List[Vertex] = []
+    unvisited: list[Vertex] = []
     heapq.heappush(unvisited, Vertex(s, 0))
     while unvisited:
         vertex = heapq.heappop(unvisited)
@@ -49,8 +48,8 @@ def shortest_reach(n: int, edges: List[List[int]], s: int) -> List[int]:
 
 class TestCode(unittest.TestCase):
     # pylint: disable=R0914
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -61,22 +60,22 @@ class TestCode(unittest.TestCase):
         for test in range(tests):
             n = int(io_lines[0][offset][0])
             m = int(io_lines[0][offset][1])
-            edges = io_lines[0][offset + 1 : offset + 1 + m]
-            edges = [[int(item) for item in row] for row in edges]
+            edges_raw = io_lines[0][offset + 1 : offset + 1 + m]
+            edges = [[int(item) for item in row] for row in edges_raw]
             s = int(io_lines[0][offset + 1 + m][0])
             offset += 1 + m + 1
             result = shortest_reach(n, edges, s)
             expected = [int(item) for item in io_lines[1][test]]
             self.assertEqual(expected, result)
 
-    def test_00(self):
+    def test_00(self) -> None:
         self.runner('00')
 
-    def test_01(self):
+    def test_01(self) -> None:
         self.runner('01')
 
-    def test_03(self):
+    def test_03(self) -> None:
         self.runner('03')
 
-    def test_04(self):
+    def test_04(self) -> None:
         self.runner('04')

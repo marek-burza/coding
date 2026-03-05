@@ -6,7 +6,7 @@ import unittest
 
 
 class Solution:
-    def isPowerOfFour(self, num):
+    def isPowerOfFour(self, num: int) -> bool:
         if num <= 0:
             return False
         value = math.log(num) / math.log(4)
@@ -14,12 +14,12 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_16(self):
+    def test_16(self) -> None:
         self.assertTrue(Solution().isPowerOfFour(16))
 
-    def test_5(self):
+    def test_5(self) -> None:
         self.assertFalse(Solution().isPowerOfFour(5))
 
-    def test_non_positive(self):
+    def test_non_positive(self) -> None:
         self.assertFalse(Solution().isPowerOfFour(0))
         self.assertFalse(Solution().isPowerOfFour(-1))

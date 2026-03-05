@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class Node:
     def __init__(
         self,
         val: int = 0,
-        left: Optional['Node'] = None,
-        right: Optional['Node'] = None,
-        following: Optional['Node'] = None,
-    ):
+        left: 'Node | None' = None,
+        right: 'Node | None' = None,
+        following: 'Node | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
@@ -20,7 +21,7 @@ class Node:
 
 
 class Solution:
-    def connect(self, root: Optional[Node]) -> Optional[Node]:
+    def connect(self, root: Node | None) -> Node | None:
         current = []
         if root is not None:
             current.append(root)
@@ -40,10 +41,10 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_empty(self):
+    def test_empty(self) -> None:
         Solution().connect(None)
 
-    def test_example(self):
+    def test_example(self) -> None:
         n4 = Node(4)
         n5 = Node(5)
         n6 = Node(6)

@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/missing-number/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def missingNumber(self, nums: List[int]) -> int:
+    def missingNumber(self, nums: list[int]) -> int:
         expected = len(nums) * (len(nums) + 1) // 2
         summed = 0
         for value in nums:
@@ -15,5 +14,5 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         self.assertEqual(2, Solution().missingNumber([0, 1, 3]))

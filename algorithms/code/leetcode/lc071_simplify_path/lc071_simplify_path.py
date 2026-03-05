@@ -2,12 +2,11 @@
 # https://leetcode.com/problems/simplify-path/
 
 import unittest
-from typing import List
 
 
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        filtered: List[str] = []
+        filtered: list[str] = []
         for item in path.split('/'):
             if item in ['', '.']:
                 continue
@@ -20,22 +19,22 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertEqual('/home', Solution().simplifyPath('/home/'))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertEqual('/home/foo', Solution().simplifyPath('/home//foo/'))
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         self.assertEqual(
             '/home/user/Pictures',
             Solution().simplifyPath('/home/user/Documents/../Pictures'),
         )
 
-    def test_example_4(self):
+    def test_example_4(self) -> None:
         self.assertEqual('/', Solution().simplifyPath('/../'))
 
-    def test_example_5(self):
+    def test_example_5(self) -> None:
         self.assertEqual(
             '/.../b/d', Solution().simplifyPath('/.../a/../b/c/../d/./')
         )

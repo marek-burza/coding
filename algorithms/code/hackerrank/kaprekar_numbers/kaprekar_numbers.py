@@ -4,10 +4,9 @@
 import math
 import os
 import unittest
-from typing import List
 
 
-def kaprekar_numbers(p: int, q: int) -> List[str]:
+def kaprekar_numbers(p: int, q: int) -> list[str]:
     found = []
     for n in range(p, q + 1):
         digits_count = 1 + int(math.log10(n))
@@ -23,8 +22,8 @@ def kaprekar_numbers(p: int, q: int) -> List[str]:
 
 
 class TestCode(unittest.TestCase):
-    def runner(self, name):
-        io_lines = [[[]]] * 2
+    def runner(self, name: str) -> None:
+        io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(['input%s.txt', 'output%s.txt']):
             path = os.path.join(os.path.split(__file__)[0], template % name)
             with open(path, 'r', encoding='utf-8') as handle:
@@ -36,11 +35,11 @@ class TestCode(unittest.TestCase):
         expected = io_lines[1][0]
         self.assertEqual(expected, result)
 
-    def test_example(self):
+    def test_example(self) -> None:
         self.runner('_example')
 
-    def test_06(self):
+    def test_06(self) -> None:
         self.runner('06')
 
-    def test_6(self):
+    def test_6(self) -> None:
         self.runner('6')

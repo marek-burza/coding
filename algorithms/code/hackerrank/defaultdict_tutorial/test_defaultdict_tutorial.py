@@ -8,7 +8,9 @@ import sys
 import unittest
 
 
-def list_repetitions(words_a, words_b):
+def list_repetitions(
+    words_a: list[str], words_b: list[str]
+) -> dict[str, list[int]]:
     result = collections.defaultdict(list)
     for i, word in enumerate(words_a):
         if word in words_b:
@@ -16,7 +18,7 @@ def list_repetitions(words_a, words_b):
     return result
 
 
-def main():
+def main() -> None:
     n_in, m_in = list(map(int, input().strip().split(' ')))
     words_a_in = []
     words_b_in = []
@@ -37,7 +39,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -50,8 +52,8 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')
 
-    def test_01(self):
+    def test_01(self) -> None:
         self.generalized_test('01')

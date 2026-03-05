@@ -2,19 +2,18 @@
 # https://leetcode.com/problems/insert-interval/
 
 import unittest
-from typing import List
 
 
 class Solution:
     def insert(
         self,
-        intervals: List[List[int]],
-        newInterval: List[int],
-    ) -> List[List[int]]:
+        intervals: list[list[int]],
+        newInterval: list[int],
+    ) -> list[list[int]]:
         start = newInterval[0]
         end = newInterval[1]
-        before: List[List[int]] = []
-        after: List[List[int]] = []
+        before: list[list[int]] = []
+        after: list[list[int]] = []
         for interval in intervals:
             interval_start = interval[0]
             interval_end = interval[1]
@@ -29,13 +28,13 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         self.assertListEqual(
             [[1, 5], [6, 9]],
             Solution().insert([[1, 3], [6, 9]], [2, 5]),
         )
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         self.assertListEqual(
             [[1, 2], [3, 10], [12, 16]],
             Solution().insert(

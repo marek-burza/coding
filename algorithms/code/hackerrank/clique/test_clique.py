@@ -8,7 +8,7 @@ import sys
 import unittest
 
 
-def calculate(x, n):
+def calculate(x: int, n: int) -> int:
     n_2 = n * n
     mod = n % x
     up = n // x + 1
@@ -18,7 +18,7 @@ def calculate(x, n):
     return (n_2 - mod * up_2 - (x - mod) * dn_2) // 2
 
 
-def find_largest_possible_clique(n, m):
+def find_largest_possible_clique(n: int, m: int) -> int:
     a = 0
     z = n + 1
     while a + 1 < z:
@@ -30,7 +30,7 @@ def find_largest_possible_clique(n, m):
     return z
 
 
-def main():
+def main() -> None:
     t = int(input().strip())
     for _ in range(t):
         n, m = list(map(int, input().strip().split()))
@@ -42,7 +42,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -55,5 +55,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

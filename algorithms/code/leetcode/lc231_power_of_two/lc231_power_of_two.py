@@ -18,20 +18,20 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_minus10(self):
+    def test_minus10(self) -> None:
         self.assertEqual(False, Solution().isPowerOfTwo(-10))
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.assertEqual(False, Solution().isPowerOfTwo(0))
 
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertEqual(True, Solution().isPowerOfTwo(1))
 
-    def test_2(self):
+    def test_2(self) -> None:
         self.assertEqual(True, Solution().isPowerOfTwo(2))
 
-    def test_5(self):
+    def test_5(self) -> None:
         self.assertEqual(False, Solution().isPowerOfTwo(5))
 
-    def test_1024(self):
+    def test_1024(self) -> None:
         self.assertEqual(True, Solution().isPowerOfTwo(1024))

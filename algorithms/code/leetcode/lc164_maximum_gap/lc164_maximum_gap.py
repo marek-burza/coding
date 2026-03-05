@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/maximum-gap/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def maximumGap(self, nums: List[int]) -> int:
+    def maximumGap(self, nums: list[int]) -> int:
         if nums is None or len(nums) == 0:
             return 0
         n = len(nums)
@@ -33,9 +32,9 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_33_2_100_70(self):
+    def test_33_2_100_70(self) -> None:
         nums1 = [33, 2, 100, 70]
         self.assertEqual(37, Solution().maximumGap(nums1))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         self.assertEqual(0, Solution().maximumGap([]))

@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/maximum-product-of-word-lengths/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def maxProduct(self, words: List[str]) -> int:
+    def maxProduct(self, words: list[str]) -> int:
         signature = [0] * len(words)
         for i, _ in enumerate(words):
             for character in words[i]:
@@ -20,14 +19,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         words = ['abcw', 'baz', 'foo', 'bar', 'xtfn', 'abcdef']
         self.assertEqual(16, Solution().maxProduct(words))
 
-    def test_example_2(self):
+    def test_example_2(self) -> None:
         words = ['a', 'ab', 'abc', 'd', 'cd', 'bcd', 'abcd']
         self.assertEqual(4, Solution().maxProduct(words))
 
-    def test_example_3(self):
+    def test_example_3(self) -> None:
         words = ['a', 'aa', 'aaa', 'aaaa']
         self.assertEqual(0, Solution().maxProduct(words))

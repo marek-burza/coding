@@ -5,7 +5,7 @@ import unittest
 
 
 class Solution:
-    def __count(self, prefix, n):
+    def __count(self, prefix: str, n: int) -> int:
         if len(prefix) == n:
             return 1
         summed = 1
@@ -21,11 +21,11 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         self.assertEqual(91, Solution().countNumbersWithUniqueDigits(2))
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.assertEqual(1, Solution().countNumbersWithUniqueDigits(0))
 
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertEqual(10, Solution().countNumbersWithUniqueDigits(1))

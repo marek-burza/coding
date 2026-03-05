@@ -21,14 +21,14 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1(self):
+    def test_1(self) -> None:
         self.assertTrue(Solution().isPerfectSquare(1))
 
-    def test_14(self):
+    def test_14(self) -> None:
         self.assertFalse(Solution().isPerfectSquare(14))
 
-    def test_16(self):
+    def test_16(self) -> None:
         self.assertTrue(Solution().isPerfectSquare(16))
 
-    def test_maximum(self):
+    def test_maximum(self) -> None:
         self.assertFalse(Solution().isPerfectSquare(2**31 - 1))

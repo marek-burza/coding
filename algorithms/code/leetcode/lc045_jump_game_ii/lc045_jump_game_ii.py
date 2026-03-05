@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/jump-game-ii/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def jump(self, nums: List[int]) -> int:
+    def jump(self, nums: list[int]) -> int:
         if len(nums) == 1:
             return 0
         horizon = nums[0]
@@ -24,10 +23,10 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example_1(self):
+    def test_example_1(self) -> None:
         nums = [2, 3, 1, 1, 4]
         self.assertEqual(2, Solution().jump(nums))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         nums = [0]
         self.assertEqual(0, Solution().jump(nums))

@@ -7,11 +7,11 @@ import sys
 import unittest
 
 
-def convert(integers):
+def convert(integers: list[int]) -> str:
     return str(hash(tuple(integers)))
 
 
-def main():
+def main() -> None:
     n = int(input().strip())
     integers = list(map(int, input().strip().split(' ')))[:n]
     print(convert(integers))
@@ -22,7 +22,7 @@ if __name__ == '__main__':  # pragma: no cover
 
 
 class TestCode(unittest.TestCase):
-    def generalized_test(self, which):
+    def generalized_test(self, which: str) -> None:
         with (
             open(
                 __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
@@ -35,5 +35,5 @@ class TestCode(unittest.TestCase):
             main()
             self.assertEqual(sys.stdout.getvalue(), expected.read())
 
-    def test_0(self):
+    def test_0(self) -> None:
         self.generalized_test('0')

@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/invert-binary-tree/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invertTree(self, root: TreeNode | None) -> TreeNode | None:
         if root is not None:
             node = root.left
             root.left = root.right
@@ -24,7 +30,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n1 = TreeNode(1)
         n2 = TreeNode(2)
         n3 = TreeNode(3)

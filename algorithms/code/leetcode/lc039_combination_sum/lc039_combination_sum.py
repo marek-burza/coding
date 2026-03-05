@@ -43,7 +43,7 @@ class TestCode(unittest.TestCase):
         mycmp: Callable[[list[list[int]], list[list[int]]], int],
     ) -> Any:  # pragma: no cover
         class K:
-            def __init__(self, obj: list[list[int]], *_) -> None:
+            def __init__(self, obj: list[list[int]], *_: Any) -> None:
                 self.obj = obj
 
             def __lt__(self, other: object) -> bool:

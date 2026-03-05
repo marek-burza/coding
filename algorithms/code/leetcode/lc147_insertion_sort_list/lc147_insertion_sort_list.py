@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/insertion-sort-list/
 
+from __future__ import annotations
+
 import unittest
-from typing import List, Optional
 
 
 class ListNode:
-    def __init__(self, val=0, following=None):
+    def __init__(
+        self, val: int = 0, following: 'ListNode | None' = None
+    ) -> None:
         self.val = val
         self.next = following
 
 
 class Solution:
-    def insertionSortList(
-        self, head: Optional[ListNode]
-    ) -> Optional[ListNode]:
+    def insertionSortList(self, head: ListNode | None) -> ListNode | None:
         if head is None:
             return None
-        node = head
+        node: ListNode | None = head
         # Grab the first node after the already ordered nodes
-        tail = node
+        tail: ListNode | None = node
         # Iterate from the node holding the head
         handle = ListNode(0)
         # Iterate until we reach the end
@@ -42,33 +43,33 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     @staticmethod
-    def linked_to_listed(linked: Optional[ListNode]) -> List:
-        listed: List = []
+    def linked_to_listed(linked: ListNode | None) -> list:
+        listed: list = []
         while linked is not None:
             listed.append(linked.val)
             linked = linked.next
         return listed
 
     @staticmethod
-    def listed_to_linked(listed: List) -> Optional[ListNode]:
-        linked: Optional[ListNode] = None
+    def listed_to_linked(listed: list) -> ListNode | None:
+        linked: ListNode | None = None
         for value in listed[::-1]:
             linked = ListNode(value, linked)
         return linked
 
-    def test_example(self):
+    def test_example(self) -> None:
         linked = TestCode.listed_to_linked([6, 3, 4, 5, 2, 1])
         result = Solution().insertionSortList(linked)
         self.assertListEqual(
             [1, 2, 3, 4, 5, 6], TestCode.linked_to_listed(result)
         )
 
-    def test_1_1(self):
+    def test_1_1(self) -> None:
         linked = TestCode.listed_to_linked([1, 1])
         result = Solution().insertionSortList(linked)
         self.assertListEqual([1, 1], TestCode.linked_to_listed(result))
 
-    def test_nothing(self):
+    def test_nothing(self) -> None:
         linked = None
         result = Solution().insertionSortList(linked)
         self.assertIsNone(result)

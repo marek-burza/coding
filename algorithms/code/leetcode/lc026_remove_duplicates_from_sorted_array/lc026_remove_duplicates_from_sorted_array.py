@@ -2,11 +2,10 @@
 # https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
 import unittest
-from typing import List
 
 
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def removeDuplicates(self, nums: list[int]) -> int:
         counter = 0
         for i in range(1, len(nums)):
             spot = counter
@@ -17,7 +16,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def test_1_2_2_3_4_4_7(self):
+    def test_1_2_2_3_4_4_7(self) -> None:
         nums1 = [1, 2, 2, 3, 4, 4, 7]
         length = Solution().removeDuplicates(nums1)
         self.assertEqual(length, 5)

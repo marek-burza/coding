@@ -1,19 +1,25 @@
 #!/usr/bin/env python3
 # https://leetcode.com/problems/binary-search-tree-iterator/
 
+from __future__ import annotations
+
 import unittest
-from typing import Optional
 
 
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(
+        self,
+        val: int = 0,
+        left: 'TreeNode | None' = None,
+        right: 'TreeNode | None' = None,
+    ) -> None:
         self.val = val
         self.left = left
         self.right = right
 
 
 class BSTIterator:
-    def __init__(self, root: Optional[TreeNode]):
+    def __init__(self, root: TreeNode | None) -> None:
         self.__stack = []
         while root is not None:
             self.__stack.append(root)
@@ -23,9 +29,9 @@ class BSTIterator:
         return len(self.__stack) != 0
 
     def next(self) -> int:
-        node = self.__stack.pop()
-        result = node.val
-        node = node.right
+        node_top = self.__stack.pop()
+        result = node_top.val
+        node = node_top.right
         while node is not None:
             self.__stack.append(node)
             node = node.left
@@ -33,7 +39,7 @@ class BSTIterator:
 
 
 class TestCode(unittest.TestCase):
-    def test_example(self):
+    def test_example(self) -> None:
         n1 = TreeNode(1)
         n2 = TreeNode(2)
         n3 = TreeNode(3)

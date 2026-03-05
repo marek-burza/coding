@@ -5,9 +5,9 @@ import unittest
 
 
 class MinStack:
-    def __init__(self):
-        self.stack = []
-        self.min_stack = []
+    def __init__(self) -> None:
+        self.stack: list[int] = []
+        self.min_stack: list[int] = []
 
     def push(self, val: int) -> None:
         self.stack.append(val)
@@ -33,7 +33,7 @@ class MinStack:
 
 
 class TestCode(unittest.TestCase):
-    def test_examle(self):
+    def test_examle(self) -> None:
         solution = MinStack()
         solution.pop()
         self.assertEqual(-1, solution.top())

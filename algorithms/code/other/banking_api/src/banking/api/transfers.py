@@ -1,4 +1,4 @@
-from typing import Annotated, List, cast
+from typing import Annotated, cast
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import Column, or_
@@ -129,7 +129,7 @@ async def put_transfer(
 @router.get(
     '/transfers/',
     tags=['get_transfers'],
-    response_model=List[TransferRead],
+    response_model=list[TransferRead],
     responses={
         status.HTTP_417_EXPECTATION_FAILED: {
             'description': 'Issued when account identifier is an invalid UUID'
@@ -144,7 +144,7 @@ async def get_transfers(
         ),
     ],
     db_session: Session = Depends(database.get_session),  # noqa: B008
-) -> List[TransferRead]:
+) -> list[TransferRead]:
     validate_account_identifier(
         account_identifier, ERROR_INVALID_ACCOUNT_IDENTIFIER
     )
