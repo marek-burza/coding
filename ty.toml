@@ -1,2 +1,6 @@
 [src]
 exclude = ["algorithms/code/other/banking_api", "algorithms/code/other/federated_machine_learning"]
+
+[rules]
+unused-type-ignore-comment = "ignore"
+unused-ignore-comment = "ignore"
