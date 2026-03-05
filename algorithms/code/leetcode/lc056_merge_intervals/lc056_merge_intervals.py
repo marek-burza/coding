@@ -33,47 +33,33 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertListEqual(
-            [[1, 6], [8, 10], [15, 18]],
-            Solution().merge([[1, 3], [2, 6], [8, 10], [15, 18]]),
-        )
+        assert Solution().merge([[1, 3], [2, 6], [8, 10], [15, 18]]) == [
+            [1, 6],
+            [8, 10],
+            [15, 18],
+        ]
 
     def test_example_2(self) -> None:
-        self.assertListEqual(
-            [[1, 5]],
-            Solution().merge(
-                [[1, 4], [4, 5]],
-            ),
-        )
+        assert Solution().merge(
+            [[1, 4], [4, 5]],
+        ) == [[1, 5]]
 
     def test_other_1(self) -> None:
-        self.assertListEqual(
-            [[1, 5]],
-            Solution().merge(
-                [[1, 4], [1, 5]],
-            ),
-        )
+        assert Solution().merge(
+            [[1, 4], [1, 5]],
+        ) == [[1, 5]]
 
     def test_other_2(self) -> None:
-        self.assertListEqual(
-            [[1, 5]],
-            Solution().merge(
-                [[1, 4], [4, 5]],
-            ),
-        )
+        assert Solution().merge(
+            [[1, 4], [4, 5]],
+        ) == [[1, 5]]
 
     def test_other_3(self) -> None:
-        self.assertListEqual(
-            [[0, 0], [1, 2]],
-            Solution().merge(
-                [[1, 2], [0, 0]],
-            ),
-        )
+        assert Solution().merge(
+            [[1, 2], [0, 0]],
+        ) == [[0, 0], [1, 2]]
 
     def test_other_4(self) -> None:
-        self.assertListEqual(
-            [[2, 4], [5, 5]],
-            Solution().merge(
-                [[2, 3], [5, 5], [2, 2], [3, 4], [3, 4]],
-            ),
-        )
+        assert Solution().merge(
+            [[2, 3], [5, 5], [2, 2], [3, 4], [3, 4]],
+        ) == [[2, 4], [5, 5]]

@@ -33,7 +33,7 @@ class TestCode(unittest.TestCase):
     def check(
         self, expected: list[list[int]], result: list[list[int]]
     ) -> None:
-        self.assertEqual(len(result), len(expected))
+        assert len(result) == len(expected)
         for entry in expected:
             for candidate in result:
                 matching = True
@@ -44,7 +44,7 @@ class TestCode(unittest.TestCase):
                 if matching:
                     result.remove(candidate)
                     break
-        self.assertEqual(len(result), 0)
+        assert len(result) == 0
 
     def test_example(self) -> None:
         s = [-1, 0, 1, 2, -1, -4]
@@ -306,4 +306,4 @@ class TestCode(unittest.TestCase):
 
     def test_empty(self) -> None:
         s: list[int] = []
-        self.assertEqual(len(Solution().threeSum(s)), 0)
+        assert len(Solution().threeSum(s)) == 0

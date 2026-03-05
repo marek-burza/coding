@@ -17,16 +17,16 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_27(self) -> None:
-        self.assertTrue(Solution().isPowerOfThree(27))
+        assert Solution().isPowerOfThree(27)
 
     def test_11(self) -> None:
-        self.assertFalse(Solution().isPowerOfThree(11))
+        assert not Solution().isPowerOfThree(11)
 
     def test_1(self) -> None:
-        self.assertTrue(Solution().isPowerOfThree(1))
+        assert Solution().isPowerOfThree(1)
 
     def test_0(self) -> None:
-        self.assertEqual(Solution().isPowerOfThree(0), False)
+        assert not Solution().isPowerOfThree(0)
 
     def test_Minus3(self) -> None:
-        self.assertEqual(Solution().isPowerOfThree(-3), False)
+        assert not Solution().isPowerOfThree(-3)

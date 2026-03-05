@@ -15,4 +15,4 @@ def plus_minus(arr: list[int]) -> list[float]:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         expected = [1.0 / 2.0, 1.0 / 3.0, 1.0 / 6.0]
-        self.assertEqual(expected, plus_minus([-4, 3, -9, 0, 4, 1]))
+        assert expected == plus_minus([-4, 3, -9, 0, 4, 1])

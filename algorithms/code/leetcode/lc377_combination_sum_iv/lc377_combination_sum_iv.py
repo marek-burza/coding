@@ -19,12 +19,12 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         nums = [1, 2, 3]
-        self.assertEqual(7, Solution().combinationSum4(nums, 4))
+        assert Solution().combinationSum4(nums, 4) == 7
 
     def test_longer_example(self) -> None:
         nums = [4, 2, 1]
-        self.assertEqual(39882198, Solution().combinationSum4(nums, 32))
+        assert Solution().combinationSum4(nums, 32) == 39882198
 
     def test_with_gaps(self) -> None:
         nums = [3, 2]
-        self.assertEqual(28, Solution().combinationSum4(nums, 15))
+        assert Solution().combinationSum4(nums, 15) == 28

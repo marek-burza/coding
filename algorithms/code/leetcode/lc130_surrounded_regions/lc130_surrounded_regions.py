@@ -71,7 +71,7 @@ class TestCode(unittest.TestCase):
         Solution().solve(board)
         expected = ['XXXX', 'XXXX', 'XXXX', 'XOXX']
         for i, board_i in enumerate(board):
-            self.assertEqual(expected[i], ''.join(board_i))
+            assert expected[i] == ''.join(board_i)
 
     # pylint: disable=C0301
     def test_large(self) -> None:
@@ -582,7 +582,7 @@ class TestCode(unittest.TestCase):
         ]
         Solution().solve(board)
         for i, board_i in enumerate(board):
-            self.assertEqual(expected[i], ''.join(board_i))
+            assert expected[i] == ''.join(board_i)
 
     def test_nothing(self) -> None:
         Solution().solve([])

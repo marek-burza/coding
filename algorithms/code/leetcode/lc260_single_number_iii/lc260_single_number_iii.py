@@ -22,4 +22,4 @@ class TestCode(unittest.TestCase):
     def test(self) -> None:
         result = Solution().singleNumber([1, 2, 1, 3, 2, 5])
         result.sort()
-        self.assertListEqual([3, 5], result)
+        assert result == [3, 5]

@@ -13,10 +13,10 @@ def to_military(s: str) -> str:
 
 class TestCode(unittest.TestCase):
     def test_070545PM(self) -> None:
-        self.assertEqual('19:05:45', to_military('07:05:45PM'))
+        assert to_military('07:05:45PM') == '19:05:45'
 
     def test_120000PM(self) -> None:
-        self.assertEqual('12:00:00', to_military('12:00:00PM'))
+        assert to_military('12:00:00PM') == '12:00:00'
 
     def test_120000AM(self) -> None:
-        self.assertEqual('00:00:00', to_military('12:00:00AM'))
+        assert to_military('12:00:00AM') == '00:00:00'

@@ -23,8 +23,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_1112(self) -> None:
         nums = [1, 1, 1, 2]
-        self.assertEqual(2, Solution().singleNumber(nums))
+        assert Solution().singleNumber(nums) == 2
 
     def test_4344533(self) -> None:
         nums = [4, 3, 4, 4, 5, 3, 3]
-        self.assertEqual(5, Solution().singleNumber(nums))
+        assert Solution().singleNumber(nums) == 5

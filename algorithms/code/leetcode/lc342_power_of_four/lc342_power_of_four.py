@@ -14,11 +14,11 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_16(self) -> None:
-        self.assertTrue(Solution().isPowerOfFour(16))
+        assert Solution().isPowerOfFour(16)
 
     def test_5(self) -> None:
-        self.assertFalse(Solution().isPowerOfFour(5))
+        assert not Solution().isPowerOfFour(5)
 
     def test_non_positive(self) -> None:
-        self.assertFalse(Solution().isPowerOfFour(0))
-        self.assertFalse(Solution().isPowerOfFour(-1))
+        assert not Solution().isPowerOfFour(0)
+        assert not Solution().isPowerOfFour(-1)

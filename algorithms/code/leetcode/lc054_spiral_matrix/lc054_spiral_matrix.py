@@ -54,7 +54,7 @@ class TestCode(unittest.TestCase):
         array = [0] * len(result)
         for i, _ in enumerate(array):
             array[i] = result[i]
-        self.assertListEqual(expected, array)
+        assert expected == array
 
     def test_2_5_8__4_0_Minus1(self) -> None:
         matrix = [[2, 5, 8], [4, 0, -1]]
@@ -67,4 +67,4 @@ class TestCode(unittest.TestCase):
         self.__test(expected, matrix)
 
     def test_nothing(self) -> None:
-        self.assertListEqual([], Solution().spiralOrder([]))
+        assert not Solution().spiralOrder([])

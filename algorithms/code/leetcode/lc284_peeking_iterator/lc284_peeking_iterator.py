@@ -45,25 +45,25 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         values = [1, 2, 3]
         peeking = PeekingIterator(self.__create_iterator(values))
-        self.assertEqual(1, int(peeking.next()))
-        self.assertEqual(2, int(peeking.peek()))
-        self.assertEqual(2, int(peeking.next()))
-        self.assertEqual(3, int(peeking.next()))
-        self.assertFalse(peeking.hasNext())
+        assert int(peeking.next()) == 1
+        assert int(peeking.peek()) == 2
+        assert int(peeking.next()) == 2
+        assert int(peeking.next()) == 3
+        assert not peeking.hasNext()
 
     def test_other(self) -> None:
         values = [1, 2, 3, 4]
         peeking = PeekingIterator(self.__create_iterator(values))
-        self.assertTrue(peeking.hasNext())
-        self.assertEqual(1, int(peeking.peek()))
-        self.assertEqual(1, int(peeking.peek()))
-        self.assertEqual(1, int(peeking.next()))
-        self.assertEqual(2, int(peeking.next()))
-        self.assertEqual(3, int(peeking.peek()))
-        self.assertEqual(3, int(peeking.peek()))
-        self.assertEqual(3, int(peeking.next()))
-        self.assertTrue(peeking.hasNext())
-        self.assertEqual(4, int(peeking.peek()))
-        self.assertTrue(peeking.hasNext())
-        self.assertEqual(4, int(peeking.next()))
-        self.assertFalse(peeking.hasNext())
+        assert peeking.hasNext()
+        assert int(peeking.peek()) == 1
+        assert int(peeking.peek()) == 1
+        assert int(peeking.next()) == 1
+        assert int(peeking.next()) == 2
+        assert int(peeking.peek()) == 3
+        assert int(peeking.peek()) == 3
+        assert int(peeking.next()) == 3
+        assert peeking.hasNext()
+        assert int(peeking.peek()) == 4
+        assert peeking.hasNext()
+        assert int(peeking.next()) == 4
+        assert not peeking.hasNext()

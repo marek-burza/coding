@@ -16,10 +16,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_2(self) -> None:
-        self.assertEqual(Solution().numTrees(2), 2)
+        assert Solution().numTrees(2) == 2
 
     def test_3(self) -> None:
-        self.assertEqual(Solution().numTrees(3), 5)
+        assert Solution().numTrees(3) == 5
 
     def test_19(self) -> None:
-        self.assertEqual(Solution().numTrees(19), 1767263190)
+        assert Solution().numTrees(19) == 1767263190

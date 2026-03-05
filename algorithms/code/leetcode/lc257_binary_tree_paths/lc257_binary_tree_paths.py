@@ -49,7 +49,7 @@ class TestCode(unittest.TestCase):
         expected = ['1->2->5', '1->3']
         result = Solution().binaryTreePaths(n1)
         result.sort()
-        self.assertListEqual(expected, result)
+        assert expected == result
 
     def test_example_mirrored(self) -> None:
         n1 = TreeNode(1)
@@ -62,7 +62,7 @@ class TestCode(unittest.TestCase):
         expected = ['1->2->5', '1->3']
         result = Solution().binaryTreePaths(n1)
         result.sort()
-        self.assertListEqual(expected, result)
+        assert expected == result
 
     def test_nothing(self) -> None:
-        self.assertListEqual([], Solution().binaryTreePaths(None))
+        assert not Solution().binaryTreePaths(None)

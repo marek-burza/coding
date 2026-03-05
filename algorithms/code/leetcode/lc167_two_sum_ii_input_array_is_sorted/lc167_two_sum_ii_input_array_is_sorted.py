@@ -25,11 +25,11 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        self.assertListEqual([1, 2], Solution().twoSum([2, 7, 11, 15], 9))
+        assert Solution().twoSum([2, 7, 11, 15], 9) == [1, 2]
 
     def test_other_example(self) -> None:
-        self.assertListEqual([0, 0], Solution().twoSum([1, 5, 6, 9], 9))
+        assert Solution().twoSum([1, 5, 6, 9], 9) == [0, 0]
 
     def test_nothing(self) -> None:
-        self.assertListEqual([0, 0], Solution().twoSum([], 0))
-        self.assertListEqual([0, 0], Solution().twoSum([0], 0))
+        assert Solution().twoSum([], 0) == [0, 0]
+        assert Solution().twoSum([0], 0) == [0, 0]

@@ -20,19 +20,19 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_1(self) -> None:
-        self.assertEqual('A', Solution().convertToTitle(1))
+        assert Solution().convertToTitle(1) == 'A'
 
     def test_2(self) -> None:
-        self.assertEqual('B', Solution().convertToTitle(2))
+        assert Solution().convertToTitle(2) == 'B'
 
     def test_3(self) -> None:
-        self.assertEqual('C', Solution().convertToTitle(3))
+        assert Solution().convertToTitle(3) == 'C'
 
     def test_26(self) -> None:
-        self.assertEqual('Z', Solution().convertToTitle(26))
+        assert Solution().convertToTitle(26) == 'Z'
 
     def test_27(self) -> None:
-        self.assertEqual('AA', Solution().convertToTitle(27))
+        assert Solution().convertToTitle(27) == 'AA'
 
     def test_28(self) -> None:
-        self.assertEqual('AB', Solution().convertToTitle(28))
+        assert Solution().convertToTitle(28) == 'AB'

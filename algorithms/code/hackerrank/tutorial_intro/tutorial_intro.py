@@ -19,10 +19,10 @@ def intro_tutorial(v: int, arr: list[int]) -> int:
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        self.assertEqual(1, intro_tutorial(4, [1, 4, 5, 7, 9, 12]))
+        assert intro_tutorial(4, [1, 4, 5, 7, 9, 12]) == 1
 
     def test_another(self) -> None:
-        self.assertEqual(3, intro_tutorial(7, [1, 4, 5, 7, 9, 12]))
+        assert intro_tutorial(7, [1, 4, 5, 7, 9, 12]) == 3
 
     def test_invalid(self) -> None:
-        self.assertEqual(-1, intro_tutorial(20, [1, 4, 5, 7, 9, 12]))
+        assert intro_tutorial(20, [1, 4, 5, 7, 9, 12]) == -1

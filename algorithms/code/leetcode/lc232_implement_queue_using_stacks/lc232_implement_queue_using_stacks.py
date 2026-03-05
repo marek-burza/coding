@@ -35,7 +35,7 @@ class TestCode(unittest.TestCase):
         for i in range(0, 6):
             queue.push(i)
         for i in range(0, 6):
-            self.assertFalse(queue.empty())
-            self.assertEqual(i, queue.peek())
+            assert not queue.empty()
+            assert i == queue.peek()
             queue.pop()
-        self.assertTrue(queue.empty())
+        assert queue.empty()

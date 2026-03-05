@@ -161,7 +161,7 @@ def format_counted(
 class TestCode(unittest.TestCase):
     def test_q1(self) -> None:
         test_menu = load_menu(EXAMPLE_MENU)
-        self.assertEqual(len(test_menu), 12)
+        assert len(test_menu) == 12
 
     def test_q2(self) -> None:
         test_menu = load_menu(EXAMPLE_MENU)
@@ -177,7 +177,7 @@ class TestCode(unittest.TestCase):
         }
         items = set(list(test_dishes.keys()) + list(expected_dishes.keys()))
         for item in items:
-            self.assertEqual(test_dishes[item], expected_dishes[item])
+            assert test_dishes[item] == expected_dishes[item]
 
     def test_q3(self) -> None:
         test_menu = load_menu(EXAMPLE_MENU)
@@ -225,13 +225,11 @@ class TestCode(unittest.TestCase):
             list(test_basic_items.keys()) + list(expected_basic_items.keys())
         )
         for item in items:
-            self.assertEqual(
-                test_basic_items[item], expected_basic_items[item]
-            )
+            assert test_basic_items[item] == expected_basic_items[item]
 
     def test_q4(self) -> None:
         test_demand = load_demand(EXAMPLE_DEMAND)
-        self.assertEqual(len(test_demand), 3)
+        assert len(test_demand) == 3
 
     def test_q5(self) -> None:
         test_menu = load_menu(EXAMPLE_MENU)
@@ -283,14 +281,14 @@ class TestCode(unittest.TestCase):
             + list(expected_basic_items_demand.keys())
         )
         for item in items:
-            self.assertEqual(
-                test_basic_items_demand[item],
-                expected_basic_items_demand[item],
+            assert (
+                test_basic_items_demand[item]
+                == expected_basic_items_demand[item]
             )
 
     def test_q6(self) -> None:
         test_stock = load_stock(EXAMPLE_STOCK)
-        self.assertEqual(len(test_stock), 13)
+        assert len(test_stock) == 13
         test_menu = load_menu(EXAMPLE_MENU)
         test_demand = load_demand(EXAMPLE_DEMAND)
         test_basic_items_demand = collect_demand_items_without_stock(
@@ -313,19 +311,19 @@ class TestCode(unittest.TestCase):
         for item in items:
             if item == 'Salz':
                 continue
-            self.assertEqual(
-                test_basic_items_demand[item],
-                expected_basic_items_demand[item],
+            assert (
+                test_basic_items_demand[item]
+                == expected_basic_items_demand[item]
             )
 
     def test_exact_corner_case(self) -> None:
-        self.assertEqual(
+        assert (
             len(
                 collect_demand_items_without_stock(
                     {}, {0: {'Something': 1}}, 0, Counter({'Something': 1})
                 )
-            ),
-            0,
+            )
+            == 0
         )
 
 

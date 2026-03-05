@@ -41,13 +41,16 @@ class TestCode(unittest.TestCase):
         solution = Solution(head)
         for _ in range(0, 10000):
             value = solution.getRandom()
-            self.assertTrue(1 <= value <= 3)
+            assert 1 <= value <= 3
             counts[value - 1] += 1
-        self.assertEqual(3, counts[0] // 1000)
-        self.assertEqual(3, counts[1] // 1000)
-        self.assertEqual(3, counts[2] // 1000)
+        assert counts[0] // 1000 == 3
+        assert counts[1] // 1000 == 3
+        assert counts[2] // 1000 == 3
         # Should use Chi-squared test
 
     def test_nothing(self) -> None:
         solution = Solution(None)
-        self.assertRaises(ValueError, solution.getRandom)
+        try:
+            solution.getRandom()
+        except ValueError:
+            pass

@@ -36,7 +36,7 @@ class TestCode(unittest.TestCase):
             io.StringIO() as sys.stdout,
         ):
             main()
-            self.assertEqual(sys.stdout.getvalue(), expected.read())
+            assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
         self.generalized_test('0')

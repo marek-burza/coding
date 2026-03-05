@@ -19,7 +19,7 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         nums = [10, 9, 2, 5, 3, 7, 101, 18]
-        self.assertEqual(4, Solution().lengthOfLIS(nums))
+        assert Solution().lengthOfLIS(nums) == 4
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().lengthOfLIS([]))
+        assert Solution().lengthOfLIS([]) == 0

@@ -21,8 +21,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         nums = [4, 5, 6, 7, 0, 1, 2]
-        self.assertEqual(0, Solution().findMin(nums))
+        assert Solution().findMin(nums) == 0
 
     def test_trickier(self) -> None:
         nums = [1, 1, 0, 1, 1, 1, 1]
-        self.assertEqual(0, Solution().findMin(nums))
+        assert Solution().findMin(nums) == 0

@@ -40,11 +40,11 @@ class TestCode(unittest.TestCase):
     def __test(
         self, expected: list[list[int]], board: list[list[int]]
     ) -> None:
-        self.assertEqual(len(expected), len(board))
+        assert len(expected) == len(board)
         for row, board_row in enumerate(board):
-            self.assertEqual(len(expected[row]), len(board_row))
+            assert len(expected[row]) == len(board_row)
             for col, board_row_col in enumerate(board_row):
-                self.assertEqual(expected[row][col], board_row_col)
+                assert expected[row][col] == board_row_col
 
     def test_empty(self) -> None:
         board: list[list[int]] = [[]]

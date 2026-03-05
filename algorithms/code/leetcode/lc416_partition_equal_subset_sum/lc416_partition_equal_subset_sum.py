@@ -39,11 +39,11 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertTrue(Solution().canPartition([1, 5, 11, 5]))
+        assert Solution().canPartition([1, 5, 11, 5])
 
     def test_example_2(self) -> None:
-        self.assertFalse(Solution().canPartition([1, 2, 3, 5]))
+        assert not Solution().canPartition([1, 2, 3, 5])
 
     def test_longer(self) -> None:
         nums = ([100] * 198) + [99, 97]
-        self.assertFalse(Solution().canPartition(nums))
+        assert not Solution().canPartition(nums)

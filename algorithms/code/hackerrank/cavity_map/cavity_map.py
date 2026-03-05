@@ -30,7 +30,7 @@ class TestCode(unittest.TestCase):
         grid = [item[0] for item in io_lines[0][1:]]
         result = cavity_map(grid)
         expected = [item[0] for item in io_lines[1]]
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

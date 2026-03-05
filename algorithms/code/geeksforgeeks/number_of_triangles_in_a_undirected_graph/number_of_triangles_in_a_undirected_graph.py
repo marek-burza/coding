@@ -38,4 +38,4 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         graph = [[0, 1, 1, 0], [1, 0, 1, 1], [1, 1, 0, 1], [0, 1, 1, 0]]
-        self.assertEqual(2, Solution().triangle_in_graph(graph, 4))
+        assert Solution().triangle_in_graph(graph, 4) == 2

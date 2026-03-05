@@ -23,7 +23,7 @@ class TestCode(unittest.TestCase):
         n = int(io_lines[0][0][0])
         result = int(extra_long_factorials(n))
         expected = int(io_lines[1][0][0])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

@@ -18,7 +18,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual('e', Solution().findTheDifference('abcd', 'abcde'))
+        assert Solution().findTheDifference('abcd', 'abcde') == 'e'
 
     def test_example_2(self) -> None:
-        self.assertEqual('y', Solution().findTheDifference('', 'y'))
+        assert Solution().findTheDifference('', 'y') == 'y'

@@ -9,4 +9,4 @@ def simple_array_sum(ar: list[int]) -> int:
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        self.assertEqual(31, simple_array_sum([1, 2, 3, 4, 10, 11]))
+        assert simple_array_sum([1, 2, 3, 4, 10, 11]) == 31

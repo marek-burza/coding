@@ -34,7 +34,7 @@ class TestCode(unittest.TestCase):
         brr = [int(item) for item in io_lines[0][3]]
         result = missing_numbers(arr, brr)
         expected = [int(item) for item in io_lines[1][0]]
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

@@ -14,4 +14,4 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        self.assertEqual(2, Solution().missingNumber([0, 1, 3]))
+        assert Solution().missingNumber([0, 1, 3]) == 2

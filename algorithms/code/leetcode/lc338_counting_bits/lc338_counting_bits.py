@@ -19,7 +19,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_2(self) -> None:
-        self.assertListEqual([0, 1, 1], Solution().countBits(2))
+        assert Solution().countBits(2) == [0, 1, 1]
 
     def test_5(self) -> None:
-        self.assertListEqual([0, 1, 1, 2, 1, 2], Solution().countBits(5))
+        assert Solution().countBits(5) == [0, 1, 1, 2, 1, 2]

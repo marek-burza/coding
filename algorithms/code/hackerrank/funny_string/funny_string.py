@@ -28,7 +28,7 @@ class TestCode(unittest.TestCase):
             s = io_lines[0][1 + i][0]
             result = funny_string(s)
             expected = ' '.join(io_lines[1][i])
-            self.assertEqual(expected, result)
+            assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

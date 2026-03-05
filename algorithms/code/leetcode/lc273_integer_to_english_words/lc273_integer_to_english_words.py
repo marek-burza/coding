@@ -89,36 +89,34 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_123(self) -> None:
-        self.assertEqual(
-            'One Hundred Twenty Three', Solution().numberToWords(123)
-        )
+        assert Solution().numberToWords(123) == 'One Hundred Twenty Three'
 
     def test_12345(self) -> None:
-        self.assertEqual(
-            'Twelve Thousand Three Hundred Forty Five',
-            Solution().numberToWords(12345),
+        assert (
+            Solution().numberToWords(12345)
+            == 'Twelve Thousand Three Hundred Forty Five'
         )
 
     def test_1234567(self) -> None:
-        self.assertEqual(
-            'One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven',  # noqa
-            Solution().numberToWords(1234567),
+        assert (
+            'One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven'  # noqa
+            == Solution().numberToWords(1234567)
         )
 
     def test_91(self) -> None:
-        self.assertEqual('Ninety One', Solution().numberToWords(91))
+        assert Solution().numberToWords(91) == 'Ninety One'
 
     def test_19(self) -> None:
-        self.assertEqual('Nineteen', Solution().numberToWords(19))
+        assert Solution().numberToWords(19) == 'Nineteen'
 
     def test_100(self) -> None:
-        self.assertEqual('One Hundred', Solution().numberToWords(100))
+        assert Solution().numberToWords(100) == 'One Hundred'
 
     def test_0(self) -> None:
-        self.assertEqual('Zero', Solution().numberToWords(0))
+        assert Solution().numberToWords(0) == 'Zero'
 
     def test_1000(self) -> None:
-        self.assertEqual('One Thousand', Solution().numberToWords(1000))
+        assert Solution().numberToWords(1000) == 'One Thousand'
 
     def test_20(self) -> None:
-        self.assertEqual('Twenty', Solution().numberToWords(20))
+        assert Solution().numberToWords(20) == 'Twenty'

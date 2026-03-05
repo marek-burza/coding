@@ -10,8 +10,8 @@ class TreeNode:
     def __init__(
         self,
         val: int = 0,
-        left: 'TreeNode | None' = None,
-        right: 'TreeNode | None' = None,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
     ) -> None:
         self.val = val
         self.left = left
@@ -60,7 +60,7 @@ class TestCode(unittest.TestCase):
         t3.right = r3
         t3.left.right = lr3
         t3.right.right = rr1
-        self.assertEqual(Solution().rob(t3), 7)
+        assert Solution().rob(t3) == 7
 
     def test_example_2(self) -> None:
         t3 = TreeNode(3)
@@ -74,4 +74,4 @@ class TestCode(unittest.TestCase):
         t3.left.left = ll1
         t3.left.right = lr3
         t3.right.right = rr1
-        self.assertEqual(Solution().rob(t3), 9)
+        assert Solution().rob(t3) == 9

@@ -40,7 +40,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_2_3(self) -> None:
-        self.assertEqual(8, Solution().superPow(2, [3]))
+        assert Solution().superPow(2, [3]) == 8
 
     def test_2_1_0(self) -> None:
-        self.assertEqual(1024, Solution().superPow(2, [1, 0]))
+        assert Solution().superPow(2, [1, 0]) == 1024

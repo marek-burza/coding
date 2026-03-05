@@ -33,4 +33,4 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         grid = [[1, 1, 2, 2], [2, 1, 2, 2], [2, 1, 1, 2], [2, 2, 1, 1]]
-        self.assertEqual(7, Solution().minPathSum(grid))
+        assert Solution().minPathSum(grid) == 7

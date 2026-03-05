@@ -58,7 +58,7 @@ class TestCode(unittest.TestCase):
         an2.right = None
         bn1.left = None
         bn2.right = None
-        self.assertFalse(Solution().isSameTree(an0, bn0))
+        assert not Solution().isSameTree(an0, bn0)
 
     def test_same(self) -> None:
         an0 = TreeNode(0)
@@ -75,26 +75,26 @@ class TestCode(unittest.TestCase):
         an2.right = None
         bn1.left = None
         bn2.right = None
-        self.assertTrue(Solution().isSameTree(an0, bn0))
+        assert Solution().isSameTree(an0, bn0)
 
     def test_one_empty(self) -> None:
         tree = TreeNode(0)
-        self.assertFalse(Solution().isSameTree(tree, None))
-        self.assertFalse(Solution().isSameTree(None, tree))
+        assert not Solution().isSameTree(tree, None)
+        assert not Solution().isSameTree(None, tree)
 
     def test_both_empty(self) -> None:
-        self.assertTrue(Solution().isSameTree(None, None))
+        assert Solution().isSameTree(None, None)
 
     def test_left(self) -> None:
         an0 = TreeNode(0)
         bn0 = TreeNode(0)
         an1 = TreeNode(1)
         an0.left = an1
-        self.assertFalse(Solution().isSameTree(an0, bn0))
+        assert not Solution().isSameTree(an0, bn0)
 
     def test_right(self) -> None:
         an0 = TreeNode(0)
         bn0 = TreeNode(0)
         an1 = TreeNode(1)
         an0.right = an1
-        self.assertFalse(Solution().isSameTree(an0, bn0))
+        assert not Solution().isSameTree(an0, bn0)

@@ -30,25 +30,25 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_1(self) -> None:
-        self.assertEqual(Solution().longestPalindrome('babad'), 'bab')
+        assert Solution().longestPalindrome('babad') == 'bab'
 
     def test_2(self) -> None:
-        self.assertEqual(Solution().longestPalindrome('cbbd'), 'bb')
+        assert Solution().longestPalindrome('cbbd') == 'bb'
 
     def test_3(self) -> None:
-        self.assertEqual(Solution().longestPalindrome('a'), 'a')
+        assert Solution().longestPalindrome('a') == 'a'
 
     def test_4(self) -> None:
-        self.assertEqual(Solution().longestPalindrome('ac'), 'a')
+        assert Solution().longestPalindrome('ac') == 'a'
 
     def test_bb(self) -> None:
-        self.assertEqual(Solution().longestPalindrome('bb'), 'bb')
+        assert Solution().longestPalindrome('bb') == 'bb'
 
     def test_longer(self) -> None:
-        self.assertEqual(
-            # pylint: disable=C0301
+        assert (
             Solution().longestPalindrome(
-                'civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth'  # noqa
-            ),
-            'ranynar',
+                # pylint: disable=C0301
+                'civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth'  # noqa: E501
+            )
+            == 'ranynar'
         )

@@ -20,12 +20,12 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
         words = ['abcw', 'baz', 'foo', 'bar', 'xtfn', 'abcdef']
-        self.assertEqual(16, Solution().maxProduct(words))
+        assert Solution().maxProduct(words) == 16
 
     def test_example_2(self) -> None:
         words = ['a', 'ab', 'abc', 'd', 'cd', 'bcd', 'abcd']
-        self.assertEqual(4, Solution().maxProduct(words))
+        assert Solution().maxProduct(words) == 4
 
     def test_example_3(self) -> None:
         words = ['a', 'aa', 'aaa', 'aaaa']
-        self.assertEqual(0, Solution().maxProduct(words))
+        assert Solution().maxProduct(words) == 0

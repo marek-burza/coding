@@ -35,19 +35,19 @@ class TestCode(unittest.TestCase):
     def test_examle(self) -> None:
         solution = MinStack()
         solution.pop()
-        self.assertEqual(-1, solution.top())
-        self.assertEqual(-1, solution.getMin())
+        assert solution.top() == -1
+        assert solution.getMin() == -1
         solution.push(5)
-        self.assertEqual(5, solution.getMin())
+        assert solution.getMin() == 5
         solution.push(4)
-        self.assertEqual(4, solution.getMin())
+        assert solution.getMin() == 4
         solution.pop()
-        self.assertEqual(5, solution.getMin())
+        assert solution.getMin() == 5
         solution.push(3)
-        self.assertEqual(3, solution.getMin())
+        assert solution.getMin() == 3
         solution.top()
-        self.assertEqual(3, solution.getMin())
+        assert solution.getMin() == 3
         solution.push(2)
-        self.assertEqual(2, solution.getMin())
+        assert solution.getMin() == 2
         solution.push(1)
-        self.assertEqual(1, solution.getMin())
+        assert solution.getMin() == 1

@@ -45,7 +45,7 @@ class TestCode(unittest.TestCase):
             offset += 1 + m + 1
             result = bfs(n, m, edges, s)
             expected = [int(item) for item in io_lines[1][test]]
-            self.assertEqual(expected, result)
+            assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

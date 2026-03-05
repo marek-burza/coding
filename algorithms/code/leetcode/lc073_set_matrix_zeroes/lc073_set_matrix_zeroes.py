@@ -34,10 +34,10 @@ class TestCode(unittest.TestCase):
     def __test(
         self, expected: list[list[int]], matrix: list[list[int]]
     ) -> None:
-        self.assertEqual(len(expected), len(matrix))
+        assert len(expected) == len(matrix)
         row = 0
         while row < len(expected):
-            self.assertListEqual(expected[row], matrix[row])
+            assert expected[row] == matrix[row]
             row += 1
 
     def test_smaller_example_1(self) -> None:

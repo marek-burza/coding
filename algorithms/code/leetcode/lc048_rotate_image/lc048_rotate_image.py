@@ -24,13 +24,13 @@ class TestCode(unittest.TestCase):
     def __test_matrices(
         self, expected: list[list[int]], result: list[list[int]]
     ) -> None:
-        self.assertEqual(len(expected), len(result))
+        assert len(expected) == len(result)
         row = 0
         while row < len(expected):
-            self.assertEqual(len(expected[row]), len(result[row]))
+            assert len(expected[row]) == len(result[row])
             col = 0
             while col < len(expected[row]):
-                self.assertEqual(expected[row][col], result[row][col])
+                assert expected[row][col] == result[row][col]
                 col += 1
             row += 1
 

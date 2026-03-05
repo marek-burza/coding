@@ -52,19 +52,19 @@ class TestCode(unittest.TestCase):
             io.StringIO() as sys.stdout,
         ):
             main()
-            self.assertEqual(sys.stdout.getvalue(), expected.read())
+            assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
         self.generalized_test('0')
 
     def test_double_at(self) -> None:
-        self.assertEqual(process(['somebody@somewhere@else.com']), [])
+        assert not process(['somebody@somewhere@else.com'])
 
     def test_double_dot(self) -> None:
-        self.assertEqual(process(['somebody@somewhere.else.com']), [])
+        assert not process(['somebody@somewhere.else.com'])
 
     def test_garbage(self) -> None:
-        self.assertEqual(process(['somebody@some+where.com']), [])
+        assert not process(['somebody@some+where.com'])
 
     def test_white_space(self) -> None:
-        self.assertEqual(process(['somebody\t@somewhere.com']), [])
+        assert not process(['somebody\t@somewhere.com'])

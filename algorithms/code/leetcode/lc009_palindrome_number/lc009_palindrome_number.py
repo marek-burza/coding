@@ -17,25 +17,25 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_213(self) -> None:
-        self.assertEqual(Solution().isPalindrome(213), False)
+        assert not Solution().isPalindrome(213)
 
     def test_456(self) -> None:
-        self.assertEqual(Solution().isPalindrome(456), False)
+        assert not Solution().isPalindrome(456)
 
     def test_454(self) -> None:
-        self.assertEqual(Solution().isPalindrome(454), True)
+        assert Solution().isPalindrome(454)
 
     def test_99(self) -> None:
-        self.assertEqual(Solution().isPalindrome(99), True)
+        assert Solution().isPalindrome(99)
 
     def test_1(self) -> None:
-        self.assertEqual(Solution().isPalindrome(1), True)
+        assert Solution().isPalindrome(1)
 
     def test_10(self) -> None:
-        self.assertEqual(Solution().isPalindrome(10), False)
+        assert not Solution().isPalindrome(10)
 
     def test_minus1(self) -> None:
-        self.assertEqual(Solution().isPalindrome(-1), False)
+        assert not Solution().isPalindrome(-1)
 
     def test_0(self) -> None:
-        self.assertEqual(Solution().isPalindrome(0), True)
+        assert Solution().isPalindrome(0)

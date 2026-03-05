@@ -33,11 +33,11 @@ class Solution:
 class TestCode(unittest.TestCase):
     def __test(self, expected: TreeNode | None, root: TreeNode | None) -> None:
         if None is expected:
-            self.assertEqual(None, root)
+            assert root is None
         else:
-            self.assertIsNotNone(root)
+            assert root is not None
             assert root is not None and expected is not None
-            self.assertEqual(expected.val, root.val)
+            assert expected.val == root.val
             self.__test(expected.left, root.left)
             self.__test(expected.right, root.right)
 

@@ -13,7 +13,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_1(self) -> None:
-        self.assertEqual(1, Solution().singleNumber([1]))
+        assert Solution().singleNumber([1]) == 1
 
     def test_1_2_1(self) -> None:
-        self.assertEqual(2, Solution().singleNumber([1, 2, 1]))
+        assert Solution().singleNumber([1, 2, 1]) == 2

@@ -47,7 +47,7 @@ class TestCode(unittest.TestCase):
         matrix = [[int(item) for item in row] for row in matrix_raw]
         result = connected_cell(matrix)
         expected = int(io_lines[1][0][0])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

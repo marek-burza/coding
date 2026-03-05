@@ -78,7 +78,7 @@ def main(path_in: Path, path_out: Path) -> None:
 
 class TestCode(unittest.TestCase):
     def test_quartet(self) -> None:
-        self.assertEqual(decode_quartet(encode_quartet('tcag')), 'tcag')
+        assert decode_quartet(encode_quartet('tcag')) == 'tcag'
 
     def generic_equivalence(self, original_path: Path) -> None:
         with (
@@ -87,10 +87,9 @@ class TestCode(unittest.TestCase):
         ):
             main(original_path, Path(encoded_path.name))
             main(Path(encoded_path.name), Path(decoded_path.name))
-            self.assertEqual(
-                Path(decoded_path.name).read_text(encoding='utf-8'),
-                ''.join(read_next_aminoacid(original_path)),
-            )
+            assert Path(decoded_path.name).read_text(
+                encoding='utf-8'
+            ) == ''.join(read_next_aminoacid(original_path))
 
     def test_encoding_and_decoding(self) -> None:
         original_path = Path(__file__).parent / 'input4.gcg'

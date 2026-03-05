@@ -21,10 +21,10 @@ class TestCode(unittest.TestCase):
         nums = [1, 2, 3, 4]
         expected = [24, 12, 8, 6]
         actual = Solution().productExceptSelf(nums)
-        self.assertListEqual(expected, actual)
+        assert expected == actual
 
     def test__9_0_Minus2(self) -> None:
         nums = [9, 0, -2]
         expected = [0, -18, 0]
         actual = Solution().productExceptSelf(nums)
-        self.assertListEqual(expected, actual)
+        assert expected == actual

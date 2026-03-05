@@ -17,20 +17,22 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertListEqual(
-            [1, 2, 3, 4], Solution().findClosestElements([1, 2, 3, 4, 5], 4, 3)
-        )
+        assert Solution().findClosestElements([1, 2, 3, 4, 5], 4, 3) == [
+            1,
+            2,
+            3,
+            4,
+        ]
 
     def test_example_2(self) -> None:
-        self.assertListEqual(
-            [1, 2, 3, 4],
-            Solution().findClosestElements([1, 2, 3, 4, 5], 4, -1),
-        )
+        assert Solution().findClosestElements([1, 2, 3, 4, 5], 4, -1) == [
+            1,
+            2,
+            3,
+            4,
+        ]
 
     def test_other_1(self) -> None:
-        self.assertListEqual(
-            [3, 3, 4],
-            Solution().findClosestElements(
-                [0, 0, 1, 2, 3, 3, 4, 7, 7, 8], 3, 5
-            ),
-        )
+        assert Solution().findClosestElements(
+            [0, 0, 1, 2, 3, 3, 4, 7, 7, 8], 3, 5
+        ) == [3, 3, 4]

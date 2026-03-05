@@ -21,4 +21,4 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_20(self) -> None:
-        self.assertEqual(10946, Solution().climbStairs(20))
+        assert Solution().climbStairs(20) == 10946

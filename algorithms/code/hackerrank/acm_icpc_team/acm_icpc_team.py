@@ -25,10 +25,10 @@ class TestCode(unittest.TestCase):
         topic = ['10101', '11100', '11010', '00101']
         expected = (5, 2)
         result = acm_team(topic)
-        self.assertEqual(result, expected)
+        assert result == expected
 
     def test_example_2(self) -> None:
         topic = ['10101', '11110', '00010']
         expected = (5, 1)
         result = acm_team(topic)
-        self.assertEqual(result, expected)
+        assert result == expected

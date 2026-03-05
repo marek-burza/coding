@@ -31,7 +31,7 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         expected = [[1, 2, 3], [8, 9, 4], [7, 6, 5]]
         result = Solution().generateMatrix(3)
-        self.assertIsNotNone(result)
-        self.assertEqual(len(expected), len(result))
+        assert result is not None
+        assert len(expected) == len(result)
         for i, expected_i in enumerate(expected):
-            self.assertListEqual(expected_i, result[i])
+            assert expected_i == result[i]

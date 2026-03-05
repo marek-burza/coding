@@ -41,8 +41,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         terrain = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
-        self.assertEqual(6, Solution().trap(terrain))
+        assert Solution().trap(terrain) == 6
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().trap(None))
-        self.assertEqual(0, Solution().trap([0, 1]))
+        assert Solution().trap(None) == 0
+        assert Solution().trap([0, 1]) == 0

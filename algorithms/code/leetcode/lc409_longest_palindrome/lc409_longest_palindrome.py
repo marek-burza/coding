@@ -20,7 +20,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual(7, Solution().longestPalindrome('abccccdd'))
+        assert Solution().longestPalindrome('abccccdd') == 7
 
     def test_example_2(self) -> None:
-        self.assertEqual(1, Solution().longestPalindrome('a'))
+        assert Solution().longestPalindrome('a') == 1

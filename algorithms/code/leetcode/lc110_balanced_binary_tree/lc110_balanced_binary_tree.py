@@ -40,26 +40,26 @@ class TestCode(unittest.TestCase):
         left = TreeNode(2, TreeNode(1, None, None), TreeNode(3, None, None))
         right = TreeNode(6, TreeNode(5, None, None), TreeNode(7, None, None))
         root = TreeNode(4, left, right)
-        self.assertTrue(Solution().isBalanced(root))
+        assert Solution().isBalanced(root)
 
     def test_imbalanced_right(self) -> None:
         right = TreeNode(6, TreeNode(5, None, None), TreeNode(7, None, None))
         root = TreeNode(4, None, right)
-        self.assertFalse(Solution().isBalanced(root))
+        assert not Solution().isBalanced(root)
 
     def test_imbalanced_left(self) -> None:
         left = TreeNode(2, TreeNode(1, None, None), TreeNode(3, None, None))
         root = TreeNode(4, None, left)
-        self.assertFalse(Solution().isBalanced(root))
+        assert not Solution().isBalanced(root)
 
     def test_imbalanced_deep_left(self) -> None:
         left = TreeNode(2, TreeNode(1, TreeNode(3, None, None), None), None)
         right = TreeNode(6, TreeNode(5, None, None), TreeNode(7, None, None))
         root = TreeNode(4, left, right)
-        self.assertFalse(Solution().isBalanced(root))
+        assert not Solution().isBalanced(root)
 
     def test_imbalanced_deep_right(self) -> None:
         left = TreeNode(2, TreeNode(1, None, None), TreeNode(3, None, None))
         right = TreeNode(6, TreeNode(5, None, TreeNode(7, None, None)), None)
         root = TreeNode(4, left, right)
-        self.assertFalse(Solution().isBalanced(root))
+        assert not Solution().isBalanced(root)

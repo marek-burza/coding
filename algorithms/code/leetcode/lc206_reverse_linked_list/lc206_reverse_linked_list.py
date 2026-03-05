@@ -45,9 +45,9 @@ class TestCode(unittest.TestCase):
     def generic(self, linked: ListNode | None) -> None:
         original = TestCode.linked_to_listed(linked)
         result = TestCode.linked_to_listed(Solution().reverseList(linked))
-        self.assertEqual(len(original), len(result))
+        assert len(original) == len(result)
         for i, _ in enumerate(original):
-            self.assertEqual(original[len(original) - 1 - i], result[i])
+            assert original[len(original) - 1 - i] == result[i]
 
     def test_15(self) -> None:
         linked = TestCode.listed_to_linked(list(range(15)))
@@ -58,4 +58,4 @@ class TestCode(unittest.TestCase):
         self.generic(linked)
 
     def test_nothing(self) -> None:
-        self.assertIsNone(Solution().reverseList(None))
+        assert Solution().reverseList(None) is None

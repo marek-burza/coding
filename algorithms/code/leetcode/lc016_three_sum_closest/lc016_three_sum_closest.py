@@ -27,14 +27,14 @@ class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
         nums = [-1, 2, 1, -4]
         expected = 2
-        self.assertEqual(expected, Solution().threeSumClosest(nums, 1))
+        assert expected == Solution().threeSumClosest(nums, 1)
 
     def test_example_2(self) -> None:
         nums = [0, 0, 0]
         expected = 0
-        self.assertEqual(expected, Solution().threeSumClosest(nums, 1))
+        assert expected == Solution().threeSumClosest(nums, 1)
 
     def test_other_1(self) -> None:
         nums = [0, 1, 2, 3]
         expected = 3
-        self.assertEqual(expected, Solution().threeSumClosest(nums, 3))
+        assert expected == Solution().threeSumClosest(nums, 3)

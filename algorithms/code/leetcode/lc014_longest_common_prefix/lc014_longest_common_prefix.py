@@ -20,23 +20,19 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_Ala_AlaMaKota(self) -> None:
-        self.assertEqual(
-            Solution().longestCommonPrefix(['Ala', 'Ala Ma Kota']), 'Ala'
-        )
+        assert Solution().longestCommonPrefix(['Ala', 'Ala Ma Kota']) == 'Ala'
 
     def test_aa_a(self) -> None:
-        self.assertEqual(Solution().longestCommonPrefix(['aa', 'a']), 'a')
+        assert Solution().longestCommonPrefix(['aa', 'a']) == 'a'
 
     def test_ab_aa_coverage(self) -> None:
-        self.assertEqual(Solution().longestCommonPrefix(['ab', 'aa']), 'a')
+        assert Solution().longestCommonPrefix(['ab', 'aa']) == 'a'
 
     def test_none(self) -> None:
-        self.assertEqual(Solution().longestCommonPrefix([]), '')
+        assert Solution().longestCommonPrefix([]) == ''
 
     def test_empty_b(self) -> None:
-        self.assertEqual(Solution().longestCommonPrefix(['', 'b']), '')
+        assert Solution().longestCommonPrefix(['', 'b']) == ''
 
     def test_same(self) -> None:
-        self.assertEqual(
-            Solution().longestCommonPrefix(['same', 'same']), 'same'
-        )
+        assert Solution().longestCommonPrefix(['same', 'same']) == 'same'

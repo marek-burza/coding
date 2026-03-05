@@ -63,5 +63,5 @@ class TestCode(unittest.TestCase):
         iterator = BSTIterator(n6)
         i = 1
         while iterator.hasNext():
-            self.assertEqual(i, iterator.next())
+            assert i == iterator.next()
             i += 1

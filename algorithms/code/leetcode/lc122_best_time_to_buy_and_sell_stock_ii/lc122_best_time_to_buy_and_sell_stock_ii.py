@@ -18,9 +18,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_empty(self) -> None:
-        self.assertEqual(0, Solution().maxProfit([]))
+        assert Solution().maxProfit([]) == 0
 
     def test_example(self) -> None:
-        self.assertEqual(
-            16, Solution().maxProfit([1, 2, 1, 3, 2, 5, 0, 10, 9, 6, 3])
-        )
+        assert Solution().maxProfit([1, 2, 1, 3, 2, 5, 0, 10, 9, 6, 3]) == 16

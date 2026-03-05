@@ -19,4 +19,4 @@ class TestCode(unittest.TestCase):
         nums = [0, 1, 0, 3, 12]
         Solution().moveZeroes(nums)
         expected = [1, 3, 12, 0, 0]
-        self.assertListEqual(expected, nums)
+        assert expected == nums

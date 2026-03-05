@@ -46,7 +46,7 @@ class TestCode(unittest.TestCase):
         s = [int(item) for item in io_lines[0][1]]
         result = non_divisible_subset(k, s)
         expected = int(io_lines[1][0][0])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

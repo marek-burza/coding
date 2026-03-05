@@ -17,23 +17,23 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         nums = [1, 1, 1, 2, 2, 3]
         expected = [1, 1, 2, 2, 3]
-        self.assertEqual(5, Solution().removeDuplicates(nums))
-        self.assertListEqual(expected, nums[: len(expected)])
+        assert Solution().removeDuplicates(nums) == 5
+        assert expected == nums[: len(expected)]
 
     def test_1_1_1_1_3_3(self) -> None:
         nums = [1, 1, 1, 1, 3, 3]
         expected = [1, 1, 3, 3]
-        self.assertEqual(4, Solution().removeDuplicates(nums))
-        self.assertListEqual(expected, nums[: len(expected)])
+        assert Solution().removeDuplicates(nums) == 4
+        assert expected == nums[: len(expected)]
 
     def test_1_1(self) -> None:
         nums = [1, 1]
         expected = [1, 1]
-        self.assertEqual(2, Solution().removeDuplicates(nums))
-        self.assertListEqual(expected, nums[: len(expected)])
+        assert Solution().removeDuplicates(nums) == 2
+        assert expected == nums[: len(expected)]
 
     def test_1_2_2(self) -> None:
         nums = [1, 2, 2]
         expected = [1, 2, 2]
-        self.assertEqual(3, Solution().removeDuplicates(nums))
-        self.assertListEqual(expected, nums[: len(expected)])
+        assert Solution().removeDuplicates(nums) == 3
+        assert expected == nums[: len(expected)]

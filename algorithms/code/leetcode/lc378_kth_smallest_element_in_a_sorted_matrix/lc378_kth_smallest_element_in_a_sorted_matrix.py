@@ -26,4 +26,4 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         matrix = [[1, 5, 9], [10, 11, 13], [12, 13, 15]]
-        self.assertEqual(13, Solution().kthSmallest(matrix, 8))
+        assert Solution().kthSmallest(matrix, 8) == 13

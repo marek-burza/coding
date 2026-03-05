@@ -24,13 +24,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_empty(self) -> None:
-        self.assertEqual(0, Solution().maxProfit([]))
+        assert Solution().maxProfit([]) == 0
 
     def test_1(self) -> None:
-        self.assertEqual(0, Solution().maxProfit([1]))
+        assert Solution().maxProfit([1]) == 0
 
     def test_example_1(self) -> None:
-        self.assertEqual(5, Solution().maxProfit([7, 1, 5, 3, 6, 4]))
+        assert Solution().maxProfit([7, 1, 5, 3, 6, 4]) == 5
 
     def test_example_2(self) -> None:
-        self.assertEqual(0, Solution().maxProfit([7, 6, 4, 3, 1]))
+        assert Solution().maxProfit([7, 6, 4, 3, 1]) == 0

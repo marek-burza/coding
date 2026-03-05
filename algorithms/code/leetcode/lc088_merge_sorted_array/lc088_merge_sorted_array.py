@@ -30,25 +30,25 @@ class TestCode(unittest.TestCase):
         nums2 = [2, 5, 6]
         expected = [1, 2, 2, 3, 5, 6]
         Solution().merge(nums1, 3, nums2, 3)
-        self.assertListEqual(expected, nums1)
+        assert expected == nums1
 
     def test_example_2(self) -> None:
         nums1 = [1]
         nums2: list[int] = []
         expected = [1]
         Solution().merge(nums1, 1, nums2, 0)
-        self.assertListEqual(expected, nums1)
+        assert expected == nums1
 
     def test_example_3(self) -> None:
         nums1 = [0]
         nums2 = [1]
         expected = [1]
         Solution().merge(nums1, 0, nums2, 1)
-        self.assertListEqual(expected, nums1)
+        assert expected == nums1
 
     def test_1_3_7_11_0_0_0__4__4_6_20__3(self) -> None:
         nums1 = [1, 3, 7, 11, 0, 0, 0]
         nums2 = [4, 6, 20]
         expected = [1, 3, 4, 6, 7, 11, 20]
         Solution().merge(nums1, 4, nums2, 3)
-        self.assertListEqual(expected, nums1)
+        assert expected == nums1

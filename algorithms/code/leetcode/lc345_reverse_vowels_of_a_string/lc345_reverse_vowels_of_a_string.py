@@ -28,13 +28,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual('holle', Solution().reverseVowels('hello'))
+        assert Solution().reverseVowels('hello') == 'holle'
 
     def test_example_2(self) -> None:
-        self.assertEqual('leetcode', Solution().reverseVowels('leotcede'))
+        assert Solution().reverseVowels('leotcede') == 'leetcode'
 
     def test_oe(self) -> None:
-        self.assertEqual('EO', Solution().reverseVowels('OE'))
+        assert Solution().reverseVowels('OE') == 'EO'
 
     def test_zt(self) -> None:
-        self.assertEqual('zt', Solution().reverseVowels('zt'))
+        assert Solution().reverseVowels('zt') == 'zt'

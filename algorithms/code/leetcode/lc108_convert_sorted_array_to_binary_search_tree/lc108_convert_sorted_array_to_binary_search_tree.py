@@ -11,8 +11,8 @@ class TreeNode:
     def __init__(
         self,
         val: int = 0,
-        left: 'TreeNode | None' = None,
-        right: 'TreeNode | None' = None,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
     ) -> None:
         self.val = val
         self.left = left
@@ -92,11 +92,11 @@ class TestCode(unittest.TestCase):  # pragma: no cover
         return True
 
     def test_empty(self) -> None:
-        self.assertEqual(None, Solution().sortedArrayToBST([]))
+        assert Solution().sortedArrayToBST([]) is None
 
     def test_depth_and_ordering(self) -> None:
         nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         root = Solution().sortedArrayToBST(nums)
         difference = TestCode.__max_height(root) - TestCode.__min_height(root)
-        self.assertTrue(0 <= difference <= 1)
-        self.assertTrue(TestCode.__is_bst(root))
+        assert 0 <= difference <= 1
+        assert TestCode.__is_bst(root)

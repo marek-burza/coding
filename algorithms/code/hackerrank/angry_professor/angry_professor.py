@@ -23,7 +23,7 @@ class TestCode(unittest.TestCase):
             a = test['a']
             expected = test['expected']
             result = angry_professor(k, a)
-            self.assertEqual(result, expected)
+            assert result == expected
 
     def test_example(self) -> None:
         tests = [

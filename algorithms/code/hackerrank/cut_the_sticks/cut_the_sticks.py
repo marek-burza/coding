@@ -25,7 +25,7 @@ class TestCode(unittest.TestCase):
         arguments = [int(item) for item in io_lines[0][1]]
         result = cut_the_sticks(arguments)
         expected = [int(line[0]) for line in io_lines[1]]
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example_0(self) -> None:
         self.runner('_example_0')

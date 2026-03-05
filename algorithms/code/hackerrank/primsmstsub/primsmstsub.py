@@ -56,7 +56,7 @@ class TestCode(unittest.TestCase):
         start = int(io_lines[0][1 + m][0])
         result = prims(n, edges, start)
         expected = int(io_lines[1][0][0])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

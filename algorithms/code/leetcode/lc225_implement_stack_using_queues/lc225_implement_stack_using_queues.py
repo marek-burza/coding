@@ -44,9 +44,9 @@ class TestCode(unittest.TestCase):
         solution = MyStack()
         solution.push(5)
         solution.push(2)
-        self.assertEqual(2, solution.top())
+        assert solution.top() == 2
         solution.pop()
-        self.assertEqual(5, solution.top())
-        self.assertFalse(solution.empty())
+        assert solution.top() == 5
+        assert not solution.empty()
         solution.pop()
-        self.assertTrue(solution.empty())
+        assert solution.empty()

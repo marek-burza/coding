@@ -15,7 +15,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_0_5_7(self) -> None:
-        self.assertFalse(Solution().containsDuplicate([0, 5, 7]))
+        assert not Solution().containsDuplicate([0, 5, 7])
 
     def test_0_5_7_5_10(self) -> None:
-        self.assertTrue(Solution().containsDuplicate([0, 5, 7, 5, 10]))
+        assert Solution().containsDuplicate([0, 5, 7, 5, 10])

@@ -19,16 +19,16 @@ def bigger_is_greater(w: str) -> str:
 
 class TestCode(unittest.TestCase):
     def test_ab(self) -> None:
-        self.assertEqual('ba', bigger_is_greater('ab'))
+        assert bigger_is_greater('ab') == 'ba'
 
     def test_bb(self) -> None:
-        self.assertEqual('no answer', bigger_is_greater('bb'))
+        assert bigger_is_greater('bb') == 'no answer'
 
     def test_hefg(self) -> None:
-        self.assertEqual('hegf', bigger_is_greater('hefg'))
+        assert bigger_is_greater('hefg') == 'hegf'
 
     def test_dhck(self) -> None:
-        self.assertEqual('dhkc', bigger_is_greater('dhck'))
+        assert bigger_is_greater('dhck') == 'dhkc'
 
     def test_dkhc(self) -> None:
-        self.assertEqual('hcdk', bigger_is_greater('dkhc'))
+        assert bigger_is_greater('dkhc') == 'hcdk'

@@ -30,9 +30,7 @@ class TestCode(unittest.TestCase):
         expected = [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32]
         primes = [2, 7, 13, 19]
         for i, expected_i in enumerate(expected):
-            self.assertEqual(
-                expected_i, Solution().nthSuperUglyNumber(i + 1, primes)
-            )
+            assert expected_i == Solution().nthSuperUglyNumber(i + 1, primes)
 
     def test_other(self) -> None:
         expected = 1092889481
@@ -68,9 +66,7 @@ class TestCode(unittest.TestCase):
             241,
             251,
         ]
-        self.assertEqual(
-            expected, Solution().nthSuperUglyNumber(100000, primes)
-        )
+        assert expected == Solution().nthSuperUglyNumber(100000, primes)
 
     def test_even_bigger(self) -> None:
         expected = 15132
@@ -176,4 +172,4 @@ class TestCode(unittest.TestCase):
             967,
             971,
         ]
-        self.assertEqual(expected, Solution().nthSuperUglyNumber(4000, primes))
+        assert expected == Solution().nthSuperUglyNumber(4000, primes)

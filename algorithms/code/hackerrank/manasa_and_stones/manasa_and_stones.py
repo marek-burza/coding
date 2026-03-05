@@ -33,7 +33,7 @@ class TestCode(unittest.TestCase):
             b = int(io_lines[0][3 + i * 3][0])
             result = stones(n, a, b)
             expected = [int(item) for item in io_lines[1][i]]
-            self.assertEqual(expected, result)
+            assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

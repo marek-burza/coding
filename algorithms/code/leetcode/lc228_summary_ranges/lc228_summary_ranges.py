@@ -29,19 +29,22 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertListEqual(
-            ['0->2', '4->5', '7'],
-            Solution().summaryRanges([0, 1, 2, 4, 5, 7]),
-        )
+        assert Solution().summaryRanges([0, 1, 2, 4, 5, 7]) == [
+            '0->2',
+            '4->5',
+            '7',
+        ]
 
     def test_example_2(self) -> None:
-        self.assertListEqual(
-            ['0', '2->4', '6', '8->9'],
-            Solution().summaryRanges([0, 2, 3, 4, 6, 8, 9]),
-        )
+        assert Solution().summaryRanges([0, 2, 3, 4, 6, 8, 9]) == [
+            '0',
+            '2->4',
+            '6',
+            '8->9',
+        ]
 
     def test_empty(self) -> None:
-        self.assertListEqual([], Solution().summaryRanges([]))
+        assert not Solution().summaryRanges([])
 
     def test_single(self) -> None:
-        self.assertListEqual(['0'], Solution().summaryRanges([0]))
+        assert Solution().summaryRanges([0]) == ['0']

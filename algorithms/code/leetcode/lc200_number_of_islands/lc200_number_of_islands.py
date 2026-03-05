@@ -43,7 +43,7 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         grid = [['1']]
-        self.assertEqual(1, Solution().numIslands(grid))
+        assert Solution().numIslands(grid) == 1
 
     def test_other(self) -> None:
         grid = [
@@ -52,8 +52,8 @@ class TestCode(unittest.TestCase):
             ['0', '0', '1', '0', '0'],
             ['0', '0', '0', '1', '1'],
         ]
-        self.assertEqual(3, Solution().numIslands(grid))
+        assert Solution().numIslands(grid) == 3
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().numIslands([]))
-        self.assertEqual(0, Solution().numIslands([[]]))
+        assert Solution().numIslands([]) == 0
+        assert Solution().numIslands([[]]) == 0

@@ -47,7 +47,7 @@ class TestCode(unittest.TestCase):
             offset += r_g + r_p + 2
             result = grid_search(g, p)
             expected = io_lines[1][test][0]
-            self.assertEqual(expected, result)
+            assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

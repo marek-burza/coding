@@ -21,10 +21,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        self.assertEqual(91, Solution().countNumbersWithUniqueDigits(2))
+        assert Solution().countNumbersWithUniqueDigits(2) == 91
 
     def test_0(self) -> None:
-        self.assertEqual(1, Solution().countNumbersWithUniqueDigits(0))
+        assert Solution().countNumbersWithUniqueDigits(0) == 1
 
     def test_1(self) -> None:
-        self.assertEqual(10, Solution().countNumbersWithUniqueDigits(1))
+        assert Solution().countNumbersWithUniqueDigits(1) == 10

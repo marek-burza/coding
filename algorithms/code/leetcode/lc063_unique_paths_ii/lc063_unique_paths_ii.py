@@ -26,33 +26,33 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual(
-            2,
+        assert (
             Solution().uniquePathsWithObstacles(
                 [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
-            ),
+            )
+            == 2
         )
 
     def test_example_2(self) -> None:
-        self.assertEqual(
-            1,
+        assert (
             Solution().uniquePathsWithObstacles(
                 [[0, 1], [0, 0]],
-            ),
+            )
+            == 1
         )
 
     def test_other_1(self) -> None:
-        self.assertEqual(
-            0,
+        assert (
             Solution().uniquePathsWithObstacles(
                 [[1, 0], [0, 0]],
-            ),
+            )
+            == 0
         )
 
     def test_other_2(self) -> None:
-        self.assertEqual(
-            0,
+        assert (
             Solution().uniquePathsWithObstacles(
                 [[0, 0], [0, 1]],
-            ),
+            )
+            == 0
         )

@@ -21,10 +21,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_aa__ab(self) -> None:
-        self.assertFalse(Solution().isIsomorphic('aa', 'ab'))
+        assert not Solution().isIsomorphic('aa', 'ab')
 
     def test_egg__add(self) -> None:
-        self.assertTrue(Solution().isIsomorphic('egg', 'add'))
+        assert Solution().isIsomorphic('egg', 'add')
 
     def test_ac__bb(self) -> None:
-        self.assertFalse(Solution().isIsomorphic('ac', 'bb'))
+        assert not Solution().isIsomorphic('ac', 'bb')

@@ -23,8 +23,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_4(self) -> None:
         expected = [0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8]
-        self.assertListEqual(expected, Solution().grayCode(4))
+        assert expected == Solution().grayCode(4)
 
     def test_0(self) -> None:
         expected = [0]
-        self.assertListEqual(expected, Solution().grayCode(0))
+        assert expected == Solution().grayCode(0)

@@ -20,12 +20,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_0_5_7__2(self) -> None:
-        self.assertFalse(Solution().containsNearbyDuplicate([0, 5, 7], 2))
+        assert not Solution().containsNearbyDuplicate([0, 5, 7], 2)
 
     def test_0_5_7_5__2(self) -> None:
-        self.assertTrue(Solution().containsNearbyDuplicate([0, 5, 7, 5], 2))
+        assert Solution().containsNearbyDuplicate([0, 5, 7, 5], 2)
 
     def test_0_5_7_10_5__2(self) -> None:
-        self.assertFalse(
-            Solution().containsNearbyDuplicate([0, 5, 7, 10, 5], 2)
-        )
+        assert not Solution().containsNearbyDuplicate([0, 5, 7, 10, 5], 2)

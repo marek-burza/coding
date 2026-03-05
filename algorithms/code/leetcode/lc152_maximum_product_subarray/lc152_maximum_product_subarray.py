@@ -26,4 +26,4 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_2_3_Minus2_4(self) -> None:
         nums = [2, 3, -2, 4]
-        self.assertEqual(6, Solution().maxProduct(nums))
+        assert Solution().maxProduct(nums) == 6
