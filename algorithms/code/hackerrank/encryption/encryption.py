@@ -1,4 +1,3 @@
-
 # https://www.hackerrank.com/challenges/encryption
 
 import math
