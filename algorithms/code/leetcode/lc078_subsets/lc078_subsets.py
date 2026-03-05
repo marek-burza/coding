@@ -30,12 +30,12 @@ class TestCode(unittest.TestCase):
     ) -> None:
         result = sorted(result)
         expected = sorted(expected)
-        self.assertEqual(len(expected), len(result))
+        assert len(expected) == len(result)
         for i, expected_i in enumerate(expected):
-            self.assertEqual(len(expected_i), len(result[i]))
+            assert len(expected_i) == len(result[i])
             result_i = sorted(result[i])
             expected_i = sorted(expected_i)
-            self.assertListEqual(expected_i, result_i)
+            assert expected_i == result_i
 
     def test_1_2_3(self) -> None:
         listed = Solution().subsets([1, 2, 3])

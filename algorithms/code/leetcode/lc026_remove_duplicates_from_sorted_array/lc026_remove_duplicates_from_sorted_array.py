@@ -18,6 +18,6 @@ class TestCode(unittest.TestCase):
     def test_1_2_2_3_4_4_7(self) -> None:
         nums1 = [1, 2, 2, 3, 4, 4, 7]
         length = Solution().removeDuplicates(nums1)
-        self.assertEqual(length, 5)
+        assert length == 5
         expected = [1, 2, 3, 4, 7]
-        self.assertListEqual(expected, nums1[0:length])
+        assert expected == nums1[0:length]

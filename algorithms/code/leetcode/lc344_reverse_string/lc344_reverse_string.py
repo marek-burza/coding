@@ -15,4 +15,4 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         s = list('hello')
         Solution().reverseString(s)
-        self.assertListEqual(list('olleh'), s)
+        assert list('olleh') == s

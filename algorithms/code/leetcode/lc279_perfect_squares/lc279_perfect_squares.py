@@ -21,19 +21,19 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_12(self) -> None:
-        self.assertEqual(3, Solution().numSquares(12))
+        assert Solution().numSquares(12) == 3
 
     def test_13(self) -> None:
-        self.assertEqual(2, Solution().numSquares(13))
+        assert Solution().numSquares(13) == 2
 
     def test_9975(self) -> None:
-        self.assertEqual(4, Solution().numSquares(9975))
+        assert Solution().numSquares(9975) == 4
 
     def test_9732(self) -> None:
-        self.assertEqual(3, Solution().numSquares(9732))
+        assert Solution().numSquares(9732) == 3
 
     def test_5756(self) -> None:
-        self.assertEqual(4, Solution().numSquares(5756))
+        assert Solution().numSquares(5756) == 4
 
     def test_6255(self) -> None:
-        self.assertEqual(4, Solution().numSquares(6255))
+        assert Solution().numSquares(6255) == 4

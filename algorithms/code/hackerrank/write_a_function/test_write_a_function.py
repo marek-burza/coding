@@ -32,7 +32,7 @@ class TestCode(unittest.TestCase):
             io.StringIO() as sys.stdout,
         ):
             main()
-            self.assertEqual(sys.stdout.getvalue(), expected.read())
+            assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
         self.generalized_test('0')
@@ -49,4 +49,4 @@ class TestCode(unittest.TestCase):
             2500: False,
         }
         for year, lut_year in lut.items():
-            self.assertEqual(is_leap(year), lut_year)
+            assert is_leap(year) == lut_year

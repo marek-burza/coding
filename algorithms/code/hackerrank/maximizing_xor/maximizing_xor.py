@@ -25,7 +25,7 @@ class TestCode(unittest.TestCase):
         var_r = int(io_lines[0][1][0])
         result = maximizing_xor(var_l, var_r)
         expected = int(io_lines[1][0][0])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_00(self) -> None:
         self.runner('00')

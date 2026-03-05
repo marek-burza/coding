@@ -160,17 +160,17 @@ class TestCode(unittest.TestCase):
             io.StringIO() as sys.stdout,
         ):
             main(quick)
-            self.assertEqual(sys.stdout.getvalue(), expected.read())
+            assert sys.stdout.getvalue() == expected.read()
 
     def test_search_for_absent(self) -> None:
         heap = [6, 3, 0, 5]
         sheap_build(heap)
-        self.assertIsNone(sheap_search(heap, -1))
+        assert sheap_search(heap, -1) is None
 
     def test_delete_swaps_on_same_level(self) -> None:
         heap = [0, 10, 8, 13, 14, 9]
         sheap_delete_index(heap, 4)
-        self.assertNotEqual(heap[-1], 9)
+        assert heap[-1] != 9
 
     def test_example(self) -> None:
         self.generalized_test('example')

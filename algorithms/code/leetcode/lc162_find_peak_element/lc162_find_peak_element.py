@@ -15,10 +15,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_1_2_3_1(self) -> None:
-        self.assertEqual(2, Solution().findPeakElement([1, 2, 3, 1]))
+        assert Solution().findPeakElement([1, 2, 3, 1]) == 2
 
     def test_1_2_3_4(self) -> None:
-        self.assertEqual(3, Solution().findPeakElement([1, 2, 3, 4]))
+        assert Solution().findPeakElement([1, 2, 3, 4]) == 3
 
     def test_nothing(self) -> None:
-        self.assertEqual(-1, Solution().findPeakElement([]))
+        assert Solution().findPeakElement([]) == -1

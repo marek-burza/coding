@@ -18,8 +18,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
         nums = [3, 2, 1, 5, 6, 4]
-        self.assertEqual(5, Solution().findKthLargest(nums, 2))
+        assert Solution().findKthLargest(nums, 2) == 5
 
     def test_example_2(self) -> None:
         nums = [2, 1]
-        self.assertEqual(1, Solution().findKthLargest(nums, 2))
+        assert Solution().findKthLargest(nums, 2) == 1

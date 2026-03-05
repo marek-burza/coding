@@ -23,7 +23,7 @@ class TestCode(unittest.TestCase):
         x1, v1, x2, v2 = [int(item) for item in io_lines[0][0]]
         result = kangaroo(x1, v1, x2, v2)
         expected = io_lines[1][0][0]
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example_0(self) -> None:
         self.runner('_example_0')
@@ -32,7 +32,7 @@ class TestCode(unittest.TestCase):
         self.runner('_example_1')
 
     def test_same(self) -> None:
-        self.assertEqual('YES', kangaroo(1, 2, 1, 2))
+        assert kangaroo(1, 2, 1, 2) == 'YES'
 
     def test_00(self) -> None:
         self.runner('00')

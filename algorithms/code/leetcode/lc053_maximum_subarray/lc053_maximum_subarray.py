@@ -20,18 +20,16 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual(
-            6, Solution().maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])
-        )
+        assert Solution().maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6
 
     def test_example_2(self) -> None:
-        self.assertEqual(1, Solution().maxSubArray([1]))
+        assert Solution().maxSubArray([1]) == 1
 
     def test_example_3(self) -> None:
-        self.assertEqual(23, Solution().maxSubArray([5, 4, -1, 7, 8]))
+        assert Solution().maxSubArray([5, 4, -1, 7, 8]) == 23
 
     def test_Minus2_1(self) -> None:
-        self.assertEqual(1, Solution().maxSubArray([-2, 1]))
+        assert Solution().maxSubArray([-2, 1]) == 1
 
     def test_Minus2_Minus1(self) -> None:
-        self.assertEqual(-1, Solution().maxSubArray([-2, -1]))
+        assert Solution().maxSubArray([-2, -1]) == -1

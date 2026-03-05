@@ -21,16 +21,16 @@ class TestCode(unittest.TestCase):
         nums = [1, 2, 3, 4, 5, 6, 7]
         Solution().rotate(nums, 3)
         expected = [5, 6, 7, 1, 2, 3, 4]
-        self.assertListEqual(expected, nums)
+        assert expected == nums
 
     def test_1_2_3_4_5_6__2(self) -> None:
         nums = [1, 2, 3, 4, 5, 6]
         Solution().rotate(nums, 2)
         expected = [5, 6, 1, 2, 3, 4]
-        self.assertListEqual(expected, nums)
+        assert expected == nums
 
     def test_1__2(self) -> None:
         nums = [1]
         Solution().rotate(nums, 1)
         expected = [1]
-        self.assertListEqual(expected, nums)
+        assert expected == nums

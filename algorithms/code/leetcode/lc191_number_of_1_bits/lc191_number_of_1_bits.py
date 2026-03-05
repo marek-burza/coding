@@ -14,4 +14,4 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_11(self) -> None:
-        self.assertEqual(3, Solution().hammingWeight(11))
+        assert Solution().hammingWeight(11) == 3

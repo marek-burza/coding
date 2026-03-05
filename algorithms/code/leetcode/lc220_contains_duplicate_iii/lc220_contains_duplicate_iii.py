@@ -38,20 +38,20 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_1_10_20_2(self) -> None:
         nums = [1, 10, 20, 2]
-        self.assertTrue(Solution().containsNearbyAlmostDuplicate(nums, 3, 2))
+        assert Solution().containsNearbyAlmostDuplicate(nums, 3, 2)
 
     def test_1_10_20_4(self) -> None:
         nums = [1, 10, 20, 4]
-        self.assertFalse(Solution().containsNearbyAlmostDuplicate(nums, 3, 2))
+        assert not Solution().containsNearbyAlmostDuplicate(nums, 3, 2)
 
     def test_1_10_20_30_2(self) -> None:
         nums = [1, 10, 20, 30, 2]
-        self.assertFalse(Solution().containsNearbyAlmostDuplicate(nums, 3, 2))
+        assert not Solution().containsNearbyAlmostDuplicate(nums, 3, 2)
 
     def test_8_7_15_1_6_1_9_15__1__3(self) -> None:
         nums = [8, 7, 15, 1, 6, 1, 9, 15]
-        self.assertTrue(Solution().containsNearbyAlmostDuplicate(nums, 1, 3))
+        assert Solution().containsNearbyAlmostDuplicate(nums, 1, 3)
 
     def test_2147483640_2147483641__1__100(self) -> None:
         nums = [2147483640, 2147483641]
-        self.assertTrue(Solution().containsNearbyAlmostDuplicate(nums, 1, 100))
+        assert Solution().containsNearbyAlmostDuplicate(nums, 1, 100)

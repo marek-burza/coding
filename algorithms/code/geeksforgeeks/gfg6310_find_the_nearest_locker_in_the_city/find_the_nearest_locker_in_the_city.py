@@ -72,22 +72,22 @@ def locker_distances(
 class TestCode(unittest.TestCase):
     def test_bad_size(self) -> None:
         result = locker_distances(-1, -1, None)
-        self.assertEqual(result, None)
+        assert result is None
 
     def test_result_present(self) -> None:
         result = locker_distances(1, 1, None)
-        self.assertEqual(result, [[sys.maxsize]])
+        assert result == [[sys.maxsize]]
 
     def test_result_just_locker(self) -> None:
         lockers = [(0, 0)]
         result = locker_distances(1, 1, lockers)
-        self.assertEqual(result, [[0]])
+        assert result == [[0]]
 
     def test_example1(self) -> None:
         lockers = [(0, 0)]
         result = locker_distances(3, 5, lockers)
         expected = [[0, 1, 2, 3, 4], [1, 2, 3, 4, 5], [2, 3, 4, 5, 6]]
-        self.assertEqual(result, expected)
+        assert result == expected
 
     def test_example2(self) -> None:
         lockers = [(1, 2), (3, 6)]
@@ -99,4 +99,4 @@ class TestCode(unittest.TestCase):
             [4, 3, 2, 3, 2, 1, 0],
             [5, 4, 3, 4, 3, 2, 1],
         ]
-        self.assertEqual(result, expected)
+        assert result == expected

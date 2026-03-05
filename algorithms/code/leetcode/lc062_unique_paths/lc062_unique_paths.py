@@ -24,13 +24,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_3_7(self) -> None:
-        self.assertEqual(28, Solution().uniquePaths(3, 7))
+        assert Solution().uniquePaths(3, 7) == 28
 
     def test_59_5(self) -> None:
-        self.assertEqual(557845, Solution().uniquePaths(59, 5))
+        assert Solution().uniquePaths(59, 5) == 557845
 
     def test_1_10(self) -> None:
-        self.assertEqual(1, Solution().uniquePaths(1, 10))
+        assert Solution().uniquePaths(1, 10) == 1
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().uniquePaths(1, 0))
+        assert Solution().uniquePaths(1, 0) == 0

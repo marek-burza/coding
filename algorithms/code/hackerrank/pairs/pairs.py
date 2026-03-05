@@ -39,7 +39,7 @@ class TestCode(unittest.TestCase):
         arr = [int(item) for item in io_lines[0][1]]
         result = pairs(k, arr)
         expected = int(io_lines[1][0][0])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')
@@ -47,4 +47,4 @@ class TestCode(unittest.TestCase):
     def test_other(self) -> None:
         expected = 4
         result = pairs(1, [1, 5, 3, 4, 2])
-        self.assertEqual(expected, result)
+        assert expected == result

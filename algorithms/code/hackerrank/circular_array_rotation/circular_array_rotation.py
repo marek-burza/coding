@@ -21,7 +21,7 @@ class TestCode(unittest.TestCase):
         queries = test['queries']
         expected = test['expected']
         results = circular_array_rotation(k, a, queries)
-        self.assertEqual(results, expected)
+        assert results == expected
 
     def test_example(self) -> None:
         test = {

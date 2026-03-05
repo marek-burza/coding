@@ -13,7 +13,7 @@ def compare_triplets(a: list[int], b: list[int]) -> list[int]:
 
 class TestCode(unittest.TestCase):
     def test_example_0(self) -> None:
-        self.assertEqual([1, 1], compare_triplets([5, 6, 7], [3, 6, 10]))
+        assert compare_triplets([5, 6, 7], [3, 6, 10]) == [1, 1]
 
     def test_example_1(self) -> None:
-        self.assertEqual([2, 1], compare_triplets([17, 28, 30], [99, 16, 8]))
+        assert compare_triplets([17, 28, 30], [99, 16, 8]) == [2, 1]

@@ -25,4 +25,4 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_6_6_4_8_4_3_3_10(self) -> None:
         nums = [6, 6, 4, 8, 4, 3, 3, 10]
-        self.assertEqual(27, Solution().rob(nums))
+        assert Solution().rob(nums) == 27

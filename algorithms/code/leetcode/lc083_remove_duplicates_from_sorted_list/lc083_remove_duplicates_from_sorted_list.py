@@ -42,9 +42,9 @@ class TestCode(unittest.TestCase):
     def test_1_1_2(self) -> None:
         linked = Solution.listed_to_linked([1, 1, 2])
         result = Solution().deleteDuplicates(linked)
-        self.assertListEqual([1, 2], Solution.linked_to_listed(result))
+        assert Solution.linked_to_listed(result) == [1, 2]
 
     def test_1_1_2_3_3(self) -> None:
         linked = Solution.listed_to_linked([1, 1, 2, 3, 3])
         result = Solution().deleteDuplicates(linked)
-        self.assertListEqual([1, 2, 3], Solution.linked_to_listed(result))
+        assert Solution.linked_to_listed(result) == [1, 2, 3]

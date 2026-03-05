@@ -24,14 +24,14 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         gas = [99, 99, 99, 104]
         cost = [100, 100, 100, 100]
-        self.assertEqual(3, Solution().canCompleteCircuit(gas, cost))
+        assert Solution().canCompleteCircuit(gas, cost) == 3
 
     def test_other(self) -> None:
         gas = [1, 2, 3, 4, 5]
         cost = [3, 4, 5, 1, 2]
-        self.assertEqual(3, Solution().canCompleteCircuit(gas, cost))
+        assert Solution().canCompleteCircuit(gas, cost) == 3
 
     def test_another(self) -> None:
         gas = [1, 2, 3]
         cost = [3, 4, 3]
-        self.assertEqual(-1, Solution().canCompleteCircuit(gas, cost))
+        assert Solution().canCompleteCircuit(gas, cost) == -1

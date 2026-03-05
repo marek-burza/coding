@@ -21,18 +21,18 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_1_2_1(self) -> None:
         test = [1, 2, 1]
-        self.assertEqual(Solution().maxArea(test), 2)
+        assert Solution().maxArea(test) == 2
 
     def test_1_3_5_2(self) -> None:
         test = [1, 3, 5, 2]
-        self.assertEqual(Solution().maxArea(test), 4)
+        assert Solution().maxArea(test) == 4
 
     def test_oversized(self) -> None:
         test = 15000 * [0]
         for i in range(15000):
             test[i] = i + 1
-        self.assertEqual(Solution().maxArea(test), 56250000)
+        assert Solution().maxArea(test) == 56250000
 
     def test_huh(self) -> None:
         test = [1, 2, 1, 15, 15, 1, 2, 1]
-        self.assertEqual(Solution().maxArea(test), 15)
+        assert Solution().maxArea(test) == 15

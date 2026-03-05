@@ -194,10 +194,10 @@ def main() -> float:
 # IMPLEMENTATION: BEGIN
 class TestCode(unittest.TestCase):
     def test_minimum_bar(self) -> None:
-        self.assertTrue(all(main() > 80.0 for _ in range(10)))
+        assert all(main() > 80.0 for _ in range(10))
 
     def test_reproducibility(self) -> None:
-        self.assertEqual(len({main() for _ in range(10)}), 1)
+        assert len({main() for _ in range(10)}) == 1
 
 
 # IMPLEMENTATION: END

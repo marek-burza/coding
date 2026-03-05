@@ -16,4 +16,4 @@ def staircase(n: int) -> list[str]:
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         expected = ['     #', '    ##', '   ###', '  ####', ' #####', '######']
-        self.assertEqual(expected, staircase(6))
+        assert expected == staircase(6)

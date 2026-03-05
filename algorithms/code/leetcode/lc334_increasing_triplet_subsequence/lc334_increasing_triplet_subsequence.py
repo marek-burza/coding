@@ -24,23 +24,23 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_empty(self) -> None:
-        self.assertFalse(Solution().increasingTriplet([]))
+        assert not Solution().increasingTriplet([])
 
     def test_example_1(self) -> None:
-        self.assertTrue(Solution().increasingTriplet([1, 2, 3, 4, 5]))
+        assert Solution().increasingTriplet([1, 2, 3, 4, 5])
 
     def test_example_2(self) -> None:
-        self.assertFalse(Solution().increasingTriplet([5, 4, 3, 2, 1]))
+        assert not Solution().increasingTriplet([5, 4, 3, 2, 1])
 
     def test_other(self) -> None:
-        self.assertTrue(Solution().increasingTriplet([1, 2, 3, 1, 2, 1]))
+        assert Solution().increasingTriplet([1, 2, 3, 1, 2, 1])
 
     def test_nothing(self) -> None:
-        self.assertFalse(Solution().increasingTriplet([]))
-        self.assertFalse(Solution().increasingTriplet([0, 1]))
+        assert not Solution().increasingTriplet([])
+        assert not Solution().increasingTriplet([0, 1])
 
     def test_516(self) -> None:
-        self.assertFalse(Solution().increasingTriplet([5, 1, 6]))
+        assert not Solution().increasingTriplet([5, 1, 6])
 
     def test_2_4_minus2_minus3(self) -> None:
-        self.assertFalse(Solution().increasingTriplet([2, 4, -2, -3]))
+        assert not Solution().increasingTriplet([2, 4, -2, -3])

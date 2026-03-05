@@ -46,18 +46,18 @@ class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
         nums = [5, 7, 7, 8, 8, 10]
         expected = [3, 4]
-        self.assertListEqual(expected, Solution().searchRange(nums, 8))
+        assert expected == Solution().searchRange(nums, 8)
 
     def test_other(self) -> None:
         nums = [5, 7, 7, 8, 8, 10]
         expected = [-1, -1]
-        self.assertListEqual(expected, Solution().searchRange(nums, 6))
+        assert expected == Solution().searchRange(nums, 6)
 
     def test_another(self) -> None:
         nums = [2, 2]
         expected = [-1, -1]
-        self.assertListEqual(expected, Solution().searchRange(nums, 3))
+        assert expected == Solution().searchRange(nums, 3)
 
     def test_nothing(self) -> None:
         expected = [-1, -1]
-        self.assertListEqual(expected, Solution().searchRange([], 3))
+        assert expected == Solution().searchRange([], 3)

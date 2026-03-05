@@ -18,13 +18,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual(1, Solution().thirdMax([3, 2, 1]))
+        assert Solution().thirdMax([3, 2, 1]) == 1
 
     def test_example_2(self) -> None:
-        self.assertEqual(2, Solution().thirdMax([1, 2]))
+        assert Solution().thirdMax([1, 2]) == 2
 
     def test_example_3(self) -> None:
-        self.assertEqual(1, Solution().thirdMax([2, 2, 3, 1]))
+        assert Solution().thirdMax([2, 2, 3, 1]) == 1
 
     def test_other_1(self) -> None:
-        self.assertEqual(2, Solution().thirdMax([1, 2, 2, 5, 3, 5]))
+        assert Solution().thirdMax([1, 2, 2, 5, 3, 5]) == 2

@@ -9,8 +9,8 @@ class TreeNode:
     def __init__(
         self,
         val: int = 0,
-        left: 'TreeNode | None' = None,
-        right: 'TreeNode | None' = None,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
     ) -> None:
         self.val = val
         self.left = left
@@ -44,7 +44,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_empty(self) -> None:
-        self.assertEqual(0, len(Solution().levelOrderBottom(None)))
+        assert len(Solution().levelOrderBottom(None)) == 0
 
     def test_example(self) -> None:
         n3 = TreeNode(3)
@@ -58,8 +58,8 @@ class TestCode(unittest.TestCase):
         n20.right = n7
         expected = [[15, 7], [9, 20], [3]]
         result = Solution().levelOrderBottom(n3)
-        self.assertEqual(len(expected), len(result))
+        assert len(expected) == len(result)
         for i, expected_i in enumerate(expected):
-            self.assertEqual(len(expected_i), len(result[i]))
+            assert len(expected_i) == len(result[i])
             for j, expected_i_j in enumerate(expected_i):
-                self.assertEqual(expected_i_j, result[i][j])
+                assert expected_i_j == result[i][j]

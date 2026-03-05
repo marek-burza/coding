@@ -18,17 +18,17 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_hello_horld(self) -> None:
-        self.assertEqual(5, Solution().lengthOfLastWord('Hello World'))
+        assert Solution().lengthOfLastWord('Hello World') == 5
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().lengthOfLastWord(None))
-        self.assertEqual(0, Solution().lengthOfLastWord(''))
+        assert Solution().lengthOfLastWord(None) == 0
+        assert Solution().lengthOfLastWord('') == 0
 
     def test_almost_nothing(self) -> None:
-        self.assertEqual(0, Solution().lengthOfLastWord(' '))
+        assert Solution().lengthOfLastWord(' ') == 0
 
     def test_trailing_space(self) -> None:
-        self.assertEqual(5, Solution().lengthOfLastWord('Hello World  '))
+        assert Solution().lengthOfLastWord('Hello World  ') == 5
 
     def test_single_word(self) -> None:
-        self.assertEqual(10, Solution().lengthOfLastWord('HelloWorld'))
+        assert Solution().lengthOfLastWord('HelloWorld') == 10

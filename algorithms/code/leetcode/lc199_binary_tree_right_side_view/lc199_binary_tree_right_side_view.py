@@ -9,8 +9,8 @@ class TreeNode:
     def __init__(
         self,
         val: int = 0,
-        left: 'TreeNode | None' = None,
-        right: 'TreeNode | None' = None,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
     ) -> None:
         self.val = val
         self.left = left
@@ -57,4 +57,4 @@ class TestCode(unittest.TestCase):
         expected = [1, 3, 4, 6]
         result = Solution().rightSideView(n1)
         for i, expected_i in enumerate(expected):
-            self.assertEqual(expected_i, result[i])
+            assert expected_i == result[i]

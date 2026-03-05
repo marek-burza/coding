@@ -48,14 +48,14 @@ class TestCode(unittest.TestCase):
             'AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT'
         )
         result.sort()
-        self.assertListEqual(expected, result)
+        assert expected == result
 
     def test_nothing(self) -> None:
         result = Solution().findRepeatedDnaSequences('')
-        self.assertListEqual([], result)
+        assert not result
 
     def test_AAAAAAAAAAAAA(self) -> None:
         expected = ['AAAAAAAAAA']
         result = Solution().findRepeatedDnaSequences('AAAAAAAAAAAAA')
         result.sort()
-        self.assertListEqual(expected, result)
+        assert expected == result

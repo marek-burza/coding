@@ -25,7 +25,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_19(self) -> None:
-        self.assertTrue(Solution().isHappy(19))
+        assert Solution().isHappy(19)
 
     def test_2(self) -> None:
-        self.assertFalse(Solution().isHappy(2))
+        assert not Solution().isHappy(2)

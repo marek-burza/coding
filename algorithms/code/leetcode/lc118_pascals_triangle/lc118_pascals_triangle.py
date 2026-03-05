@@ -24,9 +24,9 @@ class TestCode(unittest.TestCase):
     def test_5(self) -> None:
         expected = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
         result = Solution().generate(5)
-        self.assertEqual(len(expected), len(result))
+        assert len(expected) == len(result)
         for expected_i, result_i in zip(expected, result, strict=True):
-            self.assertListEqual(expected_i, result_i)
+            assert expected_i == result_i
 
     def test_nothing(self) -> None:
-        self.assertListEqual([], Solution().generate(-1))
+        assert not Solution().generate(-1)

@@ -33,7 +33,7 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_33_2_100_70(self) -> None:
         nums1 = [33, 2, 100, 70]
-        self.assertEqual(37, Solution().maximumGap(nums1))
+        assert Solution().maximumGap(nums1) == 37
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().maximumGap([]))
+        assert Solution().maximumGap([]) == 0

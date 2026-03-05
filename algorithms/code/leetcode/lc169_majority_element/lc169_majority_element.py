@@ -22,4 +22,4 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_1_2_3_1_5_1_6_1(self) -> None:
         nums = [1, 2, 3, 1, 5, 1, 6, 1]
-        self.assertEqual(1, Solution().majorityElement(nums))
+        assert Solution().majorityElement(nums) == 1

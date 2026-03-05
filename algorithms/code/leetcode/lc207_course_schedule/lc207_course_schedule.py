@@ -2035,24 +2035,22 @@ class TestCode(unittest.TestCase):
             [593, 1143],
             [1143, 643],
         ]
-        self.assertTrue(Solution().canFinish(2, prerequisites))
+        assert Solution().canFinish(2, prerequisites)
 
     def test_other(self) -> None:
-        self.assertFalse(Solution().canFinish(2, [[1, 0], [0, 1]]))
+        assert not Solution().canFinish(2, [[1, 0], [0, 1]])
 
     def test_another(self) -> None:
-        self.assertFalse(
-            Solution().canFinish(
-                20,
-                [
-                    [0, 10],
-                    [3, 18],
-                    [5, 5],
-                    [6, 11],
-                    [11, 14],
-                    [13, 1],
-                    [15, 1],
-                    [17, 4],
-                ],
-            )
+        assert not Solution().canFinish(
+            20,
+            [
+                [0, 10],
+                [3, 18],
+                [5, 5],
+                [6, 11],
+                [11, 14],
+                [13, 1],
+                [15, 1],
+                [17, 4],
+            ],
         )

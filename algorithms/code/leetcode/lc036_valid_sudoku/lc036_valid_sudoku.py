@@ -81,7 +81,7 @@ class TestCode(unittest.TestCase):
     ]
 
     def test_example(self) -> None:
-        self.assertTrue(Solution().isValidSudoku(TestCode.EXAMPLE_BOARD))
+        assert Solution().isValidSudoku(TestCode.EXAMPLE_BOARD)
 
     def test_other_example(self) -> None:
         board = [
@@ -95,14 +95,14 @@ class TestCode(unittest.TestCase):
             ['8', '.', '.', '.', '.', '.', '.', '.', '.'],
             ['9', '.', '.', '.', '.', '.', '.', '.', '.'],
         ]
-        self.assertTrue(Solution().isValidSudoku(board))
+        assert Solution().isValidSudoku(board)
 
     def test_another_1(self) -> None:
         board = [line[:] for line in TestCode.EXAMPLE_BOARD]
         board[2][0] = '.'
         board[2][1] = '9'
         board[2][2] = '8'
-        self.assertTrue(Solution().isValidSudoku(board))
+        assert Solution().isValidSudoku(board)
 
     def test_another_2(self) -> None:
         board = [
@@ -116,7 +116,7 @@ class TestCode(unittest.TestCase):
             ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
             ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
         ]
-        self.assertFalse(Solution().isValidSudoku(board))
+        assert not Solution().isValidSudoku(board)
 
     def test_another_3(self) -> None:
         board = [
@@ -130,7 +130,7 @@ class TestCode(unittest.TestCase):
             ['.', '2', '.', '9', '.', '.', '.', '.', '.'],
             ['.', '.', '4', '.', '.', '.', '.', '.', '.'],
         ]
-        self.assertFalse(Solution().isValidSudoku(board))
+        assert not Solution().isValidSudoku(board)
 
     BLANK = ['.', '.', '.', '.', '.', '.', '.', '.', '.']
 
@@ -146,4 +146,4 @@ class TestCode(unittest.TestCase):
             TestCode.BLANK,
             TestCode.BLANK,
         ]
-        self.assertFalse(Solution().isValidSudoku(board))
+        assert not Solution().isValidSudoku(board)

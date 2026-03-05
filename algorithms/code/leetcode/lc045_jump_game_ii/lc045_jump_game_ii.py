@@ -24,8 +24,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
         nums = [2, 3, 1, 1, 4]
-        self.assertEqual(2, Solution().jump(nums))
+        assert Solution().jump(nums) == 2
 
     def test_nothing(self) -> None:
         nums = [0]
-        self.assertEqual(0, Solution().jump(nums))
+        assert Solution().jump(nums) == 0

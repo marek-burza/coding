@@ -23,14 +23,14 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         array = [-1, 3, -4, 5, 1, -6, 2, 1]
         result = find_aquilibrium_index(array)
-        self.assertEqual(result, 1)
+        assert result == 1
 
     def test_empty(self) -> None:
         array: list[int] = []
         result = find_aquilibrium_index(array)
-        self.assertEqual(result, -1)
+        assert result == -1
 
     def test_invalid(self) -> None:
         array = [0, 1, 2, 3, 4]
         result = find_aquilibrium_index(array)
-        self.assertEqual(result, -1)
+        assert result == -1

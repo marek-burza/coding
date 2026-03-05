@@ -22,7 +22,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_11(self) -> None:
-        self.assertEqual(4, Solution().countPrimes(11))
+        assert Solution().countPrimes(11) == 4
 
     def test_1(self) -> None:
-        self.assertEqual(0, Solution().countPrimes(1))
+        assert Solution().countPrimes(1) == 0

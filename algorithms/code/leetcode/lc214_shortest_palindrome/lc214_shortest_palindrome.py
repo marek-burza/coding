@@ -19,12 +19,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_aacecaaa(self) -> None:
-        self.assertEqual(
-            'aaacecaaa', Solution().shortestPalindrome('aacecaaa')
-        )
+        assert Solution().shortestPalindrome('aacecaaa') == 'aaacecaaa'
 
     def test_abcd(self) -> None:
-        self.assertEqual('dcbabcd', Solution().shortestPalindrome('abcd'))
+        assert Solution().shortestPalindrome('abcd') == 'dcbabcd'
 
     def test_nothing(self) -> None:
-        self.assertEqual('', Solution().shortestPalindrome(''))
+        assert Solution().shortestPalindrome('') == ''

@@ -38,7 +38,7 @@ class TestCode(unittest.TestCase):
         plain = io_lines[0][0][0]
         result = encryption(plain)
         expected = ' '.join(io_lines[1][0])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example_0(self) -> None:
         self.runner('_example_0')

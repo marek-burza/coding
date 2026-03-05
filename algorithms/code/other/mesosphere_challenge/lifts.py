@@ -298,8 +298,8 @@ class Tests(unittest.TestCase):
         ecs_avg_wait = ecs_stats['avg_wait_time']
         fcfs_std_wait = fcfs_stats['std_wait_time']
         ecs_std_wait = ecs_stats['std_wait_time']
-        self.assertTrue(ecs_avg_wait < fcfs_avg_wait)
-        self.assertTrue(ecs_std_wait < fcfs_std_wait)
+        assert ecs_avg_wait < fcfs_avg_wait
+        assert ecs_std_wait < fcfs_std_wait
 
 
 if __name__ == '__main__':  # pragma: no cover

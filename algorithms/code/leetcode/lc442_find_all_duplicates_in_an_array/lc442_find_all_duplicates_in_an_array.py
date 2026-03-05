@@ -18,12 +18,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertListEqual(
-            [2, 3], Solution().findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])
-        )
+        assert Solution().findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]) == [
+            2,
+            3,
+        ]
 
     def test_example_2(self) -> None:
-        self.assertListEqual([1], Solution().findDuplicates([1, 1, 2]))
+        assert Solution().findDuplicates([1, 1, 2]) == [1]
 
     def test_example_3(self) -> None:
-        self.assertListEqual([], Solution().findDuplicates([1]))
+        assert not Solution().findDuplicates([1])

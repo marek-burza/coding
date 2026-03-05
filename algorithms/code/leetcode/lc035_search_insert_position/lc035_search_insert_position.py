@@ -19,24 +19,24 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test__empty__5(self) -> None:
         nums: list[int] = []
-        self.assertEqual(0, Solution().searchInsert(nums, 5))
+        assert Solution().searchInsert(nums, 5) == 0
 
     def test__1_3_5_6__5(self) -> None:
         nums = [1, 3, 5, 6]
-        self.assertEqual(2, Solution().searchInsert(nums, 5))
+        assert Solution().searchInsert(nums, 5) == 2
 
     def test__1_3_5_6__2(self) -> None:
         nums = [1, 3, 5, 6]
-        self.assertEqual(1, Solution().searchInsert(nums, 2))
+        assert Solution().searchInsert(nums, 2) == 1
 
     def test__1_3_5_6__7(self) -> None:
         nums = [1, 3, 5, 6]
-        self.assertEqual(4, Solution().searchInsert(nums, 7))
+        assert Solution().searchInsert(nums, 7) == 4
 
     def test__1_3_5_6__0(self) -> None:
         nums = [1, 3, 5, 6]
-        self.assertEqual(0, Solution().searchInsert(nums, 0))
+        assert Solution().searchInsert(nums, 0) == 0
 
     def test__1_3_5_6__1(self) -> None:
         nums = [1, 3, 5, 6]
-        self.assertEqual(0, Solution().searchInsert(nums, 1))
+        assert Solution().searchInsert(nums, 1) == 0

@@ -39,7 +39,7 @@ class TestCode(unittest.TestCase):
         node2 = TreeNode(2, node1, node3)
         node5 = TreeNode(5)
         node4 = TreeNode(4, node2, node5)
-        self.assertEqual(4, Solution().closestValue(node4, 3.714286))
+        assert Solution().closestValue(node4, 3.714286) == 4
 
     def test_other(self) -> None:
         node1 = TreeNode(1)
@@ -47,4 +47,4 @@ class TestCode(unittest.TestCase):
         node2 = TreeNode(2, node1, node3)
         node5 = TreeNode(5)
         node4 = TreeNode(4, node2, node5)
-        self.assertEqual(2, Solution().closestValue(node4, 1.714286))
+        assert Solution().closestValue(node4, 1.714286) == 2

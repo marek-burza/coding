@@ -18,25 +18,25 @@ class TestCustomers(unittest.TestCase):
             '/customers/',
             params={'customer_identifier': 0, 'customer_name': 'Alice : "树"'},
         )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
         parsed_response = response.json()
-        self.assertEqual(parsed_response['identifier'], 0)
-        self.assertEqual(parsed_response['name'], 'Alice 树')
+        assert parsed_response['identifier'] == 0
+        assert parsed_response['name'] == 'Alice 树'
 
     def test_unsuccessful_customer_creation_with_same_id(self) -> None:
         response = client.put(
             '/customers/',
             params={'customer_identifier': 1, 'customer_name': 'Alice First'},
         )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
         response = client.put(
             '/customers/',
             params={'customer_identifier': 1, 'customer_name': 'Alice Second'},
         )
-        self.assertEqual(response.status_code, status.HTTP_409_CONFLICT)
-        self.assertEqual(
-            response.json()['detail'],
-            ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS,
+        assert response.status_code == status.HTTP_409_CONFLICT
+        assert (
+            response.json()['detail']
+            == ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS
         )
 
     def test_unsuccessful_customer_creation_with_same_name(self) -> None:
@@ -47,7 +47,7 @@ class TestCustomers(unittest.TestCase):
                 'customer_name': 'Alice Repeated',
             },
         )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
         response = client.put(
             '/customers/',
             params={
@@ -55,10 +55,10 @@ class TestCustomers(unittest.TestCase):
                 'customer_name': 'Alice Repeated',
             },
         )
-        self.assertEqual(response.status_code, status.HTTP_409_CONFLICT)
-        self.assertEqual(
-            response.json()['detail'],
-            ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS,
+        assert response.status_code == status.HTTP_409_CONFLICT
+        assert (
+            response.json()['detail']
+            == ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS
         )
 
     def test_unsuccessful_customer_creation_with_garbled_name(self) -> None:
@@ -66,42 +66,36 @@ class TestCustomers(unittest.TestCase):
             '/customers/',
             params={'customer_identifier': 4, 'customer_name': '"/:.'},
         )
-        self.assertEqual(
-            response.status_code, status.HTTP_417_EXPECTATION_FAILED
-        )
-        self.assertEqual(
-            response.json()['detail'], ERROR_INVALID_CUSTOMER_NAME
-        )
+        assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
+        assert response.json()['detail'] == ERROR_INVALID_CUSTOMER_NAME
 
     def test_successful_customer_read_with_known_id(self) -> None:
         response = client.put(
             '/customers/',
             params={'customer_identifier': 5, 'customer_name': 'Alice Fifth'},
         )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
         response = client.get('/customers/', params={'customer_identifier': 5})
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
         parsed_response = response.json()
-        self.assertEqual(len(parsed_response), 1)
-        self.assertEqual(parsed_response[0]['identifier'], 5)
-        self.assertEqual(parsed_response[0]['name'], 'Alice Fifth')
+        assert len(parsed_response) == 1
+        assert parsed_response[0]['identifier'] == 5
+        assert parsed_response[0]['name'] == 'Alice Fifth'
 
     def test_successful_customer_read_without_id(self) -> None:
         response = client.put(
             '/customers/',
             params={'customer_identifier': 6, 'customer_name': 'Alice Sixth'},
         )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
         response = client.get('/customers/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
         parsed_response = response.json()
-        self.assertGreater(len(parsed_response), 0)
-        self.assertTrue(
-            any(customer['identifier'] == 6 for customer in parsed_response)
-        )
+        assert len(parsed_response) > 0
+        assert any(customer['identifier'] == 6 for customer in parsed_response)
 
     def test_unsuccessful_customer_read_with_unknown_id(self) -> None:
         response = client.get(
             '/customers/', params={'customer_identifier': -1}
         )
-        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+        assert response.status_code == status.HTTP_404_NOT_FOUND

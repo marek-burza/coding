@@ -34,11 +34,11 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_empty(self) -> None:
         result = Solution().letterCombinations('')
-        self.assertEqual(len(result), 0)
+        assert len(result) == 0
 
     def test_example(self) -> None:
         expected = ['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']
         expected = sorted(expected)
         result = Solution().letterCombinations('23')
         result = sorted(result)
-        self.assertEqual(result, expected)
+        assert result == expected

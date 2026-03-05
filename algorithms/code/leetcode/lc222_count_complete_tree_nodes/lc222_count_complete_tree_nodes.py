@@ -26,7 +26,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual(0, Solution().countNodes(None))
+        assert Solution().countNodes(None) == 0
 
     def test_example_2(self) -> None:
-        self.assertEqual(1, Solution().countNodes(TreeNode(1)))
+        assert Solution().countNodes(TreeNode(1)) == 1

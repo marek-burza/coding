@@ -19,7 +19,7 @@ def fibonacci_modified(t1: int, t2: int, n: int) -> int:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual(5, fibonacci_modified(0, 1, 5))
+        assert fibonacci_modified(0, 1, 5) == 5
 
     def test_example_2(self) -> None:
-        self.assertEqual(84266613096281243382112, fibonacci_modified(0, 1, 10))
+        assert fibonacci_modified(0, 1, 10) == 84266613096281243382112

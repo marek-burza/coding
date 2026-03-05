@@ -31,7 +31,7 @@ class TestCode(unittest.TestCase):
         result = sorted(result)
         expected = sorted(expected)
         for i in range(max(len(result), len(expected))):
-            self.assertEqual(result[i], expected[i])
+            assert result[i] == expected[i]
 
     def test_0(self) -> None:
         expected: list[str] = []

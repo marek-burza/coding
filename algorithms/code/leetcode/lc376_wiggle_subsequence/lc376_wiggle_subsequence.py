@@ -27,24 +27,22 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual(6, Solution().wiggleMaxLength([1, 7, 4, 9, 2, 5]))
+        assert Solution().wiggleMaxLength([1, 7, 4, 9, 2, 5]) == 6
 
     def test_example_2(self) -> None:
-        self.assertEqual(
-            7, Solution().wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8])
+        assert (
+            Solution().wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8])
+            == 7
         )
 
     def test_example_3(self) -> None:
-        self.assertEqual(
-            2, Solution().wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9])
-        )
+        assert Solution().wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9]) == 2
 
     def test_short(self) -> None:
-        self.assertEqual(1, Solution().wiggleMaxLength([0, 0]))
+        assert Solution().wiggleMaxLength([0, 0]) == 1
 
     def test_long_with_plateau_1(self) -> None:
-        self.assertEqual(
-            202,
+        assert (
             Solution().wiggleMaxLength(
                 [
                     51,
@@ -348,12 +346,12 @@ class TestCode(unittest.TestCase):
                     196,
                     222,
                 ]
-            ),
+            )
+            == 202
         )
 
     def test_long_with_plateau_2(self) -> None:
-        self.assertEqual(
-            334,
+        assert (
             Solution().wiggleMaxLength(
                 [
                     372,
@@ -857,8 +855,9 @@ class TestCode(unittest.TestCase):
                     109,
                     185,
                 ]
-            ),
+            )
+            == 334
         )
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().wiggleMaxLength([]))
+        assert Solution().wiggleMaxLength([]) == 0

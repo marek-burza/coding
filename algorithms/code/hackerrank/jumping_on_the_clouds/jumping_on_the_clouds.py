@@ -27,7 +27,7 @@ class TestCode(unittest.TestCase):
             io_lines[index] = [line.strip().split(' ') for line in lines]
         c = [int(item) for item in io_lines[0][1]]
         result = jumping_on_clouds(c)
-        self.assertEqual(int(io_lines[1][0][0]), result)
+        assert int(io_lines[1][0][0]) == result
 
     def test_example_0(self) -> None:
         self.runner('_example_0')
@@ -36,4 +36,4 @@ class TestCode(unittest.TestCase):
         self.runner('_example_1')
 
     def test_missing_example(self) -> None:
-        self.assertEqual(1, jumping_on_clouds([0, 0]))
+        assert jumping_on_clouds([0, 0]) == 1

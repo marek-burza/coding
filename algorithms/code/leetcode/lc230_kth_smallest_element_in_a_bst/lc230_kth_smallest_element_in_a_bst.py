@@ -9,8 +9,8 @@ class TreeNode:
     def __init__(
         self,
         val: int = 0,
-        left: 'TreeNode | None' = None,
-        right: 'TreeNode | None' = None,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
     ) -> None:
         self.val = val
         self.left = left
@@ -47,7 +47,7 @@ class TestCode(unittest.TestCase):
         n4.left = n3
         n3.left = n2
         n2.left = n1
-        self.assertEqual(2, Solution().kthSmallest(n4, 2))
+        assert Solution().kthSmallest(n4, 2) == 2
 
     def test_right(self) -> None:
         n1 = TreeNode(1)
@@ -57,7 +57,7 @@ class TestCode(unittest.TestCase):
         n1.right = n2
         n2.right = n3
         n3.right = n4
-        self.assertEqual(2, Solution().kthSmallest(n1, 2))
+        assert Solution().kthSmallest(n1, 2) == 2
 
     def test_coverage(self) -> None:
         n1 = TreeNode(1)
@@ -71,4 +71,4 @@ class TestCode(unittest.TestCase):
         n4.left = n2
         n4.right = n5
         n5.right = n6
-        self.assertEqual(5, Solution().kthSmallest(n4, 5))
+        assert Solution().kthSmallest(n4, 5) == 5

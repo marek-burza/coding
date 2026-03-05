@@ -29,12 +29,12 @@ class TestCode(unittest.TestCase):
         nums1[25000] = 1
         nums1[25001] = 0
         nums1[25002] = 0
-        self.assertFalse(Solution().canJump(nums1))
+        assert not Solution().canJump(nums1)
 
     def test_1_2_3(self) -> None:
         nums2 = [1, 2, 3]
-        self.assertTrue(Solution().canJump(nums2))
+        assert Solution().canJump(nums2)
 
     def test_nothing(self) -> None:
-        self.assertFalse(Solution().canJump([]))
-        self.assertTrue(Solution().canJump([0]))
+        assert not Solution().canJump([])
+        assert Solution().canJump([0])

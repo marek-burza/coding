@@ -44,7 +44,7 @@ class TestCode(unittest.TestCase):
         expected = ['255.255.11.135', '255.255.111.35']
         result = Solution().restoreIpAddresses('25525511135')
         result.sort()
-        self.assertListEqual(expected, result)
+        assert expected == result
 
     def test_101023(self) -> None:
         expected = [
@@ -56,4 +56,4 @@ class TestCode(unittest.TestCase):
         ]
         result = Solution().restoreIpAddresses('101023')
         result.sort()
-        self.assertListEqual(expected, result)
+        assert expected == result

@@ -22,12 +22,12 @@ class NumArray:
 class TestCode(unittest.TestCase):
     def test_0__2(self) -> None:
         nums = [-2, 0, 3, -5, 2, -1]
-        self.assertEqual(1, NumArray(nums).sumRange(0, 2))
+        assert NumArray(nums).sumRange(0, 2) == 1
 
     def test_2__5(self) -> None:
         nums = [-2, 0, 3, -5, 2, -1]
-        self.assertEqual(-1, NumArray(nums).sumRange(2, 5))
+        assert NumArray(nums).sumRange(2, 5) == -1
 
     def test_0__5(self) -> None:
         nums = [-2, 0, 3, -5, 2, -1]
-        self.assertEqual(-3, NumArray(nums).sumRange(0, 5))
+        assert NumArray(nums).sumRange(0, 5) == -3

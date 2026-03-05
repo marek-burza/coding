@@ -41,7 +41,7 @@ class TestCode(unittest.TestCase):
             io.StringIO() as sys.stdout,
         ):
             main()
-            self.assertEqual(sys.stdout.getvalue(), expected.read())
+            assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
         self.generalized_test('0')
@@ -51,6 +51,6 @@ class TestCode(unittest.TestCase):
         second = struct.unpack('<L', os.urandom(4))[0]
         for _ in range(100):
             added, subtracted, multiplied = mix(first, second)
-            self.assertEqual(added, first + second)
-            self.assertEqual(subtracted, first - second)
-            self.assertEqual(multiplied, first * second)
+            assert added == first + second
+            assert subtracted == first - second
+            assert multiplied == first * second

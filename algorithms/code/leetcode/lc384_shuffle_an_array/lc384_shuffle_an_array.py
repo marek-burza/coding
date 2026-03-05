@@ -24,10 +24,10 @@ class TestCode(unittest.TestCase):
         solution = Solution(nums.copy())
         result = solution.shuffle()
         reset = solution.reset()
-        self.assertListEqual(nums, reset)
+        assert nums == reset
         nums.sort()
         result.sort()
-        self.assertListEqual(nums, result)
+        assert nums == result
 
     def test_example(self) -> None:
         nums = [1, 2, 3]
@@ -36,4 +36,4 @@ class TestCode(unittest.TestCase):
 
     def test_nothing(self) -> None:
         solution = Solution([])
-        self.assertListEqual(solution.shuffle(), [])
+        assert not solution.shuffle()

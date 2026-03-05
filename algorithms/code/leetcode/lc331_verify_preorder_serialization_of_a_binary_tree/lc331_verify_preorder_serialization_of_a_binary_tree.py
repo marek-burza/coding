@@ -24,21 +24,19 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_empty(self) -> None:
-        self.assertTrue(Solution().isValidSerialization('#'))
+        assert Solution().isValidSerialization('#')
 
     def test_empty_but_not_really(self) -> None:
-        self.assertFalse(Solution().isValidSerialization('#1'))
+        assert not Solution().isValidSerialization('#1')
 
     def test_example_1(self) -> None:
-        self.assertTrue(
-            Solution().isValidSerialization('9,3,4,#,#,1,#,#,2,#,6,#,#')
-        )
+        assert Solution().isValidSerialization('9,3,4,#,#,1,#,#,2,#,6,#,#')
 
     def test_example_2(self) -> None:
-        self.assertFalse(Solution().isValidSerialization('1,#'))
+        assert not Solution().isValidSerialization('1,#')
 
     def test_example_3(self) -> None:
-        self.assertFalse(Solution().isValidSerialization('9,#,#,1'))
+        assert not Solution().isValidSerialization('9,#,#,1')
 
     def test_nothing(self) -> None:
-        self.assertFalse(Solution().isValidSerialization(''))
+        assert not Solution().isValidSerialization('')

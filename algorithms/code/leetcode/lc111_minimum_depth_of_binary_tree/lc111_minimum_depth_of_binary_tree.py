@@ -58,19 +58,19 @@ class TestCode(unittest.TestCase):
         n20.left = n15
         n20.right = n7
         n7.left = n7.right = n9.left = n9.right = n15.left = n15.right = None
-        self.assertEqual(2, Solution().minDepth(n3))
+        assert Solution().minDepth(n3) == 2
 
     def test_left_nothing(self) -> None:
         root = TreeNode(3)
         right = TreeNode(7)
         root.right = right
-        self.assertEqual(2, Solution().minDepth(root))
+        assert Solution().minDepth(root) == 2
 
     def test_right_nothing(self) -> None:
         root = TreeNode(3)
         left = TreeNode(7)
         root.right = left
-        self.assertEqual(2, Solution().minDepth(root))
+        assert Solution().minDepth(root) == 2
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().minDepth(None))
+        assert Solution().minDepth(None) == 0

@@ -65,7 +65,7 @@ class TestCode(unittest.TestCase):
             offset += n + 2
             result = count_luck(matrix, k)
             expected = io_lines[1][t][0]
-            self.assertEqual(expected, result)
+            assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')
@@ -73,4 +73,4 @@ class TestCode(unittest.TestCase):
     def test_empty(self) -> None:
         result = count_luck([], 0)
         expected = 'Oops!'
-        self.assertEqual(expected, result)
+        assert expected == result

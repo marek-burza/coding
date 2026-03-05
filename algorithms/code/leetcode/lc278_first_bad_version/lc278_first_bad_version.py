@@ -29,7 +29,7 @@ class TestCode(unittest.TestCase):
         # pylint: disable=W0603
         global lc278_first_bad_version  # noqa: F824
         lc278_first_bad_version = expected
-        self.assertEqual(expected, Solution().firstBadVersion(n))
+        assert expected == Solution().firstBadVersion(n)
 
     def test_example(self) -> None:
         self.generic(8000, 456)

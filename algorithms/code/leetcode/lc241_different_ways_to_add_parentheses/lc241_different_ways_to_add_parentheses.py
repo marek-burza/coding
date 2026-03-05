@@ -34,7 +34,7 @@ class Solution:
 class TestCode(unittest.TestCase):
     def generic(self, expected: list[int], result: list[int]) -> None:
         result = sorted(result)
-        self.assertListEqual(expected, result)
+        assert expected == result
 
     def test_example_1(self) -> None:
         expected = [0, 2]

@@ -40,25 +40,25 @@ class TestCode(unittest.TestCase):
         n11 = TreeNode(11, n7, n2)
         n4b = TreeNode(4, n11, None)
         n5 = TreeNode(5, n4b, n8)
-        self.assertTrue(Solution().hasPathSum(n5, 22))
+        assert Solution().hasPathSum(n5, 22)
 
     def test_left_bend(self) -> None:
         right = TreeNode(1, None, None)
         left = TreeNode(2, None, right)
         root = TreeNode(3, left, None)
-        self.assertTrue(Solution().hasPathSum(root, 6))
+        assert Solution().hasPathSum(root, 6)
 
     def test_right_bend(self) -> None:
         left = TreeNode(1, None, None)
         right = TreeNode(2, left, None)
         root = TreeNode(3, None, right)
-        self.assertTrue(Solution().hasPathSum(root, 6))
+        assert Solution().hasPathSum(root, 6)
 
     def test_no_path(self) -> None:
         left = TreeNode(0, None, None)
         right = TreeNode(0, None, None)
         root = TreeNode(0, left, right)
-        self.assertFalse(Solution().hasPathSum(root, 6))
+        assert not Solution().hasPathSum(root, 6)
 
     def test_nothing(self) -> None:
-        self.assertFalse(Solution().hasPathSum(None, 0))
+        assert not Solution().hasPathSum(None, 0)

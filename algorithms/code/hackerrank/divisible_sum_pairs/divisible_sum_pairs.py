@@ -55,7 +55,7 @@ class TestCode(unittest.TestCase):
         arr = [int(item) for item in io_lines[0][1]]
         result = divisible_sum_pairs(n, k, arr)
         expected = int(io_lines[1][0][0])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

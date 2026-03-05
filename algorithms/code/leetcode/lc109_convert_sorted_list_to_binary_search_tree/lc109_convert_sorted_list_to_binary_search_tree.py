@@ -78,7 +78,7 @@ class TestCode(unittest.TestCase):
         if root is not None:
             linked = self.__test(root.left, linked)
             assert linked is not None
-            self.assertEqual(linked.val, root.val)
+            assert linked.val == root.val
             linked = linked.next
             linked = self.__test(root.right, linked)
         return linked
@@ -89,5 +89,5 @@ class TestCode(unittest.TestCase):
         root = Solution().sortedListToBST(linked)
         depths = self.MinMax()
         self.__depth(root, 0, depths)
-        self.assertTrue(depths.max - depths.min < 2)
-        self.assertEqual(None, self.__test(root, linked))
+        assert depths.max - depths.min < 2
+        assert self.__test(root, linked) is None

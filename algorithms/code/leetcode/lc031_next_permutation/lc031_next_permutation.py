@@ -27,14 +27,14 @@ class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
         nums = [1, 2, 3]
         Solution().nextPermutation(nums)
-        self.assertListEqual([1, 3, 2], nums)
+        assert nums == [1, 3, 2]
 
     def test_example_2(self) -> None:
         nums = [3, 2, 1]
         Solution().nextPermutation(nums)
-        self.assertListEqual([1, 2, 3], nums)
+        assert nums == [1, 2, 3]
 
     def test_example_3(self) -> None:
         nums = [1, 1, 5]
         Solution().nextPermutation(nums)
-        self.assertListEqual([1, 5, 1], nums)
+        assert nums == [1, 5, 1]

@@ -71,11 +71,11 @@ class TestCode(unittest.TestCase):
         result = sorted(
             result, key=TestCode.cmp_to_key(TestCode.orderly_comparator)
         )
-        self.assertEqual(len(expected), len(result))
+        assert len(expected) == len(result)
         for i, expected_i in enumerate(expected):
-            self.assertEqual(len(expected_i), len(result[i]))
+            assert len(expected_i) == len(result[i])
             for j, expected_i_j in enumerate(expected_i):
-                self.assertEqual(expected_i_j, result[i][j])
+                assert expected_i_j == result[i][j]
 
     def test_abc_cab_bad_dab_zzz_dot(self) -> None:
         strs = ['abc', 'cab', 'bad', 'dab', 'zzz', 'dot']

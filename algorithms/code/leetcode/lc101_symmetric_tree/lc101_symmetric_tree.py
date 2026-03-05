@@ -51,7 +51,7 @@ class TestCode(unittest.TestCase):
         n1a.right = None
         n1b.left = None
         n1b.right = None
-        self.assertTrue(Solution().isSymmetric(n0))
+        assert Solution().isSymmetric(n0)
 
     def test_asymmetric(self) -> None:
         n0 = TreeNode(0)
@@ -63,22 +63,22 @@ class TestCode(unittest.TestCase):
         n1.right = None
         n2.left = None
         n2.right = None
-        self.assertFalse(Solution().isSymmetric(n0))
+        assert not Solution().isSymmetric(n0)
 
     def test_empty(self) -> None:
-        self.assertTrue(Solution().isSymmetric(None))
+        assert Solution().isSymmetric(None)
 
     def test_left(self) -> None:
         an0 = TreeNode(0)
         an1 = TreeNode(1)
         an0.left = an1
-        self.assertFalse(Solution().isSymmetric(an0))
+        assert not Solution().isSymmetric(an0)
 
     def test_right(self) -> None:
         an0 = TreeNode(0)
         an1 = TreeNode(1)
         an0.right = an1
-        self.assertFalse(Solution().isSymmetric(an0))
+        assert not Solution().isSymmetric(an0)
 
     def test_other(self) -> None:
         n2 = TreeNode(2)
@@ -92,4 +92,4 @@ class TestCode(unittest.TestCase):
         n3l.left = n4ll
         n3l.right = n5
         n3r.right = n4rr
-        self.assertFalse(Solution().isSymmetric(n2))
+        assert not Solution().isSymmetric(n2)

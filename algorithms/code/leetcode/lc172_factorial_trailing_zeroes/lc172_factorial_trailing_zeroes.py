@@ -15,10 +15,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_5(self) -> None:
-        self.assertEqual(1, Solution().trailingZeroes(5))
+        assert Solution().trailingZeroes(5) == 1
 
     def test_1808548329(self) -> None:
-        self.assertEqual(452137076, Solution().trailingZeroes(1808548329))
+        assert Solution().trailingZeroes(1808548329) == 452137076
 
     def test_2147483647(self) -> None:
-        self.assertEqual(536870902, Solution().trailingZeroes(2147483647))
+        assert Solution().trailingZeroes(2147483647) == 536870902

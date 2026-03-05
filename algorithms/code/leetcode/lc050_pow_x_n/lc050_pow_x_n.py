@@ -32,13 +32,13 @@ class TestCode(unittest.TestCase):
         x = 34.00515
         n = -3
         expected = x**n
-        self.assertEqual(expected, Solution().myPow(x, n), 0)
+        assert expected == Solution().myPow(x, n)
 
     def test_bigger(self) -> None:
         x = 0.00001
         n = 2147483647
         expected = x**n
-        self.assertEqual(expected, Solution().myPow(x, n), 0)
+        assert expected == Solution().myPow(x, n)
 
     def test_0(self) -> None:
-        self.assertEqual(1.0, Solution().myPow(0, 0), 0)
+        assert Solution().myPow(0, 0) == 1.0

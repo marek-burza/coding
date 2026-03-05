@@ -25,7 +25,7 @@ class TestCode(unittest.TestCase):
             arguments_raw = [*b_w, *bc_wc_z]
             arguments = [int(item) for item in arguments_raw]
             result = taum_bday(*arguments)
-            self.assertEqual(int(io_lines[1][index][0]), result)
+            assert int(io_lines[1][index][0]) == result
 
     def test_example(self) -> None:
         self.runner('_example')

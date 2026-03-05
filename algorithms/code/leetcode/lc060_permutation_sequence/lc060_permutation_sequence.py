@@ -27,11 +27,11 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_2_1(self) -> None:
-        self.assertEqual('12', Solution().getPermutation(2, 1))
+        assert Solution().getPermutation(2, 1) == '12'
 
     def test_3_2(self) -> None:
-        self.assertEqual('132', Solution().getPermutation(3, 2))
+        assert Solution().getPermutation(3, 2) == '132'
 
     def test_nothing(self) -> None:
-        self.assertEqual('', Solution().getPermutation(1, -1))
-        self.assertEqual('', Solution().getPermutation(-1, 1))
+        assert Solution().getPermutation(1, -1) == ''
+        assert Solution().getPermutation(-1, 1) == ''

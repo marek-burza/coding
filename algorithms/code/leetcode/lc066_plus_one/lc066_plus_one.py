@@ -20,8 +20,8 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_1_9(self) -> None:
         expected = [2, 0]
-        self.assertListEqual(expected, Solution().plusOne([1, 9]))
+        assert expected == Solution().plusOne([1, 9])
 
     def test_9_9(self) -> None:
         expected = [1, 0, 0]
-        self.assertListEqual(expected, Solution().plusOne([9, 9]))
+        assert expected == Solution().plusOne([9, 9])

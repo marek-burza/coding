@@ -17,10 +17,10 @@ class TestCode(unittest.TestCase):
     def test_0_42_1_2_42_3_4__42(self) -> None:
         nums = [0, 42, 1, 2, 42, 3, 4]
         length = Solution().removeElement(nums, 42)
-        self.assertEqual(length, 5)
+        assert length == 5
         expected = [0, 1, 2, 3, 4]
-        self.assertListEqual(expected, nums[:length])
+        assert expected == nums[:length]
 
     def test_nothing(self) -> None:
         length = Solution().removeElement([], 42)
-        self.assertEqual(length, 0)
+        assert length == 0

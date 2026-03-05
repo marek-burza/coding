@@ -59,16 +59,14 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         linked = TestCode.listed_to_linked([6, 3, 4, 5, 2, 1])
         result = Solution().insertionSortList(linked)
-        self.assertListEqual(
-            [1, 2, 3, 4, 5, 6], TestCode.linked_to_listed(result)
-        )
+        assert TestCode.linked_to_listed(result) == [1, 2, 3, 4, 5, 6]
 
     def test_1_1(self) -> None:
         linked = TestCode.listed_to_linked([1, 1])
         result = Solution().insertionSortList(linked)
-        self.assertListEqual([1, 1], TestCode.linked_to_listed(result))
+        assert TestCode.linked_to_listed(result) == [1, 1]
 
     def test_nothing(self) -> None:
         linked = None
         result = Solution().insertionSortList(linked)
-        self.assertIsNone(result)
+        assert result is None

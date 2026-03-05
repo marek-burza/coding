@@ -29,7 +29,7 @@ class TestCode(unittest.TestCase):
             arguments_raw = io_lines[0][2 + i * 2]
             arguments = [int(item) for item in arguments_raw]
             result = balanced_sums(arguments)
-            self.assertEqual(io_lines[1][i][0], result)
+            assert io_lines[1][i][0] == result
 
     def test_example(self) -> None:
         self.runner('_example')

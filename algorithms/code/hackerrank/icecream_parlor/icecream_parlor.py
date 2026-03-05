@@ -34,7 +34,7 @@ class TestCode(unittest.TestCase):
             arr = [int(item) for item in io_lines[0][3 + i * 3]]
             result = icecream_parlor(m, arr)
             expected = [int(item) for item in io_lines[1][i]]
-            self.assertEqual(expected, result)
+            assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')
@@ -45,9 +45,9 @@ class TestCode(unittest.TestCase):
     def test_same(self) -> None:
         expected = [3, 4]
         result = icecream_parlor(6, [3, 1, 2, 4])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_none(self) -> None:
         expected = [0, 0]
         result = icecream_parlor(10, [3, 1, 2, 4])
-        self.assertEqual(expected, result)
+        assert expected == result

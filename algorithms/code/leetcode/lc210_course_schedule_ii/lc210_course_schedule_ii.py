@@ -1,5 +1,4 @@
-# https://leetcode.com/problems/shortest-palindrome/
-# #amazon
+# https://leetcode.com/problems/course-schedule-ii/
 
 import unittest
 
@@ -40,18 +39,15 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertListEqual([0, 1], sorted(Solution().findOrder(2, [[1, 0]])))
+        assert sorted(Solution().findOrder(2, [[1, 0]])) == [0, 1]
 
     def test_example_2(self) -> None:
-        self.assertListEqual(
-            [0, 1, 2, 3],
-            sorted(Solution().findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]])),
-        )
+        assert sorted(
+            Solution().findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]])
+        ) == [0, 1, 2, 3]
 
     def test_example_3(self) -> None:
-        self.assertListEqual([0], sorted(Solution().findOrder(1, [])))
+        assert sorted(Solution().findOrder(1, [])) == [0]
 
     def test_cycle(self) -> None:
-        self.assertListEqual(
-            [], sorted(Solution().findOrder(2, [[0, 1], [1, 0]]))
-        )
+        assert not sorted(Solution().findOrder(2, [[0, 1], [1, 0]]))

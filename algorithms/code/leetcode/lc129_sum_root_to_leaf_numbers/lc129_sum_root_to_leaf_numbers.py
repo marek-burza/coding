@@ -37,17 +37,17 @@ class TestCode(unittest.TestCase):
         root = TreeNode(1)
         root.left = TreeNode(2)
         root.right = TreeNode(3)
-        self.assertEqual(25, Solution().sumNumbers(root))
+        assert Solution().sumNumbers(root) == 25
 
     def test_nothing(self) -> None:
-        self.assertEqual(0, Solution().sumNumbers(None))
+        assert Solution().sumNumbers(None) == 0
 
     def test_left(self) -> None:
         root = TreeNode(1)
         root.left = TreeNode(2)
-        self.assertEqual(12, Solution().sumNumbers(root))
+        assert Solution().sumNumbers(root) == 12
 
     def test_right(self) -> None:
         root = TreeNode(1)
         root.right = TreeNode(3)
-        self.assertEqual(13, Solution().sumNumbers(root))
+        assert Solution().sumNumbers(root) == 13

@@ -56,9 +56,9 @@ class TestCode(unittest.TestCase):
     def generic(self, used: list[NestedInteger], expected: list[int]) -> None:
         nested = NestedIterator(used)
         for value in expected:
-            self.assertTrue(nested.hasNext())
-            self.assertEqual(value, nested.next())
-        self.assertFalse(nested.hasNext())
+            assert nested.hasNext()
+            assert value == nested.next()
+        assert not nested.hasNext()
 
     def test_example_1(self) -> None:
         list_1_1_a = []

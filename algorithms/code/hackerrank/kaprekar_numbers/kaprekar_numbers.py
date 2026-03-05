@@ -32,7 +32,7 @@ class TestCode(unittest.TestCase):
         var_q = int(io_lines[0][1][0])
         result = kaprekar_numbers(var_p, var_q)
         expected = io_lines[1][0]
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')

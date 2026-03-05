@@ -28,7 +28,7 @@ class TestCode(unittest.TestCase):
         sticks = [int(item) for item in io_lines[0][1]]
         result = maximum_perimeter_triangle(sticks)
         expected = [int(item) for item in io_lines[1][0]]
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_example(self) -> None:
         self.runner('_example')
@@ -39,9 +39,9 @@ class TestCode(unittest.TestCase):
     def test_degenerate(self) -> None:
         expected = [-1]
         result = maximum_perimeter_triangle([])
-        self.assertEqual(expected, result)
+        assert expected == result
 
     def test_ACB(self) -> None:
         expected = [-1]
         result = maximum_perimeter_triangle([0, 1, 1])
-        self.assertEqual(expected, result)
+        assert expected == result

@@ -42,4 +42,4 @@ class TestCode(unittest.TestCase):
         node2.left = node3
         result = Solution().inorderTraversal(node1)
         expected = [1, 3, 2]
-        self.assertListEqual(expected, result)
+        assert expected == result

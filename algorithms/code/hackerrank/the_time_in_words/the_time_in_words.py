@@ -77,7 +77,7 @@ class TestCode(unittest.TestCase):
                 lines = handle.readlines()
             io_lines[index] = [line.strip().split(' ') for line in lines]
         result = time_in_words(int(io_lines[0][0][0]), int(io_lines[0][1][0]))
-        self.assertEqual(' '.join(io_lines[1][0]), result)
+        assert ' '.join(io_lines[1][0]) == result
 
     def test_example_0(self) -> None:
         self.runner('_example_0')
@@ -89,16 +89,16 @@ class TestCode(unittest.TestCase):
         self.runner('_example_2')
 
     def test_03_59(self) -> None:
-        self.assertEqual('one minute to four', time_in_words(3, 59))
+        assert time_in_words(3, 59) == 'one minute to four'
 
     def test_03_01(self) -> None:
-        self.assertEqual('one minute past three', time_in_words(3, 1))
+        assert time_in_words(3, 1) == 'one minute past three'
 
     def test_03_45(self) -> None:
-        self.assertEqual('quarter to four', time_in_words(3, 45))
+        assert time_in_words(3, 45) == 'quarter to four'
 
     def test_03_30(self) -> None:
-        self.assertEqual('half past three', time_in_words(3, 30))
+        assert time_in_words(3, 30) == 'half past three'
 
     def test_03_20(self) -> None:
-        self.assertEqual('twenty minutes past three', time_in_words(3, 20))
+        assert time_in_words(3, 20) == 'twenty minutes past three'

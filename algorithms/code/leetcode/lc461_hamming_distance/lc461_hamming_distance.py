@@ -10,7 +10,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        self.assertEqual(2, Solution().hammingDistance(1, 4))
+        assert Solution().hammingDistance(1, 4) == 2
 
     def test_example_2(self) -> None:
-        self.assertEqual(1, Solution().hammingDistance(3, 1))
+        assert Solution().hammingDistance(3, 1) == 1

@@ -61,11 +61,11 @@ class TestCode(unittest.TestCase):
         self, buildings: list[list[int]], expected: list[list[int]]
     ) -> None:
         skyline = Solution().getSkyline(buildings)
-        self.assertEqual(len(skyline), len(expected))
+        assert len(skyline) == len(expected)
         for i, expected_i in enumerate(expected):
-            self.assertEqual(len(skyline[i]), len(expected_i))
+            assert len(skyline[i]) == len(expected_i)
             for j, expected_i_j in enumerate(expected_i):
-                self.assertEqual(skyline[i][j], expected_i_j)
+                assert skyline[i][j] == expected_i_j
 
     def test_example_1(self) -> None:
         buildings = [
@@ -95,4 +95,4 @@ class TestCode(unittest.TestCase):
         buildings = [[0, 2, 3], [2, 5, 3], [0, 0, 10]]
         expected = [[0, 3], [5, 0]]
         self.generic(buildings, expected)
-        self.assertEqual(len(Solution().getSkyline([])), 0)
+        assert len(Solution().getSkyline([])) == 0

@@ -15,4 +15,4 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_43261596(self) -> None:
-        self.assertEqual(964176192, Solution().reverseBits(43261596))
+        assert Solution().reverseBits(43261596) == 964176192

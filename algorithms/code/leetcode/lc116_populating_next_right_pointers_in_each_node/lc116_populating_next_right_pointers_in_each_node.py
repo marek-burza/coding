@@ -60,37 +60,37 @@ class TestCode(unittest.TestCase):
 
         Solution().connect(n1)
 
-        self.assertEqual(1, n1.val)
-        self.assertIsNone(n1.next)
-        self.assertEqual(n2, n1.left)
-        self.assertEqual(n3, n1.right)
+        assert n1.val == 1
+        assert n1.next is None
+        assert n2 == n1.left
+        assert n3 == n1.right
 
-        self.assertEqual(2, n2.val)
-        self.assertEqual(n3, n2.next)
-        self.assertEqual(n4, n2.left)
-        self.assertEqual(n5, n2.right)
+        assert n2.val == 2
+        assert n3 == n2.next
+        assert n4 == n2.left
+        assert n5 == n2.right
 
-        self.assertEqual(3, n3.val)
-        self.assertEqual(None, n3.next)
-        self.assertEqual(n6, n3.left)
-        self.assertEqual(n7, n3.right)
+        assert n3.val == 3
+        assert n3.next is None
+        assert n6 == n3.left
+        assert n7 == n3.right
 
-        self.assertEqual(4, n4.val)
-        self.assertEqual(n5, n4.next)
-        self.assertEqual(None, n4.left)
-        self.assertEqual(None, n4.right)
+        assert n4.val == 4
+        assert n5 == n4.next
+        assert n4.left is None
+        assert n4.right is None
 
-        self.assertEqual(5, n5.val)
-        self.assertEqual(n6, n5.next)
-        self.assertEqual(None, n5.left)
-        self.assertEqual(None, n5.right)
+        assert n5.val == 5
+        assert n6 == n5.next
+        assert n5.left is None
+        assert n5.right is None
 
-        self.assertEqual(6, n6.val)
-        self.assertEqual(n7, n6.next)
-        self.assertEqual(None, n6.left)
-        self.assertEqual(None, n6.right)
+        assert n6.val == 6
+        assert n7 == n6.next
+        assert n6.left is None
+        assert n6.right is None
 
-        self.assertEqual(7, n7.val)
-        self.assertEqual(None, n7.next)
-        self.assertEqual(None, n7.left)
-        self.assertEqual(None, n7.right)
+        assert n7.val == 7
+        assert n7.next is None
+        assert n7.left is None
+        assert n7.right is None

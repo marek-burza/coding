@@ -21,4 +21,4 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         nums = [1, 1, 1, 2, 2, 3]
         expected = [1, 2]
-        self.assertListEqual(expected, Solution().topKFrequent(nums, 2))
+        assert expected == Solution().topKFrequent(nums, 2)

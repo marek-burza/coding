@@ -31,14 +31,14 @@ class TestCode(unittest.TestCase):
         listed.next.next = ListNode(2)
         listed.next.next.next = ListNode(1)
         listed.next.next.next.next = ListNode(0)
-        self.assertTrue(Solution().isPalindrome(listed))
+        assert Solution().isPalindrome(listed)
 
     def test_palindrome_even(self) -> None:
         listed = ListNode(0)
         listed.next = ListNode(1)
         listed.next.next = ListNode(1)
         listed.next.next.next = ListNode(0)
-        self.assertTrue(Solution().isPalindrome(listed))
+        assert Solution().isPalindrome(listed)
 
     def test_not_palindrome_odd(self) -> None:
         listed = ListNode(0)
@@ -46,17 +46,17 @@ class TestCode(unittest.TestCase):
         listed.next.next = ListNode(2)
         listed.next.next.next = ListNode(8)
         listed.next.next.next.next = ListNode(0)
-        self.assertFalse(Solution().isPalindrome(listed))
+        assert not Solution().isPalindrome(listed)
 
     def test_not_palindrome_even(self) -> None:
         listed = ListNode(0)
         listed.next = ListNode(1)
         listed.next.next = ListNode(8)
         listed.next.next.next = ListNode(0)
-        self.assertFalse(Solution().isPalindrome(listed))
+        assert not Solution().isPalindrome(listed)
 
     def test_empty(self) -> None:
-        self.assertTrue(Solution().isPalindrome(None))
+        assert Solution().isPalindrome(None)
 
     def test_single(self) -> None:
-        self.assertTrue(Solution().isPalindrome(ListNode(0)))
+        assert Solution().isPalindrome(ListNode(0))

@@ -24,28 +24,28 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_2(self) -> None:
-        self.assertEqual(1, Solution().integerBreak(2))
+        assert Solution().integerBreak(2) == 1
 
     def test_3(self) -> None:
-        self.assertEqual(2, Solution().integerBreak(3))
+        assert Solution().integerBreak(3) == 2
 
     def test_4(self) -> None:
-        self.assertEqual(4, Solution().integerBreak(4))
+        assert Solution().integerBreak(4) == 4
 
     def test_5(self) -> None:
-        self.assertEqual(6, Solution().integerBreak(5))
+        assert Solution().integerBreak(5) == 6
 
     def test_6(self) -> None:
-        self.assertEqual(9, Solution().integerBreak(6))
+        assert Solution().integerBreak(6) == 9
 
     def test_7(self) -> None:
-        self.assertEqual(12, Solution().integerBreak(7))
+        assert Solution().integerBreak(7) == 12
 
     def test_8(self) -> None:
-        self.assertEqual(18, Solution().integerBreak(8))
+        assert Solution().integerBreak(8) == 18
 
     def test_9(self) -> None:
-        self.assertEqual(27, Solution().integerBreak(9))
+        assert Solution().integerBreak(9) == 27
 
     def test_10(self) -> None:
-        self.assertEqual(36, Solution().integerBreak(10))
+        assert Solution().integerBreak(10) == 36

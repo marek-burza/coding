@@ -30,7 +30,7 @@ class TestCode(unittest.TestCase):
         result = Solution().intersection(nums1, nums2)
         result.sort()
         expected = [2]
-        self.assertListEqual(expected, result)
+        assert expected == result
 
     def test_example_flipped(self) -> None:
         nums1 = [2, 2]
@@ -38,16 +38,16 @@ class TestCode(unittest.TestCase):
         result = Solution().intersection(nums1, nums2)
         result.sort()
         expected = [2]
-        self.assertListEqual(expected, result)
+        assert expected == result
 
     def test_12_11(self) -> None:
         expected = [1]
         result = Solution().intersection([1, 2], [1, 1])
         result.sort()
-        self.assertListEqual(expected, result)
+        assert expected == result
 
     def test_495_94985(self) -> None:
         expected = [4, 5, 9]
         result = Solution().intersection([4, 9, 5], [9, 4, 9, 8, 5])
         result.sort()
-        self.assertListEqual(expected, result)
+        assert expected == result
