@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/bigger-is-greater
 
 import unittest

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://web.archive.org/web/20170803130133/http://qa.geeksforgeeks.org/6310/find-the-nearest-locker-in-the-city
 
 import queue

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 
 from __future__ import annotations

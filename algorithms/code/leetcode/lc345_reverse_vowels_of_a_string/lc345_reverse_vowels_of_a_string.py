@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/reverse-vowels-of-a-string/
 
 import unittest

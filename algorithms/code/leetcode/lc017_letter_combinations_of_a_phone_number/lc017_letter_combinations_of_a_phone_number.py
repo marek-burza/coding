@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
 import unittest

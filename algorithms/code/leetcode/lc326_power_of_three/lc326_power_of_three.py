@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/power-of-three/
 # To do it without a loop resort to logarithms (but beware of accuracy)
 

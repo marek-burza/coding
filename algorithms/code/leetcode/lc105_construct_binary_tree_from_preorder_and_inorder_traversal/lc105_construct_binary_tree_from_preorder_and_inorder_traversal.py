@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
 # #google
 # (works for both ordered & unordered trees)

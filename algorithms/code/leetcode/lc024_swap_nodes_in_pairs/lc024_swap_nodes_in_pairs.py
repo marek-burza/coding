@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/swap-nodes-in-pairs/
 
 from __future__ import annotations

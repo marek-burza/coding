@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/non-divisible-subset
 
 import os

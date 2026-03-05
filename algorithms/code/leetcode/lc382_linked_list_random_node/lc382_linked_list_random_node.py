@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/linked-list-random-node/
 
 from __future__ import annotations

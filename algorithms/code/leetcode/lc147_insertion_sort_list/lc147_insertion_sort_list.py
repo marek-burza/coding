@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/insertion-sort-list/
 
 from __future__ import annotations

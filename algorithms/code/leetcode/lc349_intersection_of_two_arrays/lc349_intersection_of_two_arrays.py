@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # https://leetcode.com/problems/intersection-of-two-arrays/
 
 import unittest

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/
 
 from __future__ import annotations

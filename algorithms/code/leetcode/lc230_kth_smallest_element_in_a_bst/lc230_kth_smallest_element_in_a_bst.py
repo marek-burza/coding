@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 
 from __future__ import annotations

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/implement-queue-using-stacks/
 
 import unittest
