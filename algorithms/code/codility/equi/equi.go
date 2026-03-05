@@ -1,27 +1,23 @@
 // Package equi implements http://blog.codility.com/2011/03/solutions-for-task-equi.html
-package equi
+package codilityequi
 
 import (
 	"math/big"
 )
 
-// FindEquilibriumIndex finds the equilibrium index of the given array
+// FindEquilibriumIndex finds an index where sum of array elemends before index is equal the that of after
 func FindEquilibriumIndex(array []int) int {
 	n := len(array)
 	if n == 0 {
 		return -1
 	}
-
 	after := make([]*big.Int, n)
 	for i := range n {
 		after[i] = big.NewInt(0)
 	}
-	after[n-1] = big.NewInt(0)
-
 	for i := 1; i < n; i++ {
-		after[n-1-i] = new(big.Int).Add(after[n-i], big.NewInt(int64(array[n-i])))
+		after[n-1-i].Add(after[n-i], big.NewInt(int64(array[n-i])))
 	}
-
 	summed := big.NewInt(0)
 	for i, v := range array {
 		if summed.Cmp(after[i]) == 0 {
