@@ -10,8 +10,8 @@ class TreeNode:
     def __init__(
         self,
         val: Any,
-        left: 'TreeNode | None' = None,
-        right: 'TreeNode | None' = None,
+        left: TreeNode | None = None,
+        right: TreeNode | None = None,
     ) -> None:
         self.val = val
         self.left = left
