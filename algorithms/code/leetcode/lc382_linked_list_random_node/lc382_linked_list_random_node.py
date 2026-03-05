@@ -50,7 +50,9 @@ class TestCode(unittest.TestCase):
 
     def test_nothing(self) -> None:
         solution = Solution(None)
+        raised = False
         try:
             solution.getRandom()
         except ValueError:
-            pass
+            raised = True
+        assert raised, 'ValueError not raised'
