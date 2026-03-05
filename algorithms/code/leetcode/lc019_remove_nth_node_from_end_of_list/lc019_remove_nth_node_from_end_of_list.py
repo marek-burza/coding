@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 
 from __future__ import annotations

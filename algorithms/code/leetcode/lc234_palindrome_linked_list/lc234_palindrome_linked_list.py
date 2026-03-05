@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/palindrome-linked-list/
 
 from __future__ import annotations

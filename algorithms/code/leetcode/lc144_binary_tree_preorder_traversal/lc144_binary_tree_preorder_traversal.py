@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/binary-tree-preorder-traversal/
 
 from __future__ import annotations

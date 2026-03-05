@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/sum-root-to-leaf-numbers/
 
 from __future__ import annotations

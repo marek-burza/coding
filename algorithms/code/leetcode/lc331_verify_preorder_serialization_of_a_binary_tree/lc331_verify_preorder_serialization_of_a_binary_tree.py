@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
 
 import unittest

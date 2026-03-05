@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/longest-palindromic-substring/
 # See also: Manacher algorithm
 

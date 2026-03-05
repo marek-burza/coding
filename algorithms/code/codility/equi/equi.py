@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # http://blog.codility.com/2011/03/solutions-for-task-equi.html
 
 import unittest

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/binary-tree-paths/
 
 from __future__ import annotations

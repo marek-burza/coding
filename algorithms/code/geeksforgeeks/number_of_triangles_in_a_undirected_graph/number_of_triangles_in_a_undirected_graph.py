@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.geeksforgeeks.org/number-of-triangles-in-a-undirected-graph/
 # #google
 

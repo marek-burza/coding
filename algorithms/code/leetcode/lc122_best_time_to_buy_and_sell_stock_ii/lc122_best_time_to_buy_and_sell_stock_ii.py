@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 
 import unittest

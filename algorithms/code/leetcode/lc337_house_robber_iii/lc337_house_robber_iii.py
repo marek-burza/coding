@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/house-robber-iii/
 
 from __future__ import annotations

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/minimum-depth-of-binary-tree/
 
 from __future__ import annotations

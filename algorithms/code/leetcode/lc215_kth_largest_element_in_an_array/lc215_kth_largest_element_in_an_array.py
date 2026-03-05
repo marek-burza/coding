@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/kth-largest-element-in-an-array/
 
 import heapq

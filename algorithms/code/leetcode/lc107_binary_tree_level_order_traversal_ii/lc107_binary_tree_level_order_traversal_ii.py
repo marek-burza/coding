@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # https://leetcode.com/problems/binary-tree-level-order-traversal-ii/
 
 from __future__ import annotations

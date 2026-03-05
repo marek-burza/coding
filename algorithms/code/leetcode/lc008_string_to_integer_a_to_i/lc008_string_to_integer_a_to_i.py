@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/string-to-integer-atoi/
 
 import unittest

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/binary-search-tree-iterator/
 
 from __future__ import annotations

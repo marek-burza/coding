@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
 
 from __future__ import annotations
