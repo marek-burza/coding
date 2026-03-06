@@ -3,14 +3,16 @@ package jumpingontheclouds
 
 // JumpingOnClouds - implements the solution to the problem
 func JumpingOnClouds(c []int32) int32 {
-	count := 0
-	for len(c) > 1 {
-		if len(c) > 2 && c[2] == 0 {
-			c = c[2:]
-		} else {
-			c = c[1:]
+	n := len(c)
+	count := int32(0)
+	i := 0
+	for i < n-1 {
+		if i+2 > n-1 {
+			count++
+			break
 		}
-		count++
+		count += int32(1) + c[i+2]
+		i += 2 + int(c[i+2])
 	}
-	return int32(count)
+	return count
 }
