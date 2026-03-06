@@ -1,10 +1,7 @@
 package bfsshortreach
 
 import (
-	"bufio"
-	"bytes"
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -15,57 +12,29 @@ import (
 
 func Runner(t *testing.T, name string) {
 	ioLines := make([][][]string, 2)
-	for index, template := range []string{"input%s.txt", "output%s.txt"} {
-		path := fmt.Sprintf(template, name)
-		cleanPath := filepath.Clean(path)
-		file, fail := os.Open(cleanPath)
-		if fail != nil {
-			t.Fatalf("Failed opening file %s: %s", path, fail)
-		}
-		defer file.Close() //nolint:errcheck,gosec
-		lines := make([][]string, 0)
-		ioLines[index] = lines
-		reader := bufio.NewReader(file)
-		for {
-			var buffer bytes.Buffer
-			var raw []byte
-			var prefix bool
-			for {
-				raw, prefix, fail = reader.ReadLine()
-				buffer.Write(raw)
-				if !prefix || fail != nil {
-					break
-				}
-			}
-			ioLines[index] = append(ioLines[index], strings.Split(strings.TrimSpace(buffer.String()), " "))
-			if fail == io.EOF {
-				break
-			} else if fail != nil {
-				t.Fatalf("Failed reading file %s: %s", path, fail)
-			}
+	for i, template := range []string{"input%s.txt", "output%s.txt"} {
+		data, _ := os.ReadFile(filepath.Clean(fmt.Sprintf(template, name)))
+		for line := range strings.SplitSeq(strings.TrimSpace(string(data)), "\n") {
+			ioLines[i] = append(ioLines[i], strings.Fields(line))
 		}
 	}
-	convertedTests, _ := strconv.ParseInt(ioLines[0][0][0], 10, 32)
-	tests := int(convertedTests)
+	tests, _ := strconv.Atoi(ioLines[0][0][0])
 	offset := 1
 	for test := range tests {
-		convertedN, _ := strconv.ParseInt(ioLines[0][offset][0], 10, 32)
-		n := int32(convertedN)
-		convertedM, _ := strconv.ParseInt(ioLines[0][offset][1], 10, 32)
-		m := int32(convertedM)
+		n, _ := strconv.Atoi(ioLines[0][offset][0])
+		m, _ := strconv.Atoi(ioLines[0][offset][1])
 		edges := make([][]int32, m)
 		for i := 0; i < int(m); i++ {
-			convertedA, _ := strconv.ParseInt(ioLines[0][offset+1+i][0], 10, 32)
-			convertedB, _ := strconv.ParseInt(ioLines[0][offset+1+i][1], 10, 32)
-			edges[i] = []int32{int32(convertedA), int32(convertedB)}
+			a, _ := strconv.Atoi(ioLines[0][offset+1+i][0])
+			b, _ := strconv.Atoi(ioLines[0][offset+1+i][1])
+			edges[i] = []int32{int32(a), int32(b)}
 		}
-		convertedS, _ := strconv.ParseInt(ioLines[0][offset+1+int(m)][0], 10, 32)
-		s := int32(convertedS)
+		s, _ := strconv.Atoi(ioLines[0][offset+1+int(m)][0])
 		offset += 1 + int(m) + 1
-		result := Bfs(n, m, edges, s)
+		result := Bfs(int32(n), int32(m), edges, int32(s))
 		expected := make([]int32, len(ioLines[1][test]))
 		for i, textual := range ioLines[1][test] {
-			converted, _ := strconv.ParseInt(textual, 10, 32)
+			converted, _ := strconv.Atoi(textual)
 			expected[i] = int32(converted)
 		}
 		if !reflect.DeepEqual(result, expected) {
