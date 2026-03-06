@@ -1,10 +1,7 @@
 package maximumperimetertriangle
 
 import (
-	"bufio"
-	"bytes"
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
 	"reflect"
@@ -15,46 +12,22 @@ import (
 
 func Runner(t *testing.T, name string) {
 	ioLines := make([][][]string, 2)
-	for index, template := range []string{"input%s.txt", "output%s.txt"} {
-		path := fmt.Sprintf(template, name)
-		cleanPath := filepath.Clean(path)
-		file, fail := os.Open(cleanPath)
-		if fail != nil {
-			t.Fatalf("Failed opening file %s: %s", path, fail)
-		}
-		defer file.Close() //nolint:errcheck,gosec
-		lines := make([][]string, 0)
-		ioLines[index] = lines
-		reader := bufio.NewReader(file)
-		for {
-			var buffer bytes.Buffer
-			var raw []byte
-			var prefix bool
-			for {
-				raw, prefix, fail = reader.ReadLine()
-				buffer.Write(raw)
-				if !prefix || fail != nil {
-					break
-				}
-			}
-			ioLines[index] = append(ioLines[index], strings.Split(strings.TrimSpace(buffer.String()), " "))
-			if fail == io.EOF {
-				break
-			} else if fail != nil {
-				t.Fatalf("Failed reading file %s: %s", path, fail)
-			}
+	for i, template := range []string{"input%s.txt", "output%s.txt"} {
+		data, _ := os.ReadFile(filepath.Clean(fmt.Sprintf(template, name)))
+		for line := range strings.SplitSeq(strings.TrimSpace(string(data)), "\n") {
+			ioLines[i] = append(ioLines[i], strings.Fields(line))
 		}
 	}
-	count, _ := strconv.ParseInt(ioLines[0][0][0], 10, 32)
+	count, _ := strconv.Atoi(ioLines[0][0][0])
 	sticks := make([]int32, count)
 	for i, textual := range ioLines[0][1] {
-		converted, _ := strconv.ParseInt(textual, 10, 32)
+		converted, _ := strconv.Atoi(textual)
 		sticks[i] = int32(converted)
 	}
 	result := MaximumPerimeterTriangle(sticks)
 	expected := make([]int32, 0)
 	for _, textual := range ioLines[1][0] {
-		converted, _ := strconv.ParseInt(textual, 10, 32)
+		converted, _ := strconv.Atoi(textual)
 		expected = append(expected, int32(converted))
 	}
 	if !reflect.DeepEqual(result, expected) {
