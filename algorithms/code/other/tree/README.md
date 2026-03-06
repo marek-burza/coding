@@ -2,7 +2,7 @@
 
 `tree` is a command-line tool for pretty-printing the directory structure of the current working directory.
 
-```
+```text
 > tree
 .
 ├── pyproject.toml
