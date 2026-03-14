@@ -33,7 +33,10 @@ class Solution:
             return False
         cache: list[list[bool | None]] = []
         for _ in range(count + 1):
-            cache.append([None] * (summed + 1))
+            line: list[bool | None] = []
+            for _ in range(summed + 1):
+                line.append(None)
+            cache.append(line)
         return canPartitionSubset(nums, count, summed // 2, cache)
 
 
