@@ -31,9 +31,9 @@ class Solution:
         summed = sum(nums)
         if summed % 2 != 0:
             return False
-        cache: list[list[bool | None]] = [
-            [None] * (summed + 1) for _ in range(count + 1)
-        ]
+        cache: list[list[bool | None]] = []
+        for _ in range(count + 1):
+            cache.append([None] * (summed + 1))
         return canPartitionSubset(nums, count, summed // 2, cache)
 
 
