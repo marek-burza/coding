@@ -106,10 +106,10 @@ def qheap_delete(heap: list[int], value: int) -> None:
     heap[index] = heap[-1]
     heap.pop()
     if index < len(heap):
-        heapq._siftup(  # type: ignore[attr-defined] # pylint: disable=protected-access,C0301  # pyright: ignore[reportAttributeAccessIssue]  # noqa: E501
+        heapq._siftup(  # type: ignore # pylint: disable=protected-access,C0301  # pyright: ignore  # noqa: E501
             heap, index
         )
-        heapq._siftdown(  # type: ignore[attr-defined] # pylint: disable=protected-access,C0301  # pyright: ignore[reportAttributeAccessIssue]  # noqa: E501
+        heapq._siftdown(  # type: ignore # pylint: disable=protected-access,C0301  # pyright: ignore  # noqa: E501
             heap, 0, index
         )
 
