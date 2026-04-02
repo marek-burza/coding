@@ -10,6 +10,7 @@ jobs:
   pipeline:
     name: Pipeline
     runs-on: ubuntu-latest
+    environment: codecov
     steps:
       - name: Initiating
         uses: actions/checkout@v6
