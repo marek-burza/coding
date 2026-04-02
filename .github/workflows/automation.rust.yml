@@ -17,7 +17,8 @@ jobs:
         with:
           persist-credentials: false
       - name: Preparing
-        uses: dtolnay/rust-toolchain@stable
+        run: |
+          rustup update stable
       - name: Linting
         run: |
           /bin/sh .github/workflows/rust.linter.sh
