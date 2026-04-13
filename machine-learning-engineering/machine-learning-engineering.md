@@ -13,7 +13,7 @@ with torch.no_grad():
         _ = model(dummy)
 torch.cuda.synchronize()
 ```
-- `torch.compile` is a replacement for `torch.jit`; it fuses ops, eliminates overhead, can use 3rd party backends
+- `torch.compile` is a replacement for `torch.jit`; it fuses ops, eliminates overhead, can use third-party backends
 - Automatic Mixed Precision (`torch.amp`) - runs eligible ops in FP16/BF16 while keeping numerically sensitive ops in FP32 (alternative - `.half()`, no `autocast` context needed); also during training
 - CUDA Graphs - captures a fixed sequence of GPU operations and replays them without CPU involvement
 - TensorRT via ONNX (`torch.onnx.export` & build TRT engine, or `torch_tensorrt.compile`)
@@ -45,7 +45,10 @@ Third-party:
 - `ipex` - Intel Extension for PyTorch
 - `onnxrt` - routes through ONNX Runtime for inference
 - `tvm` - Apache TVM, an open-source ML compiler; broad hardware support
-- `cudagraphs` - captures and replays CUDA graphs to reduce kernel launch overhead; doesn't touch the kernels at all. It records the exact sequence of existing GPU operations once, then replays that recording without CPU involvement. It changes how the GPU is told to run - eliminating the per-kernel launch overhead from the CPU. The kernels themselves are identical to eager mode; use if `inductor` fails to compile your model
+- `cudagraphs` - captures and replays CUDA graphs to reduce kernel launch overhead; doesn't touch the kernels at all.
+  It records the exact sequence of existing GPU operations once, then replays that recording without CPU involvement.
+  It changes how the GPU is told to run - eliminating the per-kernel launch overhead from the CPU.
+  The kernels themselves are identical to eager mode; use if `inductor` fails to compile your model
 
 ---
 
