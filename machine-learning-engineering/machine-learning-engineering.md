@@ -475,12 +475,12 @@ Safe:
 1. Provenance, regulatory requirements
 2. Model packaging
 3. Automated (regulatory) acceptance tests
-  - Ground-truth validation
-  - Regression tests
-  - Edge case tests
-  - Determinism tests
-  - Performance tests (compute & predictive)
-  - Scientific canaries (on hold-out dataset)
+- Ground-truth validation
+- Regression tests
+- Edge case tests
+- Determinism tests
+- Performance tests (compute & predictive)
+- Scientific canaries (on hold-out dataset)
 4. Manual subject matter review on random sample
 5. Regulatory documentation
 6. Deployment
