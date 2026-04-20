@@ -64,7 +64,7 @@ model = torch.compile(model, backend='tensorrt')
 ```
 
 - Need to be done on the target architecture (benchmarks multiple kernel implementations and picking the fastest one for your specific GPU), but to avoid the overhead the (compiled) engine can be cached.
-- `CudaGraph` - captures a sequence of GPU operations and replays them as a single unit, rather than launching kernels one by one (eliminating also CPU overhead); built into `inductor` & `cudagraphs` but also applied by `TensorRT`. Limitations: input/output shapes must stay fixed between replays, no if/else flow control, opague to step-by-step debugging
+- `CudaGraph` - captures a sequence of GPU operations and replays them as a single unit, rather than launching kernels one by one (eliminating also CPU overhead); built into `inductor` & `cudagraphs` but also applied by `TensorRT`. Limitations: input/output shapes must stay fixed between replays, no if/else flow control, opaque to step-by-step debugging
 
 ---
 
@@ -433,6 +433,15 @@ Architecture:
 - Regression monitoring (and trends)
 - (Automated) reporting
 
+---
+
+Pipeline Architecture Notes
+
+---
+
+- Preprocessing, as a separate stage
+- Stream not materialize
+- Prefetching, parallelism
 
 ---
 
@@ -524,5 +533,13 @@ Code structure:
 
 - Separation of model / data / training / evaluation / inference / packaging
 - Configuration externalized
+
+---
+
+What is in-context learning?
+
+---
+
+In-context learning is when a language model learns to perform a task from examples provided in the prompt, without any updates to its weights. Comes in a few flavors: zero-shot (just a task description), one-shot (one example), and few-shot (several examples).
 
 ---
