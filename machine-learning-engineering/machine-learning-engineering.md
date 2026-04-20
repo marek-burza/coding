@@ -62,7 +62,7 @@ model = torch.compile(model, backend='tensorrt')
 ```
 
 - Need to be done on the target architecture (benchmarks multiple kernel implementations and picking the fastest one for your specific GPU), but to avoid the overhead the (compiled) engine can be cached.
-- `CudaGraph` - captures a sequence of GPU operations and replays them as a single unit, rather than launching kernels one by one (eliminating also CPU overhead); input/output shapes must stay fixed between replays; built into `inductor` & `cudagraphs` but also applied by `TensorRT`.
+- `CudaGraph` - captures a sequence of GPU operations and replays them as a single unit, rather than launching kernels one by one (eliminating also CPU overhead); built into `inductor` & `cudagraphs` but also applied by `TensorRT`. Limitations: input/output shapes must stay fixed between replays, no if/else flow control, opague to step-by-step debugging
 
 ---
 
@@ -70,7 +70,7 @@ model = torch.compile(model, backend='tensorrt')
 
 ---
 
-- Layer & Tensor Fusion - merges sequences of operations into single kernels, eliminating intermediate memory reads/writes and kernel launch overhead.
+- Layer & Operator Fusion - merges sequences of operations into single kernels, eliminating intermediate memory reads/writes and kernel launch overhead.
 - Precision Calibration - beyond just FP16, TensorRT supports INT8 quantization, runs a calibration dataset through your network to determine per-tensor dynamic ranges, then quantizes weights and activations to 8-bit integers.
 - Kernel Auto-Tuning - for each fused operation, TensorRT has a library of kernel implementations (different tiling strategies, memory access patterns, etc.), it benchmarks all candidates on your specific GPU and selects the fastest.
 - Memory Optimization - analyzes the entire graph's lifetime of tensors and reuses memory buffers aggressively (tensors that are never alive at the same time share the same allocation)
@@ -101,6 +101,15 @@ Questions to answer:
 
 - `DeepSpeed` - training and inference optimization library for large-scale distributed deep learning; ZeRO memory optimization, pipeline parallelism (sharding optimizer states, gradients, and parameters)
 - `TensorRT` - inference-only; compiles and optimizes trained models for NVIDIA GPUs; Kernel fusion, quantization, layer fusion
+
+---
+
+Data parallelism vs Model parallelism
+
+---
+
+- Data parallelism - replicate the entire model on every GPU, split the input batch across GPUs, and aggregate gradients after the backward pass.
+- Model parallelism - splits the model itself across multiple GPUs (tensor parallelism, pipeline parallelism)
 
 ---
 
@@ -278,7 +287,7 @@ Challenges of running Foundation Model in Production
 
 1. Get it running - size matters: basics (tracking provenance, versioning, packaging, Docker limitations), multiple GPUs & thus parallelism, batching strategies / latency / pipelining
 2. Keep it correct - account for silent degradation (I/O distribution, scientific canaries), but may be hard to run evan at scale
-3. Keep it efficient - ETL (parallelized), JIT→quantize→`torch.compile`→compilation backends→CUDAGraph, pick instance and autoscaling
+3. Keep it efficient - ETL (parallelized), JIT(trace, script)→quantize→`torch.compile`→compilation backends→CUDAGraph, pick instance and autoscaling
 4. Keep it trustworthy - know your regulatory requirements, risk model & failure modes, red-teaming (depending on a model)
 
 ---
@@ -341,3 +350,112 @@ Gradient checkpointing
 ---
 
 When you are running into OOM during training and cannot reduce batch size further - instead of storing all intermediate activations for the backward pass, recompute them on the fly during backprop.
+
+---
+
+PyTorch Profiler with TensorBoard
+
+---
+
+```python
+with torch.profiler.profile(
+    activities=[
+        torch.profiler.ProfilerActivity.CPU,
+        torch.profiler.ProfilerActivity.CUDA,
+    ],
+    on_trace_ready=torch.profiler.tensorboard_trace_handler('./log'),
+) as profiler:
+    # Profiled code
+    profiler.step()
+```
+
+```shell
+docker run -it --rm \
+  -p 6006:6006 \
+  -v $PWD/log:/log \
+  tensorflow/tensorflow \
+  bash -c "pip install torch-tb-profiler && tensorboard --logdir /log --host 0.0.0.0"
+```
+
+---
+
+Writing technical specification
+
+---
+
+- Start with external requirements, and break down into internal
+- List functional and non-functional
+- Specify inference aspects
+- Specify infrastructure
+- Specify API contract
+- Operational requirements
+- Verification plan
+
+---
+
+Making cross-functional architectural decisions
+
+---
+
+How I made decisions:
+
+1. Start with the problem, not the solution
+2. Write it down before discussing it (for tracability, provenance)
+3. Involve the right people at the right time
+4. Prototype before committing
+
+How I got buy-in:
+
+1. Transparency about trade-offs
+2. Gave credit for dissent (builds trust)
+3. Demonstrated follow-through (KPIs, OKRs)
+4. Connected decisions to team pain (postmortems)
+
+---
+
+How do foundation models for tabular data differ from NLP/vision foundation models?
+
+---
+
+- No natural column order
+- Heterogeneous column types
+- No universal vocabulary
+- Schema varies across tables
+
+---
+
+Python Engineering Excellence
+
+---
+
+Automated pre-commit hooks and CI checks:
+
+- Formatting
+- Linting
+- Type checking
+- Import sorting
+- Cognitive complexity
+
+Code review culture:
+
+- Production/pipeline code: Full review - correctness, error handling, edge cases, performance implications.
+- Research/experiment code: Lighter review - focus on correctness of the core logic and data handling
+- Shared libraries: Strictest review
+
+Testing strategy:
+
+- Critical path gets tested
+- Experiments don't need unit tests
+- Integration tests over unit tests for pipelines
+
+Dependency management:
+
+- Automated updates
+- All pinned to at least major
+
+Code structure:
+
+- Separation of model / data / training / evaluation / inference / packaging
+- Configuration externalized
+
+---
