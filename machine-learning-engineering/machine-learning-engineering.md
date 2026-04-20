@@ -182,7 +182,7 @@ Triton Inference Server (NVIDIA) is backend-agnostic and performance-obsessed. I
 TorchServe is PyTorch-native and simpler to onboard. You package a model as a `.mar` archive with a handler. Key traits:
 
 - Native support for `torch.compile`, quantization, and PyTorch-specific workflows
-- Per-model versioning and A/B routing built in
+- Per-model versioning and A/B routing built-in
 - Easier custom pre/postprocessing via Python handlers
 - Less raw performance ceiling than Triton, but much lower operational friction
 
@@ -195,7 +195,7 @@ Batching Strategies
 Trade-off: GPU utilization and throughput vs. latency
 
 - Static batching - fix a batch size, wait until it's full, then run inference
-- Dynamic batching - the server accumulates requests for a short window and runs whatever arrived, lepending on load either executes like static batching or immediatelly.
+- Dynamic batching - the server accumulates requests for a short window and runs whatever arrived, lepending on load either executes like static batching or immediately.
 - Model specific - e.g. continuous batching used with LLMs
 
 ---
@@ -246,7 +246,7 @@ Common causes:
 
 - Data drift (input)
 - Feature pipeline drift (e.g. different normalization) or dependency version skew
-- Numerical issues from quantization or precision changes (model recompiled/re-exported or hardware-induced nondeterminism on a different inference instance)
+- Numerical issues from quantization or precision changes (model recompiled/reexported or hardware-induced nondeterminism on a different inference instance)
 
 Detection strategies:
 
@@ -340,4 +340,4 @@ Gradient checkpointing
 
 ---
 
-When you are running into OOM during training and canot reduce batch size further - instead of storing all intermediate activations for the backward pass, recompute them on the fly during backprop.
+When you are running into OOM during training and cannot reduce batch size further - instead of storing all intermediate activations for the backward pass, recompute them on the fly during backprop.
