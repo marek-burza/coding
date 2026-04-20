@@ -21,6 +21,8 @@ torch.cuda.synchronize()
 
 Combinations: Warm-up + AMP + `torch.compile`, AMP + CUDA Graphs, TensorRT
 
+Other: `torch.inference_mode()` (no gradient tracking), model sharding, data/model parallelism, tiling / chunking, gradient checkpointing
+
 ---
 
 **torch.compile modes & backends**
@@ -274,8 +276,8 @@ These two differ in three ways: data, code path, and environment.
 
 Process of ellimination:
 
-1. Plug production model into offline eval pipeline and dataset → if poor then model corrupted, incorrectly serialized, model or dependency version is skewed, precision is mismatched or numerical instability crept in
-2. Log production input and plug into offline pipeline and model → if good then production pipeline; if bad then it's distribution shift (new patterns, new edge cases)
+1. Plug production model into offline eval pipeline and dataset → if poor then model corrupted, incorrectly serialized, model or dependency version is skewed, precision is mismatched or numerical instability crept in, memory or compute-bound
+2. Log production input and plug into offline pipeline and model → if good then production pipeline (synchronization, loading/ETL); if bad then it's distribution shift (new patterns, new edge cases)
 3. Check the eval methodology (harder for me to speculate - eval dataset not representative, label leakage, metric mismatch)
 4. Last resort - shadow (model) mode & **log everything**
 
@@ -287,7 +289,7 @@ Challenges of running Foundation Model in Production
 
 1. Get it running - size matters: basics (tracking provenance, versioning, packaging, Docker limitations), multiple GPUs & thus parallelism, batching strategies / latency / pipelining
 2. Keep it correct - account for silent degradation (I/O distribution, scientific canaries), but may be hard to run evan at scale
-3. Keep it efficient - ETL (parallelized), JIT(trace, script)→quantize→`torch.compile`→compilation backends→CUDAGraph, pick instance and autoscaling
+3. Keep it efficient - ETL (parallelized), Automatic Mixed Precision, JIT(trace, script)→quantize→`torch.compile`→compilation backends→CUDAGraph, pick instance and autoscaling
 4. Keep it trustworthy - know your regulatory requirements, risk model & failure modes, red-teaming (depending on a model)
 
 ---
@@ -413,6 +415,27 @@ How I got buy-in:
 
 ---
 
+Describe how you'd design a benchmarking pipeline for evaluating a model
+
+---
+
+Core design principles:
+
+1. Reproducibility is non-negotiable
+2. Separation of concerns
+
+Architecture:
+
+- Dataset registry
+- Task definitions (eval protocol, metrics, baseline)
+- Execution engine
+- Statistical rigor (not just single value metrics but also confidence intervals)
+- Regression monitoring (and trends)
+- (Automated) reporting
+
+
+---
+
 How do foundation models for tabular data differ from NLP/vision foundation models?
 
 ---
@@ -421,6 +444,50 @@ How do foundation models for tabular data differ from NLP/vision foundation mode
 - Heterogeneous column types
 - No universal vocabulary
 - Schema varies across tables
+
+---
+
+How do you decide when a research prototype is ready for production?
+How do you validate that a model release was safe to ship?
+
+---
+
+Ready:
+
+1. Functional correctness - does it produce the right results? (eval tests/metrics, edge cases, deterministic)
+2. Robustness - does it fail gracefully? (malformed input, load, etc.)
+3. Performance - does it meet SLAs?
+4. Operability - can someone other than the author run and maintain it? (separation of config, self-explanatory code/docs, health checks, observability)
+5. Reproducibility - can we recreate this artifact?
+6. Documentation of limitations.
+
+Safe:
+
+1. Provenance, regulatory requirements
+2. Model packaging
+3. Automated (regulatory) acceptance tests
+  - Ground-truth validation
+  - Regression tests
+  - Edge case tests
+  - Determinism tests
+  - Performance tests (compute & predictive)
+  - Scientific canaries (on hold-out dataset)
+4. Manual subject matter review on random sample
+5. Regulatory documentation
+6. Deployment
+
+---
+
+How do you handle disagreements with researchers about engineering constraints vs. model quality trade-offs?
+
+---
+
+1. Make the trade-off concrete and quantified
+2. Understand what the stakeholders actually care about
+3. Propose alternatives, not just rejections
+4. Establish shared ownership of the deployment specification
+5. Timebox exploration, then converge
+6. Escalate clearly when needed
 
 ---
 
