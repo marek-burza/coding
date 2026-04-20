@@ -80,6 +80,21 @@ model = torch.compile(model, backend='tensorrt')
 
 ---
 
+**TensorRT vs. `torch.compile`**
+
+---
+
+- TensorRT for highly optimized outcome, but for a specific GPU, specific input shapes, and specific precision.
+- `torch.compile` for more flexible outcome, dynamic shapes, less operational complexity.
+
+Questions to answer:
+
+- How stable are your input shapes?
+- What's your deployment target?
+- Do you need training + serving in one codebase?
+
+---
+
 **DeepSpeed vs TensorRT**
 
 ---
@@ -112,3 +127,217 @@ Progressively:
 **99th percentile**
 
 It is a statistical measure used to describe the value below which 99% of observations fall (p95 corresponds to 95%, p999 to 99.9%).
+
+---
+
+Function of `torch.no_grad()` and `model.eval()`
+
+---
+
+- `model.eval()` switches certain layers into evaluation mode (layers like `BatchNorm` and `Dropout` behave differently during training vs. inference).
+- `torch.no_grad()` is a context manager that disables gradient tracking. Autograd, PyTorch's automatic differentiation engine would otherwise build the autograd graph (traversed it in reverse in `.backward()` to compute gradients)
+
+---
+
+`torch.cuda.amp` (Automatic Mixed Precision)
+
+---
+
+AMP runs parts of your model in `float16` (or `bfloat16`) while keeping numerically sensitive ops in `float32`.
+
+```python
+optimizer.zero_grad()
+outputs = model(x_batch)
+metric = criterion(outputs.squeeze(), y_batch)
+metric.backward()
+optimizer.step()
+```
+
+becomes:
+
+```python
+optimizer.zero_grad()
+scaler = torch.cuda.amp.GradScaler()
+with torch.autocast(device_type='cuda', dtype=torch.float16):
+    output = model(input)
+    loss = criterion(output, target)
+scaler.scale(loss).backward()
+scaler.step(optimizer)
+scaler.update()
+```
+
+---
+
+Triton Inference Server vs. TorchServe
+
+---
+
+Triton Inference Server (NVIDIA) is backend-agnostic and performance-obsessed. It serves TensorRT, ONNX, TorchScript, TensorFlow, and even Python models under one roof. Its power features:
+
+- Concurrent model execution: multiple models (or instances of one model) sharing GPU memory and compute simultaneously
+- Model pipelines/ensembles: chain preprocessing → model → postprocessing as a DAG, all within the server, avoiding round-trips (it's also why a single Triton process can have multiple model workers)
+- Dynamic batching built into the runtime
+- CUDA graphs integration for fixed-shape workloads - eliminates kernel launch overhead
+
+TorchServe is PyTorch-native and simpler to onboard. You package a model as a `.mar` archive with a handler. Key traits:
+
+- Native support for `torch.compile`, quantization, and PyTorch-specific workflows
+- Per-model versioning and A/B routing built in
+- Easier custom pre/postprocessing via Python handlers
+- Less raw performance ceiling than Triton, but much lower operational friction
+
+---
+
+Batching Strategies
+
+---
+
+Trade-off: GPU utilization and throughput vs. latency
+
+- Static batching - fix a batch size, wait until it's full, then run inference
+- Dynamic batching - the server accumulates requests for a short window and runs whatever arrived, lepending on load either executes like static batching or immediatelly.
+- Model specific - e.g. continuous batching used with LLMs
+
+---
+
+Load Balancing Across GPU Instances
+
+---
+
+Because the state is large and due to GPU memory specifics strategies like round-robin are not effective. Instead:
+
+- Least-connections / least-outstanding-requests
+- Sticky routing for KV-cache reuse (LLM-specific)
+
+GPU utilization alone is a poor autoscaling signal. Instead:
+
+- Queue depth
+- p95/p99 latency
+- Time-to-first-token
+
+Health checks:
+
+- Run small inference since the GPU instances can be alive while being silently degraded (VRAM fragmented, NCCL in a bad state).
+
+Minimum instance count (to prevent live warm-up), apply predictive pre-warming for predictable traffic pattern.
+
+---
+
+GPU Warmup
+
+---
+
+Run small/synthetic inference to go through e.g.:
+
+- CUDA context initialization
+- Kernel JIT/`torch.compile` compilation (or use cached engine with TensorRT)
+- Model weight loading
+- cuDNN algorithm selection (cuDNN benchmarks several convolution algorithms)
+
+---
+
+What if a model suddenly silently degrades in production?
+
+---
+
+Silently means: no crash/time-out/500/out of latency SLA - it's about predictive performance of the model.
+
+Common causes:
+
+- Data drift (input)
+- Feature pipeline drift (e.g. different normalization) or dependency version skew
+- Numerical issues from quantization or precision changes (model recompiled/re-exported or hardware-induced nondeterminism on a different inference instance)
+
+Detection strategies:
+
+- Output distribution monitoring
+- Input distribution monitoring
+- Shadow scoring - selective run of the new/suspect model with the production one
+- Scientific (domain-specific) canary evaluation (on hold-out set)
+
+---
+
+Troubleshooting model working well offline but poorly in production
+
+---
+
+These two differ in three ways: data, code path, and environment.
+
+Process of ellimination:
+
+1. Plug production model into offline eval pipeline and dataset → if poor then model corrupted, incorrectly serialized, model or dependency version is skewed, precision is mismatched or numerical instability crept in
+2. Log production input and plug into offline pipeline and model → if good then production pipeline; if bad then it's distribution shift (new patterns, new edge cases)
+3. Check the eval methodology (harder for me to speculate - eval dataset not representative, label leakage, metric mismatch)
+4. Last resort - shadow (model) mode & **log everything**
+
+---
+
+Challenges of running Foundation Model in Production
+
+---
+
+1. Get it running - size matters: basics (tracking provenance, versioning, packaging, Docker limitations), multiple GPUs & thus parallelism, batching strategies / latency / pipelining
+2. Keep it correct - account for silent degradation (I/O distribution, scientific canaries), but may be hard to run evan at scale
+3. Keep it efficient - ETL (parallelized), JIT→quantize→`torch.compile`→compilation backends→CUDAGraph, pick instance and autoscaling
+4. Keep it trustworthy - know your regulatory requirements, risk model & failure modes, red-teaming (depending on a model)
+
+---
+
+How would you reduce P99 latency by 50%?
+
+---
+
+- Trick question.
+- It depends on where the latency for the worst 1% of requests is coming from.
+- The first step is always profiling.
+
+Common P99 culprits:
+
+- Queue wait time spikes under bursty load → reduce max batch delay, autoscale faster
+- GPU inference time blows up on outlier inputs → input size bucketing, TensorRT or `torch.compile`, CUDA graphs
+- Preprocessing is CPU-bound and occasionally slow (garbage collection pause, lock contention) → separate it to CPU instances, eliminate Python GIL contention with multiprocessing, different serialization format
+- Cold start on a new instance that just joined the pool → pre-warm instances, TensorRT engine caching
+- A single slow request holding up others in a batch → reduce max batch delay
+- _Request Hedging_ → send input to two instances and return the quickest one (costly)
+
+---
+
+`torch.export`
+
+---
+
+For portability of the model, to optimize for infertece use e.g. TensorRT.
+
+---
+
+`safetensors`
+
+---
+
+`safetensors` supports `mmap=True`, meaning weights are loaded lazily from disk rather than all at once into RAM
+
+- Faster loading - no pickle deserialization overhead, direct tensor reads - meaningful for startup time.
+- Safety - no arbitrary code execution on load unlike pickle-based formats - relevant for supply chain security.
+
+---
+
+Gradient clipping
+
+---
+
+Clips the norm of gradients before the optimizer step. Prevents exploding gradients - a failure mode where gradients grow uncontrollably, causing the optimizer to take a massive step that destroys learned weights. Depends on layers used / model architecture - RNNs almost always need it, CNNs less so.
+
+```python
+optimizer.zero_grad()
+loss.backward()
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+optimizer.step()
+```
+
+---
+
+Gradient checkpointing
+
+---
+
+When you are running into OOM during training and canot reduce batch size further - instead of storing all intermediate activations for the backward pass, recompute them on the fly during backprop.
