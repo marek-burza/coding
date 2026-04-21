@@ -7,7 +7,7 @@
 ---
 
 - `torch.jit` - graph level (fuses ops, dead code & common expression elimination, constant collapsing), memory optimization (switch to in-place ops, buffer reuse), control flow optimization (inlining, loop unrolling)
-- `torch.compile` - replacement for `torch.jit`, also fuses but across ops boudary & eliminates overhead, but also does autotuning, captures CUDAGraph, can use third-party backends
+- `torch.compile` - replacement for `torch.jit`, also fuses but across ops boundary & eliminates overhead, but also does autotuning, captures CUDAGraph, can use third-party backends
 - Automatic Mixed Precision (`torch.amp`) - runs eligible ops in FP16/BF16 while keeping numerically sensitive ops in FP32 (alternative - `.half()`, no `autocast` context needed); used during training but benefits indirectly in inference since the modelnumerically robust in lower precision
 - CUDA Graphs - captures a fixed sequence of GPU operations and replays them without CPU involvement
 - TensorRT via ONNX (`torch.onnx.export` & build TRT engine, or `torch_tensorrt.compile`)
