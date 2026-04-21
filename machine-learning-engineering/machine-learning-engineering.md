@@ -6,6 +6,11 @@
 
 ---
 
+- `torch.jit` - graph level (fuses ops, dead code & common expression elimination, constant collapsing), memory optimization (switch to in-place ops, buffer reuse), control flow optimization (inlining, loop unrolling)
+- `torch.compile` - replacement for `torch.jit`, also fuses but across ops boudary & eliminates overhead, but also does autotuning, captures CUDAGraph, can use third-party backends
+- Automatic Mixed Precision (`torch.amp`) - runs eligible ops in FP16/BF16 while keeping numerically sensitive ops in FP32 (alternative - `.half()`, no `autocast` context needed); used during training but benefits indirectly in inference since the modelnumerically robust in lower precision
+- CUDA Graphs - captures a fixed sequence of GPU operations and replays them without CPU involvement
+- TensorRT via ONNX (`torch.onnx.export` & build TRT engine, or `torch_tensorrt.compile`)
 - GPU Warm-Up (so that CUDA initializes kernels, allocators, and caches)
 ```python
 with torch.no_grad():
@@ -13,15 +18,8 @@ with torch.no_grad():
         _ = model(dummy)
 torch.cuda.synchronize()
 ```
-- `torch.compile` is a replacement for `torch.jit`; it fuses ops, eliminates overhead, can use third-party backends
-- Automatic Mixed Precision (`torch.amp`) - runs eligible ops in FP16/BF16 while keeping numerically sensitive ops in FP32 (alternative - `.half()`, no `autocast` context needed); also during training
-- CUDA Graphs - captures a fixed sequence of GPU operations and replays them without CPU involvement
-- TensorRT via ONNX (`torch.onnx.export` & build TRT engine, or `torch_tensorrt.compile`)
 - Training specific: gradient checkpointing (`torch.utils.checkpoint`) - trades compute for memory by recomputing activations during backward instead of storing them (lets you train larger models)
-
-Combinations: Warm-up + AMP + `torch.compile`, AMP + CUDA Graphs, TensorRT
-
-Other: `torch.inference_mode()` (no gradient tracking), model sharding, data/model parallelism, tiling / chunking, gradient checkpointing
+- Other: `torch.inference_mode()` (no gradient tracking), model sharding & generally data/model parallelism, tiling / chunking
 
 ---
 
@@ -37,7 +35,7 @@ Modes:
 
 Built-in:
 
-- `inductor` (default) - generates optimized C++/Triton kernels; rewrites your model's operations into faster kernels. It fuses multiple ops into single Triton kernels, eliminates redundant memory traffic, optimizes memory layout, and generates new GPU code that's fundamentally more efficient than the original ops. It changes what runs on the GPU.
+- `inductor` (default) - generates optimized C++/Triton kernels; rewrites your model's operations into faster kernels. It fuses multiple ops into single Triton kernels, eliminates redundant memory traffic, optimizes memory layout, and generates new GPU code that's fundamentally more efficient than the original ops.
 - `eager` (debugging) - runs normal PyTorch eager mode
 - `aot_eager` (debugging) - runs ahead-of-time tracing but executes eagerly
 
@@ -54,7 +52,7 @@ Third-party:
 
 ---
 
-**TensorRT**
+**TensorRT & CudaGraph**
 
 ---
 
@@ -62,8 +60,8 @@ Third-party:
 ```python
 model = torch.compile(model, backend='tensorrt')
 ```
+- Needs to be done on the target architecture (benchmarks multiple kernel implementations and picking the fastest one for your specific GPU), but to avoid the overhead the (compiled) engine can be cached.
 
-- Need to be done on the target architecture (benchmarks multiple kernel implementations and picking the fastest one for your specific GPU), but to avoid the overhead the (compiled) engine can be cached.
 - `CudaGraph` - captures a sequence of GPU operations and replays them as a single unit, rather than launching kernels one by one (eliminating also CPU overhead); built into `inductor` & `cudagraphs` but also applied by `TensorRT`. Limitations: input/output shapes must stay fixed between replays, no if/else flow control, opaque to step-by-step debugging
 
 ---
@@ -121,7 +119,7 @@ Data parallelism vs Model parallelism
 
 Progressively:
 
-- DP (native) - single-process, multi-GPU; splits batches across GPUs but uses one process with a GIL bottleneck; legacy option, quick prototyping on a single machine to avoid multi-process setup
+- Data Parallel (native) - single-process, multiple-GPUs; splits batches across GPUs but uses one process with a GIL  (global interpreter lock) bottleneck; legacy option, quick prototyping on a single machine to avoid multi-process setup
 - Distributed Data Parallel (DDP; native) - default starting point; use when model fits in one GPU memory and you want to train faster across multiple GPUs (under ~1-2B parameters).
 - Fully Sharded Data Parallel (FSDP; native) - shards model parameters, gradients, and optimizer states across GPUs (inspired by ZeRO-3); use for models which don't fit on one GPU (OOM with DDP; 1B–30B params). Also useful when you want mixed precision + activation checkpointing with minimal code.
 - Tensor Parallel (native) - use when individual layers are too large to fit on one GPU even with FSDP (e.g. massive hidden dimensions), usually within a single node where GPUs with far NVLink interconnect.
@@ -251,7 +249,7 @@ What if a model suddenly silently degrades in production?
 
 ---
 
-Silently means: no crash/time-out/500/out of latency SLA - it's about predictive performance of the model.
+Silently means: no crash/time-out/500/out-of-SLA latency - it's about predictive performance of the model.
 
 Common causes:
 
@@ -263,7 +261,7 @@ Detection strategies:
 
 - Output distribution monitoring
 - Input distribution monitoring
-- Shadow scoring - selective run of the new/suspect model with the production one
+- Shadow scoring - selective run of the new/suspect model in parallel with the production one
 - Scientific (domain-specific) canary evaluation (on hold-out set)
 
 ---
@@ -277,7 +275,7 @@ These two differ in three ways: data, code path, and environment.
 Process of ellimination:
 
 1. Plug production model into offline eval pipeline and dataset → if poor then model corrupted, incorrectly serialized, model or dependency version is skewed, precision is mismatched or numerical instability crept in, memory or compute-bound
-2. Log production input and plug into offline pipeline and model → if good then production pipeline (synchronization, loading/ETL); if bad then it's distribution shift (new patterns, new edge cases)
+2. Log production input and plug into offline pipeline and model → if good then production pipeline (synchronization, loading/ETL); if bad then it would indicate a distribution shift (new patterns, new edge cases)
 3. Check the eval methodology (harder for me to speculate - eval dataset not representative, label leakage, metric mismatch)
 4. Last resort - shadow (model) mode & **log everything**
 
@@ -288,7 +286,7 @@ Challenges of running Foundation Model in Production
 ---
 
 1. Get it running - size matters: basics (tracking provenance, versioning, packaging, Docker limitations), multiple GPUs & thus parallelism, batching strategies / latency / pipelining
-2. Keep it correct - account for silent degradation (I/O distribution, scientific canaries), but may be hard to run evan at scale
+2. Keep it correct - account for silent degradation (I/O distribution, scientific canaries), but may be hard to run eval at scale
 3. Keep it efficient - ETL (parallelized), Automatic Mixed Precision, JIT(trace, script)→quantize→`torch.compile`→compilation backends→CUDAGraph, pick instance and autoscaling
 4. Keep it trustworthy - know your regulatory requirements, risk model & failure modes, red-teaming (depending on a model)
 
@@ -406,7 +404,7 @@ How I made decisions:
 3. Involve the right people at the right time
 4. Prototype before committing
 
-How I got buy-in:
+How I get buy-in:
 
 1. Transparency about trade-offs
 2. Gave credit for dissent (builds trust)
