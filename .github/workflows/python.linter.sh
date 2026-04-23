@@ -17,3 +17,5 @@ echo "--- pyright ---"
 uv run --with-requirements .github/workflows/requirements.txt --no-project pyright algorithms
 echo "--- bandit ---"
 uv run --with-requirements .github/workflows/requirements.txt --no-project bandit --skip B101 -r .
+echo "--- complexipy ---"
+uv run --with-requirements .github/workflows/requirements.txt --no-project complexipy algorithms/code --max-complexity-allowed 25
