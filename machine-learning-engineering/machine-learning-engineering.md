@@ -129,6 +129,14 @@ Progressively:
 
 ---
 
+**Model compression techniques**
+
+---
+
+quantisation, pruning, distillation, sparsity
+
+---
+
 **p99**
 
 ---
