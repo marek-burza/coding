@@ -43,7 +43,7 @@ Backends:
 
 - `inductor` (built-in) - for more flexible outcome, dynamic shapes, less operational complexity
 - `tensorrt` (third-party) - TensorRT, for highly optimized outcome, but for a specific GPU, specific input shapes, and specific precision
-- Others: `tvm` (Apache TVM - open-source ML compiler with broad hardware support), `ipex` (Intel), `onnxrt` (ONNX), `cudagraphs` (captures CUDA Graphs but no opps/kernel fusion, no autotuning)
+- Others: `tvm` (Apache TVM - open-source ML compiler with broad hardware support), `ipex` (Intel), `onnxrt` (ONNX), `cudagraphs` (captures CUDA Graphs but no ops/kernel fusion, no autotuning)
 
 Needs to be done on the target architecture since the output is not portable.
 
@@ -114,15 +114,15 @@ torch.cuda.synchronize()
 
 Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive ops in `float32` (alternative - `.half()`, no `autocast` context needed); used during training but benefits inference indirectly since the model is numerically robust in lower precision.
 
-| **Without AMP:**                     | **With AMP:**                               |
-| `optimizer.zero_grad()             ` | `optimizer.zero_grad()                    ` |
-| `                                  ` | `scaler = torch.cuda.amp.GradScaler()     ` |
-| `                                  ` | `with torch.autocast(dtype=torch.float16):` |
-| `output = model(input)             ` | `    output = model(input)                ` |
-| `metric = criterion(output, target)` | `    metric = criterion(output, target)   ` |
-| `metric.backward()                 ` | `scaler.scale(loss).backward()            ` |
-| `optimizer.step()                  ` | `scaler.step(optimizer)                   ` |
-| `                                  ` | `scaler.update()                          ` |
+| **Without AMP:**                     | **With AMP:**                                 |
+| `optimizer.zero_grad()`              | `→ optimizer.zero_grad()`                     |
+|                                      | `→ scaler = torch.cuda.amp.GradScaler()`      |
+|                                      | `→ with torch.autocast(dtype=torch.float16):` |
+| `output = model(input)`              | `→     output = model(input)`                 |
+| `metric = criterion(output, target)` | `→     metric = criterion(output, target)`    |
+| `metric.backward()`                  | `→ scaler.scale(loss).backward()`             |
+| `optimizer.step()`                   | `→ scaler.step(optimizer)`                    |
+|                                      | `→ scaler.update()`                           |
 
 ---
 
