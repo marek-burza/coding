@@ -190,7 +190,7 @@ It is a statistical measure used to describe the value below which 99% of observ
 
 ---
 
-Triton Inference Server vs. TorchServe
+**Triton Inference Server vs. TorchServe**
 
 ---
 
@@ -210,7 +210,7 @@ TorchServe is PyTorch-native and simpler to onboard. You package a model as a `.
 
 ---
 
-Batching Strategies
+**Batching Strategies**
 
 ---
 
@@ -222,7 +222,7 @@ Trade-off: GPU utilization and throughput vs. latency
 
 ---
 
-Load Balancing Across GPU Instances
+**Load Balancing Across GPU Instances**
 
 ---
 
@@ -245,7 +245,7 @@ Minimum instance count (to prevent live warm-up), apply predictive pre-warming f
 
 ---
 
-What if a model suddenly silently degrades in production?
+**What if a model suddenly silently degrades in production?**
 
 ---
 
@@ -266,7 +266,7 @@ Detection strategies:
 
 ---
 
-Troubleshooting model working well offline but poorly in production
+**Troubleshooting model working well offline but poorly in production**
 
 ---
 
@@ -281,7 +281,7 @@ Process of ellimination:
 
 ---
 
-Challenges of running Foundation Model in Production
+**Challenges of running Foundation Model in Production**
 
 ---
 
@@ -292,7 +292,7 @@ Challenges of running Foundation Model in Production
 
 ---
 
-How would you reduce P99 latency by 50%?
+**How would you reduce P99 latency by 50%?**
 
 ---
 
@@ -311,7 +311,7 @@ Common P99 culprits:
 
 ---
 
-`torch.export`
+**`torch.export`**
 
 ---
 
@@ -319,7 +319,7 @@ For portability of the model, to optimize for infertece use e.g. TensorRT.
 
 ---
 
-`safetensors`
+**`safetensors`**
 
 ---
 
@@ -330,7 +330,7 @@ For portability of the model, to optimize for infertece use e.g. TensorRT.
 
 ---
 
-Gradient clipping
+**Gradient clipping**
 
 ---
 
@@ -345,7 +345,7 @@ optimizer.step()
 
 ---
 
-PyTorch Profiler with TensorBoard
+**PyTorch Profiler with TensorBoard**
 
 ---
 
@@ -371,7 +371,7 @@ docker run -it --rm \
 
 ---
 
-Writing technical specification
+**Writing technical specification**
 
 ---
 
@@ -385,7 +385,7 @@ Writing technical specification
 
 ---
 
-Making cross-functional architectural decisions
+**Making cross-functional architectural decisions**
 
 ---
 
@@ -405,7 +405,7 @@ How I get buy-in:
 
 ---
 
-Describe how you'd design a benchmarking pipeline for evaluating a model
+**Describe how you'd design a benchmarking pipeline for evaluating a model**
 
 ---
 
@@ -425,7 +425,7 @@ Architecture:
 
 ---
 
-Pipeline Architecture Notes
+**Pipeline Architecture Notes**
 
 ---
 
@@ -435,7 +435,7 @@ Pipeline Architecture Notes
 
 ---
 
-How do foundation models for tabular data differ from NLP/vision foundation models?
+**How do foundation models for tabular data differ from NLP/vision foundation models?**
 
 ---
 
@@ -446,8 +446,9 @@ How do foundation models for tabular data differ from NLP/vision foundation mode
 
 ---
 
-How do you decide when a research prototype is ready for production?
-How do you validate that a model release was safe to ship?
+**How do you decide when a research prototype is ready for production?**
+
+**How do you validate that a model release was safe to ship?**
 
 ---
 
@@ -477,7 +478,7 @@ Safe:
 
 ---
 
-How do you handle disagreements with researchers about engineering constraints vs. model quality trade-offs?
+**How do you handle disagreements with researchers about engineering constraints vs. model quality trade-offs?**
 
 ---
 
@@ -490,7 +491,7 @@ How do you handle disagreements with researchers about engineering constraints v
 
 ---
 
-Python Engineering Excellence
+**Python Engineering Excellence**
 
 ---
 
@@ -526,10 +527,120 @@ Code structure:
 
 ---
 
-What is in-context learning?
+**What is in-context learning?**
 
 ---
 
 In-context learning is when a language model learns to perform a task from examples provided in the prompt, without any updates to its weights. Comes in a few flavors: zero-shot (just a task description), one-shot (one example), and few-shot (several examples).
+
+---
+
+**RAG (Retrieval-Augmented Generation)**
+
+---
+
+Combines a retrieval system with a language model to answer questions using external knowledge (and to tap into knowledge past its training cut-off point):
+
+1. Index your data - documents split into chunks, converted into vector embeddings, stored in a vector database
+2. Query comes in - query is also converted into an embedding with the same model
+3. Retrieve relevant chunks - system searches the vector database for chunks whose embeddings most similar to the query embedding
+4. Augment the prompt - retrieved chunks are injected into the LLM's prompt context with the original question
+5. Generate the answer - LLM reads both and produces a grounded response
+
+---
+
+**Supervised/semi-supervised/unsupervised learning**
+
+---
+
+- Supervised learning - every training example has a label (correct answer)
+- Unsupervised learning - no labels at all, model finds structure (clustering, dimensionality reduction; PCA, autoencoders)
+- Semi-Supervised learning - middle ground when labels are expensive or known for small part of the data (training based on confidence of predictions on unlabeled data, or data similarity e.g. in graph-based approach, or where learned structure is coupled with classification like in GANs)
+
+---
+
+**Bias/Variance Tradeoff**
+
+---
+
+- High bias means the model is too simple (underfitting)
+- High variance means it is too sensitive to training data (overfitting)
+
+---
+
+**Dropout Layer**
+
+---
+
+- A dropout layer is a regularization technique that randomly sets a fraction of neurons during each training step to zero and they do not contribute to that forward pass
+- Forces the network to not rely too heavily on any single neuron or pathway
+- Is is a tool for reducing variance (overfitting) when the network is large relative to the dataset
+- Network learns more redundant, robust representations, which generalizes better to unseen data; kind of an equivalent to training an ensemble of many networks
+
+Side note: Batching (particularly when shuffled) is also viewed as a regularizer to prevent overfitting.
+
+---
+
+**Training, testing, validation data**
+
+---
+
+- Training data - portion of the data that training algorithm uses to learn patterns, i.e. adjust its parameters (weights/biases) such that the error on this set is minimized
+- Testing set - not seen by the training algorithm and used to gauge the models performance (used once at the end on the trained model)
+- Validation data - portion of data taken out of the training set to run hyperparameter tuning and/or model selection
+
+---
+
+**Why is feature scaling & normalization important?**
+
+---
+
+Puts features on comparable ranges so gradient-based optimizers converge faster and distance-based algorithms (like SVM) are not dominated by large-magnitude features. Derivatives of the loss on non-normalized features would also be on different scales which would make gradient descent unstable and converge slower.
+
+---
+
+**Classification vs. regression?**
+
+---
+
+Classification predicts discrete labels, regression predicts continuous values. A problem might be both if the continuous values get binned into categories (which may help the model to learn and generalize better, and can also be useful in itself depending on a use case). Choice determines loss function and output layer.
+
+---
+
+**How to fix exploding gradients?**
+
+---
+
+Gradient clipping, batch normalization, lower learning rate, weight regularization, or architectural changes (e.g. less layers, skip connections, LSTM instead of vanilla RNN).
+
+---
+
+**Techniques to address landing in sub-optimal local minima**
+
+---
+
+- Try a variety of initialization techniques - Glorot, He, Xavier
+- Stochastic/mini-batch gradient descent - sampling noise helps escape shallow minima
+- Momentum-based optimizers - e.g. Adam, SGD+momentum, to push through flat regions and saddle points
+- Learning rate scheduling - cosine annealing, warm restarts
+
+---
+
+**AUC (Area Under the Curve)**
+
+---
+
+ROC curve (Receiver Operating Characteristic) in ML contexts. Probability that the model ranks a random positive above a random negative. 0.5 = random, 1.0 = perfect
+
+What the ROC curve plots:
+
+- x-axis: False Positive Rate (FPR) = FP / (FP + TN). Of all the actual negatives, how many did the model incorrectly flag?
+- y-axis: True Positive Rate (TPR) = TP / (TP + FN). aka sensitivity, recall. Of all the actual positives, how many did the model correctly catch?
+
+Other (related) metrics:
+
+- Specificity, True Negative Rate (TNR): TN / (TN + FP). Of the real negatives, how many did we correctly clear?
+- Precision, Positive Predictive Value (PPV): TP / (TP + FP). Of the things we flagged, how many were actually positive?
+- Accuracy: (TP + TN) / (TP + TN + FP + FN). Of all predictions, how many were correct?
 
 ---
