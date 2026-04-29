@@ -2,71 +2,70 @@
 
 ---
 
-**Optimizations**
+**PyTorch Model Optimization (Inference)**
 
 ---
 
-- `torch.jit` - graph level (fuses ops, dead code & common expression elimination, constant collapsing), memory optimization (switch to in-place ops, buffer reuse), control flow optimization (inlining, loop unrolling)
-- `torch.compile` - replacement for `torch.jit`, also fuses but across ops boundary & eliminates overhead, but also does autotuning, captures CUDAGraph, can use third-party backends
-- Automatic Mixed Precision (`torch.amp`) - runs eligible ops in FP16/BF16 while keeping numerically sensitive ops in FP32 (alternative - `.half()`, no `autocast` context needed); used during training but benefits indirectly in inference since the modelnumerically robust in lower precision
-- CUDA Graphs - captures a fixed sequence of GPU operations and replays them without CPU involvement
-- TensorRT via ONNX (`torch.onnx.export` & build TRT engine, or `torch_tensorrt.compile`)
-- GPU Warm-Up (so that CUDA initializes kernels, allocators, and caches)
-```python
-with torch.no_grad():
-    for _ in range(10):
-        _ = model(dummy)
-torch.cuda.synchronize()
-```
-- Training specific: gradient checkpointing (`torch.utils.checkpoint`) - trades compute for memory by recomputing activations during backward instead of storing them (lets you train larger models)
-- Other: `torch.inference_mode()` (no gradient tracking), model sharding & generally data/model parallelism, tiling / chunking
+1. Inference mode: `torch.no_grad()` or even `torch.inference_mode()`, `model.eval()`
+2. Basic serialization & optimization: `torch.jit` (being replaced by `torch.export` or `torch.onnx.export`)
+3. Deep optimization: `torch.compile` or `torch_tensorrt.compile`
+4. Runtime optimization: GPU Warm-Up, caching of compiled model engine
+5. Joint training & inference optimization: Automatic Mixed Precision (`torch.amp`) or `.half()`, model size compression, tiling / chunking
 
 ---
 
-**torch.compile modes & backends**
+**PyTorch inference mode**
 
 ---
 
-Modes:
-
-- `default` - balanced
-- `reduce-overhead` - minimizes launch overhead via CUDA graphs
-- `max-autotune` - tries many kernel variants, slow compile but fastest runtime
-
-Built-in:
-
-- `inductor` (default) - generates optimized C++/Triton kernels; rewrites your model's operations into faster kernels. It fuses multiple ops into single Triton kernels, eliminates redundant memory traffic, optimizes memory layout, and generates new GPU code that's fundamentally more efficient than the original ops.
-- `eager` (debugging) - runs normal PyTorch eager mode
-- `aot_eager` (debugging) - runs ahead-of-time tracing but executes eagerly
-
-Third-party:
-
-- `tensorrt` - via TensorRT
-- `ipex` - Intel Extension for PyTorch
-- `onnxrt` - routes through ONNX Runtime for inference
-- `tvm` - Apache TVM, an open-source ML compiler; broad hardware support
-- `cudagraphs` - captures and replays CUDA graphs to reduce kernel launch overhead; doesn't touch the kernels at all.
-  It records the exact sequence of existing GPU operations once, then replays that recording without CPU involvement.
-  It changes how the GPU is told to run - eliminating the per-kernel launch overhead from the CPU.
-  The kernels themselves are identical to eager mode; use if `inductor` fails to compile your model
+- `model.eval()` switches certain layers into evaluation mode. Layers like `BatchNorm` and `Dropout` behave differently during training vs. inference.
+- `torch.no_grad()` - context manager which disables gradient tracking. Autograd (PyTorch's automatic differentiation engine) otherwise builds the autograd graph (traversed in reverse in `.backward()` to compute gradients).
+- `torch.inference_mode()` - stronger version of `torch.no_grad()`. Tensors created inside cannot be used in autograd later.
 
 ---
 
-**TensorRT & CudaGraph**
+**Basic serialization & optimization - `torch.jit`**
 
 ---
 
-`TensorRT` can be a backend for `torch.compile` (recommended way for `TensorRT` with `PyTorch`, over `ONNX` export and compilation):
-```python
-model = torch.compile(model, backend='tensorrt')
-```
-- Needs to be done on the target architecture (benchmarks multiple kernel implementations and picking the fastest one for your specific GPU), but to avoid the overhead the (compiled) engine can be cached.
-
-- `CudaGraph` - captures a sequence of GPU operations and replays them as a single unit, rather than launching kernels one by one (eliminating also CPU overhead); built into `inductor` & `cudagraphs` but also applied by `TensorRT`. Limitations: input/output shapes must stay fixed between replays, no if/else flow control, opaque to step-by-step debugging
+- Lets you serialize and optimize PyTorch models into a format that can run independently of Python.
+- Just-In-Time (JIT) compilation system - converts to TorchScript IR
+- `torch.jit.trace` (earlier, simpler approach), replaced by `torch.jit.script`
+- Optimizations: simple (dead code eliminstion, constant folding, common subexpression elimination), graph level (limited operator fusion into joint kernels), control flow optimization (function call inlining, loop unrolling for constant loop bounds)
 
 ---
 
-**TensorRT Optimizations**
+**Deep optimization - `torch.compile` or `torch_tensorrt.compile`**
+
+---
+
+Backends:
+
+- `inductor` (built-in) - for more flexible outcome, dynamic shapes, less operational complexity
+- `tensorrt` (third-party) - TensorRT, for highly optimized outcome, but for a specific GPU, specific input shapes, and specific precision
+- Others: `tvm` (Apache TVM - open-source ML compiler with broad hardware support), `ipex` (Intel), `onnxrt` (ONNX), `cudagraphs` (captures CUDA Graphs but no opps/kernel fusion, no autotuning)
+
+Needs to be done on the target architecture since the output is not portable.
+
+Questions to answer: How stable are your input shapes? What's your deployment target? Do you need training + serving in one codebase?
+
+---
+
+**Optimizations with `model = torch.compile(model, backend='inductor')`**
+
+---
+
+Optimizations:
+
+- generates optimized C++/Triton kernels (deep operator and kernel fusion, kernel autotuning - benchmarks multiple kernel implementations and picks the fastest one for the specific GPU)
+- captures CUDA Graphs
+- eliminates redundant memory traffic, optimizes memory layout
+
+Modes: `default` (balanced), `reduce-overhead` (minimizes launch overhead via CUDA graphs), `max-autotune` (tries many kernel variants, slow compile but fastest runtime)
+
+---
+
+**Optimizations with `model = torch_tensorrt.compile(model, ...)`**
 
 ---
 
@@ -80,31 +79,82 @@ model = torch.compile(model, backend='tensorrt')
 
 ---
 
-**TensorRT vs. `torch.compile`**
+**CUDA Graphs**
 
 ---
 
-- TensorRT for highly optimized outcome, but for a specific GPU, specific input shapes, and specific precision.
-- `torch.compile` for more flexible outcome, dynamic shapes, less operational complexity.
-
-Questions to answer:
-
-- How stable are your input shapes?
-- What's your deployment target?
-- Do you need training + serving in one codebase?
+- Captures a fixed sequence of GPU operations once and replays them without CPU involvement (replay as a single unit, rather than launching kernels one by one eliminating CPU & traffic overhead)
+- Limitations: input/output shapes must stay fixed between replays, no if/else flow control, opaque to step-by-step debugging
 
 ---
 
-**DeepSpeed vs TensorRT**
+Runtime optimization: GPU Warm-Up
 
 ---
 
-- `DeepSpeed` - training and inference optimization library for large-scale distributed deep learning; ZeRO memory optimization, pipeline parallelism (sharding optimizer states, gradients, and parameters)
-- `TensorRT` - inference-only; compiles and optimizes trained models for NVIDIA GPUs; Kernel fusion, quantization, layer fusion
+Run small/synthetic inference to go through e.g.:
+
+- CUDA context initialization (kernels, allocators, and caches)
+- Kernel JIT/`torch.compile` compilation (or use cached engine with TensorRT)
+- Model weight loading
+- cuDNN algorithm selection (cuDNN benchmarks several convolution algorithms)
+
+```python
+with torch.no_grad():
+    for _ in range(10):
+        _ = model(dummy)
+torch.cuda.synchronize()
+```
 
 ---
 
-Data parallelism vs Model parallelism
+**Automatic Mixed Precision - `torch.amp`**
+
+---
+
+Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive ops in `float32` (alternative - `.half()`, no `autocast` context needed); used during training but benefits inference indirectly since the model is numerically robust in lower precision.
+
+| **Without AMP:**                     | **With AMP:**                               |
+| `optimizer.zero_grad()             ` | `optimizer.zero_grad()                    ` |
+| `                                  ` | `scaler = torch.cuda.amp.GradScaler()     ` |
+| `                                  ` | `with torch.autocast(dtype=torch.float16):` |
+| `output = model(input)             ` | `    output = model(input)                ` |
+| `metric = criterion(output, target)` | `    metric = criterion(output, target)   ` |
+| `metric.backward()                 ` | `scaler.scale(loss).backward()            ` |
+| `optimizer.step()                  ` | `scaler.step(optimizer)                   ` |
+| `                                  ` | `scaler.update()                          ` |
+
+---
+
+**Model size compression techniques**
+
+---
+
+- Quantisation - See AMP, `.half()`
+- Pruning - Removed weights (unstructured pruning) or neurons/heads/layers (structured pruning) which contribute little to the output (the latter not possible as aggressively before accuracy drops)
+- Distillation - Training a smaller "student" model to mimic a larger "teacher" model (uses full output distribution rather than ground truth labels).
+- Sparsity - Ampere+ GPUs support sparsity where in every block of 4 weights, 2 must be zero. This allows to skip the zeros and roughly double throughput. Compromise between unstructured pruning (compressible but slow) and structured pruning (fast but coarse).
+
+---
+
+**PyTorch Model Optimization (Training)**
+
+---
+
+- Gradient checkpointing: `torch.utils.checkpoint`
+- Other: model sharding & generally data/model parallelism
+
+---
+
+**Gradient checkpointing - `torch.utils.checkpoint`**
+
+---
+
+When you are running into OOM during training and cannot reduce batch size further - trades compute for memory; instead of storing all intermediate activations for the backward pass it recompute them on the fly during backprop.
+
+---
+
+**Data parallelism vs Model parallelism**
 
 ---
 
@@ -125,15 +175,7 @@ Progressively:
 - Tensor Parallel (native) - use when individual layers are too large to fit on one GPU even with FSDP (e.g. massive hidden dimensions), usually within a single node where GPUs with far NVLink interconnect.
 - Pipeline Parallel (native) - splits the model by layers across GPUs, with micro-batching to keep GPUs busy; use when you have many layers and multiple nodes but inter-node bandwidth is limited.
 - 3D Parallelism - use when nothing else is enough; TP within a node (fast NVLink), PP across nodes, FSDP/DDP across replica groups.
-- DeepSpeed (Lightning) - alternative to FSDP when training large models on limited GPU memory or middle ground between DDP and full sharding.
-
----
-
-**Model compression techniques**
-
----
-
-quantisation, pruning, distillation, sparsity
+- DeepSpeed (Lightning) - alternative to FSDP when training large models on limited GPU memory or middle ground between DDP and full sharding; ZeRO memory optimization, pipeline parallelism (sharding optimizer states, gradients, and parameters).
 
 ---
 
@@ -145,43 +187,6 @@ quantisation, pruning, distillation, sparsity
 
 It is a statistical measure used to describe the value below which 99% of observations fall (p95 corresponds to 95%, p999 to 99.9%).
 
----
-
-Function of `torch.no_grad()` and `model.eval()`
-
----
-
-- `model.eval()` switches certain layers into evaluation mode (layers like `BatchNorm` and `Dropout` behave differently during training vs. inference).
-- `torch.no_grad()` is a context manager that disables gradient tracking. Autograd, PyTorch's automatic differentiation engine would otherwise build the autograd graph (traversed it in reverse in `.backward()` to compute gradients)
-
----
-
-`torch.cuda.amp` (Automatic Mixed Precision)
-
----
-
-AMP runs parts of your model in `float16` (or `bfloat16`) while keeping numerically sensitive ops in `float32`.
-
-```python
-optimizer.zero_grad()
-outputs = model(x_batch)
-metric = criterion(outputs.squeeze(), y_batch)
-metric.backward()
-optimizer.step()
-```
-
-becomes:
-
-```python
-optimizer.zero_grad()
-scaler = torch.cuda.amp.GradScaler()
-with torch.autocast(device_type='cuda', dtype=torch.float16):
-    output = model(input)
-    loss = criterion(output, target)
-scaler.scale(loss).backward()
-scaler.step(optimizer)
-scaler.update()
-```
 
 ---
 
@@ -237,19 +242,6 @@ Health checks:
 - Run small inference since the GPU instances can be alive while being silently degraded (VRAM fragmented, NCCL in a bad state).
 
 Minimum instance count (to prevent live warm-up), apply predictive pre-warming for predictable traffic pattern.
-
----
-
-GPU Warmup
-
----
-
-Run small/synthetic inference to go through e.g.:
-
-- CUDA context initialization
-- Kernel JIT/`torch.compile` compilation (or use cached engine with TensorRT)
-- Model weight loading
-- cuDNN algorithm selection (cuDNN benchmarks several convolution algorithms)
 
 ---
 
@@ -350,14 +342,6 @@ loss.backward()
 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 optimizer.step()
 ```
-
----
-
-Gradient checkpointing
-
----
-
-When you are running into OOM during training and cannot reduce batch size further - instead of storing all intermediate activations for the backward pass, recompute them on the fly during backprop.
 
 ---
 
