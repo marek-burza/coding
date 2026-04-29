@@ -634,13 +634,13 @@ ROC curve (Receiver Operating Characteristic) in ML contexts. Probability that t
 
 What the ROC curve plots:
 
-- x-axis: False Positive Rate ("FPR") = FP / (FP + TN). Of all the actual negatives, how many did the model incorrectly flag?
-- y-axis: True Positive Rate ("TPR") = TP / (TP + FN). aka sensitivity, recall. Of all the actual positives, how many did the model correctly catch?
+- x-axis: False Positive Rate `FPR=FP/(FP+TN)`. Of all the actual negatives, how many did the model incorrectly flag?
+- y-axis: True Positive Rate `TPR=TP/(TP+FN)`. aka sensitivity, recall. Of all the actual positives, how many did the model correctly catch?
 
 Other (related) metrics:
 
-- Specificity, True Negative Rate ("TNR"): TN / (TN + FP). Of the real negatives, how many did we correctly clear?
-- Precision, Positive Predictive Value ("PPV"): TP / (TP + FP). Of the things we flagged, how many were actually positive?
-- Accuracy: (TP + TN) / (TP + TN + FP + FN). Of all predictions, how many were correct?
+- Specificity, True Negative Rate `TNR=TN/(TN+FP`. Of the real negatives, how many did we correctly clear?
+- Precision, Positive Predictive Value `PPV=TP/(TP+FP)`. Of the things we flagged, how many were actually positive?
+- Accuracy: `(TP+TN)/(TP+TN+FP+FN)`. Of all predictions, how many were correct?
 
 ---
