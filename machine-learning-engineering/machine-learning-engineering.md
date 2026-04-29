@@ -659,7 +659,9 @@ Other (related) metrics:
 
 ---
 
-The fundamental difference is eager versus lazy execution. Pandas materializes every intermediate; Polars lets you build a logical plan with scan_parquet and a chain of operations, and doesn't execute until you call collect. That lets the query optimizer do predicate pushdown, projection pushdown, and streaming execution — so instead of reading a 500 GB Parquet dataset into memory and then filtering, it reads only the row groups and columns the query actually needs. Combined with the Rust + Arrow backend and real multithreading, that's a different performance regime from Pandas, not just a faster version of it. The trade-off is a less mature ecosystem and some API instability, especially around categoricals.
+The fundamental difference is eager versus lazy execution. Pandas materializes every intermediate; Polars lets you build a logical plan with scan_parquet and a chain of operations, and doesn't execute until you call collect.
+That lets the query optimizer do predicate pushdown, projection pushdown, and streaming execution — so instead of reading a 500 GB Parquet dataset into memory and then filtering, it reads only the row groups and columns the query actually needs.
+Combined with the Rust + Arrow backend and real multithreading, that's a different performance regime from Pandas, not just a faster version of it. The trade-off is a less mature ecosystem and some API instability, especially around categoricals.
 
 ---
 
@@ -688,7 +690,9 @@ Lazy evaluation. With `pl.scan_parquet(...).filter(...).select(...).collect()`, 
 
 ---
 
-Parquet is a columnar format with hierarchical row group and page structure. The columnar layout gives you selective column reads and better compression. The row group statistics enable predicate pushdown, so query engines skip data that can't match a filter. It has a rich typed schema including nested types, per-column encodings like dictionary and RLE, and it's immutable, which makes it the natural substrate for partitioned datasets and table formats like Iceberg. For ML pre-training pipelines, the combination of column pruning, predicate pushdown, and cheap Arrow interop is what makes it dominant.
+Parquet is a columnar format with hierarchical row group and page structure. The columnar layout gives you selective column reads and better compression.
+The row group statistics enable predicate pushdown, so query engines skip data that can't match a filter. It has a rich typed schema including nested types, per-column encodings like dictionary and RLE, and it's immutable, which makes it the natural substrate for partitioned datasets and table formats like Iceberg.
+For ML pre-training pipelines, the combination of column pruning, predicate pushdown, and cheap Arrow interop is what makes it dominant.
 
 ---
 
@@ -731,6 +735,6 @@ For pre-training specifically, do not over-clean - preserve realistic messiness 
 ---
 
 - Compute correlation across columns (pairwise between column vectors), not rows
-- Column-wise correlation surfaces redundancy, derived columns, and likely duplicates (e.g. price in two currencies, temperature in C and F), or a unit-conversion artifact - all of which teach the model spurious "everything is correlated" priors and waste capacity. Typically drop one, but it depends on semantics: if both columns are genuinely independent measurements that happen to correlate, that's real signal worth keeping.
+- Column-wise correlation surfaces redundancy, derived columns, and likely duplicates or a unit-conversion artifact - all of which teach the model spurious "everything is correlated" priors and waste capacity. Typically drop one, but it depends on semantics: if both columns are genuinely independent measurements that happen to correlate, that's real signal worth keeping.
 
 ---
