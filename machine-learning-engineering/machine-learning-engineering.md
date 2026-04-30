@@ -115,6 +115,7 @@ torch.cuda.synchronize()
 Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive ops in `float32` (alternative - `.half()`, no `autocast` context needed); used during training but benefits inference indirectly since the model is numerically robust in lower precision.
 
 | **Without AMP:**                     | **With AMP:**                                 |
+| ------------------------------------ | --------------------------------------------- |
 | `optimizer.zero_grad()`              | `→ optimizer.zero_grad()`                     |
 |                                      | `→ scaler = torch.cuda.amp.GradScaler()`      |
 |                                      | `→ with torch.autocast(dtype=torch.float16):` |
