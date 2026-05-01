@@ -872,3 +872,16 @@ Note: Chinchilla gives you the compute-optimal frontier as a starting point, but
 - Medical/clinical vision models work with tiles on a grid, there is no sequence, attention assigns each tile a scalar relevance score and sums them into one slide vector - interpretable heatmap, but because tiles score in isolation, one loses the O(n²) contextual rewriting plaguing LLMs; applying a perceiver recoveres some of that inter-tile reasoning.
 
 ---
+
+**Mixture of Experts (MoE)**
+
+---
+
+- A standard neural network ("dense" model) activates all its parameters for every input token. A Mixture of Experts model instead maintains a collection of specialized sub-networks (the "experts") and routes each token to only a subset of them
+- Sparse MoE models decouple parameter count from compute, but you still pay the memory cost of all parameters
+- The router is typically a small learned linear layer that sits before the expert layers
+- Without intervention, the router collapses - a few popular experts get all traffic - solved e.g. with an auxiliary load-balancing loss that penalizes uneven routing
+- Training efficiency - spending compute budget more efficiently because each expert sees a curated distribution of inputs
+- Better inference throughput
+
+---
