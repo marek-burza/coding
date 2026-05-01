@@ -703,7 +703,7 @@ The word comes from statistics - a regression where the input is the variable's 
 
 - Dense vector is the format
 - Embedding is the process and its result - the act of mapping a discrete or high-dimensional object into a dense vector space such that geometric relationships reflect semantic ones
-- Latent (hidden) representation is about what the vector contains - it's the hidden/abstract/compressed state or meaning that a model has inferred from input. 
+- Latent (hidden) representation is about what the vector contains - it's the hidden/abstract/compressed state or meaning that a model has inferred from input.
 
 ---
 
