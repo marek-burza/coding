@@ -560,6 +560,16 @@ Combines a retrieval system with a language model to answer questions using exte
 
 ---
 
+**Training, testing, validation data**
+
+---
+
+- Training data - portion of the data that training algorithm uses to learn patterns, i.e. adjust its parameters (weights/biases) such that the error on this set is minimized
+- Testing set - not seen by the training algorithm and used to gauge the models performance (used once at the end on the trained model)
+- Validation data - portion of data taken out of the training set to run hyperparameter tuning and/or model selection
+
+---
+
 **Bias/Variance Trade-off**
 
 ---
@@ -582,13 +592,44 @@ Side note: Batching (particularly when shuffled) is also viewed as a regularizer
 
 ---
 
-**Training, testing, validation data**
+**How do you detect overfitting in large-scale systems?**
 
 ---
 
-- Training data - portion of the data that training algorithm uses to learn patterns, i.e. adjust its parameters (weights/biases) such that the error on this set is minimized
-- Testing set - not seen by the training algorithm and used to gauge the models performance (used once at the end on the trained model)
-- Validation data - portion of data taken out of the training set to run hyperparameter tuning and/or model selection
+General rule still true: training loss keeps going down, validation loss stops improving or rises.
+
+Large-scale challenges:
+
+- Evaluation is expensive so you are working with sampled estimates which introduces noise into the signal itself
+- The validation set itself can indirectly leak
+- Overfitting may look different - you may overfit to train set distribution or the metric (as a proxy for the real thing)
+
+Detection & resolution (examples):
+
+- Held-out test sets you rarely touch
+- Monitor not entire validation set but slices of it across different grouping criteria
+- Early stopping with a patience budget
+
+---
+
+**How do you evaluate a model offline vs online?**
+
+---
+
+The basic distinction comes from the fact that you do not have the ground truth when evaluating online.
+
+Thus online you either use proxy metrics, or you run A/B testing, shadow mode with two models, validating model trained on failure modes.
+
+---
+
+**How would you choose between: linear models vs tree-based models vs deep learning?**
+
+---
+
+- Mostly driven by data characteristics (dataset size, completeness, linearity, how well enginered/cleaned the features are).
+- Start with with simplest and go to more complex when the decision is justified.
+- Interpretability or latency can be a factor
+
 
 ---
 
@@ -643,6 +684,26 @@ Other (related) metrics:
 - Specificity, True Negative Rate `T_N_R=TN/(TN+FP`. Of the real negatives, how many did we correctly clear?
 - Precision, Positive Predictive Value `P_P_V=TP/(TP+FP)`. Of the things we flagged, how many were actually positive?
 - Accuracy: `(TP+TN)/(TP+TN+FP+FN)`. Of all predictions, how many were correct?
+
+---
+
+**What does "autoregressive" mean?**
+
+---
+
+Autoregressive means the model generates one element at a time, and each new element is conditioned on all previously generated elements.
+
+The word comes from statistics - a regression where the input is the variable's own past values (auto = self).
+
+---
+
+**Dense vector vs embedding vs latent representation**
+
+---
+
+- Dense vector is the format
+- Embedding is the process and its result - the act of mapping a discrete or high-dimensional object into a dense vector space such that geometric relationships reflect semantic ones
+- Latent (hidden) representation is about what the vector contains - it's the hidden/abstract/compressed state or meaning that a model has inferred from input. 
 
 ---
 
@@ -737,5 +798,77 @@ For pre-training specifically, do not over-clean - preserve realistic messiness 
 
 - Compute correlation across columns (pairwise between column vectors), not rows
 - Column-wise correlation surfaces redundancy, derived columns, and likely duplicates or a unit-conversion artifact - all of which teach the model spurious "everything is correlated" priors and waste capacity. Typically drop one, but it depends on semantics: if both columns are genuinely independent measurements that happen to correlate, that's real signal worth keeping.
+
+---
+
+**[Why do tree-based models still outperform deep learning on tabular data? (Grinsztajn 2022)](https://arxiv.org/pdf/2207.08815)**
+
+---
+
+1. Tree-based models fit functions which are: threshold-based, non-continuous or regime-dependent (feature–target relationships change depending on the global system state); NNs prefer smooth, low-frequency functions.
+2. Tree-based models ignore weak features by performing feature selection; NN tend to mix features and more sensitive to accumulating noise.
+3. Columns have independent meaning and tree-based models preserve feature identity; NNs mix early which can blur feature identity (it is as if the features were sharing/overlapping identity; possibly also regularization / not relying overly on single neuron/weight can contribute).
+
+---
+
+**TabPFN**
+
+---
+
+TabPFN replaces the usual workflow of learning a single predictive function `f(x)` with a model that is trained to estimate:
+"given this dataset, what is the probability distribution over possible functions that could explain it?"
+
+At inference time, you provide a small labeled dataset + test points, and it directly outputs predictions in a single forward pass.
+
+TabPFN v2 improvements: much larger pretraining scale, converting heterogeneous tabular features into unified token representations, went beyond classification (regression and other tabular tasks)
+
+Side note: SAP-RPT-1 went further by going to multi-table / relational input type, going from synthetic to real-world data, encoding data as embeddings
+
+---
+
+**Chinchilla**
+
+---
+
+The core claim: Prior large language models (GPT-3, Gopher, etc.) which scaled parameters far faster than data (following Kaplan et al.) were significantly undertrained.
+The law: For compute-optimal training, model size (N) and training tokens (D) should scale in equal proportion. If you double your compute budget, you should roughly double both the number of parameters and the number of training tokens.
+The practical rule of thumb: You need approximately 20 tokens of training data per parameter. So a 7B model wants ~140B tokens.
+Side note: given a fixed compute budget C (in FLOPs), and knowing that for transformers we have C≈6ND, the D=20N relationship gives N_opt≈√(C/120) and D_opt≈20*√(C/120)
+
+Note: This economy makes sense in data-abundant contexts, in data-scarce setting question gets inverted: D is fixed, so the question becomes "given a fixed dataset, how big a model can we usefully train before we overfit?"
+
+Note: Chinchilla gives you the compute-optimal frontier as a starting point, but e.g. LLaMA deliberately trained smaller models on far more tokens than compute-optimal, to get a better model at a given inference budget. And one would similarly overtrain for medical/clinical vision transformers where you can apply various augmentations (rotation, mirroring, tile crop offset, color map distortion, etc.)
+
+---
+
+**Encoder vs decoder vs encoder-decoder for tabular data - what would you pick and why?**
+
+---
+
+- Is your input tabular and output a label/score? → Encoder-only
+- Is your task generative (synthesize rows)? → Decoder-only
+- Is your task a translation (table → text, NL→SQL)? → Encoder-decoder
+
+- Encoding means compressing structured input into a dense vector that captures meaning - a latent representation.
+- Decoding means projecting out of that latent space into some target format.
+
+---
+
+**U-Net vs Autoencoder**
+
+---
+
+- Autoencoder is trained to reproduce its input at the output
+- U-Net is trained to produce a different output than its input. The key difference is skip connections. The bottleneck in a U-Net carries global context (what is the overall scene), while skip connections carry local detail (where exactly are the edges).
+
+---
+
+**Attention mechanism**
+
+---
+
+- Words do not have fixed meanings, they shift depending on context. A token like "bank" should be represented differently next to "river" than next to "loan". Attention lets each token update its representation by looking at all other tokens in the sequence and weighting how relevant each one is for interpreting it. That is where the original n² issue comes from - a 2D matrix
+- FlashAttention 1 was about reducing storage from n² to n in how the calculations were done over a sequence, and FlashAttention 2 introduced additional parallelism to speed up even more
+- Medical/clinical vision models work with tiles on a grid, there is no sequence, attention assigns each tile a scalar relevance score and sums them into one slide vector - interpretable heatmap, but because tiles score in isolation, one loses the O(n²) contextual rewriting plaguing LLMs; applying a perceiver recoveres some of that inter-tile reasoning.
 
 ---
