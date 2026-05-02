@@ -113,7 +113,13 @@ torch.cuda.synchronize()
 ---
 
 - `bf16` has worse precision than `fp16` but a much bigger dynamic range (different mantissa exponent split); easier for `fp16` to underflow to zero or overflow to infinity, and precision loss is usually acceptable as gradients are noisy anyway thus `bf16` improves training stability (though even then gradient clipping remains relevant)
-- Progressively by impact on quality: `f16`/`bf16` (common, well supported), `fp8` (supported by H100, emerging standard on Blackwell), `int8` (still quite safe - ~98%, well supported), AWQ (Activation-Aware Weight Quantization, 4-bit, 96-99%, beats GPTQ), GPTQ (Generalized Post-Training Quantization, 4-bit, 95-98%) - for medical/clinical vision models sensitivity to quantization is an issue and going below `fp8` could be risky (`fp8` support was not available couple years back)
+- Progressively by impact on quality:
+  - `f16`/`bf16` (common, well supported)
+  - `fp8` (supported by H100, emerging standard on Blackwell)
+  - `int8` (still quite safe - ~98%, well supported)
+  - AWQ (Activation-Aware Weight Quantization, 4-bit, 96-99%, beats GPTQ)
+  - GPTQ (Generalized Post-Training Quantization, 4-bit, 95-98%)
+- For medical/clinical vision models sensitivity to quantization is an issue and going below `fp8` could be risky (`fp8` support was not available couple years back)
 - Post-Training Quantization (PTQ, like `.half()` but for a fundamentally lower-precision format, unlike a simple cast it requires calibration to find the best mapping), Quantization-Aware Training (QAT, e.g. AMP)
 
 ---
