@@ -108,13 +108,23 @@ torch.cuda.synchronize()
 
 ---
 
+**Quantization**
+
+---
+
+- `bf16` has worse precision than `fp16` but a much bigger dynamic range (different mantissa exponent split); easier for `fp16` to underflow to zero or overflow to infinity, and precision loss is usually acceptable as gradients are noisy anyway thus `bf16` improves training stability (though even then gradient clipping remains relevant)
+- Progressively by impact on quality: `f16`/`bf16` (common, well supported), `fp8` (supported by H100, emerging standard on Blackwell), `int8` (still quite safe - ~98%, well supported), AWQ (Activation-Aware Weight Quantization, 4-bit, 96-99%, beats GPTQ), GPTQ (Generalized Post-Training Quantization, 4-bit, 95-98%) - for medical/clinical vision models sensitivity to quantization is an issue and going below `fp8` could be risky (`fp8` support was not available couple years back)
+- Post-Training Quantization (PTQ, like `.half()` but for a fundamentally lower-precision format, unlike a simple cast it requires calibration to find the best mapping), Quantization-Aware Training (QAT, e.g. AMP)
+
+---
+
 **Automatic Mixed Precision - `torch.amp`**
 
 ---
 
 Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive ops in `float32` (alternative - `.half()`, no `autocast` context needed); used during training but benefits inference indirectly since the model is numerically robust in lower precision.
 
-| **Without AMP:**                     | **With AMP:**                                 |
+| **Without AMP:**                     | **With AMP (specifically for float16):**      |
 | ------------------------------------ | --------------------------------------------- |
 | `optimizer.zero_grad()`              | `→ optimizer.zero_grad()`                     |
 |                                      | `→ scaler = torch.cuda.amp.GradScaler()`      |
@@ -131,7 +141,7 @@ Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive op
 
 ---
 
-- Quantisation - See AMP, `.half()`
+- Quantisation - See: AMP, `.half()`, quantization card
 - Pruning - Removed weights (unstructured pruning) or neurons/heads/layers (structured pruning) which contribute little to the output (the latter not possible as aggressively before accuracy drops)
 - Distillation - Training a smaller "student" model to mimic a larger "teacher" model (uses full output distribution rather than ground truth labels).
 - Sparsity - Ampere+ GPUs support sparsity where in every block of 4 weights, 2 must be zero. This allows to skip the zeros and roughly double throughput. Compromise between unstructured pruning (compressible but slow) and structured pruning (fast but coarse).
@@ -168,26 +178,19 @@ When you are running into OOM during training and cannot reduce batch size furth
 
 ---
 
+Happens because model memory footprint includes weights, gradients, optimizer states.
+
 Progressively:
 
-- Data Parallel (native) - single-process, multiple-GPUs; splits batches across GPUs but uses one process with a GIL  (global interpreter lock) bottleneck; legacy option, quick prototyping on a single machine to avoid multi-process setup
-- Distributed Data Parallel (DDP; native) - default starting point; use when model fits in one GPU memory and you want to train faster across multiple GPUs (under ~1-2B parameters).
-- Fully Sharded Data Parallel (FSDP; native) - shards model parameters, gradients, and optimizer states across GPUs (inspired by ZeRO-3); use for models which don't fit on one GPU (OOM with DDP; 1B–30B params). Also useful when you want mixed precision + activation checkpointing with minimal code.
-- Tensor Parallel (native) - use when individual layers are too large to fit on one GPU even with FSDP (e.g. massive hidden dimensions), usually within a single node where GPUs with far NVLink interconnect.
-- Pipeline Parallel (native) - splits the model by layers across GPUs, with micro-batching to keep GPUs busy; use when you have many layers and multiple nodes but inter-node bandwidth is limited.
+- Data Parallel (native) - single-process bottleneck, splits batches across multiple-GPUs, aggregates gradients and updates model; legacy option, quick prototyping on a single machine to avoid multi-process setup
+- Distributed Data Parallel (DDP; native) - default starting point; use when model fits in one GPU memory and you want to train faster across multiple GPUs with one process per GPU (under ~1-2B parameters).
+- Fully Sharded Data Parallel (FSDP; native) - shards model parameters, gradients, and optimizer states across GPUs (inspired by ZeRO-3); use for models which do not fit on one GPU (OOM with DDP; 1B–30B params).
+- Tensor Parallel (native) - use when individual layers are too large to fit on one GPU even with FSDP (e.g. massive hidden dimensions), usually within a single node where GPUs with fast NVLink interconnect.
+- Pipeline Parallel (native) - splits the model by layers across GPUs; use when you have many layers and multiple nodes but inter-node bandwidth is limited.
 - 3D Parallelism - use when nothing else is enough; TP within a node (fast NVLink), PP across nodes, FSDP/DDP across replica groups.
-- DeepSpeed (Lightning) - alternative to FSDP when training large models on limited GPU memory or middle ground between DDP and full sharding; ZeRO memory optimization, pipeline parallelism (sharding optimizer states, gradients, and parameters).
+- DeepSpeed (Lightning) - alternative to FSDP when training large models on limited GPU memory or middle ground between DDP and full sharding; ZeRO - the key observation is that during training, each piece of state (optimizer states, gradients, parameters) is only actively needed for a brief window.
 
----
-
-**p99**
-
----
-
-**99th percentile**
-
-It is a statistical measure used to describe the value below which 99% of observations fall (p95 corresponds to 95%, p999 to 99.9%).
-
+Note: Question - What is the bottleneck in large-scale training - compute, memory, or interconnect? Answer - depends (on model architecture, batch and state sizes, applied parallelism), profile first to find out!
 
 ---
 
@@ -303,6 +306,7 @@ Process of ellimination:
 
 Common P99 culprits:
 
+- _General lever_ → quantization (reduces model size and memory bandwidth)
 - Queue wait time spikes under bursty load → reduce max batch delay, autoscale faster
 - GPU inference time blows up on outlier inputs → input size bucketing, TensorRT or `torch.compile`, CUDA graphs
 - Preprocessing is CPU-bound and occasionally slow (garbage collection pause, lock contention) → separate it to CPU instances, eliminate Python GIL contention with multiprocessing, different serialization format
@@ -359,7 +363,7 @@ with torch.profiler.profile(
     on_trace_ready=torch.profiler.tensorboard_trace_handler('./log'),
 ) as profiler:
     # Profiled code
-    profiler.step()
+    profiler.step() # (use if profiled code contains a loop)
 ```
 
 ```shell
@@ -707,6 +711,16 @@ The word comes from statistics - a regression where the input is the variable's 
 
 ---
 
+**p99**
+
+---
+
+**99th percentile**
+
+It is a statistical measure used to describe the value below which 99% of observations fall (p95 corresponds to 95%, p999 to 99.9%).
+
+---
+
 **Differences between Polars and Pandas**
 
 ---
@@ -838,6 +852,21 @@ Side note: given a fixed compute budget C (in FLOPs), and knowing that for trans
 Note: This economy makes sense in data-abundant contexts, in data-scarce setting question gets inverted: D is fixed, so the question becomes "given a fixed dataset, how big a model can we usefully train before we overfit?"
 
 Note: Chinchilla gives you the compute-optimal frontier as a starting point, but e.g. LLaMA deliberately trained smaller models on far more tokens than compute-optimal, to get a better model at a given inference budget. And one would similarly overtrain for medical/clinical vision transformers where you can apply various augmentations (rotation, mirroring, tile crop offset, color map distortion, etc.)
+
+Note: Training data quality (effort into data filtering and curation) can substitute for scale, Chinchilla assume internet-grade quality (recent, smaller models are the embodiment)
+
+---
+
+**Practical Decision Framework - Chinchilla**
+
+---
+
+- Research / capability exploration → large scale model, Chinchilla-compute-optimal
+- High-volume production serving → train smaller model longer, then quantize
+- Latency-critical (chatbot, autocomplete) → Minimize parameter count
+- Data-scarce domain → Bigger model, less data (memorization regime)
+- Data-rich, compute-poor → Filter for data quality, smaller model, train longer
+- Quality-critical, low volume → Largest model you can afford to serve
 
 ---
 
