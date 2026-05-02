@@ -207,8 +207,8 @@ Note: Question - What is the bottleneck in large-scale training - compute, memor
 1. Inference Optimization - see: model size compression (quantization, pruning, distillation), compilation/optimization, stream not materialize, pick batching mechanisms
 2. Model packaging - version everything, reproducibility and provenance non-negotiable
 3. Serving architecture - disaggregate inference pipeline onto different compute (also mind tensor / pipeline parallelism, inference instance), load balancing, request queuing
-  - Also where one would look at inference servers (Triton Inference Server, TorchServe, Ray Serve, other LLM-specialized), application layer API (e.g. FastAPI to handle auth, routing, rate limiting, business logic) and use case (streaming chat vs. offline queued work flow in clinical/medical setting)
-  - If the product is a static DAG known at deploy time then Triton could handle it (but no notion of retries, timeouts, or error handling per graph node, otherwise Ray Serve)
+- Also where one would look at inference servers (Triton Inference Server, TorchServe, Ray Serve, other LLM-specialized), application layer API (e.g. FastAPI to handle auth, routing, rate limiting, business logic) and use case (streaming chat vs. offline queued work flow in clinical/medical setting)
+- If the product is a static DAG known at deploy time then Triton could handle it (but no notion of retries, timeouts, or error handling per graph node, otherwise Ray Serve)
 4. Resource management - autoscaling, request (size) binning, caching (e.g. embeddings in clinical/medical context)
 5. Ops & governance: monitoring (online metrics, drift detection, latency), logging, health checks, scheduled scientific canaries, regulatory (risk model, failure modes, audit acceptance tests), rollout (A/B tests, feature flags)
 
