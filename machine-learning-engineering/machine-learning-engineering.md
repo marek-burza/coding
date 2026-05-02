@@ -200,6 +200,31 @@ Note: Question - What is the bottleneck in large-scale training - compute, memor
 
 ---
 
+**Serving models at scale**
+
+---
+
+1. Inference Optimization - see: model size compression (quantization, pruning, distillation), compilation/optimization, stream not materialize, pick batching mechanisms
+2. Model packaging - version everything, reproducibility and provenance non-negotiable
+3. Serving architecture - disaggregate inference pipeline onto different compute (also mind tensor / pipeline parallelism, inference instance), load balancing, request queuing; Also where one would look at inference servers (Triton Inference Server, TorchServe, Ray Serve, other LLM-specialized), application layer API (e.g. FastAPI to handle auth, routing, rate limiting, business logic) and use case (streaming chat vs. offline queued work flow in clinical/medical setting); If the product is a static DAG known at deploy time then Triton could handle it (but no notion of retries, timeouts, or error handling per graph node, otherwise Ray Serve)
+4. Resource management - autoscaling, request (size) binning, caching (e.g. embeddings in clinical/medical context)
+5. Ops & governance: monitoring (online metrics, drift detection, latency), logging, health checks, scheduled scientific canaries, regulatory (risk model, failure modes, audit acceptance tests), rollout (A/B tests, feature flags)
+
+Note: In case of research breakthrough changing the architecture revisit all.
+
+---
+
+**Challenges of running Foundation Model in Production**
+
+---
+
+1. Get it running - size matters: basics (tracking provenance, versioning, packaging, Docker limitations), multiple GPUs & thus parallelism, batching strategies / latency / pipelining
+2. Keep it correct - account for silent degradation (I/O distribution, scientific canaries), but may be hard to run eval at scale
+3. Keep it efficient - ETL (parallelized), Automatic Mixed Precision, JIT(trace, script)→quantize→`torch.compile`→compilation backends→CUDAGraph, pick instance and autoscaling
+4. Keep it trustworthy - know your regulatory requirements, risk model & failure modes, red-teaming (depending on a model)
+
+---
+
 **Triton Inference Server vs. TorchServe**
 
 ---
@@ -291,14 +316,15 @@ Process of ellimination:
 
 ---
 
-**Challenges of running Foundation Model in Production**
+**(Breaking Change) Rollout Phases**
 
 ---
 
-1. Get it running - size matters: basics (tracking provenance, versioning, packaging, Docker limitations), multiple GPUs & thus parallelism, batching strategies / latency / pipelining
-2. Keep it correct - account for silent degradation (I/O distribution, scientific canaries), but may be hard to run eval at scale
-3. Keep it efficient - ETL (parallelized), Automatic Mixed Precision, JIT(trace, script)→quantize→`torch.compile`→compilation backends→CUDAGraph, pick instance and autoscaling
-4. Keep it trustworthy - know your regulatory requirements, risk model & failure modes, red-teaming (depending on a model)
+- Internal shadow mode
+- Opt-in beta via model registry
+- Canary on live traffic
+- Gradual migration with deprecation date
+- Sunset with clear error messages
 
 ---
 
@@ -436,16 +462,6 @@ Architecture:
 
 ---
 
-**Pipeline Architecture Notes**
-
----
-
-- Preprocessing, as a separate stage
-- Stream not materialize
-- Prefetching, parallelism
-
----
-
 **How do foundation models for tabular data differ from NLP/vision foundation models?**
 
 ---
@@ -457,9 +473,9 @@ Architecture:
 
 ---
 
-**How do you decide when a research prototype is ready for production?**
-
-**How do you validate that a model release was safe to ship?**
+- **How do you decide when a research prototype is ready for production?**
+- **How do you validate that a model release was safe to ship?**
+- **We have a research breakthrough that changes the architecture - how to get it intoproduction?**
 
 ---
 
@@ -476,13 +492,14 @@ Safe:
 
 1. Provenance, regulatory requirements
 2. Model packaging
-3. Automated (regulatory) acceptance tests
-- Ground-truth validation
+3. Automated (regulatory) acceptance tests (note: for FM-sized test sets - **tiered validation system**)
+- Algorithm performance tests - offline metrics on ground-truth
 - Regression tests
-- Edge case tests
+- Behavioral testing - sliced evaluation across subgroups, edge case tests, know failure modes
 - Determinism tests
-- Performance tests (compute & predictive)
+- Profiling tests (latency, compute & memory requirements)
 - Scientific canaries (on hold-out dataset)
+- FM caveat: Foundation model is evaluated on breadth across tasks, task-specific model is evaluated on depth on that particular task 
 4. Manual subject matter review on random sample
 5. Regulatory documentation
 6. Deployment
@@ -496,9 +513,22 @@ Safe:
 1. Make the trade-off concrete and quantified
 2. Understand what the stakeholders actually care about
 3. Propose alternatives, not just rejections
-4. Establish shared ownership of the deployment specification
+4. Document deployment specification AND share its ownership
 5. Timebox exploration, then converge
 6. Escalate clearly when needed
+
+---
+
+**How does one onboard onto an architecture one didn't design?**
+
+---
+
+1. Start With the data, not the code; Understand the task, look at examples, tests
+2. Understand the architecture top-down, timeboxed
+3. Run everything locally
+4. Find the load-bearing decisions
+5. Talk to people strategically and in practical context (here is also where asking about the history of decisions is important)
+6. Start small with contributions, connect the contributions to build bigger picture
 
 ---
 
