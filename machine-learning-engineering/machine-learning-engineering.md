@@ -31,7 +31,7 @@
 - Lets you serialize and optimize PyTorch models into a format that can run independently of Python.
 - Just-In-Time (JIT) compilation system - converts to TorchScript IR
 - `torch.jit.trace` (earlier, simpler approach), replaced by `torch.jit.script`
-- Optimizations: simple (dead code eliminstion, constant folding, common subexpression elimination), graph level (limited operator fusion into joint kernels), control flow optimization (function call inlining, loop unrolling for constant loop bounds)
+- Optimizations: simple (dead code elimination, constant folding, common subexpression elimination), graph level (limited operator fusion into joint kernels), control flow optimization (function call inlining, loop unrolling for constant loop bounds)
 
 ---
 
@@ -114,7 +114,7 @@ torch.cuda.synchronize()
 
 - `bf16` has worse precision than `fp16` but a much bigger dynamic range (different mantissa exponent split); easier for `fp16` to underflow to zero or overflow to infinity, and precision loss is usually acceptable as gradients are noisy anyway thus `bf16` improves training stability (though even then gradient clipping remains relevant)
 - Progressively by impact on quality:
-  - `f16`/`bf16` (common, well supported)
+  - `fp16`/`bf16` (common, well supported)
   - `fp8` (supported by H100, emerging standard on Blackwell)
   - `int8` (still quite safe - ~98%, well supported)
   - AWQ (Activation-Aware Weight Quantization, 4-bit, 96-99%, beats GPTQ)
@@ -616,8 +616,8 @@ Combines a retrieval system with a language model to answer questions using exte
 
 ---
 
-- High bias means the model is too simple (underfitting)
-- High variance means it is too sensitive to training data (overfitting)
+- High bias means the model is too simple (underfitting); accuracy
+- High variance means it is too sensitive to training data (overfitting); precision
 
 ---
 
