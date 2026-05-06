@@ -1,10 +1,4 @@
-# MACHINE LEARNING ENGINEERING
-
----
-
-**PyTorch Model Optimization (Inference)**
-
----
+# PyTorch Model Optimization (Inference)
 
 1. Inference mode: `torch.no_grad()` or even `torch.inference_mode()`, `model.eval()`
 2. Basic serialization & optimization: `torch.jit` (being replaced by `torch.export` or `torch.onnx.export`)
@@ -14,9 +8,7 @@
 
 ---
 
-**PyTorch inference mode**
-
----
+# PyTorch inference mode
 
 - `model.eval()` switches certain layers into evaluation mode. Layers like `BatchNorm` and `Dropout` behave differently during training vs. inference.
 - `torch.no_grad()` - context manager which disables gradient tracking. Autograd (PyTorch's automatic differentiation engine) otherwise builds the autograd graph (traversed in reverse in `.backward()` to compute gradients).
@@ -24,9 +16,7 @@
 
 ---
 
-**Basic serialization & optimization - `torch.jit`**
-
----
+# Basic serialization & optimization - `torch.jit`
 
 - Lets you serialize and optimize PyTorch models into a format that can run independently of Python.
 - Just-In-Time (JIT) compilation system - converts to TorchScript IR
@@ -35,9 +25,7 @@
 
 ---
 
-**Deep optimization - `torch.compile` or `torch_tensorrt.compile`**
-
----
+# Deep optimization - `torch.compile` or `torch_tensorrt.compile`
 
 Backends:
 
@@ -51,11 +39,7 @@ Questions to answer: How stable are your input shapes? What's your deployment ta
 
 ---
 
-**Optimizations with `model = torch.compile(model, backend='inductor')`**
-
----
-
-Optimizations:
+# Optimizations with `model = torch.compile(model, backend='inductor')`
 
 - generates optimized C++/Triton kernels (deep operator and kernel fusion, kernel autotuning - benchmarks multiple kernel implementations and picks the fastest one for the specific GPU)
 - captures CUDA Graphs
@@ -65,9 +49,7 @@ Modes: `default` (balanced), `reduce-overhead` (minimizes launch overhead via CU
 
 ---
 
-**Optimizations with `model = torch_tensorrt.compile(model, ...)`**
-
----
+# Optimizations with `model = torch_tensorrt.compile(model, ...)`
 
 - Layer & Operator Fusion - merges sequences of operations into single kernels, eliminating intermediate memory reads/writes and kernel launch overhead.
 - Precision Calibration - beyond just FP16, TensorRT supports INT8 quantization, runs a calibration dataset through your network to determine per-tensor dynamic ranges, then quantizes weights and activations to 8-bit integers.
@@ -79,18 +61,14 @@ Modes: `default` (balanced), `reduce-overhead` (minimizes launch overhead via CU
 
 ---
 
-**CUDA Graphs**
-
----
+# CUDA Graphs
 
 - Captures a fixed sequence of GPU operations once and replays them without CPU involvement (replay as a single unit, rather than launching kernels one by one eliminating CPU & traffic overhead)
 - Limitations: input/output shapes must stay fixed between replays, no if/else flow control, opaque to step-by-step debugging
 
 ---
 
-Runtime optimization: GPU Warm-Up
-
----
+# Runtime optimization: GPU Warm-Up
 
 Run small/synthetic inference to go through e.g.:
 
@@ -108,9 +86,7 @@ torch.cuda.synchronize()
 
 ---
 
-**Quantization**
-
----
+# Quantization
 
 - `bf16` has worse precision than `fp16` but a much bigger dynamic range (different mantissa exponent split); easier for `fp16` to underflow to zero or overflow to infinity, and precision loss is usually acceptable as gradients are noisy anyway thus `bf16` improves training stability (though even then gradient clipping remains relevant)
 - Progressively by impact on quality:
@@ -124,9 +100,7 @@ torch.cuda.synchronize()
 
 ---
 
-**Automatic Mixed Precision - `torch.amp`**
-
----
+# Automatic Mixed Precision - `torch.amp`
 
 Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive ops in `float32` (alternative - `.half()`, no `autocast` context needed); used during training but benefits inference indirectly since the model is numerically robust in lower precision.
 
@@ -143,9 +117,7 @@ Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive op
 
 ---
 
-**Model size compression techniques**
-
----
+# Model size compression techniques
 
 - Quantisation - See: AMP, `.half()`, quantization card
 - Pruning - Removed weights (unstructured pruning) or neurons/heads/layers (structured pruning) which contribute little to the output (the latter not possible as aggressively before accuracy drops)
@@ -154,35 +126,27 @@ Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive op
 
 ---
 
-**PyTorch Model Optimization (Training)**
-
----
+# PyTorch Model Optimization (Training)
 
 - Gradient checkpointing: `torch.utils.checkpoint`
 - Other: model sharding & generally data/model parallelism
 
 ---
 
-**Gradient checkpointing - `torch.utils.checkpoint`**
-
----
+# Gradient checkpointing - `torch.utils.checkpoint`
 
 When you are running into OOM during training and cannot reduce batch size further - trades compute for memory; instead of storing all intermediate activations for the backward pass it recompute them on the fly during backprop.
 
 ---
 
-**Data parallelism vs Model parallelism**
-
----
+# Data parallelism vs Model parallelism
 
 - Data parallelism - replicate the entire model on every GPU, split the input batch across GPUs, and aggregate gradients after the backward pass.
 - Model parallelism - splits the model itself across multiple GPUs (tensor parallelism, pipeline parallelism)
 
 ---
 
-**PyTorch parallelization strategies**
-
----
+# PyTorch parallelization strategies
 
 Happens because model memory footprint includes weights, gradients, optimizer states.
 
@@ -200,9 +164,7 @@ Note: Question - What is the bottleneck in large-scale training - compute, memor
 
 ---
 
-**Serving models at scale**
-
----
+# Serving models at scale
 
 1. Inference Optimization - see: model size compression (quantization, pruning, distillation), compilation/optimization, stream not materialize, pick batching mechanisms
 2. Model packaging - version everything, reproducibility and provenance non-negotiable
@@ -216,9 +178,7 @@ Note: In case of research breakthrough changing the architecture revisit all.
 
 ---
 
-**Challenges of running Foundation Model in Production**
-
----
+# Challenges of running Foundation Model in Production
 
 1. Get it running - size matters: basics (tracking provenance, versioning, packaging, Docker limitations), multiple GPUs & thus parallelism, batching strategies / latency / pipelining
 2. Keep it correct - account for silent degradation (I/O distribution, scientific canaries), but may be hard to run eval at scale
@@ -227,9 +187,7 @@ Note: In case of research breakthrough changing the architecture revisit all.
 
 ---
 
-**Triton Inference Server vs. TorchServe**
-
----
+# Triton Inference Server vs. TorchServe
 
 Triton Inference Server (NVIDIA) is backend-agnostic and performance-obsessed. It serves TensorRT, ONNX, TorchScript, TensorFlow, and even Python models under one roof. Its power features:
 
@@ -247,9 +205,7 @@ TorchServe is PyTorch-native and simpler to onboard. You package a model as a `.
 
 ---
 
-**Batching Strategies**
-
----
+# Batching Strategies
 
 Trade-off: GPU utilization and throughput vs. latency
 
@@ -259,9 +215,7 @@ Trade-off: GPU utilization and throughput vs. latency
 
 ---
 
-**Load Balancing Across GPU Instances**
-
----
+# Load Balancing Across GPU Instances
 
 Because the state is large and due to GPU memory specifics strategies like round-robin are not effective. Instead:
 
@@ -282,9 +236,7 @@ Minimum instance count (to prevent live warm-up), apply predictive pre-warming f
 
 ---
 
-**What if a model suddenly silently degrades in production?**
-
----
+# What if a model suddenly silently degrades in production?
 
 Silently means: no crash/time-out/500/out-of-SLA latency - it's about predictive performance of the model.
 
@@ -303,9 +255,7 @@ Detection strategies:
 
 ---
 
-**Troubleshooting model working well offline but poorly in production**
-
----
+# Troubleshooting model working well offline but poorly in production
 
 These two differ in three ways: data, code path, and environment.
 
@@ -318,9 +268,7 @@ Process of ellimination:
 
 ---
 
-**(Breaking Change) Rollout Phases**
-
----
+# (Breaking Change) Rollout Phases
 
 - Internal shadow mode
 - Opt-in beta via model registry
@@ -330,9 +278,7 @@ Process of ellimination:
 
 ---
 
-**How would you reduce P99 latency by 50%?**
-
----
+# How would you reduce P99 latency by 50%?
 
 - Trick question.
 - It depends on where the latency for the worst 1% of requests is coming from.
@@ -350,17 +296,13 @@ Common P99 culprits:
 
 ---
 
-**`torch.export`**
-
----
+# `torch.export`
 
 For portability of the model, to optimize for infertece use e.g. TensorRT.
 
 ---
 
-**`safetensors`**
-
----
+# `safetensors`
 
 `safetensors` supports `mmap=True`, meaning weights are loaded lazily from disk rather than all at once into RAM
 
@@ -369,9 +311,7 @@ For portability of the model, to optimize for infertece use e.g. TensorRT.
 
 ---
 
-**Gradient clipping**
-
----
+# Gradient clipping
 
 Clips the norm of gradients before the optimizer step. Prevents exploding gradients - a failure mode where gradients grow uncontrollably, causing the optimizer to take a massive step that destroys learned weights. Depends on layers used / model architecture - RNNs almost always need it, CNNs less so.
 
@@ -384,9 +324,7 @@ optimizer.step()
 
 ---
 
-**PyTorch Profiler with TensorBoard**
-
----
+# PyTorch Profiler with TensorBoard
 
 ```python
 with torch.profiler.profile(
@@ -410,9 +348,7 @@ docker run -it --rm \
 
 ---
 
-**Writing technical specification**
-
----
+# Writing technical specification
 
 - Start with external requirements, and break down into internal
 - List functional and non-functional
@@ -424,9 +360,7 @@ docker run -it --rm \
 
 ---
 
-**Making cross-functional architectural decisions**
-
----
+# Making cross-functional architectural decisions
 
 How I made decisions:
 
@@ -444,9 +378,7 @@ How I get buy-in:
 
 ---
 
-**Describe how you'd design a benchmarking pipeline for evaluating a model**
-
----
+# Describe how you'd design a benchmarking pipeline for evaluating a model
 
 Core design principles:
 
@@ -464,9 +396,7 @@ Architecture:
 
 ---
 
-**How do foundation models for tabular data differ from NLP/vision foundation models?**
-
----
+# How do foundation models for tabular data differ from NLP/vision foundation models?
 
 - No natural column order
 - Heterogeneous column types
@@ -475,11 +405,7 @@ Architecture:
 
 ---
 
-- **How do you decide when a research prototype is ready for production?**
-- **How do you validate that a model release was safe to ship?**
-- **We have a research breakthrough that changes the architecture - how to get it intoproduction?**
-
----
+# How do you decide/validate when a research prototype (possibly with different architecture) is ready/safe for production / to ship?
 
 Ready:
 
@@ -508,9 +434,7 @@ Safe:
 
 ---
 
-**How do you handle disagreements with researchers about engineering constraints vs. model quality trade-offs?**
-
----
+# How do you handle disagreements with researchers about engineering constraints vs. model quality trade-offs?
 
 1. Make the trade-off concrete and quantified
 2. Understand what the stakeholders actually care about
@@ -521,9 +445,7 @@ Safe:
 
 ---
 
-**How does one onboard onto an architecture one didn't design?**
-
----
+# How does one onboard onto an architecture one didn't design?
 
 1. Start With the data, not the code; Understand the task, look at examples, tests
 2. Understand the architecture top-down, timeboxed
@@ -534,9 +456,7 @@ Safe:
 
 ---
 
-**Python Engineering Excellence**
-
----
+# Python Engineering Excellence
 
 Automated pre-commit hooks and CI checks:
 
@@ -570,17 +490,13 @@ Code structure:
 
 ---
 
-**What is in-context learning?**
-
----
+# What is in-context learning?
 
 In-context learning is when a language model learns to perform a task from examples provided in the prompt, without any updates to its weights. Comes in a few flavors: zero-shot (just a task description), one-shot (one example), and few-shot (several examples).
 
 ---
 
-**RAG (Retrieval-Augmented Generation)**
-
----
+# RAG (Retrieval-Augmented Generation)
 
 Combines a retrieval system with a language model to answer questions using external knowledge (and to tap into knowledge past its training cut-off point):
 
@@ -592,9 +508,7 @@ Combines a retrieval system with a language model to answer questions using exte
 
 ---
 
-**Supervised/semi-supervised/unsupervised learning**
-
----
+# Supervised/semi-supervised/unsupervised learning
 
 - Supervised learning - every training example has a label (correct answer)
 - Unsupervised learning - no labels at all, model finds structure (clustering, dimensionality reduction; PCA, autoencoders)
@@ -602,9 +516,7 @@ Combines a retrieval system with a language model to answer questions using exte
 
 ---
 
-**Training, testing, validation data**
-
----
+# Training, testing, validation data
 
 - Training data - portion of the data that training algorithm uses to learn patterns, i.e. adjust its parameters (weights/biases) such that the error on this set is minimized
 - Testing set - not seen by the training algorithm and used to gauge the models performance (used once at the end on the trained model)
@@ -612,18 +524,14 @@ Combines a retrieval system with a language model to answer questions using exte
 
 ---
 
-**Bias/Variance Trade-off**
-
----
+# Bias/Variance Trade-off
 
 - High bias means the model is too simple (underfitting); accuracy
 - High variance means it is too sensitive to training data (overfitting); precision
 
 ---
 
-**Dropout Layer**
-
----
+# Dropout Layer
 
 - A dropout layer is a regularization technique that randomly sets a fraction of neurons during each training step to zero and they do not contribute to that forward pass
 - Forces the network to not rely too heavily on any single neuron or pathway
@@ -634,9 +542,7 @@ Side note: Batching (particularly when shuffled) is also viewed as a regularizer
 
 ---
 
-**How do you detect overfitting in large-scale systems?**
-
----
+# How do you detect overfitting in large-scale systems?
 
 General rule still true: training loss keeps going down, validation loss stops improving or rises.
 
@@ -654,9 +560,7 @@ Detection & resolution (examples):
 
 ---
 
-**How do you evaluate a model offline vs online?**
-
----
+# How do you evaluate a model offline vs online?
 
 The basic distinction comes from the fact that you do not have the ground truth when evaluating online.
 
@@ -664,44 +568,33 @@ Thus online you either use proxy metrics, or you run A/B testing, shadow mode wi
 
 ---
 
-**How would you choose between: linear models vs tree-based models vs deep learning?**
-
----
+# How would you choose between: linear models vs tree-based models vs deep learning?
 
 - Mostly driven by data characteristics (dataset size, completeness, linearity, how well enginered/cleaned the features are).
 - Start with with simplest and go to more complex when the decision is justified.
 - Interpretability or latency can be a factor
 
-
 ---
 
-**Why is feature scaling & normalization important?**
-
----
+# Why is feature scaling & normalization important?
 
 Puts features on comparable ranges so gradient-based optimizers converge faster and distance-based algorithms (like SVM) are not dominated by large-magnitude features. Derivatives of the loss on non-normalized features would also be on different scales which would make gradient descent unstable and converge slower.
 
 ---
 
-**Classification vs. regression?**
-
----
+# Classification vs. regression?
 
 Classification predicts discrete labels, regression predicts continuous values. A problem might be both if the continuous values get binned into categories (which may help the model to learn and generalize better, and can also be useful in itself depending on a use case). Choice determines loss function and output layer.
 
 ---
 
-**How to fix exploding gradients?**
-
----
+# How to fix exploding gradients?
 
 Gradient clipping, batch normalization, lower learning rate, weight regularization, or architectural changes (e.g. less layers, skip connections, LSTM instead of vanilla RNN).
 
 ---
 
-**Techniques to address landing in sub-optimal local minima**
-
----
+# Techniques to address landing in sub-optimal local minima
 
 - Try a variety of initialization techniques - Glorot, He, Xavier
 - Stochastic/mini-batch gradient descent - sampling noise helps escape shallow minima
@@ -710,9 +603,7 @@ Gradient clipping, batch normalization, lower learning rate, weight regularizati
 
 ---
 
-**AUC (Area Under the Curve)**
-
----
+# AUC (Area Under the Curve)
 
 ROC curve (Receiver Operating Characteristic) in ML contexts. Probability that the model ranks a random positive above a random negative. 0.5 = random, 1.0 = perfect
 
@@ -723,15 +614,13 @@ What the ROC curve plots:
 
 Other (related) metrics:
 
-- Specificity, True Negative Rate `T_N_R=TN/(TN+FP`. Of the real negatives, how many did we correctly clear?
+- Specificity, True Negative Rate `T_N_R=TN/(TN+FP)`. Of the real negatives, how many did we correctly clear?
 - Precision, Positive Predictive Value `P_P_V=TP/(TP+FP)`. Of the things we flagged, how many were actually positive?
 - Accuracy: `(TP+TN)/(TP+TN+FP+FN)`. Of all predictions, how many were correct?
 
 ---
 
-**What does "autoregressive" mean?**
-
----
+# What does "autoregressive" mean?
 
 Autoregressive means the model generates one element at a time, and each new element is conditioned on all previously generated elements.
 
@@ -739,9 +628,7 @@ The word comes from statistics - a regression where the input is the variable's 
 
 ---
 
-**Dense vector vs embedding vs latent representation**
-
----
+# Dense vector vs embedding vs latent representation
 
 - Dense vector is the format
 - Embedding is the process and its result - the act of mapping a discrete or high-dimensional object into a dense vector space such that geometric relationships reflect semantic ones
@@ -749,9 +636,7 @@ The word comes from statistics - a regression where the input is the variable's 
 
 ---
 
-**p99**
-
----
+# p99
 
 **99th percentile**
 
@@ -759,9 +644,7 @@ It is a statistical measure used to describe the value below which 99% of observ
 
 ---
 
-**Differences between Polars and Pandas**
-
----
+# Differences between Polars and Pandas
 
 - Pandas is eager and single-threaded (GIL) with a Python/NumPy backend - every operation materializes immediately in memory
 - Polars is built on Rust and Arrow with native multithreading, supports both eager and lazy execution, and uses a typed, index-free model (contrary to Pandas) with consistent null handling (Pandas conflates NaN and NULL), expressions are composable and close to SQL feel
@@ -769,9 +652,7 @@ It is a statistical measure used to describe the value below which 99% of observ
 
 ---
 
-**Differences between Polars and Pandas (alternative)**
-
----
+# Differences between Polars and Pandas (alternative)
 
 The fundamental difference is eager versus lazy execution. Pandas materializes every intermediate; Polars lets you build a logical plan with scan_parquet and a chain of operations, and doesn't execute until you call collect.
 That lets the query optimizer do predicate pushdown, projection pushdown, and streaming execution — so instead of reading a 500 GB Parquet dataset into memory and then filtering, it reads only the row groups and columns the query actually needs.
@@ -779,17 +660,13 @@ Combined with the Rust + Arrow backend and real multithreading, that's a differe
 
 ---
 
-**Difference between Polars vs Pandas when filtering a DataFrame**
-
----
+# Difference between Polars vs Pandas when filtering a DataFrame
 
 Lazy evaluation. With `pl.scan_parquet(...).filter(...).select(...).collect()`, Polars builds a logical plan and runs a query optimizer before executing - doing predicate/projection/slice pushdowns. Pandas executes eagerly, materializing every intermediate, so it has no chance to skip data it doesn't need.
 
 ---
 
-**Properties of the Parquet format**
-
----
+# Properties of the Parquet format
 
 - Columnar storage, not row by row (good for selective column reads, strong compression)
 - Hierarchical row group → column chunks → page structure (aids as a unit of parallelism and streaming)
@@ -800,9 +677,7 @@ Lazy evaluation. With `pl.scan_parquet(...).filter(...).select(...).collect()`, 
 
 ---
 
-**Parquet format (alternative description)**
-
----
+# Parquet format (alternative description)
 
 Parquet is a columnar format with hierarchical row group and page structure. The columnar layout gives you selective column reads and better compression.
 The row group statistics enable predicate pushdown, so query engines skip data that can't match a filter. It has a rich typed schema including nested types, per-column encodings like dictionary and RLE, and it's immutable, which makes it the natural substrate for partitioned datasets and table formats like Iceberg.
@@ -810,9 +685,7 @@ For ML pre-training pipelines, the combination of column pruning, predicate push
 
 ---
 
-**What are predicate pushdowns?**
-
----
+# What are predicate pushdowns?
 
 - Predicate pushdown moves `filter()` conditions down to the scan so non-matching row groups are never read
 - Projection pushdown reads only the columns the query actually uses
@@ -820,9 +693,7 @@ For ML pre-training pipelines, the combination of column pruning, predicate push
 
 ---
 
-**Cleaning dirty tabular data (CSV/Excel/Parquet from Common Crawl) for foundation model pre-training**
-
----
+# Cleaning dirty tabular data (CSV/Excel/Parquet from Common Crawl) for foundation model pre-training
 
 The objective is not cleaning one table for one task - it is heterogeneous tables so a foundation model can learn good priors across them. This means some 'dirtiness' is actually signal we want to preserve (real-world messiness the model should be robust to), and some is noise that will poison pre-training. The filtering criteria should reflect that distinction.
 
@@ -840,22 +711,14 @@ For pre-training specifically, do not over-clean - preserve realistic messiness 
 
 ---
 
-**Tabular data cleaning aspects**
-
-**Correlation-based filtering - computed along which dimension?**
-
-**What does high correlation mean in this context?**
-
----
+# What does high correlation mean in context of tabular data cleaning? Computed along which dimension?
 
 - Compute correlation across columns (pairwise between column vectors), not rows
 - Column-wise correlation surfaces redundancy, derived columns, and likely duplicates or a unit-conversion artifact - all of which teach the model spurious "everything is correlated" priors and waste capacity. Typically drop one, but it depends on semantics: if both columns are genuinely independent measurements that happen to correlate, that's real signal worth keeping.
 
 ---
 
-**[Why do tree-based models still outperform deep learning on tabular data? (Grinsztajn 2022)](https://arxiv.org/pdf/2207.08815)**
-
----
+# [Why do tree-based models still outperform deep learning on tabular data? (Grinsztajn 2022)](https://arxiv.org/pdf/2207.08815)**
 
 1. Tree-based models fit functions which are: threshold-based, non-continuous or regime-dependent (feature–target relationships change depending on the global system state); NNs prefer smooth, low-frequency functions.
 2. Tree-based models ignore weak features by performing feature selection; NN tend to mix features and more sensitive to accumulating noise.
@@ -863,9 +726,7 @@ For pre-training specifically, do not over-clean - preserve realistic messiness 
 
 ---
 
-**TabPFN**
-
----
+# TabPFN
 
 TabPFN replaces the usual workflow of learning a single predictive function `f(x)` with a model that is trained to estimate:
 "given this dataset, what is the probability distribution over possible functions that could explain it?"
@@ -878,9 +739,7 @@ Side note: SAP-RPT-1 went further by going to multi-table / relational input typ
 
 ---
 
-**Chinchilla**
-
----
+# Chinchilla
 
 The core claim: Prior large language models (GPT-3, Gopher, etc.) which scaled parameters far faster than data (following Kaplan et al.) were significantly undertrained.
 The law: For compute-optimal training, model size (N) and training tokens (D) should scale in equal proportion. If you double your compute budget, you should roughly double both the number of parameters and the number of training tokens.
@@ -895,9 +754,7 @@ Note: Training data quality (effort into data filtering and curation) can substi
 
 ---
 
-**Practical Decision Framework - Chinchilla**
-
----
+# Practical Decision Framework - Chinchilla
 
 - Research / capability exploration → large scale model, Chinchilla-compute-optimal
 - High-volume production serving → train smaller model longer, then quantize
@@ -908,9 +765,7 @@ Note: Training data quality (effort into data filtering and curation) can substi
 
 ---
 
-**Encoder vs decoder vs encoder-decoder for tabular data - what would you pick and why?**
-
----
+# Encoder vs decoder vs encoder-decoder for tabular data - what would you pick and why?
 
 - Is your input tabular and output a label/score? → Encoder-only
 - Is your task generative (synthesize rows)? → Decoder-only
@@ -921,18 +776,14 @@ Note: Training data quality (effort into data filtering and curation) can substi
 
 ---
 
-**U-Net vs Autoencoder**
-
----
+# U-Net vs Autoencoder
 
 - Autoencoder is trained to reproduce its input at the output
 - U-Net is trained to produce a different output than its input. The key difference is skip connections. The bottleneck in a U-Net carries global context (what is the overall scene), while skip connections carry local detail (where exactly are the edges).
 
 ---
 
-**Attention mechanism**
-
----
+# Attention mechanism
 
 - Words do not have fixed meanings, they shift depending on context. A token like "bank" should be represented differently next to "river" than next to "loan". Attention lets each token update its representation by looking at all other tokens in the sequence and weighting how relevant each one is for interpreting it. That is where the original n² issue comes from - a 2D matrix
 - FlashAttention 1 was about reducing storage from n² to n in how the calculations were done over a sequence, and FlashAttention 2 introduced additional parallelism to speed up even more
@@ -940,9 +791,7 @@ Note: Training data quality (effort into data filtering and curation) can substi
 
 ---
 
-**Mixture of Experts (MoE)**
-
----
+# Mixture of Experts (MoE)
 
 - A standard neural network ("dense" model) activates all its parameters for every input token. A Mixture of Experts model instead maintains a collection of specialized sub-networks (the "experts") and routes each token to only a subset of them
 - Sparse MoE models decouple parameter count from compute, but you still pay the memory cost of all parameters
@@ -950,5 +799,3 @@ Note: Training data quality (effort into data filtering and curation) can substi
 - Without intervention, the router collapses - a few popular experts get all traffic - solved e.g. with an auxiliary load-balancing loss that penalizes uneven routing
 - Training efficiency - spending compute budget more efficiently because each expert sees a curated distribution of inputs
 - Better inference throughput
-
----
