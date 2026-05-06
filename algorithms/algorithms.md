@@ -2,14 +2,14 @@
 
 ---
 
-### DYNAMIC PROGRAMMING
+## DYNAMIC PROGRAMMING
 
 TOP-DOWN: MEMOIZATION<br/>
 BOTTOM-UP: TABULATION (SUBPROBLEMS)
 
 ---
 
-### DFS vs. BFS
+## DFS vs. BFS
 
 WORST CASE _O(B<sup>D</sup>)_<br/>
 DFS: RECURSIVE versus BFS: FIFO<br/>
@@ -20,7 +20,7 @@ POST-ORDER: VISIT CHILDREN
 
 ---
 
-### HASH TABLES
+## HASH TABLES
 
 - **FLOAT:** _((KEY - MIN) / (MAX - MIN)) % M_<br/>
 - **INT:** _KEY % M_ where _{M: MERSENNE PRIME}_<br/>
@@ -38,7 +38,7 @@ POST-ORDER: VISIT CHILDREN
 
 ---
 
-### HEAPS (functioning)
+## HEAPS (functioning)
 
 [qheap1](https://www.hackerrank.com/challenges/qheap1)
 [min-stack](https://leetcode.com/problems/min-stack/)
@@ -55,7 +55,7 @@ _PARENT = INDEX / 2_<br/>
 
 ---
 
-### HEAPS (usage)
+## HEAPS (usage)
 
 **RUNNING MEDIAN** - GREATER (SMALLER) HALF OF THE NUMBERS IN MIN (MAX) HEAP\;
 INSERT INCOMING INTO HEAP DEPENDING ON COMPARISON WITH CURRENT MEDIAN;
@@ -65,7 +65,7 @@ REMOVE OUTGOING SIMILAR
 
 ---
 
-### GRAPHS
+## GRAPHS
 
 - **ADJACENCY MATRIX**<br/>
   PRO: LOOKUP TIME (MANY CONNECTIONS)<br/>
@@ -78,7 +78,7 @@ REMOVE OUTGOING SIMILAR
 
 ---
 
-### TRIE TREE
+## TRIE TREE
 
 reTRIEval, PREFIX TREE<br/>
 (MARKOV CHAIN TXT GEN, AUTOCOMPLETE)<br/>
@@ -87,14 +87,14 @@ indicating if this character is a terminating one.
 
 ---
 
-### SELF-BALANCING BST
+## SELF-BALANCING BST
 
 Java - red-black tree: TreeMap<br/>
 Other algorithm: AVL tree (uses rotation)
 
 ---
 
-### QUICK SORT
+## QUICK SORT
 
 - (**shuffle** first or sample for pivot - median as pivot helps; [LeetCode: shuffle-an-array](https://leetcode.com/problems/shuffle-an-array/))
 - PICK PIVOT
@@ -108,7 +108,7 @@ AVERAGE: _O(N × log(N))_
 
 ---
 
-### MERGE SORT
+## MERGE SORT
 
 - DIVIDE INTO SUBLISTS
 - SORT SUBLISTS RECURSIVELY
@@ -121,7 +121,7 @@ AVERAGE: _O(N × log(N))_
 
 ---
 
-### MINIMUM SPANNING TREE
+## MINIMUM SPANNING TREE
 
 EXAMPLE **PRIM'S ALGORITHM**
 
@@ -133,7 +133,7 @@ _O((|E| + |V|) × log|V|)_ WITH BINARY HEAP AND ADJACENCY
 
 ---
 
-### DIJKSTRA'S ALGORITHM (BUT FLOYD ON NEGATIVE)
+## DIJKSTRA'S ALGORITHM (BUT FLOYD ON NEGATIVE)
 
 SHORTEST PATH _O(|V|²)_:
 
@@ -147,7 +147,7 @@ _O((|E| + |V|) × log|V|)_ WITH A PRIORITY QUEUE (SELF-BALANCING BST OR BINARY H
 
 ---
 
-### LEADER ELECTION
+## LEADER ELECTION
 
 **LELANN-CHANG-ROBERTS**<br/>
 ONLY FORWARD LARGER ID IF HAVE NOT SENT OWN<br/>
@@ -159,7 +159,7 @@ WORST MESSAGE _O(N × log(N))_
 
 ---
 
-### P vs. NP
+## P vs. NP
 
 - **P**: SOLUTION FOUND IN POLYNOMIAL TIME
 - **NP**: SOLUTION VERIFIABLE IN POLYNOMIAL TIME
@@ -170,7 +170,7 @@ _P ≠ NP_: _P ⊂ NP_, _NP-COMPLETE ≡ NP - NP-HARD_
 
 ---
 
-### NP-COMPLETE PROBLEMS
+## NP-COMPLETE PROBLEMS
 
 GRAPH COLORING<br/>
 TRAVELING SALESMAN<br/>
@@ -181,7 +181,7 @@ SET COVER PROBLEM
 
 ---
 
-### UNBOUNDED KNAPSACK PROBLEM
+## UNBOUNDED KNAPSACK PROBLEM
 
 [unbounded-knapsack](http://www.hackerrank.com/challenges/unbounded-knapsack)
 
@@ -194,7 +194,7 @@ PSEUDO POLYNOMIAL TIME (LIKE TESTING IF N IS PRIME) - EXPONENTIAL IN LENGTH (NUM
 
 ---
 
-### SET COVER PROBLEM
+## SET COVER PROBLEM
 
 FROM SET OF SETS SELECT SMALLEST NUMBER OF SETS COVERING UNION
 
@@ -202,7 +202,7 @@ GREEDY (CHOOSE ONE COVERING MOST)
 
 ---
 
-### TRAVELING SALESMAN PROBLEM
+## TRAVELING SALESMAN PROBLEM
 
 **EXACT ALGORITHM:** HELD-KARP _O(N²2<sup>N</sup>))_<br/>
 **APPROXIMATE ALGORITHM:**
@@ -213,7 +213,7 @@ GREEDY (CHOOSE ONE COVERING MOST)
 
 ---
 
-### PROCESS VERSUS THREAD
+## PROCESS VERSUS THREAD
 
 CONTEXT SWITCH
 
@@ -222,7 +222,7 @@ CONTEXT SWITCH
 
 ---
 
-### DEADLOCK vs. LIVELOCK
+## DEADLOCK vs. LIVELOCK
 
 **TWO OR MORE PROCESSES WAIT FOR THE OTHERS TO RELEASE THE RESOURCE**
 
@@ -232,7 +232,7 @@ AVOIDANCE BY RANDOMIZATION
 
 ---
 
-### LOCKS
+## LOCKS
 
 SLEEPLOCK - SPINLOCK
 
@@ -244,7 +244,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-### DINING PHILOSOPHERS
+## DINING PHILOSOPHERS
 
 - SEMAPHORES / MUTEXES (GRAB FIRST THEN SECOND; RISK: CAN STARVE)
 - CENTRAL MONITOR/WAITER/CONDUCTOR (CAN EAT IF NEITHER NEIGHBOR EATS; RISK: REDUCED PARALLELISM)
@@ -252,7 +252,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-### LOCK, CONCURRENT
+## LOCK, CONCURRENT
 
 `threading.Lock.acquire([blocking])`<br/>
 `threading.Lock.release([blocking])`<br/>
@@ -260,7 +260,7 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-### SCHEDULING
+## SCHEDULING
 
 - FIFO
 - FIXED PRIORITY PREEMPTIVE (NOT COOPERATIVE)
@@ -269,19 +269,19 @@ TEST-AND-SET - FETCH-AND-ADD - CMP-AND-SWAP
 
 ---
 
-### STRING (PYTHON)
+## STRING (PYTHON)
 
 comparison operators (lexi), lower, upper, startswith, endswith, equals, find, split, strip, regular expression (TBD)
 
 ---
 
-### SORT (PYTHON)
+## SORT (PYTHON)
 
 `sorted(..., key=lambda item: item[1], reverse=True)`
 
 ---
 
-### COMBINATORIAL (MATH)
+## COMBINATORIAL (MATH)
 
 - **PERMUTATION:** _N!_ ← factorial
 - **VARIATION WITHOUT REPETITIONS:** _N! / (N - K)!_
@@ -290,7 +290,7 @@ comparison operators (lexi), lower, upper, startswith, endswith, equals, find, s
 
 ---
 
-### COMBINATORIAL (PYTHON)
+## COMBINATORIAL (PYTHON)
 
 - **PERMUTATION:**
 
