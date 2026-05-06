@@ -16,9 +16,10 @@ class SimpleNN(nn.Module):
         super().__init__()
         self.fc1 = nn.Linear(input_size, 50)
         self.fc2 = nn.Linear(50, 2)
+        self.relu = nn.ReLU()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = torch.relu(self.fc1(x)).squeeze(1)
+        x = self.relu(self.fc1(x)).squeeze(1)
         x = self.fc2(x)
         return x
 
@@ -55,7 +56,7 @@ def validate_model(model: SimpleNN) -> float:
     new_sample, targets = _generate_training_batch(32, 8)
 
     result = model(new_sample)
-    _, prediction = torch.max(result, dim=1)
+    _, prediction = result.max(dim=1)
     return float(sum(targets == prediction) / prediction.numel())
 
 
@@ -157,16 +158,10 @@ class Orchestrator:
         """
         # IMPLEMENTATION: BEGIN
         state_dict = {
-            key: torch.mean(
-                torch.stack(
-                    [
-                        gateway.model.state_dict()[key]
-                        for gateway in self.gateways
-                    ],
-                    dim=0,
-                ),
+            key: torch.stack(
+                [gateway.model.state_dict()[key] for gateway in self.gateways],
                 dim=0,
-            )
+            ).mean(dim=0)
             for key in ['fc1.weight', 'fc1.bias', 'fc2.weight', 'fc2.bias']
         }
         return state_dict
