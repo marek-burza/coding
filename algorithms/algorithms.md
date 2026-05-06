@@ -1,3 +1,7 @@
+# Algorithms
+
+---
+
 ### DYNAMIC PROGRAMMING
 
 TOP-DOWN: MEMOIZATION<br/>
