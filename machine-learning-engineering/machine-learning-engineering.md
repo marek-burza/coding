@@ -115,7 +115,7 @@ Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive op
 |                                      | `→ with torch.autocast(dtype=torch.float16):` |
 | `output = model(input)`              | `→     output = model(input)`                 |
 | `metric = criterion(output, target)` | `→     metric = criterion(output, target)`    |
-| `metric.backward()`                  | `→ scaler.scale(loss).backward()`             |
+| `metric.backward()`                  | `→ scaler.scale(metric).backward()`           |
 | `optimizer.step()`                   | `→ scaler.step(optimizer)`                    |
 |                                      | `→ scaler.update()`                           |
 
