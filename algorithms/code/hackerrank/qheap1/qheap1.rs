@@ -110,13 +110,10 @@ pub fn heap_root(heap: &VecDeque<i32>) -> i32 {
 pub fn main_tested(name: &str) {
     let origin = file!();
     let input = read_input(origin, name);
-    let q = input[0][0].parse::<i32>().unwrap();
+    let q = input[0][0].parse::<i32>().unwrap() as usize;
     let mut results: Vec<String> = Vec::new();
     let mut heap: VecDeque<i32> = VecDeque::new();
-    let mut offset = 1;
-    for _ in 0..q {
-        let line: Vec<String> = input[offset].clone();
-        offset += 1;
+    for line in input.iter().skip(1).take(q) {
         let operation = line[0].trim().parse::<i32>().unwrap();
         match operation {
             1 => {
