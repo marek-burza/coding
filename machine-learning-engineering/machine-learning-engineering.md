@@ -172,7 +172,9 @@ Rescales all gradients so their global norm does not exceed `max_norm`.
 
 Uses the gradients stored in `param.grad` to update the model parameters according to the optimizer's algorithm.
 
-**Why:** This is where learning actually happens. For plain SGD this is `param -= lr * param.grad`. For Adam it additionally maintains a running mean of gradients (first moment) and a running mean of squared gradients (second moment) per parameter, using them to scale the effective learning rate adaptively. Those two extra tensors per parameter are why Adam doubles the optimizer state memory compared to SGD.
+**Why:** This is where learning actually happens. For plain SGD this is `param -= lr * param.grad`.
+For Adam it additionally maintains a running mean of gradients (first moment) and a running mean of squared gradients (second moment) per parameter, using them to scale the effective learning rate adaptively.
+Those two extra tensors per parameter are why Adam doubles the optimizer state memory compared to SGD.
 
 After this call the gradients are "used up" for this iteration - hence `zero_grad()` at the start of the next one.
 
@@ -447,7 +449,8 @@ How I get buy-in:
 - **Start small, build up, refactor as needed.** It is difficult to front-load a complete set of requirements - projects aimed at building a "platform" often fail because of it. Starting with one concrete case, delivering value, then extending iteratively keeps the scope honest. It also allows fast failure, simplifies onboarding, and helps with team rotation.
 - **Triage along urgency and criticality axes.** Not every problem deserves the same response time or depth. Separating "how urgent" from "how critical" prevents both firefighting non-critical issues and deferring genuinely dangerous ones.
 - **Balance features with tech debt deliberately.** Leaving debt unmanaged compounds; paying it all immediately stalls delivery. Make the trade-off explicit rather than implicit.
-- **Leverage automation and treat guardrails as mentorship.** Automated linting, type checks, regression monitoring, dependency management, complexity caps, and (acceptance) tests reduce cognitive load in high-pressure situations. Standardization across codebase also transfers knowledge to the team - a junior engineer inherits the accumulated judgment of whoever defined the guidelines or set the tooling up.
+- **Leverage automation and treat guardrails as mentorship.** Automated linting, type checks, regression monitoring, dependency management, complexity caps, and (acceptance) tests reduce cognitive load in high-pressure situations.
+- **Standardization** across codebase also transfers knowledge to the team - a junior engineer inherits the accumulated judgment of whoever defined the guidelines or set the tooling up.
 
 ---
 
@@ -573,14 +576,14 @@ Code structure:
 
 ## Dependency management tooling (Python)
 
-| Concern | Tool |
-|---------|------|
-| Lock file (exact pin of full dependency graph) | `uv lock` / `uv.lock`, or `pip-compile` → `requirements.txt` |
-| Automated version bump PRs | Renovate (configurable, monorepo-friendly) or Dependabot (GitHub-native) |
-| Remove unused dependencies | `deptry` (Python equivalent of machete in Rust) |
-| Isolate environments | `uv venv`, `conda`, Docker |
+| Concern                                       | Tool                                                                     |
+| --------------------------------------------- | ------------------------------------------------------------------------ |
+| Lockfile (exact pin of full dependency graph) | `uv lock` / `uv.lock`, or `pip-compile` → `requirements.txt`             |
+| Automated version bump PRs                    | Renovate (configurable, monorepo-friendly) or Dependabot (GitHub-native) |
+| Remove unused dependencies                    | `deptry` (Python equivalent of machete in Rust)                          |
+| Isolate environments                          | `uv venv`, `conda`, Docker                                               |
 
-Why locking matters: a `requirements.txt` with version ranges (`>=1.2`) is not a lock file. A transitive dep upgrading silently can introduce regressions (especially true for `numpy`, `pandas`, `torch`). The lock file pins the entire resolved graph; automated bump PRs then surface upgrades as reviewable diffs rather than surprise breakage.
+Why locking matters: a `requirements.txt` with version ranges (`>=1.2`) is not a lockfile. A transitive dep upgrading silently can introduce regressions (especially true for `numpy`, `pandas`, `torch`). The lockfile pins the entire resolved graph; automated bump PRs then surface upgrades as reviewable diffs rather than surprise breakage.
 
 ---
 
