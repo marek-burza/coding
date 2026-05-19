@@ -274,11 +274,14 @@ Process of ellimination:
 
 ## (Breaking Change) Rollout Phases
 
-- Internal shadow mode
+- Internal shadow mode / dogfood
 - Opt-in beta via model registry
 - Canary on live traffic
+- A/B test
 - Gradual migration with deprecation date
 - Sunset with clear error messages
+
+Note: feature flags, roll-backs
 
 ---
 
@@ -291,7 +294,7 @@ Process of ellimination:
 Common P99 culprits:
 
 - _General lever_ → quantization (reduces model size and memory bandwidth)
-- Queue wait time spikes under bursty load → reduce max batch delay, autoscale faster
+- Queue wait time spikes under bursty load → reduce max batch delay, autoscale faster, traffic forecasting, graceful degradation (e.g. model tiering), queue-and-retry & circuit breakers
 - GPU inference time blows up on outlier inputs → input size bucketing, TensorRT or `torch.compile`, CUDA graphs
 - Preprocessing is CPU-bound and occasionally slow (garbage collection pause, lock contention) → separate it to CPU instances, eliminate Python GIL contention with multiprocessing, different serialization format
 - Cold start on a new instance that just joined the pool → pre-warm instances, TensorRT engine caching
