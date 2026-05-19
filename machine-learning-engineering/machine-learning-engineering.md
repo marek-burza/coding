@@ -4,6 +4,7 @@
 
 ## PyTorch Model Optimization (Inference)
 
+0. ETL parallelization
 1. Inference mode: `torch.no_grad()` or even `torch.inference_mode()`, `model.eval()`
 2. Basic serialization & optimization: `torch.jit` (being replaced by `torch.export` or `torch.onnx.export`)
 3. Deep optimization: `torch.compile` or `torch_tensorrt.compile`
@@ -438,6 +439,15 @@ How I get buy-in:
 2. Gave credit for dissent (builds trust)
 3. Demonstrated follow-through (KPIs, OKRs)
 4. Connected decisions to team pain (postmortems)
+
+---
+
+## Guiding principles for architectural decisions
+
+- **Start small, build up, refactor as needed.** It is difficult to front-load a complete set of requirements - projects aimed at building a "platform" often fail because of it. Starting with one concrete case, delivering value, then extending iteratively keeps the scope honest. It also allows fast failure, simplifies onboarding, and helps with team rotation.
+- **Triage along urgency and criticality axes.** Not every problem deserves the same response time or depth. Separating "how urgent" from "how critical" prevents both firefighting non-critical issues and deferring genuinely dangerous ones.
+- **Balance features with tech debt deliberately.** Leaving debt unmanaged compounds; paying it all immediately stalls delivery. Make the trade-off explicit rather than implicit.
+- **Leverage automation and treat guardrails as mentorship.** Automated linting, type checks, regression monitoring, dependency management, complexity caps, and (acceptance) tests reduce cognitive load in high-pressure situations. Standardization across codebase also transfers knowledge to the team - a junior engineer inherits the accumulated judgment of whoever defined the guidelines or set the tooling up.
 
 ---
 
