@@ -497,6 +497,19 @@ Code structure:
 
 ---
 
+## Dependency management tooling (Python)
+
+| Concern | Tool |
+|---------|------|
+| Lock file (exact pin of full dependency graph) | `uv lock` / `uv.lock`, or `pip-compile` → `requirements.txt` |
+| Automated version bump PRs | Renovate (configurable, monorepo-friendly) or Dependabot (GitHub-native) |
+| Remove unused dependencies | `deptry` (Python equivalent of machete in Rust) |
+| Isolate environments | `uv venv`, `conda`, Docker |
+
+Why locking matters: a `requirements.txt` with version ranges (`>=1.2`) is not a lock file. A transitive dep upgrading silently can introduce regressions (especially true for `numpy`, `pandas`, `torch`). The lock file pins the entire resolved graph; automated bump PRs then surface upgrades as reviewable diffs rather than surprise breakage.
+
+---
+
 ## What is in-context learning?
 
 In-context learning is when a language model learns to perform a task from examples provided in the prompt, without any updates to its weights. Comes in a few flavors: zero-shot (just a task description), one-shot (one example), and few-shot (several examples).
