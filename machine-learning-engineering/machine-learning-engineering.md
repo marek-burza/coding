@@ -121,6 +121,62 @@ Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive op
 
 ---
 
+## Training loop step 1: `optimizer.zero_grad()`
+
+Clears the gradients accumulated on all parameters from the previous iteration.
+
+**Why:** PyTorch accumulates gradients by default (adds to `.grad` rather than replacing it). Without zeroing, the gradients from the previous batch carry forward and corrupt the current update - the parameter would move as if it had seen both batches summed, not just the current one.
+
+---
+
+## Training loop step 2: forward pass - `output = model(input)`
+
+Runs the input through the model layers, computing activations and producing the output. Autograd records the computation graph as it goes (each op records its inputs and the function used), so that `.backward()` can later traverse it in reverse.
+
+**Why:** Produces the prediction the loss function will score, and builds the graph needed to compute gradients via the chain rule.
+
+---
+
+## Training loop step 3: loss - `loss = criterion(output, target)`
+
+Applies the loss function to measure how far the model's output is from the ground truth. The result is a scalar that the optimizer will try to minimize.
+
+**Why:** The scalar loss is the root node of the computation graph. Calling `.backward()` on it propagates gradients through every op recorded during the forward pass.
+
+Common choices: `CrossEntropyLoss` (classification), `MSELoss` (regression), `BCEWithLogitsLoss` (binary classification).
+
+---
+
+## Training loop step 4: `loss.backward()`
+
+Autograd traverses the computation graph in reverse, applying the chain rule at each node to compute `∂loss/∂param` for every parameter with `requires_grad=True`. The result is stored in `param.grad`.
+
+**Why:** Does NOT update weights - only calculates the direction and magnitude each parameter should move to reduce the loss. The optimizer step does the actual update.
+
+---
+
+## Training loop step 5 (optional): gradient clipping
+
+```python
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+```
+
+Rescales all gradients so their global norm does not exceed `max_norm`.
+
+**Why:** Prevents exploding gradients - a failure mode where gradients grow uncontrollably and cause the optimizer to take a massive step that destroys learned weights. Particularly relevant for RNNs and deep transformers.
+
+---
+
+## Training loop step 6: `optimizer.step()`
+
+Uses the gradients stored in `param.grad` to update the model parameters according to the optimizer's algorithm.
+
+**Why:** This is where learning actually happens. For plain SGD this is `param -= lr * param.grad`. For Adam it additionally maintains a running mean of gradients (first moment) and a running mean of squared gradients (second moment) per parameter, using them to scale the effective learning rate adaptively. Those two extra tensors per parameter are why Adam doubles the optimizer state memory compared to SGD.
+
+After this call the gradients are "used up" for this iteration - hence `zero_grad()` at the start of the next one.
+
+---
+
 ## Model size compression techniques
 
 - Quantisation - See: AMP, `.half()`, quantization card
@@ -400,6 +456,14 @@ Architecture:
 - Statistical rigor (not just single value metrics but also confidence intervals)
 - Regression monitoring (and trends)
 - (Automated) reporting
+
+Running full benchmarks on a foundation model is expensive. Use a tiered approach:
+
+- Tier 1 (fast, cheap, always-on): small fixed subsample per benchmark - catches regressions and confirms basic correctness; runs on every commit or daily.
+- Tier 2 (medium, per-release): larger stratified subsample - enough statistical power to compare models reliably.
+- Tier 3 (full, gated): complete benchmark suite - run before a major release or when Tier 2 shows a signal worth investigating.
+
+Gate progression: only escalate if the cheaper tier raises a flag or a release milestone is reached. This keeps CI cost manageable while ensuring the full suite is run when it matters.
 
 ---
 
