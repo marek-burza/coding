@@ -130,7 +130,8 @@
 - Patrick Halina - [Systems Design Interview Guide](http://patrickhalina.com/posts/systems-design-interview-guide) & [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
 - [System Design Primer](https://github.com/donnemartin/system-design-primer)
 - [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
-- Design principles, patterns, best practices - [SOLID](https://en.wikipedia.org/wiki/SOLID),
+- Design principles, patterns, best practices - [SOLID](https://en.wikipedia.org/wiki/SOLID)
+  (single responsibility, open to extension closed to modification, liskov substitution interface accepting base should not need to worry about derivations, many specific interfaces better than one generic, depend on abstractions not concretions),
   Low Coupling & High Cohesion, [Heroku's 12 Factors](https://12factor.net/),
   [Domain Driven Design](https://en.wikipedia.org/wiki/Domain-driven_design),
   REST & [Richardson Maturity Model](https://en.wikipedia.org/wiki/Richardson_Maturity_Model) & [CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation#Command_query_responsibility_segregation),
