@@ -491,30 +491,21 @@ Gate progression: only escalate if the cheaper tier raises a flag or a release m
 
 ## How do you decide/validate when a research prototype (possibly with different architecture) is ready/safe for production / to ship?
 
-Ready:
-
-1. Functional correctness - does it produce the right results? (eval tests/metrics, edge cases, deterministic)
+0. Sanity / smoke tests - model implementation unit tests? (deterministic, invariance to minor input perturbation, direction-change tests, correct tensor shapes at layer/pipeline boundaries, correct value ranges & stats, on minimum subset of validation set for specific classes/labels, etc.)
+1. Functional correctness - does it produce the right results?
+- Algorithm performance tests - offline eval tests and metrics on ground-truth
+- Behavioral testing - sliced evaluation across subgroups, edge case tests, known failure modes
+- Regression tests - e.g. tested on border cases structurally similar to past mispredictions
+- Scientific canaries (on hold-out dataset)
+- Manual subject matter review on random sample
+- Foundation model caveats: FM is evaluated on breadth across tasks, task-specific model is evaluated on depth on that particular task; for FM-sized test sets - **tiered validation system**
 2. Robustness - does it fail gracefully? (malformed input, load, etc.)
 3. Performance - does it meet SLAs?
-4. Operability - can someone other than the author run and maintain it? (separation of config, self-explanatory code/docs, health checks, observability)
-5. Reproducibility - can we recreate this artifact?
-6. Documentation of limitations.
-
-Safe:
-
-1. Provenance, regulatory requirements
-2. Model packaging
-3. Automated (regulatory) acceptance tests (note: for FM-sized test sets - **tiered validation system**)
-- Algorithm performance tests - offline metrics on ground-truth
-- Regression tests
-- Behavioral testing - sliced evaluation across subgroups, edge case tests, know failure modes
-- Determinism tests
 - Profiling tests (latency, compute & memory requirements)
-- Scientific canaries (on hold-out dataset)
-- FM caveat: Foundation model is evaluated on breadth across tasks, task-specific model is evaluated on depth on that particular task
-4. Manual subject matter review on random sample
-5. Regulatory documentation
-6. Deployment
+4. Operability - can someone other than the author run and maintain it? (separation of config, self-explanatory code/docs, model packaging, health checks, observability)
+- Integration tests: API/queue contracts, drift/bias introduced by the pipeline
+5. Reproducibility - can we recreate this artifact? (provenance, versioning, etc.)
+6. Documentation of limitations, and other aspects as required by regulation.
 
 ---
 
