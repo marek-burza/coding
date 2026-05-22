@@ -156,4 +156,4 @@
 - [Valve: Handbook for New Employees](https://cdn.cloudflare.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf)
 - [Go Advice](https://github.com/cristaloleg/go-advice)
 - [Good answers](https://www.linkedin.com/posts/jithesh-anand_interviewpreparation-jobinterviewtips-careersuccess-activity-7213379334311448576-Z-HS?utm_source=share&utm_medium=member_desktop&rcm=ACoAAABBEiIBPa9sjDv4CfeszVuVO8NhSkKYtHA) to behavioral questions
-- [ML Engineering Flashcards](http://altermarkive.github.io/training/machine-learning-engineering/machine-learning-engineering.html)
+- [ML Engineering Flashcards](http://altermarkive.github.io/training/machine-learning-engineering/machine-learning-engineering.html), [50 Must-Know PyTorch Interview Questions in 2026](https://github.com/Devinterview-io/pytorch-interview-questions), [Top 140 PyTorch Interview Questions and Answers](https://hackmd.io/@husseinsheikho/pytorch-interview)
