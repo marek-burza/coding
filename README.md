@@ -145,15 +145,24 @@
 - Embracing System Failure: [OWASP Top Ten](https://owasp.org/www-project-top-ten/), [Chaos Engineering](https://en.wikipedia.org/wiki/Chaos_engineering) & [Antifragile Engineering](https://en.wikipedia.org/wiki/Antifragile)
 - [Microservices](https://www.google.com/search?q=awesome+microservices): [best practices](https://microservices.io/) & [antipatterns / pitfalls](https://www.oreilly.com/content/microservices-antipatterns-and-pitfalls/)
 
----
-
 ## Other Materials
 
 - [Tech Interview Handbook](https://www.techinterviewhandbook.org/) ([best practices](https://www.techinterviewhandbook.org/coding-interview-cheatsheet/)) ❗
 - [Gergely Orosz - Preparing for the Systems Design and Coding Interview](https://blog.pragmaticengineer.com/preparing-for-the-systems-design-and-coding-interviews/)
-- [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/) ❗
 - Mock interviews: [interviewing.io](https://interviewing.io/), [Pramp](https://www.pramp.com/), [Meet a Pro](https://www.meetapro.com/)
 - [Valve: Handbook for New Employees](https://cdn.cloudflare.steamstatic.com/apps/valve/Valve_NewEmployeeHandbook.pdf)
 - [Go Advice](https://github.com/cristaloleg/go-advice)
-- [Good answers](https://www.linkedin.com/posts/jithesh-anand_interviewpreparation-jobinterviewtips-careersuccess-activity-7213379334311448576-Z-HS?utm_source=share&utm_medium=member_desktop&rcm=ACoAAABBEiIBPa9sjDv4CfeszVuVO8NhSkKYtHA) to behavioral questions
-- [ML Engineering Flashcards](http://altermarkive.github.io/training/machine-learning-engineering/machine-learning-engineering.html), [50 Must-Know PyTorch Interview Questions in 2026](https://github.com/Devinterview-io/pytorch-interview-questions), [Top 140 PyTorch Interview Questions and Answers](https://hackmd.io/@husseinsheikho/pytorch-interview)
+
+
+## AI/ML Engineering Materials
+
+- [ML Engineering Flashcards](http://altermarkive.github.io/training/machine-learning-engineering/machine-learning-engineering.html)
+- [50 Must-Know PyTorch Interview Questions in 2026](https://github.com/Devinterview-io/pytorch-interview-questions)
+- [Top 140 PyTorch Interview Questions and Answers](https://hackmd.io/@husseinsheikho/pytorch-interview)
+
+
+## Behavioral Interview
+
+- [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/) ❗
+- [Tech Interview Handbook: The 30 most common Software Engineer behavioral interview questions](https://www.techinterviewhandbook.org/behavioral-interview-questions/)
+- [Good answers](https://www.linkedin.com/posts/jithesh-anand_interviewpreparation-jobinterviewtips-careersuccess-activity-7213379334311448576-Z-HS) to behavioral questions
