@@ -166,3 +166,4 @@
 - [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/) ❗
 - [Tech Interview Handbook: The 30 most common Software Engineer behavioral interview questions](https://www.techinterviewhandbook.org/behavioral-interview-questions/)
 - [Good answers](https://www.linkedin.com/posts/jithesh-anand_interviewpreparation-jobinterviewtips-careersuccess-activity-7213379334311448576-Z-HS) to behavioral questions
+- [Top Facebook Behavioral Interview Questions - Facebook Jedi Interview Round](https://medium.com/the-interview-sage/top-facebook-behavioral-interview-questions-facebook-jedi-interview-round-a816b3d5a750)
