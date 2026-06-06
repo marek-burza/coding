@@ -9,3 +9,4 @@ rules:
         codecov/codecov-action: ref-pin
         astral-sh/setup-uv: ref-pin
         dtolnay/rust-toolchain: ref-pin
+        dependabot/fetch-metadata: ref-pin
