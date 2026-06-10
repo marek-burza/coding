@@ -13,11 +13,11 @@ jobs:
     environment: codecov
     steps:
       - name: Initiating
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           persist-credentials: false
       - name: Preparing
-        uses: astral-sh/setup-uv@v8.1.0
+        uses: astral-sh/setup-uv@v8.2.0
         with:
           version: "latest"
       - name: Linting
@@ -27,7 +27,7 @@ jobs:
         run: |
           /bin/sh .github/workflows/python.tester.sh
       - name: Reporting
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v6.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: python

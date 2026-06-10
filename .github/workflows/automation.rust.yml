@@ -13,7 +13,7 @@ jobs:
     environment: codecov
     steps:
       - name: Initiating
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           persist-credentials: false
       - name: Preparing
@@ -26,7 +26,7 @@ jobs:
         run: |
           /bin/sh .github/workflows/rust.tester.sh
       - name: Reporting
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@v6.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: rust
