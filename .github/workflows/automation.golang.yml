@@ -13,11 +13,11 @@ jobs:
     environment: codecov
     steps:
       - name: Initiating
-        uses: actions/checkout@v6.0.3
+        uses: actions/checkout@v7.0.0
         with:
           persist-credentials: false
       - name: Preparing
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@v6.4.0
         with:
           go-version: "1.26.x"
       - name: Linting
