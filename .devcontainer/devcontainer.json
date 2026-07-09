@@ -1,5 +1,5 @@
 {
-  "image": "ghcr.io/altermarkive/utilities:latest",
+  "image": "ghcr.io/marek-burza/utilities:latest",
   "remoteUser": "user",
   "features": {}
 }

@@ -1,4 +1,4 @@
-# Training
+# Training Coding
 
 ## General Remarks
 
@@ -51,10 +51,10 @@
 
 ### [Practice algorithm design challenges](algorithms)
 
-![Status Python](https://github.com/altermarkive/training/workflows/Python/badge.svg)
-![Status Go](https://github.com/altermarkive/training/workflows/Go/badge.svg)
-![Status Rust](https://github.com/altermarkive/training/workflows/Rust/badge.svg)
-[![Coverage](https://codecov.io/gh/altermarkive/training/branch/main/graph/badge.svg)](https://codecov.io/gh/altermarkive/training)
+![Status Python](https://github.com/marek-burza/coding/workflows/Python/badge.svg)
+![Status Go](https://github.com/marek-burza/coding/workflows/Go/badge.svg)
+![Status Rust](https://github.com/marek-burza/coding/workflows/Rust/badge.svg)
+[![Coverage](https://codecov.io/gh/marek-burza/coding/branch/main/graph/badge.svg)](https://codecov.io/gh/marek-burza/coding)
 
 - [HackerRank](https://www.hackerrank.com/) - [my solutions](algorithms/code/hackerrank)
 - [LeetCode](https://leetcode.com/) - [my solutions](algorithms/code/leetcode)
@@ -78,7 +78,7 @@
 - [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
 - [Coding Interview University](https://github.com/jwasham/coding-interview-university)
 
-### [Flashcards](http://altermarkive.github.io/training/algorithms/algorithms.html) ([print-to-PDF](http://altermarkive.github.io/training/algorithms/algorithms.html?print-pdf))
+### [Flashcards](http://marek-burza.github.io/coding/algorithms/algorithms.html) ([print-to-PDF](http://marek-burza.github.io/coding/algorithms/algorithms.html?print-pdf))
 
 ---
 
@@ -156,7 +156,7 @@
 
 ## AI/ML Engineering Materials
 
-- [ML Engineering Flashcards](http://altermarkive.github.io/training/machine-learning-engineering/machine-learning-engineering.html)
+- [ML Engineering Flashcards](http://marek-burza.github.io/coding/machine-learning-engineering/machine-learning-engineering.html)
 - [50 Must-Know PyTorch Interview Questions in 2026](https://github.com/Devinterview-io/pytorch-interview-questions)
 - [Top 140 PyTorch Interview Questions and Answers](https://hackmd.io/@husseinsheikho/pytorch-interview)
 

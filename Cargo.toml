@@ -1,5 +1,5 @@
 [package]
-name = "training"
+name = "coding"
 version = "0.0.0"
 edition = "2021"
 
@@ -17,7 +17,7 @@ tower = { version = "0.5.1", features = ["full"] }
 tracing-subscriber = "0.3.18"
 
 [lib]
-name = "training"
+name = "coding"
 path = "algorithms/code/lib.rs"
 doctest = false
 
