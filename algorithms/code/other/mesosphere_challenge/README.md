@@ -1,6 +1,6 @@
 # [Mesosphere Challenge](https://mesosphere.com/jobs/challenges/distributed-applications)
 
-Design and implement an elevator control system. What data structures, interfaces and algorithms will you need? Your elevator control system should be able to handle a few elevators — up to 16.
+Design and implement an elevator control system. What data structures, interfaces and algorithms will you need? Your elevator control system should be able to handle a few elevators - up to 16.
 
 You can use the language of your choice to implement an elevator control system. In the end, your control system should provide an interface for:
 

@@ -743,7 +743,7 @@ It is a statistical measure used to describe the value below which 99% of observ
 ## Differences between Polars and Pandas (alternative)
 
 The fundamental difference is eager versus lazy execution. Pandas materializes every intermediate; Polars lets you build a logical plan with scan_parquet and a chain of operations, and doesn't execute until you call collect.
-That lets the query optimizer do predicate pushdown, projection pushdown, and streaming execution — so instead of reading a 500 GB Parquet dataset into memory and then filtering, it reads only the row groups and columns the query actually needs.
+That lets the query optimizer do predicate pushdown, projection pushdown, and streaming execution - so instead of reading a 500 GB Parquet dataset into memory and then filtering, it reads only the row groups and columns the query actually needs.
 Combined with the Rust + Arrow backend and real multithreading, that's a different performance regime from Pandas, not just a faster version of it. The trade-off is a less mature ecosystem and some API instability, especially around categoricals.
 
 ---
