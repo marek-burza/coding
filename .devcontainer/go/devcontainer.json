@@ -1,0 +1,6 @@
+{
+  "name": "Go",
+  "image": "golang:1.26.5-trixie",
+  "remoteUser": "root",
+  "features": {}
+}

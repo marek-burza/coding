@@ -1,0 +1,6 @@
+{
+  "name": "Python",
+  "image": "ghcr.io/astral-sh/uv:python3.14-trixie-slim",
+  "remoteUser": "root",
+  "features": {}
+}

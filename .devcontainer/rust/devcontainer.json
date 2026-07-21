@@ -1,0 +1,6 @@
+{
+  "name": "Rust",
+  "image": "rust:1.97.1-trixie",
+  "remoteUser": "root",
+  "features": {}
+}
