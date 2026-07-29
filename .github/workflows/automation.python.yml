@@ -13,11 +13,11 @@ jobs:
     environment: codecov
     steps:
       - name: Initiating
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
       - name: Preparing
-        uses: astral-sh/setup-uv@v8.3.2
+        uses: astral-sh/setup-uv@v9.0.0
         with:
           version: "latest"
       - name: Linting
