@@ -3,7 +3,7 @@ complexipy==5.4.1
 coverage==7.14.0
 flake8==7.3.0
 mypy==2.1.0
-numpy==2.4.4
+numpy==2.5.1
 pylint==4.0.5
 pyright==1.1.409
 ruff==0.15.12
