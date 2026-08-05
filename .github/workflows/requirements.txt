@@ -1,11 +1,11 @@
 bandit==1.9.4
-complexipy==5.4.1
-coverage==7.14.0
+complexipy==6.2.0
+coverage==7.15.2
 flake8==7.3.0
 mypy==2.3.0
 numpy==2.5.1
-pylint==4.0.5
+pylint==4.0.6
 pyright==1.1.411
-ruff==0.15.22
+ruff==0.16.0
 torch==2.13.0
-ty==0.0.62
+ty==0.0.64
