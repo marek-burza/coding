@@ -4,7 +4,7 @@
 
 - Talk through your thinking process, flag uncertainty
 - Be: fast, positive/enthusiastic/passionate, transparent, fact-based, methodical, and express explicitly (to prevent hidden assumptions and getting stuck)
-- If stuck: **remain calm**, check assumptions, **try more examples**, **simplify**, **ask**, avoid silence or filling it
+- If stuck: **remain calm**, check assumptions, **try more examples**, **simplify**, **ask**, avoid silence or filling it, ["Dare to be the idiot"](https://www.youtube.com/watch?v=BkLzo_oNVho)
 
 ---
 
