@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/minimum-size-subarray-sum
+# #medium
 
 import unittest
 from typing import List
