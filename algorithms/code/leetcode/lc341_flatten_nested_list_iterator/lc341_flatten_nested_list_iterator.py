@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/flatten-nested-list-iterator/
+# #medium
 
 import unittest
 from typing import Any

@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/group-anagrams/
+# #medium
 
 import unittest
 from typing import Any, Callable

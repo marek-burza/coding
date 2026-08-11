@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/rectangle-area/
+# #medium
 
 import unittest
 

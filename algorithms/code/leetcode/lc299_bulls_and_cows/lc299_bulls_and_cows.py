@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/bulls-and-cows/
+# #medium
 
 import collections
 import unittest

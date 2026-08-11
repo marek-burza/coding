@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/jump-game/
+# #medium
 
 import unittest
 

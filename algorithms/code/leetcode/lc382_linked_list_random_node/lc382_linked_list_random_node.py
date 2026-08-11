@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/linked-list-random-node/
+# #medium
 
 from __future__ import annotations
 

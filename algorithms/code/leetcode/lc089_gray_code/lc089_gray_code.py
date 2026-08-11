@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/gray-code/
+# #medium
 
 import unittest
 

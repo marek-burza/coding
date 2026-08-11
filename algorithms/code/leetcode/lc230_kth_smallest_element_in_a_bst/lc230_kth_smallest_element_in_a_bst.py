@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/kth-smallest-element-in-a-bst/
+# #medium
 
 from __future__ import annotations
 

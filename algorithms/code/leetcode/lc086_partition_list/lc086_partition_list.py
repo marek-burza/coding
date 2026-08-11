@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/partition-list/
+# #medium
 
 from __future__ import annotations
 

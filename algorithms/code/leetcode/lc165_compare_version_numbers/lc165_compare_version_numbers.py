@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/compare-version-numbers/
+# #medium
 
 import unittest
 

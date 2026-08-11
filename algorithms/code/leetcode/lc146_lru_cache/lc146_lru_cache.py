@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/lru-cache/
+# #medium
 
 from __future__ import annotations
 

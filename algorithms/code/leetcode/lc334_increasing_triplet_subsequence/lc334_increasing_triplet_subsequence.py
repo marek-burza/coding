@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/increasing-triplet-subsequence/
+# #medium
 
 import unittest
 

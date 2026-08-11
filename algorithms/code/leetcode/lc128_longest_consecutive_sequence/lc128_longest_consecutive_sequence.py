@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/longest-consecutive-sequence/
+# #medium
 
 import unittest
 

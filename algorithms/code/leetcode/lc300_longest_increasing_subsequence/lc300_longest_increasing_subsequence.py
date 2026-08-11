@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/longest-increasing-subsequence/
+# #medium
 
 import unittest
 

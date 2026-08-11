@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/insertion-sort-list/
+# #medium
 
 from __future__ import annotations
 

@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/super-pow/
+# #medium
 
 import unittest
 

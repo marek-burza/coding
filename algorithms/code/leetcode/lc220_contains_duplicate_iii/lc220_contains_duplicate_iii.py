@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/contains-duplicate-iii/
+# #medium
 
 import bisect
 import unittest

@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/triangle/
+# #medium
 
 import unittest
 

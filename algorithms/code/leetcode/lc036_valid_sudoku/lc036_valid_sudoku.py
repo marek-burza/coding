@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/valid-sudoku/
+# #medium
 
 import unittest
 

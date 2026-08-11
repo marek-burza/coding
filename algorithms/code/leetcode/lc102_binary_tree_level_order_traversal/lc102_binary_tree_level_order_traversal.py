@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/binary-tree-level-order-traversal/
+# #medium
 
 from __future__ import annotations
 

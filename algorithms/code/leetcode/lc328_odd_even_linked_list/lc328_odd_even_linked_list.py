@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/odd-even-linked-list/
+# #medium
 
 from __future__ import annotations
 

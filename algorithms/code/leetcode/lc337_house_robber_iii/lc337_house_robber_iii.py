@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/house-robber-iii/
+# #medium
 
 from __future__ import annotations
 

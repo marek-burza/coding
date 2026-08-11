@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/repeated-dna-sequences/
+# #medium
 
 import unittest
 

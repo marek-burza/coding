@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/super-ugly-number/
+# #medium
 
 import heapq
 import unittest
