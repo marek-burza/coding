@@ -78,7 +78,7 @@
 - [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
 - [Coding Interview University](https://github.com/jwasham/coding-interview-university)
 
-### [Flashcards](http://marek-burza.github.io/coding/algorithms/algorithms.html) ([print-to-PDF](http://marek-burza.github.io/coding/algorithms/algorithms.html?print-pdf))
+### [Flashcards](algorithms/algorithms.md)
 
 ---
 
@@ -156,7 +156,7 @@
 
 ## AI/ML Engineering Materials
 
-- [ML Engineering Flashcards](http://marek-burza.github.io/coding/machine-learning-engineering/machine-learning-engineering.html)
+- [ML Engineering Flashcards](machine-learning-engineering/machine-learning-engineering.md)
 - [50 Must-Know PyTorch Interview Questions in 2026](https://github.com/Devinterview-io/pytorch-interview-questions)
 - [Top 140 PyTorch Interview Questions and Answers](https://hackmd.io/@husseinsheikho/pytorch-interview)
 

@@ -446,6 +446,3 @@ What about the security?
 ---
 
 **THANK YOU**
-
-- You can view [rendered version](http://marek-burza.github.io/coding/system-design/restaurant-waiting-time.html) of these notes
-- If you have an idea on how to improve this design you are welcome to issue a [pull request](https://github.com/marek-burza/coding)
