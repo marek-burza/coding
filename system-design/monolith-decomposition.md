@@ -26,7 +26,7 @@ flowchart BT
         EMAIL["Email Service<br/>(Spring Boot)<br/>EC2 Instance"]
         PUSH["Push Notifications Service<br/>(Spring Boot)<br/>EC2 Instance"]
         FILES["File Storage Service<br/>(Spring Boot)<br/>EC2 Instance (500 GiB)"]
-        EMAIL ~~~ PUSH ~~~ FILES
+        EMAIL ~~~ PUSH ~~~ FILES  %% (force layout)
     end
 
     %% ---------- Tenant 1 ----------
@@ -35,7 +35,7 @@ flowchart BT
         W1["Web Application<br/>(Angular.js)"]
         A1["Backend API<br/>(Spring Boot)"]
         D1[("Database<br/>(postgresql)")]
-        W1 ~~~ A1 ~~~ D1
+        W1 ~~~ A1 ~~~ D1  %% (force layout)
     end
 
     %% ---------- Tenant 2 ----------
@@ -44,7 +44,7 @@ flowchart BT
         W2["Web Application<br/>(Angular.js)"]
         A2["Backend API<br/>(Spring Boot)"]
         D2[("Database<br/>(postgresql)")]
-        W2 ~~~ A2 ~~~ D2
+        W2 ~~~ A2 ~~~ D2  %% (force layout)
     end
 
     %% ---------- Tenant X ----------
@@ -53,7 +53,7 @@ flowchart BT
         WX["Web Application<br/>(Angular.js)"]
         AX["Backend API<br/>(Spring Boot)"]
         DX[("Database<br/>(postgresql)")]
-        WX ~~~ AX ~~~ DX
+        WX ~~~ AX ~~~ DX  %% (force layout)
     end
 
     %% ---------- Clients ----------
@@ -62,7 +62,7 @@ flowchart BT
         C1A["📱 Client 1"]
         C1B["💻 Client 2"]
         C1C["🖥️ Client X"]
-        C1A ~~~ C1B ~~~ C1C
+        C1A ~~~ C1B ~~~ C1C  %% (force layout)
     end
 
     subgraph CL2[" "]
@@ -70,7 +70,7 @@ flowchart BT
         C2A["📱 Client 1"]
         C2B["💻 Client 2"]
         C2C["🖥️ Client X"]
-        C2A ~~~ C2B ~~~ C2C
+        C2A ~~~ C2B ~~~ C2C  %% (force layout)
     end
 
     subgraph CLX[" "]
@@ -78,7 +78,7 @@ flowchart BT
         CXA["📱 Client 1"]
         CXB["💻 Client 2"]
         CXC["🖥️ Client X"]
-        CXA ~~~ CXB ~~~ CXC
+        CXA ~~~ CXB ~~~ CXC  %% (force layout)
     end
 
     %% ---------- Client traffic ----------
