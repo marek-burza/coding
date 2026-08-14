@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/string-to-integer-atoi/
 
-import unittest
-
 
 class Solution:
     def myAtoi(self, s: str) -> int:
@@ -26,7 +24,7 @@ class Solution:
         return max(-(2**31), min(2**31 - 1, result))
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_MinusMinus3241(self) -> None:
         assert Solution().myAtoi("--3241") == 0
 

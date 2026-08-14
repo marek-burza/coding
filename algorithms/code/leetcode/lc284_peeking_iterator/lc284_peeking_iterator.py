@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/peeking-iterator/
 
-import unittest
 from typing import Any
 
 
@@ -27,7 +26,7 @@ class PeekingIterator:
         return self.__got or self.__iterator.hasNext()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     @staticmethod
     def __create_iterator(items: list[Any]) -> Any:
         class TestingIterator:

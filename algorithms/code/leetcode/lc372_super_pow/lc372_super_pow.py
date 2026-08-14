@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/super-pow/
 # #medium
 
-import unittest
-
 
 class Solution:
     __MODULO_1337 = 1337
@@ -39,7 +37,7 @@ class Solution:
         return modulos[index]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_2_3(self) -> None:
         assert Solution().superPow(2, [3]) == 8
 

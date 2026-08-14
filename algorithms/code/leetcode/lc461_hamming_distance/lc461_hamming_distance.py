@@ -1,14 +1,12 @@
 # https://leetcode.com/problems/hamming-distance/
 
-import unittest
-
 
 class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
         return (x ^ y).bit_count()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().hammingDistance(1, 4) == 2
 

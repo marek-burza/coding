@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/subsets-ii/
 # #medium
 
-import unittest
 from typing import Any, Callable
 
 
@@ -35,7 +34,7 @@ class Solution:
         return listed
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     @staticmethod
     def cmp_to_key(mycmp: Callable) -> Any:  # pragma: no cover
         class K:

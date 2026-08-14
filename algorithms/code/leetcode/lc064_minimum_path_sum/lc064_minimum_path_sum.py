@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/minimum-path-sum/
 # #medium
 
-import unittest
-
 
 class Solution:
     def minPathSum(self, grid: list[list[int]]) -> int:
@@ -31,7 +29,7 @@ class Solution:
         return sums[-1][-1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         grid = [[1, 1, 2, 2], [2, 1, 2, 2], [2, 1, 1, 2], [2, 2, 1, 1]]
         assert Solution().minPathSum(grid) == 7

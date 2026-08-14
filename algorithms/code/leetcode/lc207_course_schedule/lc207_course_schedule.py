@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/course-schedule/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __dfs(self, graph: dict[int, set[int]], node: int, visited: set[int]) -> bool:
@@ -31,7 +29,7 @@ class Solution:
         return all(self.__dfs(graph, start, visited) for start in graph)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_large_example(self) -> None:
         prerequisites = [
             [995, 1232],

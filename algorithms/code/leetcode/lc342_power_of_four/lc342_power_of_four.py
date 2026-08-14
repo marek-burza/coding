@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/power-of-four/
 
 import math
-import unittest
 
 
 class Solution:
@@ -12,7 +11,7 @@ class Solution:
         return value == math.floor(value)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_16(self) -> None:
         assert Solution().isPowerOfFour(16)
 

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/increasing-triplet-subsequence/
 # #medium
 
-import unittest
-
 
 class Solution:
     def increasingTriplet(self, nums: list[int]) -> bool:
@@ -23,7 +21,7 @@ class Solution:
         return False
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_empty(self) -> None:
         assert not Solution().increasingTriplet([])
 

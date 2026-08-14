@@ -2,7 +2,6 @@
 # #google
 
 import heapq
-import unittest
 from typing import Any
 
 
@@ -26,7 +25,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().kClosest([[1, 3], [-2, 2]], 1) == [[-2, 2]]
 

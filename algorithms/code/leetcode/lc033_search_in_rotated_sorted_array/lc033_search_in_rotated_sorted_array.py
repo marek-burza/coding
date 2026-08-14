@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/search-in-rotated-sorted-array/
 # #medium
 
-import unittest
-
 
 class Solution:
     def search(self, nums: list[int], target: int) -> int:
@@ -25,7 +23,7 @@ class Solution:
         return -1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         nums = [4, 5, 6, 7, 0, 1, 2]
         assert Solution().search(nums, 1) == 5

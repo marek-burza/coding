@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/product-of-array-except-self/
 # #medium
 
-import unittest
-
 
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
@@ -17,7 +15,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test__1_2_3_4(self) -> None:
         nums = [1, 2, 3, 4]
         expected = [24, 12, 8, 6]

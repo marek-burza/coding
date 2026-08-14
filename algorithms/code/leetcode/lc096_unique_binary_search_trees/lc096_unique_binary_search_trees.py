@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/unique-binary-search-trees/
 # #medium
 
-import unittest
-
 
 class Solution:
     def numTrees(self, n: int) -> int:
@@ -15,7 +13,7 @@ class Solution:
         return cache[n]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_2(self) -> None:
         assert Solution().numTrees(2) == 2
 

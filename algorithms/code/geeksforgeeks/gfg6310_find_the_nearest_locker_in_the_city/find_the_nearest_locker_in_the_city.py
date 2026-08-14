@@ -2,7 +2,6 @@
 
 import queue
 import sys
-import unittest
 
 DIRECTIONS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
@@ -65,7 +64,7 @@ def locker_distances(
     return city
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_bad_size(self) -> None:
         result = locker_distances(-1, -1, None)
         assert result is None

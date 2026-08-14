@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/reverse-vowels-of-a-string/
 
-import unittest
-
 
 class Solution:
     def __isVowel(self, letter: str) -> bool:
@@ -26,7 +24,7 @@ class Solution:
         return "".join(text)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().reverseVowels("hello") == "holle"
 

@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/find-the-difference/
 
-import unittest
 from collections import Counter
 
 
@@ -16,7 +15,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().findTheDifference("abcd", "abcde") == "e"
 

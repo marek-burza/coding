@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/sqrtx/
 
-import unittest
-
 
 class Solution:
     def mySqrt(self, x: int) -> int:
@@ -21,7 +19,7 @@ class Solution:
         return int(a)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().mySqrt(4) == 2
 

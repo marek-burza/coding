@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/implement-queue-using-stacks/
 
-import unittest
-
 
 class MyQueue:
     def __init__(self) -> None:
@@ -29,7 +27,7 @@ class MyQueue:
         return not bool(self.__stack)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_something(self) -> None:
         queue = MyQueue()
         for i in range(0, 6):

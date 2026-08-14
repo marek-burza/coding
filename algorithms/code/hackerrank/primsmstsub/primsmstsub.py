@@ -3,7 +3,6 @@
 import functools
 import heapq
 import os
-import unittest
 
 
 # pylint: disable=R0903
@@ -42,7 +41,7 @@ def prims(n: int, edges: list[list[int]], start: int) -> int:
     return total
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

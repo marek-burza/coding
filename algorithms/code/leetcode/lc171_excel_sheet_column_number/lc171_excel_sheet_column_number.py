@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/excel-sheet-column-number/
 
-import unittest
-
 
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
@@ -17,7 +15,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_A(self) -> None:
         assert Solution().titleToNumber("A") == 1
 

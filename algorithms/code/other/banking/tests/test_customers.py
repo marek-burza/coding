@@ -1,5 +1,3 @@
-import unittest
-
 from banking.api.customers import (
     ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS,
     ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS,
@@ -12,7 +10,7 @@ from fastapi.testclient import TestClient
 client = TestClient(app)
 
 
-class TestCustomers(unittest.TestCase):
+class TestCustomers:
     def test_successful_customer_creation_and_sanitization(self) -> None:
         response = client.put(
             "/customers/",

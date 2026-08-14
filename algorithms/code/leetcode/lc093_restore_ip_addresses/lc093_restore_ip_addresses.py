@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/restore-ip-addresses/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __partial(self, s: str, count: int, ip: list[str], listed: list[str]) -> None:
@@ -38,7 +36,7 @@ class Solution:
         return listed
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_25525511135(self) -> None:
         expected = ["255.255.11.135", "255.255.111.35"]
         result = Solution().restoreIpAddresses("25525511135")

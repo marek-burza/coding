@@ -4,7 +4,6 @@
 
 import io
 import sys
-import unittest
 
 
 def is_leap(year: int) -> bool:
@@ -20,7 +19,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str) -> None:
         with (
             open(

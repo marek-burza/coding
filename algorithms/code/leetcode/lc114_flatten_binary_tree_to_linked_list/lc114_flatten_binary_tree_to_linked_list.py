@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class TreeNode:
     def __init__(
@@ -31,7 +29,7 @@ class Solution:
             root = root.right
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __test(self, expected: TreeNode | None, root: TreeNode | None) -> None:
         if None is expected:
             assert root is None

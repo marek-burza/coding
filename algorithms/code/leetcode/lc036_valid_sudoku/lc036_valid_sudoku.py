@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/valid-sudoku/
 # #medium
 
-import unittest
-
 
 class Solution:
     def validate(
@@ -68,7 +66,7 @@ class Solution:
         return True
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     EXAMPLE_BOARD = [
         ["5", "3", ".", ".", "7", ".", ".", ".", "."],
         ["6", ".", ".", "1", "9", "5", ".", ".", "."],

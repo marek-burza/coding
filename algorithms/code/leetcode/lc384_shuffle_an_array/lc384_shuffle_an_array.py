@@ -2,7 +2,6 @@
 # #medium
 
 import random
-import unittest
 
 
 class Solution:
@@ -20,7 +19,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __test(self, nums: list[int]) -> None:
         solution = Solution(nums.copy())
         result = solution.shuffle()

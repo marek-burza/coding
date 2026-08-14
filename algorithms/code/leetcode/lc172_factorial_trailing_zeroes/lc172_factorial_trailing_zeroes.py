@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/factorial-trailing-zeroes/
 # #medium
 
-import unittest
-
 
 class Solution:
     def trailingZeroes(self, n: int) -> int:
@@ -14,7 +12,7 @@ class Solution:
         return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_5(self) -> None:
         assert Solution().trailingZeroes(5) == 1
 

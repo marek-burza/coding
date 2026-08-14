@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/word-search/
 # #medium
 
-import unittest
-
 
 class Solution:
     # pylint: disable=R0911,R0912,R0913,R0917
@@ -49,7 +47,7 @@ class Solution:
         return False
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         assert Solution().exist(
             [

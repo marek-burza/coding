@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/summary-ranges/
 
-import unittest
-
 
 class Solution:
     def summaryRanges(self, nums: list[int]) -> list[str]:
@@ -27,7 +25,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().summaryRanges([0, 1, 2, 4, 5, 7]) == [
             "0->2",

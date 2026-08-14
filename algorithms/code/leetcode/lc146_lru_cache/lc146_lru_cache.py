@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class Node:
     def __init__(self, key: int, value: int) -> None:
@@ -58,7 +56,7 @@ class LRUCache:
         return node.value
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         lru = LRUCache(2)
         lru.put(1, 1)

@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import random
-import unittest
 
 
 class ListNode:
@@ -31,7 +30,7 @@ class Solution:
         raise ValueError("Empty list")
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         head = ListNode(1)
         head.next = ListNode(2)

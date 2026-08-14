@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/ugly-number/
 
-import unittest
-
 
 class Solution:
     def isUgly(self, num: int) -> bool:
@@ -19,7 +17,7 @@ class Solution:
         return num != original and num == 1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_minus(self) -> None:
         assert not Solution().isUgly(-1)
 

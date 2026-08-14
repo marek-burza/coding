@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/contiguous-array/
 
-import unittest
-
 
 class Solution:
     def findMaxLength(self, nums: list[int]) -> int:
@@ -16,7 +14,7 @@ class Solution:
         return maximum
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().findMaxLength([0, 1]) == 2
 

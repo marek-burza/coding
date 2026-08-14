@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/taum-and-bday
 
 import os
-import unittest
 
 
 def taum_bday(b: int, w: int, bc: int, wc: int, z: int) -> int:
@@ -10,7 +9,7 @@ def taum_bday(b: int, w: int, bc: int, wc: int, z: int) -> int:
     return b * x_adjusted + w * y_adjusted
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

@@ -2,7 +2,6 @@
 
 import math
 import os
-import unittest
 
 
 def kaprekar_numbers(p: int, q: int) -> list[str]:
@@ -20,7 +19,7 @@ def kaprekar_numbers(p: int, q: int) -> list[str]:
     return found
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

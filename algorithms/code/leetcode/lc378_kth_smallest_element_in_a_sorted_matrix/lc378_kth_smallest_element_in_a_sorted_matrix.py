@@ -2,7 +2,6 @@
 # #medium
 
 import heapq
-import unittest
 from typing import Any
 
 
@@ -24,7 +23,7 @@ class Solution:
         return heapq.heappop(heap).value
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         matrix = [[1, 5, 9], [10, 11, 13], [12, 13, 15]]
         assert Solution().kthSmallest(matrix, 8) == 13

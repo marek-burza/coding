@@ -2,7 +2,6 @@
 # #medium
 
 import heapq
-import unittest
 
 
 class Solution:
@@ -16,7 +15,7 @@ class Solution:
         return heapq.heappop(heap)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         nums = [3, 2, 1, 5, 6, 4]
         assert Solution().findKthLargest(nums, 2) == 5

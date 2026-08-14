@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/integer-to-roman/
 
-import unittest
-
 
 class Solution:
     def intToRoman(self, num: int) -> str:
@@ -29,7 +27,7 @@ class Solution:
         return roman
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1234(self) -> None:
         assert Solution().intToRoman(1234) == "MCCXXXIV"
 

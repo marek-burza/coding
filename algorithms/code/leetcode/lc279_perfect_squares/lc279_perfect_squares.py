@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/perfect-squares/
 
-import unittest
-
 
 class Solution:
     def numSquares(self, n: int) -> int:
@@ -19,7 +17,7 @@ class Solution:
         return lut[n]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_12(self) -> None:
         assert Solution().numSquares(12) == 3
 

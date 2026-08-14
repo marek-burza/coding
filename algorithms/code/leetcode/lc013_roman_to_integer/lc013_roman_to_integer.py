@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/roman-to-integer/
 
-import unittest
-
 
 class Solution:
     def romanToInt(self, s: str) -> int:
@@ -25,7 +23,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_MCMLIV(self) -> None:
         assert Solution().romanToInt("MCMLIV") == 1954
 

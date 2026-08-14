@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/integer-to-english-words/
 
-import unittest
-
 
 class Solution:
     __MAGNITUDE = [
@@ -87,7 +85,7 @@ class Solution:
         return str(result)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_123(self) -> None:
         assert Solution().numberToWords(123) == "One Hundred Twenty Three"
 

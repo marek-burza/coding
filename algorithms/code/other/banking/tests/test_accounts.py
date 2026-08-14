@@ -1,5 +1,3 @@
-import unittest
-
 from banking.api.accounts import ERROR_INVALID_ACCOUNT_IDENTIFIER
 from banking.main import app
 from banking.schemas.accounts import ERROR_BALANCE_CANNOT_BE_NEGATIVE
@@ -10,7 +8,7 @@ from fastapi.testclient import TestClient
 client = TestClient(app)
 
 
-class TestAccounts(unittest.TestCase):
+class TestAccounts:
     def test_successful_account_creation(self) -> None:
         response = client.put(
             "/customers/",

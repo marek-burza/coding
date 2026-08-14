@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/maximum-product-subarray/
 # #medium
 
-import unittest
-
 
 class Solution:
     def maxProduct(self, nums: list[int]) -> int:
@@ -24,7 +22,7 @@ class Solution:
         return maximum
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_2_3_Minus2_4(self) -> None:
         nums = [2, 3, -2, 4]
         assert Solution().maxProduct(nums) == 6

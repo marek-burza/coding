@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/container-with-most-water/
 
-import unittest
-
 
 class Solution:
     def maxArea(self, height: list[int]) -> int:
@@ -18,7 +16,7 @@ class Solution:
         return maximum
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1_2_1(self) -> None:
         test = [1, 2, 1]
         assert Solution().maxArea(test) == 2

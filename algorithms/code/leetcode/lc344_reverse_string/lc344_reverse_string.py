@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/reverse-string/
 
-import unittest
-
 
 class Solution:
     def reverseString(self, s: list[str]) -> None:
@@ -11,7 +9,7 @@ class Solution:
             s[len(s) - 1 - i] = exchange
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         s = list("hello")
         Solution().reverseString(s)

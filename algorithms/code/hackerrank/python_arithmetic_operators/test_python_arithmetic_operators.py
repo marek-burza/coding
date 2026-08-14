@@ -6,7 +6,6 @@ import io
 import os
 import struct
 import sys
-import unittest
 
 
 def mix(first: int, second: int) -> tuple[int, int, int]:
@@ -29,7 +28,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str) -> None:
         with (
             open(

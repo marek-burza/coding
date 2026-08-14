@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class Node:
     def __init__(
@@ -39,7 +37,7 @@ class Solution:
         return root
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_empty(self) -> None:
         Solution().connect(None)
 

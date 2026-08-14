@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/the-skyline-problem/
 
 import heapq
-import unittest
 from typing import Any
 
 
@@ -56,7 +55,7 @@ class Solution:
         return skyline
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generic(self, buildings: list[list[int]], expected: list[list[int]]) -> None:
         skyline = Solution().getSkyline(buildings)
         assert len(skyline) == len(expected)

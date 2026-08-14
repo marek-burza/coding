@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/rotate-image/
 # #medium
 
-import unittest
-
 
 class Solution:
     def rotate(self, matrix: list[list[int]]) -> None:
@@ -21,7 +19,7 @@ class Solution:
             row += 1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __test_matrices(
         self, expected: list[list[int]], result: list[list[int]]
     ) -> None:

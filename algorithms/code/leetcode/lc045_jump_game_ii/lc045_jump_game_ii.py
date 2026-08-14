@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/jump-game-ii/
 # #medium
 
-import unittest
-
 
 class Solution:
     def jump(self, nums: list[int]) -> int:
@@ -22,7 +20,7 @@ class Solution:
         return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         nums = [2, 3, 1, 1, 4]
         assert Solution().jump(nums) == 2

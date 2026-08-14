@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/min-stack/
 
-import unittest
-
 
 class MinStack:
     def __init__(self) -> None:
@@ -31,7 +29,7 @@ class MinStack:
         return self.min_stack[-1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_examle(self) -> None:
         solution = MinStack()
         solution.pop()

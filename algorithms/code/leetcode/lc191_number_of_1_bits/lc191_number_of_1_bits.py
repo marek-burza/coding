@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/number-of-1-bits/
 
-import unittest
-
 
 class Solution:
     def hammingWeight(self, n: int) -> int:
@@ -12,6 +10,6 @@ class Solution:
         return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_11(self) -> None:
         assert Solution().hammingWeight(11) == 3

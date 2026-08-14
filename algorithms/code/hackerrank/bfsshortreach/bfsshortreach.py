@@ -2,7 +2,6 @@
 
 import collections
 import os
-import unittest
 
 
 # pylint: disable=W0613
@@ -25,7 +24,7 @@ def bfs(n: int, m: int, edges: list[list[int]], s: int) -> list[int]:
     return distances
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     # pylint: disable=R0914
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2

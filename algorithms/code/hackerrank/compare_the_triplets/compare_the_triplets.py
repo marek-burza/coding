@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/compare-the-triplets
 
-import unittest
-
 
 def compare_triplets(a: list[int], b: list[int]) -> list[int]:
     result = [0, 0]
@@ -11,7 +9,7 @@ def compare_triplets(a: list[int], b: list[int]) -> list[int]:
     return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_0(self) -> None:
         assert compare_triplets([5, 6, 7], [3, 6, 10]) == [1, 1]
 

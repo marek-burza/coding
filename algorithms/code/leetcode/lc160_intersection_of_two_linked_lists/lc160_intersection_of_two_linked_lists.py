@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, x: int) -> None:
@@ -46,7 +44,7 @@ class Solution:
     # iterate in parallel until common node found
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         a1 = ListNode(0xA1)
         a2 = ListNode(0xA2)

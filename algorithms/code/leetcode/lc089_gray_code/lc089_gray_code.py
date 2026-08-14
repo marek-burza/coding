@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/gray-code/
 # #medium
 
-import unittest
-
 
 class Solution:
     def grayCode(self, bits: int) -> list[int]:
@@ -21,7 +19,7 @@ class Solution:
         return listed
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_4(self) -> None:
         expected = [0, 1, 3, 2, 6, 7, 5, 4, 12, 13, 15, 14, 10, 11, 9, 8]
         assert expected == Solution().grayCode(4)

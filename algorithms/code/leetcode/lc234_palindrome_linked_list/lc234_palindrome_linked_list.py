@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
@@ -20,7 +18,7 @@ class Solution:
         return all(listed[i] == listed[-1 - i] for i in range(len(listed) // 2))
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_palindrome_odd(self) -> None:
         listed = ListNode(0)
         listed.next = ListNode(1)

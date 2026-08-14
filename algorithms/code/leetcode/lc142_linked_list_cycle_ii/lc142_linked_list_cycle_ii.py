@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, x: int) -> None:
@@ -35,7 +33,7 @@ class Solution:
         # and then search for common element by measuring lengths
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         a1 = ListNode(0xA1)
         a2 = ListNode(0xA2)

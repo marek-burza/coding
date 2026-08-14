@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/palindrome-number/
 
-import unittest
-
 
 class Solution:
     def isPalindrome(self, x: int) -> bool:
@@ -15,7 +13,7 @@ class Solution:
         return xa == xb
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_213(self) -> None:
         assert not Solution().isPalindrome(213)
 

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/surrounded-regions/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __key(self, i: int, j: int) -> int:
@@ -57,7 +55,7 @@ class Solution:
                     board[i][j] = "O"
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def construct(self, compact: list[str]) -> list[list[str]]:
         board = []
         for item in compact:

@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/plus-minus
 
-import unittest
-
 
 def plus_minus(arr: list[int]) -> list[float]:
     n = len(arr)
@@ -12,7 +10,7 @@ def plus_minus(arr: list[int]) -> list[float]:
     return [v / n for v in counts]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         expected = [1.0 / 2.0, 1.0 / 3.0, 1.0 / 6.0]
         assert expected == plus_minus([-4, 3, -9, 0, 4, 1])

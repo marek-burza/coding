@@ -1,14 +1,12 @@
 # https://leetcode.com/problems/nim-game/
 
-import unittest
-
 
 class Solution:
     def canWinNim(self, n: int) -> bool:
         return n % 4 != 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1to10(self) -> None:
         # +  1 o
         assert Solution().canWinNim(1)

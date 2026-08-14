@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/camelcase
 
-import unittest
-
 
 def camelcase(s: str) -> int:
     count = 1
@@ -11,6 +9,6 @@ def camelcase(s: str) -> int:
     return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         assert camelcase("saveChangesInTheEditor") == 5

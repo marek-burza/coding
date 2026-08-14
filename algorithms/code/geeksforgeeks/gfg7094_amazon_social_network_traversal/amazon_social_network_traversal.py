@@ -3,7 +3,6 @@
 import collections
 import functools
 import operator
-import unittest
 
 
 class GFG7094AmazonSocialNetworkTraversal:
@@ -44,7 +43,7 @@ class GFG7094AmazonSocialNetworkTraversal:
         return ranked_courses
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     EXAMPLE_FRIENDSHIPS = {
         "Jack": {"Jane", "John"},
         "John": {"Alice", "Jack", "Jane"},

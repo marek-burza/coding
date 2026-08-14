@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/4sum/
 
-import unittest
-
 
 def twoSum(
     nums: list[int],
@@ -70,7 +68,7 @@ class Solution:
         return results
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         nums = [1, 0, -1, 0, -2, 2]
         target = 0

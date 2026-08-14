@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/valid-anagram/
 # #google
 
-import unittest
-
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
@@ -13,7 +11,7 @@ class Solution:
         return s_set == t_set
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_aa_a(self) -> None:
         assert not Solution().isAnagram("aa", "a")
 

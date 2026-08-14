@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/valid-parentheses/
 
-import unittest
-
 
 class Solution:
     def check(self, s: str) -> bool:
@@ -21,7 +19,7 @@ class Solution:
         return len(stack) == 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_garbage(self) -> None:
         assert not Solution().isValid("*")
 

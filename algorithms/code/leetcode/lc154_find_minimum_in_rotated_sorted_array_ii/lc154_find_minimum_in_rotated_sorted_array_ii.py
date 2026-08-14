@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
 
-import unittest
-
 
 class Solution:
     def findMin(self, nums: list[int]) -> int:
@@ -18,7 +16,7 @@ class Solution:
         return nums[a]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         nums = [4, 5, 6, 7, 0, 1, 2]
         assert Solution().findMin(nums) == 0

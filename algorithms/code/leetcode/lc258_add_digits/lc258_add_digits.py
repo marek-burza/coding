@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/add-digits/
 
-import unittest
-
 
 class Solution:
     def addDigits(self, num: int) -> int:
@@ -16,6 +14,6 @@ class Solution:
         # return num - 9 * (num - 1) // 9
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         assert Solution().addDigits(38) == 2

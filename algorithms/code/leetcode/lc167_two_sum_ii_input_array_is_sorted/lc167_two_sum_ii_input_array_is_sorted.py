@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
-import unittest
-
 
 class Solution:
     def twoSum(self, numbers: list[int], target: int) -> list[int]:
@@ -23,7 +21,7 @@ class Solution:
         return indices
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         assert Solution().twoSum([2, 7, 11, 15], 9) == [1, 2]
 

@@ -2,7 +2,6 @@
 
 import collections
 import os
-import unittest
 
 DELTAS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
@@ -44,7 +43,7 @@ def count_luck(matrix: list[str], k: int) -> str:
     return "Oops!"
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     # pylint: disable=R0914
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2

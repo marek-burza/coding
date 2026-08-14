@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/diagonal-difference
 
-import unittest
-
 
 def diagonal_difference(arr: list[list[int]]) -> int:
     result = 0
@@ -11,7 +9,7 @@ def diagonal_difference(arr: list[list[int]]) -> int:
     return abs(result)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         arr = [[11, 2, 4], [4, 5, 6], [10, 8, -12]]
         assert diagonal_difference(arr) == 15

@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/minimum-size-subarray-sum
 # #medium
 
-import unittest
 from typing import List
 
 
@@ -18,7 +17,7 @@ class Solution:
         return result if result <= len(nums) else 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1(self) -> None:
         assert Solution().minSubArrayLen(7, [2, 3, 1, 2, 4, 3]) == 2
 

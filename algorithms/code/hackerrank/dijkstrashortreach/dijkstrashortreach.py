@@ -4,7 +4,6 @@ import collections
 import functools
 import heapq
 import os
-import unittest
 
 Edge = collections.namedtuple("Edge", ["origin", "vertex", "weight"])
 
@@ -43,7 +42,7 @@ def shortest_reach(n: int, edges: list[list[int]], s: int) -> list[int]:
     return [distance for i, distance in enumerate(distances) if i not in [0, s]]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     # pylint: disable=R0914
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2

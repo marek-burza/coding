@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/longest-palindrome/
 
-import unittest
 from collections import Counter
 
 
@@ -18,7 +17,7 @@ class Solution:
         return longest
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().longestPalindrome("abccccdd") == 7
 

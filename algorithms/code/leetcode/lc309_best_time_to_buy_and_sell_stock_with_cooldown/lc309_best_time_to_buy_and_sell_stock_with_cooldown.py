@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
 # #medium
 
-import unittest
-
 
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
@@ -18,7 +16,7 @@ class Solution:
         return sell
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_short_example(self) -> None:
         prices = [1, 2, 3, 0, 2]
         assert Solution().maxProfit(prices) == 3

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/merge-intervals/
 
-import unittest
-
 
 class Solution:
     def merge(self, intervals: list[list[int]]) -> list[list[int]]:
@@ -31,7 +29,7 @@ class Solution:
         return merged
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().merge([[1, 3], [2, 6], [8, 10], [15, 18]]) == [
             [1, 6],

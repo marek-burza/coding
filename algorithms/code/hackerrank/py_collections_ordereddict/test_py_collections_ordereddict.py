@@ -5,7 +5,6 @@
 import collections
 import io
 import sys
-import unittest
 
 
 def aggregate(purchases: list[tuple[str, int]]) -> collections.OrderedDict:
@@ -35,7 +34,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str) -> None:
         with (
             open(

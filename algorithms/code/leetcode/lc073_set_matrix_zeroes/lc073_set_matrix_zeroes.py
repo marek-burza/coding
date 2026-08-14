@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/set-matrix-zeroes/
 # #medium
 
-import unittest
-
 
 class Solution:
     # pylint: disable=R0912
@@ -31,7 +29,7 @@ class Solution:
                 matrix[0][col] = 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __test(self, expected: list[list[int]], matrix: list[list[int]]) -> None:
         assert len(expected) == len(matrix)
         row = 0

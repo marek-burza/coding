@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/spiral-matrix/
 # #medium
 
-import unittest
-
 
 class Solution:
     __DELTAS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
@@ -49,7 +47,7 @@ class Solution:
         return listed
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __test(self, expected: list[int], matrix: list[list[int]]) -> None:
         result = Solution().spiralOrder(matrix)
         array = [0] * len(result)

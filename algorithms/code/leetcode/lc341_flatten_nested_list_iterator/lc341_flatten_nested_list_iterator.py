@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/flatten-nested-list-iterator/
 # #medium
 
-import unittest
 from typing import Any
 
 
@@ -53,7 +52,7 @@ class NestedIterator:
         return len(self.__stack) != 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generic(self, used: list[NestedInteger], expected: list[int]) -> None:
         nested = NestedIterator(used)
         for value in expected:

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/bitwise-and-of-numbers-range/
 # #medium
 
-import unittest
-
 
 class Solution:
     def rangeBitwiseAnd(self, left: int, right: int) -> int:
@@ -19,6 +17,6 @@ class Solution:
         # when checking from highest to lowest bit
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_5__7(self) -> None:
         assert Solution().rangeBitwiseAnd(5, 7) == 4

@@ -2,7 +2,6 @@
 # #medium
 
 import collections
-import unittest
 
 
 class Solution:
@@ -33,7 +32,7 @@ class Solution:
         # and update cows up or down accordingly
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1807__7810(self) -> None:
         assert Solution().getHint("1807", "7810") == "1A3B"
 

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/pascals-triangle/
 
-import unittest
-
 
 class Solution:
     def generate(self, numRows: int) -> list[list[int]]:
@@ -20,7 +18,7 @@ class Solution:
         return triangle
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_5(self) -> None:
         expected = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
         result = Solution().generate(5)

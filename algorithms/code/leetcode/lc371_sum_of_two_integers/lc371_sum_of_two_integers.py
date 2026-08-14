@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/sum-of-two-integers/
 # #medium
 
-import unittest
-
 
 class Solution:
     def getSum(self, a: int, b: int) -> int:
@@ -20,6 +18,6 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         assert Solution().getSum(1, 2) == 3

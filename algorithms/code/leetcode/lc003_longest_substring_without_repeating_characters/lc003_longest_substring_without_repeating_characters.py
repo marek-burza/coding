@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
-import unittest
-
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
@@ -17,7 +15,7 @@ class Solution:
         return longest
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_abcabcbb(self) -> None:
         assert Solution().lengthOfLongestSubstring("abcabcbb") == 3
 

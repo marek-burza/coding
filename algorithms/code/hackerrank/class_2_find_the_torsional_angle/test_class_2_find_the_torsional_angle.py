@@ -7,7 +7,6 @@ from __future__ import annotations
 import io
 import math
 import sys
-import unittest
 
 
 class Vector:
@@ -61,7 +60,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str) -> None:
         with (
             open(

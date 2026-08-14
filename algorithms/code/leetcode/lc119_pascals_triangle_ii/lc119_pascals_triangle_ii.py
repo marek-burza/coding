@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/pascals-triangle-ii/
 
-import unittest
-
 
 class Solution:
     def getRow(self, rowIndex: int) -> list[int]:
@@ -22,7 +20,7 @@ class Solution:
         return current
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_3(self) -> None:
         expected = [1, 3, 3, 1]
         result = Solution().getRow(3)

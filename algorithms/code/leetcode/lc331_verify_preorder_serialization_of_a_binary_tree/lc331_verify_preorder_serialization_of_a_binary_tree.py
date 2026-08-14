@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/
 # #medium
 
-import unittest
-
 
 class Solution:
     def isValidSerialization(self, preorder: str) -> bool:
@@ -23,7 +21,7 @@ class Solution:
         return len(kids) == 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_empty(self) -> None:
         assert Solution().isValidSerialization("#")
 

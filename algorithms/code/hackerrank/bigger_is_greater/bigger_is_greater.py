@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/bigger-is-greater
 
-import unittest
-
 
 def bigger_is_greater(w: str) -> str:
     array = list(w)
@@ -17,7 +15,7 @@ def bigger_is_greater(w: str) -> str:
     return "no answer"
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_ab(self) -> None:
         assert bigger_is_greater("ab") == "ba"
 

@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
@@ -33,7 +31,7 @@ class Solution:
         return before.next
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __build(self, array: list[int]) -> ListNode | None:
         head = None
         tail = None

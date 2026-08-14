@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/valid-palindrome/
 
-import unittest
-
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
@@ -25,7 +23,7 @@ class Solution:
         return True
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_a_man_a_plan_a_canal_Panama(self) -> None:
         assert Solution().isPalindrome("A man, a plan, a canal: Panama")
 

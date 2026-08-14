@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/trapping-rain-water/
 
 import operator
-import unittest
 
 
 class Solution:
@@ -36,7 +35,7 @@ class Solution:
         return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         terrain = [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]
         assert Solution().trap(terrain) == 6

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/find-all-duplicates-in-an-array/
 # #google
 
-import unittest
-
 
 class Solution:
     def findDuplicates(self, nums: list[int]) -> list[int]:
@@ -16,7 +14,7 @@ class Solution:
         return list(result)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().findDuplicates([4, 3, 2, 7, 8, 2, 3, 1]) == [
             2,

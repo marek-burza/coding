@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/jumping-on-the-clouds
 
 import os
-import unittest
 
 
 def jumping_on_clouds(c: list[int]) -> int:
@@ -17,7 +16,7 @@ def jumping_on_clouds(c: list[int]) -> int:
     return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

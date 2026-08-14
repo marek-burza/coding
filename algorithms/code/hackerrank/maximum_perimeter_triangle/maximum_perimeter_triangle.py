@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/maximum-perimeter-triangle
 
 import os
-import unittest
 
 
 def maximum_perimeter_triangle(sticks: list[int]) -> list[int]:
@@ -17,7 +16,7 @@ def maximum_perimeter_triangle(sticks: list[int]) -> list[int]:
     return [-1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

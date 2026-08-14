@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/third-maximum-number/
 
 import heapq
-import unittest
 
 
 class Solution:
@@ -16,7 +15,7 @@ class Solution:
         return min(max_heap)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().thirdMax([3, 2, 1]) == 1
 

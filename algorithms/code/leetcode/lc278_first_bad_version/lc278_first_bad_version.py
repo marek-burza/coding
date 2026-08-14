@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/first-bad-version/
 
-import unittest
 
 lc278_first_bad_version = 0
 
@@ -24,7 +23,7 @@ class Solution:
         return a
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generic(self, n: int, expected: int) -> None:
         # pylint: disable=W0603
         global lc278_first_bad_version  # noqa: F824

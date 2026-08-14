@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/library-fine
 
 import os
-import unittest
 
 
 def library_fine(  # pylint: disable=R0913,R0917
@@ -17,7 +16,7 @@ def library_fine(  # pylint: disable=R0913,R0917
     return 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     # pylint: disable=R0914
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2

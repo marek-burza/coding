@@ -1,6 +1,5 @@
 # https://www.hackerrank.com/challenges/angry-professor
 
-import unittest
 from typing import Any
 
 
@@ -16,7 +15,7 @@ def angry_professor(k: int, a: list[int]) -> str:
     return "NO"
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def run_tests(self, tests: list[dict[str, Any]]) -> None:
         for test in tests:
             k = test["k"]

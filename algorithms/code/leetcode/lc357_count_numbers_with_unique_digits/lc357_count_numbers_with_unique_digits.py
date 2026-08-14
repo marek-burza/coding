@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/count-numbers-with-unique-digits/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __count(self, prefix: str, n: int) -> int:
@@ -20,7 +18,7 @@ class Solution:
         return self.__count("", n)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         assert Solution().countNumbersWithUniqueDigits(2) == 91
 

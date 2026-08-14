@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
@@ -39,7 +37,7 @@ class Solution:
         return handle.next
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     @staticmethod
     def linked_to_listed(linked: ListNode | None) -> list:
         listed: list = []

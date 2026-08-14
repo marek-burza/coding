@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/unique-paths/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __nck(self, n: int, k: int) -> int:
@@ -23,7 +21,7 @@ class Solution:
         return int(self.__nck(m + n - 1, m))
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_3_7(self) -> None:
         assert Solution().uniquePaths(3, 7) == 28
 

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
@@ -33,7 +31,7 @@ class Solution:
         return handle.next
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __generic(self, n0: ListNode | None) -> None:
         assert n0 is not None
         assert n0.val == 1

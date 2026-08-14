@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 
-import unittest
-
 
 class Solution:
     def removeDuplicates(self, nums: list[int]) -> int:
@@ -14,7 +12,7 @@ class Solution:
         return len(nums) - counter
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1_2_2_3_4_4_7(self) -> None:
         nums1 = [1, 2, 2, 3, 4, 4, 7]
         length = Solution().removeDuplicates(nums1)

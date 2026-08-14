@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/permutations/
 # #medium
 
-import unittest
 from typing import Any, Callable
 
 
@@ -29,7 +28,7 @@ class Solution:
         return permutations
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     @staticmethod
     def cmp_to_key(mycmp: Callable) -> Any:  # pragma: no cover
         class K:

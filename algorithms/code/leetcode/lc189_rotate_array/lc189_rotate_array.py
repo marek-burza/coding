@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/rotate-array/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __reverse(self, nums: list[int], a: int, b: int) -> None:
@@ -17,7 +15,7 @@ class Solution:
         self.__reverse(nums, k, len(nums) - 1)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1_2_3_4_5_6_7__3(self) -> None:
         nums = [1, 2, 3, 4, 5, 6, 7]
         Solution().rotate(nums, 3)

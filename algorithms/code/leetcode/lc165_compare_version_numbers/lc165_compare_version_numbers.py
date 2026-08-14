@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/compare-version-numbers/
 # #medium
 
-import unittest
-
 
 class Solution:
     def compareVersion(self, version1: str, version2: str) -> int:
@@ -22,7 +20,7 @@ class Solution:
         return 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1__1(self) -> None:
         assert Solution().compareVersion("1", "1") == 0
 

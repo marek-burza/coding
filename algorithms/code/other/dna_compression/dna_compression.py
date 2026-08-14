@@ -1,7 +1,6 @@
 import re
 import sys
 import tempfile
-import unittest
 from pathlib import Path
 from typing import Iterator
 
@@ -76,7 +75,7 @@ def main(path_in: Path, path_out: Path) -> None:
         decode_file(path_in, path_out)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_quartet(self) -> None:
         assert decode_quartet(encode_quartet("tcag")) == "tcag"
 

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/course-schedule-ii/
 
-import unittest
-
 
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: list[list[int]]) -> list[int]:
@@ -33,7 +31,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert sorted(Solution().findOrder(2, [[1, 0]])) == [0, 1]
 

@@ -5,7 +5,6 @@
 import collections
 import io
 import sys
-import unittest
 
 
 def orderly(words: list[str]) -> tuple[list[str], dict[str, int]]:
@@ -32,7 +31,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str) -> None:
         with (
             open(

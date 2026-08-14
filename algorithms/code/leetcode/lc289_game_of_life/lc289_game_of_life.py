@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/game-of-life/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __count(self, board: list[list[int]], row: int, col: int) -> int:
@@ -37,7 +35,7 @@ class Solution:
                 board[row][col] >>= 1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __test(self, expected: list[list[int]], board: list[list[int]]) -> None:
         assert len(expected) == len(board)
         for row, board_row in enumerate(board):

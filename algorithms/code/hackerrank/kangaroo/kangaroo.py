@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/kangaroo
 
 import os
-import unittest
 
 
 def kangaroo(x1: int, v1: int, x2: int, v2: int) -> str:
@@ -12,7 +11,7 @@ def kangaroo(x1: int, v1: int, x2: int, v2: int) -> str:
 
 
 # pylint: disable=R0904
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

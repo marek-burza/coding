@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/extra-long-factorials
 
 import os
-import unittest
 
 
 # pylint: disable=R0913
@@ -12,7 +11,7 @@ def extra_long_factorials(n: int) -> str:
     return str(result)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

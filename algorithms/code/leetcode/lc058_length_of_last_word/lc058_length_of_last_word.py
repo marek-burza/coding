@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/length-of-last-word/
 
-import unittest
-
 
 class Solution:
     def lengthOfLastWord(self, s: str | None) -> int:
@@ -16,7 +14,7 @@ class Solution:
         return n
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_hello_horld(self) -> None:
         assert Solution().lengthOfLastWord("Hello World") == 5
 

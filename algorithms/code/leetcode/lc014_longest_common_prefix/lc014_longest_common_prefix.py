@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/longest-common-prefix/
 
-import unittest
-
 
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
@@ -18,7 +16,7 @@ class Solution:
         return strs[0][0 : i - 1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_Ala_AlaMaKota(self) -> None:
         assert Solution().longestCommonPrefix(["Ala", "Ala Ma Kota"]) == "Ala"
 

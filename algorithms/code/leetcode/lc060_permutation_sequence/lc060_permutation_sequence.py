@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/permutation-sequence/
 
-import unittest
-
 
 class Solution:
     def getPermutation(self, n: int, k: int) -> str:
@@ -25,7 +23,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_2_1(self) -> None:
         assert Solution().getPermutation(2, 1) == "12"
 

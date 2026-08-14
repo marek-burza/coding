@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/gas-station/
 # #medium
 
-import unittest
-
 
 class Solution:
     def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
@@ -21,7 +19,7 @@ class Solution:
         return index if minimum >= 0 else -1  # minimum >= 0 or i < len(gas)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         gas = [99, 99, 99, 104]
         cost = [100, 100, 100, 100]

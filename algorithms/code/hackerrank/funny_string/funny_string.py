@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/funny-string
 
 import os
-import unittest
 
 
 # pylint: disable=R0913
@@ -15,7 +14,7 @@ def funny_string(s: str) -> str:
     return "Funny"
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

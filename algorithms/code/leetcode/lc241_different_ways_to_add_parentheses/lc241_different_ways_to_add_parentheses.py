@@ -2,7 +2,6 @@
 # #medium
 
 import re
-import unittest
 from functools import cache
 
 
@@ -32,7 +31,7 @@ class Solution:
         return traverse(0, len(items) - 1)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generic(self, expected: list[int], result: list[int]) -> None:
         result = sorted(result)
         assert expected == result

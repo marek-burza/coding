@@ -4,8 +4,12 @@
 
 import io
 import sys
-import unittest
 from typing import Any
+
+
+def normalized(text: str) -> str:
+    # Python 3.14 reworded the ZeroDivisionError raised by "//" and "%"
+    return text.replace("integer division or modulo by zero", "division by zero")
 
 
 def exempt(a: Any, b: Any) -> int | str:
@@ -28,7 +32,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str) -> None:
         with (
             open(
@@ -40,7 +44,7 @@ class TestCode(unittest.TestCase):
             io.StringIO() as sys.stdout,
         ):
             main()
-            assert sys.stdout.getvalue() == expected.read()
+            assert normalized(sys.stdout.getvalue()) == normalized(expected.read())
 
     def test_0(self) -> None:
         self.generalized_test("0")

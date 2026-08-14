@@ -2,7 +2,6 @@
 
 import collections
 import os
-import unittest
 
 DELTAS = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
 
@@ -35,7 +34,7 @@ def connected_cell(matrix: list[list[int]]) -> int:
     return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

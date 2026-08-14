@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/isomorphic-strings/
 
-import unittest
-
 
 class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
@@ -19,7 +17,7 @@ class Solution:
         return True
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_aa__ab(self) -> None:
         assert not Solution().isIsomorphic("aa", "ab")
 

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/generate-parentheses/
 
-import unittest
-
 
 class Solution:
     def generate(self, prefix: str, standing: int, n: int, found: list[str]) -> None:
@@ -23,7 +21,7 @@ class Solution:
         return found
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized(self, expected: list[str], n: int) -> None:
         result = Solution().generateParenthesis(n)
         result = sorted(result)

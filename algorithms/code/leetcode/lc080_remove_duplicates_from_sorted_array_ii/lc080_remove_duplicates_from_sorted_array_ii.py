@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
 # #medium
 
-import unittest
-
 
 class Solution:
     def removeDuplicates(self, nums: list[int]) -> int:
@@ -14,7 +12,7 @@ class Solution:
         return i
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         nums = [1, 1, 1, 2, 2, 3]
         expected = [1, 1, 2, 2, 3]

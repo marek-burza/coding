@@ -31,6 +31,7 @@ tests = [
   "isort>=5.13.2,<6",
   "mypy>=1.11.1,<2",
   "mypy-extensions>=1.0.0,<2",
+  "pytest>=8.3.2,<10",
 ]
 
 [tool.black]

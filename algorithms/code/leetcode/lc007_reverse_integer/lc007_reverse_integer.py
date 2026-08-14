@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/reverse-integer/
 
-import unittest
-
 
 class Solution:
     def reverse(self, x: int) -> int:
@@ -32,7 +30,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_minus2000000002(self) -> None:
         assert Solution().reverse(2000000002) == 2000000002
 

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/remove-element/
 
-import unittest
-
 
 class Solution:
     def removeElement(self, nums: list[int], val: int) -> int:
@@ -13,7 +11,7 @@ class Solution:
         return index
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_0_42_1_2_42_3_4__42(self) -> None:
         nums = [0, 42, 1, 2, 42, 3, 4]
         length = Solution().removeElement(nums, 42)

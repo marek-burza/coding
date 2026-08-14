@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/acm-icpc-team
 
-import unittest
-
 
 def acm_team(topic: list[str]) -> tuple[int, int]:
     length = len(topic)
@@ -20,7 +18,7 @@ def acm_team(topic: list[str]) -> tuple[int, int]:
     return (coverage_count, teams_count)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         topic = ["10101", "11100", "11010", "00101"]
         expected = (5, 2)

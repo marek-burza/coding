@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/manasa-and-stones
 
 import os
-import unittest
 
 
 def stones(n: int, a: int, b: int) -> list[int]:
@@ -18,7 +17,7 @@ def stones(n: int, a: int, b: int) -> list[int]:
     return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/sort-colors/
 # #medium
 
-import unittest
-
 
 class Solution:
     def sortColors(self, nums: list[int]) -> None:
@@ -20,7 +18,7 @@ class Solution:
             i += 1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_2(self) -> None:
         nums = [2]
         expected = [2]

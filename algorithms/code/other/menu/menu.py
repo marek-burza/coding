@@ -1,5 +1,4 @@
 import csv
-import unittest
 from collections import Counter, defaultdict
 from pathlib import Path
 from queue import Queue
@@ -152,7 +151,7 @@ def format_counted(title: str, counted: Counter[str]) -> str:  # pragma: no cove
     return formatted
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_q1(self) -> None:
         test_menu = load_menu(EXAMPLE_MENU)
         assert len(test_menu) == 12

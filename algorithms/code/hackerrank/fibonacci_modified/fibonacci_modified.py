@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/fibonacci-modified
 
-import unittest
-
 
 def fibonacci_modified(t1: int, t2: int, n: int) -> int:
     tn1 = t1
@@ -17,7 +15,7 @@ def fibonacci_modified(t1: int, t2: int, n: int) -> int:
     return tn2
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert fibonacci_modified(0, 1, 5) == 5
 

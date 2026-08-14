@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/divisible-sum-pairs
 
 import os
-import unittest
 
 
 def n_choose_k(N: int, K: int) -> int:
@@ -42,7 +41,7 @@ def divisible_sum_pairs(n: int, k: int, arr: list[int]) -> int:
     return total
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

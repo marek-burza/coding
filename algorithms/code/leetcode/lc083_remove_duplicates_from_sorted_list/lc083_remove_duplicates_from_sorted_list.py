@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
@@ -36,7 +34,7 @@ class Solution:
         return Solution.listed_to_linked(deduplicated)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1_1_2(self) -> None:
         linked = Solution.listed_to_linked([1, 1, 2])
         result = Solution().deleteDuplicates(linked)

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/longest-consecutive-sequence/
 # #medium
 
-import unittest
-
 
 class Solution:
     class Range:
@@ -45,7 +43,7 @@ class Solution:
         # in the hash table instead of range itself
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_100_4_200_1_3_2(self) -> None:
         nums1 = [100, 4, 200, 1, 3, 2]
         assert Solution().longestConsecutive(nums1) == 4

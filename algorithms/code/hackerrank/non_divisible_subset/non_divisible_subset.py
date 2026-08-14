@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/non-divisible-subset
 
 import os
-import unittest
 
 
 def non_divisible_subset(k: int, s: list[int]) -> int:
@@ -34,7 +33,7 @@ def non_divisible_subset(k: int, s: list[int]) -> int:
     return total
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

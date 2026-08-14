@@ -1,5 +1,4 @@
 import random
-import unittest
 from functools import partial
 from typing import Callable
 
@@ -187,7 +186,7 @@ def main() -> float:
 
 
 # IMPLEMENTATION: BEGIN
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_minimum_bar(self) -> None:
         assert all(main() > 80.0 for _ in range(10))
 

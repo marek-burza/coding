@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class TreeNode:
     def __init__(
@@ -43,7 +41,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_empty(self) -> None:
         assert len(Solution().levelOrderBottom(None)) == 0
 

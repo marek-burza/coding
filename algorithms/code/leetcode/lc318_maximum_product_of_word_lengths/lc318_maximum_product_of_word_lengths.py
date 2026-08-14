@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/maximum-product-of-word-lengths/
 # #medium
 
-import unittest
-
 
 class Solution:
     def maxProduct(self, words: list[str]) -> int:
@@ -18,7 +16,7 @@ class Solution:
         return maximum
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         words = ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]
         assert Solution().maxProduct(words) == 16

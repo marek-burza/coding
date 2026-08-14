@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/cavity-map
 
 import os
-import unittest
 
 
 def cavity_map(grid: list[str]) -> list[str]:
@@ -19,7 +18,7 @@ def cavity_map(grid: list[str]) -> list[str]:
     return ["".join(line) for line in cells]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

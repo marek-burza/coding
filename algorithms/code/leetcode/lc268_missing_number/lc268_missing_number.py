@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/missing-number/
 
-import unittest
-
 
 class Solution:
     def missingNumber(self, nums: list[int]) -> int:
@@ -12,6 +10,6 @@ class Solution:
         return int(expected - summed)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         assert Solution().missingNumber([0, 1, 3]) == 2

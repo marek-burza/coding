@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/ransom-note/
 
-import unittest
-
 
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
@@ -15,7 +13,7 @@ class Solution:
         return True
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_a_b(self) -> None:
         assert not Solution().canConstruct("a", "b")
 

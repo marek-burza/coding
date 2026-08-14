@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, x: int) -> None:
@@ -30,7 +28,7 @@ class Solution:
         return count > 1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_empty(self) -> None:
         assert not Solution().hasCycle(None)
 

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/triangle/
 # #medium
 
-import unittest
-
 
 class Solution:
     def minimumTotal(self, triangle: list[list[int]]) -> int:
@@ -28,7 +26,7 @@ class Solution:
         return minimum
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __construct(self, compact: list[list[int]]) -> list[list[int]]:
         triangle: list[list[int]] = []
         for array in compact:

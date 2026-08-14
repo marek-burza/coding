@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/staircase
 
-import unittest
-
 
 def staircase(n: int) -> list[str]:
     result = []
@@ -13,7 +11,7 @@ def staircase(n: int) -> list[str]:
     return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         expected = ["     #", "    ##", "   ###", "  ####", " #####", "######"]
         assert expected == staircase(6)

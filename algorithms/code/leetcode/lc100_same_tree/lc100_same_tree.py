@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class TreeNode:
     def __init__(
@@ -40,7 +38,7 @@ class Solution:
         return True
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_different(self) -> None:
         an0 = TreeNode(0)
         bn0 = TreeNode(0)

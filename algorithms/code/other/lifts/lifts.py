@@ -4,7 +4,6 @@ import collections
 import math
 import random
 import sys
-import unittest
 from abc import ABC, abstractmethod
 
 
@@ -277,7 +276,7 @@ def simulation(
     return system.stats()
 
 
-class Tests(unittest.TestCase):
+class Tests:
     def test_randomized(self) -> None:
         lift_cnt = 4
         floor_cnt = 14
@@ -298,9 +297,8 @@ class Tests(unittest.TestCase):
 
 if __name__ == "__main__":  # pragma: no cover
     if len(sys.argv) > 1:
-        sys.argv = [sys.argv[0]]
         # Run unattended test to gather statistics
-        unittest.main()
+        Tests().test_randomized()
     else:
         # Run interactive test
         main_lift_cnt = 4

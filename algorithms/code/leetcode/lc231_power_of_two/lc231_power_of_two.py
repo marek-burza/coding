@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/power-of-two/
 # #google
 
-import unittest
-
 
 class Solution:
     def isPowerOfTwo(self, n: int) -> bool:
@@ -16,7 +14,7 @@ class Solution:
         return count == 1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_minus10(self) -> None:
         assert not Solution().isPowerOfTwo(-10)
 

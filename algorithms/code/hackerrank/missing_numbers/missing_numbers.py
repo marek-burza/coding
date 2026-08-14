@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/missing-numbers
 
 import os
-import unittest
 
 
 def missing_numbers(arr: list[int], brr: list[int]) -> list[int]:
@@ -22,7 +21,7 @@ def missing_numbers(arr: list[int], brr: list[int]) -> list[int]:
     return sorted(list(missing))
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

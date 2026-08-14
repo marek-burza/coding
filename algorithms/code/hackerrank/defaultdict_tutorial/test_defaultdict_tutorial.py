@@ -5,7 +5,6 @@
 import collections
 import io
 import sys
-import unittest
 
 
 def list_repetitions(words_a: list[str], words_b: list[str]) -> dict[str, list[int]]:
@@ -36,7 +35,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str) -> None:
         with (
             open(

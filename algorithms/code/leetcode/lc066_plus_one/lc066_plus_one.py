@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/plus-one/
 
-import unittest
-
 
 class Solution:
     def plusOne(self, digits: list[int]) -> list[int]:
@@ -17,7 +15,7 @@ class Solution:
         return digits
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1_9(self) -> None:
         expected = [2, 0]
         assert expected == Solution().plusOne([1, 9])

@@ -4,8 +4,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class TreeNode:
     def __init__(
@@ -39,7 +37,7 @@ class Solution:
         return node_obj
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         tree = Solution().buildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7])
         assert tree is not None

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/powx-n/
 # #medium
 
-import unittest
-
 
 class Solution:
     def myPow(self, x: float, n: int) -> float:
@@ -28,7 +26,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_smaller(self) -> None:
         x = 34.00515
         n = -3

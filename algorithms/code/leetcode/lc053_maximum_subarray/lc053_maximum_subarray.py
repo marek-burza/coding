@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/maximum-subarray/
 
-import unittest
-
 
 class Solution:
     def maxSubArray(self, nums: list[int]) -> int:
@@ -18,7 +16,7 @@ class Solution:
         return int(maximum)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6
 

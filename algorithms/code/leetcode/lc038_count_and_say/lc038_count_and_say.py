@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/count-and-say/
 # #medium
 
-import unittest
-
 
 class Solution:
     def countAndSay(self, n: int) -> str:
@@ -29,7 +27,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1(self) -> None:
         assert Solution().countAndSay(1) == "1"
 

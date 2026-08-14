@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/repeated-dna-sequences/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __compress(self, nucleotide: str) -> int:
@@ -42,7 +40,7 @@ class Solution:
         return listed
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT(self) -> None:
         expected = ["AAAAACCCCC", "CCCCCAAAAA"]
         result = Solution().findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT")

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/h-index-ii/
 # #medium
 
-import unittest
-
 
 class Solution:
     def hIndex(self, citations: list[int]) -> int:
@@ -20,7 +18,7 @@ class Solution:
         return n - a
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         citations = [0, 1, 3, 5, 6]
         assert Solution().hIndex(citations) == 3

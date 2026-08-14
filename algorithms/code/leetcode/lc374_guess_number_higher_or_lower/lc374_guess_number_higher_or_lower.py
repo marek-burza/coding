@@ -1,6 +1,5 @@
 # https://leetcode.com/problems/guess-number-higher-or-lower/
 
-import unittest
 
 lc374_number_higher_or_lower = 0
 
@@ -31,7 +30,7 @@ class Solution:
         return a
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_2_in_10(self) -> None:
         # pylint: disable=W0603
         global lc374_number_higher_or_lower

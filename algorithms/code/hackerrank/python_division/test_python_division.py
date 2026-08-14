@@ -4,7 +4,6 @@
 
 import io
 import sys
-import unittest
 
 
 def divide(first: int, second: int) -> tuple[int, float]:
@@ -25,7 +24,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str) -> None:
         with (
             open(

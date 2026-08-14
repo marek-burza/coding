@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/the-time-in-words
 
 import os
-import unittest
 
 LUT = [
     "zero",
@@ -68,7 +67,7 @@ def time_in_words(h: int, m: int) -> str:
     return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

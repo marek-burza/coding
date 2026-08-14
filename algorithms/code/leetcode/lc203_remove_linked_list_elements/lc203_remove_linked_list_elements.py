@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class ListNode:
     def __init__(self, x: int) -> None:
@@ -29,7 +27,7 @@ class Solution:
         return head
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def convert(self, array: list[int]) -> ListNode | None:
         handle = ListNode(0)
         last = handle

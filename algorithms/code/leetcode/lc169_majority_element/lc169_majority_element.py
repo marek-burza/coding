@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/majority-element/
 
 import collections
-import unittest
 
 
 class Solution:
@@ -19,7 +18,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1_2_3_1_5_1_6_1(self) -> None:
         nums = [1, 2, 3, 1, 5, 1, 6, 1]
         assert Solution().majorityElement(nums) == 1

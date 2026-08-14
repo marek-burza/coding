@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/reverse-bits/
 
-import unittest
-
 
 class Solution:
     def reverseBits(self, n: int) -> int:
@@ -13,6 +11,6 @@ class Solution:
         return r
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_43261596(self) -> None:
         assert Solution().reverseBits(43261596) == 964176192

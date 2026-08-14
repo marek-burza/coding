@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/zigzag-conversion/
 
-import unittest
-
 
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
@@ -22,7 +20,7 @@ class Solution:
         return buffer
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1(self) -> None:
         assert Solution().convert("PAYPALISHIRING", 3) == "PAHNAPLSIIGYIR"
 

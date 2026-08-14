@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/next-permutation/
 
-import unittest
-
 
 class Solution:
     def nextPermutation(self, nums: list[int]) -> None:
@@ -23,7 +21,7 @@ class Solution:
             nums[index1 + 1 :] = nums[index1 + 1 :][::-1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         nums = [1, 2, 3]
         Solution().nextPermutation(nums)

@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/cut-the-sticks
 
 import os
-import unittest
 
 
 def cut_the_sticks(arr: list[int]) -> list[int]:
@@ -14,7 +13,7 @@ def cut_the_sticks(arr: list[int]) -> list[int]:
     return cuts[::-1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

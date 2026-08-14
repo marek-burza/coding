@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/merge-sorted-array/
 
-import unittest
-
 
 class Solution:
     def merge(self, nums1: list[int], m: int, nums2: list[int], n: int) -> None:
@@ -22,7 +20,7 @@ class Solution:
             i -= 1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         nums1 = [1, 2, 3, 0, 0, 0]
         nums2 = [2, 5, 6]

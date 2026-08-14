@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/wiggle-subsequence/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __signum(self, value: int) -> int:
@@ -26,7 +24,7 @@ class Solution:
         return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().wiggleMaxLength([1, 7, 4, 9, 2, 5]) == 6
 

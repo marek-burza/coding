@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/add-binary/
 
-import unittest
-
 
 class Solution:
     def addBinary(self, a: str, b: str) -> str:
@@ -22,7 +20,7 @@ class Solution:
         return result[::-1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().addBinary("11", "1") == "100"
 

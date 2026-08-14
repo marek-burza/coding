@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __bsInfimum(self, nums: list[int], target: int) -> int:
@@ -43,7 +41,7 @@ class Solution:
         return [infimum, supremum]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         nums = [5, 7, 7, 8, 8, 10]
         expected = [3, 4]

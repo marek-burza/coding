@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/integer-break/
 # #medium
 
-import unittest
-
 
 class Solution:
     def integerBreak(self, n: int) -> int:
@@ -23,7 +21,7 @@ class Solution:
         # return product * n
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_2(self) -> None:
         assert Solution().integerBreak(2) == 1
 

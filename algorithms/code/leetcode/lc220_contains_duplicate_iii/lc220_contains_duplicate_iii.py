@@ -2,7 +2,6 @@
 # #medium
 
 import bisect
-import unittest
 
 
 class Solution:
@@ -34,7 +33,7 @@ class Solution:
         return False
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1_10_20_2(self) -> None:
         nums = [1, 10, 20, 2]
         assert Solution().containsNearbyAlmostDuplicate(nums, 3, 2)

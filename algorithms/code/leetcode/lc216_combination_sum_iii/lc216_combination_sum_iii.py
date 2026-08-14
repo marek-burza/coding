@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/combination-sum-iii/
 # #medium
 
-import unittest
-
 
 class Solution:
     # pylint: disable=R0913,R0917
@@ -37,7 +35,7 @@ class Solution:
         return each
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __test(self, expected: list[list[int]], result: list[list[int]]) -> None:
         for entry in result:
             entry.sort()

@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/find-peak-element/
 # #medium
 
-import unittest
-
 
 class Solution:
     def findPeakElement(self, nums: list[int]) -> int:
@@ -14,7 +12,7 @@ class Solution:
         return -1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1_2_3_1(self) -> None:
         assert Solution().findPeakElement([1, 2, 3, 1]) == 2
 

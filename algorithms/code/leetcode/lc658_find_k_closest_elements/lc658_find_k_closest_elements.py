@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/find-k-closest-elements/
 
-import unittest
-
 
 class Solution:
     def findClosestElements(self, arr: list[int], k: int, x: int) -> list[int]:
@@ -15,7 +13,7 @@ class Solution:
         return arr[begin : begin + k]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().findClosestElements([1, 2, 3, 4, 5], 4, 3) == [
             1,

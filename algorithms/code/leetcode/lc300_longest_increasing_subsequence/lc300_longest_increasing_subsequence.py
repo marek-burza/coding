@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/longest-increasing-subsequence/
 # #medium
 
-import unittest
-
 
 class Solution:
     def lengthOfLIS(self, nums: list[int]) -> int:
@@ -17,7 +15,7 @@ class Solution:
         return maximum
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         nums = [10, 9, 2, 5, 3, 7, 101, 18]
         assert Solution().lengthOfLIS(nums) == 4

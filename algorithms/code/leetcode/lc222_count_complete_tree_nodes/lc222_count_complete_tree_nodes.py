@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class TreeNode:
     def __init__(
@@ -24,7 +22,7 @@ class Solution:
         return 1 + self.countNodes(root.left) + self.countNodes(root.right)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().countNodes(None) == 0
 

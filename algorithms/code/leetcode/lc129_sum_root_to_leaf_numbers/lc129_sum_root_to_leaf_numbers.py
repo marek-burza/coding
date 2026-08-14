@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class TreeNode:
     def __init__(
@@ -32,7 +30,7 @@ class Solution:
         return self.__sumNumbers(root, 0)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         root = TreeNode(1)
         root.left = TreeNode(2)

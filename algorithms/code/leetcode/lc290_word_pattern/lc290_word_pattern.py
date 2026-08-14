@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/word-pattern/
 
-import unittest
-
 
 class Solution:
     def check(self, first: str, second: str, mapping: dict[str, str]) -> bool:
@@ -29,7 +27,7 @@ class Solution:
         return True
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_abba__dog_cat_cat_dog(self) -> None:
         assert Solution().wordPattern("abba", "dog cat cat dog")
 

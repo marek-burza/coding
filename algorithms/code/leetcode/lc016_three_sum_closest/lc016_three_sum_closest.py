@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/3sum-closest/
 
-import unittest
-
 
 class Solution:
     def threeSumClosest(self, nums: list[int], target: int) -> int:
@@ -23,7 +21,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         nums = [-1, 2, 1, -4]
         expected = 2

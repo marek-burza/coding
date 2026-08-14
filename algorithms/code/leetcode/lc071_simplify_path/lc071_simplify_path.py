@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/simplify-path/
 
-import unittest
-
 
 class Solution:
     def simplifyPath(self, path: str) -> str:
@@ -17,7 +15,7 @@ class Solution:
         return "/" + "/".join(filtered)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().simplifyPath("/home/") == "/home"
 

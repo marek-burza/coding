@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/single-number-ii/
 # #medium #google
 
-import unittest
-
 
 class Solution:
     def singleNumber(self, nums: list[int]) -> int:
@@ -20,7 +18,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1112(self) -> None:
         nums = [1, 1, 1, 2]
         assert Solution().singleNumber(nums) == 2

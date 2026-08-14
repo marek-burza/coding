@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/word-break/
 # #medium
 
-import unittest
-
 
 class Solution:
     # pylint: disable=R0913,R0917
@@ -31,7 +29,7 @@ class Solution:
         return self.__wordBreak(s, set(wordDict), 0, length, checked)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_a__a(self) -> None:
         assert Solution().wordBreak("a", ["a"])
 

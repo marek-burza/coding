@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/house-robber/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __rob(self, nums: list[int], offset: int, maxed: dict[int, int]) -> int:
@@ -21,7 +19,7 @@ class Solution:
         return self.__rob(nums, 0, {})
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_6_6_4_8_4_3_3_10(self) -> None:
         nums = [6, 6, 4, 8, 4, 3, 3, 10]
         assert Solution().rob(nums) == 27

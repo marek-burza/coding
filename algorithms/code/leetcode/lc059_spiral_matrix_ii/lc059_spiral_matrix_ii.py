@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/spiral-matrix-ii/
 # #medium
 
-import unittest
-
 
 class Solution:
     def generateMatrix(self, n: int) -> list[list[int]]:
@@ -28,7 +26,7 @@ class Solution:
         return matrix
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         expected = [[1, 2, 3], [8, 9, 4], [7, 6, 5]]
         result = Solution().generateMatrix(3)

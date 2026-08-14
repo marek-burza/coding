@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/range-sum-query-immutable/
 
-import unittest
-
 
 class NumArray:
     def __init__(self, nums: list[int]) -> None:
@@ -19,7 +17,7 @@ class NumArray:
         return summed
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_0__2(self) -> None:
         nums = [-2, 0, 3, -5, 2, -1]
         assert NumArray(nums).sumRange(0, 2) == 1

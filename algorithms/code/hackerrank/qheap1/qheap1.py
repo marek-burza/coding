@@ -5,7 +5,6 @@ import heapq
 import io
 import os
 import sys
-import unittest
 
 
 def sheap_child_left(index: int) -> int:
@@ -143,7 +142,7 @@ if __name__ == "__main__":  # pragma: no cover
     main()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def generalized_test(self, which: str, quick: bool = True) -> None:
         resources = os.path.dirname(__file__)
         with (

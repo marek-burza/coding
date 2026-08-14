@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/super-ugly-number/
 # #medium
 
-import unittest
-
 
 class Solution:
     def nthSuperUglyNumber(self, n: int, primes: list[int]) -> int:
@@ -26,7 +24,7 @@ class Solution:
         return dp[n - 1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         expected = [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32]
         primes = [2, 7, 13, 19]

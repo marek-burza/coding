@@ -1,7 +1,5 @@
 # http://blog.codility.com/2011/03/solutions-for-task-equi.html
 
-import unittest
-
 
 def find_aquilibrium_index(array: list[int]) -> int:
     n = len(array)
@@ -19,7 +17,7 @@ def find_aquilibrium_index(array: list[int]) -> int:
     return -1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         array = [-1, 3, -4, 5, 1, -6, 2, 1]
         result = find_aquilibrium_index(array)

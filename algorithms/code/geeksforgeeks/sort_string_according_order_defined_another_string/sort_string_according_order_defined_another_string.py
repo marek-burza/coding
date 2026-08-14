@@ -1,8 +1,6 @@
 # https://www.geeksforgeeks.org/sort-string-according-order-defined-another-string/
 # #google
 
-import unittest
-
 
 class Solution:
     def sortByPattern(self, string: str, pat: str) -> str:
@@ -15,7 +13,7 @@ class Solution:
         return "".join(chars)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().sortByPattern("abc", "bca") == "bca"
 

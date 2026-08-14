@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/tutorial-intro
 
-import unittest
-
 
 def intro_tutorial(v: int, arr: list[int]) -> int:
     a = 0
@@ -17,7 +15,7 @@ def intro_tutorial(v: int, arr: list[int]) -> int:
     return -1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         assert intro_tutorial(4, [1, 4, 5, 7, 9, 12]) == 1
 

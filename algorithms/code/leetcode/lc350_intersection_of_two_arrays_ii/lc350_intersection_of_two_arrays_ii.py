@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/intersection-of-two-arrays-ii/
 
-import unittest
-
 
 class Solution:
     def intersect(self, nums1: list[int], nums2: list[int]) -> list[int]:
@@ -23,7 +21,7 @@ class Solution:
         return found
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         expected = [2, 2]
         result = Solution().intersect([1, 2, 2, 1], [2, 2])

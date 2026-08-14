@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/longest-palindromic-substring/
 # See also: Manacher algorithm
 
-import unittest
-
 
 class Solution:
     def longestPalindrome(self, s: str) -> str:
@@ -28,7 +26,7 @@ class Solution:
         return longest
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1(self) -> None:
         assert Solution().longestPalindrome("babad") == "bab"
 

@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/cut-the-tree
 
 import os
-import unittest
 from dataclasses import dataclass
 
 
@@ -55,7 +54,7 @@ def cut_the_tree(data: list[int], edges: list[list[int]]) -> int:
     return minimum[0]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

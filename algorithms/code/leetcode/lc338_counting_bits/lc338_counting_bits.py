@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/counting-bits/
 
-import unittest
-
 
 class Solution:
     def countBits(self, n: int) -> list[int]:
@@ -17,7 +15,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_2(self) -> None:
         assert Solution().countBits(2) == [0, 1, 1]
 

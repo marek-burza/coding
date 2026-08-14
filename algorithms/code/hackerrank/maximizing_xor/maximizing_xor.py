@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/maximizing-xor
 
 import os
-import unittest
 
 
 def maximizing_xor(var_l: int, var_r: int) -> int:
@@ -13,7 +12,7 @@ def maximizing_xor(var_l: int, var_r: int) -> int:
     return maxed
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

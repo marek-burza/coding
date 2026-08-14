@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import collections
-import unittest
 from typing import Callable, Deque
 
 
@@ -34,7 +33,7 @@ class Solution:
         return Solution.__sortedArrayToBST(nums, 0, len(nums))
 
 
-class TestCode(unittest.TestCase):  # pragma: no cover
+class TestCode:  # pragma: no cover
     @staticmethod
     def __find_extreme(root: TreeNode | None, init: float, relation: Callable) -> float:
         if root is None:

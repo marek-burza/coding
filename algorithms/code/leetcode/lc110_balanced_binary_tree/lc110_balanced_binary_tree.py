@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
-
 
 class TreeNode:
     def __init__(
@@ -35,7 +33,7 @@ class Solution:
         return self.__balancedHeight(root) != -1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_balanced(self) -> None:
         left = TreeNode(2, TreeNode(1, None, None), TreeNode(3, None, None))
         right = TreeNode(6, TreeNode(5, None, None), TreeNode(7, None, None))

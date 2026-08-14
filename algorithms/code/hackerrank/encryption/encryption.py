@@ -2,7 +2,6 @@
 
 import math
 import os
-import unittest
 
 
 def encryption(plain: str) -> str:
@@ -27,7 +26,7 @@ def encryption(plain: str) -> str:
     return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

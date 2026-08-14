@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/3sum/
 
-import unittest
-
 
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
@@ -29,7 +27,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def check(self, expected: list[list[int]], result: list[list[int]]) -> None:
         assert len(result) == len(expected)
         for entry in expected:

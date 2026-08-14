@@ -1,6 +1,5 @@
 # https://www.hackerrank.com/challenges/circular-array-rotation
 
-import unittest
 from typing import Any
 
 
@@ -12,7 +11,7 @@ def circular_array_rotation(k: int, a: list[int], queries: list[int]) -> list[in
     return results
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def run_test(self, test: dict[str, Any]) -> None:
         k = test["k"]
         a = test["a"]

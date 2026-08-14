@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/contains-duplicate/
 
-import unittest
-
 
 class Solution:
     def containsDuplicate(self, nums: list[int]) -> bool:
@@ -13,7 +11,7 @@ class Solution:
         return False
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_0_5_7(self) -> None:
         assert not Solution().containsDuplicate([0, 5, 7])
 

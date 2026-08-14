@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/sherlock-and-array
 
 import os
-import unittest
 
 
 def balanced_sums(arr: list[int]) -> str:
@@ -16,7 +15,7 @@ def balanced_sums(arr: list[int]) -> str:
     return "NO"
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

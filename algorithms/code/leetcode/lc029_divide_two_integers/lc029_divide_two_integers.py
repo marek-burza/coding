@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/divide-two-integers/
 
-import unittest
-
 
 class Solution:
     MAX_VALUE = 2147483647
@@ -28,7 +26,7 @@ class Solution:
         return sign * counter
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_Minus1010369383_Minus2147483648(self) -> None:
         assert Solution().divide(-1010369383, -2147483648) == -1010369383 // -2147483648
 

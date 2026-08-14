@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/jump-game/
 # #medium
 
-import unittest
-
 
 class Solution:
     def canJump(self, nums: list[int]) -> bool:
@@ -22,7 +20,7 @@ class Solution:
         # return False
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_25002_integers(self) -> None:
         nums1 = [0] * 25003
         for i, _ in enumerate(nums1):

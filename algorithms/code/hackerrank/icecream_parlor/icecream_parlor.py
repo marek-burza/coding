@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/icecream-parlor
 
 import os
-import unittest
 
 
 def icecream_parlor(m: int, arr: list[int]) -> list[int]:
@@ -20,7 +19,7 @@ def icecream_parlor(m: int, arr: list[int]) -> list[int]:
     return [0, 0]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

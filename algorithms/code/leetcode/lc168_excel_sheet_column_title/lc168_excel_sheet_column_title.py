@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/excel-sheet-column-title/
 
-import unittest
-
 
 class Solution:
     def convertToTitle(self, columnNumber: int) -> str:
@@ -18,7 +16,7 @@ class Solution:
         return buffer[::-1]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1(self) -> None:
         assert Solution().convertToTitle(1) == "A"
 

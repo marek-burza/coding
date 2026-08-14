@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/subsets/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __subsets(
@@ -25,7 +23,7 @@ class Solution:
         return listed
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def __test(self, expected: list[list[int]], result: list[list[int]]) -> None:
         result = sorted(result)
         expected = sorted(expected)

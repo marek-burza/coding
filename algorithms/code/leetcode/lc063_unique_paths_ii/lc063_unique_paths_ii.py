@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/unique-paths-ii/
 
-import unittest
-
 
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
@@ -24,7 +22,7 @@ class Solution:
         return cache[0][0]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert (
             Solution().uniquePathsWithObstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]) == 2

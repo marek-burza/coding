@@ -1,7 +1,6 @@
 # https://en.wikipedia.org/wiki/Connect_Four
 
 import enum
-import unittest
 
 
 class Player(enum.IntEnum):
@@ -90,7 +89,7 @@ class GameState(BoardState):
         return ok
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     # pylint: disable=R0913,R0917
     def generic(
         self,

@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/pairs
 
 import os
-import unittest
 
 
 def binary_search(array: list[int], from_index: int, to_index: int, key: int) -> int:
@@ -25,7 +24,7 @@ def pairs(k: int, arr: list[int]) -> int:
     return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
         for index, template in enumerate(["input%s.txt", "output%s.txt"]):

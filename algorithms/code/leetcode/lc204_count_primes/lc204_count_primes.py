@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/count-primes/
 # #medium
 
-import unittest
-
 
 class Solution:
     def countPrimes(self, n: int) -> int:
@@ -21,7 +19,7 @@ class Solution:
         return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_11(self) -> None:
         assert Solution().countPrimes(11) == 4
 

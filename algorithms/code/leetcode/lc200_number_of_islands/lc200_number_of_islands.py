@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/number-of-islands/
 # #medium
 
-import unittest
-
 
 class Solution:
     __DELTAS = [[0, 1], [1, 0], [0, -1], [-1, 0]]
@@ -41,7 +39,7 @@ class Solution:
         return count
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         grid = [["1"]]
         assert Solution().numIslands(grid) == 1

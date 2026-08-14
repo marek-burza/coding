@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/partition-equal-subset-sum/
 
-import unittest
-
 
 def canPartitionSubset(
     nums: list[int],
@@ -40,7 +38,7 @@ class Solution:
         return canPartitionSubset(nums, count, summed // 2, cache)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().canPartition([1, 5, 11, 5])
 

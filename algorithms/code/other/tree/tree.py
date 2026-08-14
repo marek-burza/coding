@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import unittest
 from dataclasses import dataclass, field
 
 
@@ -48,7 +47,7 @@ def tree(
     return output
 
 
-class TestTree(unittest.TestCase):
+class TestTree:
     FILE_SYSTEM = [
         File("pyproject.toml"),
         File("README.md"),

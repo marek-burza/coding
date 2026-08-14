@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import unittest
 from typing import Any
 
 
@@ -47,7 +46,7 @@ class Solution:
         return None
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         n3 = TreeNode(3, None, None)
         n5 = TreeNode(5, None, None)

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/search-insert-position/
 
-import unittest
-
 
 class Solution:
     def searchInsert(self, nums: list[int], target: int) -> int:
@@ -16,7 +14,7 @@ class Solution:
         return z
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test__empty__5(self) -> None:
         nums: list[int] = []
         assert Solution().searchInsert(nums, 5) == 0

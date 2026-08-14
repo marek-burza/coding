@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/find-all-duplicates-in-an-array/
 
-import unittest
-
 
 class Solution:
     def dailyTemperatures(self, temperatures: list[int]) -> list[int]:
@@ -15,7 +13,7 @@ class Solution:
         return result
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]) == [
             1,

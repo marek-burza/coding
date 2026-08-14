@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/insert-interval/
 
-import unittest
-
 
 class Solution:
     def insert(
@@ -26,7 +24,7 @@ class Solution:
         return before + [[start, end]] + after
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().insert([[1, 3], [6, 9]], [2, 5]) == [[1, 5], [6, 9]]
 

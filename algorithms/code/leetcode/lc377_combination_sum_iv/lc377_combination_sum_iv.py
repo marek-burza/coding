@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/combination-sum-iv/
 # #medium
 
-import unittest
-
 
 class Solution:
     def combinationSum4(self, nums: list[int], target: int) -> int:
@@ -17,7 +15,7 @@ class Solution:
         return cache[target]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         nums = [1, 2, 3]
         assert Solution().combinationSum4(nums, 4) == 7

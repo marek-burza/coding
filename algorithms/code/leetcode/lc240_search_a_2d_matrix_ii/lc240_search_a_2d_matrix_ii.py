@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/search-a-2d-matrix-ii/
 # #medium
 
-import unittest
-
 
 class Solution:
     # pylint: disable=R0911,R0913,R0917
@@ -49,7 +47,7 @@ class Solution:
         )
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     EXAMPLE_MATRIX = [
         [1, 4, 7, 11, 15],
         [2, 5, 8, 12, 19],

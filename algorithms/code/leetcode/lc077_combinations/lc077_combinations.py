@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/combinations/
 # #medium
 
-import unittest
 from typing import Any, Callable
 
 
@@ -29,7 +28,7 @@ class Solution:
         return found
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     @staticmethod
     def cmp_to_key(
         mycmp: Callable[[list[list[int]], list[list[int]]], int],

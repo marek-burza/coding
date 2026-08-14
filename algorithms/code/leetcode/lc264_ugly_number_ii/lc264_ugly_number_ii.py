@@ -2,7 +2,6 @@
 # #medium
 
 import heapq
-import unittest
 
 
 class Solution:
@@ -20,7 +19,7 @@ class Solution:
         return uglies[0]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         expected = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12]
         for i, expected_i in enumerate(expected):

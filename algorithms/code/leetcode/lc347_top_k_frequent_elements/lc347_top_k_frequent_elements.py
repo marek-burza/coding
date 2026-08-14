@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/top-k-frequent-elements/
 # #medium
 
-import unittest
-
 
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
@@ -18,7 +16,7 @@ class Solution:
         return selected
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         nums = [1, 1, 1, 2, 2, 3]
         expected = [1, 2]

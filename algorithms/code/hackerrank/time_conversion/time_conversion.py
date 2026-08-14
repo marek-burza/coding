@@ -1,7 +1,5 @@
 # https://www.hackerrank.com/challenges/time-conversion
 
-import unittest
-
 
 def to_military(s: str) -> str:
     afternoon = s[8] == "P"
@@ -11,7 +9,7 @@ def to_military(s: str) -> str:
     return hour + s[2:8]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_070545PM(self) -> None:
         assert to_military("07:05:45PM") == "19:05:45"
 

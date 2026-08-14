@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/rectangle-area/
 # #medium
 
-import unittest
-
 
 class Solution:
     def __area(self, left: int, bottom: int, right: int, top: int) -> int:
@@ -31,7 +29,7 @@ class Solution:
         return total
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_minus3_0_3_4_0_minus1_9_2(self) -> None:
         assert Solution().computeArea(-3, 0, 3, 4, 0, -1, 9, 2) == 45
 

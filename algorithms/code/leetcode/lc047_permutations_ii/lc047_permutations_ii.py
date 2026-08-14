@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/permutations-ii/
 # #medium
 
-import unittest
 from collections import Counter
 
 
@@ -34,7 +33,7 @@ class Solution:
                 permutation.pop()
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         nums = [1, 1, 2]
         result = Solution().permuteUnique(nums)

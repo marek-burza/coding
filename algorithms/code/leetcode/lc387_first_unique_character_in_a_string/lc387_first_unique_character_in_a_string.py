@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/first-unique-character-in-a-string/
 
-import unittest
-
 
 class Solution:
     def firstUniqChar(self, s: str) -> int:
@@ -20,7 +18,7 @@ class Solution:
         return minimum
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_leetcode(self) -> None:
         assert Solution().firstUniqChar("leetcode") == 0
 

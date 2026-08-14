@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/happy-number/
 
-import unittest
-
 
 class Solution:
     def __re(self, n: int) -> int:
@@ -23,7 +21,7 @@ class Solution:
         return True
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_19(self) -> None:
         assert Solution().isHappy(19)
 

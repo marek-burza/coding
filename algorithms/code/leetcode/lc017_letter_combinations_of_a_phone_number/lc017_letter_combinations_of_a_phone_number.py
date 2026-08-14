@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
-import unittest
-
 
 class Solution:
     def letterCombinations(self, digits: str) -> list[str]:
@@ -31,7 +29,7 @@ class Solution:
         return mapped
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_empty(self) -> None:
         result = Solution().letterCombinations("")
         assert len(result) == 0

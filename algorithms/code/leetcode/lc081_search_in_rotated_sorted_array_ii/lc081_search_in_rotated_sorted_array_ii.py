@@ -2,7 +2,6 @@
 # #medium
 
 import bisect
-import unittest
 
 
 class Solution:
@@ -22,7 +21,7 @@ class Solution:
         return self.__binary_search(nums, 0, len(nums), target) >= 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_simple_example(self) -> None:
         nums = [4, 5, 6, 6, 7, 0, 1, 2]
         assert Solution().search(nums, 1)

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/valid-perfect-square/
 
-import unittest
-
 
 class Solution:
     def isPerfectSquare(self, num: int) -> bool:
@@ -19,7 +17,7 @@ class Solution:
         return False
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_1(self) -> None:
         assert Solution().isPerfectSquare(1)
 

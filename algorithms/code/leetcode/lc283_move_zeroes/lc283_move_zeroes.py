@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/move-zeroes/
 
-import unittest
-
 
 class Solution:
     def moveZeroes(self, nums: list[int]) -> None:
@@ -14,7 +12,7 @@ class Solution:
             nums[index] = 0
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         nums = [0, 1, 0, 3, 12]
         Solution().moveZeroes(nums)

@@ -1,7 +1,6 @@
 # https://www.hackerrank.com/challenges/the-grid-search
 
 import os
-import unittest
 
 
 def grid_search(G: list[str], P: list[str]) -> str:
@@ -24,7 +23,7 @@ def grid_search(G: list[str], P: list[str]) -> str:
             return "YES"
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     # pylint: disable=R0914
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/implement-strstr/
 
-import unittest
-
 
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
@@ -13,7 +11,7 @@ class Solution:
         return -1
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_empty(self) -> None:
         assert Solution().strStr("", "") == 0
 

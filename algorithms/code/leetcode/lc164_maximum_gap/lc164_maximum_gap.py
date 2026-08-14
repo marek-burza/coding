@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/maximum-gap/
 
-import unittest
-
 
 class Solution:
     def maximumGap(self, nums: list[int]) -> int:
@@ -30,7 +28,7 @@ class Solution:
         # and that's enough to find the gap in linear way
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_33_2_100_70(self) -> None:
         nums1 = [33, 2, 100, 70]
         assert Solution().maximumGap(nums1) == 37

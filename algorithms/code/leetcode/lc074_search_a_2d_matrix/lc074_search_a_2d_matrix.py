@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/search-a-2d-matrix/
 # #medium
 
-import unittest
-
 
 class Solution:
     def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
@@ -29,7 +27,7 @@ class Solution:
         return ca == cz and target == matrix[ra][ca]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         matrix = [[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 50]]
         assert Solution().searchMatrix(matrix, 3)

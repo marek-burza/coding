@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/implement-stack-using-queues/
 
 import collections
-import unittest
 from typing import Deque
 
 
@@ -39,7 +38,7 @@ class MyStack:
 # It's also possible with just one stack
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example(self) -> None:
         solution = MyStack()
         solution.push(5)

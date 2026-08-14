@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/power-of-three/
 # To do it without a loop resort to logarithms (but beware of accuracy)
 
-import unittest
-
 
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
@@ -15,7 +13,7 @@ class Solution:
         return True
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_27(self) -> None:
         assert Solution().isPowerOfThree(27)
 

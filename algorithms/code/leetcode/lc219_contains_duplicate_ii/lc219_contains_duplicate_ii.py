@@ -1,7 +1,6 @@
 # https://leetcode.com/problems/contains-duplicate-ii/
 
 import collections
-import unittest
 
 
 class Solution:
@@ -18,7 +17,7 @@ class Solution:
         return False
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_0_5_7__2(self) -> None:
         assert not Solution().containsNearbyDuplicate([0, 5, 7], 2)
 

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/climbing-stairs/
 
-import unittest
-
 
 class Solution:
     def __climbStairs(self, n: int, at: int, lut: list[int]) -> int:
@@ -19,6 +17,6 @@ class Solution:
         return self.__climbStairs(n, 0, lut)
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_20(self) -> None:
         assert Solution().climbStairs(20) == 10946

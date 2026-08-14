@@ -1,5 +1,3 @@
-import unittest
-
 from banking.api.transfers import (
     ERROR_DESTINATION_ACCOUNT_NOT_FOUND,
     ERROR_INSUFFICIENT_FUNDS,
@@ -16,7 +14,7 @@ from fastapi.testclient import TestClient
 client = TestClient(app)
 
 
-class TestTransfers(unittest.TestCase):
+class TestTransfers:
     def test_finally_successful_transfer_execution(self) -> None:
         response = client.put(
             "/customers/",

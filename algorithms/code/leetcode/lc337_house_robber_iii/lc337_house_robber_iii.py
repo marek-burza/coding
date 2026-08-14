@@ -3,7 +3,6 @@
 
 from __future__ import annotations
 
-import unittest
 from functools import cache
 
 
@@ -50,7 +49,7 @@ class Solution:
     #     return [incl, excl]
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         t3 = TreeNode(3)
         l2 = TreeNode(2)

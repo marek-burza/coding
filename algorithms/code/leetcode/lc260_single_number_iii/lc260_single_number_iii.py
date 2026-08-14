@@ -1,8 +1,6 @@
 # https://leetcode.com/problems/single-number-iii/
 # #medium
 
-import unittest
-
 
 class Solution:
     def singleNumber(self, nums: list[int]) -> list[int]:
@@ -19,7 +17,7 @@ class Solution:
         return values
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test(self) -> None:
         result = Solution().singleNumber([1, 2, 1, 3, 2, 5])
         result.sort()

@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/shortest-palindrome/
 
-import unittest
-
 
 class Solution:
     def shortestPalindrome(self, s: str) -> str:
@@ -17,7 +15,7 @@ class Solution:
         return s[cont[-1] :][::-1] + s
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_aacecaaa(self) -> None:
         assert Solution().shortestPalindrome("aacecaaa") == "aaacecaaa"
 

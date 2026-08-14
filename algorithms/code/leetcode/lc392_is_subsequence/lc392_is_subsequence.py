@@ -1,7 +1,5 @@
 # https://leetcode.com/problems/is-subsequence/
 
-import unittest
-
 
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
@@ -17,7 +15,7 @@ class Solution:
         return False
 
 
-class TestCode(unittest.TestCase):
+class TestCode:
     def test_example_1(self) -> None:
         assert Solution().isSubsequence("abc", "ahbgdc")
 
