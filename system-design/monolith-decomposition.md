@@ -215,7 +215,7 @@ Notes:
 Order of monolith break-up:
 
 - Given the storage volume and its traffic it might have the biggest cost impact on the bottom line (hence why first).
-- Migrate to Aurora Postgres (Postgres to ease migration) and separate concerns between stateful & stateless. Heaviest in terms of complexity - migrate in waves, ensure row-level security; most benefits - more optimal load, gain insights into ops, better availability, better latency and storage decoupled from compute eith Aurora. To derisk, perhaps one Aurora per tenant first and then merge.
+- Migrate to Aurora Postgres (Postgres to ease migration) and separate concerns between stateful & stateless. Heaviest in terms of complexity - migrate in waves, ensure row-level security; most benefits - more optimal load, gain insights into ops, better availability, better latency and storage decoupled from compute with Aurora. To derisk, perhaps one Aurora per tenant first and then merge.
 - Decouple auth from the monolith (it is a task for Cognito), which finally allows to...
 - Migrate backend from EC2 to ECS Fargate (incl. min. of hot instances, autoscaling, scaling caps).
 - Migrate email & notifications (decoupled already so it can wait till the end and overall impact likely smallest), completing making the system async
@@ -224,6 +224,6 @@ Questions:
 
 - Go for ECS Fargate now, EKS only if outgrowing capacity of the new architecture
 - ALB, Aurora, Fargate and S3 are multi-AZ-ready from day one; Expanding to multi-region would allow bigger files distributed closer to customers to reduce latency
-- Separate CloudFront depending on what requires auth (e.g. if frontend contains intelectual property, e.g. domain specific web rendering), and then the auth type depends on that
+- Separate CloudFront depending on what requires auth (e.g. if frontend contains intellectual property, e.g. domain specific web rendering), and then the auth type depends on that
 - Aurora vs. RDS - see above
 - Other: consider caching the frequently accessed data or API responses
