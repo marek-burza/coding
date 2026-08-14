@@ -30,9 +30,7 @@ class Solution:
             inner.append(candidates[index])
             partial += candidates[index]
 
-    def combinationSum(
-        self, candidates: list[int], target: int
-    ) -> list[list[int]]:
+    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
         combos: list[list[int]] = []
         self.__combinationSum(candidates, target, [], 0, 0, combos)
         return combos
@@ -94,9 +92,7 @@ class TestCode(unittest.TestCase):
         combos = Solution().combinationSum(candidates, 7)
         for listed in combos:
             listed.sort()
-        combos = sorted(
-            combos, key=TestCode.cmp_to_key(TestCode.deep_comparator)
-        )
+        combos = sorted(combos, key=TestCode.cmp_to_key(TestCode.deep_comparator))
         assert len(expected) == len(combos)
         i = 0
         while i < len(expected):

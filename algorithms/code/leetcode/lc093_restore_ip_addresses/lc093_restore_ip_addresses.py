@@ -5,9 +5,7 @@ import unittest
 
 
 class Solution:
-    def __partial(
-        self, s: str, count: int, ip: list[str], listed: list[str]
-    ) -> None:
+    def __partial(self, s: str, count: int, ip: list[str], listed: list[str]) -> None:
         if len(s) < count or (s[0] == "0" and count > 1):
             return
         part = None

@@ -56,10 +56,7 @@ class TestCustomers(unittest.TestCase):
             },
         )
         assert response.status_code == status.HTTP_409_CONFLICT
-        assert (
-            response.json()["detail"]
-            == ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS
-        )
+        assert response.json()["detail"] == ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS
 
     def test_unsuccessful_customer_creation_with_garbled_name(self) -> None:
         response = client.put(
@@ -95,7 +92,5 @@ class TestCustomers(unittest.TestCase):
         assert any(customer["identifier"] == 6 for customer in parsed_response)
 
     def test_unsuccessful_customer_read_with_unknown_id(self) -> None:
-        response = client.get(
-            "/customers/", params={"customer_identifier": -1}
-        )
+        response = client.get("/customers/", params={"customer_identifier": -1})
         assert response.status_code == status.HTTP_404_NOT_FOUND

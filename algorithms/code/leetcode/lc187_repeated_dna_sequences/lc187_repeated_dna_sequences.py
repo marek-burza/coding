@@ -45,9 +45,7 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT(self) -> None:
         expected = ["AAAAACCCCC", "CCCCCAAAAA"]
-        result = Solution().findRepeatedDnaSequences(
-            "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
-        )
+        result = Solution().findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT")
         result.sort()
         assert expected == result
 

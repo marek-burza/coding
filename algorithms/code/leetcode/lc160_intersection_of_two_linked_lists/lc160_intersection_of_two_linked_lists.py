@@ -35,9 +35,7 @@ class Solution:
             listed = listed.next
         return listed
 
-    def getIntersectionNode(
-        self, headA: ListNode, headB: ListNode
-    ) -> ListNode | None:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode | None:
         last = self.__last(headA)
         last.next = headB
         node = self.__detectCycle(headA)

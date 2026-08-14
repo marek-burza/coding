@@ -26,9 +26,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __test(
-        self, expected: list[list[int]], result: list[list[int]]
-    ) -> None:
+    def __test(self, expected: list[list[int]], result: list[list[int]]) -> None:
         result = sorted(result)
         expected = sorted(expected)
         assert len(expected) == len(result)

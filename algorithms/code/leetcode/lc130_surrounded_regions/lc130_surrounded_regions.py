@@ -14,9 +14,7 @@ class Solution:
     def __j(self, key: int) -> int:
         return int(key & 0xFFFFFFFF)
 
-    def __enqueue(
-        self, i: int, j: int, check: list[int], visited: set[int]
-    ) -> None:
+    def __enqueue(self, i: int, j: int, check: list[int], visited: set[int]) -> None:
         key = self.__key(i, j)
         if key not in visited:
             check.append(key)

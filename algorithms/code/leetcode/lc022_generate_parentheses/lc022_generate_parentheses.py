@@ -4,9 +4,7 @@ import unittest
 
 
 class Solution:
-    def generate(
-        self, prefix: str, standing: int, n: int, found: list[str]
-    ) -> None:
+    def generate(self, prefix: str, standing: int, n: int, found: list[str]) -> None:
         if n == 0 and standing == 0:
             found.append(prefix)
             return

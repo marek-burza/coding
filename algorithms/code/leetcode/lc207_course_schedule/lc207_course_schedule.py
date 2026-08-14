@@ -5,9 +5,7 @@ import unittest
 
 
 class Solution:
-    def __dfs(
-        self, graph: dict[int, set[int]], node: int, visited: set[int]
-    ) -> bool:
+    def __dfs(self, graph: dict[int, set[int]], node: int, visited: set[int]) -> bool:
         queue: list[tuple[int, set[int]]] = [(node, set())]
         while queue:
             node, ancestors = queue.pop(0)

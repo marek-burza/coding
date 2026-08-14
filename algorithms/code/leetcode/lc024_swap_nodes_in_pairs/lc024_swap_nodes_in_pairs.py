@@ -6,9 +6,7 @@ import unittest
 
 
 class ListNode:
-    def __init__(
-        self, val: int = 0, following: ListNode | None = None
-    ) -> None:
+    def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
         self.val = val
         self.next = following
 
@@ -18,11 +16,7 @@ class Solution:
         result = ListNode()
         result.next = head
         node: ListNode | None = result
-        while (
-            node is not None
-            and node.next is not None
-            and node.next.next is not None
-        ):
+        while node is not None and node.next is not None and node.next.next is not None:
             first = node.next
             second = node.next.next
             after = node.next.next.next

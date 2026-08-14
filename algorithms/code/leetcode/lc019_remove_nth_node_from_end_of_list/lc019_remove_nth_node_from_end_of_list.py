@@ -6,17 +6,13 @@ import unittest
 
 
 class ListNode:
-    def __init__(
-        self, val: int = 0, following: ListNode | None = None
-    ) -> None:
+    def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
         self.val = val
         self.next = following
 
 
 class Solution:
-    def removeNthFromEnd(
-        self, head: ListNode | None, n: int
-    ) -> ListNode | None:
+    def removeNthFromEnd(self, head: ListNode | None, n: int) -> ListNode | None:
         # Translate the index number from counted
         # from the back to a one counted from the front
         node = head

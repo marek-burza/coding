@@ -194,9 +194,7 @@ class FCFS(ElevatorControlSystemBase):
         ElevatorControlSystemBase.show(self)
         items = [show_request(assignment) for assignment in self.assignments]
         print(f"A {' '.join(items)}")
-        print(
-            f"Q {' '.join([show_request(request) for request in self.queue])}"
-        )
+        print(f"Q {' '.join([show_request(request) for request in self.queue])}")
 
 
 class ElevatorControlSystem(ElevatorControlSystemBase):
@@ -216,16 +214,12 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
             approaching = towards(lift, origin)
             if idle or (along and approaching):
                 available.append(i)
-        available = sorted(
-            available, key=lambda i: abs(self.lifts[i].floor - origin)
-        )
+        available = sorted(available, key=lambda i: abs(self.lifts[i].floor - origin))
         # Otherwise sort all lifts by distance
         if len(available) == 0:
             available = sorted(
                 range(self.lift_cnt),
-                key=lambda i: max_distance(
-                    self.lifts[i], origin, self.floor_cnt
-                ),
+                key=lambda i: max_distance(self.lifts[i], origin, self.floor_cnt),
             )
         # Pick closest lift
         self.queues[available[0]].append(request)

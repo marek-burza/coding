@@ -7,9 +7,7 @@ import unittest
 
 
 class ListNode:
-    def __init__(
-        self, val: int = 0, following: ListNode | None = None
-    ) -> None:
+    def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
         self.val = val
         self.next = following
 
@@ -63,9 +61,7 @@ class TestCode(unittest.TestCase):
             self.min = float("inf")
             self.max = float("-inf")
 
-    def __depth(
-        self, root: TreeNode | None, level: int, depths: MinMax
-    ) -> None:
+    def __depth(self, root: TreeNode | None, level: int, depths: MinMax) -> None:
         if root is None:
             depths.max = level if depths.max < level else depths.max
             depths.min = level if depths.min > level else depths.min
@@ -73,9 +69,7 @@ class TestCode(unittest.TestCase):
             self.__depth(root.left, level + 1, depths)
             self.__depth(root.right, level + 1, depths)
 
-    def __test(
-        self, root: TreeNode | None, linked: ListNode | None
-    ) -> ListNode | None:
+    def __test(self, root: TreeNode | None, linked: ListNode | None) -> ListNode | None:
         if root is not None:
             linked = self.__test(root.left, linked)
             assert linked is not None

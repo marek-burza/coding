@@ -32,9 +32,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __test(
-        self, expected: list[list[int]], matrix: list[list[int]]
-    ) -> None:
+    def __test(self, expected: list[list[int]], matrix: list[list[int]]) -> None:
         assert len(expected) == len(matrix)
         row = 0
         while row < len(expected):

@@ -4,9 +4,7 @@ import os
 import unittest
 
 
-def binary_search(
-    array: list[int], from_index: int, to_index: int, key: int
-) -> int:
+def binary_search(array: list[int], from_index: int, to_index: int, key: int) -> int:
     while from_index <= to_index:
         middle = (from_index + to_index) // 2
         if array[middle] < key:

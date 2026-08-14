@@ -27,10 +27,7 @@ class Solution:
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
         assert (
-            Solution().uniquePathsWithObstacles(
-                [[0, 0, 0], [0, 1, 0], [0, 0, 0]]
-            )
-            == 2
+            Solution().uniquePathsWithObstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]) == 2
         )
 
     def test_example_2(self) -> None:

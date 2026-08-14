@@ -98,7 +98,9 @@ class TestCode(unittest.TestCase):
         )
 
     def test_1234567(self) -> None:
-        expected = "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"  # noqa
+        expected = (
+            "One Million Two Hundred Thirty Four Thousand Five Hundred Sixty Seven"
+        )
         assert Solution().numberToWords(1234567) == expected
 
     def test_91(self) -> None:

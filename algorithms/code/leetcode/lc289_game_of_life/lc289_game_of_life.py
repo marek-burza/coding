@@ -38,9 +38,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __test(
-        self, expected: list[list[int]], board: list[list[int]]
-    ) -> None:
+    def __test(self, expected: list[list[int]], board: list[list[int]]) -> None:
         assert len(expected) == len(board)
         for row, board_row in enumerate(board):
             assert len(expected[row]) == len(board_row)

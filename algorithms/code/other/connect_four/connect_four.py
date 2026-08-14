@@ -22,9 +22,7 @@ class BoardState:
     MAX_STEPS = 4
 
     def __init__(self) -> None:
-        self.__board: list[list[Player]] = [
-            [] for _ in range(BoardState.MAX_COLUMNS)
-        ]
+        self.__board: list[list[Player]] = [[] for _ in range(BoardState.MAX_COLUMNS)]
 
     def check_drop(self, c: int) -> bool:
         return len(self.__board[c]) < BoardState.MAX_COLUMNS - 1
@@ -104,9 +102,7 @@ class TestCode(unittest.TestCase):
     ) -> None:
         g = GameState(first)
         i = 1
-        for move, outcome, winner in zip(
-            moves, outcomes, winners, strict=True
-        ):
+        for move, outcome, winner in zip(moves, outcomes, winners, strict=True):
             result = g.drop_for_current_player(move)
             message = f"Round {i} : \n{str(g)}"
             assert outcome == result, message

@@ -7,9 +7,7 @@ import sys
 import unittest
 
 
-def calculate_happiness(
-    array: list[str], a_in: set[str], b_in: set[str]
-) -> int:
+def calculate_happiness(array: list[str], a_in: set[str], b_in: set[str]) -> int:
     happiness = 0
     for item in array:
         if item in a_in:

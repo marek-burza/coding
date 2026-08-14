@@ -6,9 +6,7 @@ import unittest
 
 
 class ListNode:
-    def __init__(
-        self, val: int = 0, following: ListNode | None = None
-    ) -> None:
+    def __init__(self, val: int = 0, following: ListNode | None = None) -> None:
         self.val = val
         self.next = following
 
@@ -19,9 +17,7 @@ class Solution:
         while head is not None:
             listed.append(head.val)
             head = head.next
-        return all(
-            listed[i] == listed[-1 - i] for i in range(len(listed) // 2)
-        )
+        return all(listed[i] == listed[-1 - i] for i in range(len(listed) // 2))
 
 
 class TestCode(unittest.TestCase):

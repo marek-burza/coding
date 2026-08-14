@@ -18,9 +18,7 @@ class TreeNode:
 
 
 class Solution:
-    def __binaryTreePaths(
-        self, root: TreeNode, prefix: str, result: list[str]
-    ) -> None:
+    def __binaryTreePaths(self, root: TreeNode, prefix: str, result: list[str]) -> None:
         prefix += ("" if len(prefix) == 0 else "->") + str(root.val)
         if root.left is None and root.right is None:
             result.append(prefix)

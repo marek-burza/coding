@@ -21,9 +21,7 @@ class Solution:
             for i in range(start, 10):
                 mask = 1 << i
                 # if (contains & mask) == 0:
-                self.__traverse(
-                    contains | mask, summed + i, left - 1, n, found, i + 1
-                )
+                self.__traverse(contains | mask, summed + i, left - 1, n, found, i + 1)
 
     def combinationSum3(self, k: int, n: int) -> list[list[int]]:
         found: list[int] = []
@@ -40,9 +38,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def __test(
-        self, expected: list[list[int]], result: list[list[int]]
-    ) -> None:
+    def __test(self, expected: list[list[int]], result: list[list[int]]) -> None:
         for entry in result:
             entry.sort()
         assert len(expected) == len(result)

@@ -40,9 +40,7 @@ class TestCode(unittest.TestCase):
             g_lines = io_lines[0][offset + 1 : offset + 1 + r_g]
             g = [row[0] for row in g_lines]
             r_p = int(io_lines[0][offset + 1 + r_g][0])
-            p_lines = io_lines[0][
-                offset + 1 + r_g + 1 : offset + 1 + r_g + 1 + r_p
-            ]
+            p_lines = io_lines[0][offset + 1 + r_g + 1 : offset + 1 + r_g + 1 + r_p]
             p = [row[0] for row in p_lines]
             offset += r_g + r_p + 2
             result = grid_search(g, p)

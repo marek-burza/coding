@@ -5,9 +5,7 @@ import unittest
 
 
 class Solution:
-    def __rob(
-        self, nums: list[int], offset: int, maxed: dict[int, int]
-    ) -> int:
+    def __rob(self, nums: list[int], offset: int, maxed: dict[int, int]) -> int:
         if len(nums) <= offset:
             return 0
         if offset in maxed:

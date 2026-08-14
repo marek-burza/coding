@@ -5,9 +5,7 @@ import unittest
 
 
 class Solution:
-    def __amount(
-        self, height: list[int], from_keyword_conflict: int, to: int
-    ) -> int:
+    def __amount(self, height: list[int], from_keyword_conflict: int, to: int) -> int:
         amount = min(height[from_keyword_conflict], height[to]) * (
             to - from_keyword_conflict - 1
         )

@@ -18,9 +18,7 @@ class TreeNode:
 
 
 class Solution:
-    def isSameTree(
-        self, tree1: TreeNode | None, tree2: TreeNode | None
-    ) -> bool:
+    def isSameTree(self, tree1: TreeNode | None, tree2: TreeNode | None) -> bool:
         if tree1 is None or tree2 is None:
             return tree1 is None and tree2 is None
         queue: list[tuple[TreeNode, TreeNode]] = []

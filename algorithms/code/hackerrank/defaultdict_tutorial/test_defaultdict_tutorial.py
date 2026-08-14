@@ -8,9 +8,7 @@ import sys
 import unittest
 
 
-def list_repetitions(
-    words_a: list[str], words_b: list[str]
-) -> dict[str, list[int]]:
+def list_repetitions(words_a: list[str], words_b: list[str]) -> dict[str, list[int]]:
     result = collections.defaultdict(list)
     for i, word in enumerate(words_a):
         if word in words_b:

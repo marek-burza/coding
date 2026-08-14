@@ -10,9 +10,7 @@ class Solution:
         power = 1
         mask = 0
         for _ in range(0, 32):
-            if (left & power) != 0 and (
-                (power - (left & mask)) > (right - left)
-            ):
+            if (left & power) != 0 and ((power - (left & mask)) > (right - left)):
                 result |= power
             power <<= 1
             mask = (mask << 1) | 1

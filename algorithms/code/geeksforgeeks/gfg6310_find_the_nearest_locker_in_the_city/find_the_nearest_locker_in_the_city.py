@@ -11,17 +11,13 @@ def init_city(sizex: int, sizey: int) -> list[list[int]]:
     return [[0] * sizey for _ in range(sizex)]
 
 
-def fill_city(
-    sizex: int, sizey: int, city: list[list[int]], value: int
-) -> None:
+def fill_city(sizex: int, sizey: int, city: list[list[int]], value: int) -> None:
     for x in range(sizex):
         for y in range(sizey):
             city[x][y] = value
 
 
-def mark_lockers(
-    city: list[list[int]], lockers: list[tuple[int, int]] | None
-) -> None:
+def mark_lockers(city: list[list[int]], lockers: list[tuple[int, int]] | None) -> None:
     if not lockers:
         return
     for locker in lockers:

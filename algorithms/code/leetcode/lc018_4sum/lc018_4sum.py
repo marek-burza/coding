@@ -14,9 +14,7 @@ def twoSum(
     original_right = right
     while left < right:
         summed = nums[left] + nums[right]
-        if summed < target or (
-            left > original_left and nums[left] == nums[left - 1]
-        ):
+        if summed < target or (left > original_left and nums[left] == nums[left - 1]):
             left += 1
         elif summed > target or (
             right < original_right and nums[right] == nums[right + 1]

@@ -4,9 +4,7 @@ import unittest
 from typing import Any
 
 
-def circular_array_rotation(
-    k: int, a: list[int], queries: list[int]
-) -> list[int]:
+def circular_array_rotation(k: int, a: list[int], queries: list[int]) -> list[int]:
     n = len(a)
     results = []
     for query in queries:

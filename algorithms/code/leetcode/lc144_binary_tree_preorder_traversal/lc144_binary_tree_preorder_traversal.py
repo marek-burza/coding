@@ -18,9 +18,7 @@ class TreeNode:
 
 
 class Solution:
-    def __preorderTraversal(
-        self, root: TreeNode | None, result: list[int]
-    ) -> None:
+    def __preorderTraversal(self, root: TreeNode | None, result: list[int]) -> None:
         if root is None:
             return
         result.append(root.val)

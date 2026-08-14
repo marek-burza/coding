@@ -40,9 +40,7 @@ def shortest_reach(n: int, edges: list[list[int]], s: int) -> list[int]:
             if distances[other] == UNKNOWN or candidate < distances[other]:
                 distances[other] = candidate
                 heapq.heappush(unvisited, Vertex(other, candidate))
-    return [
-        distance for i, distance in enumerate(distances) if i not in [0, s]
-    ]
+    return [distance for i, distance in enumerate(distances) if i not in [0, s]]
 
 
 class TestCode(unittest.TestCase):

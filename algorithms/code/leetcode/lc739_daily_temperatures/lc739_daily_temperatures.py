@@ -17,9 +17,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        assert Solution().dailyTemperatures(
-            [73, 74, 75, 71, 69, 72, 76, 73]
-        ) == [
+        assert Solution().dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73]) == [
             1,
             1,
             4,

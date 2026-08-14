@@ -41,9 +41,7 @@ class Solution:
             return True
         if not (rows and cols):
             return False
-        return self.__searchMatrix(
-            matrix, target, rowM + 1, rowZ, colM + 1, colZ
-        )
+        return self.__searchMatrix(matrix, target, rowM + 1, rowZ, colM + 1, colZ)
 
     def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
         return self.__searchMatrix(

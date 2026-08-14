@@ -2,14 +2,9 @@ import uuid
 from typing import Callable
 
 
-def cleanse_string(
-    string: str, cleansing_function: Callable[[str], bool]
-) -> str:
+def cleanse_string(string: str, cleansing_function: Callable[[str], bool]) -> str:
     string = "".join(
-        [
-            character if cleansing_function(character) else " "
-            for character in string
-        ]
+        [character if cleansing_function(character) else " " for character in string]
     )
     while "  " in string:
         string = string.replace("  ", " ")

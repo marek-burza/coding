@@ -7,9 +7,7 @@ import unittest
 
 class Solution:
     @staticmethod
-    def __binary_search(
-        array: list[int], begin: int, end: int, value: int
-    ) -> int:
+    def __binary_search(array: list[int], begin: int, end: int, value: int) -> int:
         index = bisect.bisect_left(array, value, begin, end)
         if index != len(array) and array[index] == value:
             return index

@@ -33,6 +33,8 @@ class TestCode(unittest.TestCase):
         ]
 
     def test_other_1(self) -> None:
-        assert Solution().findClosestElements(
-            [0, 0, 1, 2, 3, 3, 4, 7, 7, 8], 3, 5
-        ) == [3, 3, 4]
+        assert Solution().findClosestElements([0, 0, 1, 2, 3, 3, 4, 7, 7, 8], 3, 5) == [
+            3,
+            3,
+            4,
+        ]

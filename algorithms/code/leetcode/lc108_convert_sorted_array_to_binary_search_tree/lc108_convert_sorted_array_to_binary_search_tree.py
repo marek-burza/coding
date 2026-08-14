@@ -21,9 +21,7 @@ class TreeNode:
 
 class Solution:
     @staticmethod
-    def __sortedArrayToBST(
-        nums: list[int], head: int, tail: int
-    ) -> TreeNode | None:
+    def __sortedArrayToBST(nums: list[int], head: int, tail: int) -> TreeNode | None:
         if head >= tail:
             return None
         length = tail - head
@@ -38,9 +36,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):  # pragma: no cover
     @staticmethod
-    def __find_extreme(
-        root: TreeNode | None, init: float, relation: Callable
-    ) -> float:
+    def __find_extreme(root: TreeNode | None, init: float, relation: Callable) -> float:
         if root is None:
             return 0
         nodes: Deque[TreeNode] = collections.deque()

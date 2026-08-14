@@ -87,9 +87,9 @@ class TestCode(unittest.TestCase):
         ):
             main(original_path, Path(encoded_path.name))
             main(Path(encoded_path.name), Path(decoded_path.name))
-            assert Path(decoded_path.name).read_text(
-                encoding="utf-8"
-            ) == "".join(read_next_aminoacid(original_path))
+            assert Path(decoded_path.name).read_text(encoding="utf-8") == "".join(
+                read_next_aminoacid(original_path)
+            )
 
     def test_encoding_and_decoding(self) -> None:
         original_path = Path(__file__).parent / "input4.gcg"

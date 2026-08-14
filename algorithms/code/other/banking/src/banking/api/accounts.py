@@ -25,9 +25,7 @@ metadata = [
 ERROR_INVALID_ACCOUNT_IDENTIFIER = "Invalid account identifier"
 
 
-def validate_account_identifier(
-    account_identifier: str, error_detail: str
-) -> None:
+def validate_account_identifier(account_identifier: str, error_detail: str) -> None:
     if not is_identifier_valid(account_identifier):
         raise HTTPException(
             status_code=status.HTTP_417_EXPECTATION_FAILED, detail=error_detail
@@ -39,9 +37,7 @@ def validate_account_identifier(
     tags=["put_account"],
     response_model=AccountRead,
     responses={
-        status.HTTP_400_BAD_REQUEST: {
-            "description": "Issued when balance < 0"
-        },
+        status.HTTP_400_BAD_REQUEST: {"description": "Issued when balance < 0"},
         status.HTTP_417_EXPECTATION_FAILED: {
             "description": "Issued when account identifier is an invalid UUID"
         },
@@ -96,18 +92,14 @@ async def get_accounts(
     ] = None,
     account_identifier: Annotated[
         Optional[str],
-        Query(
-            description="UUID identifier of the account (to fetch one account)"
-        ),
+        Query(description="UUID identifier of the account (to fetch one account)"),
     ] = None,
     db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> list[AccountRead]:
     with db_session.begin():
         accounts = db_session.query(Account)
         if customer_identifier is not None:
-            query_and_verify_customer_identifier(
-                customer_identifier, db_session
-            )
+            query_and_verify_customer_identifier(customer_identifier, db_session)
             accounts = accounts.filter(
                 Account.customer_identifier == customer_identifier
             )
@@ -115,7 +107,5 @@ async def get_accounts(
             validate_account_identifier(
                 account_identifier, ERROR_INVALID_ACCOUNT_IDENTIFIER
             )
-            accounts = accounts.filter(
-                Account.identifier == account_identifier
-            )
+            accounts = accounts.filter(Account.identifier == account_identifier)
         return list(accounts.all())

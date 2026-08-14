@@ -13,9 +13,7 @@ class Solution:
             return index
         return -1
 
-    def containsNearbyAlmostDuplicate(
-        self, nums: list[int], k: int, t: int
-    ) -> bool:
+    def containsNearbyAlmostDuplicate(self, nums: list[int], k: int, t: int) -> bool:
         sorted_set: list[int] = []
         ordered: list[int] = []
         for num in nums:

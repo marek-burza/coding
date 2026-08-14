@@ -24,9 +24,7 @@ def load_menu(menu_path: Path) -> dict[str, dict[str, int]]:
     return menu
 
 
-def collect_dishes(
-    menu: dict[str, dict[str, int]], group: str
-) -> Counter[str]:
+def collect_dishes(menu: dict[str, dict[str, int]], group: str) -> Counter[str]:
     dishes: Counter[str] = Counter()
     for item, count in menu[group].items():
         if item in menu:
@@ -34,9 +32,7 @@ def collect_dishes(
     return dishes
 
 
-def collect_basic_items(
-    menu: dict[str, dict[str, int]], group: str
-) -> Counter[str]:
+def collect_basic_items(menu: dict[str, dict[str, int]], group: str) -> Counter[str]:
     queue: Queue = Queue()
     queue.put((group, 1))
     collection: Counter[str] = Counter()
@@ -149,9 +145,7 @@ def collect_demand_items_without_stock(
     return day_demand
 
 
-def format_counted(
-    title: str, counted: Counter[str]
-) -> str:  # pragma: no cover
+def format_counted(title: str, counted: Counter[str]) -> str:  # pragma: no cover
     formatted = f"{title}:\n"
     for item in counted:
         formatted += f"  {counted[item]} x {item}\n"
@@ -221,9 +215,7 @@ class TestCode(unittest.TestCase):
             "Fluegel Feder": 2,
             "Mandeln": 1,
         }
-        items = set(
-            list(test_basic_items.keys()) + list(expected_basic_items.keys())
-        )
+        items = set(list(test_basic_items.keys()) + list(expected_basic_items.keys()))
         for item in items:
             assert test_basic_items[item] == expected_basic_items[item]
 
@@ -281,10 +273,7 @@ class TestCode(unittest.TestCase):
             + list(expected_basic_items_demand.keys())
         )
         for item in items:
-            assert (
-                test_basic_items_demand[item]
-                == expected_basic_items_demand[item]
-            )
+            assert test_basic_items_demand[item] == expected_basic_items_demand[item]
 
     def test_q6(self) -> None:
         test_stock = load_stock(EXAMPLE_STOCK)
@@ -311,10 +300,7 @@ class TestCode(unittest.TestCase):
         for item in items:
             if item == "Salz":
                 continue
-            assert (
-                test_basic_items_demand[item]
-                == expected_basic_items_demand[item]
-            )
+            assert test_basic_items_demand[item] == expected_basic_items_demand[item]
 
     def test_exact_corner_case(self) -> None:
         assert (

@@ -23,16 +23,12 @@ metadata = [
 ]
 
 ERROR_CUSTOMER_NOT_FOUND = "Customer not found"
-ERROR_CUSTOMER_IDENTIFIER_INTEGRITY_ERROR = (
-    "Customer identifier integrity error"
-)
+ERROR_CUSTOMER_IDENTIFIER_INTEGRITY_ERROR = "Customer identifier integrity error"
 ERROR_INVALID_CUSTOMER_NAME = "Invalid customer name"
 ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS = (
     "Customer with this identifier already exists"
 )
-ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS = (
-    "Customer with this name already exists"
-)
+ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS = "Customer with this name already exists"
 
 
 def query_and_verify_customer_identifier(
@@ -40,9 +36,7 @@ def query_and_verify_customer_identifier(
 ) -> list[CustomerRead]:
     customers = db_session.query(Customer)
     if customer_identifier is not None:
-        customers = customers.filter(
-            Customer.identifier == customer_identifier
-        )
+        customers = customers.filter(Customer.identifier == customer_identifier)
         count = customers.count()
         if count == 0:
             raise HTTPException(
@@ -73,9 +67,7 @@ def query_and_verify_customer_identifier(
 async def put_customer(
     customer_identifier: Annotated[
         int,
-        Query(
-            description="Integer identifier of the customer (must be unique)"
-        ),
+        Query(description="Integer identifier of the customer (must be unique)"),
     ],
     customer_name: Annotated[
         str,
@@ -132,6 +124,4 @@ async def get_customers(
     ] = None,
     db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> list[CustomerRead]:
-    return query_and_verify_customer_identifier(
-        customer_identifier, db_session
-    )
+    return query_and_verify_customer_identifier(customer_identifier, db_session)

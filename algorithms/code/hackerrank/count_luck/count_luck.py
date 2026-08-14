@@ -7,9 +7,7 @@ import unittest
 DELTAS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
 
-def look_around(
-    forest: list[list[str]], at: tuple[int, int]
-) -> list[tuple[int, int]]:
+def look_around(forest: list[list[str]], at: tuple[int, int]) -> list[tuple[int, int]]:
     ways: list[tuple[int, int]] = []
     for delta in DELTAS:
         dr = at[0] + delta[0]

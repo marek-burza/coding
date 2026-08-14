@@ -53,9 +53,7 @@ class TestCode(unittest.TestCase):
         return K
 
     @staticmethod
-    def orderly_comparator(
-        l1: list[str], l2: list[str]
-    ) -> int:  # pragma: no cover
+    def orderly_comparator(l1: list[str], l2: list[str]) -> int:  # pragma: no cover
         difference = len(l1) - len(l2)
         if difference != 0:
             return difference
@@ -66,12 +64,8 @@ class TestCode(unittest.TestCase):
                 return 1
         return 0
 
-    def __test(
-        self, expected: list[list[str]], result: list[list[str]]
-    ) -> None:
-        result = sorted(
-            result, key=TestCode.cmp_to_key(TestCode.orderly_comparator)
-        )
+    def __test(self, expected: list[list[str]], result: list[list[str]]) -> None:
+        result = sorted(result, key=TestCode.cmp_to_key(TestCode.orderly_comparator))
         assert len(expected) == len(result)
         for i, expected_i in enumerate(expected):
             assert len(expected_i) == len(result[i])

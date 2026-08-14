@@ -48,9 +48,7 @@ class TestCode(unittest.TestCase):
         # pylint: disable=W0603
         global lc374_number_higher_or_lower
         lc374_number_higher_or_lower = 65789
-        assert lc374_number_higher_or_lower == Solution().guessNumber(
-            2**31 - 1
-        )
+        assert lc374_number_higher_or_lower == Solution().guessNumber(2**31 - 1)
 
     def test_1(self) -> None:
         # pylint: disable=W0603

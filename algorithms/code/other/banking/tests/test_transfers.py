@@ -53,10 +53,7 @@ class TestTransfers(unittest.TestCase):
             },
         )
         assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert (
-            response.json()["detail"]
-            == ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO
-        )
+        assert response.json()["detail"] == ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO
         # Attempt transfer too high amount
         response = client.put(
             "/transfers/",
@@ -78,10 +75,7 @@ class TestTransfers(unittest.TestCase):
             },
         )
         assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
-        assert (
-            response.json()["detail"]
-            == ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER
-        )
+        assert response.json()["detail"] == ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER
         response = client.put(
             "/transfers/",
             params={
@@ -91,17 +85,12 @@ class TestTransfers(unittest.TestCase):
             },
         )
         assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
-        assert (
-            response.json()["detail"]
-            == ERROR_INVALID_DESTINATION_ACCOUNT_IDENTIFIER
-        )
+        assert response.json()["detail"] == ERROR_INVALID_DESTINATION_ACCOUNT_IDENTIFIER
         # Attempt transfer with between non-existing accounts
         response = client.put(
             "/transfers/",
             params={
-                "from_account_identifier": (
-                    "00000000-0000-0000-0000-000000000000"
-                ),
+                "from_account_identifier": ("00000000-0000-0000-0000-000000000000"),
                 "to_account_identifier": to_account_identifier,
                 "amount": 1,
             },
@@ -112,9 +101,7 @@ class TestTransfers(unittest.TestCase):
             "/transfers/",
             params={
                 "from_account_identifier": from_account_identifier,
-                "to_account_identifier": (
-                    "00000000-0000-0000-0000-000000000000"
-                ),
+                "to_account_identifier": ("00000000-0000-0000-0000-000000000000"),
                 "amount": 1,
             },
         )

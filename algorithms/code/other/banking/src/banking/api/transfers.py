@@ -24,12 +24,8 @@ metadata = [
 ]
 
 ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER = "Invalid source account identifier"
-ERROR_INVALID_DESTINATION_ACCOUNT_IDENTIFIER = (
-    "Invalid destination account identifier"
-)
-ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO = (
-    "The amount must be greater than 0"
-)
+ERROR_INVALID_DESTINATION_ACCOUNT_IDENTIFIER = "Invalid destination account identifier"
+ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO = "The amount must be greater than 0"
 ERROR_SOURCE_ACCOUNT_NOT_FOUND = "Source account not found"
 ERROR_INSUFFICIENT_FUNDS = "Insufficient funds"
 ERROR_DESTINATION_ACCOUNT_NOT_FOUND = "Destination account not found"
@@ -43,9 +39,7 @@ def query_and_verify_account_identifier(
         Account.identifier == account_identifier
     )
     if accounts.count() == 0:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, detail=error_detail
-        )
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=error_detail)
     return cast(Account, accounts.first())
 
 
@@ -139,15 +133,11 @@ async def put_transfer(
 async def get_transfers(
     account_identifier: Annotated[
         str,
-        Query(
-            description="UUID identifier of the account to fetch transfers for"
-        ),
+        Query(description="UUID identifier of the account to fetch transfers for"),
     ],
     db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> list[TransferRead]:
-    validate_account_identifier(
-        account_identifier, ERROR_INVALID_ACCOUNT_IDENTIFIER
-    )
+    validate_account_identifier(account_identifier, ERROR_INVALID_ACCOUNT_IDENTIFIER)
     return list(
         db_session.query(Transfer)
         .filter(

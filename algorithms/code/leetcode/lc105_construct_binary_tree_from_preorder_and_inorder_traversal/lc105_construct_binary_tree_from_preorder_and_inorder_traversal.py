@@ -20,9 +20,7 @@ class TreeNode:
 
 
 class Solution:
-    def buildTree(
-        self, preorder: list[int], inorder: list[int]
-    ) -> TreeNode | None:
+    def buildTree(self, preorder: list[int], inorder: list[int]) -> TreeNode | None:
         node = preorder[0]
 
         index = inorder.index(node)

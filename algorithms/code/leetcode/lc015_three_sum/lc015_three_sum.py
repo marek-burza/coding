@@ -30,9 +30,7 @@ class Solution:
 
 
 class TestCode(unittest.TestCase):
-    def check(
-        self, expected: list[list[int]], result: list[list[int]]
-    ) -> None:
+    def check(self, expected: list[list[int]], result: list[list[int]]) -> None:
         assert len(result) == len(expected)
         for entry in expected:
             for candidate in result:
