@@ -11,7 +11,7 @@ class Solution:
         for string in strs:
             array = list(string)
             array.sort()
-            key = ''.join(array)
+            key = "".join(array)
             if key in seen:
                 seen[key].append(string)
             else:
@@ -79,13 +79,13 @@ class TestCode(unittest.TestCase):
                 assert expected_i_j == result[i][j]
 
     def test_abc_cab_bad_dab_zzz_dot(self) -> None:
-        strs = ['abc', 'cab', 'bad', 'dab', 'zzz', 'dot']
-        expected = [['dot'], ['zzz'], ['abc', 'cab'], ['bad', 'dab']]
+        strs = ["abc", "cab", "bad", "dab", "zzz", "dot"]
+        expected = [["dot"], ["zzz"], ["abc", "cab"], ["bad", "dab"]]
         result = Solution().groupAnagrams(strs)
         self.__test(expected, result)
 
     def test_tea_and_ate_eat_den(self) -> None:
-        strs = ['tea', 'and', 'ate', 'eat', 'den']
-        expected = [['and'], ['den'], ['ate', 'eat', 'tea']]
+        strs = ["tea", "and", "ate", "eat", "den"]
+        expected = [["and"], ["den"], ["ate", "eat", "tea"]]
         result = Solution().groupAnagrams(strs)
         self.__test(expected, result)

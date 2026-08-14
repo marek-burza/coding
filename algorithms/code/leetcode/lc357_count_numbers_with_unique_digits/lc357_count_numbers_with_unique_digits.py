@@ -9,7 +9,7 @@ class Solution:
         if len(prefix) == n:
             return 1
         summed = 1
-        digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         first = 1 if len(prefix) == 0 else 0
         for i in range(first, len(digits)):
             if digits[i] not in prefix:
@@ -17,7 +17,7 @@ class Solution:
         return summed
 
     def countNumbersWithUniqueDigits(self, n: int) -> int:
-        return self.__count('', n)
+        return self.__count("", n)
 
 
 class TestCode(unittest.TestCase):

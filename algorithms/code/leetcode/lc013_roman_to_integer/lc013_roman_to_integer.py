@@ -11,13 +11,13 @@ class Solution:
         previous = 0
         for i in range(len(s) - 1, -1, -1):
             current = {
-                'I': 1,
-                'V': 5,
-                'X': 10,
-                'L': 50,
-                'C': 100,
-                'D': 500,
-                'M': 1000,
+                "I": 1,
+                "V": 5,
+                "X": 10,
+                "L": 50,
+                "C": 100,
+                "D": 500,
+                "M": 1000,
             }[s[i]]
             current = -current if current < previous else current
             result += current
@@ -27,7 +27,7 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_MCMLIV(self) -> None:
-        assert Solution().romanToInt('MCMLIV') == 1954
+        assert Solution().romanToInt("MCMLIV") == 1954
 
     def test_nothing(self) -> None:
-        assert Solution().romanToInt('') == 0
+        assert Solution().romanToInt("") == 0

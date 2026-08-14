@@ -12,18 +12,18 @@ class Solution:
             lut[key] = i
         # Reorder
         chars = sorted(string, key=lambda character: lut.get(character, -1))
-        return ''.join(chars)
+        return "".join(chars)
 
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        assert Solution().sortByPattern('abc', 'bca') == 'bca'
+        assert Solution().sortByPattern("abc", "bca") == "bca"
 
     def test_example_2(self) -> None:
-        assert Solution().sortByPattern('abcabcabc', 'bxyzca') == 'bbbcccaaa'
+        assert Solution().sortByPattern("abcabcabc", "bxyzca") == "bbbcccaaa"
 
     def test_example_3(self) -> None:
         assert (
-            Solution().sortByPattern('jcdokai', 'wcyuogmlrdfphitxjakqvzbnes')
-            == 'codijak'
+            Solution().sortByPattern("jcdokai", "wcyuogmlrdfphitxjakqvzbnes")
+            == "codijak"
         )

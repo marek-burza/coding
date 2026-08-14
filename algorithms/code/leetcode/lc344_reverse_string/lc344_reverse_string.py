@@ -13,6 +13,6 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        s = list('hello')
+        s = list("hello")
         Solution().reverseString(s)
-        assert list('olleh') == s
+        assert list("olleh") == s

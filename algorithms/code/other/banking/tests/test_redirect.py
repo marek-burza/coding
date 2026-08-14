@@ -9,6 +9,6 @@ client = TestClient(app)
 
 class TestIndex(unittest.TestCase):
     def test_index_redirect_to_docs(self) -> None:
-        response = client.get('/')
+        response = client.get("/")
         assert response.status_code == status.HTTP_200_OK
-        assert 'openapi.json' in response.content.decode('utf-8')
+        assert "openapi.json" in response.content.decode("utf-8")

@@ -19,152 +19,152 @@ client = TestClient(app)
 class TestTransfers(unittest.TestCase):
     def test_finally_successful_transfer_execution(self) -> None:
         response = client.put(
-            '/customers/',
+            "/customers/",
             params={
-                'customer_identifier': 15,
-                'customer_name': 'Alice Fifteenth',
+                "customer_identifier": 15,
+                "customer_name": "Alice Fifteenth",
             },
         )
         assert response.status_code == status.HTTP_200_OK
         response = client.put(
-            '/customers/',
+            "/customers/",
             params={
-                'customer_identifier': 16,
-                'customer_name': 'Bob Sixteenth',
+                "customer_identifier": 16,
+                "customer_name": "Bob Sixteenth",
             },
         )
         assert response.status_code == status.HTTP_200_OK
         response = client.put(
-            '/accounts/',
-            params={'customer_identifier': 15, 'balance': 10000},
+            "/accounts/",
+            params={"customer_identifier": 15, "balance": 10000},
         )
         assert response.status_code == status.HTTP_200_OK
-        from_account_identifier = response.json()['identifier']
-        response = client.put('/accounts/', params={'customer_identifier': 16})
+        from_account_identifier = response.json()["identifier"]
+        response = client.put("/accounts/", params={"customer_identifier": 16})
         assert response.status_code == status.HTTP_200_OK
-        to_account_identifier = response.json()['identifier']
+        to_account_identifier = response.json()["identifier"]
         # Attempt transfer non-positive amount
         response = client.put(
-            '/transfers/',
+            "/transfers/",
             params={
-                'from_account_identifier': from_account_identifier,
-                'to_account_identifier': to_account_identifier,
-                'amount': -1,
+                "from_account_identifier": from_account_identifier,
+                "to_account_identifier": to_account_identifier,
+                "amount": -1,
             },
         )
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert (
-            response.json()['detail']
+            response.json()["detail"]
             == ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO
         )
         # Attempt transfer too high amount
         response = client.put(
-            '/transfers/',
+            "/transfers/",
             params={
-                'from_account_identifier': from_account_identifier,
-                'to_account_identifier': to_account_identifier,
-                'amount': 20000,
+                "from_account_identifier": from_account_identifier,
+                "to_account_identifier": to_account_identifier,
+                "amount": 20000,
             },
         )
         assert response.status_code == status.HTTP_412_PRECONDITION_FAILED
-        assert response.json()['detail'] == ERROR_INSUFFICIENT_FUNDS
+        assert response.json()["detail"] == ERROR_INSUFFICIENT_FUNDS
         # Attempt transfer with invalid account identifiers
         response = client.put(
-            '/transfers/',
+            "/transfers/",
             params={
-                'from_account_identifier': 'not-a-valid-uuid',
-                'to_account_identifier': to_account_identifier,
-                'amount': 1,
+                "from_account_identifier": "not-a-valid-uuid",
+                "to_account_identifier": to_account_identifier,
+                "amount": 1,
             },
         )
         assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
         assert (
-            response.json()['detail']
+            response.json()["detail"]
             == ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER
         )
         response = client.put(
-            '/transfers/',
+            "/transfers/",
             params={
-                'from_account_identifier': from_account_identifier,
-                'to_account_identifier': 'not-a-valid-uuid',
-                'amount': 1,
+                "from_account_identifier": from_account_identifier,
+                "to_account_identifier": "not-a-valid-uuid",
+                "amount": 1,
             },
         )
         assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
         assert (
-            response.json()['detail']
+            response.json()["detail"]
             == ERROR_INVALID_DESTINATION_ACCOUNT_IDENTIFIER
         )
         # Attempt transfer with between non-existing accounts
         response = client.put(
-            '/transfers/',
+            "/transfers/",
             params={
-                'from_account_identifier': (
-                    '00000000-0000-0000-0000-000000000000'
+                "from_account_identifier": (
+                    "00000000-0000-0000-0000-000000000000"
                 ),
-                'to_account_identifier': to_account_identifier,
-                'amount': 1,
+                "to_account_identifier": to_account_identifier,
+                "amount": 1,
             },
         )
         assert response.status_code == status.HTTP_404_NOT_FOUND
-        assert response.json()['detail'] == ERROR_SOURCE_ACCOUNT_NOT_FOUND
+        assert response.json()["detail"] == ERROR_SOURCE_ACCOUNT_NOT_FOUND
         response = client.put(
-            '/transfers/',
+            "/transfers/",
             params={
-                'from_account_identifier': from_account_identifier,
-                'to_account_identifier': (
-                    '00000000-0000-0000-0000-000000000000'
+                "from_account_identifier": from_account_identifier,
+                "to_account_identifier": (
+                    "00000000-0000-0000-0000-000000000000"
                 ),
-                'amount': 1,
+                "amount": 1,
             },
         )
         assert response.status_code == status.HTTP_404_NOT_FOUND
-        assert response.json()['detail'] == ERROR_DESTINATION_ACCOUNT_NOT_FOUND
+        assert response.json()["detail"] == ERROR_DESTINATION_ACCOUNT_NOT_FOUND
         # Finally a valid transfer
         response = client.put(
-            '/transfers/',
+            "/transfers/",
             params={
-                'from_account_identifier': from_account_identifier,
-                'to_account_identifier': to_account_identifier,
-                'amount': 5000,
+                "from_account_identifier": from_account_identifier,
+                "to_account_identifier": to_account_identifier,
+                "amount": 5000,
             },
         )
         assert response.status_code == status.HTTP_200_OK
         response = client.get(
-            '/accounts/',
+            "/accounts/",
             params={
-                'customer_identifier': 15,
-                'account_identifier': from_account_identifier,
+                "customer_identifier": 15,
+                "account_identifier": from_account_identifier,
             },
         )
         assert response.status_code == status.HTTP_200_OK
-        assert response.json()[0]['balance'] == 5000
+        assert response.json()[0]["balance"] == 5000
         response = client.get(
-            '/accounts/',
+            "/accounts/",
             params={
-                'customer_identifier': 16,
-                'account_identifier': to_account_identifier,
+                "customer_identifier": 16,
+                "account_identifier": to_account_identifier,
             },
         )
         assert response.status_code == status.HTTP_200_OK
-        assert response.json()[0]['balance'] == 5000
+        assert response.json()[0]["balance"] == 5000
         # Attempt fetching transfers with invalid account identifier
         response = client.get(
-            '/transfers/',
-            params={'account_identifier': 'not-a-valid-uuid'},
+            "/transfers/",
+            params={"account_identifier": "not-a-valid-uuid"},
         )
         assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
-        assert response.json()['detail'] == ERROR_INVALID_ACCOUNT_IDENTIFIER
+        assert response.json()["detail"] == ERROR_INVALID_ACCOUNT_IDENTIFIER
         # Check transfers
         response = client.get(
-            '/transfers/', params={'account_identifier': to_account_identifier}
+            "/transfers/", params={"account_identifier": to_account_identifier}
         )
         assert response.status_code == status.HTTP_200_OK
-        list1 = [transfer['identifier'] for transfer in response.json()]
+        list1 = [transfer["identifier"] for transfer in response.json()]
         response = client.get(
-            '/transfers/',
-            params={'account_identifier': from_account_identifier},
+            "/transfers/",
+            params={"account_identifier": from_account_identifier},
         )
         assert response.status_code == status.HTTP_200_OK
-        list2 = [transfer['identifier'] for transfer in response.json()]
+        list2 = [transfer["identifier"] for transfer in response.json()]
         assert list1 == list2

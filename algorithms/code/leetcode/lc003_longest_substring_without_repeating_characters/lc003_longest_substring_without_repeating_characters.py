@@ -19,10 +19,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_abcabcbb(self) -> None:
-        assert Solution().lengthOfLongestSubstring('abcabcbb') == 3
+        assert Solution().lengthOfLongestSubstring("abcabcbb") == 3
 
     def test_bbbbb(self) -> None:
-        assert Solution().lengthOfLongestSubstring('bbbbb') == 1
+        assert Solution().lengthOfLongestSubstring("bbbbb") == 1
 
     def test_dvdf(self) -> None:
-        assert Solution().lengthOfLongestSubstring('dvdf') == 3
+        assert Solution().lengthOfLongestSubstring("dvdf") == 3

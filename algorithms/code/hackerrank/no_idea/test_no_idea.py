@@ -21,13 +21,13 @@ def calculate_happiness(
 
 def main() -> None:
     input()  # n_in, m_in = list(map(int, input().strip().split(' ')))
-    array = input().strip().split(' ')
-    a_in = set(input().strip().split(' '))
-    b_in = set(input().strip().split(' '))
+    array = input().strip().split(" ")
+    a_in = set(input().strip().split(" "))
+    b_in = set(input().strip().split(" "))
     print(calculate_happiness(array, a_in, b_in))
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -35,10 +35,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -46,7 +46,7 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
-        self.generalized_test('0')
+        self.generalized_test("0")
 
     def test_01(self) -> None:
-        self.generalized_test('01')
+        self.generalized_test("01")

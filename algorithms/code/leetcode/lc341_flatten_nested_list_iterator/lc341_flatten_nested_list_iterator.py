@@ -15,7 +15,7 @@ class NestedInteger:
     def getInteger(self) -> int:
         return int(self.__object)
 
-    def getList(self) -> list['NestedInteger']:
+    def getList(self) -> list["NestedInteger"]:
         return list(self.__object)
 
 

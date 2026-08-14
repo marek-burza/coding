@@ -5,12 +5,12 @@ import unittest
 
 
 def grid_search(G: list[str], P: list[str]) -> str:
-    everything = ''.join(G)
+    everything = "".join(G)
     at = -1
     while True:
         at = everything.find(P[0], at + 1)
         if at == -1:
-            return 'NO'
+            return "NO"
         if (at % len(G[0])) + len(P[0]) > len(G[0]):
             continue
         offset = at
@@ -21,18 +21,18 @@ def grid_search(G: list[str], P: list[str]) -> str:
                 break
             offset += len(G[0])
         if ok:
-            return 'YES'
+            return "YES"
 
 
 class TestCode(unittest.TestCase):
     # pylint: disable=R0914
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
-        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+        for index, template in enumerate(["input%s.txt", "output%s.txt"]):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r', encoding='utf-8') as handle:
+            with open(path, "r", encoding="utf-8") as handle:
                 lines = handle.readlines()
-            io_lines[index] = [line.strip().split(' ') for line in lines]
+            io_lines[index] = [line.strip().split(" ") for line in lines]
         tests = int(io_lines[0][0][0])
         offset = 1
         for test in range(tests):
@@ -50,19 +50,19 @@ class TestCode(unittest.TestCase):
             assert expected == result
 
     def test_example(self) -> None:
-        self.runner('_example')
+        self.runner("_example")
 
     def test_05(self) -> None:
-        self.runner('05')
+        self.runner("05")
 
     def test_07(self) -> None:
-        self.runner('07')
+        self.runner("07")
 
     def test_08(self) -> None:
-        self.runner('08')
+        self.runner("08")
 
     def test_09(self) -> None:
-        self.runner('09')
+        self.runner("09")
 
     def test_15(self) -> None:
-        self.runner('15')
+        self.runner("15")

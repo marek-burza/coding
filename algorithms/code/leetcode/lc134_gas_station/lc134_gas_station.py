@@ -6,7 +6,7 @@ import unittest
 
 class Solution:
     def canCompleteCircuit(self, gas: list[int], cost: list[int]) -> int:
-        minimum = float('inf')
+        minimum = float("inf")
         gauge = 0
         index = -1
         for i, _ in enumerate(gas):

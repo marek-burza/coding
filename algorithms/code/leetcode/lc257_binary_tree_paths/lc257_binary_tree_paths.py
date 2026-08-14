@@ -21,7 +21,7 @@ class Solution:
     def __binaryTreePaths(
         self, root: TreeNode, prefix: str, result: list[str]
     ) -> None:
-        prefix += ('' if len(prefix) == 0 else '->') + str(root.val)
+        prefix += ("" if len(prefix) == 0 else "->") + str(root.val)
         if root.left is None and root.right is None:
             result.append(prefix)
         else:
@@ -33,7 +33,7 @@ class Solution:
     def binaryTreePaths(self, root: TreeNode | None) -> list[str]:
         result: list[str] = []
         if root is not None:
-            self.__binaryTreePaths(root, '', result)
+            self.__binaryTreePaths(root, "", result)
         return result
 
 
@@ -46,7 +46,7 @@ class TestCode(unittest.TestCase):
         n1.left = n2
         n1.right = n3
         n2.right = n5
-        expected = ['1->2->5', '1->3']
+        expected = ["1->2->5", "1->3"]
         result = Solution().binaryTreePaths(n1)
         result.sort()
         assert expected == result
@@ -59,7 +59,7 @@ class TestCode(unittest.TestCase):
         n1.right = n2
         n1.left = n3
         n2.left = n5
-        expected = ['1->2->5', '1->3']
+        expected = ["1->2->5", "1->3"]
         result = Solution().binaryTreePaths(n1)
         result.sort()
         assert expected == result

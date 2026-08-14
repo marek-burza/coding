@@ -12,16 +12,16 @@ class Solution:
             return
         # open
         if n > 0:
-            self.generate(prefix + '(', standing + 1, n - 1, found)
+            self.generate(prefix + "(", standing + 1, n - 1, found)
         # close
         if standing > 0:
-            self.generate(prefix + ')', standing - 1, n, found)
+            self.generate(prefix + ")", standing - 1, n, found)
 
     def generateParenthesis(self, n: int) -> list[str]:
         if n == 0:
             return []
         found: list[str] = []
-        self.generate('(', 1, n - 1, found)
+        self.generate("(", 1, n - 1, found)
         return found
 
 
@@ -38,32 +38,32 @@ class TestCode(unittest.TestCase):
         self.generalized(expected, 0)
 
     def test_1(self) -> None:
-        expected = ['()']
+        expected = ["()"]
         self.generalized(expected, 1)
 
     def test_2(self) -> None:
-        expected = ['()()', '(())']
+        expected = ["()()", "(())"]
         self.generalized(expected, 2)
 
     def test_3(self) -> None:
-        expected = ['((()))', '(()())', '(())()', '()(())', '()()()']
+        expected = ["((()))", "(()())", "(())()", "()(())", "()()()"]
         self.generalized(expected, 3)
 
     def test_4(self) -> None:
         expected = [
-            '(((())))',
-            '((()()))',
-            '((())())',
-            '((()))()',
-            '(()(()))',
-            '(()()())',
-            '(()())()',
-            '(())(())',
-            '(())()()',
-            '()((()))',
-            '()(()())',
-            '()(())()',
-            '()()(())',
-            '()()()()',
+            "(((())))",
+            "((()()))",
+            "((())())",
+            "((()))()",
+            "(()(()))",
+            "(()()())",
+            "(()())()",
+            "(())(())",
+            "(())()()",
+            "()((()))",
+            "()(()())",
+            "()(())()",
+            "()()(())",
+            "()()()()",
         ]
         self.generalized(expected, 4)

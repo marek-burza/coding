@@ -30,7 +30,7 @@ class Solution:
             current = current.next
         if result is not None:
             return result.val
-        raise ValueError('Empty list')
+        raise ValueError("Empty list")
 
 
 class TestCode(unittest.TestCase):
@@ -56,4 +56,4 @@ class TestCode(unittest.TestCase):
             solution.getRandom()
         except ValueError:
             raised = True
-        assert raised, 'ValueError not raised'
+        assert raised, "ValueError not raised"

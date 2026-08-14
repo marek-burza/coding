@@ -17,10 +17,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_a_b(self) -> None:
-        assert not Solution().canConstruct('a', 'b')
+        assert not Solution().canConstruct("a", "b")
 
     def test_example_aa_ab(self) -> None:
-        assert not Solution().canConstruct('aa', 'ab')
+        assert not Solution().canConstruct("aa", "ab")
 
     def test_example_aa_aab(self) -> None:
-        assert Solution().canConstruct('aa', 'aab')
+        assert Solution().canConstruct("aa", "aab")

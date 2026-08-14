@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 from banking.models import Base
 
-DATABASE_URL = 'sqlite:///./banking.db'
+DATABASE_URL = "sqlite:///./banking.db"
 
 engine = create_engine(
     DATABASE_URL,
@@ -15,7 +15,7 @@ engine = create_engine(
         # is relevant for SQLite when it is used by a web framework
         # such as FastAPI which can rely on multiple threads or asynchronous
         # coroutines to handle requests simultaneously.
-        'check_same_thread': False
+        "check_same_thread": False
     },
 )
 

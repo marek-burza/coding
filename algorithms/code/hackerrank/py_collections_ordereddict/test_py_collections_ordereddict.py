@@ -23,15 +23,15 @@ def main() -> None:
     purchases = []
     for _ in range(n):
         items = input().strip().split()
-        product = ' '.join(items[:-1])
+        product = " ".join(items[:-1])
         payment = int(items[-1])
         purchases.append((product, payment))
     aggregated = aggregate(purchases)
     for product in aggregated:
-        print(f'{product} {aggregated[product]}')
+        print(f"{product} {aggregated[product]}")
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -39,10 +39,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -50,4 +50,4 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
-        self.generalized_test('0')
+        self.generalized_test("0")

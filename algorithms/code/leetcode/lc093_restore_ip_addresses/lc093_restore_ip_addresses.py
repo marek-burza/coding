@@ -8,7 +8,7 @@ class Solution:
     def __partial(
         self, s: str, count: int, ip: list[str], listed: list[str]
     ) -> None:
-        if len(s) < count or (s[0] == '0' and count > 1):
+        if len(s) < count or (s[0] == "0" and count > 1):
             return
         part = None
         prefix = None
@@ -22,10 +22,10 @@ class Solution:
     def __restore(self, s: str, ip: list[str], listed: list[str]) -> None:
         if len(ip) >= 4:
             if len(s) == 0:
-                string = ''
+                string = ""
                 for i in range(0, 4):
                     if i > 0:
-                        string += '.'
+                        string += "."
                     string += ip[i]
                 listed.append(string)
         else:
@@ -42,19 +42,19 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_25525511135(self) -> None:
-        expected = ['255.255.11.135', '255.255.111.35']
-        result = Solution().restoreIpAddresses('25525511135')
+        expected = ["255.255.11.135", "255.255.111.35"]
+        result = Solution().restoreIpAddresses("25525511135")
         result.sort()
         assert expected == result
 
     def test_101023(self) -> None:
         expected = [
-            '1.0.10.23',
-            '1.0.102.3',
-            '10.1.0.23',
-            '10.10.2.3',
-            '101.0.2.3',
+            "1.0.10.23",
+            "1.0.102.3",
+            "10.1.0.23",
+            "10.10.2.3",
+            "101.0.2.3",
         ]
-        result = Solution().restoreIpAddresses('101023')
+        result = Solution().restoreIpAddresses("101023")
         result.sort()
         assert expected == result

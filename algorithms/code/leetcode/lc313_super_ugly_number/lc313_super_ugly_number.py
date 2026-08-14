@@ -11,7 +11,7 @@ class Solution:
         dp = [0] * n
         dp[0] = 1
         for i in range(1, n):
-            dp_i = float('inf')
+            dp_i = float("inf")
             temp1 = -1
             for j in range(m):
                 temp2 = dp[mul[j]] * primes[j]

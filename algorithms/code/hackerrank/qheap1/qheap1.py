@@ -139,7 +139,7 @@ def main(quick: bool = True) -> None:
             print(heap_root(heap))
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -148,14 +148,14 @@ class TestCode(unittest.TestCase):
         resources = os.path.dirname(__file__)
         with (
             open(
-                os.path.join(resources, f'output{which}.txt'),
-                'r',
-                encoding='utf-8',
+                os.path.join(resources, f"output{which}.txt"),
+                "r",
+                encoding="utf-8",
             ) as expected,
             open(
-                os.path.join(resources, f'input{which}.txt'),
-                'r',
-                encoding='utf-8',
+                os.path.join(resources, f"input{which}.txt"),
+                "r",
+                encoding="utf-8",
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -173,20 +173,20 @@ class TestCode(unittest.TestCase):
         assert heap[-1] != 9
 
     def test_example(self) -> None:
-        self.generalized_test('example')
-        self.generalized_test('example', False)
+        self.generalized_test("example")
+        self.generalized_test("example", False)
 
     def test_00(self) -> None:
-        self.generalized_test('00')
-        self.generalized_test('00', False)
+        self.generalized_test("00")
+        self.generalized_test("00", False)
 
     def test_01(self) -> None:
-        self.generalized_test('01')
-        self.generalized_test('01', False)
+        self.generalized_test("01")
+        self.generalized_test("01", False)
 
     def test_02(self) -> None:
-        self.generalized_test('02')
-        self.generalized_test('02', False)
+        self.generalized_test("02")
+        self.generalized_test("02", False)
 
     def test_08(self) -> None:
-        self.generalized_test('08')
+        self.generalized_test("08")

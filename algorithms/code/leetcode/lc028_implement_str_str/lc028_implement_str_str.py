@@ -15,13 +15,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_empty(self) -> None:
-        assert Solution().strStr('', '') == 0
+        assert Solution().strStr("", "") == 0
 
     def test_mississippi_a(self) -> None:
-        assert Solution().strStr('mississippi', 'a') == -1
+        assert Solution().strStr("mississippi", "a") == -1
 
     def test_mississippi_si(self) -> None:
-        assert Solution().strStr('mississippi', 'si') == 3
+        assert Solution().strStr("mississippi", "si") == 3
 
     def test_bigger_in_smaller(self) -> None:
-        assert Solution().strStr('', 'si') == -1
+        assert Solution().strStr("", "si") == -1

@@ -6,16 +6,16 @@ import unittest
 
 class Solution:
     def __compress(self, nucleotide: str) -> int:
-        return {'A': 0, 'C': 1, 'G': 2, 'T': 3}[nucleotide]
+        return {"A": 0, "C": 1, "G": 2, "T": 3}[nucleotide]
 
     def __encode(self, sequence: int, compressed: int) -> int:
         return (compressed << 18) | (sequence >> 2)
 
     def __decode(self, sequence: int) -> str:
-        decoded = ''
+        decoded = ""
         for _ in range(0, 10):
             nucleotide = sequence & 0x3
-            decoded += {0: 'A', 1: 'C', 2: 'G', 3: 'T'}[nucleotide]
+            decoded += {0: "A", 1: "C", 2: "G", 3: "T"}[nucleotide]
             sequence >>= 2
         return decoded
 
@@ -44,19 +44,19 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT(self) -> None:
-        expected = ['AAAAACCCCC', 'CCCCCAAAAA']
+        expected = ["AAAAACCCCC", "CCCCCAAAAA"]
         result = Solution().findRepeatedDnaSequences(
-            'AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT'
+            "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
         )
         result.sort()
         assert expected == result
 
     def test_nothing(self) -> None:
-        result = Solution().findRepeatedDnaSequences('')
+        result = Solution().findRepeatedDnaSequences("")
         assert not result
 
     def test_AAAAAAAAAAAAA(self) -> None:
-        expected = ['AAAAAAAAAA']
-        result = Solution().findRepeatedDnaSequences('AAAAAAAAAAAAA')
+        expected = ["AAAAAAAAAA"]
+        result = Solution().findRepeatedDnaSequences("AAAAAAAAAAAAA")
         result.sort()
         assert expected == result

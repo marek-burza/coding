@@ -25,10 +25,10 @@ def main() -> None:
         words.append(input().strip())
     unique, counted = orderly(words)
     print(len(unique))
-    print(' '.join([str(counted[word]) for word in unique]))
+    print(" ".join([str(counted[word]) for word in unique]))
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -36,10 +36,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -47,4 +47,4 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
-        self.generalized_test('0')
+        self.generalized_test("0")

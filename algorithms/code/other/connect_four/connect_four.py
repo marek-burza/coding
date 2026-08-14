@@ -67,14 +67,14 @@ class BoardState:
         return Winner.UNDECIDED
 
     def __str__(self) -> str:
-        lut = {Player.ONE: 'O', Player.TWO: 'X', None: '.'}
+        lut = {Player.ONE: "O", Player.TWO: "X", None: "."}
         rows = range(BoardState.MAX_ROWS - 1, -1, -1)
         columns = range(BoardState.MAX_COLUMNS)
 
         def line(r: int) -> str:
-            return ''.join([lut[self.player_at(r, c)] for c in columns])
+            return "".join([lut[self.player_at(r, c)] for c in columns])
 
-        return '\n'.join([line(r) for r in rows])
+        return "\n".join([line(r) for r in rows])
 
 
 class GameState(BoardState):
@@ -108,23 +108,23 @@ class TestCode(unittest.TestCase):
             moves, outcomes, winners, strict=True
         ):
             result = g.drop_for_current_player(move)
-            message = f'Round {i} : \n{str(g)}'
+            message = f"Round {i} : \n{str(g)}"
             assert outcome == result, message
             assert winner == g.check_winning(), message
             i += 1
-        assert '\n'.join(board) == str(g)
+        assert "\n".join(board) == str(g)
 
     def test_one_in_the_middle(self) -> None:
         moves = [3]
         outcomes = [True]
         winners = [Winner.UNDECIDED]
         board = [
-            '.......',
-            '.......',
-            '.......',
-            '.......',
-            '.......',
-            '...O...',
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            "...O...",
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
@@ -134,12 +134,12 @@ class TestCode(unittest.TestCase):
         outcomes.append(False)
         winners = [Winner.UNDECIDED] * (BoardState.MAX_ROWS + 1)
         board = [
-            '...X...',
-            '...O...',
-            '...X...',
-            '...O...',
-            '...X...',
-            '...O...',
+            "...X...",
+            "...O...",
+            "...X...",
+            "...O...",
+            "...X...",
+            "...O...",
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
@@ -149,12 +149,12 @@ class TestCode(unittest.TestCase):
         winners = [Winner.UNDECIDED] * 6
         winners.append(Winner.ONE)
         board = [
-            '.......',
-            '.......',
-            '.......',
-            '.......',
-            '.......',
-            'XXXOOOO',
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            ".......",
+            "XXXOOOO",
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
@@ -164,12 +164,12 @@ class TestCode(unittest.TestCase):
         winners = [Winner.UNDECIDED] * 6
         winners.append(Winner.ONE)
         board = [
-            '.......',
-            '.......',
-            '...O...',
-            '.X.O...',
-            '.X.O...',
-            '.X.O...',
+            ".......",
+            ".......",
+            "...O...",
+            ".X.O...",
+            ".X.O...",
+            ".X.O...",
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
@@ -191,12 +191,12 @@ class TestCode(unittest.TestCase):
         winners = [Winner.UNDECIDED] * cell_count
         winners[-1] = Winner.DRAW
         board = [
-            'XOXOXOX',
-            'XOXOXOX',
-            'XOXOXOX',
-            'OXOXOXO',
-            'OXOXOXO',
-            'OXOXOXO',
+            "XOXOXOX",
+            "XOXOXOX",
+            "XOXOXOX",
+            "OXOXOXO",
+            "OXOXOXO",
+            "OXOXOXO",
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
@@ -206,12 +206,12 @@ class TestCode(unittest.TestCase):
         winners = [Winner.UNDECIDED] * (len(moves) - 1)
         winners.append(Winner.TWO)
         board = [
-            '.......',
-            '.......',
-            '....X..',
-            '..OXO..',
-            '.OXXX..',
-            '.XOOO..',
+            ".......",
+            ".......",
+            "....X..",
+            "..OXO..",
+            ".OXXX..",
+            ".XOOO..",
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
@@ -221,12 +221,12 @@ class TestCode(unittest.TestCase):
         winners = [Winner.UNDECIDED] * (len(moves) - 1)
         winners.append(Winner.TWO)
         board = [
-            '.......',
-            '.......',
-            '..X....',
-            '..OXO..',
-            '..XXXO.',
-            '..OOOX.',
+            ".......",
+            ".......",
+            "..X....",
+            "..OXO..",
+            "..XXXO.",
+            "..OOOX.",
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)
 
@@ -238,11 +238,11 @@ class TestCode(unittest.TestCase):
         winners[-2] = Winner.TWO
         winners[-1] = Winner.TWO
         board = [
-            '.......',
-            '.......',
-            '..X....',
-            '..OXO..',
-            '..XXXO.',
-            '..OOOX.',
+            ".......",
+            ".......",
+            "..X....",
+            "..OXO..",
+            "..XXXO.",
+            "..OOOX.",
         ]
         self.generic(Player.ONE, moves, outcomes, winners, board)

@@ -11,19 +11,19 @@ from typing import Any
 def process(operations: list[list[Any]]) -> None:
     listed: list[int] = []
     for operation in operations:
-        if operation[0] == 'insert':
+        if operation[0] == "insert":
             listed.insert(operation[1], operation[2])
-        elif operation[0] == 'print':
+        elif operation[0] == "print":
             print(listed)
-        elif operation[0] == 'remove':
+        elif operation[0] == "remove":
             listed.remove(operation[1])
-        elif operation[0] == 'append':
+        elif operation[0] == "append":
             listed.append(operation[1])
-        elif operation[0] == 'sort':
+        elif operation[0] == "sort":
             listed.sort()
-        elif operation[0] == 'pop':
+        elif operation[0] == "pop":
             listed.pop()
-        elif operation[0] == 'reverse':
+        elif operation[0] == "reverse":
             listed.reverse()
 
 
@@ -31,14 +31,14 @@ def main() -> None:
     n = int(input().strip())
     operations = []
     for _ in range(n):
-        operation = input().strip().split(' ')
+        operation = input().strip().split(" ")
         operations.append(
             [operation[0]] + [int(argument) for argument in operation[1:]]
         )
     process(operations)
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -46,10 +46,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -57,4 +57,4 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
-        self.generalized_test('0')
+        self.generalized_test("0")

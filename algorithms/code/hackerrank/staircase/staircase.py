@@ -6,14 +6,14 @@ import unittest
 def staircase(n: int) -> list[str]:
     result = []
     for index in range(n):
-        line = ''
+        line = ""
         for i in range(n):
-            line += ' ' if i < n - 1 - index else '#'
+            line += " " if i < n - 1 - index else "#"
         result.append(line)
     return result
 
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        expected = ['     #', '    ##', '   ###', '  ####', ' #####', '######']
+        expected = ["     #", "    ##", "   ###", "  ####", " #####", "######"]
         assert expected == staircase(6)

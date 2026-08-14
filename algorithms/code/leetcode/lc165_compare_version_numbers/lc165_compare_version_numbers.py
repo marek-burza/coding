@@ -6,8 +6,8 @@ import unittest
 
 class Solution:
     def compareVersion(self, version1: str, version2: str) -> int:
-        parts1 = version1.split('.')
-        parts2 = version2.split('.')
+        parts1 = version1.split(".")
+        parts2 = version2.split(".")
         for i in range(max(len(parts1), len(parts2))):
             level1 = 0
             if i < len(parts1):
@@ -24,16 +24,16 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_1__1(self) -> None:
-        assert Solution().compareVersion('1', '1') == 0
+        assert Solution().compareVersion("1", "1") == 0
 
     def test_1__1_0(self) -> None:
-        assert Solution().compareVersion('1', '1.0') == 0
+        assert Solution().compareVersion("1", "1.0") == 0
 
     def test_2__1(self) -> None:
-        assert Solution().compareVersion('2', '1') == 1
+        assert Solution().compareVersion("2", "1") == 1
 
     def test_1__13_1(self) -> None:
-        assert Solution().compareVersion('1', '13.1') == -1
+        assert Solution().compareVersion("1", "13.1") == -1
 
     def test_1_0_1__1(self) -> None:
-        assert Solution().compareVersion('1.0.1', '1') == 1
+        assert Solution().compareVersion("1.0.1", "1") == 1

@@ -17,34 +17,34 @@ class Solution:
                 if begin == end - 1:
                     result.append(str(nums[begin]))
                 else:
-                    result.append(f'{nums[begin]}->{nums[end - 1]}')
+                    result.append(f"{nums[begin]}->{nums[end - 1]}")
                 begin = end
             end += 1
         if begin == end - 1:
             result.append(str(nums[begin]))
         else:
-            result.append(f'{nums[begin]}->{nums[end - 1]}')
+            result.append(f"{nums[begin]}->{nums[end - 1]}")
         return result
 
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
         assert Solution().summaryRanges([0, 1, 2, 4, 5, 7]) == [
-            '0->2',
-            '4->5',
-            '7',
+            "0->2",
+            "4->5",
+            "7",
         ]
 
     def test_example_2(self) -> None:
         assert Solution().summaryRanges([0, 2, 3, 4, 6, 8, 9]) == [
-            '0',
-            '2->4',
-            '6',
-            '8->9',
+            "0",
+            "2->4",
+            "6",
+            "8->9",
         ]
 
     def test_empty(self) -> None:
         assert not Solution().summaryRanges([])
 
     def test_single(self) -> None:
-        assert Solution().summaryRanges([0]) == ['0']
+        assert Solution().summaryRanges([0]) == ["0"]

@@ -13,4 +13,4 @@ def camelcase(s: str) -> int:
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        assert camelcase('saveChangesInTheEditor') == 5
+        assert camelcase("saveChangesInTheEditor") == 5

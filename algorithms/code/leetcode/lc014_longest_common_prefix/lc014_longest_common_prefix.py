@@ -6,7 +6,7 @@ import unittest
 class Solution:
     def longestCommonPrefix(self, strs: list[str]) -> str:
         if len(strs) == 0:
-            return ''
+            return ""
         i = 0
         done = False
         while not done:
@@ -20,19 +20,19 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_Ala_AlaMaKota(self) -> None:
-        assert Solution().longestCommonPrefix(['Ala', 'Ala Ma Kota']) == 'Ala'
+        assert Solution().longestCommonPrefix(["Ala", "Ala Ma Kota"]) == "Ala"
 
     def test_aa_a(self) -> None:
-        assert Solution().longestCommonPrefix(['aa', 'a']) == 'a'
+        assert Solution().longestCommonPrefix(["aa", "a"]) == "a"
 
     def test_ab_aa_coverage(self) -> None:
-        assert Solution().longestCommonPrefix(['ab', 'aa']) == 'a'
+        assert Solution().longestCommonPrefix(["ab", "aa"]) == "a"
 
     def test_none(self) -> None:
-        assert Solution().longestCommonPrefix([]) == ''
+        assert Solution().longestCommonPrefix([]) == ""
 
     def test_empty_b(self) -> None:
-        assert Solution().longestCommonPrefix(['', 'b']) == ''
+        assert Solution().longestCommonPrefix(["", "b"]) == ""
 
     def test_same(self) -> None:
-        assert Solution().longestCommonPrefix(['same', 'same']) == 'same'
+        assert Solution().longestCommonPrefix(["same", "same"]) == "same"

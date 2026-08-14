@@ -57,25 +57,25 @@ class TestCode(unittest.TestCase):
     def test_example(self) -> None:
         assert Solution().exist(
             [
-                ['A', 'B', 'C', 'E'],
-                ['S', 'F', 'C', 'S'],
-                ['A', 'D', 'E', 'E'],
+                ["A", "B", "C", "E"],
+                ["S", "F", "C", "S"],
+                ["A", "D", "E", "E"],
             ],
-            'ABCCED',
+            "ABCCED",
         )
 
     def test_other(self) -> None:
-        assert Solution().exist([['a', 'b'], ['c', 'd']], 'acdb')
+        assert Solution().exist([["a", "b"], ["c", "d"]], "acdb")
 
     def test_a__ab(self) -> None:
-        assert not Solution().exist([['a']], 'ab')
+        assert not Solution().exist([["a"]], "ab")
 
     def test_a__a(self) -> None:
-        assert Solution().exist([['a']], 'a')
+        assert Solution().exist([["a"]], "a")
 
     def test_a_a__aaa(self) -> None:
-        assert not Solution().exist([['a', 'a']], 'aaa')
+        assert not Solution().exist([["a", "a"]], "aaa")
 
     def test_nothing(self) -> None:
-        assert not Solution().exist([], 'dummy')
-        assert not Solution().exist([['a']], '')
+        assert not Solution().exist([], "dummy")
+        assert not Solution().exist([["a"]], "")

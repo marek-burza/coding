@@ -21,16 +21,16 @@ def accountant(sizes: list[int], requests: list[list[int]]) -> int:
 
 def main() -> None:
     input()
-    sizes_in = list(map(int, input().strip().split(' ')))
+    sizes_in = list(map(int, input().strip().split(" ")))
     requests_in = []
     n = int(input().strip())
     for _ in range(n):
-        request_in = list(map(int, input().strip().split(' ')))
+        request_in = list(map(int, input().strip().split(" ")))
         requests_in.append(request_in)
     print(accountant(sizes_in, requests_in))
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -38,10 +38,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -49,4 +49,4 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
-        self.generalized_test('0')
+        self.generalized_test("0")

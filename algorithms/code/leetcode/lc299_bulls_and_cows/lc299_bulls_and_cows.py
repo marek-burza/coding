@@ -28,20 +28,20 @@ class Solution:
                 cows += min(countKnown[asked], countAsked[asked])
         # Remove the bulls from the cows
         cows -= bulls
-        return '' + str(bulls) + 'A' + str(cows) + 'B'
+        return "" + str(bulls) + "A" + str(cows) + "B"
         # It would have been faster to have one lookup table
         # and update cows up or down accordingly
 
 
 class TestCode(unittest.TestCase):
     def test_1807__7810(self) -> None:
-        assert Solution().getHint('1807', '7810') == '1A3B'
+        assert Solution().getHint("1807", "7810") == "1A3B"
 
     def test_1123__0111(self) -> None:
-        assert Solution().getHint('1123', '0111') == '1A1B'
+        assert Solution().getHint("1123", "0111") == "1A1B"
 
     def test1122and2211(self) -> None:
-        assert Solution().getHint('1122', '2211') == '0A4B'
+        assert Solution().getHint("1122", "2211") == "0A4B"
 
     def test11and10(self) -> None:
-        assert Solution().getHint('11', '10') == '1A0B'
+        assert Solution().getHint("11", "10") == "1A0B"

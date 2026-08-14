@@ -8,7 +8,7 @@ from functools import cache
 
 class Solution:
     def diffWaysToCompute(self, expression: str) -> list[int]:
-        items = re.findall(r'[+\-*]|\d+', expression)
+        items = re.findall(r"[+\-*]|\d+", expression)
 
         @cache
         def traverse(a: int, z: int) -> list[int]:
@@ -21,11 +21,11 @@ class Solution:
                     after = traverse(operator + 1, z)
                     for ante in before:
                         for post in after:
-                            if items[operator] == '+':
+                            if items[operator] == "+":
                                 result.append(ante + post)
-                            elif items[operator] == '-':
+                            elif items[operator] == "-":
                                 result.append(ante - post)
-                            elif items[operator] == '*':
+                            elif items[operator] == "*":
                                 result.append(ante * post)
             return result
 
@@ -39,12 +39,12 @@ class TestCode(unittest.TestCase):
 
     def test_example_1(self) -> None:
         expected = [0, 2]
-        self.generic(expected, Solution().diffWaysToCompute('2-1-1'))
+        self.generic(expected, Solution().diffWaysToCompute("2-1-1"))
 
     def test_example_2(self) -> None:
         expected = [-34, -14, -10, -10, 10]
-        self.generic(expected, Solution().diffWaysToCompute('2*3-4*5'))
+        self.generic(expected, Solution().diffWaysToCompute("2*3-4*5"))
 
     def test_other(self) -> None:
         expected = [7]
-        self.generic(expected, Solution().diffWaysToCompute('3+4'))
+        self.generic(expected, Solution().diffWaysToCompute("3+4"))

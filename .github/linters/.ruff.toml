@@ -2,6 +2,3 @@ line-length = 79
 
 [lint]
 external = ["F824"]
-
-[format]
-quote-style = "single"

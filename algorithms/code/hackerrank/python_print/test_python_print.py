@@ -9,15 +9,15 @@ from typing import IO, Any
 
 
 def printer(n: int, file: IO[Any]) -> None:
-    list(map(lambda item: print(item, end='', file=file), range(1, n + 1)))
+    list(map(lambda item: print(item, end="", file=file), range(1, n + 1)))
 
 
 def main() -> None:
     printer(int(input().strip()), sys.stdout)
-    print('')
+    print("")
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -25,10 +25,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -36,4 +36,4 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
-        self.generalized_test('0')
+        self.generalized_test("0")

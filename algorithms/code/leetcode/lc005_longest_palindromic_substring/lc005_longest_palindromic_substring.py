@@ -6,7 +6,7 @@ import unittest
 
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        longest = ''
+        longest = ""
         index = 0
         while index < len(s):
             # Find head & tail
@@ -30,25 +30,25 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_1(self) -> None:
-        assert Solution().longestPalindrome('babad') == 'bab'
+        assert Solution().longestPalindrome("babad") == "bab"
 
     def test_2(self) -> None:
-        assert Solution().longestPalindrome('cbbd') == 'bb'
+        assert Solution().longestPalindrome("cbbd") == "bb"
 
     def test_3(self) -> None:
-        assert Solution().longestPalindrome('a') == 'a'
+        assert Solution().longestPalindrome("a") == "a"
 
     def test_4(self) -> None:
-        assert Solution().longestPalindrome('ac') == 'a'
+        assert Solution().longestPalindrome("ac") == "a"
 
     def test_bb(self) -> None:
-        assert Solution().longestPalindrome('bb') == 'bb'
+        assert Solution().longestPalindrome("bb") == "bb"
 
     def test_longer(self) -> None:
         assert (
             Solution().longestPalindrome(
                 # pylint: disable=C0301
-                'civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth'  # noqa: E501
+                "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"  # noqa: E501
             )
-            == 'ranynar'
+            == "ranynar"
         )

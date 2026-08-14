@@ -11,7 +11,7 @@ def acm_team(topic: list[str]) -> tuple[int, int]:
         for j in range(i + 1, length):
             count = 0
             for pair in zip(topic[i], topic[j], strict=True):
-                count += 1 if '1' in pair else 0
+                count += 1 if "1" in pair else 0
             if count > coverage_count:
                 coverage_count = count
                 teams_count = 1
@@ -22,13 +22,13 @@ def acm_team(topic: list[str]) -> tuple[int, int]:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        topic = ['10101', '11100', '11010', '00101']
+        topic = ["10101", "11100", "11010", "00101"]
         expected = (5, 2)
         result = acm_team(topic)
         assert result == expected
 
     def test_example_2(self) -> None:
-        topic = ['10101', '11110', '00010']
+        topic = ["10101", "11110", "00010"]
         expected = (5, 1)
         result = acm_team(topic)
         assert result == expected

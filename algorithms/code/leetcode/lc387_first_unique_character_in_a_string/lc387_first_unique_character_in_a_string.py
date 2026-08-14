@@ -5,12 +5,12 @@ import unittest
 
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        size = ord('z') - ord('a') + 1
+        size = ord("z") - ord("a") + 1
         count = [0] * size
         index = [0] * size
         length = len(s)
         for i in range(length - 1, -1, -1):
-            key = ord(s[i]) - ord('a')
+            key = ord(s[i]) - ord("a")
             index[key] = i
             count[key] += 1
         minimum = -1
@@ -22,10 +22,10 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_leetcode(self) -> None:
-        assert Solution().firstUniqChar('leetcode') == 0
+        assert Solution().firstUniqChar("leetcode") == 0
 
     def test_loveleetcode(self) -> None:
-        assert Solution().firstUniqChar('loveleetcode') == 2
+        assert Solution().firstUniqChar("loveleetcode") == 2
 
     def test_empty(self) -> None:
-        assert Solution().firstUniqChar('') == -1
+        assert Solution().firstUniqChar("") == -1

@@ -64,11 +64,11 @@ class TestCode(unittest.TestCase):  # pragma: no cover
 
     @staticmethod
     def __min_height(root: TreeNode | None) -> float:
-        return TestCode.__find_extreme(root, float('inf'), min)
+        return TestCode.__find_extreme(root, float("inf"), min)
 
     @staticmethod
     def __max_height(root: TreeNode | None) -> float:
-        return TestCode.__find_extreme(root, float('-inf'), max)
+        return TestCode.__find_extreme(root, float("-inf"), max)
 
     @staticmethod
     def __reconstruct(root: TreeNode | None, listed: list[int]) -> None:
@@ -84,7 +84,7 @@ class TestCode(unittest.TestCase):  # pragma: no cover
     def __is_bst(root: TreeNode | None) -> bool:
         listed: list[int] = []
         TestCode.__reconstruct(root, listed)
-        previous = float('-inf')
+        previous = float("-inf")
         for value in listed:
             if previous > value:
                 return False

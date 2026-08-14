@@ -12,7 +12,7 @@ class Solution:
             return False
         if not 0 <= y < len(grid[x]):
             return False
-        return grid[x][y] == '1'
+        return grid[x][y] == "1"
 
     def __traverse(self, grid: list[list[str]], x: int, y: int) -> bool:
         items = []
@@ -23,7 +23,7 @@ class Solution:
             check = self.__land(grid, x, y)
             if check:
                 land = True
-                grid[x][y] = '0'
+                grid[x][y] = "0"
                 for delta in self.__DELTAS:
                     xx = x + delta[0]
                     yy = y + delta[1]
@@ -43,15 +43,15 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example(self) -> None:
-        grid = [['1']]
+        grid = [["1"]]
         assert Solution().numIslands(grid) == 1
 
     def test_other(self) -> None:
         grid = [
-            ['1', '1', '0', '0', '0'],
-            ['1', '1', '0', '0', '0'],
-            ['0', '0', '1', '0', '0'],
-            ['0', '0', '0', '1', '1'],
+            ["1", "1", "0", "0", "0"],
+            ["1", "1", "0", "0", "0"],
+            ["0", "0", "1", "0", "0"],
+            ["0", "0", "0", "1", "1"],
         ]
         assert Solution().numIslands(grid) == 3
 

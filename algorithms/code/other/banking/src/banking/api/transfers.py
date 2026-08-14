@@ -14,26 +14,26 @@ router = APIRouter()
 
 metadata = [
     {
-        'name': 'put_transfer',
-        'description': 'Execute a transfer between specified accounts',
+        "name": "put_transfer",
+        "description": "Execute a transfer between specified accounts",
     },
     {
-        'name': 'get_transfers',
-        'description': 'Read transfer for specified account',
+        "name": "get_transfers",
+        "description": "Read transfer for specified account",
     },
 ]
 
-ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER = 'Invalid source account identifier'
+ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER = "Invalid source account identifier"
 ERROR_INVALID_DESTINATION_ACCOUNT_IDENTIFIER = (
-    'Invalid destination account identifier'
+    "Invalid destination account identifier"
 )
 ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO = (
-    'The amount must be greater than 0'
+    "The amount must be greater than 0"
 )
-ERROR_SOURCE_ACCOUNT_NOT_FOUND = 'Source account not found'
-ERROR_INSUFFICIENT_FUNDS = 'Insufficient funds'
-ERROR_DESTINATION_ACCOUNT_NOT_FOUND = 'Destination account not found'
-ERROR_INVALID_ACCOUNT_IDENTIFIER = 'Invalid account identifier'
+ERROR_SOURCE_ACCOUNT_NOT_FOUND = "Source account not found"
+ERROR_INSUFFICIENT_FUNDS = "Insufficient funds"
+ERROR_DESTINATION_ACCOUNT_NOT_FOUND = "Destination account not found"
+ERROR_INVALID_ACCOUNT_IDENTIFIER = "Invalid account identifier"
 
 
 def query_and_verify_account_identifier(
@@ -50,21 +50,21 @@ def query_and_verify_account_identifier(
 
 
 @router.put(
-    '/transfers/',
-    tags=['put_transfer'],
+    "/transfers/",
+    tags=["put_transfer"],
     response_model=TransferRead,
     responses={
         status.HTTP_400_BAD_REQUEST: {
-            'description': 'Issued the amount is less or equal to zero'
+            "description": "Issued the amount is less or equal to zero"
         },
         status.HTTP_404_NOT_FOUND: {
-            'description': 'Issued when any of the accounts with given identifiers do not exist'  # noqa
+            "description": "Issued when any of the accounts with given identifiers do not exist"  # noqa
         },
         status.HTTP_412_PRECONDITION_FAILED: {
-            'description': 'Issued in case of insufficient funds on the source account'  # noqa
+            "description": "Issued in case of insufficient funds on the source account"  # noqa
         },
         status.HTTP_417_EXPECTATION_FAILED: {
-            'description': 'Issued when any of the account identifiers are an invalid UUID'  # noqa
+            "description": "Issued when any of the account identifiers are an invalid UUID"  # noqa
         },
     },
 )
@@ -72,17 +72,17 @@ async def put_transfer(
     from_account_identifier: Annotated[
         str,
         Query(
-            description='UUID identifier of the account to transfer from (where balance >= amount)'  # noqa
+            description="UUID identifier of the account to transfer from (where balance >= amount)"  # noqa
         ),
     ],
     to_account_identifier: Annotated[
         str,
-        Query(description='UUID identifier of the account to transfer to'),
+        Query(description="UUID identifier of the account to transfer to"),
     ],
     amount: Annotated[
         int,
         Query(
-            description='Amount to transfer (origin account must have sufficient funds)'  # noqa
+            description="Amount to transfer (origin account must have sufficient funds)"  # noqa
         ),
     ],
     db_session: Session = Depends(database.get_session),  # noqa: B008
@@ -127,12 +127,12 @@ async def put_transfer(
 
 
 @router.get(
-    '/transfers/',
-    tags=['get_transfers'],
+    "/transfers/",
+    tags=["get_transfers"],
     response_model=list[TransferRead],
     responses={
         status.HTTP_417_EXPECTATION_FAILED: {
-            'description': 'Issued when account identifier is an invalid UUID'
+            "description": "Issued when account identifier is an invalid UUID"
         },
     },
 )
@@ -140,7 +140,7 @@ async def get_transfers(
     account_identifier: Annotated[
         str,
         Query(
-            description='UUID identifier of the account to fetch transfers for'
+            description="UUID identifier of the account to fetch transfers for"
         ),
     ],
     db_session: Session = Depends(database.get_session),  # noqa: B008

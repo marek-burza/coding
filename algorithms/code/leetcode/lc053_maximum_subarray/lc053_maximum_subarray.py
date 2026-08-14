@@ -7,7 +7,7 @@ class Solution:
     def maxSubArray(self, nums: list[int]) -> int:
         summed = 0
         minimum = 0
-        maximum = float('-inf')
+        maximum = float("-inf")
         i = 0
         while i < len(nums):
             minimum = summed if summed < minimum else minimum

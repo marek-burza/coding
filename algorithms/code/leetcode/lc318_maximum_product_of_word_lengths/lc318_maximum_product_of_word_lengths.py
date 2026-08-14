@@ -9,7 +9,7 @@ class Solution:
         signature = [0] * len(words)
         for i, _ in enumerate(words):
             for character in words[i]:
-                signature[i] |= 1 << (ord(character) - ord('a'))
+                signature[i] |= 1 << (ord(character) - ord("a"))
         maximum = 0
         for i in range(len(words) - 1):
             for j in range(i + 1, len(words)):
@@ -20,13 +20,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        words = ['abcw', 'baz', 'foo', 'bar', 'xtfn', 'abcdef']
+        words = ["abcw", "baz", "foo", "bar", "xtfn", "abcdef"]
         assert Solution().maxProduct(words) == 16
 
     def test_example_2(self) -> None:
-        words = ['a', 'ab', 'abc', 'd', 'cd', 'bcd', 'abcd']
+        words = ["a", "ab", "abc", "d", "cd", "bcd", "abcd"]
         assert Solution().maxProduct(words) == 4
 
     def test_example_3(self) -> None:
-        words = ['a', 'aa', 'aaa', 'aaaa']
+        words = ["a", "aa", "aaa", "aaaa"]
         assert Solution().maxProduct(words) == 0

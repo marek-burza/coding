@@ -15,22 +15,22 @@ def cavity_map(grid: list[str]) -> list[str]:
                 if cells[i + delta[0]][j + delta[1]] >= cells[i][j]:
                     deeper = False
             if deeper:
-                cells[i][j] = 'X'
-    return [''.join(line) for line in cells]
+                cells[i][j] = "X"
+    return ["".join(line) for line in cells]
 
 
 class TestCode(unittest.TestCase):
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
-        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+        for index, template in enumerate(["input%s.txt", "output%s.txt"]):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r', encoding='utf-8') as handle:
+            with open(path, "r", encoding="utf-8") as handle:
                 lines = handle.readlines()
-            io_lines[index] = [line.strip().split(' ') for line in lines]
+            io_lines[index] = [line.strip().split(" ") for line in lines]
         grid = [item[0] for item in io_lines[0][1:]]
         result = cavity_map(grid)
         expected = [item[0] for item in io_lines[1]]
         assert expected == result
 
     def test_example(self) -> None:
-        self.runner('_example')
+        self.runner("_example")

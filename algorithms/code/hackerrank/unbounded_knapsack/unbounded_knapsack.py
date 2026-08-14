@@ -27,10 +27,10 @@ def main() -> None:
         k = int(first_multiple_input[1])
         arr = list(map(int, input().rstrip().split()))
         result = unboundedKnapsack(k, arr)
-        fptr.write(str(result) + '\n')
+        fptr.write(str(result) + "\n")
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -39,14 +39,14 @@ class TestCode(unittest.TestCase):
         resources = os.path.dirname(__file__)
         with (
             open(
-                os.path.join(resources, f'output{which}.txt'),
-                'r',
-                encoding='utf-8',
+                os.path.join(resources, f"output{which}.txt"),
+                "r",
+                encoding="utf-8",
             ) as expected,
             open(
-                os.path.join(resources, f'input{which}.txt'),
-                'r',
-                encoding='utf-8',
+                os.path.join(resources, f"input{which}.txt"),
+                "r",
+                encoding="utf-8",
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -54,4 +54,4 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_example(self) -> None:
-        self.generalized_test('example')
+        self.generalized_test("example")

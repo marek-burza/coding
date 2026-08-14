@@ -13,16 +13,16 @@ router = APIRouter()
 
 metadata = [
     {
-        'name': 'put_account',
-        'description': 'Create an account for a specified customer',
+        "name": "put_account",
+        "description": "Create an account for a specified customer",
     },
     {
-        'name': 'get_accounts',
-        'description': 'Read account data for a specified customer',
+        "name": "get_accounts",
+        "description": "Read account data for a specified customer",
     },
 ]
 
-ERROR_INVALID_ACCOUNT_IDENTIFIER = 'Invalid account identifier'
+ERROR_INVALID_ACCOUNT_IDENTIFIER = "Invalid account identifier"
 
 
 def validate_account_identifier(
@@ -35,30 +35,30 @@ def validate_account_identifier(
 
 
 @router.put(
-    '/accounts/',
-    tags=['put_account'],
+    "/accounts/",
+    tags=["put_account"],
     response_model=AccountRead,
     responses={
         status.HTTP_400_BAD_REQUEST: {
-            'description': 'Issued when balance < 0'
+            "description": "Issued when balance < 0"
         },
         status.HTTP_417_EXPECTATION_FAILED: {
-            'description': 'Issued when account identifier is an invalid UUID'
+            "description": "Issued when account identifier is an invalid UUID"
         },
         status.HTTP_500_INTERNAL_SERVER_ERROR: {
-            'description': 'Issued in unlikely case of database integrity breach'  # noqa
+            "description": "Issued in unlikely case of database integrity breach"  # noqa
         },
     },
 )
 async def put_account(
     customer_identifier: Annotated[
         int,
-        Query(description='Integer identifier of the associated customer'),
+        Query(description="Integer identifier of the associated customer"),
     ],
     balance: Annotated[
         int,
         Query(
-            description='Initial balance for the account (cannot be < 0)',
+            description="Initial balance for the account (cannot be < 0)",
         ),
     ] = 0,
     db_session: Session = Depends(database.get_session),  # noqa: B008
@@ -74,30 +74,30 @@ async def put_account(
 
 
 @router.get(
-    '/accounts/',
-    tags=['get_accounts'],
+    "/accounts/",
+    tags=["get_accounts"],
     response_model=list[AccountRead],
     responses={
         status.HTTP_404_NOT_FOUND: {
-            'description': 'Issued when customer with given identifier does not exist'  # noqa
+            "description": "Issued when customer with given identifier does not exist"  # noqa
         },
         status.HTTP_417_EXPECTATION_FAILED: {
-            'description': 'Issued when account identifier is an invalid UUID'
+            "description": "Issued when account identifier is an invalid UUID"
         },
         status.HTTP_500_INTERNAL_SERVER_ERROR: {
-            'description': 'Issued in unlikely case of database integrity breach'  # noqa
+            "description": "Issued in unlikely case of database integrity breach"  # noqa
         },
     },
 )
 async def get_accounts(
     customer_identifier: Annotated[
         Optional[int],
-        Query(description='Integer identifier of the associated customer'),
+        Query(description="Integer identifier of the associated customer"),
     ] = None,
     account_identifier: Annotated[
         Optional[str],
         Query(
-            description='UUID identifier of the account (to fetch one account)'
+            description="UUID identifier of the account (to fetch one account)"
         ),
     ] = None,
     db_session: Session = Depends(database.get_session),  # noqa: B008

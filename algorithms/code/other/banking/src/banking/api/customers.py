@@ -13,25 +13,25 @@ router = APIRouter()
 
 metadata = [
     {
-        'name': 'put_customer',
-        'description': 'Create a customer',
+        "name": "put_customer",
+        "description": "Create a customer",
     },
     {
-        'name': 'get_customers',
-        'description': 'Read customer data',
+        "name": "get_customers",
+        "description": "Read customer data",
     },
 ]
 
-ERROR_CUSTOMER_NOT_FOUND = 'Customer not found'
+ERROR_CUSTOMER_NOT_FOUND = "Customer not found"
 ERROR_CUSTOMER_IDENTIFIER_INTEGRITY_ERROR = (
-    'Customer identifier integrity error'
+    "Customer identifier integrity error"
 )
-ERROR_INVALID_CUSTOMER_NAME = 'Invalid customer name'
+ERROR_INVALID_CUSTOMER_NAME = "Invalid customer name"
 ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS = (
-    'Customer with this identifier already exists'
+    "Customer with this identifier already exists"
 )
 ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS = (
-    'Customer with this name already exists'
+    "Customer with this name already exists"
 )
 
 
@@ -58,15 +58,15 @@ def query_and_verify_customer_identifier(
 
 
 @router.put(
-    '/customers/',
-    tags=['put_customer'],
+    "/customers/",
+    tags=["put_customer"],
     response_model=CustomerRead,
     responses={
         status.HTTP_409_CONFLICT: {
-            'description': 'Issued when customer with the given identifier or name already exists'  # noqa
+            "description": "Issued when customer with the given identifier or name already exists"  # noqa
         },
         status.HTTP_417_EXPECTATION_FAILED: {
-            'description': 'Issued when customer name is invalid'
+            "description": "Issued when customer name is invalid"
         },
     },
 )
@@ -74,19 +74,19 @@ async def put_customer(
     customer_identifier: Annotated[
         int,
         Query(
-            description='Integer identifier of the customer (must be unique)'
+            description="Integer identifier of the customer (must be unique)"
         ),
     ],
     customer_name: Annotated[
         str,
         Query(
-            description='Name of the customer (will be sanitized to only letters and spaces'  # noqa
+            description="Name of the customer (will be sanitized to only letters and spaces"  # noqa
         ),
     ],
     db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> CustomerRead:
     customer_name = cleanse_customer_name(customer_name)
-    if customer_name == '':
+    if customer_name == "":
         raise HTTPException(
             status_code=status.HTTP_417_EXPECTATION_FAILED,
             detail=ERROR_INVALID_CUSTOMER_NAME,
@@ -99,12 +99,12 @@ async def put_customer(
             db_customer = Customer(**customer.dict())
             db_session.add(db_customer)
     except IntegrityError as error:
-        if 'customers.identifier' in str(error):
+        if "customers.identifier" in str(error):
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
                 detail=ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS,
             ) from error
-        if 'customers.name' in str(error):
+        if "customers.name" in str(error):
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
                 detail=ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS,
@@ -113,22 +113,22 @@ async def put_customer(
 
 
 @router.get(
-    '/customers/',
-    tags=['get_customers'],
+    "/customers/",
+    tags=["get_customers"],
     response_model=list[CustomerRead],
     responses={
         status.HTTP_404_NOT_FOUND: {
-            'description': 'Issued when customer with given identifier does not exist'  # noqa
+            "description": "Issued when customer with given identifier does not exist"  # noqa
         },
         status.HTTP_500_INTERNAL_SERVER_ERROR: {
-            'description': 'Issued in unlikely case of database integrity breach'  # noqa
+            "description": "Issued in unlikely case of database integrity breach"  # noqa
         },
     },
 )
 async def get_customers(
     customer_identifier: Annotated[
         Optional[int],
-        Query(description='Integer identifier of the customer'),
+        Query(description="Integer identifier of the customer"),
     ] = None,
     db_session: Session = Depends(database.get_session),  # noqa: B008
 ) -> list[CustomerRead]:

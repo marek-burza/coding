@@ -12,18 +12,18 @@ def balanced_sums(arr: list[int]) -> str:
         right[len(arr) - 1 - i] = right[len(arr) - i] + arr[len(arr) - i]
     for i in range(len(arr)):
         if left[i] == right[i]:
-            return 'YES'
-    return 'NO'
+            return "YES"
+    return "NO"
 
 
 class TestCode(unittest.TestCase):
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
-        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+        for index, template in enumerate(["input%s.txt", "output%s.txt"]):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r', encoding='utf-8') as handle:
+            with open(path, "r", encoding="utf-8") as handle:
                 lines = handle.readlines()
-            io_lines[index] = [line.strip().split(' ') for line in lines]
+            io_lines[index] = [line.strip().split(" ") for line in lines]
         count = int(io_lines[0][0][0])
         for i in range(count):
             arguments_raw = io_lines[0][2 + i * 2]
@@ -32,7 +32,7 @@ class TestCode(unittest.TestCase):
             assert io_lines[1][i][0] == result
 
     def test_example(self) -> None:
-        self.runner('_example')
+        self.runner("_example")
 
     def test_00(self) -> None:
-        self.runner('00')
+        self.runner("00")

@@ -19,13 +19,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_example_1(self) -> None:
-        assert Solution().isSubsequence('abc', 'ahbgdc')
+        assert Solution().isSubsequence("abc", "ahbgdc")
 
     def test_example_2(self) -> None:
-        assert not Solution().isSubsequence('axc', 'ahbgdc')
+        assert not Solution().isSubsequence("axc", "ahbgdc")
 
     def test_other_1(self) -> None:
-        assert Solution().isSubsequence('', 'ahbgdc')
+        assert Solution().isSubsequence("", "ahbgdc")
 
     def test_other_2(self) -> None:
-        assert not Solution().isSubsequence('aaaaaa', 'eeaaa')
+        assert not Solution().isSubsequence("aaaaaa", "eeaaa")

@@ -19,7 +19,7 @@ def list_repetitions(
 
 
 def main() -> None:
-    n_in, m_in = list(map(int, input().strip().split(' ')))
+    n_in, m_in = list(map(int, input().strip().split(" ")))
     words_a_in = []
     words_b_in = []
     for _ in range(n_in):
@@ -31,10 +31,10 @@ def main() -> None:
         if len(result_out[each]) == 0:
             print(-1)
         else:
-            print(' '.join(list(map(str, result_out[each]))))
+            print(" ".join(list(map(str, result_out[each]))))
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -42,10 +42,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -53,7 +53,7 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
-        self.generalized_test('0')
+        self.generalized_test("0")
 
     def test_01(self) -> None:
-        self.generalized_test('01')
+        self.generalized_test("01")

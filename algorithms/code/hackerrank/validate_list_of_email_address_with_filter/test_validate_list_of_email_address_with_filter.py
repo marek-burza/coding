@@ -9,12 +9,12 @@ import unittest
 
 
 def check(email: str) -> bool:
-    items = email.split('@')
+    items = email.split("@")
     if len(items) != 2:
         return False
-    if not re.match(r'[\w-]+$', items[0]):
+    if not re.match(r"[\w-]+$", items[0]):
         return False
-    items = items[1].split('.')
+    items = items[1].split(".")
     if len(items) != 2:
         return False
     if not items[0].isalnum():
@@ -36,7 +36,7 @@ def main() -> None:
     print(process(emails))
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -44,10 +44,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -55,16 +55,16 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_0(self) -> None:
-        self.generalized_test('0')
+        self.generalized_test("0")
 
     def test_double_at(self) -> None:
-        assert not process(['somebody@somewhere@else.com'])
+        assert not process(["somebody@somewhere@else.com"])
 
     def test_double_dot(self) -> None:
-        assert not process(['somebody@somewhere.else.com'])
+        assert not process(["somebody@somewhere.else.com"])
 
     def test_garbage(self) -> None:
-        assert not process(['somebody@some+where.com'])
+        assert not process(["somebody@some+where.com"])
 
     def test_white_space(self) -> None:
-        assert not process(['somebody\t@somewhere.com'])
+        assert not process(["somebody\t@somewhere.com"])

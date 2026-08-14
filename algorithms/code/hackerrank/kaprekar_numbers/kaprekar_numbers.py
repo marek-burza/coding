@@ -16,18 +16,18 @@ def kaprekar_numbers(p: int, q: int) -> list[str]:
         if n == rv + lv:
             found.append(str(n))
     if not found:
-        return ['INVALID', 'RANGE']
+        return ["INVALID", "RANGE"]
     return found
 
 
 class TestCode(unittest.TestCase):
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
-        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+        for index, template in enumerate(["input%s.txt", "output%s.txt"]):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r', encoding='utf-8') as handle:
+            with open(path, "r", encoding="utf-8") as handle:
                 lines = handle.readlines()
-            io_lines[index] = [line.strip().split(' ') for line in lines]
+            io_lines[index] = [line.strip().split(" ") for line in lines]
         var_p = int(io_lines[0][0][0])
         var_q = int(io_lines[0][1][0])
         result = kaprekar_numbers(var_p, var_q)
@@ -35,10 +35,10 @@ class TestCode(unittest.TestCase):
         assert expected == result
 
     def test_example(self) -> None:
-        self.runner('_example')
+        self.runner("_example")
 
     def test_06(self) -> None:
-        self.runner('06')
+        self.runner("06")
 
     def test_6(self) -> None:
-        self.runner('6')
+        self.runner("6")

@@ -4,9 +4,9 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from queue import Queue
 
-EXAMPLE_MENU = Path(__file__).parent / 'menu.csv'
-EXAMPLE_DEMAND = Path(__file__).parent / 'demand.csv'
-EXAMPLE_STOCK = Path(__file__).parent / 'stock.csv'
+EXAMPLE_MENU = Path(__file__).parent / "menu.csv"
+EXAMPLE_DEMAND = Path(__file__).parent / "demand.csv"
+EXAMPLE_STOCK = Path(__file__).parent / "stock.csv"
 
 
 def load_menu(menu_path: Path) -> dict[str, dict[str, int]]:
@@ -14,7 +14,7 @@ def load_menu(menu_path: Path) -> dict[str, dict[str, int]]:
     entries = []
     with menu_path.open() as handle:
         for row in csv.DictReader(handle):
-            entries.append([row['dish'], row['item'], row['quantity']])
+            entries.append([row["dish"], row["item"], row["quantity"]])
     for group, item, quantity in entries:
         if group not in menu:
             menu[group] = {}
@@ -55,7 +55,7 @@ def load_demand(demand_path: Path) -> dict[int, dict[str, int]]:
     entries = []
     with demand_path.open() as handle:
         for row in csv.DictReader(handle):
-            entries.append([row['item'], row['demand'], row['day']])
+            entries.append([row["item"], row["demand"], row["day"]])
     demand = {}
     for item, need, day in entries:
         day_no = int(day)
@@ -98,7 +98,7 @@ def load_stock(stock_path: Path) -> Counter[str]:
     entries = []
     with stock_path.open() as handle:
         for row in csv.DictReader(handle):
-            entries.append([row['item'], row['quantity']])
+            entries.append([row["item"], row["quantity"]])
     for item, quantity in entries:
         stock[item] += int(quantity)
     return stock
@@ -152,9 +152,9 @@ def collect_demand_items_without_stock(
 def format_counted(
     title: str, counted: Counter[str]
 ) -> str:  # pragma: no cover
-    formatted = f'{title}:\n'
+    formatted = f"{title}:\n"
     for item in counted:
-        formatted += f'  {counted[item]} x {item}\n'
+        formatted += f"  {counted[item]} x {item}\n"
     return formatted
 
 
@@ -165,15 +165,15 @@ class TestCode(unittest.TestCase):
 
     def test_q2(self) -> None:
         test_menu = load_menu(EXAMPLE_MENU)
-        test_dishes = collect_dishes(test_menu, 'Happy Menu')
+        test_dishes = collect_dishes(test_menu, "Happy Menu")
         expected_dishes = {
-            'Kalbsleber Berliner Art': 1,
-            'Backofen Haenchenfluegel': 2,
-            'Geschmorter Ochsenschwanz': 1,
-            'Haxengroestl': 4,
-            'Kaiserschmarrn': 1,
-            'Wiener Schnitzel': 1,
-            'Geschmorter Schweinebauch': 1,
+            "Kalbsleber Berliner Art": 1,
+            "Backofen Haenchenfluegel": 2,
+            "Geschmorter Ochsenschwanz": 1,
+            "Haxengroestl": 4,
+            "Kaiserschmarrn": 1,
+            "Wiener Schnitzel": 1,
+            "Geschmorter Schweinebauch": 1,
         }
         items = set(list(test_dishes.keys()) + list(expected_dishes.keys()))
         for item in items:
@@ -181,45 +181,45 @@ class TestCode(unittest.TestCase):
 
     def test_q3(self) -> None:
         test_menu = load_menu(EXAMPLE_MENU)
-        test_basic_items = collect_basic_items(test_menu, 'Happy Menu')
+        test_basic_items = collect_basic_items(test_menu, "Happy Menu")
         expected_basic_items = {
-            'Zucker': 1,
-            'Fluegelgelenk': 2,
-            'Semmelbroesel': 2,
-            'Mehl': 1,
-            'Beinmuskel': 4,
-            'Kalbsleber': 1,
-            'Beinfett': 4,
-            'Schwanzspitze': 1,
-            'Wiener': 1,
-            'Schnitzel': 1,
-            'Deckel': 1,
-            'Pfanne': 2,
-            'Schwein': 1,
-            'Horizontal Knochen': 1,
-            'Bauch': 1,
-            'Zimmt': 1,
-            'Berliner Luft': 2,
-            'Eier': 6,
-            'Salz': 60,
-            'Butterfly': 20,
-            'Butter': 36,
-            'Beingelenk': 4,
-            'Backpulver': 12,
-            'Rosinen': 1,
-            'Beinhaut': 4,
-            'Eiweiss': 1,
-            'Schwanzgelenk': 1,
-            'Dreck': 1,
-            'Ofen': 1,
-            'Vertikaler Knochen': 1,
-            'Pfeffer': 1,
-            'Apfelmousse': 1,
-            'Ampelman': 2,
-            'Fluegelknochen': 10,
-            'Fluegel Haut': 4,
-            'Fluegel Feder': 2,
-            'Mandeln': 1,
+            "Zucker": 1,
+            "Fluegelgelenk": 2,
+            "Semmelbroesel": 2,
+            "Mehl": 1,
+            "Beinmuskel": 4,
+            "Kalbsleber": 1,
+            "Beinfett": 4,
+            "Schwanzspitze": 1,
+            "Wiener": 1,
+            "Schnitzel": 1,
+            "Deckel": 1,
+            "Pfanne": 2,
+            "Schwein": 1,
+            "Horizontal Knochen": 1,
+            "Bauch": 1,
+            "Zimmt": 1,
+            "Berliner Luft": 2,
+            "Eier": 6,
+            "Salz": 60,
+            "Butterfly": 20,
+            "Butter": 36,
+            "Beingelenk": 4,
+            "Backpulver": 12,
+            "Rosinen": 1,
+            "Beinhaut": 4,
+            "Eiweiss": 1,
+            "Schwanzgelenk": 1,
+            "Dreck": 1,
+            "Ofen": 1,
+            "Vertikaler Knochen": 1,
+            "Pfeffer": 1,
+            "Apfelmousse": 1,
+            "Ampelman": 2,
+            "Fluegelknochen": 10,
+            "Fluegel Haut": 4,
+            "Fluegel Feder": 2,
+            "Mandeln": 1,
         }
         items = set(
             list(test_basic_items.keys()) + list(expected_basic_items.keys())
@@ -238,43 +238,43 @@ class TestCode(unittest.TestCase):
             test_menu, test_demand, 32
         )
         expected_basic_items_demand = {
-            'Zucker': 5,
-            'Fluegelgelenk': 10,
-            'Semmelbroesel': 10,
-            'Mehl': 5,
-            'Beinmuskel': 20,
-            'Kalbsleber': 7,
-            'Beinfett': 20,
-            'Schwanzspitze': 5,
-            'Wiener': 5,
-            'Schnitzel': 5,
-            'Deckel': 5,
-            'Pfanne': 10,
-            'Schwein': 5,
-            'Horizontal Knochen': 5,
-            'Bauch': 5,
-            'Zimmt': 5,
-            'Berliner Luft': 14,
-            'Eier': 30,
-            'Salz': 316,
-            'Butterfly': 140,
-            'Butter': 220,
-            'Beingelenk': 20,
-            'Backpulver': 60,
-            'Rosinen': 5,
-            'Beinhaut': 20,
-            'Eiweiss': 5,
-            'Schwanzgelenk': 5,
-            'Dreck': 5,
-            'Ofen': 5,
-            'Vertikaler Knochen': 5,
-            'Pfeffer': 5,
-            'Apfelmousse': 5,
-            'Ampelman': 14,
-            'Fluegelknochen': 50,
-            'Fluegel Haut': 20,
-            'Fluegel Feder': 10,
-            'Mandeln': 5,
+            "Zucker": 5,
+            "Fluegelgelenk": 10,
+            "Semmelbroesel": 10,
+            "Mehl": 5,
+            "Beinmuskel": 20,
+            "Kalbsleber": 7,
+            "Beinfett": 20,
+            "Schwanzspitze": 5,
+            "Wiener": 5,
+            "Schnitzel": 5,
+            "Deckel": 5,
+            "Pfanne": 10,
+            "Schwein": 5,
+            "Horizontal Knochen": 5,
+            "Bauch": 5,
+            "Zimmt": 5,
+            "Berliner Luft": 14,
+            "Eier": 30,
+            "Salz": 316,
+            "Butterfly": 140,
+            "Butter": 220,
+            "Beingelenk": 20,
+            "Backpulver": 60,
+            "Rosinen": 5,
+            "Beinhaut": 20,
+            "Eiweiss": 5,
+            "Schwanzgelenk": 5,
+            "Dreck": 5,
+            "Ofen": 5,
+            "Vertikaler Knochen": 5,
+            "Pfeffer": 5,
+            "Apfelmousse": 5,
+            "Ampelman": 14,
+            "Fluegelknochen": 50,
+            "Fluegel Haut": 20,
+            "Fluegel Feder": 10,
+            "Mandeln": 5,
         }
         items = set(
             list(test_basic_items_demand.keys())
@@ -295,21 +295,21 @@ class TestCode(unittest.TestCase):
             test_menu, test_demand, 32, test_stock
         )
         expected_basic_items_demand = {
-            'Fluegelgelenk': 5,
-            'Beinmuskel': 4,
-            'Beinfett': 4,
-            'Beingelenk': 4,
-            'Beinhaut': 4,
-            'Fluegelknochen': 25,
-            'Fluegel Haut': 10,
-            'Salz': 60,
+            "Fluegelgelenk": 5,
+            "Beinmuskel": 4,
+            "Beinfett": 4,
+            "Beingelenk": 4,
+            "Beinhaut": 4,
+            "Fluegelknochen": 25,
+            "Fluegel Haut": 10,
+            "Salz": 60,
         }
         items = set(
             list(test_basic_items_demand.keys())
             + list(expected_basic_items_demand.keys())
         )
         for item in items:
-            if item == 'Salz':
+            if item == "Salz":
                 continue
             assert (
                 test_basic_items_demand[item]
@@ -320,53 +320,53 @@ class TestCode(unittest.TestCase):
         assert (
             len(
                 collect_demand_items_without_stock(
-                    {}, {0: {'Something': 1}}, 0, Counter({'Something': 1})
+                    {}, {0: {"Something": 1}}, 0, Counter({"Something": 1})
                 )
             )
             == 0
         )
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     # Q1
     example_menu = load_menu(EXAMPLE_MENU)
     example_quantity = len(example_menu)
-    print(f'Q1: Menu data loaded successfully. {example_quantity} dishes.\n')
+    print(f"Q1: Menu data loaded successfully. {example_quantity} dishes.\n")
     # Q2
-    example_dishes = collect_dishes(example_menu, 'Happy Menu')
-    print(format_counted('Q2: Dishes in Happy Menu', example_dishes))
+    example_dishes = collect_dishes(example_menu, "Happy Menu")
+    print(format_counted("Q2: Dishes in Happy Menu", example_dishes))
     # Q3
-    example_basic_items = collect_basic_items(example_menu, 'Happy Menu')
+    example_basic_items = collect_basic_items(example_menu, "Happy Menu")
     print(
         format_counted(
-            'Q3: All basic items needed for one Happy Menu',
+            "Q3: All basic items needed for one Happy Menu",
             example_basic_items,
         )
     )
     # Q4
     example_demand = load_demand(EXAMPLE_DEMAND)
     example_quantity = len(example_demand)
-    print(f'Q4: Demand data loaded successfully. {example_quantity} days.\n')
+    print(f"Q4: Demand data loaded successfully. {example_quantity} days.\n")
     # Q5
     example_basic_items_demand = collect_basic_demand_items_for_day(
         example_menu, example_demand, 32
     )
     print(
         format_counted(
-            'Q5: All basic items needed for day 32',
+            "Q5: All basic items needed for day 32",
             example_basic_items_demand,
         )
     )
     # Q6
     example_stock = load_stock(EXAMPLE_STOCK)
     example_quantity = len(example_stock)
-    print(f'Q6: Stock data loaded successfully. {example_quantity} items.\n')
+    print(f"Q6: Stock data loaded successfully. {example_quantity} items.\n")
     example_basic_items_demand = collect_demand_items_without_stock(
         example_menu, example_demand, 32, example_stock
     )
     print(
         format_counted(
-            'All basic items demand for day 32 (considering stock)',
+            "All basic items demand for day 32 (considering stock)",
             example_basic_items_demand,
         )
     )

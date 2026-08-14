@@ -162,7 +162,7 @@ class Orchestrator:
                 [gateway.model.state_dict()[key] for gateway in self.gateways],
                 dim=0,
             ).mean(dim=0)
-            for key in ['fc1.weight', 'fc1.bias', 'fc2.weight', 'fc2.bias']
+            for key in ["fc1.weight", "fc1.bias", "fc2.weight", "fc2.bias"]
         }
         return state_dict
         # IMPLEMENTATION: END
@@ -176,7 +176,7 @@ class Orchestrator:
 
 
 def main() -> float:
-    default_gateways = [Gateway(f'gateway_{i}', 4) for i in range(4)]
+    default_gateways = [Gateway(f"gateway_{i}", 4) for i in range(4)]
 
     orchestrator = Orchestrator(default_gateways)
 
@@ -198,5 +198,5 @@ class TestCode(unittest.TestCase):
 # IMPLEMENTATION: END
 
 
-if __name__ == '__main__':  # pragma: no cover
-    print(f'Training Complete. Validation accuracy: {main():.2f}%')
+if __name__ == "__main__":  # pragma: no cover
+    print(f"Training Complete. Validation accuracy: {main():.2f}%")

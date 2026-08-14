@@ -5,14 +5,14 @@ from typing import Callable
 def cleanse_string(
     string: str, cleansing_function: Callable[[str], bool]
 ) -> str:
-    string = ''.join(
+    string = "".join(
         [
-            character if cleansing_function(character) else ' '
+            character if cleansing_function(character) else " "
             for character in string
         ]
     )
-    while '  ' in string:
-        string = string.replace('  ', ' ')
+    while "  " in string:
+        string = string.replace("  ", " ")
     return string.strip()
 
 

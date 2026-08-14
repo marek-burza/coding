@@ -20,20 +20,20 @@ def jumping_on_clouds(c: list[int]) -> int:
 class TestCode(unittest.TestCase):
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
-        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+        for index, template in enumerate(["input%s.txt", "output%s.txt"]):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r', encoding='utf-8') as handle:
+            with open(path, "r", encoding="utf-8") as handle:
                 lines = handle.readlines()
-            io_lines[index] = [line.strip().split(' ') for line in lines]
+            io_lines[index] = [line.strip().split(" ") for line in lines]
         c = [int(item) for item in io_lines[0][1]]
         result = jumping_on_clouds(c)
         assert int(io_lines[1][0][0]) == result
 
     def test_example_0(self) -> None:
-        self.runner('_example_0')
+        self.runner("_example_0")
 
     def test_example_1(self) -> None:
-        self.runner('_example_1')
+        self.runner("_example_1")
 
     def test_missing_example(self) -> None:
         assert jumping_on_clouds([0, 0]) == 1

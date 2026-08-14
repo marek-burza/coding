@@ -34,13 +34,13 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_a__a(self) -> None:
-        assert Solution().wordBreak('a', ['a'])
+        assert Solution().wordBreak("a", ["a"])
 
     def test_other(self) -> None:
         assert not Solution().wordBreak(
-            'catsandog',
-            ['cats', 'dog', 'sand', 'and', 'cat'],
+            "catsandog",
+            ["cats", "dog", "sand", "and", "cat"],
         )
 
     def test_another(self) -> None:
-        assert Solution().wordBreak('leetcode', ['leet', 'code'])
+        assert Solution().wordBreak("leetcode", ["leet", "code"])

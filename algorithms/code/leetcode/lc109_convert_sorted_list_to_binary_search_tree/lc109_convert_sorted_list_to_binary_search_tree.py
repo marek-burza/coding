@@ -60,8 +60,8 @@ class TestCode(unittest.TestCase):
 
     class MinMax:
         def __init__(self) -> None:
-            self.min = float('inf')
-            self.max = float('-inf')
+            self.min = float("inf")
+            self.max = float("-inf")
 
     def __depth(
         self, root: TreeNode | None, level: int, depths: MinMax

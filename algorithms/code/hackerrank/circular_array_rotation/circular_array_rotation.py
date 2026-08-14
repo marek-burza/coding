@@ -16,27 +16,27 @@ def circular_array_rotation(
 
 class TestCode(unittest.TestCase):
     def run_test(self, test: dict[str, Any]) -> None:
-        k = test['k']
-        a = test['a']
-        queries = test['queries']
-        expected = test['expected']
+        k = test["k"]
+        a = test["a"]
+        queries = test["queries"]
+        expected = test["expected"]
         results = circular_array_rotation(k, a, queries)
         assert results == expected
 
     def test_example(self) -> None:
         test = {
-            'k': 2,
-            'a': [1, 2, 3],
-            'queries': [0, 1, 2],
-            'expected': [2, 3, 1],
+            "k": 2,
+            "a": [1, 2, 3],
+            "queries": [0, 1, 2],
+            "expected": [2, 3, 1],
         }
         self.run_test(test)
 
     # pylint: disable=R0915
     def test_bigger(self) -> None:
         test = {
-            'k': 100000,
-            'a': [
+            "k": 100000,
+            "a": [
                 29261,
                 80254,
                 86934,
@@ -553,7 +553,7 @@ class TestCode(unittest.TestCase):
                 4529,
                 53576,
             ],
-            'queries': [
+            "queries": [
                 8,
                 323,
                 475,
@@ -1055,7 +1055,7 @@ class TestCode(unittest.TestCase):
                 405,
                 371,
             ],
-            'expected': [
+            "expected": [
                 20372,
                 35673,
                 58089,

@@ -32,8 +32,8 @@ class Request:
 
 def show_request(request: Request | None) -> str:  # pragma: no cover
     if request is None:
-        return '()'
-    return f'({request.origin}->{request.goal})'
+        return "()"
+    return f"({request.origin}->{request.goal})"
 
 
 class Lift:
@@ -128,36 +128,36 @@ class ElevatorControlSystemBase(ABC):
 
     def show(self) -> None:  # pragma: no cover
         for i in range(self.floor_cnt - 1, -1, -1):
-            line = ''
+            line = ""
             for lift in self.lifts:
                 if lift.floor == i:
                     line += str(len(lift.passengers))
                 else:
-                    line += '.'
+                    line += "."
             print(line)
-        lut = {-1: 'v', 0: '-', 1: '^'}
-        print(''.join([lut[lift.direction] for lift in self.lifts]))
-        print('')
+        lut = {-1: "v", 0: "-", 1: "^"}
+        print("".join([lut[lift.direction] for lift in self.lifts]))
+        print("")
         for i, lift in enumerate(self.lifts):
             items = [show_request(request) for request in lift.passengers]
-            print(f'L{i} {" ".join(items)}')
+            print(f"L{i} {' '.join(items)}")
 
     def stats(self) -> dict:
         through = self.through
         result = {}
-        result['throughput'] = len(through) / self.cycles
+        result["throughput"] = len(through) / self.cycles
         items: list[int | float] = [request.waited for request in through]
         avg_wait = sum(items) / self.cycles
         items = [math.pow(entry.waited - avg_wait, 2) for entry in through]
         std_wait = math.sqrt(sum(items) / self.cycles)
-        result['avg_wait_time'] = avg_wait
-        result['std_wait_time'] = std_wait
+        result["avg_wait_time"] = avg_wait
+        result["std_wait_time"] = std_wait
         items = [request.ridden for request in through]
         avg_ride = sum(items) / self.cycles
         items = [math.pow(entry.ridden - avg_wait, 2) for entry in through]
         std_ride = math.sqrt(sum(items) / self.cycles)
-        result['avg_ride_time'] = avg_ride
-        result['std_ride_time'] = std_ride
+        result["avg_ride_time"] = avg_ride
+        result["std_ride_time"] = std_ride
         return result
 
 
@@ -193,9 +193,9 @@ class FCFS(ElevatorControlSystemBase):
     def show(self) -> None:  # pragma: no cover
         ElevatorControlSystemBase.show(self)
         items = [show_request(assignment) for assignment in self.assignments]
-        print(f'A {" ".join(items)}')
+        print(f"A {' '.join(items)}")
         print(
-            f'Q {" ".join([show_request(request) for request in self.queue])}'
+            f"Q {' '.join([show_request(request) for request in self.queue])}"
         )
 
 
@@ -256,8 +256,8 @@ class ElevatorControlSystem(ElevatorControlSystemBase):
     def show(self) -> None:  # pragma: no cover
         ElevatorControlSystemBase.show(self)
         for i, _ in enumerate(self.lifts):
-            q = ' '.join([show_request(request) for request in self.queues[i]])
-            print(f'Q{i} {q}')
+            q = " ".join([show_request(request) for request in self.queues[i]])
+            print(f"Q{i} {q}")
 
 
 def simulation(
@@ -294,15 +294,15 @@ class Tests(unittest.TestCase):
         fcfs_stats = simulation(system, floor_cnt, request_probability, 5000)
         system = ElevatorControlSystem(lift_cnt, floor_cnt, capacity)
         ecs_stats = simulation(system, floor_cnt, request_probability, 5000)
-        fcfs_avg_wait = fcfs_stats['avg_wait_time']
-        ecs_avg_wait = ecs_stats['avg_wait_time']
-        fcfs_std_wait = fcfs_stats['std_wait_time']
-        ecs_std_wait = ecs_stats['std_wait_time']
+        fcfs_avg_wait = fcfs_stats["avg_wait_time"]
+        ecs_avg_wait = ecs_stats["avg_wait_time"]
+        fcfs_std_wait = fcfs_stats["std_wait_time"]
+        ecs_std_wait = ecs_stats["std_wait_time"]
         assert ecs_avg_wait < fcfs_avg_wait
         assert ecs_std_wait < fcfs_std_wait
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     if len(sys.argv) > 1:
         sys.argv = [sys.argv[0]]
         # Run unattended test to gather statistics

@@ -6,8 +6,8 @@ import unittest
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
         if not s or numRows < 1:
-            return ''
-        buffer = ''
+            return ""
+        buffer = ""
         n = len(s)
         scan = (numRows - 1) * 2
         scan = 1 if scan == 0 else scan
@@ -24,22 +24,22 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_1(self) -> None:
-        assert Solution().convert('PAYPALISHIRING', 3) == 'PAHNAPLSIIGYIR'
+        assert Solution().convert("PAYPALISHIRING", 3) == "PAHNAPLSIIGYIR"
 
     def test_2(self) -> None:
-        assert Solution().convert('PAYPALISHIRING', 4) == 'PINALSIGYAHRPI'
+        assert Solution().convert("PAYPALISHIRING", 4) == "PINALSIGYAHRPI"
 
     def test_3(self) -> None:
-        assert Solution().convert('A', 1) == 'A'
+        assert Solution().convert("A", 1) == "A"
 
     def test_abcd(self) -> None:
-        assert Solution().convert('ABCD', 3) == 'ABDC'
+        assert Solution().convert("ABCD", 3) == "ABDC"
 
     def test_abc(self) -> None:
-        assert Solution().convert('ABC', 2) == 'ACB'
+        assert Solution().convert("ABC", 2) == "ACB"
 
     def test_nothing(self) -> None:
-        assert Solution().convert('', 2) == ''
+        assert Solution().convert("", 2) == ""
 
     def test_zero(self) -> None:
-        assert Solution().convert('A', 0) == ''
+        assert Solution().convert("A", 0) == ""

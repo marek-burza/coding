@@ -10,7 +10,7 @@ import unittest
 
 def average(order: list[str], table: list[list[str]]) -> float:
     students = []
-    student_tuple = collections.namedtuple('Student', order)  # type: ignore[misc]  # ty: ignore # pylint: disable=C0301  # noqa: E501
+    student_tuple = collections.namedtuple("Student", order)  # type: ignore[misc]  # ty: ignore # pylint: disable=C0301  # noqa: E501
     total = 0
     for entry in table:
         student = student_tuple(entry[0], entry[1], entry[2], entry[3])  # type: ignore[call-arg]  # ty: ignore # pylint: disable=C0301  # noqa: E501
@@ -25,10 +25,10 @@ def main() -> None:
     table = []
     for _ in range(n):
         table.append(input().strip().split())
-    print(f'{average(order, table):.2f}')
+    print(f"{average(order, table):.2f}")
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()
 
 
@@ -36,10 +36,10 @@ class TestCode(unittest.TestCase):
     def generalized_test(self, which: str) -> None:
         with (
             open(
-                __file__.replace('.py', f'.{which}.out'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.out"), "r", encoding="utf-8"
             ) as expected,
             open(
-                __file__.replace('.py', f'.{which}.in'), 'r', encoding='utf-8'
+                __file__.replace(".py", f".{which}.in"), "r", encoding="utf-8"
             ) as sys.stdin,
             io.StringIO() as sys.stdout,
         ):
@@ -47,7 +47,7 @@ class TestCode(unittest.TestCase):
             assert sys.stdout.getvalue() == expected.read()
 
     def test_1(self) -> None:
-        self.generalized_test('1')
+        self.generalized_test("1")
 
     def test_2(self) -> None:
-        self.generalized_test('2')
+        self.generalized_test("2")

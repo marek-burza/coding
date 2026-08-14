@@ -11,24 +11,24 @@ def funny_string(s: str) -> str:
         forward = abs(ord(s[i]) - ord(s[i - 1]))
         backward = abs(ord(s[n - i - 1]) - ord(s[n - i]))
         if forward != backward:
-            return 'Not Funny'
-    return 'Funny'
+            return "Not Funny"
+    return "Funny"
 
 
 class TestCode(unittest.TestCase):
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
-        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+        for index, template in enumerate(["input%s.txt", "output%s.txt"]):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r', encoding='utf-8') as handle:
+            with open(path, "r", encoding="utf-8") as handle:
                 lines = handle.readlines()
-            io_lines[index] = [line.strip().split(' ') for line in lines]
+            io_lines[index] = [line.strip().split(" ") for line in lines]
         count = int(io_lines[0][0][0])
         for i in range(count):
             s = io_lines[0][1 + i][0]
             result = funny_string(s)
-            expected = ' '.join(io_lines[1][i])
+            expected = " ".join(io_lines[1][i])
             assert expected == result
 
     def test_example(self) -> None:
-        self.runner('_example')
+        self.runner("_example")

@@ -24,19 +24,19 @@ class Stats:
 def tree(
     file_system: list[File | Directory],
     depth: int = 0,
-    prefix: str = '',
+    prefix: str = "",
     stats: Stats | None = None,
 ) -> str:
-    output = ''
+    output = ""
     if depth == 0:
-        output += '.\n'
+        output += ".\n"
     if stats is None:
         stats = Stats()
     for i, item in enumerate(sorted(file_system, key=lambda item: item.name)):
-        lines = f'{"└" if i == len(file_system) - 1 else "├"}── '
-        output += f'{prefix}{lines}{item.name}\n'
+        lines = f"{'└' if i == len(file_system) - 1 else '├'}── "
+        output += f"{prefix}{lines}{item.name}\n"
         if isinstance(item, Directory):
-            indent = '    ' if i == len(file_system) - 1 else '│   '
+            indent = "    " if i == len(file_system) - 1 else "│   "
             output += tree(item.files, depth + 1, prefix + indent, stats)
             stats.directory_count += 1
         else:
@@ -44,37 +44,37 @@ def tree(
     if depth == 0:
         directories = stats.directory_count
         files = stats.file_count
-        output += f'\n{directories} directories, {files} files\n'
+        output += f"\n{directories} directories, {files} files\n"
     return output
 
 
 class TestTree(unittest.TestCase):
     FILE_SYSTEM = [
-        File('pyproject.toml'),
-        File('README.md'),
+        File("pyproject.toml"),
+        File("README.md"),
         Directory(
-            'src',
+            "src",
             [
                 Directory(
-                    'package',
+                    "package",
                     [
-                        File('__init__.py'),
-                        File('main.py'),
-                        File('py.typed'),
+                        File("__init__.py"),
+                        File("main.py"),
+                        File("py.typed"),
                         Directory(
-                            'testing',
+                            "testing",
                             [
-                                File('__init__.py'),
+                                File("__init__.py"),
                                 Directory(
-                                    '__pycache__',
+                                    "__pycache__",
                                     [
-                                        File('__init__.cpython-313.pyc'),
+                                        File("__init__.cpython-313.pyc"),
                                     ],
                                 ),
-                                File('tests.py'),
+                                File("tests.py"),
                             ],
                         ),
-                        File('utils.py'),
+                        File("utils.py"),
                     ],
                 ),
             ],

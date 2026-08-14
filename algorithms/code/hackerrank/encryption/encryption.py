@@ -16,10 +16,10 @@ def encryption(plain: str) -> str:
             rows = r
             cols = c
             break
-    result = ''
+    result = ""
     for c in range(cols):
         if c != 0:
-            result += ' '
+            result += " "
         for r in range(rows):
             index = r * cols + c
             if index < length:
@@ -30,24 +30,24 @@ def encryption(plain: str) -> str:
 class TestCode(unittest.TestCase):
     def runner(self, name: str) -> None:
         io_lines: list[list[list[str]]] = [[[]]] * 2
-        for index, template in enumerate(['input%s.txt', 'output%s.txt']):
+        for index, template in enumerate(["input%s.txt", "output%s.txt"]):
             path = os.path.join(os.path.split(__file__)[0], template % name)
-            with open(path, 'r', encoding='utf-8') as handle:
+            with open(path, "r", encoding="utf-8") as handle:
                 lines = handle.readlines()
-            io_lines[index] = [line.strip().split(' ') for line in lines]
+            io_lines[index] = [line.strip().split(" ") for line in lines]
         plain = io_lines[0][0][0]
         result = encryption(plain)
-        expected = ' '.join(io_lines[1][0])
+        expected = " ".join(io_lines[1][0])
         assert expected == result
 
     def test_example_0(self) -> None:
-        self.runner('_example_0')
+        self.runner("_example_0")
 
     def test_example_1(self) -> None:
-        self.runner('_example_1')
+        self.runner("_example_1")
 
     def test_example_2(self) -> None:
-        self.runner('_example_2')
+        self.runner("_example_2")
 
     def test_example_3(self) -> None:
-        self.runner('_example_3')
+        self.runner("_example_3")

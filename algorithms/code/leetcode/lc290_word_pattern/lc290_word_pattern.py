@@ -13,7 +13,7 @@ class Solution:
         return True
 
     def wordPattern(self, pattern: str, s: str) -> bool:
-        words = s.split(' ')
+        words = s.split(" ")
         if len(pattern) != len(words):
             return False
         mapping_ps: dict[str, str] = {}
@@ -31,19 +31,19 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_abba__dog_cat_cat_dog(self) -> None:
-        assert Solution().wordPattern('abba', 'dog cat cat dog')
+        assert Solution().wordPattern("abba", "dog cat cat dog")
 
     def test_abba__dog_cat_cat_fish(self) -> None:
-        assert not Solution().wordPattern('abba', 'dog cat cat fish')
+        assert not Solution().wordPattern("abba", "dog cat cat fish")
 
     def test_aaaa__dog_cat_cat_dog(self) -> None:
-        assert not Solution().wordPattern('aaaa', 'dog cat cat dog')
+        assert not Solution().wordPattern("aaaa", "dog cat cat dog")
 
     def test_abba__dog_dog_dog_dog(self) -> None:
-        assert not Solution().wordPattern('abba', 'dog dog dog dog')
+        assert not Solution().wordPattern("abba", "dog dog dog dog")
 
     def test_ab_b_c(self) -> None:
-        assert Solution().wordPattern('ab', 'b c')
+        assert Solution().wordPattern("ab", "b c")
 
     def test_mismatched(self) -> None:
-        assert not Solution().wordPattern('ab', 'c')
+        assert not Solution().wordPattern("ab", "c")

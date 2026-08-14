@@ -31,12 +31,12 @@ The "transfers" API endpoint allows to execute a new transfer and list
 transfers associated with a specified account.
 """
 app = FastAPI(
-    title='Banking API',
-    version=importlib.metadata.version('banking'),
+    title="Banking API",
+    version=importlib.metadata.version("banking"),
     description=description,
-    summary='API for elementary banking operations.',
+    summary="API for elementary banking operations.",
     license_info={
-        'name': importlib.metadata.metadata('banking')['License'],
+        "name": importlib.metadata.metadata("banking")["License"],
     },
     openapi_tags=customers.metadata + accounts.metadata + transfers.metadata,
 )
@@ -45,18 +45,18 @@ app.include_router(accounts.router)
 app.include_router(transfers.router)
 
 
-@app.get('/', include_in_schema=False)
+@app.get("/", include_in_schema=False)
 async def index() -> RedirectResponse:
-    return RedirectResponse('/docs')
+    return RedirectResponse("/docs")
 
 
 def main() -> None:  # pragma: no cover
-    pattern = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    pattern = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     logging.basicConfig(format=pattern, level=logging.INFO)
     config = uvicorn.config.LOGGING_CONFIG
-    del config['loggers']
-    uvicorn.run(app, port=80, host='0.0.0.0', log_config=config)  # nosec B104
+    del config["loggers"]
+    uvicorn.run(app, port=80, host="0.0.0.0", log_config=config)  # nosec B104
 
 
-if __name__ == '__main__':  # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     main()

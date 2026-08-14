@@ -27,16 +27,16 @@ class Solution:
 
 class TestCode(unittest.TestCase):
     def test_a_man_a_plan_a_canal_Panama(self) -> None:
-        assert Solution().isPalindrome('A man, a plan, a canal: Panama')
+        assert Solution().isPalindrome("A man, a plan, a canal: Panama")
 
     def test_race_a_car(self) -> None:
-        assert not Solution().isPalindrome('race a car')
+        assert not Solution().isPalindrome("race a car")
 
     def test_ava(self) -> None:
-        assert Solution().isPalindrome('Ava')
+        assert Solution().isPalindrome("Ava")
 
     def test_burger(self) -> None:
-        assert not Solution().isPalindrome('burger')
+        assert not Solution().isPalindrome("burger")
 
     def test_nothing(self) -> None:
-        assert Solution().isPalindrome('')
+        assert Solution().isPalindrome("")
