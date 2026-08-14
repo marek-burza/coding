@@ -16,21 +16,32 @@ I encountered a variation of this system design assignment during on-site interv
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
-<pre style="font-size: 10pt;">
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
 
-  +--------+       .   +-----+    +------------------------+
-  | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
-  |  APP   |-------.   +-----+    +------------------------+
-  +--------+       .
-                   .   +-----------+ API   +----------+
-                   .   |   LOAD    |   /  +----------+| \    +----------+
-                   .---|           |--+  +----------+|+  +---| DATABASE |
-                   .   | BALANCING |   \ | μSERVICE |+  /    +----------+
-                   .   +-----------+     +----------+
-                   .
-                   .
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        DB[("DATABASE")]
+        LB["LOAD BALANCING"]
 
-</pre>
+        subgraph MS["API"]
+            MS1["μSERVICE"]
+            MS2["μSERVICE"]
+            MS3["..."]
+        end
+
+        INGRESS --- LB
+        LB --- MS
+        MS --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+    end
+
+    APP --- INGRESS
+```
 
 But this leaves some questions to be answered...
 
@@ -58,21 +69,34 @@ We provide an API for the restaurants and enrolled restaurants will provide the 
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
-<pre style="font-size: 10pt;">
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
+    RESTAURANT["RESTAURANT"]
 
-  +--------+       .   +-----+    +------------------------+
-  | MOBILE |       .---| CDN |----| STATIC CONTENT STORAGE |
-  |  APP   |-------.   +-----+    +------------------------+
-  +--------+       .
-                   .   +-----------+ API   +----------+
-                   .   |   LOAD    |   /  +----------+| \    +----------+
-                   .---|           |--+  +----------+|+  >--<| DATABASE |
-                   .   | BALANCING |   \ | μSERVICE |+  /    +----------+
-  +------------+   .   +-----------+     +----------+
-  | RESTAURANT |---.
-  +------------+   .
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        DB[("DATABASE")]
+        LB["LOAD BALANCING"]
 
-</pre>
+        subgraph MS["API"]
+            MS1["μSERVICE"]
+            MS2["μSERVICE"]
+            MS3["..."]
+        end
+
+        INGRESS --- LB
+        LB --- MS
+        MS --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+    end
+
+    APP --- INGRESS
+    RESTAURANT --- INGRESS
+```
 
 It would be extended with an interface towards the restaurants...
 
@@ -111,36 +135,44 @@ Automate data collection and prepopulate database with estimates
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 10pt;">
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
 
-                  .   +-----+    +------------------------+
-        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
-        | APP |---.   +-----+    +------------------------+                .  +------------+
-        +-----+   .                                                        .  |   GOOGLE   |
-                  .   +----+   .   +-------------------+                   .  |    YELP    |
-                  .   |    |   .---| QUERY STATIC INFO |-------------------.--| FOURSQUARE |
-                  .---| LB |---.   +-------------------+                   .  +------------+
-                  .   |    |   .            |                              .
-                  .   +----+   .            |                              .
-                  .            .   +-------------------+                   .  +-----------+
-                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE           |                   .  +-----------+
-                  .            .   +-------------------+
-                  .            .            |
-                  .            .   +-----------------+                     .  +----------+
-                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |
-                  .            .   +-----------------+                     .  +----------+
-                  .            .            |
-                  .            .   +-----------------------+                  +-------------+
-                  .            .---| ESTIMATE WAITING TIME |-------------+----|  DATABASE   |
-                  .            .   +-----------------------+             |    +-------------+
-                  .            .   +-----------------------------+       |
-                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
-                  .            .---| MANUAL CORRECTIONS,         |-------+
-                  .            .   | APP LOCATION TRACKING, ETC. |
-                  .            .   +-----------------------------+
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        LB["LB"]
+        DB[("DATABASE")]
+        QUERY["QUERY STATIC INFO"]
+        CAPACITY["ESTIMATE CAPACITY & STORE"]
+        CHECKINS["TRACK CHECK-INS"]
+        WAITING["ESTIMATE WAITING TIME"]
+        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
 
-</pre>
+        INGRESS --- LB
+        LB --- QUERY
+        LB --- WAITING
+        LB --- LOOKUP
+        QUERY --- CAPACITY
+        CAPACITY --- CHECKINS
+        CHECKINS --- WAITING
+        WAITING --- DB
+        LOOKUP --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+    end
+
+    GYF["GOOGLE / YELP / FOURSQUARE"]
+    OPENTABLE["OPENTABLE"]
+    FACEBOOK["FACEBOOK"]
+
+    APP --- INGRESS
+    QUERY --- GYF
+    CAPACITY --- OPENTABLE
+    CHECKINS --- FACEBOOK
+```
 
 ---
 
@@ -156,110 +188,142 @@ Throttle most frequent third-party API requests, cache replies, shard database
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 10pt;">
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
 
-                  .   +-----+    +------------------------+
-        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
-        | APP |---.   +-----+    +------------------------+                .  +------------+
-        +-----+   .                                                        .  |   GOOGLE   |
-                  .   +----+   .   +-------------------+                   .  |    YELP    |
-                  .   |    |   .---| QUERY STATIC INFO |-------------------.--| FOURSQUARE |
-                  .---| LB |---.   +-------------------+                   .  +------------+
-                  .   |    |   .            || Queued triggers             .
-                  .   +----+   .            \/ (if new restaurant queried) .
-                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
-                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |                   .  +-----------+
-                  .            .   +~~~~~~~~~~~~~~~~~~~+
-                  .            .            |
-                  .            .   +-----------------+                     .  +----------+
-                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |
-                  .            .   +-----------------+                     .  +----------+
-                  .            .            |
-                  .            .   +-----------------------+                  +-------------+
-                  .            .---| ESTIMATE WAITING TIME |-------------+----|  DATABASE   |
-                  .            .   +-----------------------+             |    +-------------+
-                  .            .   +-----------------------------+       |
-                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
-                  .            .---| MANUAL CORRECTIONS,         |-------+
-                  .            .   | APP LOCATION TRACKING, ETC. |
-                  .            .   +-----------------------------+
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        LB["LB"]
+        DB[("DATABASE")]
+        QUERY["QUERY STATIC INFO"]
+        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
+        CHECKINS["TRACK CHECK-INS"]
+        WAITING["ESTIMATE WAITING TIME"]
+        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
 
-</pre>
+        INGRESS --- LB
+        LB --- QUERY
+        LB --- WAITING
+        LB --- LOOKUP
+        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
+        CAPACITY --- CHECKINS
+        CHECKINS --- WAITING
+        WAITING --- DB
+        LOOKUP --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+    end
 
-Enqueue requests for estimating capacity for<br/>newly added restaurants (and process them offline)
+    GYF["GOOGLE / YELP / FOURSQUARE"]
+    OPENTABLE["OPENTABLE"]
+    FACEBOOK["FACEBOOK"]
 
----
+    APP --- INGRESS
+    QUERY --- GYF
+    CAPACITY --- OPENTABLE
+    CHECKINS --- FACEBOOK
 
-**REVISED ARCHITECTURE**
+    style CAPACITY stroke-dasharray: 5 5
+```
 
-<pre style="font-size: 10pt;">
-
-                  .   +-----+    +------------------------+
-        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
-        | APP |---.   +-----+    +------------------------+                .  +------------+
-        +-----+   .                                        +------------+  .  |   GOOGLE   |
-                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
-                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
-                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
-                  .   |    |   .            || Queued triggers             .
-                  .   +----+   .            \/ (if new restaurant queried) .
-                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
-                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
-                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
-                  .            .            |                     +---------------------------+
-                  .            .   +-----------------+                     .  +----------+    |
-                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
-                  .            .   +-----------------+                     .  +----------+    |
-                  .            .            |                                                 |
-                  .            .   +-----------------------+                  +-------------+ |
-                  .            .---| ESTIMATE WAITING TIME |-------------+----|  DATABASE   |-+
-                  .            .   +-----------------------+             |    +-------------+
-                  .            .   +-----------------------------+       |
-                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
-                  .            .---| MANUAL CORRECTIONS,         |-------+
-                  .            .   | APP LOCATION TRACKING, ETC. |
-                  .            .   +-----------------------------+
-
-</pre>
-
-Persistently cache the static results of third-party APIs,<br/>store the calculated estimates
+Enqueue requests for estimating capacity for newly added restaurants (and process them offline)
 
 ---
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 10pt;">
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
 
-                  .   +-----+    +------------------------+
-        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
-        | APP |---.   +-----+    +------------------------+                .  +------------+
-        +-----+   .                                        +------------+  .  |   GOOGLE   |
-                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
-                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
-                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
-                  .   |    |   .            || Queued triggers             .
-                  .   +----+   .            \/ (if new restaurant queried) .
-                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
-                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
-                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
-                  .            .            |                     +---------------------------+
-                  .            .   +-----------------+                     .  +----------+    |
-                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
-                  .            .   +-----------------+                     .  +----------+    |
-                  .            .            |                                                 |
-                  .            .   +-----------------------+                  +-------------+ |
-                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
-                  .            .   +-----------------------+             |    +-------------+
-                  .            .   +-----------------------------+       |
-                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
-                  .            .---| MANUAL CORRECTIONS,         |-------+
-                  .            .   | APP LOCATION TRACKING, ETC. |
-                  .            .   +-----------------------------+
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        LB["LB"]
+        DB[("DATABASE")]
+        QUERY["QUERY STATIC INFO"]
+        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
+        CHECKINS["TRACK CHECK-INS"]
+        WAITING["ESTIMATE WAITING TIME"]
+        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
 
-</pre>
+        INGRESS --- LB
+        LB --- QUERY
+        LB --- WAITING
+        LB --- LOOKUP
+        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
+        CAPACITY --- CHECKINS
+        CAPACITY --- DB
+        CHECKINS --- WAITING
+        WAITING --- DB
+        LOOKUP --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+    end
+
+    GYF["GOOGLE / YELP / FOURSQUARE"]
+    OPENTABLE["OPENTABLE"]
+    FACEBOOK["FACEBOOK"]
+
+    APP --- INGRESS
+    QUERY --- GYF
+    CAPACITY --- OPENTABLE
+    CHECKINS --- FACEBOOK
+
+    style CAPACITY stroke-dasharray: 5 5
+```
+
+Persistently cache the static results of third-party APIs, store the calculated estimates
+
+---
+
+**REVISED ARCHITECTURE**
+
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
+
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        LB["LB"]
+        DB[("NoSQL DB")]
+        QUERY["QUERY STATIC INFO"]
+        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
+        CHECKINS["TRACK CHECK-INS"]
+        WAITING["ESTIMATE WAITING TIME"]
+        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
+
+        INGRESS --- LB
+        LB --- QUERY
+        LB --- WAITING
+        LB --- LOOKUP
+        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
+        CAPACITY --- CHECKINS
+        CAPACITY --- DB
+        CHECKINS --- WAITING
+        WAITING --- DB
+        LOOKUP --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+    end
+
+    GYF["GOOGLE / YELP / FOURSQUARE"]
+    OPENTABLE["OPENTABLE"]
+    FACEBOOK["FACEBOOK"]
+
+    APP --- INGRESS
+    QUERY --- GYF
+    CAPACITY --- OPENTABLE
+    CHECKINS --- FACEBOOK
+
+    style CAPACITY stroke-dasharray: 5 5
+```
 
 Use a highly scalable, sharded NoSQL database
 
@@ -277,36 +341,47 @@ The key would be based on geographical location, cryptographically hashed to spr
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 10pt;">
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
 
-                  .   +-----+    +------------------------+
-        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
-        | APP |---.   +-----+    +------------------------+                .  +------------+
-        +-----+   .                                        +------------+  .  |   GOOGLE   |
-                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
-                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
-                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
-                  .   |    |   .            || Queued triggers             .
-                  .   +----+   .            \/ (if new restaurant queried) .
-                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
-                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
-                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
-                  .            .            |                     +---------------------------+
-                  .            .   +-----------------+                     .  +----------+    |
-                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
-                  .            .   +-----------------+                     .  +----------+    |
-                  .            .            |              key = crypto_hash(concat(lat,lon)) |
-                  .            .   +-----------------------+                  +-------------+ |
-                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
-                  .            .   +-----------------------+             |    +-------------+
-                  .            .   +-----------------------------+       |
-                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |
-                  .            .---| MANUAL CORRECTIONS,         |-------+
-                  .            .   | APP LOCATION TRACKING, ETC. |
-                  .            .   +-----------------------------+
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        LB["LB"]
+        DB[("NoSQL DB")]
+        QUERY["QUERY STATIC INFO"]
+        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
+        CHECKINS["TRACK CHECK-INS"]
+        WAITING["ESTIMATE WAITING TIME"]
+        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
 
-</pre>
+        INGRESS --- LB
+        LB --- QUERY
+        LB --- WAITING
+        LB --- LOOKUP
+        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
+        CAPACITY --- CHECKINS
+        CAPACITY --- DB
+        CHECKINS --- WAITING
+        WAITING ---|"key = crypto_hash(concat(lat,lon))"| DB
+        LOOKUP --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+    end
+
+    GYF["GOOGLE / YELP / FOURSQUARE"]
+    OPENTABLE["OPENTABLE"]
+    FACEBOOK["FACEBOOK"]
+
+    APP --- INGRESS
+    QUERY --- GYF
+    CAPACITY --- OPENTABLE
+    CHECKINS --- FACEBOOK
+
+    style CAPACITY stroke-dasharray: 5 5
+```
 
 Concatenated latitude and longitude as key, cryptographically hashed to prevent lopsided shards
 
@@ -324,38 +399,55 @@ Use a quadtree (superimposed over a world map) as an index to facilitate searchi
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 10pt;">
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
 
-                  .   +-----+    +------------------------+
-        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |
-        | APP |---.   +-----+    +------------------------+                .  +------------+
-        +-----+   .                                        +------------+  .  |   GOOGLE   |
-                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |
-                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |
-                  .---| LB |---.   +-------------------+   +------------+  .  +------------+
-                  .   |    |   .            || Queued triggers             .
-                  .   +----+   .            \/ (if new restaurant queried) .
-                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+
-                  .            .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |
-                  .            .   | & STORE (OFFLINE) |----------+        .  +-----------+
-                  .            .   +~~~~~~~~~~~~~~~~~~~+          |
-                  .            .            |                     +---------------------------+
-                  .            .   +-----------------+                     .  +----------+    |
-                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |
-                  .            .   +-----------------+                     .  +----------+    |
-                  .            .            |              key = crypto_hash(concat(lat,lon)) |
-                  .            .   +-----------------------+                  +-------------+ |
-                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
-                  .            .   +-----------------------+             |    +-------------+
-                  .            .   +-----------------------------+       |    |  QUADTREE   |
-                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |    |   INDEX     |
-                  .            .---| MANUAL CORRECTIONS,         |-------+    +-------------+
-                  .            .   | APP LOCATION TRACKING, ETC. |
-                  .            .   +-----------------------------+
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        LB["LB"]
 
-</pre>
+        subgraph STORAGE["Storage"]
+            DB[("NoSQL DB")]
+            QUADTREE["QUADTREE INDEX"]
+            DB --- QUADTREE
+        end
 
-Adjacent to the database,<br/>there would be a quadtree-based index
+        QUERY["QUERY STATIC INFO"]
+        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
+        CHECKINS["TRACK CHECK-INS"]
+        WAITING["ESTIMATE WAITING TIME"]
+        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
+
+        INGRESS --- LB
+        LB --- QUERY
+        LB --- WAITING
+        LB --- LOOKUP
+        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
+        CAPACITY --- CHECKINS
+        CAPACITY --- DB
+        CHECKINS --- WAITING
+        WAITING ---|"key = crypto_hash(concat(lat,lon))"| DB
+        LOOKUP --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+    end
+
+    GYF["GOOGLE / YELP / FOURSQUARE"]
+    OPENTABLE["OPENTABLE"]
+    FACEBOOK["FACEBOOK"]
+
+    APP --- INGRESS
+    QUERY --- GYF
+    CAPACITY --- OPENTABLE
+    CHECKINS --- FACEBOOK
+
+    style CAPACITY stroke-dasharray: 5 5
+```
+
+Adjacent to the database, there would be a quadtree-based index
 
 ---
 
@@ -404,36 +496,63 @@ What about the security?
 
 **REVISED ARCHITECTURE**
 
-<pre style="font-size: 10pt;">
+```mermaid
+flowchart LR
+    APP["MOBILE APP"]
 
-                  .   +-----+    +------------------------+                                      +---+
-        +-----+   .---| CDN |----| STATIC CONTENT STORAGE |                                      | V |
-        | APP |---.   +-----+    +------------------------+                .  +------------+     | A |
-        +-----+   .                                        +------------+  .  |   GOOGLE   |     | U |
-                  .   +----+   .   +-------------------+   | PERSISTENT |  .  |    YELP    |     | L |
-                  .   |    |   .---| QUERY STATIC INFO |---|   CACHE    |--.--| FOURSQUARE |     | T |
-                  .---| LB |---.   +-------------------+   +------------+  .  +------------+     +---+
-                  .   |    |   .            || Queued triggers             .
-                  .   +----+   .            \/ (if new restaurant queried) .                     +---+
-                  .            .   +~~~~~~~~~~~~~~~~~~~+                   .  +-----------+      | B |
-          * HTTPS . * ANTI     .   | ESTIMATE CAPACITY |-------------------.--| OPENTABLE |      | A |
-          * AUTH  .   DDOS     .   | & STORE (OFFLINE) |----------+        .  +-----------+      | C |
-                  . * FIREWALL .   +~~~~~~~~~~~~~~~~~~~+          |                              | K |
-                  .            .            |                     +---------------------------+  | U |
-                  .            .   +-----------------+                     .  +----------+    |  | P |
-                  .            .   | TRACK CHECK-INS |---------------------.--| FACEBOOK |    |  | S |
-                  .            .   +-----------------+                     .  +----------+    |  +---+
-                  .            .            |              key = crypto_hash(concat(lat,lon)) |
-                  .            .   +-----------------------+                  +-------------+ |
-                  .            .---| ESTIMATE WAITING TIME |-------------+----|  NoSQL DB   |-+
-                  .            .   +-----------------------+             |    +-------------+
-                  .            .   +-----------------------------+       |    |  QUADTREE   |
-                  .            .   | LOOKUP NEAREST RESTAURANTS, |       |    |   INDEX     |
-                  .            .---| MANUAL CORRECTIONS,         |-------+    +-------------+
-                  .            .   | APP LOCATION TRACKING, ETC. |            | REPLICATION |
-                  .            .   +-----------------------------+            +-------------+
+    subgraph CLOUD["Cloud"]
+        INGRESS["INGRESS / DNS"]
+        STATIC["STATIC CONTENT STORAGE"]
+        CDN["CDN"]
+        LB["LB"]
+        NOTE["- TLS<br/>- AUTH<br/>- FIREWALL"]
+        CDN -.- NOTE
+        LB -.- NOTE
 
-</pre>
+        subgraph STORAGE["Storage"]
+            DB[("NoSQL DB")]
+            QUADTREE["QUADTREE INDEX"]
+            DB --- QUADTREE
+            REPLICATION["REPLICATION"]
+            DB --- REPLICATION
+        end
+
+        QUERY["QUERY STATIC INFO"]
+        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
+        CHECKINS["TRACK CHECK-INS"]
+        WAITING["ESTIMATE WAITING TIME"]
+        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
+
+        INGRESS --- LB
+        LB --- QUERY
+        LB --- WAITING
+        LB --- LOOKUP
+        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
+        CAPACITY --- CHECKINS
+        CAPACITY --- DB
+        CHECKINS --- WAITING
+        WAITING ---|"key = crypto_hash(concat(lat,lon))"| DB
+        LOOKUP --- DB
+        INGRESS --- CDN
+        CDN --- STATIC
+
+        VAULT["VAULT"]
+        BACKUPS["BACKUPS"]
+    end
+
+    GYF["GOOGLE / YELP / FOURSQUARE"]
+    OPENTABLE["OPENTABLE"]
+    FACEBOOK["FACEBOOK"]
+
+    APP --- INGRESS
+    QUERY --- GYF
+    CAPACITY --- OPENTABLE
+    CHECKINS --- FACEBOOK
+
+    style CAPACITY stroke-dasharray: 5 5
+    classDef note fill:#fff8c4,stroke:#d4c35a,stroke-width:1px,color:#4a4020
+    class NOTE note
+```
 
 ---
 
