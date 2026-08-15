@@ -270,3 +270,11 @@ Flagged as the next topic but the call ran out of time; this is the answer I wou
 - No database password in the task definition at all: IAM database auth, or Secrets Manager injected at runtime.
 - Restricted egress and VPC endpoints, so a compromised task cannot reach beyond the resources it serves.
 - Against mistakes rather than attackers: a separate production account, no routine human access to production data, deletion protection, and the immutable backup vault above.
+
+## Feedback
+
+Received after the call, on the redesign:
+
+- The diagram was strong, with the trade-offs behind each choice walked through and the shortcomings of the existing setup explained clearly.
+- The alternative was considered a good one, taking security, scalability, observability and migration paths into account.
+- The answer on monitoring came across as pragmatic, going straight to the things that actually matter to watch.
