@@ -229,3 +229,33 @@ Questions:
 - Separate CloudFront depending on what requires auth (e.g. if frontend contains intellectual property, e.g. domain specific web rendering), and then the auth type depends on that
 - Aurora vs. RDS: Aurora for better latency with geographically spread customers, but it is more expensive, so depending on data volume RDS may be the better choice
 - Other: consider caching the frequently accessed data or API responses
+
+## Questions & Answers
+
+Asked during the presentation of the above.
+
+**Once the frontend and backend are decoupled, how do you handle version skew? Autoscaling means many instances at different stages of deployment, and a client may call an endpoint that is new or already gone (concretely: ~1000 customers, so ~1000 pods).**
+
+- Let multiple backend versions coexist and pin each frontend version to the backend API version it was built against, so an already loaded UI keeps talking to its own version.
+- Alternatively route by version (separate clusters/target groups), which is also what canary and A/B deployments need.
+- The cost is maintaining several versions at once, so old ones still need a retirement window rather than being kept indefinitely.
+
+**Follow-up: that is easy for the engineer, but with six deploys a day a user who has the UI open all day gets punished. Is that acceptable?**
+
+- It is not, and it does not have to be: the old frontend keeps calling the backend version it was pinned to, so the open session is not broken by a deploy. Only a genuinely stale session (a UI left open for days) hits the retirement window.
+
+**Follow-up: what if a migration on Aurora/RDS has dropped something the older backend still uses?**
+
+- Never a big bang change. Multi-stage instead: add the new columns, backfill existing rows in a staggered fashion (there can be a lot of data), make the code handle both shapes, and only drop the old column once the version using it is retired.
+- The same applies to long-running tasks that are already in flight, so this is needed even when no user session is involved.
+
+**What would you monitor in this architecture?**
+
+- Monitoring everything is easy to say, so prioritise what threatens availability first.
+- Cluster capacity and how it fluctuates across the day.
+- SQS queue length.
+- Database capacity against thresholds, not only hard caps, including the point where it pushes into a different cost regime.
+- Auth anomalies and load at the ALB (scanning, DDoS).
+- CloudFront latency for files and the web application, since that is felt directly as user experience.
+- Volume of push notifications and email against caps, and at what granularity that is worth paying for.
+- Right-sizing: observed memory and compute, so instances are not overprovisioned.
