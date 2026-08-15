@@ -189,8 +189,8 @@ flowchart BT
         C1 ~~~ C2 ~~~ CX
     end
 
-    CLIENTS -->|http://api.company.com| ALB
-    CLIENTS -->|http://static.company.com| CF
+    CLIENTS -->|https://api.company.com| ALB
+    CLIENTS -->|https://static.company.com| CF
 
     NOTEMULTI["?<br/>- Multi-AZ & Multi-region concerns"]
 
@@ -211,6 +211,8 @@ Notes:
 
 - Not included in the diagram but implicit: encryption at rest and in flight, secrets manager with automatic rotation.
 - Added benefits of this decoupling: easier to introduce least privilege access scopes.
+- Backups: set the acceptable data loss and downtime first (nightly dumps vs continuous recovery; snapshot restore in hours vs a second cluster kept warm), then Aurora point-in-time recovery plus snapshot copies to a cross-account immutable vault (Vault Lock), S3 versioning and Object Lock for files, and a scheduled restore drill (untested backups fail when needed).
+- Security: pick the tenant isolation model first (pooled with row-level security, tenant taken from the token and never from the request), then private subnets with IAM database auth instead of a static password, and separate accounts per environment with an immutable audit trail (CloudTrail) and threat detection (GuardDuty).
 
 Order of monolith break-up:
 
