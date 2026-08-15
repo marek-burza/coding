@@ -259,3 +259,14 @@ Asked during the presentation of the above.
 - CloudFront latency for files and the web application, since that is felt directly as user experience.
 - Volume of push notifications and email against caps, and at what granularity that is worth paying for.
 - Right-sizing: observed memory and compute, so instances are not overprovisioned.
+
+**Blast radius: if the deployment runs under a single IAM role that can do everything, one mistake (a junior cleaning up a table they dislike) or one compromise reaches all customer data, so where are the layers of separation?**
+
+Flagged as the next topic but the call ran out of time; this is the answer I would have given.
+
+- One task role per service, scoped to specific bucket prefixes and queue ARNs, with permission boundaries so a role cannot be quietly widened.
+- Tenant separation in the pooled database rests on row-level security being set per transaction and reset when the connection returns to the pool, and on the application not connecting as the table owner.
+- Files are reached only through short-lived presigned URLs over per-tenant prefixes, with the bucket itself never directly reachable.
+- No database password in the task definition at all: IAM database auth, or Secrets Manager injected at runtime.
+- Restricted egress and VPC endpoints, so a compromised task cannot reach beyond the resources it serves.
+- Against mistakes rather than attackers: a separate production account, no routine human access to production data, deletion protection, and the immutable backup vault above.
