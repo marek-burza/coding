@@ -116,7 +116,7 @@ Suboptimal resource utilization:
 - Even if instance is tuned to the customer/tenant then API and database loads will still have a different profile and observability will suffer from their cross-talk
 - Heavy database queries can starve backend API and colocation of database and backend API make right-sizing impossible
 - The diagram indicates no queue (tight coupling) with email & notification services
-- Cost grows with number of customers/tenants (while geographically distributed customers could be balanced better; and what if tenants would merge?)
+- Cost grows linearly with number of customers/tenants (while geographically distributed customers could be balanced better; and what if tenants would merge?)
 
 Workforce fragmentation:
 
@@ -158,7 +158,7 @@ flowchart BT
         NOTECF -.- WEB
     end
 
-    COGNITO["▶ Cognito (auth)"]
+    COGNITO["▶ Cognito (auth)<br/>▶ Web ACL (firewall)"]
 
     subgraph ECS["▶ ECS Fargate + Autoscaling - no EC2"]
         API["Backend API<br/>(Spring Boot)"]
@@ -170,13 +170,10 @@ flowchart BT
     ECS -->|Service invocation| DB
     ECS -->|Service invocation| FILES
 
-    FIREWALL["▶ Web ACL (firewall)"]
-
     ALB["▶ ALB (load balancing, TLS)"]
 
     ALB --> ECS
-    ALB --- FIREWALL
-
+  
     COGNITO --- ALB
     COGNITO --- CF
 
@@ -202,7 +199,7 @@ flowchart BT
 
     class WEB web
     class API api
-    class QUEUE,POSTGRES,FILES,ALB,COGNITO,FIREWALL managed
+    class QUEUE,POSTGRES,FILES,ALB,COGNITO managed
     class C1,C2,CX client
     class NOTECF,NOTEAPI,NOTEDB,NOTEMULTI note
 ```
@@ -211,6 +208,8 @@ Notes:
 
 - Not included in the diagram but implicit: encryption at rest and in flight, secrets manager with automatic rotation.
 - Added benefits of this decoupling: easier to introduce least privilege access scopes.
+- The system now has two entry paths, static and API, so the firewall (Web ACL) is needed in front of CloudFront as well as the ALB.
+- Assumption: auth does not appear anywhere in the original diagram, so it is presumed to sit inside the monolith.
 - Backups: set the acceptable data loss and downtime first (nightly dumps vs continuous recovery; snapshot restore in hours vs a second cluster kept warm), then Aurora point-in-time recovery plus snapshot copies to a cross-account immutable vault (Vault Lock), S3 versioning and Object Lock for files, and a scheduled restore drill (untested backups fail when needed).
 - Security: pick the tenant isolation model first (pooled with row-level security, tenant taken from the token and never from the request), then private subnets with IAM database auth instead of a static password, and separate accounts per environment with an immutable audit trail (CloudTrail) and threat detection (GuardDuty).
 
@@ -221,11 +220,12 @@ Order of monolith break-up:
 - Decouple auth from the monolith (it is a task for Cognito), which finally allows to...
 - Migrate backend from EC2 to ECS Fargate (incl. min. of hot instances, autoscaling, scaling caps).
 - Migrate email & notifications (decoupled already so it can wait till the end and overall impact likely smallest), completing making the system async
+- Each step needs its own cost comparison before committing, e.g. running ECS and maintaining the Spring Boot code vs paying for the managed service.
 
 Questions:
 
 - Go for ECS Fargate now, EKS only if outgrowing capacity of the new architecture
 - ALB, Aurora, Fargate and S3 are multi-AZ-ready from day one; Expanding to multi-region would allow bigger files distributed closer to customers to reduce latency
 - Separate CloudFront depending on what requires auth (e.g. if frontend contains intellectual property, e.g. domain specific web rendering), and then the auth type depends on that
-- Aurora vs. RDS - see above
+- Aurora vs. RDS: Aurora for better latency with geographically spread customers, but it is more expensive, so depending on data volume RDS may be the better choice
 - Other: consider caching the frequently accessed data or API responses
