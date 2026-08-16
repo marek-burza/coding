@@ -7,7 +7,7 @@ Your assignment is to build an internal API for a fake financial institution usi
 While modern banks have evolved to serve a plethora of functions, at their core, banks must provide certain basic features. Today, your task is to build the basic HTTP API for one of those banks. Imagine you are designing a backend API for bank employees. It could ultimately be consumed by multiple frontends (web, iOS, Android etc).
 
 ## Important
-We do not expect you to work more than 4 hours on this case challenge and we acknowledge not everything can be implemented in a production ready manner. You can choose where to use a mock/stub vs. where you focus on the implementation. If you have to make compromises, please list in your documentation what needs to be done to make it production ready. 
+We do not expect you to work more than 4 hours on this case challenge and we acknowledge not everything can be implemented in a production ready manner. You can choose where to use a mock/stub vs. where you focus on the implementation. If you have to make compromises, please list in your documentation what needs to be done to make it production ready.
 
 ## Use of AI tools
 You are encouraged to use AI tools such as Claude, ChatGPT, or similar assistants as part of your solution process. We consider effective use of AI a core skill in modern software development. To give us insight into your approach, please submit the full conversation log(s) alongside your solution - we are interested in how you prompt, iterate, and critically evaluate AI output, not just the end result.

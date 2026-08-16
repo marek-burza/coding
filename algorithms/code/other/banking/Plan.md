@@ -38,7 +38,7 @@ Budget consequences are in **Budget risk** near the end. The overrun is accepted
 
 ## Target top-level layout
 
-```
+```text
 .
 ├── CLAUDE.md                  (unchanged)
 ├── Assignment.md              (unchanged)
@@ -120,7 +120,7 @@ end of this phase. That is the point: it is the safety net for everything after.
 
 ### A.1 Move `older/service` to the top level
 
-```
+```shell
 git mv older/service/Dockerfile older/service/pyproject.toml older/service/uv.lock \
        older/service/.gitlab-ci.yml older/service/.gitignore older/service/.dockerignore .
 git mv older/service/tests/conftest.py tests/conftest.py
@@ -136,7 +136,7 @@ it is confirmed in **Decisions taken**.
 
 ### A.2 Move the bank domain up
 
-```
+```shell
 git mv older/banking/src/banking src/banking
 git mv src/banking/api/transfers.py     src/banking/api/routes.py
 git mv src/banking/schemas/transfers.py src/banking/api/schemas.py
@@ -211,7 +211,7 @@ Findings folded in here:
 
 ### A.4 Tooling commands, carried over verbatim from `older/service`
 
-```
+```shell
 uv run ruff check --select I,E,B,SIM src
 uv run ruff format --check --diff
 uv run deptry .
@@ -260,7 +260,7 @@ in Phase C, not here.
 
 ### A.7 Verification (must pass before Phase B)
 
-```
+```shell
 uv sync && \
 uv run ruff check --select I,E,B,SIM src && uv run ruff format --check --diff && \
 uv run mypy src && uv run bandit -r src && uv run deptry . && \
@@ -296,7 +296,7 @@ Coverage moves to the service's invocation: `uv run coverage run -m pytest -v` t
 
 ### Verification (must pass before Phase C)
 
-```
+```shell
 uv run pytest -v && uv run coverage run -m pytest && uv run coverage report
 ```
 
@@ -435,7 +435,7 @@ against the CI service container and against local compose.
 
 ### Verification (must pass before Phase D)
 
-```
+```shell
 ./automation/test.sh
 ```
 
@@ -627,7 +627,7 @@ table**, with a consistent body shape carrying a machine-readable `code`:
 
 ### Verification (must pass before Phase E)
 
-```
+```shell
 ./automation/test.sh
 grep -rn "float" src/
 grep -rn "session.query" src/
@@ -688,7 +688,7 @@ If the concurrency file ends up the weakest in the repo, the budget was misalloc
 
 ### Verification
 
-```
+```shell
 ./automation/test.sh
 ```
 
@@ -796,9 +796,9 @@ Everything in `older/service/README.md` that belongs to the phone-number assignm
   `SHA-256` collision-probability comparison) is not restated without a measurement in this
   repo.
 
-### Verification
+### Verification (Phase F)
 
-```
+```shell
 grep -rn "older/" --exclude-dir=older --exclude-dir=.git . | grep -v Plan.md
 ```
 
@@ -942,15 +942,15 @@ fold G.1 and G.2 into Phase D, fold G.3 into Phase E, and let Phase F write the 
 story once. Phase G then reduces to G.4 with nothing to undo. The phase is kept separate
 here so that the decision stays visible and reversible.
 
-### Verification
+### Verification (Phase G)
 
-```
+```shell
 ./automation/test.sh
 ```
 
 with the new pagination tests passing and `fail_under = 85` still satisfied, plus:
 
-```
+```shell
 grep -rn "1000" src/ README.md CLAUDE.md
 ```
 

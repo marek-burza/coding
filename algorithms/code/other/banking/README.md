@@ -2,9 +2,13 @@
 
 Internal HTTP API for bank employees: customers, accounts, balances, transfers between accounts, and per-account transfer history. Python, FastAPI, SQLAlchemy, Alembic, PostgreSQL.
 
-To make the assignment also interesting to me as a learning experience, I decided to recast it as a modernization of my earlier attempt (from 2 years ago). Coincidentally, it brings some realism, since in practice one does not frequently face a greenfield task, and often there is some preexisting code to work with. One additional benefit is that the old attempt already seeds some of the documentation and contained tests, which provides useful counterbalance to the coding agent from the very beginning of the implementation. I also decided to combine it with scaffolding from a newer project of mine which did see an AWS deployment, and with it, I wanted carry over another aspects such as: use of `uv` packaging, newer tool for code formatting and linting, dependency version-pinning discipline, a tool to keep dependencies trim, cognitive code complexity cap, bare minimum of CI, etc.
+To make the assignment also interesting to me as a learning experience, I decided to recast it as a modernization of my earlier attempt (from 2 years ago). Coincidentally, it brings some realism, since in practice one does not frequently face a greenfield task, and often there is some preexisting code to work with.
+One additional benefit is that the old attempt already seeds some of the documentation and contained tests, which provides useful counterbalance to the coding agent from the very beginning of the implementation.
+I also decided to combine it with scaffolding from a newer project of mine which did see an AWS deployment, and with it, I wanted carry over another aspects such as: use of `uv` packaging, newer tool for code formatting and linting, dependency version-pinning discipline, a tool to keep dependencies trim, cognitive code complexity cap, bare minimum of CI, etc.
 
-The assignment took roughly 4 hours including preparation, planning, implementation, implementation review, side-channel documentation consultation, and clean up. Notably, anticipating Claude's overestimation of implementation time, I authorized extension (as you may notice in the session logs) - in all, the AI-assisted implementation took about 1.5h rather than what it had estimated. As a side remark, I pre-seeded `CLAUDE.md` with some basic instructions - given that it was one of my first uses of the version 5 family of Anthropic's models - I e.g. included reference to ["The new rules of context engineering for Claude 5 generation models"](https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models) and you may spot some of this "bleeding" into the sessions.
+The assignment took roughly 4 hours including preparation, planning, implementation, implementation review, side-channel documentation consultation, and clean up. Notably, anticipating Claude's overestimation of implementation time, I authorized extension (as you may notice in the session logs) - in all, the AI-assisted implementation took about 1.5h rather than what it had estimated.
+As a side remark, I pre-seeded `CLAUDE.md` with some basic instructions - given that it was one of my first uses of the version 5 family of Anthropic's models - I e.g. included reference to ["The new rules of context engineering for Claude 5 generation models"](https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models)
+and you may spot some of this "bleeding" into the sessions.
 
 The core of the implementation is a ledger. Balances are not stored anywhere; they are derived by summing an append-only, double-entry log, so any balance the API reports can be reproduced by replaying that log. `tests/test_replay.py` asserts exactly that: every balance the API reports is recomputed independently from the entry log and the two must agree.
 
@@ -16,7 +20,8 @@ One command, from a clean clone. It needs only Docker and [`uv`](https://docs.as
 ./automation/test.sh
 ```
 
-It starts PostgreSQL with a single `docker run`, waits for `pg_isready`, applies the migrations, runs the suite and prints coverage. The container is named `banking-db` and is reused if it is already running, so repeated runs do not restart it; its storage is a `tmpfs` and it is started with `--rm`, so `docker stop banking-db` is a full reset. CI runs the same script, so there is exactly one definition of how the suite runs and it cannot drift from what you execute locally. If `BANKING_DATABASE_URL` is already set, the script uses that database and skips starting a container.
+It starts PostgreSQL with a single `docker run`, waits for `pg_isready`, applies the migrations, runs the suite and prints coverage. The container is named `banking-db` and is reused if it is already running, so repeated runs do not restart it; its storage is a `tmpfs` and it is started with `--rm`, so `docker stop banking-db` is a full reset.
+CI runs the same script, so there is exactly one definition of how the suite runs and it cannot drift from what you execute locally. If `BANKING_DATABASE_URL` is already set, the script uses that database and skips starting a container.
 
 ## Running the service
 
@@ -119,13 +124,15 @@ Generate one key per **intended** transfer, not one per HTTP attempt, and keep i
 - **Same key, different payload** returns `409` and writes nothing. A key identifies one intended movement of money, so reusing it for a different one is a client bug rather than a second transfer.
 - **A new key** is a new transfer, even if every other field is identical. Two genuine payments of the same amount between the same accounts are a normal thing to want.
 
-Uniqueness is enforced by a unique constraint in the database rather than by an application-level check. The service inserts the key first and handles the integrity error; a `SELECT` before the `INSERT` has a window in which two concurrent requests carrying the same key both pass the same check. The replayed response is rebuilt from the two ledger entries that share the transfer ID, not from a stored response body, so a replay is provably the same transfer rather than a remembered payload.
+Uniqueness is enforced by a unique constraint in the database rather than by an application-level check. The service inserts the key first and handles the integrity error; a `SELECT` before the `INSERT` has a window in which two concurrent requests carrying the same key both pass the same check.
+The replayed response is rebuilt from the two ledger entries that share the transfer ID, not from a stored response body, so a replay is provably the same transfer rather than a remembered payload.
 
 ## Design
 
 ### Money
 
-Money is never a float. Everything is stored and computed in integer Euro cents, and amounts cross the API as integers too, so there is no decimal parsing and no rounding mode anywhere in the system. Floating point values as encoded by IEEE 754 do not follow decimal quantization and would accumulate rounding errors, which is not acceptable for balances. Major units are a presentation concern for whichever frontend consumes this, and are never a second stored column.
+Money is never a float. Everything is stored and computed in integer Euro cents, and amounts cross the API as integers too, so there is no decimal parsing and no rounding mode anywhere in the system. Floating point values as encoded by IEEE 754 do not follow decimal quantization and would accumulate rounding errors, which is not acceptable for balances.
+Major units are a presentation concern for whichever frontend consumes this, and are never a second stored column.
 
 Amounts in requests are positive integers; direction is expressed by the ledger rather than by a sign on a request field. Every monetary field says so in its name: `amount_cents` `initial_deposit_cents`, `overdraft_limit_cents`, `balance_cents`. There is no field called `amount`.
 
@@ -180,11 +187,14 @@ Customer IDs are server-generated integers; account and transfer IDs are UUIDs. 
 
 ### Transfer history
 
-History is ordered by a single monotonic integer key, the entry ID, rather than by timestamp. That makes the ordering total and the tie-breaking question disappear: entries sharing a timestamp still have distinct IDs. It is rendered from the queried account's perspective, so the same transfer appears on the two accounts it touches with opposite direction and opposite sign, with the counterparty account named.
+History is ordered by a single monotonic integer key, the entry ID, rather than by timestamp. That makes the ordering total and the tie-breaking question disappear: entries sharing a timestamp still have distinct IDs.
+It is rendered from the queried account's perspective, so the same transfer appears on the two accounts it touches with opposite direction and opposite sign, with the counterparty account named.
 
-It is paginated with a cursor over that entry ID, never an offset. The response carries a `next_cursor`, which is null on the last page so a client stops without issuing a request that comes back empty. `limit` bounds one response (1 to 1000, 100 by default) and is validated in the request schema rather than clamped in the handler; it is not a limit on how much history is reachable, because the cursor walks past it.
+It is paginated with a cursor over that entry ID, never an offset. The response carries a `next_cursor`, which is null on the last page so a client stops without issuing a request that comes back empty.
+`limit` bounds one response (1 to 1000, 100 by default) and is validated in the request schema rather than clamped in the handler; it is not a limit on how much history is reachable, because the cursor walks past it.
 
-An offset would have been cheaper to write and wrong in a way that only shows up under load. IDs are handed out monotonically, so an entry committed while a client is midway through paging always sorts above the cursor it already holds: it cannot shift a page boundary, cannot push an entry across one so it is never returned, and cannot cause one to be returned twice. `OFFSET` has none of those properties on a table that is being appended to, which is every ledger. `tests/test_accounts.py` asserts exactly that case.
+An offset would have been cheaper to write and wrong in a way that only shows up under load. IDs are handed out monotonically, so an entry committed while a client is midway through paging always sorts above the cursor it already holds: it cannot shift a page boundary, cannot push an entry across one so it is never returned, and cannot cause one to be returned twice.
+`OFFSET` has none of those properties on a table that is being appended to, which is every ledger. `tests/test_accounts.py` asserts exactly that case.
 
 ### Validation
 
@@ -196,11 +206,13 @@ The database refuses invalid state independently of the application: `NOT NULL` 
 
 ### REST
 
-The API follows REST conventions and the Richardson Maturity Model to Level 2: resources map to URIs, and HTTP verbs carry the operation, with `POST` for creates returning `201` and a `Location`. Level 3 hypermedia is deliberately absent, not omitted for brevity: the consumers here are first-party frontends that ship version-coupled with this service, so discoverability buys nothing the generated OpenAPI document does not already provide, and it would add a link-rendering concern to every response.
+The API follows REST conventions and the Richardson Maturity Model to Level 2: resources map to URIs, and HTTP verbs carry the operation, with `POST` for creates returning `201` and a `Location`.
+Level 3 hypermedia is deliberately absent, not omitted for brevity: the consumers here are first-party frontends that ship version-coupled with this service, so discoverability buys nothing the generated OpenAPI document does not already provide, and it would add a link-rendering concern to every response.
 
 ### Frameworks
 
-`FastAPI` and `uvicorn`, chosen for maturity and for the simplicity of the resulting code (`Flask`, `Django` and `aiohttp` are the alternatives I have used before, and `uWSGI` on the server side). The decisive property for a timeboxed assignment is a single source of truth for both the API implementation and its specification: annotating the implementation lets the framework derive the OpenAPI document, which can then drive frontend code generation. GraphQL is a reasonable alternative for a multi-frontend consumer, and was not chosen because the surface here is small and resource-shaped.
+`FastAPI` and `uvicorn`, chosen for maturity and for the simplicity of the resulting code (`Flask`, `Django` and `aiohttp` are the alternatives I have used before, and `uWSGI` on the server side).
+The decisive property for a timeboxed assignment is a single source of truth for both the API implementation and its specification: annotating the implementation lets the framework derive the OpenAPI document, which can then drive frontend code generation. GraphQL is a reasonable alternative for a multi-frontend consumer, and was not chosen because the surface here is small and resource-shaped.
 
 Sync SQLAlchemy throughout. Async plus row locks plus concurrency tests is the wrong bet inside this timebox.
 
@@ -208,7 +220,8 @@ Sync SQLAlchemy throughout. Async plus row locks plus concurrency tests is the w
 
 A relational database, for the strong consistency a bank needs and for transactions that can carry the balance invariant. PostgreSQL specifically, because the correctness story rests on `SELECT ... FOR UPDATE` semantics.
 
-Alembic migrations are versioned from the first commit and are the only way the schema is created, including for tests and for the seeded customers. There is no `create_all` anywhere. A single initial revision creates everything, and is amended in place rather than corrected by a second revision for as long as no database that cannot be recreated has run it, so the schema a reviewer reads is the schema as designed.
+Alembic migrations are versioned from the first commit and are the only way the schema is created, including for tests and for the seeded customers. There is no `create_all` anywhere.
+A single initial revision creates everything, and is amended in place rather than corrected by a second revision for as long as no database that cannot be recreated has run it, so the schema a reviewer reads is the schema as designed.
 
 ### Packaging
 
@@ -231,17 +244,23 @@ Beyond the happy path:
 - `tests/test_idempotency.py`: a replayed key returns the original transfer with the entry count unchanged; a key reused with a different amount or a different destination is a `409` that writes nothing.
 - `tests/test_concurrency.py`: two sessions racing one funding account, five simultaneous transfers against a limited balance, opposing A-to-B and B-to-A transfers, and two threads racing the same idempotency key. Assertions are on outcomes and on the final balance never crossing the limit, not on the absence of an exception.
 - `tests/test_replay.py`: reported balances compared against an independent recomputation summed from the entry log, value conservation across randomised transfers checked after every one of them, the log proven append-only, and every prefix of it a valid history.
-- `tests/test_accounts.py`: history pagination, including that a walk over several pages concatenates to exactly the unpaginated ordering, that `next_cursor` is null only on the last page, that an account with more entries than the page maximum is still reachable in full, and that a cursor cannot be used to read across accounts. One case writes an entry midway through a walk and asserts the boundary does not shift: that is the case an offset would fail, so it is the one that earns the cursor.
+- `tests/test_accounts.py`: history pagination, including that a walk over several pages concatenates to exactly the unpaginated ordering, that `next_cursor` is null only on the last page, that an account with more entries than the page maximum is still reachable in full, and that a cursor cannot be used to read across accounts.
+  One case writes an entry midway through a walk and asserts the boundary does not shift: that is the case an offset would fail, so it is the one that earns the cursor.
 
 Coverage is reported and currently 99% against a floor of 90%, which is worth reading as a floor rather than as evidence: coverage says the lines ran, not that the system is exhaustively tested.
 
-The concurrency tests were checked by mutation rather than trusted for being green. Removing `.with_for_update()` fails two of them, and making the overdraft comparison exclusive fails the boundary test. Removing the ascending-id `ORDER BY` fails nothing: both racers take both rows in a single statement, so PostgreSQL gives them the same plan and therefore the same lock order anyway. The `ORDER BY` stays because it makes the guarantee explicit rather than a property of the current planner, which is exactly the kind of thing an added index or a version bump changes.
+The concurrency tests were checked by mutation rather than trusted for being green. Removing `.with_for_update()` fails two of them, and making the overdraft comparison exclusive fails the boundary test. Removing the ascending-id `ORDER BY` fails nothing: both racers take both rows in a single statement, so PostgreSQL gives them the same plan and therefore the same lock order anyway.
+The `ORDER BY` stays because it makes the guarantee explicit rather than a property of the current planner, which is exactly the kind of thing an added index or a version bump changes.
 
 ## Deployment
 
-The first deployment is this container image on **Lambda** behind **API Gateway**, with **RDS PostgreSQL** for storage, Alembic migrations run as a one-off task in the deploy pipeline rather than at application startup, and IAM-scoped database credentials injected as `BANKING_DATABASE_URL` from Secrets Manager rather than baked into the image. Lambda is the most lightweight option; ECS or EKS would need justification for the extra infrastructure and cost. The Lambda Web Adapter is built into the image so that the same artifact runs unchanged locally and on Lambda: there it longpolls the Runtime API and forwards each invocation to the `uvicorn` the image already runs, at the cost of one extra process and an HTTP hop.
+The first deployment is this container image on **Lambda** behind **API Gateway**, with **RDS PostgreSQL** for storage, Alembic migrations run as a one-off task in the deploy pipeline rather than at application startup, and IAM-scoped database credentials injected as `BANKING_DATABASE_URL` from Secrets Manager rather than baked into the image.
+Lambda is the most lightweight option; ECS or EKS would need justification for the extra infrastructure and cost. The Lambda Web Adapter is built into the image so that the same artifact runs unchanged locally and on Lambda: there it longpolls the Runtime API and forwards each invocation to the `uvicorn` the image already runs, at the cost of one extra process and an HTTP hop.
 
-The real tension in that shape is connection management, not the transaction boundary. A Lambda invocation maps cleanly onto one HTTP request and therefore onto one database transaction. But Lambda scales by adding execution environments, each holding its own connection pool, so RDS `max_connections` is consumed by concurrency rather than by throughput, and a spike that would be unremarkable on a fixed fleet exhausts the database. The first iteration would therefore use SQLAlchemy's `NullPool`: connection count becomes a function of in-flight requests rather than of environment count, and the price is a TCP, TLS and PostgreSQL auth handshake on every request, which is latency and not correctness. Sustained concurrency is the signal to move to RDS Proxy or to a long-lived container service, sized in **Production** below. Naming the trigger is what makes this a decision rather than an oversight.
+The real tension in that shape is connection management, not the transaction boundary. A Lambda invocation maps cleanly onto one HTTP request and therefore onto one database transaction.
+But Lambda scales by adding execution environments, each holding its own connection pool, so RDS `max_connections` is consumed by concurrency rather than by throughput, and a spike that would be unremarkable on a fixed fleet exhausts the database.
+The first iteration would therefore use SQLAlchemy's `NullPool`: connection count becomes a function of in-flight requests rather than of environment count, and the price is a TCP, TLS and PostgreSQL auth handshake on every request, which is latency and not correctness. Sustained concurrency is the signal to move to RDS Proxy or to a long-lived container service, sized in **Production** below.
+Naming the trigger is what makes this a decision rather than an oversight.
 
 The `banking-db` container is a local development and test fixture, with `tmpfs` storage that is discarded on stop. It is never deployed.
 
@@ -261,17 +280,24 @@ The ledger records that money moved and when, but not which employee moved it. F
 
 ### 3. Deposits are single-sided entries
 
-Funds enter through a `DEPOSIT` entry, which is exempt from the overdraft check and has no counter-entry. This is a deliberate departure from strict double-entry: in a fully balanced ledger an incoming deposit would debit a bank-side account (equity, or a cash or settlement account representing the funding source) rather than appearing from nowhere. That account was left out because the assignment has no external funding rail to model it against, and inventing one adds a concept a reviewer then has to learn in order to read the ledger.
+Funds enter through a `DEPOSIT` entry, which is exempt from the overdraft check and has no counter-entry. This is a deliberate departure from strict double-entry: in a fully balanced ledger an incoming deposit would debit a bank-side account (equity, or a cash or settlement account representing the funding source) rather than appearing from nowhere.
+That account was left out because the assignment has no external funding rail to model it against, and inventing one adds a concept a reviewer then has to learn in order to read the ledger.
 
-The practical consequence is that summing every entry in the system does not come to zero, so a whole-ledger sum cannot be used as an integrity test. Per-account balances and the transfer path are unaffected. Closing it means introducing the counter-account, making `DEPOSIT` write a balanced pair against it, and exempting only that account from the overdraft rule; the system-wide sum then becomes zero and is worth asserting continuously. Real deposits would also arrive from a payment rail rather than an API call, so the entry would carry a reference to the external settlement event and be idempotent on it, exactly as transfers are idempotent on a client-supplied key. Half a day, and it is the item that most changes what the ledger means.
+The practical consequence is that summing every entry in the system does not come to zero, so a whole-ledger sum cannot be used as an integrity test. Per-account balances and the transfer path are unaffected.
+Closing it means introducing the counter-account, making `DEPOSIT` write a balanced pair against it, and exempting only that account from the overdraft rule; the system-wide sum then becomes zero and is worth asserting continuously.
+Real deposits would also arrive from a payment rail rather than an API call, so the entry would carry a reference to the external settlement event and be idempotent on it, exactly as transfers are idempotent on a client-supplied key. Half a day, and it is the item that most changes what the ledger means.
 
 ### 4. Balances are recomputed from the entry log on every read
 
-No cached or snapshotted balance column exists. What breaks first is read latency, once an account accumulates enough entries for the aggregate to miss its latency budget; nothing becomes incorrect. At a scale like 60k customers reporting on quarter-hourly intervals, which is millions of entries a day, summing an account's whole history on every read stops being viable within weeks, and the answer is not to abandon the log but to close each settlement period into a snapshot written in the same transaction as the entries that move it. Closing it means a materialised balance updated in the same transaction as the entries that move it, so a read is a single row lookup. That balance is a cache and never an authority, so it needs a reconciliation job that recomputes from the entry log and alerts on disagreement, and the existing replay test becomes the assertion that the two agree. Roughly a day with the reconciliation. Measure before adding the column.
+No cached or snapshotted balance column exists. What breaks first is read latency, once an account accumulates enough entries for the aggregate to miss its latency budget; nothing becomes incorrect.
+At a scale like 60k customers reporting on quarter-hourly intervals, which is millions of entries a day, summing an account's whole history on every read stops being viable within weeks, and the answer is not to abandon the log but to close each settlement period into a snapshot written in the same transaction as the entries that move it.
+Closing it means a materialised balance updated in the same transaction as the entries that move it, so a read is a single row lookup. That balance is a cache and never an authority, so it needs a reconciliation job that recomputes from the entry log and alerts on disagreement, and the existing replay test becomes the assertion that the two agree. Roughly a day with the reconciliation.
+Measure before adding the column.
 
 ### 5. Connection management under Lambda
 
-`NullPool` pays a connection handshake per request, which is the price of not letting Lambda concurrency consume RDS `max_connections`. What breaks first is latency under sustained load, not correctness. Closing it means RDS Proxy, which pins a backend connection for the life of a `SELECT ... FOR UPDATE` transaction and therefore recovers less than the marketing suggests, or moving to a long-lived container service such as ECS Fargate with a real pool. Roughly a day either way, and ECS is the option I would take if the traffic profile justified it.
+`NullPool` pays a connection handshake per request, which is the price of not letting Lambda concurrency consume RDS `max_connections`. What breaks first is latency under sustained load, not correctness. Closing it means RDS Proxy, which pins a backend connection for the life of a `SELECT ...
+FOR UPDATE` transaction and therefore recovers less than the marketing suggests, or moving to a long-lived container service such as ECS Fargate with a real pool. Roughly a day either way, and ECS is the option I would take if the traffic profile justified it.
 
 ### 6. The overdraft limit cannot be changed after creation
 
@@ -283,7 +309,8 @@ A single shared database container with truncate-and-reseed between tests. What 
 
 ### 8. Operational visibility
 
-There is a `GET /health` liveness probe and nothing else: no structured JSON logging with a correlation ID, no metrics, no tracing. What breaks first is the first production incident, where a request cannot be followed across the API Gateway, Lambda and RDS boundaries. Closing it is structured logging with a request ID taken from the API Gateway context, plus the metrics that matter here, which are transfer rate, rejection rate by code, and lock wait time. A day.
+There is a `GET /health` liveness probe and nothing else: no structured JSON logging with a correlation ID, no metrics, no tracing. What breaks first is the first production incident, where a request cannot be followed across the API Gateway, Lambda and RDS boundaries.
+Closing it is structured logging with a request ID taken from the API Gateway context, plus the metrics that matter here, which are transfer rate, rejection rate by code, and lock wait time. A day.
 
 ### Also deliberately not built
 
@@ -339,7 +366,7 @@ The assignment asks to document the AI tool use. This section summarizes what ea
 > Decisions:
 > - cache: skip and document as something for production
 > - migration: let's use Alembic since it is written by the SQLAlchemy author, and the code you'll be reworking is SQLAlchemy-based
-> - isolation: we will go for _read committed with explicit row locks_ - I suspect that _serializable_ might be to big/complex for the timebox and _read committed with explicit row locks_ covers the overdraft handling
+> - isolation: we will go for *read committed with explicit row locks* - I suspect that *serializable* might be to big/complex for the timebox and *read committed with explicit row locks* covers the overdraft handling
 > - storage: let's go for Postgres
 > - funds origination: a special DEPOSIT entry type that is exempt from balance reflects common intuition better (without inventing equity/genesis account)
 > - money representation: yes, I meant store cents (AFAIK the code you will be modifying already used that approach)
@@ -348,13 +375,15 @@ The assignment asks to document the AI tool use. This section summarizes what ea
 > - pagination: cursor pagination on a single monotonic integer key seems like the simplest solution
 > - timebox: put back in, you will be later combining two of my past projects as implementation of this assignment and I estimate the implementation will be well under 4 hours anyway
 > - overdraft contradiction: go the assignment's required create-account-with-initial-deposit route (putting pre-population in is my mistake)
-> - transaction boundary and thin handlers clarification: Each request gets exactly one database transaction. A single boundary opens and commits it. A session may provide and scope the session, but the commit happens where a failure (idempotency conflict, etc.) can still become a typed domain error and a response, not after the handler has returned. Handlers stay thin: they own the boundary and delegate the work to the domain layer. While the transaction is open, make no network or external calls. Does this disambiguate/reconciliate the issue?
+> - transaction boundary and thin handlers clarification: Each request gets exactly one database transaction. A single boundary opens and commits it. A session may provide and scope the session, but the commit happens where a failure (idempotency conflict, etc.) can still become a typed domain error and a response, not after the handler has returned.
+>   Handlers stay thin: they own the boundary and delegate the work to the domain layer. While the transaction is open, make no network or external calls. Does this disambiguate/reconciliate the issue?
 > - remove "Style" section in CLAUDE.md
 > - remove "Corrections are compensating entries, never edits."
 > - replace "Migrations are forward-only ..." by a mention that a migration becomes immutable only once a database that cannot be recreated has run it
 > You may update CLAUDE.md & README.md as needed to document this.
 
-**Result.** `CLAUDE.md` rewritten across every affected section; the transaction-boundary wording resolved the contradiction and was adopted nearly verbatim. Three calls were made and flagged rather than buried, including that deposits have no counter-entry, a real departure from double-entry. Other decisions: locking strategy, how the schema is created, error mapping. Rejected `SERIALIZABLE` with a retry loop as not fitting the timebox, in favour of `READ COMMITTED` plus explicit row locks.
+**Result.** `CLAUDE.md` rewritten across every affected section; the transaction-boundary wording resolved the contradiction and was adopted nearly verbatim. Three calls were made and flagged rather than buried, including that deposits have no counter-entry, a real departure from double-entry. Other decisions: locking strategy, how the schema is created, error mapping.
+Rejected `SERIALIZABLE` with a retry loop as not fitting the timebox, in favour of `READ COMMITTED` plus explicit row locks.
 
 > add 3 to Production section of README and same for the decision on caching - stub is fine for now, you will be adding to it during implementation
 
@@ -377,7 +406,8 @@ The assignment asks to document the AI tool use. This section summarizes what ea
 >
 > Write the result with the "worth doing" items to PRACTICES.md as input into planning. No implementation code yet.
 
-**Result.** Wrote `PRACTICES.md`, organised by the artifact carrying the evidence rather than by criterion. Worked each evaluation criterion from the reviewer's side and split the findings into worth doing, worth stubbing with the gap documented, and deliberately not doing. The distinguishing property identified: strong submissions make the invariant unbypassable rather than merely upheld. Rejected several suggestions as speculative for a 4-hour budget.
+**Result.** Wrote `PRACTICES.md`, organised by the artifact carrying the evidence rather than by criterion. Worked each evaluation criterion from the reviewer's side and split the findings into worth doing, worth stubbing with the gap documented, and deliberately not doing. The distinguishing property identified: strong submissions make the invariant unbypassable rather than merely upheld.
+Rejected several suggestions as speculative for a 4-hour budget.
 
 ### 3C - Gaps to Fix
 
@@ -385,7 +415,8 @@ The assignment asks to document the AI tool use. This section summarizes what ea
 >
 > Be aware that I am telling you it was rejected, which will bias you toward finding fault. I want calibration, not a demolition.
 >
-> First, audit the setup path statically, since you cannot run Docker here. Trace every command in @README.md against the actual files. Report every point where a reviewer following the README verbatim on a clean machine would hit a missing file, an undocumented prerequisite, an unset variable, a version that is not pinned, a service that is started before its database is ready, or a step the README omits entirely. Be concrete about which line of which file is wrong. Do this before forming opinions from reading the code.
+> First, audit the setup path statically, since you cannot run Docker here. Trace every command in @README.md against the actual files.
+> Report every point where a reviewer following the README verbatim on a clean machine would hit a missing file, an undocumented prerequisite, an unset variable, a version that is not pinned, a service that is started before its database is ready, or a step the README omits entirely. Be concrete about which line of which file is wrong. Do this before forming opinions from reading the code.
 >
 > Then list the commands you want me to run and paste output for, ranked by what would tell you the most. I will run them and report back.
 >
@@ -424,7 +455,8 @@ The assignment asks to document the AI tool use. This section summarizes what ea
 
 ### 4 - Planning
 
-> What would you recommendation be in general for this (considering that the DB would be on RDS anyway): **The real tension is connection management.** Lambda scales by adding execution environments, each holding its own SQLAlchemy pool. `max_connections` on RDS is consumed by concurrency, not by throughput, so a spike that would be unremarkable on a fixed fleet exhausts the database. The mitigations are RDS Proxy, or `NullPool` and paying connection setup per request, and both are real costs.
+> What would you recommendation be in general for this (considering that the DB would be on RDS anyway): **The real tension is connection management.** Lambda scales by adding execution environments, each holding its own SQLAlchemy pool. `max_connections` on RDS is consumed by concurrency, not by throughput, so a spike that would be unremarkable on a fixed fleet exhausts the database.
+> The mitigations are RDS Proxy, or `NullPool` and paying connection setup per request, and both are real costs.
 
 **Result.** Recommended against Lambda, since RDS Proxy pins a connection for the life of a `FOR UPDATE` transaction and a ledger write path therefore defeats its multiplexing. **Overruled** in favour of Lambda plus `NullPool`, with the trigger for revisiting it written into `Production`.
 

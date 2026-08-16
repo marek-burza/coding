@@ -12,7 +12,8 @@ Internal HTTP API for bank employees: customers, accounts, derived balances, ide
 ./automation/test.sh                       # the whole suite: starts Postgres, migrates, runs pytest + coverage
 ```
 
-`test.sh` is the single definition of how tests run, and CI (`.gitlab-ci.yml`) calls it too. It starts Postgres with `docker run` as the container `banking-db`, polls `pg_isready`, runs `alembic upgrade head`, then `coverage run -m pytest`. The container is reused when already running and uses `--rm` plus a `tmpfs`, so `docker stop banking-db` is a full reset. If `BANKING_DATABASE_URL` is already exported it uses that database and skips the container entirely.
+`test.sh` is the single definition of how tests run, and CI (`.gitlab-ci.yml`) calls it too. It starts Postgres with `docker run` as the container `banking-db`, polls `pg_isready`, runs `alembic upgrade head`, then `coverage run -m pytest`. The container is reused when already running and uses `--rm` plus a `tmpfs`, so `docker stop banking-db` is a full reset.
+If `BANKING_DATABASE_URL` is already exported it uses that database and skips the container entirely.
 
 Running pytest directly requires a migrated database first, otherwise the session-scoped `schema` fixture fails with an explanatory message:
 
@@ -47,7 +48,8 @@ Coverage has `fail_under = 90` (`pyproject.toml`).
 
 Three layers, and the boundaries are the point:
 
-- `api/` (`routes.py`, `customers.py`, `schemas.py`, `errors.py`) is thin. Handlers own the transaction boundary (they call `session.commit()`), validate at the edge through Pydantic schemas, and delegate the work. `errors.install()` registers handlers mapping each `DomainError` subclass to a status code and the single `ErrorResponse` body shape, so domain failures never surface as a 500 or a raw framework validation dump.
+- `api/` (`routes.py`, `customers.py`, `schemas.py`, `errors.py`) is thin. Handlers own the transaction boundary (they call `session.commit()`), validate at the edge through Pydantic schemas, and delegate the work.
+  `errors.install()` registers handlers mapping each `DomainError` subclass to a status code and the single `ErrorResponse` body shape, so domain failures never surface as a 500 or a raw framework validation dump.
 - `domain/` (`ledger.py`, `transfers.py`, `__init__.py`) holds all business rules and the typed errors. It takes a `Session` but never commits.
 - `models.py` / `migrations/` define the schema. `database.py` builds the engine (`NullPool`, chosen for Lambda) and the `get_session` FastAPI dependency.
 
@@ -62,13 +64,15 @@ Money is integer Euro cents everywhere, including across the API. Never a float,
 
 ### Concurrency
 
-`READ COMMITTED` (Postgres default) plus explicit row locks, not a higher isolation level. `ledger.lock_accounts` issues one `SELECT ... FOR UPDATE ORDER BY Account.id` over every account a write touches: ascending-id ordering is what stops A-to-B and B-to-A transfers from deadlocking, and holding the lock from read to commit is what makes the overdraft check safe. Never read a balance, decide in Python, and then write outside that lock. Do not make network or external calls while the transaction is open.
+`READ COMMITTED` (Postgres default) plus explicit row locks, not a higher isolation level. `ledger.lock_accounts` issues one `SELECT ... FOR UPDATE ORDER BY Account.id` over every account a write touches: ascending-id ordering is what stops A-to-B and B-to-A transfers from deadlocking, and holding the lock from read to commit is what makes the overdraft check safe.
+Never read a balance, decide in Python, and then write outside that lock. Do not make network or external calls while the transaction is open.
 
 Every account has a non-negative `overdraft_limit_cents` (default 0); a debit is rejected unless the resulting balance is at least `-overdraft_limit_cents`.
 
 ### Idempotency
 
-`POST /transfers` is idempotent on `idempotency_key` in the request body. Enforcement is the database's unique constraint, never a `SELECT` then `INSERT`: `transfers.execute` inserts inside a `begin_nested()` savepoint and catches `IntegrityError`, checking `database.violated_constraint(error)` against `uq_transfers_idempotency_key` before treating it as a replay. A replay returns the original outcome; the same key with a different payload compares against the stored `request_hash` and raises `IdempotencyConflict` (409).
+`POST /transfers` is idempotent on `idempotency_key` in the request body. Enforcement is the database's unique constraint, never a `SELECT` then `INSERT`: `transfers.execute` inserts inside a `begin_nested()` savepoint and catches `IntegrityError`, checking `database.violated_constraint(error)` against `uq_transfers_idempotency_key` before treating it as a replay.
+A replay returns the original outcome; the same key with a different payload compares against the stored `request_hash` and raises `IdempotencyConflict` (409).
 
 ### History pagination
 
@@ -84,7 +88,8 @@ Cursor pagination over `Entry.id`, the single monotonic key, never an offset and
 
 ## Testing
 
-Tests run against a real PostgreSQL instance. Do not mock the database for anything asserting transactional or concurrency behaviour. `tests/conftest.py` truncates all tables and re-seeds the customers after every test, and exposes helpers (`open_account`, `open_account_directly`, `transfer`, `walk_history`, `balance_cents`) that tests import directly from `conftest` (`pythonpath` includes `tests`). Concurrency tests use real threads with a `threading.Barrier` and separate sessions.
+Tests run against a real PostgreSQL instance. Do not mock the database for anything asserting transactional or concurrency behaviour.
+`tests/conftest.py` truncates all tables and re-seeds the customers after every test, and exposes helpers (`open_account`, `open_account_directly`, `transfer`, `walk_history`, `balance_cents`) that tests import directly from `conftest` (`pythonpath` includes `tests`). Concurrency tests use real threads with a `threading.Barrier` and separate sessions.
 
 Business logic is tested against the domain and persistence layer, not only through HTTP. Coverage beyond the happy path is expected for: insufficient funds, idempotent replay, concurrent transfers on a shared account, and the replay check that recomputed balances match reported ones.
 
