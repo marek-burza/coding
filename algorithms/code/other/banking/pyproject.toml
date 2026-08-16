@@ -1,45 +1,54 @@
 [build-system]
-requires = ["setuptools>=72.1,<73", "setuptools-scm>=8.1,<9"]
-build-backend = "setuptools.build_meta"
+requires = [ "uv_build>=0.11.28,<0.12" ]
+build-backend = "uv_build"
 
 [project]
 name = "banking"
 description = "Banking API"
 version = "0.0.0"
 authors = [
-    { name = "noreply", email = "noreply@github.com" }
+    { name = "noreply", email = "noreply@localhost" }
 ]
-requires-python = ">=3.12"
-license = {text = "License: MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+license = "LicenseRef-Proprietary"
 classifiers = [
-    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
-  "fastapi>=0.112,<1",
-  "pydantic>=2.8.2,<3",
-  "sqlalchemy>=2.0.32,<3",
-  "uvicorn>=0.30.5,<1",
+    "alembic>=1.16,<2",
+    "fastapi>=0.139.2,<0.140",
+    "psycopg[binary]>=3.2,<4",
+    "pydantic>=2.13.4,<3",
+    "sqlalchemy>=2.0.32,<3",
+    "uvicorn[standard]>=0.51.0,<0.52",
 ]
 
-[project.optional-dependencies]
-tests = [
-  "bandit>=1.7.9,<2",
-  "black>=24.8.0,<25",
-  "coverage>=7.6.1,<8",
-  "flake8>=7.1.1,<8",
-  "httpx>=0.27.0,<1",
-  "isort>=5.13.2,<6",
-  "mypy>=1.11.1,<2",
-  "mypy-extensions>=1.0.0,<2",
-  "pytest>=8.3.2,<10",
+[dependency-groups]
+dev = [
+    "bandit>=1.9.2,<2",
+    "complexipy>=5.0.0,<6",
+    "coverage>=7.13.0,<8",
+    "deptry>=0.24.0,<0.25",
+    "httpx2>=2.0,<3",
+    "mypy>=1.19.0,<2",
+    "pytest>=8.4.0,<9",
+    "ruff>=0.15.0,<0.16",
 ]
 
-[tool.black]
-line-length = 79
-target-version = ['py312']
-skip-string-normalization = true
+[tool.coverage.run]
+source = [ "src" ]
 
-[tool.isort]
-line_length = 79
-profile = "black"
-multi_line_output = 3
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+[tool.deptry]
+known_first_party = [ "banking" ]
+
+[tool.deptry.per_rule_ignores]
+DEP002 = [ "alembic", "psycopg", "uvicorn" ]
+
+[tool.pytest.ini_options]
+testpaths = [ "tests" ]
+pythonpath = [ "src", "tests" ]
