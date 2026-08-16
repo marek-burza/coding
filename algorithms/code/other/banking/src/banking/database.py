@@ -1,29 +1,25 @@
-from typing import Iterator
+import os
+from collections.abc import Iterator
 
 from sqlalchemy import create_engine
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session as SessionType
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import NullPool
 
-from banking.models import Base
+DEFAULT_DATABASE_URL = "postgresql+psycopg://banking:banking@localhost:5432/banking"
+DATABASE_URL = os.environ.get("BANKING_DATABASE_URL", DEFAULT_DATABASE_URL)
 
-DATABASE_URL = "sqlite:///./banking.db"
-
-engine = create_engine(
-    DATABASE_URL,
-    connect_args={
-        # Disabling enforcement of use of database connection by only on thread
-        # is relevant for SQLite when it is used by a web framework
-        # such as FastAPI which can rely on multiple threads or asynchronous
-        # coroutines to handle requests simultaneously.
-        "check_same_thread": False
-    },
-)
+engine = create_engine(DATABASE_URL, poolclass=NullPool)
 
 Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def get_session() -> Iterator[SessionType]:
-    yield Session()
+    with Session() as session:
+        yield session
 
 
-Base.metadata.create_all(bind=engine)
+def violated_constraint(error: IntegrityError) -> str | None:
+    diagnostic = getattr(error.orig, "diag", None)
+    return getattr(diagnostic, "constraint_name", None)

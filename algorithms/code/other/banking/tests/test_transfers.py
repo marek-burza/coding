@@ -1,155 +1,125 @@
-from banking.api.transfers import (
-    ERROR_DESTINATION_ACCOUNT_NOT_FOUND,
-    ERROR_INSUFFICIENT_FUNDS,
-    ERROR_INVALID_ACCOUNT_IDENTIFIER,
-    ERROR_INVALID_DESTINATION_ACCOUNT_IDENTIFIER,
-    ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER,
-    ERROR_SOURCE_ACCOUNT_NOT_FOUND,
-    ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO,
-)
-from banking.main import app
+import uuid
+
 from fastapi import status
 from fastapi.testclient import TestClient
+from sqlalchemy import func, select
+from sqlalchemy.orm import Session
 
-client = TestClient(app)
+from banking.models import Entry
+from conftest import balance_cents, open_account, transfer
 
 
-class TestTransfers:
-    def test_finally_successful_transfer_execution(self) -> None:
-        response = client.put(
-            "/customers/",
-            params={
-                "customer_identifier": 15,
-                "customer_name": "Alice Fifteenth",
-            },
+def test_successful_transfer_moves_the_balance(client: TestClient) -> None:
+    source = open_account(client, initial_deposit_cents=10000)
+    destination = open_account(client, initial_deposit_cents=1)
+    status_code, body = transfer(client, source, destination, 5000)
+    assert status_code == status.HTTP_201_CREATED
+    assert body["amount_cents"] == 5000
+    assert balance_cents(client, source) == 5000
+    assert balance_cents(client, destination) == 5001
+
+
+def test_transfer_is_rejected_for_insufficient_funds(client: TestClient) -> None:
+    source = open_account(client, initial_deposit_cents=10000)
+    destination = open_account(client, initial_deposit_cents=1)
+    status_code, body = transfer(client, source, destination, 20000)
+    assert status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+    assert body["code"] == "insufficient_funds"
+    assert balance_cents(client, source) == 10000
+
+
+def test_transfer_landing_exactly_on_the_overdraft_limit_succeeds(
+    client: TestClient,
+) -> None:
+    source = open_account(client, initial_deposit_cents=1000, overdraft_limit_cents=500)
+    destination = open_account(client, initial_deposit_cents=1)
+    status_code, _ = transfer(client, source, destination, 1500)
+    assert status_code == status.HTTP_201_CREATED
+    assert balance_cents(client, source) == -500
+
+
+def test_transfer_one_cent_past_the_overdraft_limit_is_rejected(
+    client: TestClient,
+) -> None:
+    source = open_account(client, initial_deposit_cents=1000, overdraft_limit_cents=500)
+    destination = open_account(client, initial_deposit_cents=1)
+    status_code, body = transfer(client, source, destination, 1501)
+    assert status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+    assert body["code"] == "insufficient_funds"
+    assert balance_cents(client, source) == 1000
+
+
+def test_self_transfer_is_rejected(client: TestClient) -> None:
+    account_id = open_account(client, initial_deposit_cents=10000)
+    status_code, body = transfer(client, account_id, account_id, 100)
+    assert status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+    assert body["code"] == "self_transfer"
+    assert balance_cents(client, account_id) == 10000
+
+
+def test_transfer_from_unknown_account_is_404(client: TestClient) -> None:
+    destination = open_account(client, initial_deposit_cents=1)
+    status_code, body = transfer(client, uuid.uuid4(), destination, 100)
+    assert status_code == status.HTTP_404_NOT_FOUND
+    assert body["code"] == "unknown_account"
+
+
+def test_transfer_to_unknown_account_is_404(client: TestClient) -> None:
+    source = open_account(client, initial_deposit_cents=10000)
+    status_code, body = transfer(client, source, uuid.uuid4(), 100)
+    assert status_code == status.HTTP_404_NOT_FOUND
+    assert body["code"] == "unknown_account"
+
+
+def test_zero_and_negative_amounts_are_rejected(client: TestClient) -> None:
+    source = open_account(client, initial_deposit_cents=10000)
+    destination = open_account(client, initial_deposit_cents=1)
+    for amount_cents in (0, -100):
+        status_code, body = transfer(client, source, destination, amount_cents)
+        assert status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+        assert body["code"] == "invalid_request"
+
+
+def test_amount_is_not_coerced_from_a_string(client: TestClient) -> None:
+    source = open_account(client, initial_deposit_cents=10000)
+    destination = open_account(client, initial_deposit_cents=1)
+    response = client.post(
+        "/transfers",
+        json={
+            "source_account_id": str(source),
+            "destination_account_id": str(destination),
+            "amount_cents": "5000",
+            "idempotency_key": str(uuid.uuid4()),
+        },
+    )
+    assert response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+
+
+def test_failed_transfer_leaves_no_entries_behind(
+    client: TestClient, session: Session
+) -> None:
+    source = open_account(client, initial_deposit_cents=10000)
+    destination = open_account(client, initial_deposit_cents=1)
+    before = session.execute(select(func.count()).select_from(Entry)).scalar_one()
+    assert transfer(client, source, destination, 20000)[0] == (
+        status.HTTP_422_UNPROCESSABLE_CONTENT
+    )
+    after = session.execute(select(func.count()).select_from(Entry)).scalar_one()
+    assert after == before
+
+
+def test_transfer_writes_two_entries_summing_to_zero(
+    client: TestClient, session: Session
+) -> None:
+    source = open_account(client, initial_deposit_cents=10000)
+    destination = open_account(client, initial_deposit_cents=1)
+    _, body = transfer(client, source, destination, 2500)
+    entries = list(
+        session.execute(
+            select(Entry).where(Entry.transfer_id == uuid.UUID(str(body["id"])))
         )
-        assert response.status_code == status.HTTP_200_OK
-        response = client.put(
-            "/customers/",
-            params={
-                "customer_identifier": 16,
-                "customer_name": "Bob Sixteenth",
-            },
-        )
-        assert response.status_code == status.HTTP_200_OK
-        response = client.put(
-            "/accounts/",
-            params={"customer_identifier": 15, "balance": 10000},
-        )
-        assert response.status_code == status.HTTP_200_OK
-        from_account_identifier = response.json()["identifier"]
-        response = client.put("/accounts/", params={"customer_identifier": 16})
-        assert response.status_code == status.HTTP_200_OK
-        to_account_identifier = response.json()["identifier"]
-        # Attempt transfer non-positive amount
-        response = client.put(
-            "/transfers/",
-            params={
-                "from_account_identifier": from_account_identifier,
-                "to_account_identifier": to_account_identifier,
-                "amount": -1,
-            },
-        )
-        assert response.status_code == status.HTTP_400_BAD_REQUEST
-        assert response.json()["detail"] == ERROR_THE_AMOUNT_MUST_BE_GREATER_THAN_ZERO
-        # Attempt transfer too high amount
-        response = client.put(
-            "/transfers/",
-            params={
-                "from_account_identifier": from_account_identifier,
-                "to_account_identifier": to_account_identifier,
-                "amount": 20000,
-            },
-        )
-        assert response.status_code == status.HTTP_412_PRECONDITION_FAILED
-        assert response.json()["detail"] == ERROR_INSUFFICIENT_FUNDS
-        # Attempt transfer with invalid account identifiers
-        response = client.put(
-            "/transfers/",
-            params={
-                "from_account_identifier": "not-a-valid-uuid",
-                "to_account_identifier": to_account_identifier,
-                "amount": 1,
-            },
-        )
-        assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
-        assert response.json()["detail"] == ERROR_INVALID_SOURCE_ACCOUNT_IDENTIFIER
-        response = client.put(
-            "/transfers/",
-            params={
-                "from_account_identifier": from_account_identifier,
-                "to_account_identifier": "not-a-valid-uuid",
-                "amount": 1,
-            },
-        )
-        assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
-        assert response.json()["detail"] == ERROR_INVALID_DESTINATION_ACCOUNT_IDENTIFIER
-        # Attempt transfer with between non-existing accounts
-        response = client.put(
-            "/transfers/",
-            params={
-                "from_account_identifier": ("00000000-0000-0000-0000-000000000000"),
-                "to_account_identifier": to_account_identifier,
-                "amount": 1,
-            },
-        )
-        assert response.status_code == status.HTTP_404_NOT_FOUND
-        assert response.json()["detail"] == ERROR_SOURCE_ACCOUNT_NOT_FOUND
-        response = client.put(
-            "/transfers/",
-            params={
-                "from_account_identifier": from_account_identifier,
-                "to_account_identifier": ("00000000-0000-0000-0000-000000000000"),
-                "amount": 1,
-            },
-        )
-        assert response.status_code == status.HTTP_404_NOT_FOUND
-        assert response.json()["detail"] == ERROR_DESTINATION_ACCOUNT_NOT_FOUND
-        # Finally a valid transfer
-        response = client.put(
-            "/transfers/",
-            params={
-                "from_account_identifier": from_account_identifier,
-                "to_account_identifier": to_account_identifier,
-                "amount": 5000,
-            },
-        )
-        assert response.status_code == status.HTTP_200_OK
-        response = client.get(
-            "/accounts/",
-            params={
-                "customer_identifier": 15,
-                "account_identifier": from_account_identifier,
-            },
-        )
-        assert response.status_code == status.HTTP_200_OK
-        assert response.json()[0]["balance"] == 5000
-        response = client.get(
-            "/accounts/",
-            params={
-                "customer_identifier": 16,
-                "account_identifier": to_account_identifier,
-            },
-        )
-        assert response.status_code == status.HTTP_200_OK
-        assert response.json()[0]["balance"] == 5000
-        # Attempt fetching transfers with invalid account identifier
-        response = client.get(
-            "/transfers/",
-            params={"account_identifier": "not-a-valid-uuid"},
-        )
-        assert response.status_code == status.HTTP_417_EXPECTATION_FAILED
-        assert response.json()["detail"] == ERROR_INVALID_ACCOUNT_IDENTIFIER
-        # Check transfers
-        response = client.get(
-            "/transfers/", params={"account_identifier": to_account_identifier}
-        )
-        assert response.status_code == status.HTTP_200_OK
-        list1 = [transfer["identifier"] for transfer in response.json()]
-        response = client.get(
-            "/transfers/",
-            params={"account_identifier": from_account_identifier},
-        )
-        assert response.status_code == status.HTTP_200_OK
-        list2 = [transfer["identifier"] for transfer in response.json()]
-        assert list1 == list2
+        .scalars()
+        .all()
+    )
+    assert len(entries) == 2
+    assert sum(entry.amount_cents for entry in entries) == 0

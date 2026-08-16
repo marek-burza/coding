@@ -1,127 +1,44 @@
-from typing import Annotated, Optional
+from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy.exc import IntegrityError
+from fastapi import APIRouter, Depends, Response, status
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from banking import database
-from banking.models.customers import Customer
-from banking.schemas.customers import CustomerCreate, CustomerRead
-from banking.utilities import cleanse_customer_name
+from banking.api.schemas import CustomerCreate, CustomerRead
+from banking.models import Customer
 
-router = APIRouter()
+router = APIRouter(prefix="/customers", tags=["customers"])
 
 metadata = [
     {
-        "name": "put_customer",
-        "description": "Create a customer",
-    },
-    {
-        "name": "get_customers",
-        "description": "Read customer data",
+        "name": "customers",
+        "description": "The reference set of bank customers.",
     },
 ]
 
-ERROR_CUSTOMER_NOT_FOUND = "Customer not found"
-ERROR_CUSTOMER_IDENTIFIER_INTEGRITY_ERROR = "Customer identifier integrity error"
-ERROR_INVALID_CUSTOMER_NAME = "Invalid customer name"
-ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS = (
-    "Customer with this identifier already exists"
-)
-ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS = "Customer with this name already exists"
 
-
-def query_and_verify_customer_identifier(
-    customer_identifier: Optional[int], db_session: Session
-) -> list[CustomerRead]:
-    customers = db_session.query(Customer)
-    if customer_identifier is not None:
-        customers = customers.filter(Customer.identifier == customer_identifier)
-        count = customers.count()
-        if count == 0:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND,
-                detail=ERROR_CUSTOMER_NOT_FOUND,
-            )
-        if count > 1:  # pragma: no cover
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=ERROR_CUSTOMER_IDENTIFIER_INTEGRITY_ERROR,
-            )
-    return list(customers.all())
-
-
-@router.put(
-    "/customers/",
-    tags=["put_customer"],
+@router.post(
+    "",
+    status_code=status.HTTP_201_CREATED,
     response_model=CustomerRead,
-    responses={
-        status.HTTP_409_CONFLICT: {
-            "description": "Issued when customer with the given identifier or name already exists"  # noqa
-        },
-        status.HTTP_417_EXPECTATION_FAILED: {
-            "description": "Issued when customer name is invalid"
-        },
-    },
+    summary="Create a customer",
 )
-async def put_customer(
-    customer_identifier: Annotated[
-        int,
-        Query(description="Integer identifier of the customer (must be unique)"),
-    ],
-    customer_name: Annotated[
-        str,
-        Query(
-            description="Name of the customer (will be sanitized to only letters and spaces"  # noqa
-        ),
-    ],
-    db_session: Session = Depends(database.get_session),  # noqa: B008
-) -> CustomerRead:
-    customer_name = cleanse_customer_name(customer_name)
-    if customer_name == "":
-        raise HTTPException(
-            status_code=status.HTTP_417_EXPECTATION_FAILED,
-            detail=ERROR_INVALID_CUSTOMER_NAME,
-        )
-    try:
-        with db_session.begin():
-            customer = CustomerCreate(
-                identifier=customer_identifier, name=customer_name
-            )
-            db_customer = Customer(**customer.dict())
-            db_session.add(db_customer)
-    except IntegrityError as error:
-        if "customers.identifier" in str(error):
-            raise HTTPException(
-                status_code=status.HTTP_409_CONFLICT,
-                detail=ERROR_CUSTOMER_WITH_THIS_IDENTIFIER_ALREADY_EXISTS,
-            ) from error
-        if "customers.name" in str(error):
-            raise HTTPException(
-                status_code=status.HTTP_409_CONFLICT,
-                detail=ERROR_CUSTOMER_WITH_THIS_NAME_ALREADY_EXISTS,
-            ) from error
-    return db_customer
+def create_customer(
+    body: CustomerCreate,
+    response: Response,
+    session: Annotated[Session, Depends(database.get_session)],
+) -> Customer:
+    customer = Customer(name=body.name)
+    session.add(customer)
+    session.commit()
+    session.refresh(customer)
+    response.headers["Location"] = router.prefix
+    return customer
 
 
-@router.get(
-    "/customers/",
-    tags=["get_customers"],
-    response_model=list[CustomerRead],
-    responses={
-        status.HTTP_404_NOT_FOUND: {
-            "description": "Issued when customer with given identifier does not exist"  # noqa
-        },
-        status.HTTP_500_INTERNAL_SERVER_ERROR: {
-            "description": "Issued in unlikely case of database integrity breach"  # noqa
-        },
-    },
-)
-async def get_customers(
-    customer_identifier: Annotated[
-        Optional[int],
-        Query(description="Integer identifier of the customer"),
-    ] = None,
-    db_session: Session = Depends(database.get_session),  # noqa: B008
-) -> list[CustomerRead]:
-    return query_and_verify_customer_identifier(customer_identifier, db_session)
+@router.get("", response_model=list[CustomerRead], summary="List the customers")
+def list_customers(
+    session: Annotated[Session, Depends(database.get_session)],
+) -> list[Customer]:
+    return list(session.execute(select(Customer).order_by(Customer.id)).scalars().all())
