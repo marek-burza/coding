@@ -1,0 +1,30 @@
+@startuml initial-sketch
+left to right direction
+
+rectangle "MOBILE APP" as APP
+
+rectangle "Cloud" as CLOUD {
+    rectangle "INGRESS / DNS" as INGRESS
+    rectangle "STATIC CONTENT STORAGE" as STATIC
+    rectangle "CDN" as CDN
+    database "DATABASE" as DB
+    rectangle "LOAD BALANCING" as LB
+
+    rectangle "API" as MS {
+        rectangle "μSERVICE" as MS1
+        rectangle "μSERVICE" as MS2
+        rectangle "..." as MS3
+        MS1 -[hidden]- MS2
+        MS2 -[hidden]- MS3
+    }
+
+    INGRESS -- LB
+    LB -- MS
+    MS -- DB
+    INGRESS -- CDN
+    CDN -- STATIC
+}
+
+APP -- INGRESS
+
+@enduml

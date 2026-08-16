@@ -1,0 +1,47 @@
+@startuml revised-quadtree
+left to right direction
+
+rectangle "MOBILE APP" as APP
+
+rectangle "Cloud" as CLOUD {
+    rectangle "INGRESS / DNS" as INGRESS
+    rectangle "STATIC CONTENT STORAGE" as STATIC
+    rectangle "CDN" as CDN
+    rectangle "LB" as LB
+
+    rectangle "Storage" as STORAGE {
+        database "NoSQL DB" as DB
+        rectangle "QUADTREE INDEX" as QUADTREE
+        DB -- QUADTREE
+    }
+
+    rectangle "QUERY STATIC INFO" as QUERY
+    rectangle "ESTIMATE CAPACITY & STORE (OFFLINE)" as CAPACITY #line.dashed
+    rectangle "TRACK CHECK-INS" as CHECKINS
+    rectangle "ESTIMATE WAITING TIME" as WAITING
+    rectangle "LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC." as LOOKUP
+
+    INGRESS -- LB
+    LB -- QUERY
+    LB -- WAITING
+    LB -- LOOKUP
+    QUERY -- CAPACITY : Queued triggers (if new restaurant queried)
+    CAPACITY -- CHECKINS
+    CAPACITY -- DB
+    CHECKINS -- WAITING
+    WAITING -- DB : key = crypto_hash(concat(lat,lon))
+    LOOKUP -- DB
+    INGRESS -- CDN
+    CDN -- STATIC
+}
+
+rectangle "GOOGLE / YELP / FOURSQUARE" as GYF
+rectangle "OPENTABLE" as OPENTABLE
+rectangle "FACEBOOK" as FACEBOOK
+
+APP -- INGRESS
+QUERY -- GYF
+CAPACITY -- OPENTABLE
+CHECKINS -- FACEBOOK
+
+@enduml

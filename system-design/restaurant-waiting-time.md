@@ -16,32 +16,8 @@ I encountered a variation of this system design assignment during on-site interv
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        DB[("DATABASE")]
-        LB["LOAD BALANCING"]
-
-        subgraph MS["API"]
-            MS1["μSERVICE"]
-            MS2["μSERVICE"]
-            MS3["..."]
-        end
-
-        INGRESS --- LB
-        LB --- MS
-        MS --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-    end
-
-    APP --- INGRESS
-```
+![Initial Sketch of Top-Level Architecture](restaurant-waiting-time-1.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-1.plantuml > system-design/restaurant-waiting-time-1.png -->
 
 But this leaves some questions to be answered...
 
@@ -69,34 +45,8 @@ We provide an API for the restaurants and enrolled restaurants will provide the 
 
 **INITIAL SKETCH OF TOP-LEVEL ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-    RESTAURANT["RESTAURANT"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        DB[("DATABASE")]
-        LB["LOAD BALANCING"]
-
-        subgraph MS["API"]
-            MS1["μSERVICE"]
-            MS2["μSERVICE"]
-            MS3["..."]
-        end
-
-        INGRESS --- LB
-        LB --- MS
-        MS --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-    end
-
-    APP --- INGRESS
-    RESTAURANT --- INGRESS
-```
+![Initial Sketch with Restaurant Interface](restaurant-waiting-time-2.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-2.plantuml > system-design/restaurant-waiting-time-2.png -->
 
 It would be extended with an interface towards the restaurants...
 
@@ -135,44 +85,8 @@ Automate data collection and prepopulate database with estimates
 
 **REVISED ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        LB["LB"]
-        DB[("DATABASE")]
-        QUERY["QUERY STATIC INFO"]
-        CAPACITY["ESTIMATE CAPACITY & STORE"]
-        CHECKINS["TRACK CHECK-INS"]
-        WAITING["ESTIMATE WAITING TIME"]
-        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
-
-        INGRESS --- LB
-        LB --- QUERY
-        LB --- WAITING
-        LB --- LOOKUP
-        QUERY --- CAPACITY
-        CAPACITY --- CHECKINS
-        CHECKINS --- WAITING
-        WAITING --- DB
-        LOOKUP --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-    end
-
-    GYF["GOOGLE / YELP / FOURSQUARE"]
-    OPENTABLE["OPENTABLE"]
-    FACEBOOK["FACEBOOK"]
-
-    APP --- INGRESS
-    QUERY --- GYF
-    CAPACITY --- OPENTABLE
-    CHECKINS --- FACEBOOK
-```
+![Revised Architecture: Automated Data Collection](restaurant-waiting-time-3.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-3.plantuml > system-design/restaurant-waiting-time-3.png -->
 
 ---
 
@@ -188,46 +102,8 @@ Throttle most frequent third-party API requests, cache replies, shard database
 
 **REVISED ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        LB["LB"]
-        DB[("DATABASE")]
-        QUERY["QUERY STATIC INFO"]
-        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
-        CHECKINS["TRACK CHECK-INS"]
-        WAITING["ESTIMATE WAITING TIME"]
-        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
-
-        INGRESS --- LB
-        LB --- QUERY
-        LB --- WAITING
-        LB --- LOOKUP
-        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
-        CAPACITY --- CHECKINS
-        CHECKINS --- WAITING
-        WAITING --- DB
-        LOOKUP --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-    end
-
-    GYF["GOOGLE / YELP / FOURSQUARE"]
-    OPENTABLE["OPENTABLE"]
-    FACEBOOK["FACEBOOK"]
-
-    APP --- INGRESS
-    QUERY --- GYF
-    CAPACITY --- OPENTABLE
-    CHECKINS --- FACEBOOK
-
-    style CAPACITY stroke-dasharray: 5 5
-```
+![Revised Architecture: Offline Capacity Estimation](restaurant-waiting-time-4.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-4.plantuml > system-design/restaurant-waiting-time-4.png -->
 
 Enqueue requests for estimating capacity for newly added restaurants (and process them offline)
 
@@ -235,47 +111,8 @@ Enqueue requests for estimating capacity for newly added restaurants (and proces
 
 **REVISED ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        LB["LB"]
-        DB[("DATABASE")]
-        QUERY["QUERY STATIC INFO"]
-        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
-        CHECKINS["TRACK CHECK-INS"]
-        WAITING["ESTIMATE WAITING TIME"]
-        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
-
-        INGRESS --- LB
-        LB --- QUERY
-        LB --- WAITING
-        LB --- LOOKUP
-        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
-        CAPACITY --- CHECKINS
-        CAPACITY --- DB
-        CHECKINS --- WAITING
-        WAITING --- DB
-        LOOKUP --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-    end
-
-    GYF["GOOGLE / YELP / FOURSQUARE"]
-    OPENTABLE["OPENTABLE"]
-    FACEBOOK["FACEBOOK"]
-
-    APP --- INGRESS
-    QUERY --- GYF
-    CAPACITY --- OPENTABLE
-    CHECKINS --- FACEBOOK
-
-    style CAPACITY stroke-dasharray: 5 5
-```
+![Revised Architecture: Persistent Cache](restaurant-waiting-time-5.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-5.plantuml > system-design/restaurant-waiting-time-5.png -->
 
 Persistently cache the static results of third-party APIs, store the calculated estimates
 
@@ -283,47 +120,8 @@ Persistently cache the static results of third-party APIs, store the calculated 
 
 **REVISED ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        LB["LB"]
-        DB[("NoSQL DB")]
-        QUERY["QUERY STATIC INFO"]
-        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
-        CHECKINS["TRACK CHECK-INS"]
-        WAITING["ESTIMATE WAITING TIME"]
-        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
-
-        INGRESS --- LB
-        LB --- QUERY
-        LB --- WAITING
-        LB --- LOOKUP
-        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
-        CAPACITY --- CHECKINS
-        CAPACITY --- DB
-        CHECKINS --- WAITING
-        WAITING --- DB
-        LOOKUP --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-    end
-
-    GYF["GOOGLE / YELP / FOURSQUARE"]
-    OPENTABLE["OPENTABLE"]
-    FACEBOOK["FACEBOOK"]
-
-    APP --- INGRESS
-    QUERY --- GYF
-    CAPACITY --- OPENTABLE
-    CHECKINS --- FACEBOOK
-
-    style CAPACITY stroke-dasharray: 5 5
-```
+![Revised Architecture: Sharded NoSQL Database](restaurant-waiting-time-6.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-6.plantuml > system-design/restaurant-waiting-time-6.png -->
 
 Use a highly scalable, sharded NoSQL database
 
@@ -341,47 +139,8 @@ The key would be based on geographical location, cryptographically hashed to spr
 
 **REVISED ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        LB["LB"]
-        DB[("NoSQL DB")]
-        QUERY["QUERY STATIC INFO"]
-        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
-        CHECKINS["TRACK CHECK-INS"]
-        WAITING["ESTIMATE WAITING TIME"]
-        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
-
-        INGRESS --- LB
-        LB --- QUERY
-        LB --- WAITING
-        LB --- LOOKUP
-        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
-        CAPACITY --- CHECKINS
-        CAPACITY --- DB
-        CHECKINS --- WAITING
-        WAITING ---|"key = crypto_hash(concat(lat,lon))"| DB
-        LOOKUP --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-    end
-
-    GYF["GOOGLE / YELP / FOURSQUARE"]
-    OPENTABLE["OPENTABLE"]
-    FACEBOOK["FACEBOOK"]
-
-    APP --- INGRESS
-    QUERY --- GYF
-    CAPACITY --- OPENTABLE
-    CHECKINS --- FACEBOOK
-
-    style CAPACITY stroke-dasharray: 5 5
-```
+![Revised Architecture: Geographical Key](restaurant-waiting-time-7.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-7.plantuml > system-design/restaurant-waiting-time-7.png -->
 
 Concatenated latitude and longitude as key, cryptographically hashed to prevent lopsided shards
 
@@ -399,53 +158,8 @@ Use a quadtree (superimposed over a world map) as an index to facilitate searchi
 
 **REVISED ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        LB["LB"]
-
-        subgraph STORAGE["Storage"]
-            DB[("NoSQL DB")]
-            QUADTREE["QUADTREE INDEX"]
-            DB --- QUADTREE
-        end
-
-        QUERY["QUERY STATIC INFO"]
-        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
-        CHECKINS["TRACK CHECK-INS"]
-        WAITING["ESTIMATE WAITING TIME"]
-        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
-
-        INGRESS --- LB
-        LB --- QUERY
-        LB --- WAITING
-        LB --- LOOKUP
-        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
-        CAPACITY --- CHECKINS
-        CAPACITY --- DB
-        CHECKINS --- WAITING
-        WAITING ---|"key = crypto_hash(concat(lat,lon))"| DB
-        LOOKUP --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-    end
-
-    GYF["GOOGLE / YELP / FOURSQUARE"]
-    OPENTABLE["OPENTABLE"]
-    FACEBOOK["FACEBOOK"]
-
-    APP --- INGRESS
-    QUERY --- GYF
-    CAPACITY --- OPENTABLE
-    CHECKINS --- FACEBOOK
-
-    style CAPACITY stroke-dasharray: 5 5
-```
+![Revised Architecture: Quadtree Index](restaurant-waiting-time-8.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-8.plantuml > system-design/restaurant-waiting-time-8.png -->
 
 Adjacent to the database, there would be a quadtree-based index
 
@@ -496,63 +210,8 @@ What about the security?
 
 **REVISED ARCHITECTURE**
 
-```mermaid
-flowchart LR
-    APP["MOBILE APP"]
-
-    subgraph CLOUD["Cloud"]
-        INGRESS["INGRESS / DNS"]
-        STATIC["STATIC CONTENT STORAGE"]
-        CDN["CDN"]
-        LB["LB"]
-        NOTE["- TLS<br/>- AUTH<br/>- FIREWALL"]
-        CDN -.- NOTE
-        LB -.- NOTE
-
-        subgraph STORAGE["Storage"]
-            DB[("NoSQL DB")]
-            QUADTREE["QUADTREE INDEX"]
-            DB --- QUADTREE
-            REPLICATION["REPLICATION"]
-            DB --- REPLICATION
-        end
-
-        QUERY["QUERY STATIC INFO"]
-        CAPACITY["ESTIMATE CAPACITY & STORE (OFFLINE)"]
-        CHECKINS["TRACK CHECK-INS"]
-        WAITING["ESTIMATE WAITING TIME"]
-        LOOKUP["LOOKUP NEAREST RESTAURANTS, MANUAL CORRECTIONS, APP LOCATION TRACKING, ETC."]
-
-        INGRESS --- LB
-        LB --- QUERY
-        LB --- WAITING
-        LB --- LOOKUP
-        QUERY ---|"Queued triggers (if new restaurant queried)"| CAPACITY
-        CAPACITY --- CHECKINS
-        CAPACITY --- DB
-        CHECKINS --- WAITING
-        WAITING ---|"key = crypto_hash(concat(lat,lon))"| DB
-        LOOKUP --- DB
-        INGRESS --- CDN
-        CDN --- STATIC
-
-        VAULT["VAULT"]
-        BACKUPS["BACKUPS"]
-    end
-
-    GYF["GOOGLE / YELP / FOURSQUARE"]
-    OPENTABLE["OPENTABLE"]
-    FACEBOOK["FACEBOOK"]
-
-    APP --- INGRESS
-    QUERY --- GYF
-    CAPACITY --- OPENTABLE
-    CHECKINS --- FACEBOOK
-
-    style CAPACITY stroke-dasharray: 5 5
-    classDef note fill:#fff8c4,stroke:#d4c35a,stroke-width:1px,color:#4a4020
-    class NOTE note
-```
+![Revised Architecture: Security](restaurant-waiting-time-9.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/restaurant-waiting-time-9.plantuml > system-design/restaurant-waiting-time-9.png -->
 
 ---
 
