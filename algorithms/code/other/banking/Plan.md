@@ -2,14 +2,14 @@
 
 ## What this plan is
 
-`older/service` supplies the repo shape and tooling. `older/banking` supplies the domain.
+`older/service` supplies the repository shape and tooling. `older/banking` supplies the domain.
 The top level ends up looking like `older/service`, with the bank domain inside it. Every
 file that has a genuine ancestor arrives by `git mv` so history survives; files with no
 ancestor are created new, and that distinction is called out per phase rather than faked
 with an arbitrary rename pairing.
 
 All findings this plan depends on are inlined below. It does not depend on any other
-document in the repo except `CLAUDE.md` and `Assignment.md`.
+document in the repository except `CLAUDE.md` and `Assignment.md`.
 
 ## The single largest thing to understand before starting
 
@@ -17,7 +17,7 @@ document in the repo except `CLAUDE.md` and `Assignment.md`.
 `older/banking` code is a **stored-balance** design: `accounts.balance` is a column,
 `api/transfers.py:117-118` mutates it in place, and there is no entry table. There is no
 incremental path from one to the other. The following are therefore not adaptations but
-rewrites, in a repo where the surviving lineage is naming, layering and the FastAPI idiom
+rewrites, in a repository where the surviving lineage is naming, layering and the FastAPI idiom
 rather than the transfer logic itself:
 
 | Concern | `older/banking` today | Required end state |
@@ -28,7 +28,7 @@ rather than the transfer logic itself:
 | Overdraft | implicit `balance >= 0` | per-account `overdraft_limit_cents`, default 0 |
 | Idempotency | none | body key, DB unique constraint, payload hash |
 | History | unordered list of transfer rows | cursor-paginated, per-account perspective |
-| Concurrency | read-decide-write in Python | `SELECT ... FOR UPDATE`, ascending id order |
+| Concurrency | read-decide-write in Python | `SELECT ... FOR UPDATE`, ascending ID order |
 | Routes | 6 routes, `PUT`, query parameters | 6 routes, `POST`/`GET`, JSON bodies |
 
 Budget consequences are in **Budget risk** near the end. The overrun is accepted: see
@@ -368,8 +368,8 @@ run two contradictory isolation mechanisms, use one that works for both:
   so Phase D's new `entries` table is covered without editing the fixture. Truncate is fast
   enough at this data volume that the loss versus rollback is not measurable.
 - Customers are truncated like everything else, because `POST /customers` tests create them
-  and leaked rows would make test order significant. Re-seeding restores ids 1 to 4, and
-  the fixture advances the customer id sequence past the seeded rows the same way the
+  and leaked rows would make test order significant. Re-seeding restores IDs 1 to 4, and
+  the fixture advances the customer ID sequence past the seeded rows the same way the
   migration does (see D.1), so a subsequent `POST /customers` cannot collide.
 
 This supersedes the rollback-fixture half of finding F6.
@@ -461,21 +461,21 @@ them twice would be waste.
   would use if pagination were built.
 - `transfers(id, idempotency_key UNIQUE, request_hash, created_at)`.
 - Constraints a reviewer will look for by name: positive amount check, non-negative
-  overdraft-limit check, foreign keys on entry account ids, unique index on the idempotency
+  overdraft-limit check, foreign keys on entry account IDs, unique index on the idempotency
   key, `NOT NULL` everywhere it matters.
 - **F16** Timestamps are `DateTime(timezone=True)` with a server-side default, replacing
   `Integer` + `time.time()` at `older/banking/src/banking/models/transfers.py:14`.
-- **F37** Customer ids become **server-generated** integers (`SERIAL`), with the migration
-  seeding ids 1 to 4 for the four customers from the assignment. `POST /customers` no
+- **F37** Customer IDs become **server-generated** integers (`SERIAL`), with the migration
+  seeding IDs 1 to 4 for the four customers from the assignment. `POST /customers` no
   longer takes an identifier, which removes the old duplicate-identifier 409 path entirely.
-  The migration inserts those four rows with **explicit** ids, so it must then advance the
-  sequence (`setval`) past them; without that the first `POST /customers` collides on id 1.
+  The migration inserts those four rows with **explicit** IDs, so it must then advance the
+  sequence (`setval`) past them; without that the first `POST /customers` collides on ID 1.
   A test asserts that creating a customer against a freshly migrated database succeeds,
   because this is the kind of thing that only fails on a reviewer's clean clone.
-  Account ids are server-generated UUIDs. The mixed id types are a stated choice, documented
-  in one README line: customers are a small fixed reference set that the assignment
+  Account IDs are server-generated UUIDs. The mixed ID types are a stated choice, documented
+  in one readme line: customers are a small fixed reference set that the assignment
   enumerates, accounts are created by clients at runtime.
-- **F48** Drop the UUID "collision risk" claim from the old README. The real trade-offs for
+- **F48** Drop the UUID "collision risk" claim from the old readme. The real trade-offs for
   a UUID primary key are index locality and storage size. Also note that
   `older/banking/src/banking/utilities.py:25`'s `uuid.UUID(x, version=4)` **coerces** the
   version field rather than validating it, so it never rejected a non-v4 UUID. The
@@ -489,7 +489,7 @@ overdraft check. Entry type is a `StrEnum` and branching on it uses `match/case`
 `DEPOSIT` is exempt from the balance check and single-sided; `TRANSFER` is always balanced.
 
 `src/banking/domain/transfers.py` reads top to bottom as: resolve accounts, reject self
-transfer, lock both rows in ascending account id, check funding balance against
+transfer, lock both rows in ascending account ID, check funding balance against
 `-overdraft_limit_cents` inclusive, write balanced entries, return.
 
 - **F4a** `older/banking/src/banking/api/transfers.py:101-125` reads the balance, decides
@@ -532,7 +532,7 @@ had:
 | `GET /accounts/{id}/transfers` | `GET /transfers/?account_identifier=` |
 
 `GET /health` (F29) is a seventh path but is not part of the domain surface: it is an
-operational probe, excluded from the endpoint table in the README for the same reason.
+operational probe, excluded from the endpoint table in the readme for the same reason.
 
 - **F23** All creates move from `PUT` with query parameters to `POST` with JSON bodies,
   using the request schemas that currently exist but are only used internally.
@@ -551,12 +551,12 @@ operational probe, excluded from the endpoint table in the README for the same r
   behaviour that `CLAUDE.md` requires. The absence of an update route is a `Production`
   line, not silence.
 - History is rendered **from the queried account's perspective**: direction, counterparty
-  account id, signed effect on this account, entry id, timestamp. Not a raw entry dump.
-  Ordered by entry id descending, with an explicit `order_by` and a **limit of 1000
+  account ID, signed effect on this account, entry ID, timestamp. Not a raw entry dump.
+  Ordered by entry ID descending, with an explicit `order_by` and a **limit of 1000
   entries**, validated in the schema rather than clamped in the handler.
   **Pagination is cut** (see **Decisions taken**) and becomes a `Production` entry next to
   the balance-caching one, naming the cursor design that was not built: a cursor over the
-  monotonic entry id, never an offset.
+  monotonic entry ID, never an offset.
   **Superseded by Phase G, which is implemented.** The route is cursor-paginated, the 1000
   is a page-size maximum rather than a cap on reachable history, and the `Production` entry
   was deleted rather than written. This bullet is left standing only because it records the
@@ -622,7 +622,7 @@ table**, with a consistent body shape carrying a machine-readable `code`:
 - OpenAPI carries request examples including the idempotency key, and documents the error
   responses per route, not just the success case (**F47**: the old per-endpoint
   `responses={}` documentation habit is kept and extended).
-- **F29** Add `GET /health`. Structured JSON logging with a correlation id is listed as
+- **F29** Add `GET /health`. Structured JSON logging with a correlation ID is listed as
   optional in **Budget risk**.
 
 ### Verification (must pass before Phase E)
@@ -675,7 +675,7 @@ concurrency behaviour needs the real engine.
 `tests/test_accounts.py`
 - account creation writes exactly one `DEPOSIT` entry
 - balance for an unknown account is 404
-- history is ordered by entry id descending and is rendered from the queried account's
+- history is ordered by entry ID descending and is rendered from the queried account's
   perspective: the same transfer appears with opposite direction and opposite sign on the
   two accounts it touches
 
@@ -684,7 +684,7 @@ concurrency behaviour needs the real engine.
 - a name that cannot be stored losslessly is rejected with 422 rather than sanitized (F14)
 - the four seeded customers from the assignment are present after `alembic upgrade head`
 
-If the concurrency file ends up the weakest in the repo, the budget was misallocated.
+If the concurrency file ends up the weakest in the repository, the budget was misallocated.
 
 ### Verification
 
@@ -696,15 +696,15 @@ with `fail_under = 85` in `[tool.coverage.report]` satisfied.
 
 ---
 
-## Phase F: consolidate the two READMEs into one
+## Phase F: consolidate the two readmes into one
 
 Base: the existing root `README.md`, which already carries the `Production` entries on
 derived balances and single-sided deposits and is already correct for the merged design.
-Both older READMEs are folded into it.
+Both older readmes are folded into it.
 
 ### Carried over verbatim (still factually true after the merge)
 
-- The FastAPI and uvicorn choice and its justification (both older READMEs argue it; the
+- The FastAPI and uvicorn choice and its justification (both older readmes argue it; the
   service version, which also names the `Flask`/`Django`/`aiohttp` alternatives, is the
   stronger text).
 - The minor-units rationale, `older/banking/README.md:94-96`: integers because IEEE 754
@@ -754,7 +754,7 @@ Both older READMEs are folded into it.
   - **History pagination.** The list route returns at most 1000 entries, newest first, with
     no cursor. What breaks first is an account past 1000 entries, whose older history
     becomes unreachable. The design is written down and not built: a cursor over the monotonic
-    entry id, never an offset, which makes ordering total and the tie-break question
+    entry ID, never an offset, which makes ordering total and the tie-break question
     disappear. Roughly 25 minutes.
     **Phase G deleted this entry by building it**, and the README's `Production` items were
     renumbered accordingly. The roadmap must describe what the code actually omits, and a
@@ -782,19 +782,19 @@ Both older READMEs are folded into it.
 
 Everything in `older/service/README.md` that belongs to the phone-number assignment.
 
-### Not restated, because it cannot be verified from this repo
+### Not restated, because it cannot be verified from this repository
 
 - The live endpoint `https://*.execute-api.eu-central-1.amazonaws.com`.
-  Belongs to the other assignment and to an account this repo does not describe. Dropped.
+  Belongs to the other assignment and to an account this repository does not describe. Dropped.
 - The service README's file-by-file AI-use disclosure cannot be honestly re-derived for
   merged and rewritten files. It is **replaced by a short index of `sessions/`**, one line
   per file, which is what the current assignment actually asks for:
   `1_guardrails.md`, `2_assignment_diff.md`, `3a_decisions.md`, `3b_best_practices.md`,
   `3c_gaps_to_fix.md`. Each line names what that session decided and what model output was
   rejected. Dotfiles in `sessions/` are not listed.
-- Any performance or coverage number from either README (the "100%" coverage claim, the
+- Any performance or coverage number from either readme (the "100%" coverage claim, the
   `SHA-256` collision-probability comparison) is not restated without a measurement in this
-  repo.
+  repository.
 
 ### Verification (Phase F)
 
@@ -802,7 +802,7 @@ Everything in `older/service/README.md` that belongs to the phone-number assignm
 grep -rn "older/" --exclude-dir=older --exclude-dir=.git . | grep -v Plan.md
 ```
 
-returns nothing, plus a manual read of the README against the running service.
+returns nothing, plus a manual read of the readme against the running service.
 
 ---
 
@@ -813,15 +813,15 @@ being precise about what they were, because the reversal has to reach every plac
 propagated to.
 
 **What was originally intended.** The working agreements first required transfer history to
-use cursor pagination over a single monotonic integer key, the entry id, which makes the
+use cursor pagination over a single monotonic integer key, the entry ID, which makes the
 ordering total and the tie-breaking question disappear: entries sharing a timestamp still
-have distinct ids. The cursor is that id, never an offset. The plan carried that as a
+have distinct IDs. The cursor is that ID, never an offset. The plan carried that as a
 `next_cursor` field in the response body, and the test coverage phase carried one assertion
 for it: the cursor advances, and a page boundary neither drops nor duplicates an entry.
 
 **How it was cut.** Pagination was dropped as a budget measure, sized at roughly 25 minutes,
 with the instruction to record it in `Production` next to the balance-caching entry. The
-route became a single fixed-limit page ordered by entry id descending. The working
+route became a single fixed-limit page ordered by entry ID descending. The working
 agreements were then edited to match rather than left in disagreement with the plan, and a
 concrete ceiling was chosen at the same time as two other unnamed numbers: history limit
 **1000** entries, coverage `fail_under = 85`, amount cap **1_000_000_000_000 cents**. The
@@ -840,8 +840,8 @@ handled:
 - `limit`: page size, default `100`, minimum `1`, maximum `1000`. The maximum is a
   protection against one request materialising an unbounded result set. It is **not** a
   limit on how much history is reachable, which is the distinction this phase exists to
-  draw, and the README must draw it in those words.
-- `cursor`: an entry id, optional. Absent means start at the newest entry.
+  draw, and the readme must draw it in those words.
+- `cursor`: an entry ID, optional. Absent means start at the newest entry.
 
 The response body gains `next_cursor`, alongside the existing list of history items.
 `next_cursor` is `null` on the last page, which is how a client knows to stop rather than
@@ -849,20 +849,20 @@ having to issue one more request that comes back empty.
 
 ### G.2 Query
 
-Ordering stays entry id descending, newest first. The page predicate is
+Ordering stays entry ID descending, newest first. The page predicate is
 `entry.id < cursor` when a cursor is supplied, and nothing when it is not.
 
-Fetch `limit + 1` rows and return `limit` of them. If the extra row came back, its id is
+Fetch `limit + 1` rows and return `limit` of them. If the extra row came back, its ID is
 `next_cursor`; if it did not, `next_cursor` is `null`. This is what makes the last page
 detectable without a second query and without an extra round trip for the client.
 
 Two properties are worth a comment in the code, because both are the reason a cursor was
 specified over an offset and neither is obvious from reading the query:
 
-- **Total ordering.** Entry ids are unique and monotonic, so a descending walk has no ties
+- **Total ordering.** Entry IDs are unique and monotonic, so a descending walk has no ties
   to break and needs no secondary sort key. Ordering by timestamp would need one, because
   entries written inside the same transaction can share a timestamp.
-- **Stability under concurrent writes.** New entries always take ids greater than any
+- **Stability under concurrent writes.** New entries always take IDs greater than any
   existing cursor, so a transfer committed while a client is midway through paging cannot
   shift a page boundary, cannot cause an entry to be skipped, and cannot cause one to be
   returned twice. `OFFSET` has none of these properties: an insert at the head shifts every
@@ -901,9 +901,9 @@ itself:
 
 1. **The working agreements** (`CLAUDE.md`, the transfer-history clause). It currently states
    that history is not paginated in this build and that the route returns up to 1000 entries
-   newest first, with the entry id named as the cursor a later pass would use. That is now
-   false. Restore the original requirement: cursor pagination over the monotonic entry id,
-   the cursor is the id and never an offset. The precedent set earlier in this repo is that
+   newest first, with the entry ID named as the cursor a later pass would use. That is now
+   false. Restore the original requirement: cursor pagination over the monotonic entry ID,
+   the cursor is the ID and never an offset. The precedent set earlier in this repository is that
    the agreements move so the two documents agree, rather than the plan carrying a knowing
    gap, and the same precedent applies in this direction.
 2. **Phase D's history bullet**, which says pagination is cut. Superseded, and marked as
@@ -912,10 +912,10 @@ itself:
    roadmap entry describing something that shipped in the same submission converts a
    decision into an oversight, which is exactly the failure mode the roadmap exists to
    avoid.
-4. **The README limitations sentence** that names the 1000-entry history limit alongside
+4. **The readme limitations sentence** that names the 1000-entry history limit alongside
    single currency and integer minor units. It becomes a sentence about page size and the
    cursor contract instead, and must not leave a reader thinking history is capped.
-5. **The README endpoint table**, which gains `limit` and `cursor` on the history route and
+5. **The readme endpoint table**, which gains `limit` and `cursor` on the history route and
    `next_cursor` in its response.
 6. **`Decisions taken` entries 8 and 9.** Entry 8 records pagination as cut; it is rewritten
    to record that it was cut and then restored, with the reason for each move, because a
@@ -924,11 +924,11 @@ itself:
    a page-size maximum; the other two numbers in it are untouched.
 
 Also update the comparison table near the top of this plan, whose History row currently
-reads "ordered by entry id, per-account perspective". It returns to "cursor-paginated,
+reads "ordered by entry ID, per-account perspective". It returns to "cursor-paginated,
 per-account perspective".
 
-The client-facing README section gains one paragraph: how to page (omit the cursor, then
-follow `next_cursor` until it is null), and one sentence on why the cursor is an id rather
+The client-facing readme section gains one paragraph: how to page (omit the cursor, then
+follow `next_cursor` until it is null), and one sentence on why the cursor is an ID rather
 than an offset. Written for a client, in the same register as the idempotency contract.
 
 ### G.5 Ordering note
@@ -936,7 +936,7 @@ than an offset. Written for a client, in the same register as the idempotency co
 Phase G is written as a separate phase because that is how it was asked for, and it is
 independently committable that way. It is cheaper if it is not: building the paginated shape
 directly in Phase D costs the same 25 minutes it was sized at, while doing it here means
-writing the fixed-limit route, its README paragraph and its `Production` entry first and
+writing the fixed-limit route, its readme paragraph and its `Production` entry first and
 then unwinding all three. If Phase G is confirmed as in scope before implementation starts,
 fold G.1 and G.2 into Phase D, fold G.3 into Phase E, and let Phase F write the paginated
 story once. Phase G then reduces to G.4 with nothing to undo. The phase is kept separate
@@ -990,7 +990,7 @@ is the alternative and is deliberately not taken: it is another component, anoth
 domain, an hourly cost, and it pins a backend connection for the duration of a locked
 transaction, which is exactly the pattern this service is built out of.
 
-The README says this in about four sentences: the image runs unchanged locally and on
+The readme says this in about four sentences: the image runs unchanged locally and on
 Lambda; `NullPool` is what makes Lambda safe against RDS today; the handshake per request
 is the accepted cost; and sustained concurrency is the signal to move to RDS Proxy or to a
 long-lived container service such as ECS, which is written up in `Production` with what it
@@ -1010,7 +1010,7 @@ assuming no debugging surprises:
 | C: Postgres, compose, Alembic, session wiring | 60 to 75 min |
 | D: **ledger rewrite** (schema, domain, six routes, error table, schemas) | 125 to 185 min |
 | E: concurrency, idempotency, replay tests | 60 to 90 min |
-| F: README consolidation | 45 to 60 min |
+| F: readme consolidation | 45 to 60 min |
 | G: cursor pagination and the lifted cap | 40 to 55 min |
 | **Total** | **6.75 to 9.5 hours** |
 
@@ -1036,7 +1036,7 @@ What remains at risk, in the order I would look at it if the estimate proves opt
    is roughly 15 minutes of rework that a different phase order would avoid at the cost of
    breaking the green-suite-per-phase rule.
 3. **Optional items already parked**, none of which are in the estimate above: an
-   `app.openapi()` snapshot test, structured JSON logging with a correlation id, a
+   `app.openapi()` snapshot test, structured JSON logging with a correlation ID, a
    digest-pinned base image, and an `initiated_by` actor column on transfers. All four go
    in `Production` as named gaps rather than being half-built.
 
@@ -1045,7 +1045,7 @@ What remains at risk, in the order I would look at it if the estimate proves opt
 ## Decisions taken
 
 Every open question from the previous draft is now answered. Recorded here because several
-of them are visible in the finished repo and a reviewer will wonder whether they were
+of them are visible in the finished repository and a reviewer will wonder whether they were
 chosen or defaulted into.
 
 1. **The ledger rewrite is accepted as a rewrite.** The stored-balance design has no
@@ -1053,7 +1053,7 @@ chosen or defaulted into.
    lineage where none exists.
 
 2. **The customer routes survive.** `POST /customers` and `GET /customers` stay, adapted to
-   JSON bodies and server-generated ids. This keeps findings F12, F13, F14 and F37 live, at
+   JSON bodies and server-generated IDs. This keeps findings F12, F13, F14 and F37 live, at
    roughly 30 minutes and two extra routes for a reviewer to read past.
 
 3. **Package name is `banking`**, carried from the older tree, so `src/banking/`. The
@@ -1092,7 +1092,7 @@ chosen or defaulted into.
 10. **Phase A ships as two commits**, `git mv` first with no content change, the ruff
     reformat second, so the rename diff stays readable and `git log --follow` keeps working.
 
-11. **The README AI-use disclosure becomes a short index of the five non-dot files in
+11. **The readme AI-use disclosure becomes a short index of the five non-dot files in
     `sessions/`**, one line each, rather than a file-by-file attribution that cannot be
     honestly reconstructed after merging and rewriting.
 

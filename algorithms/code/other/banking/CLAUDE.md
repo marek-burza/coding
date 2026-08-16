@@ -95,4 +95,4 @@ Business logic is tested against the domain and persistence layer, not only thro
 
 ## Documentation
 
-The README is weighted as heavily as the code. Anything deliberately stubbed goes in its `Production` section as a roadmap entry saying what breaks first and roughly what closing it costs, ordered correctness gaps first. Never silently omit a compromise. `sessions/` holds the transcripts of the sessions that produced this repository, with an index in the README.
+The readme is weighted as heavily as the code. Anything deliberately stubbed goes in its `Production` section as a roadmap entry saying what breaks first and roughly what closing it costs, ordered correctness gaps first. Never silently omit a compromise. `sessions/` holds the transcripts of the sessions that produced this repository, with an index in the readme.

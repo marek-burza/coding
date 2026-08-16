@@ -157,7 +157,7 @@ There is no `UPDATE` and no `DELETE` in this API. That is not incomplete CRUD; i
 
 Four tables and one enum type, created only by migrations. **There is no balance column.**
 
-| Table | Primary key | Columns | Constraints and indexes |
+| Table | Primary key | Columns | Constraints and indices |
 | --- | --- | --- | --- |
 | `customers` | integer, server-generated | `name` | indexed `name`; the four assignment customers are seeded by the initial revision |
 | `accounts` | UUID | `customer_id` → `customers.id`, `overdraft_limit_cents` | `CHECK overdraft_limit_cents >= 0`; `customer_id` indexed |
@@ -211,7 +211,7 @@ Level 3 hypermedia is deliberately absent, not omitted for brevity: the consumer
 
 ### Frameworks
 
-`FastAPI` and `uvicorn`, chosen for maturity and for the simplicity of the resulting code (`Flask`, `Django` and `aiohttp` are the alternatives I have used before, and `uWSGI` on the server side).
+`FastAPI` and `uvicorn`, chosen for maturity and for the simplicity of the resulting code (`Flask`, `Django` and `aiohttp` are the alternatives I have used before, and `uWSGI` on the server-side).
 The decisive property for a timeboxed assignment is a single source of truth for both the API implementation and its specification: annotating the implementation lets the framework derive the OpenAPI document, which can then drive frontend code generation. GraphQL is a reasonable alternative for a multi-frontend consumer, and was not chosen because the surface here is small and resource-shaped.
 
 Sync SQLAlchemy throughout. Async plus row locks plus concurrency tests is the wrong bet inside this timebox.
@@ -270,7 +270,7 @@ Deliberate compromises, ordered as a roadmap rather than a list: correctness gap
 
 ### 1. No authentication or authorisation
 
-Every endpoint is open. Anyone who can reach the service can move money between any two accounts. This is the largest gap in the repo, and leaving it whole rather than half-built is deliberate: partial auth is worse than none, because it invites the reader to assume a security property that is not there.
+Every endpoint is open. Anyone who can reach the service can move money between any two accounts. This is the largest gap in the repository, and leaving it whole rather than half-built is deliberate: partial auth is worse than none, because it invites the reader to assume a security property that is not there.
 
 What breaks first is any exposure beyond a trusted network. Closing it means an authenticating edge (Cognito or an OIDC provider in front of API Gateway, never a hand-rolled protocol), a caller identity propagated into the request context, and authorisation rules for which employee may move funds on which account. Call it two days for something honest, plus the audit column below.
 
@@ -477,7 +477,7 @@ Rejected several suggestions as speculative for a 4-hour budget.
 
 > Is the plan unambiguous and non-contradictory now? Are any decisions left to be made?
 
-**Result.** No. Eleven problems found and ten fixed, the worst being seeded customer ids that would break the first `POST /customers` only on a clean clone, which is exactly where a reviewer runs it. The overdraft limit had a column and a test but no route that set it, so it became a create-time-only field.
+**Result.** No. Eleven problems found and ten fixed, the worst being seeded customer IDs that would break the first `POST /customers` only on a clean clone, which is exactly where a reviewer runs it. The overdraft limit had a column and a test but no route that set it, so it became a create-time-only field.
 
 > Make CLAUDE.md in line with the plan w.r.t. mandate cursor pagination (i.e. no pagination for the moment). As for numbers: fail_under 85, history page limit up to 1000, and keep trillion cents as the cap
 
@@ -517,13 +517,13 @@ Executed phases A to F individually, one commit each.
 
 > Phase F
 
-**Result.** Phase F (documentation) complete, finishing the rework at six commits, with every README command run verbatim rather than trusted. The `Production` roadmap leads with "no authentication", ahead of caching and pagination.
+**Result.** Phase F (documentation) complete, finishing the rework at six commits, with every readme command run verbatim rather than trusted. The `Production` roadmap leads with "no authentication", ahead of caching and pagination.
 
 ### 6 - Implementation Extension
 
 > Look-up the history of changes in @sessions/4_planning.md w.r.t. cursor pagination and introduction of cap of 1000 on the history. Add a phase G to the Plan.md with instructions to implement pagination as originally intended and lift the cap.
 
-**Result.** Reopened one scope decision. Phase F had cut cursor pagination as a budget measure and written it up as a `Production` entry; Phase G reverses that, building the cursor over the entry id, lifting the 1000-entry ceiling to a per-response page bound
+**Result.** Reopened one scope decision. Phase F had cut cursor pagination as a budget measure and written it up as a `Production` entry; Phase G reverses that, building the cursor over the entry ID, lifting the 1000-entry ceiling to a per-response page bound
 
 > Implement phase G
 
