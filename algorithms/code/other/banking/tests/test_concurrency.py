@@ -53,9 +53,8 @@ def run_together(*calls: Callable[[], str]) -> list[str]:
         thread.start()
     for thread in threads:
         thread.join(timeout=30)
-    assert not any(thread.is_alive() for thread in threads), (
-        "A transfer deadlocked or hung"
-    )
+    hung = [thread for thread in threads if thread.is_alive()]
+    assert not hung, "A transfer deadlocked or hung"
     return outcomes
 
 

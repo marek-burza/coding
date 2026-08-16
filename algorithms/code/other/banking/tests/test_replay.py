@@ -28,7 +28,7 @@ def test_reported_balances_match_an_independent_recomputation(
     client: TestClient, session: Session
 ) -> None:
     accounts = [open_account(client, initial_deposit_cents=10000) for _ in range(4)]
-    generator = random.Random(SEED)  # noqa: S311  # nosec B311 - test data, not cryptography
+    generator = random.Random(SEED)  # noqa: S311  # nosec B311 - not cryptography
     for _ in range(TRANSFER_COUNT):
         source, destination = generator.sample(accounts, 2)
         transfer(client, source, destination, generator.randint(1, 900))
@@ -44,7 +44,7 @@ def test_value_is_conserved_across_randomised_transfers(
     deposits = [10000, 5000, 250, 1]
     accounts = [open_account(client, initial_deposit_cents=cents) for cents in deposits]
     total = sum(deposits)
-    generator = random.Random(SEED)  # noqa: S311  # nosec B311 - test data, not cryptography
+    generator = random.Random(SEED)  # noqa: S311  # nosec B311 - not cryptography
 
     for _ in range(TRANSFER_COUNT):
         source, destination = generator.sample(accounts, 2)
