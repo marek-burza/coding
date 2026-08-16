@@ -22,6 +22,7 @@ Diagram:
 
 ![Current Architecture](monolith-decomposition-1.png)
 <!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/monolith-decomposition-1.plantuml > system-design/monolith-decomposition-1.png -->
+
 ## Deliverable
 
 Maintenance burden:
