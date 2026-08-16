@@ -1,6 +1,6 @@
 # Topological sorting
 
-# 1. Topological order
+## 1. Topological order
 
 Write a function to return a valid sequential execution order when given a list of tasks with dependencies. Validity is defined as: tasks must appears only after all their dependencies.
 
