@@ -466,7 +466,7 @@ Rejected several suggestions as speculative for a 4-hour budget.
 > - Make sure the code uses `fastapi.status` constants rather than literal integers for HTTP codes
 > - Do not mention `ECS Fargate` in the plan (nor in `CLAUDE.md`), the first deployment would be to containerized `Lambda` anyway, and as for `Lambda` restricting Postgres, we'd go with `NullPool` for first iteration, and remark in `Production` section that this could justify a move to `ECS`.
 > - Service README's AI-use disclosure, is meant to be replaced by a short list of files in `sessions/` (the non-dot ones)
-> - As for timing budget, I had similar tooling item (Phase A) done before - it was much faster than 54 minutes so let's keep it; Keep Phase B & C as-is; Drop cursor pagination, mention in `Production` section close to the caching one; If the budget still exceeds 4 hours I autorize the extra time as the remaining scope is also interesting for me as a learning exercise
+> - As for timing budget, I had similar tooling item (Phase A) done before - it was much faster than 54 minutes so let's keep it; Keep Phase B & C as-is; Drop cursor pagination, mention in `Production` section close to the caching one; If the budget still exceeds 4 hours I authorize the extra time as the remaining scope is also interesting for me as a learning exercise
 > - For the reformat blast radius in Phase A: I'm fine with two commits inside Phase A, `git mv` first, the reformat second
 > - Keep the customer routes
 > - Package name: keep `banking`
