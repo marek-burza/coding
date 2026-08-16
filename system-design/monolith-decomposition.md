@@ -20,88 +20,72 @@ Additional concerns:
 
 Diagram:
 
-```mermaid
-flowchart BT
-    subgraph SHARED["Shared Services"]
-        direction LR
-        EMAIL["Email Service<br/>(Spring Boot)<br/>EC2 Instance"]
-        PUSH["Push Notifications Service<br/>(Spring Boot)<br/>EC2 Instance"]
-        FILES["File Storage Service<br/>(Spring Boot)<br/>EC2 Instance (500 GiB)"]
-        %% (force layout)
-        EMAIL ~~~ PUSH ~~~ FILES
-    end
+```plantuml
+@startuml monolith-current
+title Current architecture: one monolith EC2 instance per tenant
 
-    subgraph T1["EC2 Instance 1"]
-        direction LR
-        W1["Web Application<br/>(Angular.js)"]
-        A1["Backend API<br/>(Spring Boot)"]
-        D1[("Database<br/>(postgresql)")]
-        %% (force layout)
-        W1 ~~~ A1 ~~~ D1
-    end
+skinparam shadowing false
+skinparam defaultTextAlignment center
+skinparam ArrowColor #333333
+skinparam node {
+    BackgroundColor #FFFFFF
+    BorderColor #333333
+}
+skinparam rectangle {
+    BackgroundColor #FFFFFF
+    BorderColor #333333
+}
 
-    subgraph T2["EC2 Instance 2"]
-        direction LR
-        W2["Web Application<br/>(Angular.js)"]
-        A2["Backend API<br/>(Spring Boot)"]
-        D2[("Database<br/>(postgresql)")]
-        %% (force layout)
-        W2 ~~~ A2 ~~~ D2
-    end
+rectangle "Tenant 1 clients" as CL1 {
+    node "<&phone{scale=1.5}> Client 1" as C1A
+    node "<&laptop{scale=1.5}> Client 2" as C1B
+    node "<&monitor{scale=1.5}> Client X" as C1C
+}
 
-    subgraph TX["EC2 Instance X"]
-        direction LR
-        WX["Web Application<br/>(Angular.js)"]
-        AX["Backend API<br/>(Spring Boot)"]
-        DX[("Database<br/>(postgresql)")]
-        %% (force layout)
-        WX ~~~ AX ~~~ DX
-    end
+rectangle "Tenant 2 clients" as CL2 {
+    node "<&phone{scale=1.5}> Client 1" as C2A
+    node "<&laptop{scale=1.5}> Client 2" as C2B
+    node "<&monitor{scale=1.5}> Client X" as C2C
+}
 
-    subgraph CL1[" "]
-        direction LR
-        C1A["📱 Client 1"]
-        C1B["💻 Client 2"]
-        C1C["🖥️ Client X"]
-        %% (force layout)
-        C1A ~~~ C1B ~~~ C1C
-    end
+rectangle "Tenant X clients" as CLX {
+    node "<&phone{scale=1.5}> Client 1" as CXA
+    node "<&laptop{scale=1.5}> Client 2" as CXB
+    node "<&monitor{scale=1.5}> Client X" as CXC
+}
 
-    subgraph CL2[" "]
-        direction LR
-        C2A["📱 Client 1"]
-        C2B["💻 Client 2"]
-        C2C["🖥️ Client X"]
-        %% (force layout)
-        C2A ~~~ C2B ~~~ C2C
-    end
+node "EC2 Instance 1" as T1 {
+    component "Web Application\n(Angular.js)" as W1 #F8D7DA
+    component "Backend API\n(Spring Boot)" as A1 #D4EDDA
+    database "Database\n(postgresql)" as D1 #CFE2F3
+}
 
-    subgraph CLX[" "]
-        direction LR
-        CXA["📱 Client 1"]
-        CXB["💻 Client 2"]
-        CXC["🖥️ Client X"]
-        %% (force layout)
-        CXA ~~~ CXB ~~~ CXC
-    end
+node "EC2 Instance 2" as T2 {
+    component "Web Application\n(Angular.js)" as W2 #F8D7DA
+    component "Backend API\n(Spring Boot)" as A2 #D4EDDA
+    database "Database\n(postgresql)" as D2 #CFE2F3
+}
 
-    CL1 -->|http://api-1.company.com| T1
-    CL2 -->|http://api-2.company.com| T2
-    CLX -->|http://api-X.company.com| TX
+node "EC2 Instance X" as TX {
+    component "Web Application\n(Angular.js)" as WX #F8D7DA
+    component "Backend API\n(Spring Boot)" as AX #D4EDDA
+    database "Database\n(postgresql)" as DX #CFE2F3
+}
 
-    T1 -->|Service invocation| SHARED
-    T2 -->|Service invocation| SHARED
-    TX -->|Service invocation| SHARED
+node "Shared Services" as SHARED {
+    component "Email Service\n(Spring Boot)\nEC2 Instance" as EMAIL #D4EDDA
+    component "Push Notifications Service\n(Spring Boot)\nEC2 Instance" as PUSH #D4EDDA
+    component "File Storage Service\n(Spring Boot)\nEC2 Instance (500 GiB)" as FILES #D4EDDA
+}
 
-    classDef web fill:#f8d7da,stroke:#e4a0a8,color:#000
-    classDef api fill:#d4edda,stroke:#9ecfae,color:#000
-    classDef db fill:#cfe2f3,stroke:#9ec1e0,color:#000
-    classDef client fill:#fff,stroke:#333,color:#000
+CL1 --> T1 : http://api-1.company.com
+CL2 --> T2 : http://api-2.company.com
+CLX --> TX : http://api-X.company.com
 
-    class W1,W2,WX web
-    class A1,A2,AX,EMAIL,PUSH,FILES api
-    class D1,D2,DX db
-    class C1A,C1B,C1C,C2A,C2B,C2C,CXA,CXB,CXC client
+T1 --> SHARED : Service invocation
+T2 --> SHARED : Service invocation
+TX --> SHARED : Service invocation
+@enduml
 ```
 
 ## Deliverable
@@ -134,75 +118,8 @@ Single points of failure:
 
 Thus what I would propose instead is this:
 
-```mermaid
-flowchart BT
-    subgraph MESSAGING["▶ SES (email), SNS (notifications) - no EC2/Spring"]
-        PUSH["Push Notifications Service"]
-        EMAIL["Email Service"]
-    end
-
-    QUEUE["▶ SQS (decoupling), DLQ"]
-
-    QUEUE --> MESSAGING
-
-    subgraph DB["▶ Aurora Postgres, backup - no EC2"]
-        POSTGRES[("Database<br/>(postgresql)")]
-        NOTEDB["?<br/>- Aurora vs. RDS"]
-        NOTEDB -.- POSTGRES
-    end
-
-    subgraph CF["▶ CloudFront (CDN) + S3 (storage) + Glacier (backup) - no EC2/Spring"]
-        FILES[("File Storage Service")]
-        WEB["Web Application (angular)"]
-        NOTECF["?<br/>- separate CF distributions<br/>- auth"]
-        NOTECF -.- WEB
-    end
-
-    COGNITO["▶ Cognito (auth)<br/>▶ Web ACL (firewall)"]
-
-    subgraph ECS["▶ ECS Fargate + Autoscaling - no EC2"]
-        API["Backend API<br/>(Spring Boot)"]
-        NOTEAPI["?<br/>- EKS"]
-        NOTEAPI -.- API
-    end
-
-    ECS -->|Service invocation| QUEUE
-    ECS -->|Service invocation| DB
-    ECS -->|Service invocation| FILES
-
-    ALB["▶ ALB (load balancing, TLS)"]
-
-    ALB --> ECS
-  
-    COGNITO --- ALB
-    COGNITO --- CF
-
-    subgraph CLIENTS[" "]
-        direction LR
-        C1["📱 Client 1"]
-        C2["💻 Client 2"]
-        CX["🖥️ Client X"]
-        %% (force layout)
-        C1 ~~~ C2 ~~~ CX
-    end
-
-    CLIENTS -->|https://api.company.com| ALB
-    CLIENTS -->|https://static.company.com| CF
-
-    NOTEMULTI["?<br/>- Multi-AZ & Multi-region concerns"]
-
-    classDef web fill:#f8d7da,stroke:#e4a0a8,color:#000
-    classDef api fill:#d4edda,stroke:#9ecfae,color:#000
-    classDef managed fill:#aaaaff,stroke:#8888ee,color:#000
-    classDef client fill:#fff,stroke:#333,color:#000
-    classDef note fill:#fff8c4,stroke:#d4c35a,stroke-width:1px,color:#4a4020
-
-    class WEB web
-    class API api
-    class QUEUE,POSTGRES,FILES,ALB,COGNITO managed
-    class C1,C2,CX client
-    class NOTECF,NOTEAPI,NOTEDB,NOTEMULTI note
-```
+![Redesigned Architecture](monolith-decomposition-2.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/monolith-decomposition-2.plantuml > system-design/monolith-decomposition-2.png -->
 
 Notes:
 

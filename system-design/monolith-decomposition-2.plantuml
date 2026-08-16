@@ -1,0 +1,70 @@
+@startuml architecture-redesigned
+
+node "▶ SES (email), SNS (notifications) - no EC2/Spring" as MESSAGING {
+    component "Email Service" as EMAIL #AAAAFF
+    component "Push Notifications Service" as PUSH #AAAAFF
+}
+
+node "▶ Aurora Postgres, backup - no EC2" as DB {
+    database "Database\n(postgresql)" as POSTGRES #AAAAFF
+
+    note right of POSTGRES
+        ?
+        - Aurora vs. RDS
+    end note
+}
+
+node "▶ CloudFront (CDN) + S3 (storage) + Glacier (backup) - no EC2/Spring" as CF {
+    component "Web Application\n(Angular)" as WEB #F8D7DA
+    database "File Storage Service" as FILES #AAAAFF
+
+    note right of WEB
+        ?
+        - separate CF distributions
+        - auth
+    end note
+}
+
+queue "▶ SQS (decoupling), DLQ" as QUEUE #AAAAFF
+
+QUEUE -up-> MESSAGING
+
+node "▶ Cognito (auth)\n▶ Web ACL (firewall)" as INGRESS #AAAAFF
+
+node "▶ ECS Fargate + Autoscaling - no EC2" as ECS {
+    component "Backend API\n(Spring Boot)" as API #D4EDDA
+
+    note right of API
+      ?
+      - EKS
+    end note
+}
+
+API -up-> QUEUE : Service invocation
+API -up-> POSTGRES : Service invocation
+API -up-> FILES : Service invocation
+
+node "▶ ALB (load balancing, TLS)" as ALB #AAAAFF
+
+ALB -up-> API
+
+INGRESS .down.. ALB
+INGRESS .up.. CF
+
+rectangle "Clients" as CLIENTS {
+    node "<&phone{scale=1.5}> Client 1" as C1
+    node "<&laptop{scale=1.5}> Client 2" as C2
+    node "<&monitor{scale=1.5}> Client X" as CX
+    C1 -[hidden]right- C2
+    C2 -[hidden]right- CX
+}
+
+CLIENTS -up-> CF : https://static.company.com
+CLIENTS -up-> ALB : https://api.company.com
+
+note as NOTEMULTI
+  ?
+  - Multi-AZ & Multi-region concerns
+end note
+
+@enduml
