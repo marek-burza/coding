@@ -1,0 +1,49 @@
+default:
+  image: ghcr.io/astral-sh/uv:alpine3.23
+
+stages:
+  - check
+
+variables:
+  UV_CACHE_DIR: "$CI_PROJECT_DIR/.uv-cache"
+  UV_PYTHON_INSTALL_DIR: "$CI_PROJECT_DIR/.uv-python"
+  UV_PYTHON: python3.13
+  UV_LINK_MODE: copy
+  UV_HTTP_TIMEOUT: "60"
+
+.uv:
+  cache:
+    key:
+      files:
+        - uv.lock
+    paths:
+      - .uv-cache
+      - .uv-python
+  before_script:
+    - uv sync --locked
+  after_script:
+    - uv cache prune --ci
+
+lint:
+  extends: .uv
+  stage: check
+  script:
+    - uv run ruff check --select I,E,B,SIM src
+    - uv run ruff format --check --diff
+    - uv run deptry .
+    - uv run mypy src
+    - uv run bandit -r src
+    - uv run complexipy src --max-complexity-allowed 25
+
+test:
+  extends: .uv
+  stage: check
+  services:
+    - postgres:18-alpine
+  variables:
+    POSTGRES_USER: banking
+    POSTGRES_PASSWORD: banking
+    POSTGRES_DB: banking
+    BANKING_DATABASE_URL: "postgresql+psycopg://banking:banking@postgres:5432/banking"
+  script:
+    - ./automation/test.sh
