@@ -49,6 +49,9 @@ known_first_party = [ "banking" ]
 [tool.deptry.per_rule_ignores]
 DEP002 = [ "alembic", "psycopg", "uvicorn" ]
 
+[tool.ruff.lint.isort]
+known-first-party = [ "banking", "conftest" ]
+
 [tool.pytest.ini_options]
 testpaths = [ "tests" ]
 pythonpath = [ "src", "tests" ]
