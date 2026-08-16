@@ -20,74 +20,8 @@ Additional concerns:
 
 Diagram:
 
-```plantuml
-@startuml monolith-current
-title Current architecture: one monolith EC2 instance per tenant
-
-skinparam shadowing false
-skinparam defaultTextAlignment center
-skinparam ArrowColor #333333
-skinparam node {
-    BackgroundColor #FFFFFF
-    BorderColor #333333
-}
-skinparam rectangle {
-    BackgroundColor #FFFFFF
-    BorderColor #333333
-}
-
-rectangle "Tenant 1 clients" as CL1 {
-    node "<&phone{scale=1.5}> Client 1" as C1A
-    node "<&laptop{scale=1.5}> Client 2" as C1B
-    node "<&monitor{scale=1.5}> Client X" as C1C
-}
-
-rectangle "Tenant 2 clients" as CL2 {
-    node "<&phone{scale=1.5}> Client 1" as C2A
-    node "<&laptop{scale=1.5}> Client 2" as C2B
-    node "<&monitor{scale=1.5}> Client X" as C2C
-}
-
-rectangle "Tenant X clients" as CLX {
-    node "<&phone{scale=1.5}> Client 1" as CXA
-    node "<&laptop{scale=1.5}> Client 2" as CXB
-    node "<&monitor{scale=1.5}> Client X" as CXC
-}
-
-node "EC2 Instance 1" as T1 {
-    component "Web Application\n(Angular.js)" as W1 #F8D7DA
-    component "Backend API\n(Spring Boot)" as A1 #D4EDDA
-    database "Database\n(postgresql)" as D1 #CFE2F3
-}
-
-node "EC2 Instance 2" as T2 {
-    component "Web Application\n(Angular.js)" as W2 #F8D7DA
-    component "Backend API\n(Spring Boot)" as A2 #D4EDDA
-    database "Database\n(postgresql)" as D2 #CFE2F3
-}
-
-node "EC2 Instance X" as TX {
-    component "Web Application\n(Angular.js)" as WX #F8D7DA
-    component "Backend API\n(Spring Boot)" as AX #D4EDDA
-    database "Database\n(postgresql)" as DX #CFE2F3
-}
-
-node "Shared Services" as SHARED {
-    component "Email Service\n(Spring Boot)\nEC2 Instance" as EMAIL #D4EDDA
-    component "Push Notifications Service\n(Spring Boot)\nEC2 Instance" as PUSH #D4EDDA
-    component "File Storage Service\n(Spring Boot)\nEC2 Instance (500 GiB)" as FILES #D4EDDA
-}
-
-CL1 --> T1 : http://api-1.company.com
-CL2 --> T2 : http://api-2.company.com
-CLX --> TX : http://api-X.company.com
-
-T1 --> SHARED : Service invocation
-T2 --> SHARED : Service invocation
-TX --> SHARED : Service invocation
-@enduml
-```
-
+![Current Architecture](monolith-decomposition-1.png)
+<!-- podman run -i --rm -v $PWD:/w -w /w ghcr.io/plantuml/plantuml:latest -tpng -pipe < system-design/monolith-decomposition-1.plantuml > system-design/monolith-decomposition-1.png -->
 ## Deliverable
 
 Maintenance burden:
