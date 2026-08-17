@@ -49,9 +49,9 @@ test:
     - uv run coverage report
 
 .aws:
-  interruptible: false  # To not interrupt CloudFormation half-way through
+  interruptible: false # To not interrupt CloudFormation half-way through
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH  # Deploy only on main branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH # Deploy only on main branch
   variables:
     STACK_REGISTRY: mac-stack-registry
     STACK_APP: mac-stack-app
