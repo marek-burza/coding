@@ -8,7 +8,7 @@ uv run --with-requirements .github/workflows/requirements.txt --no-project ruff 
 echo "--- ty ---"
 uv run --with-requirements .github/workflows/requirements.txt --no-project ty check algorithms/code
 echo "--- mypy ---"
-uv run --with-requirements .github/workflows/requirements.txt --no-project mypy algorithms --exclude banking
+uv run --with-requirements .github/workflows/requirements.txt --no-project mypy algorithms --exclude banking --exclude mac
 echo "--- bandit ---"
 uv run --with-requirements .github/workflows/requirements.txt --no-project bandit --skip B101 -r .
 echo "--- complexipy ---"

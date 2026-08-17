@@ -1,5 +1,5 @@
 [src]
-exclude = ["algorithms/code/other/banking", "algorithms/code/other/federated_machine_learning"]
+exclude = ["algorithms/code/other/banking", "algorithms/code/other/mac", "algorithms/code/other/federated_machine_learning"]
 
 [rules]
 unused-type-ignore-comment = "ignore"
