@@ -10,7 +10,7 @@ from fastapi.testclient import TestClient
 from conftest import Storage
 from mac import auth, main
 
-PASSWORD = "s3cr3t-token-that-is-not-guessable"
+PASSWORD = "s3cr3t-token-that-is-not-guessable"  # nosec B105 # test fixture, not a real credential
 USERNAME = "mac"
 SALT = bytes.fromhex("404e26599ac6378e19b7543f5ac9f72a")
 STORED = f"{USERNAME}:{SALT.hex()}:{auth.hash_password(PASSWORD, SALT)}"
