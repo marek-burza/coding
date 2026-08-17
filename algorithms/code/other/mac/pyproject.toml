@@ -1,0 +1,53 @@
+[project]
+name = "mac"
+description = "Assignment"
+version = "0.0.0"
+authors = [
+    { name = "noreply", email = "noreply@localhost" }
+]
+license = "LicenseRef-Proprietary"
+readme = "README.md"
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "cloudpathlib[s3]>=0.24.0,<0.25",
+    "fastapi>=0.141.1,<0.142",
+    "pydantic>=2.13.4,<3",
+    "python-multipart>=0.0.32,<0.1",
+    "starlette>=1.3.1,<2",
+    "uvicorn[standard]>=0.52.3,<0.53",
+]
+
+[dependency-groups]
+dev = [
+    "bandit>=1.9.2,<2",
+    "cfn-lint>=1.0.0,<2",
+    "checkov>=3.2.0,<4",
+    "complexipy>=5.0.0,<6",
+    "coverage>=7.13.0,<8",
+    "deptry>=0.25.1,<0.26",
+    "httpx2>=2.7.0,<3",
+    "mypy>=1.19.0,<2",
+    "pytest>=8.4.0,<9",
+    "ruff>=0.16.3,<0.17",
+]
+
+[build-system]
+requires = [ "uv_build>=0.11.28,<0.13" ]
+build-backend = "uv_build"
+
+[tool.coverage.run]
+source = [ "src" ]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 99
+
+[tool.deptry.per_rule_ignores]
+DEP002 = [ "python-multipart", "uvicorn" ]
+
+[tool.pytest.ini_options]
+testpaths = [ "tests" ]
+pythonpath = [ "src", "tests" ]

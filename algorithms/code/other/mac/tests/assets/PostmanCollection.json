@@ -1,0 +1,225 @@
+{
+	"info": {
+		"name": "IEEE 802.11 MAC address parser",
+		"description": "Submit a file, get a task id, fetch or delete the filtered MAC addresses.\n\nSet `baseUrl` to the deployed API to run against AWS. It defaults to localhost so importing this does nothing surprising.\n\nThe deployed API uses HTTP Basic auth when it is configured. Fill in `username` and `password` under the collection's Variables tab; they are deliberately empty here so no credential ships with the file. Locally both can stay empty.\n\n`Upload a file` stores the returned task id in `task_id`, so every other request works without copying it by hand.\n\nThe upload uses form-data with a field named `file`. Leave the Body mode on form-data and use Select Files: a raw body answers 422 `Field required`.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": ""
+		},
+		{
+			"key": "username",
+			"value": "mac"
+		},
+		{
+			"key": "password",
+			"value": ""
+		},
+		{
+			"key": "task_id",
+			"value": "cb66245c996b3a35cee5a9ff8792f6e37d6591a25aa2555515f1c27c25a0ba30"
+		}
+	],
+	"item": [
+		{
+			"name": "Upload a file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"200\", () => pm.response.to.have.status(200));",
+							"pm.test(\"includes the 'mac_addresses_1.txt' task\", function () {",
+							"    pm.expect(pm.response.json().task_id).to.eql(",
+							"        pm.collectionVariables.get(\"task_id\"));",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"description": "Select 'mac_addresses_1.txt' file from disk.",
+							"value": null
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v1/filtering",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"filtering"
+					]
+				},
+				"description": "Stores the file and returns its task id. Filtering happens afterwards, so the result is not ready the instant this returns."
+			}
+		},
+		{
+			"name": "Fetch the results",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// 202 is not a failure: the upload is stored but not filtered yet.",
+							"// Deployed, an S3 event drives an SQS consumer, so give it a moment",
+							"// and send again.",
+							"pm.test(\"200 once processed, 202 while still working\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202]);",
+							"});",
+							"",
+							"if (pm.response.code === 200) {",
+							"    const addresses = pm.response.text().trim().split(\"\\n\");",
+							"    pm.test(\"every address is in standard 00:0F:AC form\", function () {",
+							"        addresses.forEach(a => pm.expect(a).to.match(/^00:0F:AC(?::[0-9A-F]{2}){3}$/));",
+							"    });",
+							"    pm.test(\"no duplicates\", function () {",
+							"        pm.expect(new Set(addresses).size).to.eql(addresses.length);",
+							"    });",
+							"    console.log(addresses.length + \" addresses\");",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v1/filtering/{{task_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"filtering",
+						"{{task_id}}"
+					]
+				},
+				"description": "One MAC address per line as text/plain. 202 while the task is still being processed, 404 if the task id is unknown."
+			}
+		},
+		{
+			"name": "List every task id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"200\", () => pm.response.to.have.status(200));",
+							"pm.test(\"includes the uploaded task\", function () {",
+							"    pm.expect(pm.response.json().task_ids).to.include(",
+							"        pm.collectionVariables.get(\"task_id\"));",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v1/filtering",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"filtering"
+					]
+				},
+				"description": "Every task id, whether still pending or already processed."
+			}
+		},
+		{
+			"name": "Delete the results",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"204\", () => pm.response.to.have.status(204));"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v1/filtering/{{task_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"filtering",
+						"{{task_id}}"
+					]
+				},
+				"description": "Removes the upload and the results. 404 if the task id is unknown, so running this twice returns 204 then 404."
+			}
+		},
+		{
+			"name": "Rejected: a malformed task id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/v1/filtering/not-a-digest",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"filtering",
+						"not-a-digest"
+					]
+				},
+				"description": "A task id must be 64 lowercase hex characters, so this is rejected before anything touches storage. Expect 422."
+			},
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"422, rejected by the task id pattern\", () => pm.response.to.have.status(422));"
+						]
+					}
+				}
+			]
+		}
+	]
+}

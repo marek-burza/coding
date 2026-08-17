@@ -1,0 +1,191 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "DeployStacks",
+			"Effect": "Allow",
+			"Action": [
+				"cloudformation:CreateChangeSet",
+				"cloudformation:DescribeChangeSet",
+				"cloudformation:ExecuteChangeSet",
+				"cloudformation:DeleteChangeSet",
+				"cloudformation:DescribeStacks",
+				"cloudformation:DescribeStackEvents",
+				"cloudformation:CreateStack",
+				"cloudformation:UpdateStack",
+				"cloudformation:DeleteStack"
+			],
+			"Resource": "arn:aws:cloudformation:*:${AWS_ACCOUNT}:stack/mac-stack-*/*"
+		},
+		{
+			"Sid": "TemplateSummaryHasNoStackArn",
+			"Effect": "Allow",
+			"Action": [
+				"cloudformation:GetTemplateSummary"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "ManageRegistry",
+			"Effect": "Allow",
+			"Action": [
+				"ecr:CreateRepository",
+				"ecr:DeleteRepository",
+				"ecr:DescribeRepositories",
+				"ecr:PutLifecyclePolicy",
+				"ecr:DeleteLifecyclePolicy",
+				"ecr:GetLifecyclePolicy",
+				"ecr:PutImageScanningConfiguration",
+				"ecr:PutImageTagMutability",
+				"ecr:TagResource",
+				"ecr:UntagResource",
+				"ecr:ListTagsForResource",
+				"ecr:GetRepositoryPolicy",
+				"ecr:SetRepositoryPolicy"
+			],
+			"Resource": "arn:aws:ecr:*:${AWS_ACCOUNT}:repository/mac-registry"
+		},
+		{
+			"Sid": "AuthenticateToRegistry",
+			"Effect": "Allow",
+			"Action": [
+				"ecr:GetAuthorizationToken"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "PushImageLayers",
+			"Effect": "Allow",
+			"Action": [
+				"ecr:BatchCheckLayerAvailability",
+				"ecr:CompleteLayerUpload",
+				"ecr:InitiateLayerUpload",
+				"ecr:PutImage",
+				"ecr:UploadLayerPart",
+				"ecr:BatchGetImage",
+				"ecr:GetDownloadUrlForLayer"
+			],
+			"Resource": "arn:aws:ecr:*:${AWS_ACCOUNT}:repository/mac-registry"
+		},
+		{
+			"Sid": "ManageBucket",
+			"Effect": "Allow",
+			"Action": [
+				"s3:CreateBucket",
+				"s3:DeleteBucket",
+				"s3:ListBucket",
+				"s3:PutBucketNotification",
+				"s3:GetBucketNotification",
+				"s3:PutBucketPublicAccessBlock",
+				"s3:GetBucketPublicAccessBlock",
+				"s3:PutBucketTagging",
+				"s3:GetBucketTagging",
+				"s3:GetBucketLocation",
+				"s3:GetBucketPolicy",
+				"s3:GetEncryptionConfiguration",
+				"s3:PutEncryptionConfiguration",
+				"s3:GetBucketAcl",
+				"s3:GetBucketVersioning",
+				"s3:GetLifecycleConfiguration"
+			],
+			"Resource": "arn:aws:s3:::mac-stack-app-${AWS_ACCOUNT}-data"
+		},
+		{
+			"Sid": "ManageQueues",
+			"Effect": "Allow",
+			"Action": [
+				"sqs:CreateQueue",
+				"sqs:DeleteQueue",
+				"sqs:GetQueueAttributes",
+				"sqs:SetQueueAttributes",
+				"sqs:GetQueueUrl",
+				"sqs:TagQueue",
+				"sqs:UntagQueue",
+				"sqs:ListQueueTags"
+			],
+			"Resource": "arn:aws:sqs:*:${AWS_ACCOUNT}:mac-stack-app-*"
+		},
+		{
+			"Sid": "ManageFunctions",
+			"Effect": "Allow",
+			"Action": [
+				"lambda:CreateFunction",
+				"lambda:DeleteFunction",
+				"lambda:GetFunction",
+				"lambda:GetFunctionConfiguration",
+				"lambda:UpdateFunctionCode",
+				"lambda:UpdateFunctionConfiguration",
+				"lambda:AddPermission",
+				"lambda:RemovePermission",
+				"lambda:GetPolicy",
+				"lambda:TagResource",
+				"lambda:UntagResource",
+				"lambda:ListTags"
+			],
+			"Resource": "arn:aws:lambda:*:${AWS_ACCOUNT}:function:mac-stack-app-*"
+		},
+		{
+			"Sid": "ManageEventSourceMappings",
+			"Effect": "Allow",
+			"Action": [
+				"lambda:CreateEventSourceMapping",
+				"lambda:DeleteEventSourceMapping",
+				"lambda:GetEventSourceMapping",
+				"lambda:UpdateEventSourceMapping"
+			],
+			"Resource": "*"
+		},
+		{
+			"Sid": "ManageLogGroups",
+			"Effect": "Allow",
+			"Action": [
+				"logs:CreateLogGroup",
+				"logs:DeleteLogGroup",
+				"logs:DescribeLogGroups",
+				"logs:PutRetentionPolicy",
+				"logs:DeleteRetentionPolicy",
+				"logs:TagResource",
+				"logs:UntagResource",
+				"logs:ListTagsForResource"
+			],
+			"Resource": [
+				"arn:aws:logs:*:${AWS_ACCOUNT}:log-group:/aws/lambda/mac-stack-app-*",
+				"arn:aws:logs:*:${AWS_ACCOUNT}:log-group:/aws/apigateway/mac-stack-app*"
+			]
+		},
+		{
+			"Sid": "ManageHttpApi",
+			"Effect": "Allow",
+			"Action": [
+				"apigateway:POST",
+				"apigateway:GET",
+				"apigateway:PATCH",
+				"apigateway:DELETE",
+				"apigateway:PUT",
+				"apigateway:TagResource",
+				"apigateway:UntagResource"
+			],
+			"Resource": "arn:aws:apigateway:*::/apis*"
+		},
+		{
+			"Sid": "TODOReplaceWithCloudFormationServiceRole",
+			"Effect": "Allow",
+			"Action": [
+				"iam:CreateRole",
+				"iam:DeleteRole",
+				"iam:GetRole",
+				"iam:PassRole",
+				"iam:TagRole",
+				"iam:UntagRole",
+				"iam:AttachRolePolicy",
+				"iam:DetachRolePolicy",
+				"iam:PutRolePolicy",
+				"iam:DeleteRolePolicy",
+				"iam:GetRolePolicy",
+				"iam:ListRolePolicies",
+				"iam:ListAttachedRolePolicies"
+			],
+			"Resource": "arn:aws:iam::${AWS_ACCOUNT}:role/mac-stack-*"
+		}
+	]
+}

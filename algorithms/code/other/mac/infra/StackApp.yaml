@@ -1,0 +1,287 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Assignment Stack - Service Application
+
+Parameters:
+
+  ImageUri:
+    Type: String
+    Description: ECR image to run, tagged with the commit it was built from
+
+  BasicAuthHash:
+    Type: String
+    Default: ""
+    NoEcho: true
+    Description: Basic auth on the public routes
+
+Resources:
+
+  #
+  # Storage and queueing
+  #
+
+  DeadLetterQueue:
+    Type: AWS::SQS::Queue
+    # checkov:skip=CKV_AWS_27:Encrypted at rest via SSE-SQS (SqsManagedSseEnabled).
+    Properties:
+      QueueName: !Sub "${AWS::StackName}-dead-letter"
+      MessageRetentionPeriod: 1209600  # 14 days
+      SqsManagedSseEnabled: true
+
+  TaskQueue:
+    Type: AWS::SQS::Queue
+    # checkov:skip=CKV_AWS_27:Encrypted at rest via SSE-SQS (SqsManagedSseEnabled).
+    Properties:
+      QueueName: !Sub "${AWS::StackName}-uploads"
+      VisibilityTimeout: 360  # AWS recommends >=6xTimeout for an SQS event source mapping
+      RedrivePolicy:
+        deadLetterTargetArn: !GetAtt DeadLetterQueue.Arn
+        maxReceiveCount: 3
+      SqsManagedSseEnabled: true
+
+  TaskQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      Queues:
+        - !Ref TaskQueue
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: s3.amazonaws.com
+            Action: sqs:SendMessage
+            Resource: !GetAtt TaskQueue.Arn
+            Condition:
+              ArnLike:
+                aws:SourceArn: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data"
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+
+  DataBucket:
+    Type: AWS::S3::Bucket
+    # checkov:skip=CKV_AWS_21:Content-addressed storage - the object key is the SHA-256 of its content, so a key can never hold differing versions. Versioning would add cost with no benefit here.
+    # checkov:skip=CKV_AWS_18:Server access logging needs a dedicated log bucket, out of scope for the assignment.
+    DependsOn: TaskQueuePolicy
+    Properties:
+      # Named rather than generated (keeps the template acyclic).
+      # The account ID is in the name to reduce chance of a clash with an existing one.
+      BucketName: !Sub "${AWS::StackName}-${AWS::AccountId}-data"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      NotificationConfiguration:
+        QueueConfigurations:
+          - Event: 's3:ObjectCreated:*'
+            Queue: !GetAtt TaskQueue.Arn
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: uploads/
+
+  #
+  # Compute
+  #
+
+  ApiFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+            Condition:
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: storage
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data/*"
+              - Effect: Allow
+                Action: s3:ListBucket
+                Resource: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data"
+
+  ConsumerFunctionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+            Condition:
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: storage
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data/*"
+              - Effect: Allow
+                Action: s3:ListBucket
+                Resource: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data"
+        - PolicyName: queue
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - sqs:ReceiveMessage
+                  - sqs:DeleteMessage
+                  - sqs:GetQueueAttributes
+                Resource: !GetAtt TaskQueue.Arn
+
+  ApiFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    # checkov:skip=CKV_AWS_158:Default CloudWatch encryption is sufficient for this assignment.
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-api"
+      RetentionInDays: 14
+
+  ConsumerFunctionLogGroup:
+    Type: AWS::Logs::LogGroup
+    # checkov:skip=CKV_AWS_158:Default CloudWatch encryption is sufficient for this assignment.
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-consumer"
+      RetentionInDays: 14
+
+  ApiFunction:
+    Type: AWS::Lambda::Function
+    # checkov:skip=CKV_AWS_117:No VPC resources to reach (a VPC would add cost with no security benefit).
+    # checkov:skip=CKV_AWS_173:The only sensitive env var is MAC_BASIC_AUTH, which holds a scrypt hash (not a plaintext secret) and is NoEcho. Secrets Manager would be the production route.
+    # checkov:skip=CKV_AWS_115:API Gateway throttling (1 rps, burst 5) already bounds this function.
+    # checkov:skip=CKV_AWS_116:Invoked synchronously by API Gateway; Lambda DeadLetterConfig applies only to asynchronous invocations.
+    DependsOn: ApiFunctionLogGroup
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-api"
+      PackageType: Image
+      Code:
+        ImageUri: !Ref ImageUri
+      Role: !GetAtt ApiFunctionRole.Arn
+      Timeout: 30
+      MemorySize: 1024
+      EphemeralStorage:
+        Size: 512
+      Environment:
+        Variables:
+          MAC_STORAGE: !Sub "s3://${AWS::StackName}-${AWS::AccountId}-data"
+          MAC_ROLE: api
+          MAC_BACKGROUND_PROCESSING: "false"
+          MAC_BASIC_AUTH: !Ref BasicAuthHash
+
+  ConsumerFunction:
+    Type: AWS::Lambda::Function
+    # checkov:skip=CKV_AWS_117:No VPC resources to reach (a VPC would add cost with no security benefit).
+    # checkov:skip=CKV_AWS_173:The consumer has no secret env vars.
+    # checkov:skip=CKV_AWS_115:Concurrency is bounded by the SQS event source (BatchSize 1, low volume).
+    # checkov:skip=CKV_AWS_116:Processing failures are handled by the SQS RedrivePolicy to the DeadLetterQueue; Lambda DeadLetterConfig is async-only and does not apply to SQS event source mappings.
+    DependsOn: ConsumerFunctionLogGroup
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-consumer"
+      PackageType: Image
+      Code:
+        ImageUri: !Ref ImageUri
+      Role: !GetAtt ConsumerFunctionRole.Arn
+      Timeout: 60
+      MemorySize: 1024
+      EphemeralStorage:
+        Size: 512
+      Environment:
+        Variables:
+          MAC_STORAGE: !Sub "s3://${AWS::StackName}-${AWS::AccountId}-data"
+          MAC_ROLE: consumer
+          MAC_BACKGROUND_PROCESSING: "false"
+
+  ConsumerEventSourceMapping:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn: !GetAtt TaskQueue.Arn
+      FunctionName: !GetAtt ConsumerFunction.Arn
+      BatchSize: 1  # Simplifies handling (either succeeds or fails, never partial success/failure)
+      Enabled: true
+
+  #
+  # API
+  #
+
+  HttpApi:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Name: !Ref AWS::StackName
+      ProtocolType: HTTP
+
+  HttpApiIntegration:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId: !Ref HttpApi
+      IntegrationType: AWS_PROXY
+      IntegrationUri: !GetAtt ApiFunction.Arn
+      PayloadFormatVersion: '2.0'
+
+  HttpApiRoute:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId: !Ref HttpApi
+      RouteKey: $default  # Forward everything, leave routing to FastAPI
+      Target: !Sub "integrations/${HttpApiIntegration}"
+
+  HttpApiStage:
+    Type: AWS::ApiGatewayV2::Stage
+    # checkov:skip=CKV_AWS_95:Access logging goes through CloudWatch vended-log-delivery - that is something to be enabled in production.
+    Properties:
+      ApiId: !Ref HttpApi
+      StageName: $default
+      AutoDeploy: true
+      DefaultRouteSettings:
+        ThrottlingRateLimit: 1
+        ThrottlingBurstLimit: 5
+
+  ApiInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref ApiFunction
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${HttpApi}/*"
+
+Outputs:
+
+  ApiEndpoint:
+    Description: Base URL of the API
+    Value: !GetAtt HttpApi.ApiEndpoint
+
+  DataBucketName:
+    Description: Bucket holding uploads/ and results/
+    Value: !Ref DataBucket
+
+  TaskQueueUrl:
+    Description: Queue that S3 notifies and the consumer drains
+    Value: !Ref TaskQueue
+
+  DeadLetterQueueUrl:
+    Description: Where messages land after crossing threshold of failed attempts
+    Value: !Ref DeadLetterQueue

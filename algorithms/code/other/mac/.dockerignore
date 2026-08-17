@@ -1,0 +1,12 @@
+.complexipy_cache
+.coverage
+.mypy_cache
+.pytest_cache
+.ruff_cache
+.uv-cache
+.uv-python
+.venv
+__pycache__
+infra
+report.xml
+tests

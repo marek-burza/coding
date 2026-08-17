@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Assignment Stack - Container Registry
+
+Resources:
+
+  MACRegistry:
+    Type: AWS::ECR::Repository
+    # checkov:skip=CKV_AWS_136:AES256 (SSE-S3) is a deliberate choice; a customer-managed KMS key is warranted only when key rotation policies, usage auditing, or regulatory compliance are needed (see README).
+    # checkov:skip=CKV_AWS_51:Tags are immutable via ImageTagMutability IMMUTABLE_WITH_EXCLUSION (only `latest` is mutable); checkov only recognises the plain IMMUTABLE value.
+    Properties:
+      RepositoryName: mac-registry
+      ImageScanningConfiguration:
+        ScanOnPush: true
+      ImageTagMutability: IMMUTABLE_WITH_EXCLUSION
+      ImageTagMutabilityExclusionFilters:
+        - ImageTagMutabilityExclusionFilterType: WILDCARD
+          ImageTagMutabilityExclusionFilterValue: latest
+      EncryptionConfiguration:
+        EncryptionType: AES256
+      LifecyclePolicy:
+        LifecyclePolicyText: |
+          {
+            "rules": [
+              {
+                "rulePriority": 1,
+                "description": "Keep last 10 images",
+                "selection": {
+                  "tagStatus": "any",
+                  "countType": "imageCountMoreThan",
+                  "countNumber": 10
+                },
+                "action": { "type": "expire" }
+              }
+            ]
+          }
+      EmptyOnDelete: true
+      RepositoryPolicyText:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: LambdaECRImageRetrievalPolicy
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action:
+              - ecr:BatchGetImage
+              - ecr:GetDownloadUrlForLayer
+            Condition:
+              StringEquals:
+                aws:SourceAccount: !Ref AWS::AccountId
+
+Outputs:
+
+  RepositoryUri:
+    Description: Registry URI to tag and push images to, used by the build stage
+    Value: !GetAtt MACRegistry.RepositoryUri
+    Export:
+      Name: !Sub "${AWS::StackName}-repository-uri"

@@ -1,0 +1,97 @@
+default:
+  image: ghcr.io/astral-sh/uv:alpine3.23
+
+stages:
+  - check
+  - provision
+  - build
+  - deploy
+
+variables:
+  UV_CACHE_DIR: "$CI_PROJECT_DIR/.uv-cache"
+  UV_PYTHON_INSTALL_DIR: "$CI_PROJECT_DIR/.uv-python"
+  UV_PYTHON: python3.13
+  UV_LINK_MODE: copy
+  UV_HTTP_TIMEOUT: "60"
+
+.uv:
+  cache:
+    key:
+      files:
+        - uv.lock
+    paths:
+      - .uv-cache
+      - .uv-python
+  before_script:
+    - uv sync --locked
+  after_script:
+    - uv cache prune --ci
+
+lint:
+  extends: .uv
+  stage: check
+  script:
+    - uv run ruff check --select I,E,B,SIM src
+    - uv run ruff format --check --diff
+    - uv run deptry .
+    - uv run mypy src
+    - uv run bandit -r src
+    - uv run complexipy src --max-complexity-allowed 25
+    - uv run cfn-lint infra/*.yaml
+    - uv run checkov -d infra --quiet --compact
+
+test:
+  extends: .uv
+  stage: check
+  script:
+    - unset MAC_BASIC_AUTH
+    - uv run coverage run -m pytest -v
+    - uv run coverage report
+
+.aws:
+  interruptible: false  # To not interrupt CloudFormation half-way through
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH  # Deploy only on main branch
+  variables:
+    STACK_REGISTRY: mac-stack-registry
+    STACK_APP: mac-stack-app
+
+provision:
+  extends: .aws
+  stage: provision
+  image:
+    name: amazon/aws-cli:latest
+    entrypoint: [""]
+  script:
+    - aws cloudformation deploy --template-file infra/StackRegistry.yaml --stack-name "$STACK_REGISTRY" --no-fail-on-empty-changeset
+
+build:
+  extends: .aws
+  stage: build
+  image: docker:28
+  services:
+    - docker:28-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: "/certs"
+    DOCKER_TLS_VERIFY: "1"
+    DOCKER_CERT_PATH: "/certs/client"
+  before_script:
+    - apk add --no-cache aws-cli
+  script:
+    - REPOSITORY_URI=$(aws cloudformation describe-stacks --stack-name "$STACK_REGISTRY" --query "Stacks[0].Outputs[?OutputKey=='RepositoryUri'].OutputValue" --output text)
+    - aws ecr get-login-password | docker login --username AWS --password-stdin "$REPOSITORY_URI"
+    - docker build -t "$REPOSITORY_URI:$CI_COMMIT_SHA" -t "$REPOSITORY_URI:latest" .
+    - docker push "$REPOSITORY_URI:$CI_COMMIT_SHA"
+    - docker push "$REPOSITORY_URI:latest"
+
+deploy:
+  extends: .aws
+  stage: deploy
+  image:
+    name: amazon/aws-cli:latest
+    entrypoint: [""]
+  script:
+    - REPOSITORY_URI=$(aws cloudformation describe-stacks --stack-name "$STACK_REGISTRY" --query "Stacks[0].Outputs[?OutputKey=='RepositoryUri'].OutputValue" --output text)
+    - aws cloudformation deploy --template-file infra/StackApp.yaml --stack-name "$STACK_APP" --capabilities CAPABILITY_IAM --no-fail-on-empty-changeset --parameter-overrides "ImageUri=$REPOSITORY_URI:$CI_COMMIT_SHA" "BasicAuthHash=$MAC_BASIC_AUTH"
+    - aws cloudformation describe-stacks --stack-name "$STACK_APP" --query "Stacks[0].Outputs[?OutputKey=='ApiEndpoint'].OutputValue" --output text
