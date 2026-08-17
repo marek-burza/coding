@@ -1,12 +1,12 @@
 import os
 import shutil
 from pathlib import Path
-from typing import cast
+from typing import TypeAlias, cast
 
 from cloudpathlib import AnyPath, CloudPath
 
 # `AnyPath` gives `Path` for a local directory and `CloudPath` for an "s3://"
-StoragePath = Path | CloudPath
+StoragePath: TypeAlias = Path | CloudPath
 STORAGE = cast(StoragePath, AnyPath(os.environ.get("MAC_STORAGE", Path.cwd())))
 UPLOADS_DIR = STORAGE / "uploads"
 RESULTS_DIR = STORAGE / "results"

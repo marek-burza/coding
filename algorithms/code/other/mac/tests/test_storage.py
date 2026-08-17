@@ -5,7 +5,6 @@ import pytest
 from cloudpathlib.local import LocalS3Client, LocalS3Path
 from fastapi import status
 from fastapi.testclient import TestClient
-from test_sample_files import ASSETS
 
 from mac import main, storage
 
