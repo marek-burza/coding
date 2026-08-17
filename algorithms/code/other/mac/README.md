@@ -54,7 +54,7 @@ If you have used AI for this assignment, please mention exactly which parts have
 
 #### Web framework & server
 
-I picked `FastAPI` since recently it is most familiar to me, it is fast, self documenting, and well integrated with Pydantic for validation (though I did use `Flask`, `Django`, `aiohttp` in the past). Similar applies to the choice of `uvicorn` - most familiar to me recently, fast ASGI web server, frequently coupled with `FastAPI` (though, on occasion, I also used `uWSGI` in the past).
+I picked `FastAPI` since recently it is most familiar to me, it is fast, self-documenting, and well integrated with Pydantic for validation (though I did use `Flask`, `Django`, `aiohttp` in the past). Similar applies to the choice of `uvicorn` - most familiar to me recently, fast ASGI web server, frequently coupled with `FastAPI` (though, on occasion, I also used `uWSGI` in the past).
 
 #### API Design
 
@@ -178,7 +178,7 @@ This of course required also `ECR`:
 
 #### API
 
-For simplicity, I coupled `Lambda` with `API Gateway` to expose the endpoints. Both come with important limitations to be aware of - `API Gateway` caps an HTTP API request at 10 MB, `Lambda` caps a synchronous invocation payload at 6 MB, and Base64 inflation makes the practical limit roughly 4.5 MB for the file upload (see [`API Gateway`](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-quotas.html) & [`Lambda`](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) quotas). The provided files are smaller than the limit but if higher cap is needed then this would require a different approach - e.g. use presigned `S3` `PUT` URL or move to `ECS` with `ALB`.
+For simplicity, I coupled `Lambda` with `API Gateway` to expose the endpoints. Both come with important limitations to be aware of - `API Gateway` caps an HTTP API request at 10 MB, `Lambda` caps a synchronous invocation payload at 6 MB, and base64 inflation makes the practical limit roughly 4.5 MB for the file upload (see [`API Gateway`](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-quotas.html) & [`Lambda`](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) quotas). The provided files are smaller than the limit but if higher cap is needed then this would require a different approach - e.g. use presigned `S3` `PUT` URL or move to `ECS` with `ALB`.
 
 #### Cloud Storage
 
@@ -200,11 +200,11 @@ Selection of the processing variant is governed by the `MAC_BACKGROUND_PROCESSIN
 
 The presence of the `POST /events` endpoint is governed by the `MAC_ROLE` environment variable - for `"consumer"` the endpoint is exposed,  for `"api"` it is not.
 
-| Deployment           | MAC_ROLE | MAC_BACKGROUND_PROCESSING |
-| -------------------- | -------- | ------------------------- |
-| Local (API+Consumer) | api      | true                      |
-| AWS API              | api      | false                     |
-| AWS Consumer         | consumer | false                     |
+| Deployment           | MAC_ROLE   | MAC_BACKGROUND_PROCESSING |
+| -------------------- | ---------- | ------------------------- |
+| Local (API+Consumer) | `api`      | true                      |
+| AWS API              | `api`      | false                     |
+| AWS Consumer         | `consumer` | false                     |
 
 As a side note: Picking `SHA-256` digest as the `Task ID` has the added benefit that in case of any duplication of tasks coming through `SQS` (re-play, retry, etc.) the files for which the results exist, do not get reprocessed.
 
@@ -260,9 +260,9 @@ These items were written by me, without use of AI:
 Elements, for which I used AI:
 - `LifecyclePolicyText` contents in `infra/StackRegistry.yaml` file (since not so important for the assignment, the rest of the file is mine).
 - Entries with `Type: AWS::ApiGatewayV2::*` in `infra/StackApp.yaml` (I have not used `v2` before so to stay fast I let AI generate an example and checking the reference documentation I reworked it for my purpose).
-- `REFERENCE` & `reference_addresses` in `tests/test_sample_files.py` - to get an independent re-implementation of the RegExp to strip spaces, match whole lines, normalise.
-- Postman collection. I have not used Postman much - usually preferring programmatic verification methods, thus I opted to generate it with AI, given a couple of carfully prescribed tests.
-- `s3_client` fixture in `tests/test_storage.py` - the AI helped me to discover a way to mock-test S3 storage (I wasn't aware of `LocalS3Path` existance), the tests using it are mine
+- `REFERENCE` & `reference_addresses` in `tests/test_sample_files.py` - to get an independent re-implementation of the regular expression to strip spaces, match whole lines, normalise.
+- Postman collection. I have not used Postman much - usually preferring programmatic verification methods, thus I opted to generate it with AI, given a couple of carefully prescribed tests.
+- `s3_client` fixture in `tests/test_storage.py` - the AI helped me to discover a way to mock-test S3 storage (I wasn't aware of `LocalS3Path` existence), the tests using it are mine
 - After adding `checkov` and resolving myself some of the issues it found in `infra/StackApp.yaml`, I let the AI add inline skip suppression for the ones I disagreed with.
 
 ## Appendices
