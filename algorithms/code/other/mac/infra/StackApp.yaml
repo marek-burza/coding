@@ -19,6 +19,8 @@ Resources:
 
   DeadLetterQueue:
     Type: AWS::SQS::Queue
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
     # checkov:skip=CKV_AWS_27:Encrypted at rest via SSE-SQS (SqsManagedSseEnabled).
     Properties:
       QueueName: !Sub "${AWS::StackName}-dead-letter"
@@ -27,10 +29,13 @@ Resources:
 
   TaskQueue:
     Type: AWS::SQS::Queue
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
     # checkov:skip=CKV_AWS_27:Encrypted at rest via SSE-SQS (SqsManagedSseEnabled).
     Properties:
       QueueName: !Sub "${AWS::StackName}-uploads"
       VisibilityTimeout: 360 # AWS recommends >=6xTimeout for an SQS event source mapping
+      MessageRetentionPeriod: 345600 # 4 days, the AWS default made explicit
       RedrivePolicy:
         deadLetterTargetArn: !GetAtt DeadLetterQueue.Arn
         maxReceiveCount: 3
@@ -51,12 +56,14 @@ Resources:
             Resource: !GetAtt TaskQueue.Arn
             Condition:
               ArnLike:
-                aws:SourceArn: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data"
+                aws:SourceArn: !Sub "arn:${AWS::Partition}:s3:::${AWS::StackName}-${AWS::AccountId}-data"
               StringEquals:
                 aws:SourceAccount: !Ref AWS::AccountId
 
   DataBucket:
     Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
     # checkov:skip=CKV_AWS_21:Content-addressed storage - the object key is the SHA-256 of its content, so a key can never hold differing versions. Versioning would add cost with no benefit here.
     # checkov:skip=CKV_AWS_18:Server access logging needs a dedicated log bucket, out of scope for the assignment.
     DependsOn: TaskQueuePolicy
@@ -97,7 +104,7 @@ Resources:
               StringEquals:
                 aws:SourceAccount: !Ref AWS::AccountId
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - !Sub "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
       Policies:
         - PolicyName: storage
           PolicyDocument:
@@ -108,10 +115,10 @@ Resources:
                   - s3:GetObject
                   - s3:PutObject
                   - s3:DeleteObject
-                Resource: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data/*"
+                Resource: !Sub "arn:${AWS::Partition}:s3:::${AWS::StackName}-${AWS::AccountId}-data/*"
               - Effect: Allow
                 Action: s3:ListBucket
-                Resource: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data"
+                Resource: !Sub "arn:${AWS::Partition}:s3:::${AWS::StackName}-${AWS::AccountId}-data"
 
   ConsumerFunctionRole:
     Type: AWS::IAM::Role
@@ -127,7 +134,7 @@ Resources:
               StringEquals:
                 aws:SourceAccount: !Ref AWS::AccountId
       ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+        - !Sub "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
       Policies:
         - PolicyName: storage
           PolicyDocument:
@@ -138,10 +145,10 @@ Resources:
                   - s3:GetObject
                   - s3:PutObject
                   - s3:DeleteObject
-                Resource: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data/*"
+                Resource: !Sub "arn:${AWS::Partition}:s3:::${AWS::StackName}-${AWS::AccountId}-data/*"
               - Effect: Allow
                 Action: s3:ListBucket
-                Resource: !Sub "arn:aws:s3:::${AWS::StackName}-${AWS::AccountId}-data"
+                Resource: !Sub "arn:${AWS::Partition}:s3:::${AWS::StackName}-${AWS::AccountId}-data"
         - PolicyName: queue
           PolicyDocument:
             Version: "2012-10-17"
@@ -155,6 +162,8 @@ Resources:
 
   ApiFunctionLogGroup:
     Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
     # checkov:skip=CKV_AWS_158:Default CloudWatch encryption is sufficient for this assignment.
     Properties:
       LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-api"
@@ -162,6 +171,8 @@ Resources:
 
   ConsumerFunctionLogGroup:
     Type: AWS::Logs::LogGroup
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
     # checkov:skip=CKV_AWS_158:Default CloudWatch encryption is sufficient for this assignment.
     Properties:
       LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-consumer"
@@ -264,7 +275,7 @@ Resources:
       FunctionName: !Ref ApiFunction
       Action: lambda:InvokeFunction
       Principal: apigateway.amazonaws.com
-      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${HttpApi}/*"
+      SourceArn: !Sub "arn:${AWS::Partition}:execute-api:${AWS::Region}:${AWS::AccountId}:${HttpApi}/*"
 
 Outputs:
   ApiEndpoint:
