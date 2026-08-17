@@ -4,10 +4,10 @@ import json
 from collections.abc import Iterator
 
 import pytest
-from conftest import Storage
 from fastapi import status
 from fastapi.testclient import TestClient
 
+from conftest import Storage
 from mac import main
 
 SAMPLE = b"00:0F:AC:15:20:13\n00-0f -ac-15 -20-13\njunk\n"

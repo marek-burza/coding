@@ -48,6 +48,9 @@ fail_under = 99
 [tool.deptry.per_rule_ignores]
 DEP002 = [ "python-multipart", "uvicorn" ]
 
+[tool.ruff.lint.isort]
+known-first-party = [ "mac", "conftest" ]
+
 [tool.pytest.ini_options]
 testpaths = [ "tests" ]
 pythonpath = [ "src", "tests" ]

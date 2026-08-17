@@ -1,9 +1,10 @@
 import hashlib
 
 import pytest
-from conftest import Storage
 from fastapi import status
 from fastapi.testclient import TestClient
+
+from conftest import Storage
 
 STANDARD = b"00:0F:AC:15:20:13"
 DASHED = b"00-0f-ac-15-20-13"
