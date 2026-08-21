@@ -10,9 +10,9 @@ func CutTheSticks(arr []int32) []int32 {
 	slices.Sort(arr)
 	cuts := make([]int32, 0)
 	count := int32(0)
-	for i := len(arr) - 1; i >= 0; i-- {
+	for i, a := range slices.Backward(arr) {
 		count++
-		if i == 0 || arr[i] != arr[i-1] {
+		if i == 0 || a != arr[i-1] {
 			cuts = append(cuts, count)
 		}
 	}
