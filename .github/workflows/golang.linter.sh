@@ -3,6 +3,7 @@
 set -e
 
 go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
+go install golang.org/x/vuln/cmd/govulncheck@latest
 
 cd algorithms
 gofmt -d .
@@ -13,3 +14,4 @@ if [ -n "$fixes" ]; then
 	exit 1
 fi
 go vet ./...
+govulncheck ./...
