@@ -17,7 +17,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Preparing
-        uses: astral-sh/setup-uv@v10.0.0
+        uses: astral-sh/setup-uv@v10.0.1
         with:
           version: "latest"
       - name: Linting
