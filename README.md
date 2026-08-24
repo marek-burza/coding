@@ -1,16 +1,23 @@
 # Training Coding
 
-## General Remarks
+## General Approach
 
+### 0. Be the tech lead
+
+- Iterate **fast** on the design while prioritizing what to work on next
 - Talk through your thinking process, flag uncertainty
-- Be: fast, positive/enthusiastic/passionate, transparent, fact-based, methodical, and express explicitly (to prevent hidden assumptions and getting stuck)
-- If stuck: **remain calm**, check assumptions, **try more examples**, **simplify**, **ask**, avoid silence or filling it, ["Dare to be the idiot"](https://www.youtube.com/watch?v=BkLzo_oNVho)
+- Communicate explicitly/transparently - trade-offs, decisions (to prevent hidden assumptions and getting stuck)
+- Be positive, fact-based, **remain calm**
+- If stuck: check assumptions, **try different examples**, **simplify**, ["dare to be the idiot"](https://www.youtube.com/watch?v=BkLzo_oNVho), **ask for help** if necessary
 
----
+### 1. Disambiguate and understand
 
-## Algorithm Design
+- Gather requirements - go from an ill-defined goal to a formulated statement of what to build (and what is out of scope)
+- Beware of: assumptions, **"familiar" exercises**, **early optimization**
+- Start simple / MVP, then explore beyond
+- Agree on **scope** / **use cases**
 
-### 1. Disambiguate / **Clarify by example** (✅ ❎)
+Example clarifying questions:
 
 - Missing details? Special cases & their indication / handling?
 - Restrictions? Guarantees?
@@ -18,24 +25,29 @@
 - Can I modify the input data structure?
 - Function signature & spec?
 - Accounted for entirety of interviewer's description?
-- Beware of: assumptions, **"familiar" exercises**, **early optimization**; Start simple
+- Mobile vs. web? API vs UI? Customizable? Monetization? Descending or random order? Analytics? Scale / numbers?
 
 ### 2. Talk through the design process / List ideas
 
-- List alternatives telling their pros and cons (e.g. time/space complexity); is there a time vs. space trade-off?
-- Tactic: Write (or draw) examples to identify a pattern
-- Tactic: Simplify (relax constraints) then generalize
-- Tactic: Base case & build up, dynamic programming (top-down - memoization, bottom-up - tabulation)
-- Tactic: Match to other similar problem / data struct. For example: **heap** (with _O(log(n))_ insert & delete, _O(n)_ search), **graph** (_X × E (adjacency list) vs. N² / 8 (adjacency matrix)_ - X is pointer size in bytes, and 8 is from boolean packing), stack, hashtable, etc.
-- Pick one achievable in an interview (**solution likely to be simple enough**); indicate complexity (_O(N × log(N))_ for sorting, _O(N²)_ worst case for quicksort)
+- List alternatives / solution space telling their pros and cons (e.g. time/space complexity); is there a time vs. space trade-off?
+- Start with basic, **abstract** design (e.g. key-value store, single web server)
 
-### 3. Code
+Tactics:
+
+- Write (or draw) examples to identify a pattern
+- Simplify (relax constraints) then generalize
+- Base case & build up, dynamic programming (top-down - memoization, bottom-up - tabulation)
+- Match to other similar problem / data struct. For example: **heap** (with _O(log(n))_ insert & delete, _O(n)_ search), **graph** (_X × E (adjacency list) vs. N² / 8 (adjacency matrix)_ - X is pointer size in bytes, and 8 is from boolean packing), stack, hashtable, etc.
+- Pick solution achievable in an interview (**it is likely to be simple enough**)
+
+### 3. Code / Implement
 
 - Pick a data structure
-- Modularize (break-up code into distinct parts for clarity)
-- Test input (as a remark)
+- Modularize (break-up code into distinct parts for clarity). For system design: Delineate what is where (cloud, user's equipment)
+- Validate input (as a remark)
 - Beware of < vs <=, +1 vs +0, null checks, overflows
-- Code must compile - obey syntax, but okay to ask if don't remember name or behavior
+- Okay to ask if API unknown (name, arguments, etc.)
+- Indicate complexity (_O(N × log(N))_ for sorting, _O(N²)_ worst case for quicksort); **Ballpark estimates**
 
 ### 4. Test
 
@@ -43,10 +55,15 @@
 - Normal case
 - Non-trivial, corner cases
 - Full coverage time permitting
+- System design: Describe how the user interacts with the system and what is the sequence (of inner system interactions)
+- **Say what can fail / overflow / bottleneck**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
 - (Other: invalid input, randomized tests, load testing)
-- Point out options for refactoring (?)
 
-### 5. Keep improving - can we do better?
+### 5. Iterate - Keep improving (can we do better?)
+
+- Prioritize the next steps
+- Is anything missing (look closer at details/aspects)?
+- How would it change the behavior of users?
 
 ### [Practice algorithm design challenges](algorithms)
 
@@ -65,7 +82,7 @@
 - [ACM-ICPC questions](https://icpc.baylor.edu/worldfinals/problems)
 - [Codejam questions](https://code.google.com/codejam/past-contests)
 
-### Additional Materials
+### Additional Coding Materials
 
 - [Patterns for Coding Questions](https://www.designgurus.io/course/grokking-the-coding-interview) ❗
 - [LeetCode - Top Interview Questions](https://leetcode.com/explore/featured/card/top-interview-questions-easy/) ❗
@@ -77,46 +94,7 @@
 - [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
 - [Coding Interview University](https://github.com/jwasham/coding-interview-university)
 
----
-
-## System Design
-
-### 0. Be the tech lead
-
-- Iterate **quickly** on the design while prioritizing what to work on next
-- Communicate trade-offs, decisions
-- Have a dialog with your stakeholder (interviewer)
-- Dare to ask for help if necessary (but own it with confidence)
-
-### 1. Explore and understand
-
-- Go from an ill-defined goal to a formulated statement of what to build (and what is out of scope)
-- **Disambiguate**, gather requirements - ask clarifying questions (missing details or restrictions) - beware of assumptions!
-- Agree on **scope** / **use cases**
-  (First a minimum viable product then explore other functions - embodiment, features, feature aspects/specifics, scale/numbers: Mobile vs. web? API vs UI? Customizable? Monetization? Descending or random order? Analytics? Scale / numbers?)
-
-### 2. Design - break down the system into simple parts
-
-- Start with basic, **abstract** design (e.g. key-value store, web server)
-- Delineate what is where (cloud, user's equipment)
-- Describe how the user interacts with the system and what is the sequence (of inner system interactions)
-- Prioritize the next steps
-
-### 3. Scale-up / distribute
-
-- **Say what can fail / overflow / bottleneck**, **trade-offs** (CAP theorem - consistency, availability, partitioning),
-- Say how to distribute and how to fix what is broken by distributing
-- Show specific alternatives / solution space
-- **Ballpark estimates**
-- If you do not know something - be upfront about it but do offer a direction
-- If you are particularly familiar with an aspect - do mention it
-
-### 4. Iterate
-
-- Is anything missing (look closer at details/aspects)?
-- How would it change the behavior of users?
-
-### Additional materials
+### Additional System Design Materials
 
 - [Alex Yu - System Design Interview](https://www.amazon.com/dp/B08B3FWYBX/ref=cm_sw_em_r_mt_dp_X3C1WZV5Q0VX0Q0HX7CX) ❗
 - [NeetCode: System Design (including 20 system design concepts in 10 Minutes)](https://www.youtube.com/playlist?list=PLot-Xpze53le35rQuIbRET3YwEtrcJfdt) ❗
