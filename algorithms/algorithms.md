@@ -78,22 +78,6 @@ REMOVE OUTGOING SIMILAR
 
 ---
 
-## TRIE TREE
-
-reTRIEval, PREFIX TREE<br/>
-(MARKOV CHAIN TXT GEN, AUTOCOMPLETE)<br/>
-EXAMPLE: For autocomplete as you build the trie add a flag to each node,
-indicating if this character is a terminating one.
-
----
-
-## SELF-BALANCING BST
-
-Java - red-black tree: TreeMap<br/>
-Other algorithm: AVL tree (uses rotation)
-
----
-
 ## QUICK SORT
 
 - (**shuffle** first or sample for pivot - median as pivot helps; [LeetCode: shuffle-an-array](https://leetcode.com/problems/shuffle-an-array/))
