@@ -5,8 +5,7 @@
 ### 0. Be the tech lead
 
 - Iterate **fast** on the design while prioritizing what to work on next
-- Talk through your thinking process, flag uncertainty
-- Communicate explicitly/transparently - trade-offs, decisions (to prevent hidden assumptions and getting stuck)
+- Talk through your thinking process explicitly/transparently - trade-offs, decisions, uncertainty (to prevent hidden assumptions and getting stuck)
 - Be positive, fact-based, **remain calm**
 - If stuck: check assumptions, **try different examples**, **simplify**, ["dare to be the idiot"](https://www.youtube.com/watch?v=BkLzo_oNVho), **ask for help** if necessary
 
