@@ -26,8 +26,8 @@
 - Tactic: Write (or draw) examples to identify a pattern
 - Tactic: Simplify (relax constraints) then generalize
 - Tactic: Base case & build up, dynamic programming (top-down - memoization, bottom-up - tabulation)
-- Tactic: Match to other similar problem / data struct. (for example: **heap**, **graph**, stack, etc.)
-- Pick one achievable in an interview (**solution likely to be simple enough**); indicate complexity
+- Tactic: Match to other similar problem / data struct. For example: **heap** (with _O(log(n))_ insert & delete, _O(n)_ search), **graph** (_X × E (adjacency list) vs. N² / 8 (adjacency matrix)_ - X is pointer size in bytes, and 8 is from boolean packing), stack, hashtable, etc.
+- Pick one achievable in an interview (**solution likely to be simple enough**); indicate complexity (_O(N × log(N))_ for sorting, _O(N²)_ worst case for quicksort)
 
 ### 3. Code
 
@@ -76,8 +76,6 @@
 - [Google: Prepare for an Engineering Interview](https://youtu.be/ko-KkSmp-Lk)
 - [Interview tips from Google Software Engineers](https://youtu.be/XOtrOSatBoY)
 - [Coding Interview University](https://github.com/jwasham/coding-interview-university)
-
-### [Flashcards](algorithms/algorithms.md)
 
 ---
 
