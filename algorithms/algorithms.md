@@ -9,17 +9,6 @@ BOTTOM-UP: TABULATION (SUBPROBLEMS)
 
 ---
 
-## DFS vs. BFS
-
-WORST CASE _O(B<sup>D</sup>)_<br/>
-DFS: RECURSIVE versus BFS: FIFO<br/>
-(DFS MAY OVERFLOW THE STACK)<br/>
-PRE-ORDER: VISIT ROOT<br/>
-IN-ORDER: LEFT, ROOT, RIGHT<br/>
-POST-ORDER: VISIT CHILDREN
-
----
-
 ## HEAPS (functioning)
 
 [qheap1](https://www.hackerrank.com/challenges/qheap1)
