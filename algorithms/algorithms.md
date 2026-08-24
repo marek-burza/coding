@@ -158,17 +158,6 @@ _P ≠ NP_: _P ⊂ NP_, _NP-COMPLETE ≡ NP - NP-HARD_
 
 ---
 
-## NP-COMPLETE PROBLEMS
-
-GRAPH COLORING<br/>
-TRAVELING SALESMAN<br/>
-KNAPSACK PROBLEM<br/>
-BOOLEAN SATISFIABILITY<br/>
-GRAPH ISOMORPHISM<br/>
-SET COVER PROBLEM
-
----
-
 ## UNBOUNDED KNAPSACK PROBLEM
 
 [unbounded-knapsack](http://www.hackerrank.com/challenges/unbounded-knapsack)
