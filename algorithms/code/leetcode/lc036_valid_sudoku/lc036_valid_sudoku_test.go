@@ -16,7 +16,6 @@ var exampleBoard = [][]string{
 	{".", ".", ".", ".", "8", ".", ".", "7", "9"},
 }
 
-
 func generic(t *testing.T, result bool, expected bool) {
 	if expected != result {
 		t.Errorf("IsValidSudoku - Expected %v, got %v!", expected, result)
