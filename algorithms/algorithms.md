@@ -20,24 +20,6 @@ POST-ORDER: VISIT CHILDREN
 
 ---
 
-## HASH TABLES
-
-- **FLOAT:** _((KEY - MIN) / (MAX - MIN)) % M_<br/>
-- **INT:** _KEY % M_ where _{M: MERSENNE PRIME}_<br/>
-  IMPLEMENTATION CAN BE FAST<br/>
-- **STRING:** _binary(string) % M_<br/>
-  (CAST CONSIDERING NUMBER OF CHARACTER CODING BITS)<br/>
-
-**RESOLUTION**<br/>
-(constant if enough buckets, linear within a bucket)<br/>
-
-- SEPARATE CHAINING (LISTS)<br/>
-  (OPEN HASHING, CLOSED ADDRESSING)
-- LINEAR PROBING (ARRAY)<br/>
-  (CLOSED HASHING, OPEN ADDRESSING)
-
----
-
 ## HEAPS (functioning)
 
 [qheap1](https://www.hackerrank.com/challenges/qheap1)
