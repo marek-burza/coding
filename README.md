@@ -25,9 +25,8 @@
 - List alternatives telling their pros and cons (e.g. time/space complexity); is there a time vs. space trade-off?
 - Tactic: Write (or draw) examples to identify a pattern
 - Tactic: Simplify (relax constraints) then generalize
-- Tactic: Base case & build up (induction, scale), dyn. prog.
+- Tactic: Base case & build up, dynamic programming (top-down - memoization, bottom-up - tabulation)
 - Tactic: Match to other similar problem / data struct. (for example: **heap**, **graph**, stack, etc.)
-- Tactic: (Consider greedy alg., backtracking, iterating the smaller param.)
 - Pick one achievable in an interview (**solution likely to be simple enough**); indicate complexity
 
 ### 3. Code

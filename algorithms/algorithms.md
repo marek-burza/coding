@@ -2,13 +2,6 @@
 
 ---
 
-## DYNAMIC PROGRAMMING
-
-TOP-DOWN: MEMOIZATION<br/>
-BOTTOM-UP: TABULATION (SUBPROBLEMS)
-
----
-
 ## HEAPS (functioning)
 
 [qheap1](https://www.hackerrank.com/challenges/qheap1)
