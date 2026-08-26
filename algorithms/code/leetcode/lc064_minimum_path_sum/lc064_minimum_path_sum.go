@@ -2,6 +2,8 @@
 // #medium
 package lc064
 
+import "slices"
+
 func minPathSum(grid [][]int) int {
 	visited := make([][]bool, len(grid))
 	for i := range visited {
@@ -15,10 +17,7 @@ func minPathSum(grid [][]int) int {
 	}
 	sums := make([][]int, len(grid))
 	for i := range sums {
-		sums[i] = make([]int, len(grid[0]))
-		for j := range sums[i] {
-			sums[i][j] = total
-		}
+		sums[i] = slices.Repeat([]int{total}, len(grid[0]))
 	}
 	sums[0][0] = grid[0][0]
 	var queue [][]int
