@@ -10,9 +10,7 @@ class MyStack:
         self.__other: Deque[int] = collections.deque()
 
     def __swap(self) -> None:
-        swap = self.__other
-        self.__other = self.__active
-        self.__active = swap
+        self.__other, self.__active = self.__active, self.__other
 
     # Push element x onto stack.
     def push(self, x: int) -> None:
