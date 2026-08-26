@@ -2,9 +2,7 @@
 // #medium
 package lc299
 
-import (
-	"strconv"
-)
+import "strconv"
 
 func getHint(secret string, guess string) string {
 	countKnown := make(map[byte]int)

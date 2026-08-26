@@ -1,9 +1,7 @@
 // Package lc290 implements https://leetcode.com/problems/word-pattern/
 package lc290
 
-import (
-	"strings"
-)
+import "strings"
 
 func check(first string, second string, mapping map[string]string) bool {
 	if value, found := mapping[first]; found {

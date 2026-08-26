@@ -2,9 +2,7 @@
 // #medium
 package lc331
 
-import (
-	"strings"
-)
+import "strings"
 
 func isValidSerialization(preorder string) bool {
 	if len(preorder) == 0 {

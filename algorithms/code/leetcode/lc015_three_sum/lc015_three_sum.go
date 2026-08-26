@@ -1,9 +1,7 @@
 // Package lc015 implements https://leetcode.com/problems/3sum/
 package lc015
 
-import (
-	"sort"
-)
+import "sort"
 
 func threeSum(nums []int) [][]int {
 	sort.Ints(nums)

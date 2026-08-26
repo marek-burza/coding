@@ -1,9 +1,7 @@
 // Package lc042 implements https://leetcode.com/problems/trapping-rain-water/
 package lc042
 
-import (
-	"sort"
-)
+import "sort"
 
 func amount(height []int, from int, to int) int {
 	amount := min(height[from], height[to]) * (to - from - 1)

@@ -2,9 +2,7 @@
 // #medium
 package lc347
 
-import (
-	"slices"
-)
+import "slices"
 
 func topKFrequent(nums []int, k int) []int {
 	frequencies := make(map[int]int)

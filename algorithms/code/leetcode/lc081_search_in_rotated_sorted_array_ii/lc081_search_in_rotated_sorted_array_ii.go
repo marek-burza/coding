@@ -2,9 +2,7 @@
 // #medium
 package lc081
 
-import (
-	"sort"
-)
+import "sort"
 
 func binarySearch(array []int, begin int, end int, value int) int {
 	index := begin + sort.SearchInts(array[begin:end], value)

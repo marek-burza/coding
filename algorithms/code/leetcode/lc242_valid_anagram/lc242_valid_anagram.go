@@ -2,9 +2,7 @@
 // #google
 package lc242
 
-import (
-	"maps"
-)
+import "maps"
 
 func isAnagram(s string, t string) bool {
 	if len(s) != len(t) {

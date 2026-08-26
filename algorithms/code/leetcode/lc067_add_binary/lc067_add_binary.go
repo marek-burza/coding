@@ -1,9 +1,7 @@
 // Package lc067 implements https://leetcode.com/problems/add-binary/
 package lc067
 
-import (
-	"strings"
-)
+import "strings"
 
 func reversed(s string) string {
 	runes := []rune(s)

@@ -2,9 +2,7 @@
 // #medium
 package lc357
 
-import (
-	"strings"
-)
+import "strings"
 
 func count(prefix string, n int) int {
 	if len(prefix) == n {

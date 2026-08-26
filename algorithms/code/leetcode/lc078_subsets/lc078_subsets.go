@@ -2,9 +2,7 @@
 // #medium
 package lc078
 
-import (
-	"sort"
-)
+import "sort"
 
 func subsetsInternal(nums []int, offset int, current []int, listed *[][]int) {
 	*listed = append(*listed, append([]int{}, current...))

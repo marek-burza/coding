@@ -2,9 +2,7 @@
 // #medium
 package lc264
 
-import (
-	"container/heap"
-)
+import "container/heap"
 
 type intHeap []int
 

@@ -2,9 +2,7 @@
 // #medium
 package lc187
 
-import (
-	"strings"
-)
+import "strings"
 
 func compress(nucleotide byte) int {
 	return map[byte]int{'A': 0, 'C': 1, 'G': 2, 'T': 3}[nucleotide]

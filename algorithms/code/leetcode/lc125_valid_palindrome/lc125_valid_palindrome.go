@@ -1,9 +1,7 @@
 // Package lc125 implements https://leetcode.com/problems/valid-palindrome/
 package lc125
 
-import (
-	"unicode"
-)
+import "unicode"
 
 func isAlnum(character rune) bool {
 	return unicode.IsLetter(character) || unicode.IsDigit(character)

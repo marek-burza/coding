@@ -2,9 +2,7 @@
 // #medium
 package lc384
 
-import (
-	"math/rand/v2"
-)
+import "math/rand/v2"
 
 // Solution Shuffles an array of values
 type Solution struct {

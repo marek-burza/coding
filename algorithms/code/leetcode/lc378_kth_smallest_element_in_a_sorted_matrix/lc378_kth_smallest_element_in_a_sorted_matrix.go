@@ -2,9 +2,7 @@
 // #medium
 package lc378
 
-import (
-	"container/heap"
-)
+import "container/heap"
 
 type item struct {
 	value int

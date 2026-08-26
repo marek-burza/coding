@@ -1,9 +1,7 @@
 // Package lc350 implements https://leetcode.com/problems/intersection-of-two-arrays-ii/
 package lc350
 
-import (
-	"sort"
-)
+import "sort"
 
 func intersect(nums1 []int, nums2 []int) []int {
 	sort.Ints(nums1)
