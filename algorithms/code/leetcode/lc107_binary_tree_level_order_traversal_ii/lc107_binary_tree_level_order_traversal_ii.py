@@ -24,7 +24,6 @@ class Solution:
             current.append(root)
         while current:
             level: list[int] = []
-            result.append(level)
             future = []
             for node in current:
                 level.append(node.val)
@@ -32,12 +31,11 @@ class Solution:
                     future.append(node.left)
                 if node.right is not None:
                     future.append(node.right)
+            result.append(level)
             current = future
         length = len(result)
         for i in range(length // 2):
-            exchange = result[i]
-            result[i] = result[length - 1 - i]
-            result[length - 1 - i] = exchange
+            result[i], result[length - 1 - i] = result[length - 1 - i], result[i]
         return result
 
 

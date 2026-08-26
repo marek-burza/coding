@@ -1,8 +1,6 @@
 package lc005
 
-import (
-	"testing"
-)
+import "testing"
 
 func Test1(t *testing.T) {
 	result := longestPalindrome("babad")

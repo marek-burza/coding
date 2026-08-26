@@ -1,8 +1,6 @@
 package lc012
 
-import (
-	"testing"
-)
+import "testing"
 
 func Test1234(t *testing.T) {
 	result := intToRoman(1234)

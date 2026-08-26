@@ -1,8 +1,6 @@
 package lc013
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestMcmliv(t *testing.T) {
 	result := romanToInt("MCMLIV")

@@ -1,8 +1,6 @@
 package lc053
 
-import (
-	"testing"
-)
+import "testing"
 
 func generic(t *testing.T, result int, expected int) {
 	if expected != result {

@@ -1,8 +1,6 @@
 package lc086
 
-import (
-	"testing"
-)
+import "testing"
 
 func build(array []int) *ListNode {
 	var head *ListNode

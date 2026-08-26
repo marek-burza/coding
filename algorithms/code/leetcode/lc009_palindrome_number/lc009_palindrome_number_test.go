@@ -1,8 +1,6 @@
 package lc009
 
-import (
-	"testing"
-)
+import "testing"
 
 func Test213(t *testing.T) {
 	if result := isPalindrome(213); result != false {

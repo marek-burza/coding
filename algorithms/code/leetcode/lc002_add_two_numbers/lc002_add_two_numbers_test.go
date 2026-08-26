@@ -1,8 +1,6 @@
 package lc002
 
-import (
-	"testing"
-)
+import "testing"
 
 func thaw(array []int) *ListNode {
 	handle := &ListNode{}

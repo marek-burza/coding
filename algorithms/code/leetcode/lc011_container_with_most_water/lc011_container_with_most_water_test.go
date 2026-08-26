@@ -1,8 +1,6 @@
 package lc011
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestMaxArea_1_2_1(t *testing.T) {
 	test := []int{1, 2, 1}

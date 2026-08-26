@@ -1,8 +1,6 @@
 package lc021
 
-import (
-	"testing"
-)
+import "testing"
 
 func generic(t *testing.T, n0 *ListNode) {
 	if n0.Val != 1 {

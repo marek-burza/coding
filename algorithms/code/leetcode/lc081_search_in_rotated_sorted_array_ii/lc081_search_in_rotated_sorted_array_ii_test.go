@@ -1,8 +1,6 @@
 package lc081
 
-import (
-	"testing"
-)
+import "testing"
 
 func generic(t *testing.T, result bool, expected bool) {
 	if expected != result {

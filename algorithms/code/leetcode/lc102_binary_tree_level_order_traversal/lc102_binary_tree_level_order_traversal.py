@@ -33,8 +33,7 @@ class Solution:
             if depth != annotated.depth:
                 depth = annotated.depth
                 result.append([])
-            line = result[-1]
-            line.append(annotated.node.val)
+            result[-1].append(annotated.node.val)
             if annotated.node.left is not None:
                 queue.append(
                     self.AnnotatedNode(annotated.node.left, annotated.depth + 1)

@@ -1,8 +1,6 @@
 package lc036
 
-import (
-	"testing"
-)
+import "testing"
 
 var exampleBoard = [][]string{
 	{"5", "3", ".", ".", "7", ".", ".", ".", "."},

@@ -1,8 +1,6 @@
 package lc024
 
-import (
-	"testing"
-)
+import "testing"
 
 func generic(t *testing.T, head *ListNode, expected []int) {
 	result := SwapPairs(head)

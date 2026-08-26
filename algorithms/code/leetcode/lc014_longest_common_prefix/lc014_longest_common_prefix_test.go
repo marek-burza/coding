@@ -1,8 +1,6 @@
 package lc014
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestAlaAndAlaMaKota(t *testing.T) {
 	result := longestCommonPrefix([]string{"Ala", "Ala Ma Kota"})

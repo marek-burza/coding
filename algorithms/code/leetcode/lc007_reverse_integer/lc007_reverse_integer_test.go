@@ -1,8 +1,6 @@
 package lc007
 
-import (
-	"testing"
-)
+import "testing"
 
 func Test2000000002(t *testing.T) {
 	if result := reverse(2000000002); result != 2000000002 {

@@ -1,8 +1,6 @@
 package lc020
 
-import (
-	"testing"
-)
+import "testing"
 
 func generic(t *testing.T, input string, expected bool) {
 	result := isValid(input)

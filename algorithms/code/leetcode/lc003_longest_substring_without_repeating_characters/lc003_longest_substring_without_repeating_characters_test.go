@@ -1,8 +1,6 @@
 package lc003
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestSubstring1(t *testing.T) {
 	result := lengthOfLongestSubstring("bcabcbb")

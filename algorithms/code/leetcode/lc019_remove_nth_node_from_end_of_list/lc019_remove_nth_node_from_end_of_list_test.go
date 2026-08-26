@@ -1,8 +1,6 @@
 package lc019
 
-import (
-	"testing"
-)
+import "testing"
 
 func Test12And11(t *testing.T) {
 	n1 := &ListNode{Val: 1}

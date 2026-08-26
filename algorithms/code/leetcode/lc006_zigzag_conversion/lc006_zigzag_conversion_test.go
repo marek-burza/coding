@@ -1,8 +1,6 @@
 package lc006
 
-import (
-	"testing"
-)
+import "testing"
 
 func Test1(t *testing.T) {
 	result := convert("PAYPALISHIRING", 3)

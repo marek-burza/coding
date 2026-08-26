@@ -1,8 +1,6 @@
 package lc070
 
-import (
-	"testing"
-)
+import "testing"
 
 func Test20(t *testing.T) {
 	expected := 10946
