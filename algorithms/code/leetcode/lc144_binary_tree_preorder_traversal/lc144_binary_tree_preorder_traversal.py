@@ -38,5 +38,4 @@ class TestCode:
         node2.left = node3
         result = Solution().preorderTraversal(node1)
         expected = [1, 2, 3]
-        for i, expected_i in enumerate(expected):
-            assert expected_i == result[i]
+        assert expected == result

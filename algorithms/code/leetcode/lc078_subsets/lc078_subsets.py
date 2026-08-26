@@ -27,12 +27,9 @@ class TestCode:
     def __test(self, expected: list[list[int]], result: list[list[int]]) -> None:
         result = sorted(result)
         expected = sorted(expected)
-        assert len(expected) == len(result)
-        for i, expected_i in enumerate(expected):
-            assert len(expected_i) == len(result[i])
-            result_i = sorted(result[i])
-            expected_i = sorted(expected_i)
-            assert expected_i == result_i
+        expected = [sorted(expected_i) for expected_i in expected]
+        result = [sorted(result_i) for result_i in result]
+        assert expected == result
 
     def test_1_2_3(self) -> None:
         listed = Solution().subsets([1, 2, 3])

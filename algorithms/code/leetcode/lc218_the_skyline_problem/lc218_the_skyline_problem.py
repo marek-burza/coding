@@ -58,11 +58,7 @@ class Solution:
 class TestCode:
     def generic(self, buildings: list[list[int]], expected: list[list[int]]) -> None:
         skyline = Solution().getSkyline(buildings)
-        assert len(skyline) == len(expected)
-        for i, expected_i in enumerate(expected):
-            assert len(skyline[i]) == len(expected_i)
-            for j, expected_i_j in enumerate(expected_i):
-                assert skyline[i][j] == expected_i_j
+        assert skyline == expected
 
     def test_example_1(self) -> None:
         buildings = [

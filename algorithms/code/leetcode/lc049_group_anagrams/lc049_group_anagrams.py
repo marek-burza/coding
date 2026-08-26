@@ -65,11 +65,7 @@ class TestCode:
 
     def __test(self, expected: list[list[str]], result: list[list[str]]) -> None:
         result = sorted(result, key=TestCode.cmp_to_key(TestCode.orderly_comparator))
-        assert len(expected) == len(result)
-        for i, expected_i in enumerate(expected):
-            assert len(expected_i) == len(result[i])
-            for j, expected_i_j in enumerate(expected_i):
-                assert expected_i_j == result[i][j]
+        assert expected == result
 
     def test_abc_cab_bad_dab_zzz_dot(self) -> None:
         strs = ["abc", "cab", "bad", "dab", "zzz", "dot"]

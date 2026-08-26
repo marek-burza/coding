@@ -54,5 +54,4 @@ class TestCode:
         n6.right = None
         expected = [1, 3, 4, 6]
         result = Solution().rightSideView(n1)
-        for i, expected_i in enumerate(expected):
-            assert expected_i == result[i]
+        assert expected == result

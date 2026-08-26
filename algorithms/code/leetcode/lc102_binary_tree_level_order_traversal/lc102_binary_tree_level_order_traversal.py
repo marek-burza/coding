@@ -58,11 +58,7 @@ class TestCode:
         n20.right = n7
         expected = [[3], [9, 20], [15, 7]]
         result = Solution().levelOrder(n3)
-        assert len(expected) == len(result)
-        for i, expected_i in enumerate(expected):
-            assert len(expected_i) == len(result[i])
-            for j, expected_i_j in enumerate(expected_i):
-                assert expected_i_j == result[i][j]
+        assert expected == result
 
     def test_nothing(self) -> None:
         result = Solution().levelOrder(None)

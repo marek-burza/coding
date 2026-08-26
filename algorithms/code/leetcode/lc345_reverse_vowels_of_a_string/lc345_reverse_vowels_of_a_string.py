@@ -16,9 +16,7 @@ class Solution:
             while z >= 0 and not self.__isVowel(text[z]):
                 z -= 1
             if a < z:
-                exchange = text[a]
-                text[a] = text[z]
-                text[z] = exchange
+                text[a], text[z] = text[z], text[a]
                 a += 1
                 z -= 1
         return "".join(text)

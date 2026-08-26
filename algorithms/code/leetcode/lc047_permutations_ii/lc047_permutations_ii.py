@@ -39,8 +39,4 @@ class TestCode:
         result = Solution().permuteUnique(nums)
         result = sorted(result)
         expected = [[1, 1, 2], [1, 2, 1], [2, 1, 1]]
-        assert len(result) == len(expected)
-        for i, expected_i in enumerate(expected):
-            assert len(result[i]) == len(expected_i)
-            for j, expected_i_j in enumerate(expected_i):
-                assert result[i][j] == expected_i_j
+        assert result == expected

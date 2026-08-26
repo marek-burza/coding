@@ -75,12 +75,9 @@ class TestCode:
 
     def __test(self, expected: list[list[int]], result: list[list[int]]) -> None:
         result = sorted(result, key=TestCode.cmp_to_key(TestCode.orderly_comparator))
-        assert len(expected) == len(result)
-        for i, expected_i in enumerate(expected):
-            assert len(expected_i) == len(result[i])
-            result[i].sort()
-            for j, expected_i_j in enumerate(expected_i):
-                assert expected_i_j == result[i][j]
+        for result_i in result:
+            result_i.sort()
+        assert expected == result
 
     def test_1_2_2(self) -> None:
         listed = Solution().subsetsWithDup([1, 2, 2])

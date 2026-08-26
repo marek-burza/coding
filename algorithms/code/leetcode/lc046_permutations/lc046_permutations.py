@@ -84,8 +84,4 @@ class TestCode:
         result = sorted(
             result, key=TestCode.cmp_to_key(TestCode.integer_list_comparator)
         )
-        assert len(expected) == len(result)
-        for i, expected_i in enumerate(expected):
-            assert len(expected_i) == len(result[i])
-            for j, expected_i_j in enumerate(expected_i):
-                assert expected_i_j == result[i][j]
+        assert expected == result

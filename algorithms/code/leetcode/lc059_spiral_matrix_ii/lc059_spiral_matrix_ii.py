@@ -31,6 +31,4 @@ class TestCode:
         expected = [[1, 2, 3], [8, 9, 4], [7, 6, 5]]
         result = Solution().generateMatrix(3)
         assert result is not None
-        assert len(expected) == len(result)
-        for i, expected_i in enumerate(expected):
-            assert expected_i == result[i]
+        assert expected == result

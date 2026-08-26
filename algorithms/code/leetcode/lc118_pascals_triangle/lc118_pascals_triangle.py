@@ -22,9 +22,7 @@ class TestCode:
     def test_5(self) -> None:
         expected = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
         result = Solution().generate(5)
-        assert len(expected) == len(result)
-        for expected_i, result_i in zip(expected, result, strict=True):
-            assert expected_i == result_i
+        assert expected == result
 
     def test_nothing(self) -> None:
         assert not Solution().generate(-1)

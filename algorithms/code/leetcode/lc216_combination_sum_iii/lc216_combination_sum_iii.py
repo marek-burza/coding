@@ -39,12 +39,7 @@ class TestCode:
     def __test(self, expected: list[list[int]], result: list[list[int]]) -> None:
         for entry in result:
             entry.sort()
-        assert len(expected) == len(result)
-        for i, expected_i in enumerate(expected):
-            entry = result[i]
-            assert len(expected_i) == len(entry)
-            for j, expected_i_j in enumerate(expected_i):
-                assert expected_i_j == entry[j]
+        assert expected == result
 
     def test_3_7(self) -> None:
         expected = [[1, 2, 4]]
