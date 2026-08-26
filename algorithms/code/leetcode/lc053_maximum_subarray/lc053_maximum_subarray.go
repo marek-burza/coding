@@ -1,9 +1,7 @@
 // Package lc053 implements https://leetcode.com/problems/maximum-subarray/
 package lc053
 
-import (
-	"math"
-)
+import "math"
 
 func maxSubArray(nums []int) int {
 	summed := 0

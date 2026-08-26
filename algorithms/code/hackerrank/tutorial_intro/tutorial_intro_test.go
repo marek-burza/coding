@@ -1,8 +1,6 @@
 package tutorialintro
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestExample(t *testing.T) {
 	if IntroTutorial(4, []int32{1, 4, 5, 7, 9, 12}) != 1 {

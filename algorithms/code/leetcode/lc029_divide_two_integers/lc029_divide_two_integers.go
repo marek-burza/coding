@@ -1,9 +1,7 @@
 // Package lc029 implements https://leetcode.com/problems/divide-two-integers/
 package lc029
 
-import (
-	"math"
-)
+import "math"
 
 func abs(a int64) int64 {
 	if a < 0 {

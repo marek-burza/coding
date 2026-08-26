@@ -17,9 +17,8 @@ class Solution:
                     dp_i = temp2
                     dp[i] = dp_i
                     temp1 = j
-                else:
-                    if dp_i == temp2:
-                        mul[j] += 1
+                elif dp_i == temp2:
+                    mul[j] += 1
             mul[temp1] += 1
         return dp[n - 1]
 

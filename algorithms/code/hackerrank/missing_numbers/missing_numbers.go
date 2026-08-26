@@ -1,9 +1,7 @@
 // Package missingnumbers implements https://www.hackerrank.com/challenges/missing-numbers
 package missingnumbers
 
-import (
-	"slices"
-)
+import "slices"
 
 // MissingNumbers - implements the solution to the problem
 func MissingNumbers(arr []int32, brr []int32) []int32 {

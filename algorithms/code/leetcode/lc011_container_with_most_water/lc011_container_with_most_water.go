@@ -1,9 +1,7 @@
 // Package lc011 implements https://leetcode.com/problems/container-with-most-water/
 package lc011
 
-import (
-	"math"
-)
+import "math"
 
 func maxArea(height []int) int {
 	maximum := 0

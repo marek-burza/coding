@@ -1,9 +1,7 @@
 // Package lc006 implements https://leetcode.com/problems/zigzag-conversion/
 package lc006
 
-import (
-	"strings"
-)
+import "strings"
 
 func convert(s string, numRows int) string {
 	if s == "" || numRows < 1 {

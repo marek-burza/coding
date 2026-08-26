@@ -1,8 +1,6 @@
 package diagonaldifference
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestExample(t *testing.T) {
 	arr := [][]int32{

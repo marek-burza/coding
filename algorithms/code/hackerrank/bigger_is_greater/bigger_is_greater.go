@@ -1,9 +1,7 @@
 // Package biggerisgreater implements https://www.hackerrank.com/challenges/bigger-is-greater
 package biggerisgreater
 
-import (
-	"slices"
-)
+import "slices"
 
 // BiggerIsGreater - implements the solution to the problem
 func BiggerIsGreater(w string) string {

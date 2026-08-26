@@ -1,8 +1,6 @@
 package gfg7094
 
-import (
-	"testing"
-)
+import "testing"
 
 var network = Network{
 	map[string][]string{

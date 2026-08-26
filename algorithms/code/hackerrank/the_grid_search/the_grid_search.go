@@ -1,9 +1,7 @@
 // Package thegridsearch implements https://www.hackerrank.com/challenges/the-grid-search
 package thegridsearch
 
-import (
-	"strings"
-)
+import "strings"
 
 // GridSearch - implements the solution to the problem
 func GridSearch(g []string, p []string) string {

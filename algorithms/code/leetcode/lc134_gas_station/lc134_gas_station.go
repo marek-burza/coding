@@ -2,9 +2,7 @@
 // #medium
 package lc134
 
-import (
-	"math"
-)
+import "math"
 
 func canCompleteCircuit(gas []int, cost []int) int {
 	minimum := math.Inf(1)

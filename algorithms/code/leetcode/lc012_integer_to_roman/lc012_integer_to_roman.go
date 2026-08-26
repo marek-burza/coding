@@ -1,9 +1,7 @@
 // Package lc012 implements https://leetcode.com/problems/integer-to-roman/
 package lc012
 
-import (
-	"strings"
-)
+import "strings"
 
 func intToRoman(num int) string {
 	digits := []string{"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"}

@@ -1,9 +1,7 @@
 // Package dijkstrashortreach implements https://www.hackerrank.com/challenges/dijkstrashortreach
 package dijkstrashortreach
 
-import (
-	"container/heap"
-)
+import "container/heap"
 
 // VertexHeap - Vertex heap implementation
 type VertexHeap []*Vertex

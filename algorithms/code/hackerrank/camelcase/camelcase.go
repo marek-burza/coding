@@ -1,9 +1,7 @@
 // Package camelcase implements https://www.hackerrank.com/challenges/camelcase
 package camelcase
 
-import (
-	"unicode"
-)
+import "unicode"
 
 // Camelcase - implements the solution to the problem
 func Camelcase(s string) int32 {

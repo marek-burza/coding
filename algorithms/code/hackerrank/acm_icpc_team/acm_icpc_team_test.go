@@ -1,8 +1,6 @@
 package acmicpcteam
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestExample1(t *testing.T) {
 	result := AcmTeam([]string{"10101", "11100", "11010", "00101"})

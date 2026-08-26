@@ -1,8 +1,6 @@
 package biggerisgreater
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestAb(t *testing.T) {
 	if BiggerIsGreater("ab") != "ba" {

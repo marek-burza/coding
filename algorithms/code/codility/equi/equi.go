@@ -1,9 +1,7 @@
 // Package equi implements http://blog.codility.com/2011/03/solutions-for-task-equi.html
 package codilityequi
 
-import (
-	"math/big"
-)
+import "math/big"
 
 // FindEquilibriumIndex finds an index where sum of array elemends before index is equal the that of after
 func FindEquilibriumIndex(array []int) int {

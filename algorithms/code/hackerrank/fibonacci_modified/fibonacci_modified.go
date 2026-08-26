@@ -1,9 +1,7 @@
 // Package fibonaccimodified implements https://www.hackerrank.com/challenges/fibonacci-modified
 package fibonaccimodified
 
-import (
-	"math/big"
-)
+import "math/big"
 
 // FibonacciModified - implements the solution to the problem
 func FibonacciModified(t1 int32, t2 int32, n int32) *big.Int {

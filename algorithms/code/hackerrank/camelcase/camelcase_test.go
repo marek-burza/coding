@@ -1,8 +1,6 @@
 package camelcase
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestExample(t *testing.T) {
 	if Camelcase("saveChangesInTheEditor") != 5 {

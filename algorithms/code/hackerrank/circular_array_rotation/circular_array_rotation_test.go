@@ -1,8 +1,6 @@
 package circulararrayrotation
 
-import (
-	"testing"
-)
+import "testing"
 
 func testRunner(t *testing.T, k int, a []int, queries []int, expected []int) {
 	results := CircularArrayRotation(k, a, queries)

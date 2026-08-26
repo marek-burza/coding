@@ -1,8 +1,6 @@
 package timeconversion
 
-import (
-	"testing"
-)
+import "testing"
 
 func Test070545PM(t *testing.T) {
 	if ToMilitary("07:05:45PM") != "19:05:45" {

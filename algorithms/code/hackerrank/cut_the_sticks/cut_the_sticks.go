@@ -1,9 +1,7 @@
 // Package cutthesticks implements https://www.hackerrank.com/challenges/cut-the-sticks
 package cutthesticks
 
-import (
-	"slices"
-)
+import "slices"
 
 // CutTheSticks - implements the solution to the problem
 func CutTheSticks(arr []int32) []int32 {

@@ -1,9 +1,7 @@
 // Package encryption implements https://www.hackerrank.com/challenges/encryption
 package encryption
 
-import (
-	"math"
-)
+import "math"
 
 // Encryption - implements the solution to the problem
 func Encryption(plain string) string {

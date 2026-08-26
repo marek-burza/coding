@@ -1,8 +1,6 @@
 package angryprofessor
 
-import (
-	"testing"
-)
+import "testing"
 
 type testDescription struct {
 	k        int
