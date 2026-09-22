@@ -693,18 +693,22 @@ Gradient clipping, batch normalization, lower learning rate, weight regularizati
 
 ## AUC (Area Under the Curve)
 
-ROC curve (Receiver Operating Characteristic) in ML contexts. Probability that the model ranks a random positive above a random negative. 0.5 = random, 1.0 = perfect
+ROC curve (Receiver Operating Characteristic) in ML contexts. Probability that the model ranks a random positive above a random negative. 0.5 = random (carries no information), 1.0 = perfect (model is perfect at discrimination)
 
-What the ROC curve plots:
+What the ROC curve plots the following across a sweep of operating points on classification score, AUC is the area under the curve (and measures discrimination - is the ranking good):
 
-- x-axis: False Positive Rate `F_P_R=FP/(FP+TN)`. Of all the actual negatives, how many did the model incorrectly flag?
-- y-axis: True Positive Rate `T_P_R=TP/(TP+FN)`. aka sensitivity, recall. Of all the actual positives, how many did the model correctly catch?
+- x-axis: False Positive Rate `FP_R=FP/(FP+TN)`. Of all the actual negatives, how many did the model incorrectly flag?
+- y-axis: True Positive Rate `TP_R=TP/(TP+FN)`. aka sensitivity, recall. Of all the actual positives, how many did the model correctly catch?
+
+Notes: `P=TP+FN` & `N=TN+FP`
 
 Other (related) metrics:
 
-- Specificity, True Negative Rate `T_N_R=TN/(TN+FP)`. Of the real negatives, how many did we correctly clear?
+- Specificity, True Negative Rate `TN_R=TN/(TN+FP)`. Of the real negatives, how many did we correctly clear?
 - Precision, Positive Predictive Value `P_P_V=TP/(TP+FP)`. Of the things we flagged, how many were actually positive?
 - Accuracy: `(TP+TN)/(TP+TN+FP+FN)`. Of all predictions, how many were correct?
+- `F1 = 2 * Precision * Recall / (Precision + Recall)`
+- `R² = 1 − MSE/Var(y)`; the fraction of the target's variance your model accounts for
 
 ---
 
