@@ -105,16 +105,16 @@ torch.cuda.synchronize()
 
 ---
 
-### MLP
+## MLP
 
 ```python
 class MLP(torch.nn.Module):
     def __init__(self, in_dim: int, hidden: int, out_dim: int) -> None:
         super().__init__()
-        self.net = nn.Sequential(
-            nn.Linear(in_dim, hidden),
-            nn.ReLU(),
-            nn.Linear(hidden, out_dim),
+        self.net = torch.nn.Sequential(
+            torch.nn.Linear(in_dim, hidden),
+            torch.nn.ReLU(),
+            torch.nn.Linear(hidden, out_dim),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -129,8 +129,8 @@ Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive op
 
 | **Without AMP:**                     | **With AMP (specifically for float16):**      |
 | ------------------------------------ | --------------------------------------------- |
+|                                      | `→ scaler = torch.amp.GradScaler("cuda")`     |
 | `optimizer.zero_grad()`              | `→ optimizer.zero_grad()`                     |
-|                                      | `→ scaler = torch.cuda.amp.GradScaler()`      |
 |                                      | `→ with torch.autocast(dtype=torch.float16):` |
 | `output = model(input)`              | `→     output = model(input)`                 |
 | `metric = criterion(output, target)` | `→     metric = criterion(output, target)`    |
@@ -291,7 +291,7 @@ TorchServe is PyTorch-native and simpler to onboard. You package a model as a `.
 Trade-off: GPU utilization and throughput vs. latency
 
 - Static batching - fix a batch size, wait until it's full, then run inference
-- Dynamic batching - the server accumulates requests for a short window and runs whatever arrived, lepending on load either executes like static batching or immediately.
+- Dynamic batching - the server accumulates requests for a short window and runs whatever arrived, depending on load either executes like static batching or immediately.
 - Model specific - e.g. continuous batching used with LLMs
 
 ---
@@ -367,7 +367,7 @@ Detection strategies:
 
 These two differ in three ways: data, code path, and environment.
 
-Process of ellimination:
+Process of elimination:
 
 1. Plug production model into offline eval pipeline and dataset → if poor then model corrupted, incorrectly serialized, model or dependency version is skewed, precision is mismatched or numerical instability crept in, memory or compute-bound
 2. Log production input and plug into offline pipeline and model → if good then production pipeline (synchronization, loading/ETL); if bad then it would indicate a distribution shift (new patterns, new edge cases)
@@ -409,7 +409,7 @@ Common P99 culprits:
 
 ## `torch.export`
 
-For portability of the model, to optimize for infertece use e.g. TensorRT.
+For portability of the model, to optimize for inference use e.g. TensorRT.
 
 ---
 
@@ -476,7 +476,7 @@ docker run -it --rm \
 How I made decisions:
 
 1. Start with the problem, not the solution
-2. Write it down before discussing it (for tracability, provenance)
+2. Write it down before discussing it (for traceability, provenance)
 3. Involve the right people at the right time
 4. Prototype before committing
 
@@ -668,7 +668,7 @@ Combines a retrieval system with a language model to answer questions using exte
 
 - A dropout layer is a regularization technique that randomly sets a fraction of neurons during each training step to zero and they do not contribute to that forward pass
 - Forces the network to not rely too heavily on any single neuron or pathway
-- Is is a tool for reducing variance (overfitting) when the network is large relative to the dataset
+- It is a tool for reducing variance (overfitting) when the network is large relative to the dataset
 - Network learns more redundant, robust representations, which generalizes better to unseen data; kind of an equivalent to training an ensemble of many networks
 
 Side note: Batching (particularly when shuffled) is also viewed as a regularizer to prevent overfitting.
@@ -703,8 +703,8 @@ Thus online you either use proxy metrics, or you run A/B testing, shadow mode wi
 
 ## How would you choose between: linear models vs tree-based models vs deep learning?
 
-- Mostly driven by data characteristics (dataset size, completeness, linearity, how well enginered/cleaned the features are).
-- Start with with simplest and go to more complex when the decision is justified.
+- Mostly driven by data characteristics (dataset size, completeness, linearity, how well engineered/cleaned the features are).
+- Start with the simplest and go to more complex when the decision is justified.
 - Interpretability or latency can be a factor
 
 ---
@@ -729,7 +729,7 @@ Gradient clipping, batch normalization, lower learning rate, weight regularizati
 
 ## Techniques to address landing in sub-optimal local minima
 
-- Try a variety of initialization techniques - Glorot, He, Xavier
+- Try a variety of initialization techniques - Xavier/Glorot, He
 - Stochastic/mini-batch gradient descent - sampling noise helps escape shallow minima
 - Momentum-based optimizers - e.g. Adam, SGD+momentum, to push through flat regions and saddle points
 - Learning rate scheduling - cosine annealing, warm restarts
@@ -924,7 +924,7 @@ Note: Training data quality (effort into data filtering and curation) can substi
 
 - Words do not have fixed meanings, they shift depending on context. A token like "bank" should be represented differently next to "river" than next to "loan". Attention lets each token update its representation by looking at all other tokens in the sequence and weighting how relevant each one is for interpreting it. That is where the original n² issue comes from - a 2D matrix
 - FlashAttention 1 was about reducing storage from n² to n in how the calculations were done over a sequence, and FlashAttention 2 introduced additional parallelism to speed up even more
-- Medical/clinical vision models work with tiles on a grid, there is no sequence, attention assigns each tile a scalar relevance score and sums them into one slide vector - interpretable heatmap, but because tiles score in isolation, one loses the O(n²) contextual rewriting plaguing LLMs; applying a perceiver recoveres some of that inter-tile reasoning.
+- Medical/clinical vision models work with tiles on a grid, there is no sequence, attention assigns each tile a scalar relevance score and sums them into one slide vector - interpretable heatmap, but because tiles score in isolation, one loses the O(n²) contextual rewriting plaguing LLMs; applying a perceiver recovers some of that inter-tile reasoning.
 
 ---
 
