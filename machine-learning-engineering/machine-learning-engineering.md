@@ -121,6 +121,8 @@ class MLP(torch.nn.Module):
         return self.net(x)
 ```
 
+Note: With just one `Linear` layer it is linear regression (with `MSELoss`) or logistic regression (with `BCEWithLogitsLoss`, `sigmoid` in `predict_proba` and threshold-based classification).
+
 ---
 
 ## Automatic Mixed Precision - `torch.amp`
@@ -162,7 +164,7 @@ Applies the loss function to measure how far the model's output is from the grou
 
 **Why:** The scalar loss is the root node of the computation graph. Calling `.backward()` on it propagates gradients through every op recorded during the forward pass.
 
-Common choices: `CrossEntropyLoss` (classification), `MSELoss` (regression), `BCEWithLogitsLoss` (binary classification).
+Common choices: `CrossEntropyLoss` (multiclass classification), `BCEWithLogitsLoss` (binary or multi-label classification), `torchvision.ops.sigmoid_focal_loss` (heavily imbalanced binary classification), `MSELoss` (regression), `L1Loss`/`HuberLoss` (regression with heavy tails or label noise), `PoissonNLLLoss` (count regression), `MarginRankingLoss`/`TripletMarginLoss` (ranking, embedding learning).
 
 ---
 
@@ -649,6 +651,14 @@ Combines a retrieval system with a language model to answer questions using exte
 
 ---
 
+## k-means vs k-NN
+
+- k-means - unsupervised clustering; k = number of clusters; iteratively assigns points to nearest centroid and recomputes centroids
+- k-NN - supervised classification/regression; k = number of neighbors; no training, predicts by vote/average of k nearest labeled points
+- Both are distance-based, so scale features first
+
+---
+
 ## Training, testing, validation data
 
 - Training data - portion of the data that training algorithm uses to learn patterns, i.e. adjust its parameters (weights/biases) such that the error on this set is minimized
@@ -661,6 +671,28 @@ Combines a retrieval system with a language model to answer questions using exte
 
 - High bias means the model is too simple (underfitting); accuracy
 - High variance means it is too sensitive to training data (overfitting); precision
+
+Avoiding high bias:
+
+- More model capacity or better features
+- Less regularization
+- Train longer
+
+Avoiding high variance:
+
+- More (or augmented) data
+- More regularization (L1/L2, dropout), early stopping
+- Simpler model or fewer features
+
+---
+
+## L1/L2 Regularization
+
+Adds a weight-magnitude penalty to the loss to reduce variance (overfitting).
+
+- L1 (Lasso) - `loss + λ * Σ|w|`; pushes weights to exactly zero (sparsity, implicit feature selection)
+- L2 (Ridge) - `loss + λ * Σw²`; shrinks large weights, rarely to zero
+- PyTorch: L2 via optimizer `weight_decay` (prefer `AdamW` over `Adam`), L1 added to the loss manually
 
 ---
 
@@ -706,6 +738,7 @@ Thus online you either use proxy metrics, or you run A/B testing, shadow mode wi
 - Mostly driven by data characteristics (dataset size, completeness, linearity, how well engineered/cleaned the features are).
 - Start with the simplest and go to more complex when the decision is justified.
 - Interpretability or latency can be a factor
+- Tree-based progression: decision trees → random forests → gradient boosting (XGBoost/LightGBM still wins on tabular data)
 
 ---
 
@@ -743,7 +776,7 @@ ROC curve (Receiver Operating Characteristic) in ML contexts. Probability that t
 What the ROC curve plots the following across a sweep of operating points on classification score, AUC is the area under the curve (and measures discrimination - is the ranking good):
 
 - x-axis: False Positive Rate `FP_R=FP/(FP+TN)`. Of all the actual negatives, how many did the model incorrectly flag?
-- y-axis: True Positive Rate `TP_R=TP/(TP+FN)`. aka sensitivity, recall. Of all the actual positives, how many did the model correctly catch?
+- y-axis: True Positive Rate `TP_R=TP/(TP+FN)`, aka sensitivity, recall. Of all the actual positives, how many did the model correctly catch?
 
 Notes: `P=TP+FN` & `N=TN+FP`
 
@@ -754,6 +787,15 @@ Other (related) metrics:
 - Accuracy: `(TP+TN)/(TP+TN+FP+FN)`. Of all predictions, how many were correct?
 - `F1 = 2 * Precision * Recall / (Precision + Recall)`
 - `R² = 1 − MSE/Var(y)`; the fraction of the target's variance your model accounts for
+
+---
+
+## When is accuracy a lie?
+
+- Class imbalance - "always negative" scores 99% at 1% prevalence; use recall/precision, F1, PR-AUC (ROC-AUC flatters under heavy imbalance)
+- Asymmetric error costs - a missed diagnosis is not the same as a false alarm; pick metric and threshold from costs
+- Hides subgroups and says nothing about calibration
+- Inflated by leakage, test set overuse, or shortcut learning
 
 ---
 
