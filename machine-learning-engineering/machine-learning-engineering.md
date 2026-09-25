@@ -105,6 +105,24 @@ torch.cuda.synchronize()
 
 ---
 
+### MLP
+
+```python
+class MLP(torch.nn.Module):
+    def __init__(self, in_dim: int, hidden: int, out_dim: int) -> None:
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(in_dim, hidden),
+            nn.ReLU(),
+            nn.Linear(hidden, out_dim),
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.net(x)
+```
+
+---
+
 ## Automatic Mixed Precision - `torch.amp`
 
 Runs eligible ops in `float16`/`bfloat16` while keeping numerically sensitive ops in `float32` (alternative - `.half()`, no `autocast` context needed); used during training but benefits inference indirectly since the model is numerically robust in lower precision.
@@ -296,6 +314,33 @@ Health checks:
 - Run small inference since the GPU instances can be alive while being silently degraded (VRAM fragmented, NCCL in a bad state).
 
 Minimum instance count (to prevent live warm-up), apply predictive pre-warming for predictable traffic pattern.
+
+---
+
+## Deploying a model on AWS/GCP/Azure
+
+Pattern: package artifact → object storage or container registry → point a managed inference service at it → HTTPS endpoint.
+
+Serving:
+
+- Managed - SageMaker (AWS) / Vertex AI (GCP) / Azure ML (Azure)
+- Hosted FMs (no own weights) - Bedrock (AWS), Vertex Model Garden (GCP), Foundry model catalog (Azure)
+- Managed K8s, otherwise light-weight DIY: ECS Fargate or Lambda (AWS, latter CPU-only), Cloud Run (GCP), Container Apps or Functions (Azure)
+
+- Container - prebuilt (PyTorch/TF/HF) or BYOC
+- Routes for healthcheck differ per provider & serving model
+- Inference modes:
+  - Real-time, provisioned (steady load) - dedicated instances, autoscaled
+  - Real-time, serverless (spiky/low load) - SageMaker Serverless Inference (AWS), Cloud Run (GCP), Container Apps (Azure)
+  - Async (queued, large payloads, long runtimes, scales to zero) - SageMaker Async Inference; DIY elsewhere
+  - Batch (bulk offline scoring) - Batch Transform (AWS), Batch Prediction (GCP), batch endpoints (Azure)
+
+Gotchas:
+
+- GPU quota is not granted by default on any of them - request ahead of a launch
+- A dedicated GPU endpoint bills 24/7 regardless of traffic; scale-to-zero only on serverless paths
+- Cold starts on serverless paths can be tens of seconds for large models - pre-warm or keep a minimum instance count
+- Choice is driven by: custom weights vs. open-weight FM, and cost vs. latency priority
 
 ---
 
