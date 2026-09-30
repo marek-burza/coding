@@ -4,6 +4,6 @@ coverage==7.16.1
 mypy==2.3.1
 numpy==2.5.3
 pytest==9.1.1
-ruff==0.16.7
+ruff==0.16.8
 torch==2.14.0
-ty==0.0.81
+ty==0.0.83
