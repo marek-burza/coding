@@ -101,7 +101,6 @@ Tactics:
 - [System Design Primer](https://github.com/donnemartin/system-design-primer) ❗
 - [Jackson Gabbard - Intro to Architecture and Systems Design - Interviews](https://youtu.be/ZgdS0EUmn70)
 - [System Design Process](https://www.hiredintech.com/system-design/the-system-design-process/) on Hired in Tech
-- Patrick Halina - [Systems Design Interview Guide](http://patrickhalina.com/posts/systems-design-interview-guide) & [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
 - [System Design Primer](https://github.com/donnemartin/system-design-primer)
 - [Build Your Own X](https://github.com/danistefanovic/build-your-own-x)
 - Design principles, patterns, best practices - [SOLID](https://en.wikipedia.org/wiki/SOLID)
@@ -130,7 +129,9 @@ Tactics:
 
 ## AI/ML Engineering Materials
 
-- [ML Engineering Flashcards](machine-learning-engineering/machine-learning-engineering.md)
+- [ML Engineering Flashcards](machine-learning-engineering/machine-learning-engineering.md) ❗
+- Patrick Halina - [Systems Design Interview Guide](http://patrickhalina.com/posts/systems-design-interview-guide) & [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/) ❗
+- [ML System Design](https://github.com/alirezadir/AIMLInterviews/blob/main/src/MLSD/ml-system-design.md) ❗
 - [50 Must-Know PyTorch Interview Questions in 2026](https://github.com/Devinterview-io/pytorch-interview-questions)
 - [Top 140 PyTorch Interview Questions and Answers](https://hackmd.io/@husseinsheikho/pytorch-interview)
 
