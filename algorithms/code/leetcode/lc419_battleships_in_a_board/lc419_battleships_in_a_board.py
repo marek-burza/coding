@@ -17,8 +17,8 @@ class Solution:
                         mj, nj = queue.popleft()
                         if 0 <= mj < m and 0 <= nj < n and board[mj][nj] == "X":
                             board[mj][nj] = "."
-                            for md, nd in ((-1, 0), (1, 0), (0, -1), (0, 1)):
-                                queue.append((mj + md, nj + nd))
+                            for mo, no in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                                queue.append((mj + mo, nj + no))
         return total
 
 

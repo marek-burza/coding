@@ -13,6 +13,6 @@ uv run --no-project ty check algorithms/code
 echo "--- mypy ---"
 uv run --no-project mypy algorithms --exclude banking --exclude mac
 echo "--- bandit ---"
-uv run --no-project bandit --skip B101 -r . -x ./.venv 
+uv run --no-project bandit --skip B101 -r . -x ./.venv
 echo "--- complexipy ---"
 uv run --no-project complexipy algorithms/code --max-complexity-allowed 25
