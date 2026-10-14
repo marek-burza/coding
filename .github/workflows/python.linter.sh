@@ -2,17 +2,17 @@
 
 set -e
 
-export VIRTUAL_ENV=/tmp/venv
-UV_VENV_CLEAR=1 uv venv $VIRTUAL_ENV
-uv pip install --python $VIRTUAL_ENV -r .github/workflows/requirements.txt
+unset VIRTUAL_ENV
+uv venv --allow-existing
+uv pip install -r .github/workflows/requirements.txt
 echo "--- ruff ---"
-uv run --active --no-project ruff check --select I,E,B,SIM algorithms/code
-uv run --active --no-project ruff format --check --diff --config .github/linters/.ruff.toml algorithms/code
+uv run --no-project ruff check --select I,E,B,SIM algorithms/code
+uv run --no-project ruff format --check --diff --config .github/linters/.ruff.toml algorithms/code
 echo "--- ty ---"
-uv run --active --no-project ty check algorithms/code
+uv run --no-project ty check algorithms/code
 echo "--- mypy ---"
-uv run --active --no-project mypy algorithms --exclude banking --exclude mac
+uv run --no-project mypy algorithms --exclude banking --exclude mac
 echo "--- bandit ---"
-uv run --active --no-project bandit --skip B101 -r .
+uv run --no-project bandit --skip B101 -r . -x ./.venv 
 echo "--- complexipy ---"
-uv run --active --no-project complexipy algorithms/code --max-complexity-allowed 25
+uv run --no-project complexipy algorithms/code --max-complexity-allowed 25
