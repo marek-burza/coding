@@ -1,13 +1,13 @@
 # https://leetcode.com/problems/implement-stack-using-queues/
 
-import collections
+from collections import deque
 from typing import Deque
 
 
 class MyStack:
     def __init__(self) -> None:
-        self.__active: Deque[int] = collections.deque()
-        self.__other: Deque[int] = collections.deque()
+        self.__active: Deque[int] = deque()
+        self.__other: Deque[int] = deque()
 
     def __swap(self) -> None:
         self.__other, self.__active = self.__active, self.__other

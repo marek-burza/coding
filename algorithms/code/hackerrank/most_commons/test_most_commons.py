@@ -2,13 +2,13 @@
 # https://www.hackerrank.com/challenges/most-commons
 # #python
 
-import collections
 import io
 import sys
+from collections import Counter
 
 
 def mangle(s: str) -> tuple[list[str], dict[str, int]]:
-    counted: collections.Counter = collections.Counter()
+    counted: Counter = Counter()
     for entry in s:
         counted[entry] += 1
     ordered = sorted(

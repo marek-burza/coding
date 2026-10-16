@@ -1,11 +1,11 @@
 # https://leetcode.com/problems/majority-element/
 
-import collections
+from collections import Counter
 
 
 class Solution:
     def majorityElement(self, nums: list[int]) -> int:
-        frequencies: collections.Counter = collections.Counter()
+        frequencies: Counter = Counter()
         for value in nums:
             frequencies[value] += 1
         result = 0  # Instead of -inf

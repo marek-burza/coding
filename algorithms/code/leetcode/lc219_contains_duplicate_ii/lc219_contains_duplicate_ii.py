@@ -1,12 +1,13 @@
 # https://leetcode.com/problems/contains-duplicate-ii/
 
-import collections
+from collections import deque
+from typing import Deque
 
 
 class Solution:
     def containsNearbyDuplicate(self, nums: list[int], k: int) -> bool:
         collected: set[int] = set()
-        ordered: collections.deque = collections.deque()
+        ordered: Deque[int] = deque()
         for num in nums:
             if num in collected:
                 return True

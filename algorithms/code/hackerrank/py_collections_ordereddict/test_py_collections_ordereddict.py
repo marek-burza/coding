@@ -2,13 +2,13 @@
 # https://www.hackerrank.com/challenges/py-collections-ordereddict
 # #python
 
-import collections
 import io
 import sys
+from collections import OrderedDict
 
 
-def aggregate(purchases: list[tuple[str, int]]) -> collections.OrderedDict:
-    aggregated: collections.OrderedDict[str, int] = collections.OrderedDict()
+def aggregate(purchases: list[tuple[str, int]]) -> OrderedDict:
+    aggregated: OrderedDict[str, int] = OrderedDict()
     for product, payment in purchases:
         if product in aggregated:
             aggregated[product] += payment

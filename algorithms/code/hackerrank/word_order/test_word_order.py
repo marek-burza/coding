@@ -2,14 +2,14 @@
 # https://www.hackerrank.com/challenges/word-order
 # #python
 
-import collections
 import io
 import sys
+from collections import Counter
 
 
 def orderly(words: list[str]) -> tuple[list[str], dict[str, int]]:
     unique = []
-    counted: collections.Counter = collections.Counter()
+    counted: Counter = Counter()
     for word in words:
         if word not in counted:
             unique.append(word)

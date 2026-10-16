@@ -2,14 +2,14 @@
 # https://www.hackerrank.com/challenges/py-collections-namedtuple
 # #python
 
-import collections
 import io
 import sys
+from collections import namedtuple
 
 
 def average(order: list[str], table: list[list[str]]) -> float:
     students = []
-    student_tuple = collections.namedtuple("Student", order)  # type: ignore[misc]  # ty: ignore # pylint: disable=C0301  # noqa: E501
+    student_tuple = namedtuple("Student", order)  # type: ignore[misc]  # ty: ignore # pylint: disable=C0301  # noqa: E501
     total = 0
     for entry in table:
         student = student_tuple(entry[0], entry[1], entry[2], entry[3])  # type: ignore[call-arg]  # ty: ignore # pylint: disable=C0301  # noqa: E501

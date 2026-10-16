@@ -2,13 +2,13 @@
 # https://www.hackerrank.com/challenges/collections-counter
 # #python
 
-import collections
 import io
 import sys
+from collections import Counter
 
 
 def accountant(sizes: list[int], requests: list[list[int]]) -> int:
-    counted: collections.Counter = collections.Counter()
+    counted: Counter = Counter()
     counted.update(sizes)
     haul = 0
     for size, price in requests:

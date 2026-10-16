@@ -1,11 +1,11 @@
 # https://www.hackerrank.com/challenges/dijkstrashortreach
 
-import collections
 import functools
 import heapq
 import os
+from collections import namedtuple
 
-Edge = collections.namedtuple("Edge", ["origin", "vertex", "weight"])
+Edge = namedtuple("Edge", ["origin", "vertex", "weight"])
 
 
 # pylint: disable=R0903

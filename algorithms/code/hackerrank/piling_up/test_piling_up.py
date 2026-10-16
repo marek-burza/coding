@@ -2,13 +2,13 @@
 # https://www.hackerrank.com/challenges/piling-up
 # #python
 
-import collections
 import io
 import sys
+from collections import deque
 
 
 def check(cubes: list[int]) -> bool:
-    q = collections.deque(cubes)
+    q = deque(cubes)
     previous = None
     while q:
         left = q[0]

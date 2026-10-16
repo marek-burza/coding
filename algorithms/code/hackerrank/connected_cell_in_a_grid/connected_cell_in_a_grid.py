@@ -1,7 +1,8 @@
 # https://www.hackerrank.com/challenges/connected-cell-in-a-grid
 
-import collections
 import os
+from collections import deque
+from typing import Deque
 
 DELTAS = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
 
@@ -12,7 +13,7 @@ def check(matrix: list[list[int]], r: int, c: int) -> bool:
 
 def traverse(matrix: list[list[int]], r: int, c: int) -> int:
     size = 0
-    queue: collections.deque = collections.deque()
+    queue: Deque[tuple[int, int]] = deque()
     queue.append((r, c))
     while queue:
         r, c = queue.pop()

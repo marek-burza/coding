@@ -11,9 +11,9 @@ class Solution:
             for ni in range(n):
                 if board[mi][ni] == "X":
                     total += 1
-                    queue: Deque = deque()
+                    queue: Deque[tuple[int, int]] = deque()
                     queue.append((mi, ni))
-                    while len(queue) != 0:
+                    while queue:
                         mj, nj = queue.popleft()
                         if 0 <= mj < m and 0 <= nj < n and board[mj][nj] == "X":
                             board[mj][nj] = "."

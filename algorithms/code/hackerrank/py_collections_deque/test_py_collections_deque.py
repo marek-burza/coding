@@ -2,14 +2,14 @@
 # https://www.hackerrank.com/challenges/py-collections-deque
 # #python
 
-import collections
 import io
 import sys
+from collections import deque
 from typing import Deque
 
 
 def operate(operations: list[list[str]]) -> Deque[str]:
-    q: Deque[str] = collections.deque()
+    q: Deque[str] = deque()
     for operation in operations:
         if operation[0] == "append":
             q.append(operation[1])

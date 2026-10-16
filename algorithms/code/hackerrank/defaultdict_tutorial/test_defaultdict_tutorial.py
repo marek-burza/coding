@@ -2,13 +2,13 @@
 # https://www.hackerrank.com/challenges/defaultdict-tutorial
 # #python
 
-import collections
 import io
 import sys
+from collections import defaultdict
 
 
 def list_repetitions(words_a: list[str], words_b: list[str]) -> dict[str, list[int]]:
-    result = collections.defaultdict(list)
+    result = defaultdict(list)
     for i, word in enumerate(words_a):
         if word in words_b:
             result[word].append(i + 1)

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-import collections
 import math
 import random
 import sys
 from abc import ABC, abstractmethod
+from collections import deque
+from typing import Deque
 
 
 def direction(origin: int, goal: int) -> int:
@@ -163,8 +164,8 @@ class ElevatorControlSystemBase(ABC):
 class FCFS(ElevatorControlSystemBase):
     def __init__(self, lift_cnt: int, floor_cnt: int, capacity: int) -> None:
         ElevatorControlSystemBase.__init__(self, lift_cnt, floor_cnt, capacity)
-        self.queue: collections.deque = collections.deque()
-        self.assignments = [None for i in range(self.lift_cnt)]
+        self.queue: Deque[Request] = deque()
+        self.assignments: list[Request | None] = [None for i in range(self.lift_cnt)]
 
     def pickup(self, request: Request) -> None:
         self.queue.append(request)

@@ -1,13 +1,13 @@
 # https://leetcode.com/problems/bulls-and-cows/
 # #medium
 
-import collections
+from collections import Counter
 
 
 class Solution:
     def getHint(self, secret: str, guess: str) -> str:
-        countKnown: collections.Counter = collections.Counter()
-        countAsked: collections.Counter = collections.Counter()
+        countKnown: Counter = Counter()
+        countAsked: Counter = Counter()
         bulls = 0
         cows = 0
         i = 0
