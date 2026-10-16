@@ -1,6 +1,6 @@
 import threading
 import uuid
-from collections.abc import Callable
+from typing import Callable
 
 from sqlalchemy.orm import Session
 

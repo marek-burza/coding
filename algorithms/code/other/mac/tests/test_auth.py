@@ -1,7 +1,7 @@
 import base64
 import hashlib
 import importlib
-from collections.abc import Iterator
+from typing import Iterator
 
 import pytest
 from fastapi import status

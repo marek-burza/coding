@@ -1,7 +1,7 @@
 import hashlib
 import importlib
 import json
-from collections.abc import Iterator
+from typing import Iterator
 
 import pytest
 from fastapi import status

@@ -1,5 +1,5 @@
 import hashlib
-from collections.abc import Iterator
+from typing import Iterator
 
 import pytest
 from cloudpathlib.local import LocalS3Client, LocalS3Path

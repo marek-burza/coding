@@ -1,5 +1,5 @@
 import os
-from collections.abc import Iterator
+from typing import Iterator
 
 from sqlalchemy import create_engine
 from sqlalchemy.exc import IntegrityError

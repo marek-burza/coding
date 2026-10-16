@@ -1,6 +1,5 @@
 import uuid
-from collections.abc import Iterator
-from typing import Any
+from typing import Any, Iterator
 
 import pytest
 from fastapi import status
