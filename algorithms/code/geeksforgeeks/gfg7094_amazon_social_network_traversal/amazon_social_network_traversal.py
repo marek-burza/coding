@@ -1,8 +1,8 @@
 # https://web.archive.org/web/20180317031648/http://qa.geeksforgeeks.org/7094/amazon-social-network-traversal
 
-import functools
-import operator
 from collections import Counter
+from functools import reduce
+from operator import iconcat
 
 
 class GFG7094AmazonSocialNetworkTraversal:
@@ -31,9 +31,7 @@ class GFG7094AmazonSocialNetworkTraversal:
             ),
             network,
         )
-        second_courses: list[str] = functools.reduce(
-            operator.iconcat, second_courses_iter, []
-        )
+        second_courses: list[str] = reduce(iconcat, second_courses_iter, [])
         counted_courses = Counter(second_courses)
         ranked_courses = sorted(
             counted_courses.keys(),

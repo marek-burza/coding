@@ -3,8 +3,8 @@
 # #python
 
 import io
-import operator
 import sys
+from operator import itemgetter
 from typing import Any, Callable
 
 
@@ -14,7 +14,7 @@ def title(gender: str) -> str:
 
 def person_lister(f: Callable) -> Callable:
     def inner(people: list[list[Any]]) -> list[str]:
-        people.sort(key=operator.itemgetter(2))
+        people.sort(key=itemgetter(2))
         return [f(person) for person in people]
 
     return inner

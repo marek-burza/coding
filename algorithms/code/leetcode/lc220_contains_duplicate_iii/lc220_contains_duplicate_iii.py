@@ -1,13 +1,13 @@
 # https://leetcode.com/problems/contains-duplicate-iii/
 # #medium
 
-import bisect
+from bisect import bisect_left, bisect_right, insort
 
 
 class Solution:
     @staticmethod
     def __binary_search(items: list[int], value: int) -> int:
-        index = bisect.bisect_left(items, value)
+        index = bisect_left(items, value)
         if index != len(items) and items[index] == value:
             return index
         return -1
@@ -16,8 +16,8 @@ class Solution:
         sorted_set: list[int] = []
         ordered: list[int] = []
         for num in nums:
-            ceiling = bisect.bisect_left(sorted_set, num)
-            floor = bisect.bisect_right(sorted_set, num)
+            ceiling = bisect_left(sorted_set, num)
+            floor = bisect_right(sorted_set, num)
             ceiling_ok = ceiling < len(sorted_set)
             ceiling_ok = ceiling_ok and sorted_set[ceiling] - num <= t
             floor_ok = floor != 0 and floor - 1 < len(sorted_set)
@@ -26,7 +26,7 @@ class Solution:
                 return True
             ordered.append(num)
             if self.__binary_search(sorted_set, num) == -1:
-                bisect.insort(sorted_set, num)
+                insort(sorted_set, num)
             if len(ordered) > k:
                 index = self.__binary_search(sorted_set, ordered.pop(0))
                 sorted_set.pop(index)

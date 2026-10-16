@@ -1,15 +1,15 @@
 # https://www.hackerrank.com/challenges/dijkstrashortreach
 
-import functools
 import heapq
 import os
 from collections import namedtuple
+from functools import total_ordering
 
 Edge = namedtuple("Edge", ["origin", "vertex", "weight"])
 
 
 # pylint: disable=R0903
-@functools.total_ordering
+@total_ordering
 class Vertex:
     def __init__(self, index: int, distance: int) -> None:
         self.index = index

@@ -4,8 +4,8 @@
 
 import io
 import os
-import struct
 import sys
+from struct import unpack
 
 
 def mix(first: int, second: int) -> tuple[int, int, int]:
@@ -46,8 +46,8 @@ class TestCode:
         self.generalized_test("0")
 
     def test_random(self) -> None:
-        first = struct.unpack("<L", os.urandom(4))[0]
-        second = struct.unpack("<L", os.urandom(4))[0]
+        first = unpack("<L", os.urandom(4))[0]
+        second = unpack("<L", os.urandom(4))[0]
         for _ in range(100):
             added, subtracted, multiplied = mix(first, second)
             assert added == first + second

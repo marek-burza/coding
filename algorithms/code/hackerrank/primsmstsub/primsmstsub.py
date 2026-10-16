@@ -1,12 +1,12 @@
 # https://www.hackerrank.com/challenges/primsmstsub
 
-import functools
 import heapq
 import os
+from functools import total_ordering
 
 
 # pylint: disable=R0903
-@functools.total_ordering
+@total_ordering
 class Edge:
     def __init__(self, origin: int, vertex: int, weight: int) -> None:
         self.origin = origin

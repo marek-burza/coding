@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/trapping-rain-water/
 
-import operator
+from operator import itemgetter
 
 
 class Solution:
@@ -19,7 +19,7 @@ class Solution:
             return 0
         # Sort the terrain
         decorated = enumerate(height)
-        ordered = sorted(decorated, key=operator.itemgetter(1), reverse=True)
+        ordered = sorted(decorated, key=itemgetter(1), reverse=True)
         # Fill from the top
         # (pick highest and then extend "exclusion zone")
         count = 0

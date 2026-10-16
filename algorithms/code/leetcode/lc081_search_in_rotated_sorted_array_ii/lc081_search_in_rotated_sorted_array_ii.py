@@ -1,13 +1,13 @@
 # https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
 # #medium
 
-import bisect
+from bisect import bisect_left
 
 
 class Solution:
     @staticmethod
     def __binary_search(array: list[int], begin: int, end: int, value: int) -> int:
-        index = bisect.bisect_left(array, value, begin, end)
+        index = bisect_left(array, value, begin, end)
         if index != len(array) and array[index] == value:
             return index
         return -1
