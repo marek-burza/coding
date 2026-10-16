@@ -1,7 +1,8 @@
 # https://web.archive.org/web/20170803130133/http://qa.geeksforgeeks.org/6310/find-the-nearest-locker-in-the-city
 
-import queue
 import sys
+from collections import deque
+from typing import Deque
 
 DIRECTIONS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
@@ -25,28 +26,28 @@ def mark_lockers(city: list[list[int]], lockers: list[tuple[int, int]] | None) -
 
 def init_bfs(
     lockers: list[tuple[int, int]] | None,
-    queued: queue.Queue[tuple[int, int]],
+    queued: Deque[tuple[int, int]],
 ) -> None:
     if not lockers:
         return
     for locker in lockers:
-        queued.put(locker)
+        queued.append(locker)
 
 
 def progress_bfs(
     sizex: int,
     sizey: int,
     city: list[list[int]],
-    queued: queue.Queue[tuple[int, int]],
+    queued: Deque[tuple[int, int]],
 ) -> None:
-    position = queued.get()
+    position = queued.popleft()
     distance = city[position[0]][position[1]] + 1
     for direction in DIRECTIONS:
         x = position[0] + direction[0]
         y = position[1] + direction[1]
         if 0 <= x < sizex and 0 <= y < sizey and distance < city[x][y]:
             city[x][y] = distance
-            queued.put((x, y))
+            queued.append((x, y))
 
 
 def locker_distances(
@@ -57,9 +58,9 @@ def locker_distances(
     city = init_city(sizex, sizey)
     fill_city(sizex, sizey, city, sys.maxsize)
     mark_lockers(city, lockers)
-    queued: queue.Queue[tuple[int, int]] = queue.Queue()
+    queued: Deque[tuple[int, int]] = deque()
     init_bfs(lockers, queued)
-    while not queued.empty():
+    while queued:
         progress_bfs(sizex, sizey, city, queued)
     return city
 
