@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/group-anagrams/
 # #medium
 
-from typing import Any, Callable
+from functools import cmp_to_key
 
 
 class Solution:
@@ -26,32 +26,6 @@ class Solution:
 
 class TestCode:
     @staticmethod
-    def cmp_to_key(mycmp: Callable) -> Any:  # pragma: no cover
-        class K:
-            def __init__(self, obj: Any, *_: Any) -> None:
-                self.obj = obj
-
-            def __lt__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) < 0
-
-            def __gt__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) > 0
-
-            def __eq__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) == 0
-
-            def __le__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) <= 0
-
-            def __ge__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) >= 0
-
-            def __ne__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) != 0
-
-        return K
-
-    @staticmethod
     def orderly_comparator(l1: list[str], l2: list[str]) -> int:  # pragma: no cover
         difference = len(l1) - len(l2)
         if difference != 0:
@@ -64,7 +38,7 @@ class TestCode:
         return 0
 
     def __test(self, expected: list[list[str]], result: list[list[str]]) -> None:
-        result = sorted(result, key=TestCode.cmp_to_key(TestCode.orderly_comparator))
+        result = sorted(result, key=cmp_to_key(TestCode.orderly_comparator))
         assert expected == result
 
     def test_abc_cab_bad_dab_zzz_dot(self) -> None:

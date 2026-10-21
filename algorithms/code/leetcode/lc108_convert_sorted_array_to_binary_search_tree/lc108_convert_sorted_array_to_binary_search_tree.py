@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections import deque
-from typing import Callable, Deque
+from collections.abc import Callable
 
 
 class TreeNode:
@@ -38,9 +38,9 @@ class TestCode:  # pragma: no cover
     def __find_extreme(root: TreeNode | None, init: float, relation: Callable) -> float:
         if root is None:
             return 0
-        nodes: Deque[TreeNode] = deque()
+        nodes: deque[TreeNode] = deque()
         nodes.append(root)
-        levels: Deque[int] = deque()
+        levels: deque[int] = deque()
         levels.append(1)
         extremum = init
         while nodes:

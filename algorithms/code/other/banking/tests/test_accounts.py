@@ -1,10 +1,5 @@
 import uuid
 
-from fastapi import status
-from fastapi.testclient import TestClient
-from sqlalchemy import insert, select
-from sqlalchemy.orm import Session
-
 from banking.models import Entry, EntryType
 from conftest import (
     balance_cents,
@@ -13,6 +8,10 @@ from conftest import (
     transfer,
     walk_history,
 )
+from fastapi import status
+from fastapi.testclient import TestClient
+from sqlalchemy import insert, select
+from sqlalchemy.orm import Session
 
 
 def test_account_creation_writes_exactly_one_deposit_entry(

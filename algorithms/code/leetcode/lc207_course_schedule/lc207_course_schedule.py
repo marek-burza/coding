@@ -12,7 +12,7 @@ class Solution:
             if node not in visited:
                 visited.add(node)
                 for other in graph.get(node, set()):
-                    queue.append((other, ancestors | set([node])))
+                    queue.append((other, ancestors | {node}))
         return True
 
     def canFinish(self, _: int, prerequisites: list[list[int]]) -> bool:

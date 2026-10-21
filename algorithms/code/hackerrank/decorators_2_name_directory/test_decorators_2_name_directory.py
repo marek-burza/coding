@@ -1,11 +1,11 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/decorators-2-name-directory
 # #python
 
 import io
 import sys
+from collections.abc import Callable
 from operator import itemgetter
-from typing import Any, Callable
+from typing import Any
 
 
 def title(gender: str) -> str:

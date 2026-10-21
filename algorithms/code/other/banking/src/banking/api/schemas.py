@@ -2,7 +2,7 @@ import enum
 import unicodedata
 import uuid
 from datetime import datetime
-from typing import Annotated, Optional
+from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, field_validator
 
@@ -136,13 +136,13 @@ class HistoryEntryRead(BaseModel):
         description="Monotonic identifier that history is ordered by, and that "
         "pagination cursors over"
     )
-    transfer_id: Optional[uuid.UUID] = Field(
+    transfer_id: uuid.UUID | None = Field(
         description="The transfer this entry belongs to, absent for a deposit"
     )
     direction: Direction = Field(
         description="CREDIT if the money arrived, DEBIT if it left"
     )
-    counterparty_account_id: Optional[uuid.UUID] = Field(
+    counterparty_account_id: uuid.UUID | None = Field(
         description="The other account in the transfer, absent for a deposit"
     )
     amount_cents: int = Field(
@@ -157,7 +157,7 @@ class HistoryPage(BaseModel):
     entries: list[HistoryEntryRead] = Field(
         description="Ledger entries for the queried account, newest first"
     )
-    next_cursor: Optional[int] = Field(
+    next_cursor: int | None = Field(
         description="Pass back as `cursor` to fetch the next page. Null on the "
         "last page, so a client stops without issuing an empty request.",
         examples=[41],

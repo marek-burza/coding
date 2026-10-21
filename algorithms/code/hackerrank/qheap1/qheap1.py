@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/qheap1
 
 import heapq
@@ -105,10 +104,10 @@ def qheap_delete(heap: list[int], value: int) -> None:
     heap[index] = heap[-1]
     heap.pop()
     if index < len(heap):
-        heapq._siftup(  # type: ignore # pylint: disable=protected-access,C0301  # pyright: ignore  # noqa: E501
+        heapq._siftup(  # type: ignore # pylint: disable=protected-access,C0301  # pyright: ignore
             heap, index
         )
-        heapq._siftdown(  # type: ignore # pylint: disable=protected-access,C0301  # pyright: ignore  # noqa: E501
+        heapq._siftdown(  # type: ignore # pylint: disable=protected-access,C0301  # pyright: ignore
             heap, 0, index
         )
 

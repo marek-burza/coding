@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/map-and-lambda-expression
 # #python
 
@@ -15,7 +14,7 @@ def fibonacci(n: int) -> list[int]:
 
 def square(n: int) -> list[int]:
     listed = fibonacci(n)
-    listed = list(map(lambda x: x * x * x, listed))
+    listed = list(map(lambda x: x * x * x, listed))  # noqa: C417
     return listed
 
 

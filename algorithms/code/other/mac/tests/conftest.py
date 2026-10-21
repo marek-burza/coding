@@ -1,10 +1,9 @@
+from collections.abc import Callable, Iterator
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable, Iterator
 
 import pytest
 from fastapi.testclient import TestClient
-
 from mac import main, sanitization, storage
 
 

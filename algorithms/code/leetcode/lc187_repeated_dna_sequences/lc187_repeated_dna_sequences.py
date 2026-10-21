@@ -11,7 +11,7 @@ class Solution:
 
     def __decode(self, sequence: int) -> str:
         decoded = ""
-        for _ in range(0, 10):
+        for _ in range(10):
             nucleotide = sequence & 0x3
             decoded += {0: "A", 1: "C", 2: "G", 3: "T"}[nucleotide]
             sequence >>= 2
@@ -23,7 +23,7 @@ class Solution:
             return listed
         seen: set[int] = set()
         now = 0
-        for i in range(0, 9):
+        for i in range(9):
             now = self.__encode(now, self.__compress(s[i]))
         for i in range(9, len(s)):
             now = self.__encode(now, self.__compress(s[i]))

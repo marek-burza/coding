@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/subsets-ii/
 # #medium
 
-from typing import Any, Callable
+from functools import cmp_to_key
 
 
 class Solution:
@@ -36,32 +36,6 @@ class Solution:
 
 class TestCode:
     @staticmethod
-    def cmp_to_key(mycmp: Callable) -> Any:  # pragma: no cover
-        class K:
-            def __init__(self, obj: Any, *_: Any) -> None:
-                self.obj = obj
-
-            def __lt__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) < 0
-
-            def __gt__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) > 0
-
-            def __eq__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) == 0
-
-            def __le__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) <= 0
-
-            def __ge__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) >= 0
-
-            def __ne__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) != 0
-
-        return K
-
-    @staticmethod
     def orderly_comparator(l1: list[int], l2: list[int]) -> int:  # pragma: no cover
         difference = len(l1) - len(l2)
         if difference != 0:
@@ -74,7 +48,7 @@ class TestCode:
         return 0
 
     def __test(self, expected: list[list[int]], result: list[list[int]]) -> None:
-        result = sorted(result, key=TestCode.cmp_to_key(TestCode.orderly_comparator))
+        result = sorted(result, key=cmp_to_key(TestCode.orderly_comparator))
         for result_i in result:
             result_i.sort()
         assert expected == result

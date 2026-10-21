@@ -1,7 +1,6 @@
 import csv
 from collections import Counter, defaultdict, deque
 from pathlib import Path
-from typing import Deque
 
 EXAMPLE_MENU = Path(__file__).parent / "menu.csv"
 EXAMPLE_DEMAND = Path(__file__).parent / "demand.csv"
@@ -32,7 +31,7 @@ def collect_dishes(menu: dict[str, dict[str, int]], group: str) -> Counter[str]:
 
 
 def collect_basic_items(menu: dict[str, dict[str, int]], group: str) -> Counter[str]:
-    queue: Deque[tuple[str, int]] = deque()
+    queue: deque[tuple[str, int]] = deque()
     queue.append((group, 1))
     collection: Counter[str] = Counter()
     while queue:

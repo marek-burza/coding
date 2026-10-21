@@ -1,9 +1,8 @@
 import tracemalloc
+from collections.abc import Callable
 from pathlib import Path
-from typing import Callable
 
 import pytest
-
 from mac import sanitization
 
 Extract = Callable[[bytes], list[bytes]]

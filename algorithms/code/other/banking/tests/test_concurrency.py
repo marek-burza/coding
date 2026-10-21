@@ -1,12 +1,11 @@
 import threading
 import uuid
-from typing import Callable
-
-from sqlalchemy.orm import Session
+from collections.abc import Callable
 
 from banking import database
 from banking.domain import InsufficientFunds, ledger, transfers
 from conftest import open_account_directly
+from sqlalchemy.orm import Session
 
 COMMITTED = "committed"
 REJECTED = "insufficient_funds"

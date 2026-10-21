@@ -1,8 +1,10 @@
 # https://leetcode.com/problems/integer-to-english-words/
 
+from typing import Final
+
 
 class Solution:
-    __MAGNITUDE = [
+    __MAGNITUDE: Final = [
         "",
         " Thousand",
         " Million",
@@ -15,7 +17,7 @@ class Solution:
         " Octillion",
         " Nonillion",
     ]
-    __TENS = [
+    __TENS: Final = [
         "",
         "Ten",
         "Twenty",
@@ -27,7 +29,7 @@ class Solution:
         "Eighty",
         "Ninety",
     ]
-    __DIGITS = [
+    __DIGITS: Final = [
         "",
         "One",
         "Two",

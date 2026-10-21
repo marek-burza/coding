@@ -1,13 +1,12 @@
 import base64
 import hashlib
 import importlib
-from typing import Iterator
+from collections.abc import Iterator
 
 import pytest
+from conftest import Storage
 from fastapi import status
 from fastapi.testclient import TestClient
-
-from conftest import Storage
 from mac import auth, main
 
 PASSWORD = "s3cr3t-token-that-is-not-guessable"  # nosec B105 # test fixture, not a real credential

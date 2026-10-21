@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/permutations/
 # #medium
 
-from typing import Any, Callable
+from functools import cmp_to_key
 
 
 class Solution:
@@ -30,32 +30,6 @@ class Solution:
 
 class TestCode:
     @staticmethod
-    def cmp_to_key(mycmp: Callable) -> Any:  # pragma: no cover
-        class K:
-            def __init__(self, obj: Any, *_: Any) -> None:
-                self.obj = obj
-
-            def __lt__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) < 0
-
-            def __gt__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) > 0
-
-            def __eq__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) == 0
-
-            def __le__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) <= 0
-
-            def __ge__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) >= 0
-
-            def __ne__(self, other: Any) -> bool:
-                return mycmp(self.obj, other.obj) != 0
-
-        return K
-
-    @staticmethod
     def integer_list_comparator(
         l1: list[int], l2: list[int]
     ) -> int:  # pragma: no cover
@@ -81,7 +55,5 @@ class TestCode:
             [3, 2, 1],
         ]
         result = Solution().permute(nums)
-        result = sorted(
-            result, key=TestCode.cmp_to_key(TestCode.integer_list_comparator)
-        )
+        result = sorted(result, key=cmp_to_key(TestCode.integer_list_comparator))
         assert expected == result

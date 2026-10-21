@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/python-loops
 # #python
 
 import io
 import sys
-from typing import Iterator
+from collections.abc import Iterator
 
 
 def squares(n: int) -> Iterator[int]:

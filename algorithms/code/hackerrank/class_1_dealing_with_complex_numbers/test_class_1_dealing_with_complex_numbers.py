@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/class-1-dealing-with-complex-numbers
 # #python
 

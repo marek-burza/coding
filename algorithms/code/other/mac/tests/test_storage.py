@@ -1,11 +1,10 @@
 import hashlib
-from typing import Iterator
+from collections.abc import Iterator
 
 import pytest
 from cloudpathlib.local import LocalS3Client, LocalS3Path
 from fastapi import status
 from fastapi.testclient import TestClient
-
 from mac import main, storage
 
 SAMPLE = b"00:0F:AC:15:20:13\n00-0f -ac-15 -20-13\njunk\n00:0F:AC:15:20:14\n"

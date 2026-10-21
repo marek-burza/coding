@@ -1,7 +1,6 @@
+from conftest import SEEDED_CUSTOMERS
 from fastapi import status
 from fastapi.testclient import TestClient
-
-from conftest import SEEDED_CUSTOMERS
 
 
 def test_successful_customer_creation(client: TestClient) -> None:

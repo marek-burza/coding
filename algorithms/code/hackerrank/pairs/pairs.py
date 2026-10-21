@@ -18,7 +18,7 @@ def binary_search(array: list[int], from_index: int, to_index: int, key: int) ->
 def pairs(k: int, arr: list[int]) -> int:
     arr = sorted(arr)
     count = 0
-    for i in range(0, len(arr) - 1):
+    for i in range(len(arr) - 1):
         if binary_search(arr, i + 1, len(arr) - 1, arr[i] + k) >= 0:
             count += 1
     return count

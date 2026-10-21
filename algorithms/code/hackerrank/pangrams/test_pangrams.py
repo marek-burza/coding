@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/pangrams
 # #python
 
@@ -10,8 +9,7 @@ def pangram(text: str) -> bool:
     text = text.lower()
     remaining = {chr(i) for i in range(ord("a"), ord("z") + 1)}
     for key in text:
-        if key in remaining:
-            remaining.remove(key)
+        remaining.discard(key)
         if len(remaining) == 0:
             return True
     return False

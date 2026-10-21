@@ -5,8 +5,6 @@ lc278_first_bad_version = 0
 
 
 def isBadVersion(version: int) -> bool:
-    # pylint: disable=W0602,W0603
-    global lc278_first_bad_version  # noqa: F824
     return lc278_first_bad_version <= version
 
 

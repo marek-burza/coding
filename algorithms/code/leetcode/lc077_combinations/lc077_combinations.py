@@ -1,7 +1,8 @@
 # https://leetcode.com/problems/combinations/
 # #medium
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 
 class Solution:

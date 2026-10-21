@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/exceptions
 # #python
 
@@ -16,9 +15,9 @@ def exempt(a: Any, b: Any) -> int | str:
     try:
         return int(a) // int(b)
     except ValueError as exception:
-        return f"Error Code: {str(exception)}"
+        return f"Error Code: {exception!s}"
     except ZeroDivisionError as exception:
-        return f"Error Code: {str(exception)}"
+        return f"Error Code: {exception!s}"
 
 
 def main() -> None:

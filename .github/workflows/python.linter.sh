@@ -6,7 +6,7 @@ unset VIRTUAL_ENV
 uv venv --allow-existing
 uv pip install -r .github/workflows/requirements.txt
 echo "--- ruff ---"
-uv run --no-project ruff check --select I,E,B,SIM algorithms/code
+uv run --no-project ruff check --config .github/linters/.ruff.toml algorithms/code
 uv run --no-project ruff format --check --diff --config .github/linters/.ruff.toml algorithms/code
 echo "--- ty ---"
 uv run --no-project ty check algorithms/code

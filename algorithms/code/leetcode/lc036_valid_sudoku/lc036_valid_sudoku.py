@@ -1,6 +1,8 @@
 # https://leetcode.com/problems/valid-sudoku/
 # #medium
 
+from typing import Final
+
 
 class Solution:
     def validate(
@@ -56,7 +58,7 @@ class Solution:
             [2, 1],
             [2, 2],
         ]
-        for i in range(0, 9):
+        for i in range(9):
             if not self.validate(board, row, 0, i):
                 return False
             if not self.validate(board, column, i, 0):
@@ -67,7 +69,7 @@ class Solution:
 
 
 class TestCode:
-    EXAMPLE_BOARD = [
+    EXAMPLE_BOARD: Final = [
         ["5", "3", ".", ".", "7", ".", ".", ".", "."],
         ["6", ".", ".", "1", "9", "5", ".", ".", "."],
         ["9", "8", ".", ".", ".", ".", ".", "6", "."],
@@ -131,7 +133,7 @@ class TestCode:
         ]
         assert not Solution().isValidSudoku(board)
 
-    BLANK = [".", ".", ".", ".", ".", ".", ".", ".", "."]
+    BLANK: Final = [".", ".", ".", ".", ".", ".", ".", ".", "."]
 
     def test_another_4(self) -> None:
         board = [

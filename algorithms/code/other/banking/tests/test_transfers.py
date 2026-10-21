@@ -1,12 +1,11 @@
 import uuid
 
+from banking.models import Entry
+from conftest import balance_cents, open_account, transfer
 from fastapi import status
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
-
-from banking.models import Entry
-from conftest import balance_cents, open_account, transfer
 
 
 def test_successful_transfer_moves_the_balance(client: TestClient) -> None:

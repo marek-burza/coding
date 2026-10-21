@@ -1,11 +1,9 @@
 # https://leetcode.com/problems/minimum-size-subarray-sum
 # #medium
 
-from typing import List
-
 
 class Solution:
-    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+    def minSubArrayLen(self, target: int, nums: list[int]) -> int:
         window_from = window_sum = 0
         result = len(nums) + 1
         for window_to, nums_window_to in enumerate(nums):

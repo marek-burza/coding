@@ -2,7 +2,6 @@
 
 import os
 from collections import deque
-from typing import Deque
 
 
 # pylint: disable=W0613
@@ -11,7 +10,7 @@ def bfs(n: int, m: int, edges: list[list[int]], s: int) -> list[int]:
     for edge in edges:
         adjacency[edge[0] - 1][edge[1] - 1] = True
         adjacency[edge[1] - 1][edge[0] - 1] = True
-    queue: Deque[tuple[int, int]] = deque()
+    queue: deque[tuple[int, int]] = deque()
     queue.append((s - 1, 0))
     distances = [-1] * n
     while queue:

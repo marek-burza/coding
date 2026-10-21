@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/standardize-mobile-number-using-decorators
 # #python
 
 import io
 import sys
-from typing import Callable
+from collections.abc import Callable
 
 
 def wrapper(f: Callable) -> Callable:

@@ -4,8 +4,8 @@ import os
 
 
 def taum_bday(b: int, w: int, bc: int, wc: int, z: int) -> int:
-    x_adjusted = bc if bc <= wc + z else wc + z
-    y_adjusted = wc if wc <= bc + z else bc + z
+    x_adjusted = min(bc, wc + z)
+    y_adjusted = min(wc, bc + z)
     return b * x_adjusted + w * y_adjusted
 
 

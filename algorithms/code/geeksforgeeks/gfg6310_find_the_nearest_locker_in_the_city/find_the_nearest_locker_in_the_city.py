@@ -2,7 +2,6 @@
 
 import sys
 from collections import deque
-from typing import Deque
 
 DIRECTIONS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
@@ -26,7 +25,7 @@ def mark_lockers(city: list[list[int]], lockers: list[tuple[int, int]] | None) -
 
 def init_bfs(
     lockers: list[tuple[int, int]] | None,
-    queued: Deque[tuple[int, int]],
+    queued: deque[tuple[int, int]],
 ) -> None:
     if not lockers:
         return
@@ -38,7 +37,7 @@ def progress_bfs(
     sizex: int,
     sizey: int,
     city: list[list[int]],
-    queued: Deque[tuple[int, int]],
+    queued: deque[tuple[int, int]],
 ) -> None:
     position = queued.popleft()
     distance = city[position[0]][position[1]] + 1
@@ -58,7 +57,7 @@ def locker_distances(
     city = init_city(sizex, sizey)
     fill_city(sizex, sizey, city, sys.maxsize)
     mark_lockers(city, lockers)
-    queued: Deque[tuple[int, int]] = deque()
+    queued: deque[tuple[int, int]] = deque()
     init_bfs(lockers, queued)
     while queued:
         progress_bfs(sizex, sizey, city, queued)

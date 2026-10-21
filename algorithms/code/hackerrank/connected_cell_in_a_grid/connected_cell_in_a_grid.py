@@ -2,7 +2,6 @@
 
 import os
 from collections import deque
-from typing import Deque
 
 DELTAS = [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]
 
@@ -13,7 +12,7 @@ def check(matrix: list[list[int]], r: int, c: int) -> bool:
 
 def traverse(matrix: list[list[int]], r: int, c: int) -> int:
     size = 0
-    queue: Deque[tuple[int, int]] = deque()
+    queue: deque[tuple[int, int]] = deque()
     queue.append((r, c))
     while queue:
         r, c = queue.pop()

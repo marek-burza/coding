@@ -21,8 +21,7 @@ class Solution:
                 sums[j] = min(values) + line[j]
         minimum = sums[0]
         for i, _ in enumerate(sums):
-            if sums[i] < minimum:
-                minimum = sums[i]
+            minimum = min(minimum, sums[i])
         return minimum
 
 
@@ -30,10 +29,7 @@ class TestCode:
     def __construct(self, compact: list[list[int]]) -> list[list[int]]:
         triangle: list[list[int]] = []
         for array in compact:
-            line: list[int] = []
-            triangle.append(line)
-            for value in array:
-                line.append(value)
+            triangle.append(list(array))
         return triangle
 
     def test_example(self) -> None:

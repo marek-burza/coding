@@ -18,8 +18,7 @@ class Solution:
                     right = [at[0] + 1, at[1]]
                     queue.append(right)
                     summed = sums[at[0]][at[1]] + grid[right[0]][right[1]]
-                    if summed < sums[right[0]][right[1]]:
-                        sums[right[0]][right[1]] = summed
+                    sums[right[0]][right[1]] = min(sums[right[0]][right[1]], summed)
                 if at[1] + 1 < len(grid[0]):
                     down = [at[0], at[1] + 1]
                     queue.append(down)

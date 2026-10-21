@@ -6,8 +6,8 @@ import os
 
 def encryption(plain: str) -> str:
     length = len(plain)
-    floor = int(math.floor(math.sqrt(length)))
-    ceil = int(math.ceil(math.sqrt(length)))
+    floor = math.floor(math.sqrt(length))
+    ceil = math.ceil(math.sqrt(length))
     rows = cols = -1
     for c in range(ceil, floor - 1, -1):
         r = (length // c) + (1 if (length % c) > 0 else 0)

@@ -2,7 +2,6 @@
 
 import os
 from collections import deque
-from typing import Deque
 
 DELTAS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
@@ -23,8 +22,8 @@ def look_around(forest: list[list[str]], at: tuple[int, int]) -> list[tuple[int,
 
 
 def count_luck(matrix: list[str], k: int) -> str:
-    queue: Deque[tuple[int, int]] = deque()
-    counts: Deque[int] = deque()
+    queue: deque[tuple[int, int]] = deque()
+    counts: deque[int] = deque()
     counts.append(0)
     forest = [list(row) for row in matrix]
     for r, forest_r in enumerate(forest):

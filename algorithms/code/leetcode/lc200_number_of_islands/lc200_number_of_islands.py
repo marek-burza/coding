@@ -1,9 +1,11 @@
 # https://leetcode.com/problems/number-of-islands/
 # #medium
 
+from typing import Final
+
 
 class Solution:
-    __DELTAS = [[0, 1], [1, 0], [0, -1], [-1, 0]]
+    __DELTAS: Final = [[0, 1], [1, 0], [0, -1], [-1, 0]]
 
     def __land(self, grid: list[list[str]], x: int, y: int) -> bool:
         if not 0 <= x < len(grid):

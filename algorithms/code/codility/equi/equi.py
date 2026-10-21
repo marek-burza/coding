@@ -10,7 +10,7 @@ def find_aquilibrium_index(array: list[int]) -> int:
     for i in range(1, n):
         after[n - 1 - i] = after[n - i] + array[n - i]
     summed = 0
-    for i in range(0, n):
+    for i in range(n):
         if summed == after[i]:
             return i
         summed += array[i]

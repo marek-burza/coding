@@ -37,7 +37,7 @@ class TestCode:
         head.next.next = ListNode(3)
         counts = [0] * 3
         solution = Solution(head)
-        for _ in range(0, 10000):
+        for _ in range(10000):
             value = solution.getRandom()
             assert 1 <= value <= 3
             counts[value - 1] += 1

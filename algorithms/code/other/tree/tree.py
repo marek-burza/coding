@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Final
 
 
 @dataclass
@@ -48,7 +49,7 @@ def tree(
 
 
 class TestTree:
-    FILE_SYSTEM = [
+    FILE_SYSTEM: Final = [
         File("pyproject.toml"),
         File("README.md"),
         Directory(

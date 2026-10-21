@@ -8,11 +8,11 @@ class Solution:
         n = len(nums)
         maxE = max(nums)
         minE = min(nums)
-        length = float((maxE - minE)) / float((n - 1))
+        length = float(maxE - minE) / float(n - 1)
         maxA = [minE - 1] * n  # Instead of -inf
         minA = [maxE + 1] * n  # Instead of inf
         for num in nums:
-            index = int(((num - minE) / length))
+            index = int((num - minE) / length)
             maxA[index] = max(maxA[index], num)
             minA[index] = min(minA[index], num)
         gap = 0

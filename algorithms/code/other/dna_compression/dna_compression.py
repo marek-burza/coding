@@ -1,8 +1,8 @@
 import re
 import sys
 import tempfile
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Iterator
 
 
 def read_next_aminoacid(gcg_path: Path) -> Iterator[str]:

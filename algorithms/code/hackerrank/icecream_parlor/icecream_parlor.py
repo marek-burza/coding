@@ -6,9 +6,9 @@ import os
 def icecream_parlor(m: int, arr: list[int]) -> list[int]:
     n = len(arr)
     mapped: dict[int, int] = {}
-    for i in range(0, n):
+    for i in range(n):
         mapped[arr[i]] = i
-    for i in range(0, n):
+    for i in range(n):
         first = i
         value = m - arr[i]
         if value in mapped:

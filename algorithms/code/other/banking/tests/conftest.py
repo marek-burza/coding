@@ -1,14 +1,14 @@
 import uuid
-from typing import Any, Iterator
+from collections.abc import Iterator
+from typing import Any
 
 import pytest
+from banking import database, main, models
+from banking.domain import ledger
 from fastapi import status
 from fastapi.testclient import TestClient
 from sqlalchemy import func, inspect, select, text
 from sqlalchemy.orm import Session
-
-from banking import database, main, models
-from banking.domain import ledger
 
 ALEMBIC_TABLE = "alembic_version"
 

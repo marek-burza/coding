@@ -5,7 +5,6 @@ import random
 import sys
 from abc import ABC, abstractmethod
 from collections import deque
-from typing import Deque
 
 
 def direction(origin: int, goal: int) -> int:
@@ -137,7 +136,7 @@ class ElevatorControlSystemBase(ABC):
             print(line)
         lut = {-1: "v", 0: "-", 1: "^"}
         print("".join([lut[lift.direction] for lift in self.lifts]))
-        print("")
+        print()
         for i, lift in enumerate(self.lifts):
             items = [show_request(request) for request in lift.passengers]
             print(f"L{i} {' '.join(items)}")
@@ -164,7 +163,7 @@ class ElevatorControlSystemBase(ABC):
 class FCFS(ElevatorControlSystemBase):
     def __init__(self, lift_cnt: int, floor_cnt: int, capacity: int) -> None:
         ElevatorControlSystemBase.__init__(self, lift_cnt, floor_cnt, capacity)
-        self.queue: Deque[Request] = deque()
+        self.queue: deque[Request] = deque()
         self.assignments: list[Request | None] = [None for i in range(self.lift_cnt)]
 
     def pickup(self, request: Request) -> None:

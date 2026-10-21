@@ -61,8 +61,8 @@ class TestCode:
 
     def __depth(self, root: TreeNode | None, level: int, depths: MinMax) -> None:
         if root is None:
-            depths.max = level if depths.max < level else depths.max
-            depths.min = level if depths.min > level else depths.min
+            depths.max = max(depths.max, level)
+            depths.min = min(depths.min, level)
         else:
             self.__depth(root.left, level + 1, depths)
             self.__depth(root.right, level + 1, depths)

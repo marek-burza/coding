@@ -8,10 +8,10 @@ class Solution:
         maximum = float("-inf")
         i = 0
         while i < len(nums):
-            minimum = summed if summed < minimum else minimum
+            minimum = min(minimum, summed)
             summed += nums[i]
             delta = summed - minimum
-            maximum = delta if delta > maximum else maximum
+            maximum = max(maximum, delta)
             i += 1
         return int(maximum)
 

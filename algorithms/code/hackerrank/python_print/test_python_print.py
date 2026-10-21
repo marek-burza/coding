@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/python-print
 # #python
 
@@ -8,12 +7,13 @@ from typing import IO, Any
 
 
 def printer(n: int, file: IO[Any]) -> None:
-    list(map(lambda item: print(item, end="", file=file), range(1, n + 1)))
+    for item in range(1, n + 1):
+        print(item, end="", file=file)
 
 
 def main() -> None:
     printer(int(input().strip()), sys.stdout)
-    print("")
+    print()
 
 
 if __name__ == "__main__":  # pragma: no cover

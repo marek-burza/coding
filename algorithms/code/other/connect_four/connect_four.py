@@ -103,7 +103,7 @@ class TestCode:
         i = 1
         for move, outcome, winner in zip(moves, outcomes, winners, strict=True):
             result = g.drop_for_current_player(move)
-            message = f"Round {i} : \n{str(g)}"
+            message = f"Round {i} : \n{g!s}"
             assert outcome == result, message
             assert winner == g.check_winning(), message
             i += 1

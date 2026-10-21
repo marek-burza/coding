@@ -1,6 +1,6 @@
 import random
+from collections.abc import Callable
 from functools import partial
-from typing import Callable
 
 import torch
 from torch import nn, optim
@@ -59,13 +59,16 @@ def validate_model(model: SimpleNN) -> float:
     return float(sum(targets == prediction) / prediction.numel())
 
 
+DEFAULT_OPTIMIZER = partial(optim.Adam, lr=0.01)
+
+
 class Gateway:
     def __init__(
         self,
         name: str,
         batches_per_round: int = 4,
         loss_function: Callable = nn.CrossEntropyLoss,
-        optimizer: Callable = partial(optim.Adam, lr=0.01),
+        optimizer: Callable = DEFAULT_OPTIMIZER,
     ) -> None:
         # IMPLEMENTATION: BEGIN
         # For training reproducibility

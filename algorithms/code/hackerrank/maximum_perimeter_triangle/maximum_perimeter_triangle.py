@@ -6,7 +6,7 @@ import os
 def maximum_perimeter_triangle(sticks: list[int]) -> list[int]:
     sticks = sorted(sticks, reverse=True)
     for i in range(2, len(sticks)):
-        for j in range(0, i - 1):
+        for j in range(i - 1):
             for k in range(j + 1, i):
                 a = sticks[i]
                 b = sticks[k]

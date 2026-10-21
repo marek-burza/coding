@@ -4,9 +4,10 @@ import logging
 import os
 import re
 import tempfile
+from collections.abc import Iterator
 from enum import StrEnum
 from pathlib import Path
-from typing import Annotated, Any, Iterator
+from typing import Annotated, Any
 from urllib.parse import unquote_plus
 
 from fastapi import (

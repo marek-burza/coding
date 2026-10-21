@@ -1,5 +1,4 @@
 from collections import deque
-from typing import Deque
 
 
 class Solution:
@@ -11,7 +10,7 @@ class Solution:
             for ni in range(n):
                 if board[mi][ni] == "X":
                     total += 1
-                    queue: Deque[tuple[int, int]] = deque()
+                    queue: deque[tuple[int, int]] = deque()
                     queue.append((mi, ni))
                     while queue:
                         mj, nj = queue.popleft()

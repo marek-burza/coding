@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # https://www.hackerrank.com/challenges/py-collections-namedtuple
 # #python
 
@@ -9,10 +8,10 @@ from collections import namedtuple
 
 def average(order: list[str], table: list[list[str]]) -> float:
     students = []
-    student_tuple = namedtuple("Student", order)  # type: ignore[misc]  # ty: ignore # pylint: disable=C0301  # noqa: E501
+    student_tuple = namedtuple("Student", order)  # type: ignore[misc]  # ty: ignore # pylint: disable=C0301
     total = 0
     for entry in table:
-        student = student_tuple(entry[0], entry[1], entry[2], entry[3])  # type: ignore[call-arg]  # ty: ignore # pylint: disable=C0301  # noqa: E501
+        student = student_tuple(entry[0], entry[1], entry[2], entry[3])  # type: ignore[call-arg]  # ty: ignore # pylint: disable=C0301
         students.append(student)
         total += int(student.MARKS)  # type: ignore[attr-defined] # ty: ignore
     return total / len(students)

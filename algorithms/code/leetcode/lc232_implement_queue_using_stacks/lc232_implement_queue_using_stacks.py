@@ -30,9 +30,9 @@ class MyQueue:
 class TestCode:
     def test_something(self) -> None:
         queue = MyQueue()
-        for i in range(0, 6):
+        for i in range(6):
             queue.push(i)
-        for i in range(0, 6):
+        for i in range(6):
             assert not queue.empty()
             assert i == queue.peek()
             queue.pop()

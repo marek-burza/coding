@@ -1,9 +1,5 @@
 import uuid
 
-from fastapi import status
-from fastapi.testclient import TestClient
-from sqlalchemy.orm import Session
-
 from banking import database
 from banking.domain import IdempotencyConflict, transfers
 from conftest import (
@@ -12,6 +8,9 @@ from conftest import (
     open_account,
     open_account_directly,
 )
+from fastapi import status
+from fastapi.testclient import TestClient
+from sqlalchemy.orm import Session
 
 
 def test_replaying_a_key_returns_the_original_transfer(

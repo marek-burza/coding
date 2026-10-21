@@ -9,14 +9,14 @@ class Solution:
         mins[0] = prices[0]
         i = 1
         while i < len(prices):
-            mins[i] = prices[i] if prices[i] < mins[i - 1] else mins[i - 1]
+            mins[i] = min(mins[i - 1], prices[i])
             i += 1
         profit = min(prices) - max(mins)  # Instead of -inf
         maximum = prices[len(prices) - 1]
         for i in range(len(prices) - 1, -1, -1):
-            maximum = prices[i] if prices[i] > maximum else maximum
+            maximum = max(maximum, prices[i])
             delta = maximum - mins[i]
-            profit = delta if delta > profit else profit
+            profit = max(profit, delta)
         return profit
 
 

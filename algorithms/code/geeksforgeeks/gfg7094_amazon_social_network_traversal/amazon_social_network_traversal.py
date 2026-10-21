@@ -3,6 +3,7 @@
 from collections import Counter
 from functools import reduce
 from operator import iconcat
+from typing import Final
 
 
 class GFG7094AmazonSocialNetworkTraversal:
@@ -25,11 +26,9 @@ class GFG7094AmazonSocialNetworkTraversal:
         second_degree = map(self.get_direct_friends_for_user, own_friends)
         network = set().union(*second_degree) - {user}
         own_courses = self.get_attended_courses_for_user(user)
-        second_courses_iter = map(
-            lambda friend: list(
-                self.get_attended_courses_for_user(friend) - own_courses
-            ),
-            network,
+        second_courses_iter = (
+            list(self.get_attended_courses_for_user(friend) - own_courses)
+            for friend in network
         )
         second_courses: list[str] = reduce(iconcat, second_courses_iter, [])
         counted_courses = Counter(second_courses)
@@ -42,7 +41,7 @@ class GFG7094AmazonSocialNetworkTraversal:
 
 
 class TestCode:
-    EXAMPLE_FRIENDSHIPS = {
+    EXAMPLE_FRIENDSHIPS: Final = {
         "Jack": {"Jane", "John"},
         "John": {"Alice", "Jack", "Jane"},
         "Alice": {"Bob"},
@@ -50,7 +49,7 @@ class TestCode:
         "Jane": {"Jack", "John"},
         "Loner": set(),
     }
-    EXAMPLE_ATTENDANCES = {
+    EXAMPLE_ATTENDANCES: Final = {
         "Jack": {"Science 1"},
         "John": {"Science 1", "Arts"},
         "Alice": {"Science 1", "Science 2", "Arts"},

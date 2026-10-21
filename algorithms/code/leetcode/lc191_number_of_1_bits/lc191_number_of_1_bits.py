@@ -4,7 +4,7 @@
 class Solution:
     def hammingWeight(self, n: int) -> int:
         count = 0
-        for _ in range(0, 32):
+        for _ in range(32):
             count += n % 2  # Faster than "& 1" in Python
             n >>= 1
         return count

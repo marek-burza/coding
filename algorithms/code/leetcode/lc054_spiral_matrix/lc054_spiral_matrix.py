@@ -1,9 +1,11 @@
 # https://leetcode.com/problems/spiral-matrix/
 # #medium
 
+from typing import Final
+
 
 class Solution:
-    __DELTAS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
+    __DELTAS: Final = [[1, 0], [0, 1], [-1, 0], [0, -1]]
 
     def spiralOrder(self, matrix: list[list[int]]) -> list[int]:
         listed: list[int] = []

@@ -14,10 +14,10 @@ class Solution:
                 tmin *= cmin
             if cmax != 0:
                 tmax *= cmax
-            cmin = tmin if tmin < tmax else tmax
-            cmin = num if num < cmin else cmin
-            cmax = tmax if tmin < tmax else tmin
-            cmax = cmax if num < cmax else num
+            cmin = min(tmax, tmin)
+            cmin = min(cmin, num)
+            cmax = max(tmin, tmax)
+            cmax = max(num, cmax)
             maximum = max(maximum, cmax)
         return maximum
 

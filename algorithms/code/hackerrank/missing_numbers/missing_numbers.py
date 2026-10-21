@@ -18,7 +18,7 @@ def missing_numbers(arr: list[int], brr: list[int]) -> list[int]:
                 missing.add(brr[j])
         else:
             missing.add(brr[j])
-    return sorted(list(missing))
+    return sorted(missing)
 
 
 class TestCode:
