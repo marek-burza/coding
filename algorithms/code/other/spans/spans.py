@@ -1,21 +1,13 @@
 def compress_array(integers: list[int]) -> str:
     integers.sort()
-    start = previous = None
-    result = ""
+    ranges, start = [], None
     for index, current in enumerate(integers):
-        if previous is not None and current - previous > 1:
-            if result:
-                result += ","
-            result += f"{start}-{previous}" if start != previous else str(previous)
-            start = current
         if start is None:
             start = current
-        if index == len(integers) - 1:
-            if result:
-                result += ","
-            result += f"{start}-{current}" if start != current else str(current)
-        previous = current
-    return result
+        if index == len(integers) - 1 or integers[index + 1] - current > 1:
+            ranges.append(str(current) if start == current else f"{start}-{current}")
+            start = None
+    return ",".join(ranges)
 
 
 class TestCode:
