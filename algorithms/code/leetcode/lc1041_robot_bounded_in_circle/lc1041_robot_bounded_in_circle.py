@@ -1,11 +1,17 @@
+from typing import Final
+
+
 class Solution:
+    DELTAS: Final[list[tuple[int, int]]] = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+
     def isRobotBounded(self, instructions: str) -> bool:
         orientation = x = y = 0
         for instruction in instructions:
             match instruction:
                 case "G":
-                    x += [0, 1, 0, -1][orientation]
-                    y += [1, 0, -1, 0][orientation]
+                    dx, dy = Solution.DELTAS[orientation]
+                    x += dx
+                    y += dy
                 case "R":
                     orientation = (orientation + 1) % 4
                 case "L":
