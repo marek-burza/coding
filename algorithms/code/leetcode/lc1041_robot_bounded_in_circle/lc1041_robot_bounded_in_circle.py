@@ -1,15 +1,15 @@
 class Solution:
     def isRobotBounded(self, instructions: str) -> bool:
-        orientation = 0
-        x = y = 0
+        orientation = x = y = 0
         for instruction in instructions:
-            if instruction == "G":
-                x += {0: 0, 90: 1, 180: 0, 270: -1}[orientation]
-                y += {0: 1, 90: 0, 180: -1, 270: 0}[orientation]
-            elif instruction == "R":
-                orientation = (orientation + 90) % 360
-            elif instruction == "L":
-                orientation = (orientation + 270) % 360
+            match instruction:
+                case "G":
+                    x += [0, 1, 0, -1][orientation]
+                    y += [1, 0, -1, 0][orientation]
+                case "R":
+                    orientation = (orientation + 1) % 4
+                case "L":
+                    orientation = (orientation + 3) % 4
         return not (orientation == 0 and (x != 0 or y != 0))
 
 
