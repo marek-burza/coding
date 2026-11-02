@@ -872,6 +872,20 @@ For ML pre-training pipelines, the combination of column pruning, predicate push
 
 ---
 
+## Data quality check dimensions
+
+- Completeness - null rate per column, row count vs. source/prior load, all partitions present
+- Validity - types/formats, value ranges, allowed values
+- Uniqueness - no duplicate primary or business keys
+- Consistency - referential integrity, cross-field logic, same metric agrees across systems
+- Timeliness / freshness - latest timestamp within SLA, pipeline ran on schedule
+- Accuracy / distribution - stats within historical bounds, drift (PSI, KS), volume anomalies
+- Schema - expected columns and types, no silent renames
+
+Tools: Great Expectations, dbt tests, Soda, Deequ, Pandera.
+
+---
+
 ## Cleaning dirty tabular data (CSV/Excel/Parquet from Common Crawl) for foundation model pre-training
 
 The objective is not cleaning one table for one task - it is heterogeneous tables so a foundation model can learn good priors across them. This means some 'dirtiness' is actually signal we want to preserve (real-world messiness the model should be robust to), and some is noise that will poison pre-training. The filtering criteria should reflect that distinction.
