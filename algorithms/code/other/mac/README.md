@@ -357,3 +357,7 @@ To install, run:
 ```shell
 claude plugin install aws-core@claude-plugins-official --scope project
 ```
+
+## Appendix E: AWS Emulator
+
+For more details see the [AWS Emulator](https://github.com/aws/aws-emulator) repository.
