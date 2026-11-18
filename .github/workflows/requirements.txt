@@ -1,9 +1,9 @@
 bandit==1.9.4
 complexipy==8.3.0
-coverage==7.17.1
+coverage==7.17.2
 mypy==2.4.1
 numpy==2.5.4
 pytest==9.2.0
-ruff==0.17.3
+ruff==0.17.4
 torch==2.15.0
-ty==0.0.96
+ty==0.0.100
