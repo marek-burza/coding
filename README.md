@@ -1,5 +1,38 @@
 # Training Coding
 
+## Interview Checklists
+
+### Coding
+
+1. Clarify: restate the problem, ask about inputs, constraints and edge cases.
+2. Examples: work one or two by hand, including an edge case.
+3. Say the brute force algorithm first and state its complexity.
+4. Optimize: pick the data structure and algorithm, get buy-in before coding.
+5. Code while talking.
+6. Test: trace an example, then edge cases, fix bugs.
+7. Final time and space complexity, then follow-ups and trade-offs.
+
+### System Design
+
+1. Requirements: at most 5 questions, then state your assumptions.
+2. Rough numbers.
+3. API and data model.
+4. Boxes and data flow.
+5. Deep dive where the interviewer points.
+6. Failure modes, observability and security.
+
+### ML/AI Architecture
+
+1. Problem Formulation/Framing (use cases, business/product-oriented, elev pitch, translate from abstract-to-ML)
+2. Metrics, Offline (classification/regression/problem-specific metrics) and Online (how effective/correct in reality)
+3. Architectural Components (MVP Logic - DBs, servers, queues, alternatives, ML-specific “business logic” ones)
+4. Data Collection and Preparation (sources (users/obj), columns, labels, modality, class balancing, augmentation)
+5. Feature Engineering (ML types, embedding, feature interaction, selection, missing values, normalization, bins)
+6. Model Development and Offline Evaluation (objective type, simple/complex, data splits, optimizer, hyperparam)
+7. Prediction Service (ETL, interfacing, distributing, batch/online, edge/centralized)
+8. Online Testing and Deployment (A/B -> shadow -> canary)
+9. Scaling, Monitoring, and Updates (LB, cache, monitoring metrics, failures, drift/perf-drop, optim., skew/seasons)
+
 ## General Approach
 
 ### 0. Be the tech lead
@@ -137,6 +170,8 @@ Tactics:
 
 
 ## Behavioral Interview
+
+**When only an adjacent example comes to mind**, use "label, closest thing, reasoning": "I don't have a clean example of that. The closest is X. In this context, I would..."
 
 - [LeetCode - leap.ai - Rock the Behavioral Interview](https://leetcode.com/explore/interview/card/leapai/) ❗
 - [Tech Interview Handbook: The 30 most common Software Engineer behavioral interview questions](https://www.techinterviewhandbook.org/behavioral-interview-questions/)
