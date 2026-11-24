@@ -16,7 +16,7 @@ Prompt shape: "Design dynamic feature flags for a very large company: roll out b
 
 ## Design: control plane and data plane
 
-```
+```text
 admins → admin API → config store (versioned, single writer, audited, validated)
                    → distribution: regional relays/caches → servers (subscribe to their service)
 each server: client library, in-memory snapshot, evaluates locally (no network call per flag)

@@ -4,7 +4,7 @@ Prompt shape: "Users register and log in, search companies, and request a PDF or
 
 ## Requirements (ask, then assume)
 
-- Search by name only, or also by website and filters? (assume partial name + filters like country and revenue)
+- Search by name only, or also by site and filters? (assume partial name + filters like country and revenue)
 - Report formats and size? (assume PDF or CSV, a few MB)
 - Notify when done, or poll? (assume poll; push as an extension)
 - Tenancy: do customers see different data? (assume same data, per-user reports)
@@ -22,7 +22,7 @@ Prompt shape: "Users register and log in, search companies, and request a PDF or
 
 ## Boxes
 
-```
+```text
 CDN (static frontend) → load balancer/gateway (TLS, token validation, rate limits)
   → search service → search index (n-grams + filter fields) → details from Postgres
   → report service → jobs table + queue → report workers → read columnar store → write file to S3

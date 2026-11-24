@@ -19,7 +19,7 @@ Prompt shape: "20 sites (data centres), 250 Linux servers each, 5,000 in total. 
 
 ## Boxes
 
-```
+```text
 each server: agent (node_exporter / OpenTelemetry collector)
 each site: local collector (Prometheus agent / vmagent / OTel collector)
            scrapes local servers, keeps a disk buffer (WAL)

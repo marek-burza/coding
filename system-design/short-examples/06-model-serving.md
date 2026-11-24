@@ -17,7 +17,7 @@ Prompt shape: "Serve one or more ML models (vision or LLM) to product traffic wi
 
 ## Design
 
-```
+```text
 model registry (versioned, immutable artifacts: weights + preprocessing + config)
   → CI builds a serving image → deploy (Kubernetes/KServe, or SageMaker)
 client → gateway (auth, rate limit, routing by version) → inference service (Triton/TorchServe; vLLM for LLMs)

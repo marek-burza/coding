@@ -16,7 +16,7 @@ Prompt shape: "Ingest data from many sources (devices, partner APIs, files) and 
 
 ## Design
 
-```
+```text
 sources → landing zone (raw, immutable, partitioned by ingest date)
         → validate and parse → bronze/raw → silver/clean (deduplicated, typed) → gold/curated (business tables, features)
 streaming path (only if needed): Kafka/Kinesis → Flink or Spark Structured Streaming → same tables
@@ -29,7 +29,7 @@ storage: Parquet with a table format (Iceberg/Delta) on S3; orchestration with A
 ## Deep dives (the probes)
 
 - **Backfills:** the same job, parameterised by date range, rerun from the immutable raw layer; separate queue or priority so backfills don't starve daily runs; table formats give time travel to compare.
-- **Schema changes:** schema registry or data contracts; additive changes pass automatically, breaking changes create a new version; schema-on-read in the raw layer; unparseable records go to a quarantine table, never silently dropped.
+- **Schema changes:** schema registry or data contracts; additive changes pass automatically, breaking changes create a new version; schema-on-read in the raw layer; unparsable records go to a quarantine table, never silently dropped.
 - **Late and out-of-order data:** partition by event time, set a watermark, reprocess a trailing window (e.g. the last 3 days).
 - **Data quality:** checks on row counts, null rates, value ranges, uniqueness, freshness (dbt tests, Great Expectations). A failed critical check blocks publishing to gold; others warn.
 - **Lineage:** which job and which input produced each table version, so a bad source can be traced and reprocessed.

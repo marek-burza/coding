@@ -17,7 +17,7 @@ Prompt shape: "100M companies, 10 years of financials each, hundreds to thousand
 
 ## Design: split search from storage
 
-```
+```text
 ingestion → columnar store (Parquet/Iceberg on S3, queried by Trino/Athena, or ClickHouse)
           → "latest metrics" job → search index (OpenSearch/Elasticsearch)
           → company details (Postgres, keyed by company_id)
@@ -27,7 +27,7 @@ API: search → index returns ids → details from Postgres; reports → columna
 - **Name search:** edge n-grams for prefix, fuzzy matching or trigrams for typos; normalise legal suffixes (GmbH, AG, Ltd) and keep aliases.
 - **Filters:** denormalise only the filterable fields into the index (keyword and numeric fields); range filters are cheap there.
 - **Full history:** stays in the columnar store; it is wide and analytical, so it doesn't belong in a row database or the search index.
-- **Smaller scale alternative:** Postgres with `pg_trgm` for names plus B-tree indexes on filter columns.
+- **Smaller scale alternative:** Postgres with `pg_trgm` for names plus a B-tree index on each filter column.
 
 ## Deep dives (the probes)
 

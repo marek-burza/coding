@@ -22,7 +22,7 @@ Prompt shape: "Users request a report that takes ~30 minutes. They check status 
 
 ## Flow
 
-```
+```text
 client → API → jobs table (PENDING) + enqueue (outbox) → SQS → worker
 worker: status RUNNING → heartbeat → write result to S3 (key = job_id) → status SUCCEEDED
 client polls GET → pre-signed S3 URL when SUCCEEDED

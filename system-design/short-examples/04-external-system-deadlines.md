@@ -19,7 +19,7 @@ Prompt shape: "An optimiser produces bids every minute. Design the market servic
 
 ## Flow
 
-```
+```text
 optimiser → bids (versioned) → risk check (battery power/energy/state-of-charge limits, both markets combined)
   → day-ahead adapter: freeze at 11:30, aggregate, submit once, fetch results from 14:00 with retries
   → intraday adapter: submit, immediate accept/reject, cancel/replace when a newer bid version arrives

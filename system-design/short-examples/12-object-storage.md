@@ -18,7 +18,7 @@ Prompt shape: "Design an object store: buckets, keys, PUT/GET/DELETE/LIST, very 
 
 ## Boxes
 
-```
+```text
 client (signed requests) → front-end API servers (stateless: auth, request routing)
   → metadata service: (bucket, key) → version, size, checksum, chunk placement
      range-partitioned by (bucket, key), each partition replicated with consensus (Raft/Paxos)
@@ -40,6 +40,6 @@ background: scrubber (checksums), repairer, garbage collector, lifecycle worker
 ## Failure modes, observability, security
 
 - Losing a zone: data stays readable from the other zones' fragments; writes continue with placement across the remaining zones.
-- Hot keys: cache popular objects at the front end or a CDN.
+- Heavily read objects: cache them at the frontend or a CDN.
 - Security: request signing, IAM and bucket policies, encryption at rest (managed or customer keys), pre-signed URLs for temporary access.
 - Metrics: request latency per operation, error rates, repair backlog, capacity per zone.

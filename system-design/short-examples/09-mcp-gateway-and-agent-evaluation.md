@@ -12,7 +12,7 @@ Prompt shape: "We have a microservice architecture. Design a single MCP endpoint
 
 ## Part 1: the MCP gateway
 
-```
+```text
 agent → MCP gateway (single endpoint, OAuth, per-tool scopes, rate limits, audit)
       → tool registry (curated tools, schemas, descriptions, versions)
       → router → microservices (internal APIs)

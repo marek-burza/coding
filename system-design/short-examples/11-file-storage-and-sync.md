@@ -22,11 +22,11 @@ Prompt shape: "Design a service where users store files in folders, sync them ac
 - `versions`: `file_id, version, size, chunk_list (hashes), created_at, device`
 - `chunks`: `hash (SHA-256), size, storage_location, ref_count`
 - `acl`: `resource_id, principal, role`; folder ACLs inherited
-- `journal`: per-user ordered change log for sync (`cursor`, change type, file_id)
+- `journal`: per-user ordered changelog for sync (`cursor`, change type, file_id)
 
 ## Boxes
 
-```
+```text
 client (chunker, local index) → API gateway → metadata service (sharded by user/namespace)
                               → upload/download via pre-signed URLs → block storage (object store, content-addressed chunks)
 metadata change → journal → notification service → other devices (long poll / push)

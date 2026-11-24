@@ -17,7 +17,7 @@ Prompt shape: "Limit each API client to N requests per time window across a flee
 ## Algorithms (pick one, say why)
 
 | Algorithm | Pros | Cons |
-|---|---|---|
+| --- | --- | --- |
 | Fixed window counter | Simplest, one counter | Double bursts at window edges |
 | Sliding log | Exact | Memory grows with requests |
 | Sliding window counter | Close to exact, cheap | Approximation |
@@ -27,7 +27,7 @@ Choose **token bucket**: state is `(tokens, last_refill_ts)`; on each request re
 
 ## Design
 
-```
+```text
 client → API gateway / middleware → rate limiter check → service
 rate limiter state: Redis cluster sharded by key; atomic update via a Lua script (read, refill, decrement, write)
 optional: local in-memory bucket per server for very hot keys, synced periodically
@@ -43,5 +43,5 @@ optional: local in-memory bucket per server for very hot keys, synced periodical
 
 ## Failure modes, observability, security
 
-- Metrics: 429 rate per key and endpoint, Redis latency, hot keys.
+- Metrics: 429 rate per key and endpoint, Redis latency, heavily used keys.
 - Abuse: also limit unauthenticated traffic by IP and at the edge (CDN/WAF).
